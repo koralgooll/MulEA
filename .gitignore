@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 .Rbuildignore
-#inst/doc/
+inst/doc/
 Mulea.Rproj
 development/
 workdir/
