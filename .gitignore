@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rbuildignore
 #inst/doc/
 Mulea.Rproj
 development/
