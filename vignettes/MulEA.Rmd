@@ -1,0 +1,294 @@
+---
+title: "MulEA"
+author: "Wiktor Jurkowski, Eszter Ari, David Fazekas, Cezary Turek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MulEA}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r global_options, include=TRUE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, error = TRUE)
+```
+
+This vignette was created during the development process.
+
+MulEA (Multi Enrichment Analysis) is a package/tool for functional interpretation and integration of multi-omics data sets. It can work with ontologies such as GO, ... 
+
+Implemented features include:
+
+- [Mulea Database Workflow](#mulea-database-workflow)
+    - [File](#file)
+    - [Local Mulea DB](#local-mulea-db)
+    - [Global Mulea DB](#global-mulea-db)
+- [Data Analysis](#data-analysis)
+    - [Set Based Tests](#set-based-tests)
+        - [Hypergeometric Test](#hypergeometric-test)
+        - [Multiple Comparisons Problem](#multiple-comparisons-problem)
+    - [Ranked Based Tests](#ranked-based-tests)
+        - [Kolmogorov Smirnov Test](#kolmogorov-smirnov-test)
+        - [Subramanian Test](#subramanian-test)
+    - [Graph Base](#graph-base)
+- [Code Snippet](#code-snippet)
+- [Other](#other)
+
+
+## Mulea Database Workflow
+There are 3 ways to work with data in MulEA; directly from our global database, with a local database or files. Detailed instructions follow.  
+
+
+### File
+The file which includes the ontology must be in GMT: Gene Matrix Transposed file format (*.gmt) ([format explanation](http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29)). Examples of the file are under MulEA installation directory in the example folder. To find the installation directory use `find.package("MulEA")` command.
+
+In order to read the GMT file as a dataframe use: `MulEA::readGmtFileAsDF()`. Method requires(*) one argument `gmtFilePath`:
+
+- `gmtFilePath` - This is the path to the file, Example: `"R/MulEA/example/model.gmt"`
+
+The ontology is then read into the data frame, such:
+```{r, results = 'asis'} 
+pathToModelGmtFile <- paste(find.package("MulEA"),"/example/model.gmt", sep = "")
+modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = pathToModelGmtFile)
+knitr::kable(modelDfFromFile, caption = "Model Data Frame")
+```
+
+If you would like to save the data frame that represents the ontology of the GMT file, use: `MulEA::saveModelFromDataFrameToGmtFile()`. You have to provide two arguments `modelDF`, `gmtFilePath`.
+
+- `modelDF` - ontology data frame which represents the GMT file.
+- `gmtFilePath` - Path to file where you want to save the ontology. Example: `"R/MulEA/example/savedModel.gmt"`
+
+```{r, eval=FALSE} 
+   MulEA::saveModelFromDataFrameToGmtFile(modelDF = modelDfFromFile, gmtFilePath = pathToModelGmtFile)  
+```
+
+
+### Local Mulea DB
+With MulEA you can have all your ontologys (files, global DB etc.) in one place. This place is the local DB. This allows an easy way to control, share and work with all your ontologys. Before storing or downloading ontologys, run the database using: `MulEA::startLocalDatabase()`, this method creates the same schema Global DB uses, but locally on your computer. If the schema has already been created it reads the database, one argument is required for this method:
+- `muleaDBLocalization` - By default its value is `":memory:"` which means the DB is created in temporary memory. 
+
+If you would like to save the database, for sharing purposes or later use, specificy a directory such: `MulEA::startLocalDatabase("/home/muleaDB/DB1")`. Which will save the database as `/home/muleaDB/DB1Mulea.sqlite`
+
+To view the database install the Mozilla Firefox addon https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/ and then go Main Menu -> Database -> Connect Database, then choose the database file MulEA.sqlite.
+
+It is good practise to close the database connection after you finish work with MulEA `MulEA::stopLocalDatabase()`.
+
+If database is running you are ready to add the ontology to it: `MulEA::addModelToLocalDatabase()`.It accepts 7 arguments. Four of them are required (*) `model`, `taxonomy_id`, `model_source`, `version`, and other 3 are optional `scientific_name`, `common_english_name`, `description`.
+TODO : Some new problem with database!
+
+```{r, eval=FALSE}
+  MulEA::startLocalDatabase(":memory:")
+  MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0);
+  modelDfFromLocalDB <- MulEA::getModelFromLocalDatabaseAsDf(taxonomy_id = 9001, model_source = "GO", version = 0)
+  modelListFromLocalDB <- MulEA::getModelFromLocalDatabaseAsList(taxonomy_id = 9001, model_source = "GO", version = 0)
+  MulEA::stopLocalDatabase()
+```
+
+- `model` - Data Frame with ontology For example a Data Frame returned by `MulEA::readGmtFileAsDF()`.
+- `taxonomy_id` - Integer that represents a taxonomy id from NCBI. In case of homo sapiens use 9001.
+- `model_source` -  String that represents the origin of the ontologoy. Gen Ontology can be "GO".
+- `version` - Integer that represents the ontology number. It alows for multiple versions of the same ontology. If second ontology use 2.
+- `scientific_name` - Text which represents the scientific name, aids in identifying the organism.
+- `common_english_name` - Same as above
+- `description` - Field for notes on the ontology
+
+To list ontologys from your local DB invoke `MulEA::listModelsFromLocalDatabase()` (not implemented yet)
+
+To remove an ontology from the database: `MulEA::removeModelFromLocalDatabase()`. Primary Key (PK) of organisms_models table as the argument.
+
+- `taxonomy_id` - Integer represents the taxonomi id of organism.
+- `model_source` - tring that represents the origin of the ontology. Gen Ontology can be "GO".
+- `version` - Version of the ontology in DB.
+
+
+To retrieve the ontology from the DB: `MulEA::getModelFromLocalDatabaseAsDf` or `MulEA::getModelFromLocalDatabaseAsList`. The data frame retrieval can be used with analysis methods provided by MulEA. The list representation can also be useful as input to other package's methods. Both versions require the same arguments, (*) `taxonomy_id`, `model_source`, `version`.
+
+In addition MulEA provides a helper method to save a ontology from the local DB in GMT format. `MulEA::saveModelFromLocalDatabaseToFile()` with arguments `taxonomy_id`, `model_source`, `version`, `gmtFilePath` all of them are required (*).
+
+- `gmtFilePath` - The path to gmt file where ontology from local DB will be saved.
+
+
+### Global Mulea DB
+(Not implemented yet.)
+
+
+
+## Data Analysis
+"Analysis of data is a process of inspecting, cleansing, transforming, and modeling data with the goal of discovering useful information, suggesting conclusions, and supporting decision-making.", [Wikipedia](https://en.wikipedia.org/wiki/Data_analysis). MulEA performs data analysis on data frames. We implemented three types of tests base on contingency tables, rankings and topology of data.
+
+
+### Set Based Tests
+Hypothesis tests may be performed on data divided into sets. MulEA provides tests which are based on that sets of data. For now MulEA uses Hypergeometric test under `SetBasedTest` class. This class is highly configurable and open for us a possibility to adjust test's results by typical methods and newly presented permutation test.  
+Before we perform this tests, we have to prepare data in proper form. Below is full data input prepered on our example data. Example data are small, to show results for user in a fast way.  
+
+```{r, results = 'asis', echo = TRUE} 
+muleaPkgDir <- find.package("MulEA")
+modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = paste(muleaPkgDir,"/example/model.gmt", sep = ""))
+dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
+dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407", "FBgn0010438", "FBgn0032154", "FBgn0039930", "FBgn0040268", "FBgn0013674",
+                                   "FBgn0037008", "FBgn0003116", "FBgn0037743", "FBgn0035401", "FBgn0037044", "FBgn0051005", "FBgn0026737", "FBgn0026751",
+                                   "FBgn0038704", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831", "FBgn0000579"),
+                                 c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111", "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742",
+                                   "FBgn0029709", "FBgn0030341")))
+```
+
+#### Hypergeometric Test  
+
+Basic usage of `SetBasedTest` class lokk like that:
+
+```{r, results = 'asis', echo = TRUE} 
+setBasedTest <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment)
+setBasedTestRes <- MulEA::runTest(setBasedTest)
+```
+```{r, results = 'asis'} 
+knitr::kable(setBasedTestRes, caption = "Set Based Test Result Data Frame")
+```
+
+Usage with definition of pool data, which can be different that in presented model is presented below:
+
+```{r, results = 'asis', echo = TRUE} 
+setBasedTestWithPool <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool)
+setBasedTestWithPoolRes <- MulEA::runTest(setBasedTestWithPool)
+```
+```{r, results = 'asis'} 
+knitr::kable(setBasedTestWithPoolRes, caption = "Set Based Test Result Data Frame")
+```
+
+#### Multiple Comparisons Problem  
+
+According to article [Multiple Comparisons Problem](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) you can adjust p-values of tested ontologys by adding the `adjustMethod` argument to `SetBasedTest` class. The value of this argument can newly presented by MulEA method to adjust p-values besed on permutation test. To run that method, please use `"EszterPermutationTest"` as `adjustMethod` argument.
+You can use common R approach and you can use one of the listed values: "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr". References to this methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
+
+```{r, results = 'asis', echo = TRUE} 
+setBasedTestWithPoolAndAdjust <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH")
+setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
+```
+```{r, results = 'asis'} 
+knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result Data Frame")
+```
+
+Data frames with adjusted p-values contain one extra column, which include q-values.
+
+`SetBasedTest` class constructor accepts list of arguments, such:
+
+- `gmt` - required* - It is data.frame, which represents model. Read it from file or load from DBs.
+- `testData` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`.
+- `pool = character()` - default: character() - It is vector of background - pool data to experiment data. Example: `dataFromExperimentPool <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0003444", "FBgn0003333"")`
+- `adjustMethod = NA` - default: NA - You can specify an algorithm which helps you with [Multiple Comparisons Problem](#multiple-comparisons-problem).
+
+Column names presented in results data.frame are:
+
+- `ontologyId` - input copy - Column copies from the input data frame. It include onlology ids. Could be for example ids from GO.
+- `ontologyName` - input copy - Column copies from the input data frame. It include onlology names. Could be for example name from GO as "mitochondrion inheritance".
+- `listOfValues` - input copy - Column copies from the input data frame. It include all symbols undet presented ontology id. Example from GO: FBgn0004407, FBgn0010438.
+- `overlappingData` - output - Column includes set of intersection of list of values from model and provided by user experiment vector.
+- `contingencyTable` - output - This colum presents contingeny tables used to count test.
+- `p.value` - output - Cells of this column include counted p-value for provided data.
+- `q.value` - output - Cells of this column include adjusted p-value according to the model. The result of adjustment is q-value.
+
+
+
+
+### Ranked Based Tests
+Fundament under ranked based tests is ranking. Ranking can be an ordered vector or any vector with vector of scores, both of them have to be the same length. For now MulEA provides you two ranked based tests. them are the Kolmogorov-Smirnov test and the Subramanian test. Both of them are encloused in `RankedBasedTest` class, which provides you a possibility to set input data and configur other parameters including used statistic method.
+
+As privously, before running any tests you have to prepare proper input data. An example is presented below:
+
+```{r, results = 'asis', echo = TRUE} 
+muleaPkgDir <- find.package("MulEA")
+modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = paste(muleaPkgDir,"/example/model.gmt", sep = ""))
+dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
+dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30, 0.45, 0.50)
+```
+
+#### Kolmogorov Smirnov Test  
+
+Kolmogorov-Smirnov test is achieved by setting `method` argument to `"KS"`. It is also required to provide `testData` argument.
+
+```{r, results = 'asis', echo=TRUE} 
+rankedBasedTestKs <- RankedBasedTest(method = "KS", gmt = modelDfFromFile, testData = dataFromExperiment)
+rankedBasedTestKsRes <- MulEA::runTest(rankedBasedTestKs)
+```
+
+#### Subramanian Test
+
+Subramanian method required `method` argument to be set to `"Subramanian"`. It;s also required `testData` and `scores` to be set. It is important that those two vectors have to be of the same lenght.
+
+```{r, results = 'asis', echo=TRUE} 
+rankedBasedTestSubramanian <- RankedBasedTest(method = "Subramanian", gmt = modelDfFromFile, testData = dataFromExperiment, scores = dataFromExperimentScores)
+rankedBasedTestSubramanianRes <- MulEA::runTest(rankedBasedTestSubramanian)
+```
+
+Below list is the list of arguments accepted by the constructor of the `RankedBasedTest`:
+
+- `method` - required* - It allows user to choose method, which will be used to count probabilities. For no it have to be one of this values "KS", "Subramanian".
+- `gmt` - required* - It is data.frame, which represents model. Read it from file or load from DBs.
+- `testData` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`. In case of KS test it makes a role of ranking also. In Subramanian it creates a ranking with scores argument.
+- `scores` - if method="Subramanian": required*, default: numeric() - This agument is vector of numbers. It creates a ranking with `testData` argument for Subramanian approach.
+- `numberOfPermutations` - default: 1000 - This set number of permutations used to count p-value. You can speed up process of counting by set it to small value, remember that it can result with less accuracy.
+
+Returned data frame from any ranked based test look like that (column specification):
+
+- `ontologyId` - input copy - Column copies from the input data frame. It include onlology ids. Could be for example ids from GO.
+- `ontologyName` - input copy - Column copies from the input data frame. It include onlology names. Could be for example name from GO as "mitochondrion inheritance".
+- `listOfValues` - input copy - Column copies from the input data frame. It include all symbols undet presented ontology id. Example from GO: FBgn0004407, FBgn0010438.
+- `p.value` - output - Cells of this column include counted p-value for provided data.
+
+```{r, results = 'asis'} 
+knitr::kable(rankedBasedTestKsRes, caption = "Ranked Based Test Result Data Frame")
+```
+  
+  
+
+### Graph Based Test
+(not implemented yet)
+
+
+
+
+## Code Snippet
+You can copy and paste this code to start working with MulEA more easily. All code from vignette in one place:
+
+[Reading GMT File](#file).
+
+`
+pathToModelGmtFile <- paste(find.package("MulEA"),"/example/model.gmt", sep = "")
+modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = pathToModelGmtFile)
+knitr::kable(modelDfFromFile, caption = "Model Data Frame")
+`
+
+[SQLite DB on local machine](#local-mulea-db).
+
+`
+creationOfLocalDB <- MulEA::startLocalDatabase("/home/koralgooll/doktorat/Rpackages/mulea/")
+creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
+`
+
+`
+stopDbResults <- MulEA::stopLocalDatabase()
+`
+
+`
+MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)
+modelDfFromLocalDB <- MulEA::getModelFromLocalDatabaseAsDf(taxonomy_id = 9001, model_source = "GO", version = 0)
+modelListFromLocalDB <- MulEA::getModelFromLocalDatabaseAsList(taxonomy_id = 9001, model_source = "GO", version = 0)
+MulEA::removeModelFromLocalDatabase(taxonomy_id = 9001, model_source = "GO", version = 0)
+`
+
+`
+MulEA::saveModelFromDataFrameToGmtFile(modelDF = modelDfFromLocalDB, gmtFilePath = "/home/koralgooll/doktorat/Rpackages/mulea/Mulea/example/fromDf.gmt")
+`
+
+[Statistical set bases tests](#contingency-table-base).
+
+`
+hTestResults <- MulEA::calculateHypergeometricTest(model = modelDfFromLocalDB, sampleVector = dataFromExperiment)
+fTestResults <- MulEA::calculateFisherTest(model = modelDfFromFile, sampleVector = dataFromExperiment)
+chTestResults <- MulEA::calculateChiSquaredTest(model = modelDfFromLocalDB, sampleVector = dataFromExperiment)
+`
+
+
+
+## Other
+(not implemented yet)
+

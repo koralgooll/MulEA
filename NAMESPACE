@@ -1,0 +1,21 @@
+# Imports:
+import(methods)
+import(DBI)
+import(RSQLite)
+import(plyr)
+import(fgsea)
+
+# Exports:
+export(readGmtFileAsDF)
+export(startLocalDatabase)
+export(stopLocalDatabase)
+export(addModelToLocalDatabase)
+export(removeModelFromLocalDatabase)
+export(getModelFromLocalDatabaseAsList)
+export(getModelFromLocalDatabaseAsDf)
+export(saveModelFromDataFrameToGmtFile)
+
+export("SetBasedTest")
+export("RankedBasedTest")
+
+exportMethods(runTest)

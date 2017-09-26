@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Wiktor Jurkowski, Eszter Ari, David Fazekas, Cezary Turek" />
+
+<meta name="date" content="2017-09-23" />
+
+<title>MulEA</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">MulEA</h1>
+<h4 class="author"><em>Wiktor Jurkowski, Eszter Ari, David Fazekas, Cezary Turek</em></h4>
+<h4 class="date"><em>2017-09-23</em></h4>
+
+
+
+<p>This vignette was created during the development process.</p>
+<p>MulEA (Multi Enrichment Analysis) is a package/tool for functional interpretation and integration of multi-omics data sets. It can work with ontologies such as GO, …</p>
+<p>Implemented features include:</p>
+<ul>
+<li><a href="#mulea-database-workflow">Mulea Database Workflow</a>
+<ul>
+<li><a href="#file">File</a></li>
+<li><a href="#local-mulea-db">Local Mulea DB</a></li>
+<li><a href="#global-mulea-db">Global Mulea DB</a></li>
+</ul></li>
+<li><a href="#data-analysis">Data Analysis</a>
+<ul>
+<li><a href="#set-based-tests">Set Based Tests</a>
+<ul>
+<li><a href="#hypergeometric-test">Hypergeometric Test</a></li>
+<li><a href="#multiple-comparisons-problem">Multiple Comparisons Problem</a></li>
+</ul></li>
+<li><a href="#ranked-based-tests">Ranked Based Tests</a>
+<ul>
+<li><a href="#kolmogorov-smirnov-test">Kolmogorov Smirnov Test</a></li>
+<li><a href="#subramanian-test">Subramanian Test</a></li>
+</ul></li>
+<li><a href="#graph-base">Graph Base</a></li>
+</ul></li>
+<li><a href="#code-snippet">Code Snippet</a></li>
+<li><a href="#other">Other</a></li>
+</ul>
+<div id="mulea-database-workflow" class="section level2">
+<h2>Mulea Database Workflow</h2>
+<p>There are 3 ways to work with data in MulEA; directly from our global database, with a local database or files. Detailed instructions follow.</p>
+<div id="file" class="section level3">
+<h3>File</h3>
+<p>The file which includes the ontology must be in GMT: Gene Matrix Transposed file format (*.gmt) (<a href="http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29">format explanation</a>). Examples of the file are under MulEA installation directory in the example folder. To find the installation directory use <code>find.package(&quot;MulEA&quot;)</code> command.</p>
+<p>In order to read the GMT file as a dataframe use: <code>MulEA::readGmtFileAsDF()</code>. Method requires(*) one argument <code>gmtFilePath</code>:</p>
+<ul>
+<li><code>gmtFilePath</code> - This is the path to the file, Example: <code>&quot;R/MulEA/example/model.gmt&quot;</code></li>
+</ul>
+<p>The ontology is then read into the data frame, such:</p>
+<pre><code>## Error in readLines(fileConnection): cannot open the connection</code></pre>
+<table>
+<caption>Model Data Frame</caption>
+<thead>
+<tr class="header">
+<th align="left">ontologyId</th>
+<th align="left">ontologyName</th>
+<th align="left">listOfValues</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ID:0000001</td>
+<td align="left">“mitochondrion inheritance”</td>
+<td align="left">FBgn0033690, FBgn0261618</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000002</td>
+<td align="left">“mitochondrial genome maintenance”</td>
+<td align="left">FBgn0004407, FBgn0010438, FBgn0032154, FBgn0039930, FBgn0040268, FBgn0013674, FBgn0037008, FBgn0003116</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000009</td>
+<td align="left">“alpha-1,6-mannosyltransferase activity”</td>
+<td align="left">FBgn0037743, FBgn0035401</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000010</td>
+<td align="left">“trans-hexaprenyltranstransferase activity”</td>
+<td align="left">FBgn0037044, FBgn0051005</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000012</td>
+<td align="left">“single strand break repair”</td>
+<td align="left">FBgn0026737, FBgn0026751, FBgn0038704</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000014</td>
+<td align="left">“single-stranded DNA endodeoxyribonuclease activity”</td>
+<td align="left">FBgn0002887, FBgn0028434, FBgn0030170, FBgn0263831</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000015</td>
+<td align="left">“phosphopyruvate hydratase complex”</td>
+<td align="left">FBgn0000579</td>
+</tr>
+</tbody>
+</table>
+<p>If you would like to save the data frame that represents the ontology of the GMT file, use: <code>MulEA::saveModelFromDataFrameToGmtFile()</code>. You have to provide two arguments <code>modelDF</code>, <code>gmtFilePath</code>.</p>
+<ul>
+<li><code>modelDF</code> - ontology data frame which represents the GMT file.</li>
+<li><code>gmtFilePath</code> - Path to file where you want to save the ontology. Example: <code>&quot;R/MulEA/example/savedModel.gmt&quot;</code></li>
+</ul>
+</div>
+<div id="local-mulea-db" class="section level3">
+<h3>Local Mulea DB</h3>
+<p>With MulEA you can have all your ontologys (files, global DB etc.) in one place. This place is the local DB. This allows an easy way to control, share and work with all your ontologys. Before storing or downloading ontologys, run the database using: <code>MulEA::startLocalDatabase()</code>, this method creates the same schema Global DB uses, but locally on your computer. If the schema has already been created it reads the database, one argument is required for this method: - <code>muleaDBLocalization</code> - By default its value is <code>&quot;:memory:&quot;</code> which means the DB is created in temporary memory.</p>
+<p>If you would like to save the database, for sharing purposes or later use, specificy a directory such: <code>MulEA::startLocalDatabase(&quot;/home/muleaDB/DB1&quot;)</code>. Which will save the database as <code>/home/muleaDB/DB1Mulea.sqlite</code></p>
+<p>To view the database install the Mozilla Firefox addon <a href="https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/" class="uri">https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/</a> and then go Main Menu -&gt; Database -&gt; Connect Database, then choose the database file MulEA.sqlite.</p>
+<p>It is good practise to close the database connection after you finish work with MulEA <code>MulEA::stopLocalDatabase()</code>.</p>
+<p>If database is running you are ready to add the ontology to it: <code>MulEA::addModelToLocalDatabase()</code>.It accepts 7 arguments. Four of them are required (*) <code>model</code>, <code>taxonomy_id</code>, <code>model_source</code>, <code>version</code>, and other 3 are optional <code>scientific_name</code>, <code>common_english_name</code>, <code>description</code>. TODO : Some new problem with database!</p>
+<ul>
+<li><code>model</code> - Data Frame with ontology For example a Data Frame returned by <code>MulEA::readGmtFileAsDF()</code>.</li>
+<li><code>taxonomy_id</code> - Integer that represents a taxonomy id from NCBI. In case of homo sapiens use 9001.</li>
+<li><code>model_source</code> - String that represents the origin of the ontologoy. Gen Ontology can be “GO”.</li>
+<li><code>version</code> - Integer that represents the ontology number. It alows for multiple versions of the same ontology. If second ontology use 2.</li>
+<li><code>scientific_name</code> - Text which represents the scientific name, aids in identifying the organism.</li>
+<li><code>common_english_name</code> - Same as above</li>
+<li><code>description</code> - Field for notes on the ontology</li>
+</ul>
+<p>To list ontologys from your local DB invoke <code>MulEA::listModelsFromLocalDatabase()</code> (not implemented yet)</p>
+<p>To remove an ontology from the database: <code>MulEA::removeModelFromLocalDatabase()</code>. Primary Key (PK) of organisms_models table as the argument.</p>
+<ul>
+<li><code>taxonomy_id</code> - Integer represents the taxonomi id of organism.</li>
+<li><code>model_source</code> - tring that represents the origin of the ontology. Gen Ontology can be “GO”.</li>
+<li><code>version</code> - Version of the ontology in DB.</li>
+</ul>
+<p>To retrieve the ontology from the DB: <code>MulEA::getModelFromLocalDatabaseAsDf</code> or <code>MulEA::getModelFromLocalDatabaseAsList</code>. The data frame retrieval can be used with analysis methods provided by MulEA. The list representation can also be useful as input to other package’s methods. Both versions require the same arguments, (*) <code>taxonomy_id</code>, <code>model_source</code>, <code>version</code>.</p>
+<p>In addition MulEA provides a helper method to save a ontology from the local DB in GMT format. <code>MulEA::saveModelFromLocalDatabaseToFile()</code> with arguments <code>taxonomy_id</code>, <code>model_source</code>, <code>version</code>, <code>gmtFilePath</code> all of them are required (*).</p>
+<ul>
+<li><code>gmtFilePath</code> - The path to gmt file where ontology from local DB will be saved.</li>
+</ul>
+</div>
+<div id="global-mulea-db" class="section level3">
+<h3>Global Mulea DB</h3>
+<p>(Not implemented yet.)</p>
+</div>
+</div>
+<div id="data-analysis" class="section level2">
+<h2>Data Analysis</h2>
+<p>“Analysis of data is a process of inspecting, cleansing, transforming, and modeling data with the goal of discovering useful information, suggesting conclusions, and supporting decision-making.”, <a href="https://en.wikipedia.org/wiki/Data_analysis">Wikipedia</a>. MulEA performs data analysis on data frames. We implemented three types of tests base on contingency tables, rankings and topology of data.</p>
+<div id="set-based-tests" class="section level3">
+<h3>Set Based Tests</h3>
+<p>Hypothesis tests may be performed on data divided into sets. MulEA provides tests which are based on that sets of data. For now MulEA uses Hypergeometric test under <code>SetBasedTest</code> class. This class is highly configurable and open for us a possibility to adjust test’s results by typical methods and newly presented permutation test.<br />
+Before we perform this tests, we have to prepare data in proper form. Below is full data input prepered on our example data. Example data are small, to show results for user in a fast way.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">muleaPkgDir &lt;-<span class="st"> </span><span class="kw">find.package</span>(<span class="st">&quot;MulEA&quot;</span>)
+modelDfFromFile &lt;-<span class="st"> </span>MulEA::<span class="kw">readGmtFileAsDF</span>(<span class="dt">gmtFilePath =</span> <span class="kw">paste</span>(muleaPkgDir,<span class="st">&quot;/example/model.gmt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))</code></pre></div>
+<pre><code>## Error in readLines(fileConnection): cannot open the connection</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataFromExperiment &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;FBgn0004407&quot;</span>, <span class="st">&quot;FBgn0010438&quot;</span>, <span class="st">&quot;FBgn0003742&quot;</span>, <span class="st">&quot;FBgn0029709&quot;</span>, <span class="st">&quot;FBgn0030341&quot;</span>, <span class="st">&quot;FBgn0037044&quot;</span>, <span class="st">&quot;FBgn0002887&quot;</span>, <span class="st">&quot;FBgn0028434&quot;</span>, <span class="st">&quot;FBgn0030170&quot;</span>, <span class="st">&quot;FBgn0263831&quot;</span>)
+dataFromExperimentPool &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">c</span>(<span class="kw">c</span>(<span class="st">&quot;FBgn0033690&quot;</span>, <span class="st">&quot;FBgn0261618&quot;</span>, <span class="st">&quot;FBgn0004407&quot;</span>, <span class="st">&quot;FBgn0010438&quot;</span>, <span class="st">&quot;FBgn0032154&quot;</span>, <span class="st">&quot;FBgn0039930&quot;</span>, <span class="st">&quot;FBgn0040268&quot;</span>, <span class="st">&quot;FBgn0013674&quot;</span>,
+                                   <span class="st">&quot;FBgn0037008&quot;</span>, <span class="st">&quot;FBgn0003116&quot;</span>, <span class="st">&quot;FBgn0037743&quot;</span>, <span class="st">&quot;FBgn0035401&quot;</span>, <span class="st">&quot;FBgn0037044&quot;</span>, <span class="st">&quot;FBgn0051005&quot;</span>, <span class="st">&quot;FBgn0026737&quot;</span>, <span class="st">&quot;FBgn0026751&quot;</span>,
+                                   <span class="st">&quot;FBgn0038704&quot;</span>, <span class="st">&quot;FBgn0002887&quot;</span>, <span class="st">&quot;FBgn0028434&quot;</span>, <span class="st">&quot;FBgn0030170&quot;</span>, <span class="st">&quot;FBgn0263831&quot;</span>, <span class="st">&quot;FBgn0000579&quot;</span>),
+                                 <span class="kw">c</span>(<span class="st">&quot;FBgn0066666&quot;</span>, <span class="st">&quot;FBgn0000000&quot;</span>, <span class="st">&quot;FBgn0099999&quot;</span>, <span class="st">&quot;FBgn0011111&quot;</span>, <span class="st">&quot;FBgn0022222&quot;</span>, <span class="st">&quot;FBgn0777777&quot;</span>, <span class="st">&quot;FBgn0333333&quot;</span>, <span class="st">&quot;FBgn0003742&quot;</span>,
+                                   <span class="st">&quot;FBgn0029709&quot;</span>, <span class="st">&quot;FBgn0030341&quot;</span>)))</code></pre></div>
+<div id="hypergeometric-test" class="section level4">
+<h4>Hypergeometric Test</h4>
+<p>Basic usage of <code>SetBasedTest</code> class lokk like that:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">setBasedTest &lt;-<span class="st"> </span><span class="kw">SetBasedTest</span>(<span class="dt">gmt =</span> modelDfFromFile, <span class="dt">testData =</span> dataFromExperiment)
+setBasedTestRes &lt;-<span class="st"> </span>MulEA::<span class="kw">runTest</span>(setBasedTest)</code></pre></div>
+<table>
+<caption>Set Based Test Result Data Frame</caption>
+<thead>
+<tr class="header">
+<th align="left">ontologyId</th>
+<th align="left">ontologyName</th>
+<th align="left">listOfValues</th>
+<th align="left">overlappingData</th>
+<th align="left">contingencyTable</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ID:0000001</td>
+<td align="left">“mitochondrion inheritance”</td>
+<td align="left">FBgn0033690, FBgn0261618</td>
+<td align="left"></td>
+<td align="left">0, 7, 2, 13</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000002</td>
+<td align="left">“mitochondrial genome maintenance”</td>
+<td align="left">FBgn0004407, FBgn0010438, FBgn0032154, FBgn0039930, FBgn0040268, FBgn0013674, FBgn0037008, FBgn0003116</td>
+<td align="left">FBgn0004407, FBgn0010438</td>
+<td align="left">2, 5, 6, 9</td>
+<td align="right">0.8390093</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000009</td>
+<td align="left">“alpha-1,6-mannosyltransferase activity”</td>
+<td align="left">FBgn0037743, FBgn0035401</td>
+<td align="left"></td>
+<td align="left">0, 7, 2, 13</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000010</td>
+<td align="left">“trans-hexaprenyltranstransferase activity”</td>
+<td align="left">FBgn0037044, FBgn0051005</td>
+<td align="left">FBgn0037044</td>
+<td align="left">1, 6, 1, 14</td>
+<td align="right">0.5454545</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000012</td>
+<td align="left">“single strand break repair”</td>
+<td align="left">FBgn0026737, FBgn0026751, FBgn0038704</td>
+<td align="left"></td>
+<td align="left">0, 7, 3, 12</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000014</td>
+<td align="left">“single-stranded DNA endodeoxyribonuclease activity”</td>
+<td align="left">FBgn0002887, FBgn0028434, FBgn0030170, FBgn0263831</td>
+<td align="left">FBgn0002887, FBgn0028434, FBgn0030170, FBgn0263831</td>
+<td align="left">4, 3, 0, 15</td>
+<td align="right">0.0047847</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000015</td>
+<td align="left">“phosphopyruvate hydratase complex”</td>
+<td align="left">FBgn0000579</td>
+<td align="left"></td>
+<td align="left">0, 7, 1, 14</td>
+<td align="right">1.0000000</td>
+</tr>
+</tbody>
+</table>
+<p>Usage with definition of pool data, which can be different that in presented model is presented below:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">setBasedTestWithPool &lt;-<span class="st"> </span><span class="kw">SetBasedTest</span>(<span class="dt">gmt =</span> modelDfFromFile, <span class="dt">testData =</span> dataFromExperiment, <span class="dt">pool =</span> dataFromExperimentPool)
+setBasedTestWithPoolRes &lt;-<span class="st"> </span>MulEA::<span class="kw">runTest</span>(setBasedTestWithPool)</code></pre></div>
+<table>
+<caption>Set Based Test Result Data Frame</caption>
+<thead>
+<tr class="header">
+<th align="left">ontologyId</th>
+<th align="left">ontologyName</th>
+<th align="left">listOfValues</th>
+<th align="left">overlappingData</th>
+<th align="left">contingencyTable</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ID:0000001</td>
+<td align="left">“mitochondrion inheritance”</td>
+<td align="left">FBgn0033690, FBgn0261618</td>
+<td align="left"></td>
+<td align="left">0, 10, 2, 20</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000002</td>
+<td align="left">“mitochondrial genome maintenance”</td>
+<td align="left">FBgn0004407, FBgn0010438, FBgn0032154, FBgn0039930, FBgn0040268, FBgn0013674, FBgn0037008, FBgn0003116</td>
+<td align="left">FBgn0004407, FBgn0010438</td>
+<td align="left">2, 8, 6, 16</td>
+<td align="right">0.8074584</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000009</td>
+<td align="left">“alpha-1,6-mannosyltransferase activity”</td>
+<td align="left">FBgn0037743, FBgn0035401</td>
+<td align="left"></td>
+<td align="left">0, 10, 2, 20</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000010</td>
+<td align="left">“trans-hexaprenyltranstransferase activity”</td>
+<td align="left">FBgn0037044, FBgn0051005</td>
+<td align="left">FBgn0037044</td>
+<td align="left">1, 9, 1, 21</td>
+<td align="right">0.5342742</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000012</td>
+<td align="left">“single strand break repair”</td>
+<td align="left">FBgn0026737, FBgn0026751, FBgn0038704</td>
+<td align="left"></td>
+<td align="left">0, 10, 3, 19</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000014</td>
+<td align="left">“single-stranded DNA endodeoxyribonuclease activity”</td>
+<td align="left">FBgn0002887, FBgn0028434, FBgn0030170, FBgn0263831</td>
+<td align="left">FBgn0002887, FBgn0028434, FBgn0030170, FBgn0263831</td>
+<td align="left">4, 6, 0, 22</td>
+<td align="right">0.0058398</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000015</td>
+<td align="left">“phosphopyruvate hydratase complex”</td>
+<td align="left">FBgn0000579</td>
+<td align="left"></td>
+<td align="left">0, 10, 1, 21</td>
+<td align="right">1.0000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="multiple-comparisons-problem" class="section level4">
+<h4>Multiple Comparisons Problem</h4>
+<p>According to article <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">Multiple Comparisons Problem</a> you can adjust p-values of tested ontologys by adding the <code>adjustMethod</code> argument to <code>SetBasedTest</code> class. The value of this argument can newly presented by MulEA method to adjust p-values besed on permutation test. To run that method, please use <code>&quot;EszterPermutationTest&quot;</code> as <code>adjustMethod</code> argument. You can use common R approach and you can use one of the listed values: “holm”, “hochberg”, “hommel”, “bonferroni”, “BH”, “BY”, “fdr”. References to this methods can be found here: <a href="http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html">link</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">setBasedTestWithPoolAndAdjust &lt;-<span class="st"> </span><span class="kw">SetBasedTest</span>(<span class="dt">gmt =</span> modelDfFromFile, <span class="dt">testData =</span> dataFromExperiment, <span class="dt">pool =</span> dataFromExperimentPool, <span class="dt">adjustMethod =</span> <span class="st">&quot;BH&quot;</span>)
+setBasedTestWithPoolAndAdjustRes &lt;-<span class="st"> </span>MulEA::<span class="kw">runTest</span>(setBasedTestWithPoolAndAdjust)</code></pre></div>
+<table>
+<caption>Set Based Test Result Data Frame</caption>
+<thead>
+<tr class="header">
+<th align="left">ontologyId</th>
+<th align="left">ontologyName</th>
+<th align="left">listOfValues</th>
+<th align="left">overlappingData</th>
+<th align="left">contingencyTable</th>
+<th align="right">p.value</th>
+<th align="right">q.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ID:0000001</td>
+<td align="left">“mitochondrion inheritance”</td>
+<td align="left">FBgn0033690, FBgn0261618</td>
+<td align="left"></td>
+<td align="left">0, 10, 2, 20</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000002</td>
+<td align="left">“mitochondrial genome maintenance”</td>
+<td align="left">FBgn0004407, FBgn0010438, FBgn0032154, FBgn0039930, FBgn0040268, FBgn0013674, FBgn0037008, FBgn0003116</td>
+<td align="left">FBgn0004407, FBgn0010438</td>
+<td align="left">2, 8, 6, 16</td>
+<td align="right">0.8074584</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000009</td>
+<td align="left">“alpha-1,6-mannosyltransferase activity”</td>
+<td align="left">FBgn0037743, FBgn0035401</td>
+<td align="left"></td>
+<td align="left">0, 10, 2, 20</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000010</td>
+<td align="left">“trans-hexaprenyltranstransferase activity”</td>
+<td align="left">FBgn0037044, FBgn0051005</td>
+<td align="left">FBgn0037044</td>
+<td align="left">1, 9, 1, 21</td>
+<td align="right">0.5342742</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000012</td>
+<td align="left">“single strand break repair”</td>
+<td align="left">FBgn0026737, FBgn0026751, FBgn0038704</td>
+<td align="left"></td>
+<td align="left">0, 10, 3, 19</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000014</td>
+<td align="left">“single-stranded DNA endodeoxyribonuclease activity”</td>
+<td align="left">FBgn0002887, FBgn0028434, FBgn0030170, FBgn0263831</td>
+<td align="left">FBgn0002887, FBgn0028434, FBgn0030170, FBgn0263831</td>
+<td align="left">4, 6, 0, 22</td>
+<td align="right">0.0058398</td>
+<td align="right">0.0408788</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000015</td>
+<td align="left">“phosphopyruvate hydratase complex”</td>
+<td align="left">FBgn0000579</td>
+<td align="left"></td>
+<td align="left">0, 10, 1, 21</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+</tr>
+</tbody>
+</table>
+<p>Data frames with adjusted p-values contain one extra column, which include q-values.</p>
+<p><code>SetBasedTest</code> class constructor accepts list of arguments, such:</p>
+<ul>
+<li><code>gmt</code> - required* - It is data.frame, which represents model. Read it from file or load from DBs.</li>
+<li><code>testData</code> - required* - Vector of your experimental data. Example: <code>dataFromExperiment &lt;- c(&quot;FBgn0004407&quot;, &quot;FBgn0010438&quot;, &quot;FBgn0003742&quot;)</code>.</li>
+<li><code>pool = character()</code> - default: character() - It is vector of background - pool data to experiment data. Example: <code>dataFromExperimentPool &lt;- c(&quot;FBgn0004407&quot;, &quot;FBgn0010438&quot;, &quot;FBgn0003742&quot;, &quot;FBgn0003444&quot;, &quot;FBgn0003333&quot;&quot;)</code></li>
+<li><code>adjustMethod = NA</code> - default: NA - You can specify an algorithm which helps you with <a href="#multiple-comparisons-problem">Multiple Comparisons Problem</a>.</li>
+</ul>
+<p>Column names presented in results data.frame are:</p>
+<ul>
+<li><code>ontologyId</code> - input copy - Column copies from the input data frame. It include onlology ids. Could be for example ids from GO.</li>
+<li><code>ontologyName</code> - input copy - Column copies from the input data frame. It include onlology names. Could be for example name from GO as “mitochondrion inheritance”.</li>
+<li><code>listOfValues</code> - input copy - Column copies from the input data frame. It include all symbols undet presented ontology id. Example from GO: FBgn0004407, FBgn0010438.</li>
+<li><code>overlappingData</code> - output - Column includes set of intersection of list of values from model and provided by user experiment vector.</li>
+<li><code>contingencyTable</code> - output - This colum presents contingeny tables used to count test.</li>
+<li><code>p.value</code> - output - Cells of this column include counted p-value for provided data.</li>
+<li><code>q.value</code> - output - Cells of this column include adjusted p-value according to the model. The result of adjustment is q-value.</li>
+</ul>
+</div>
+</div>
+<div id="ranked-based-tests" class="section level3">
+<h3>Ranked Based Tests</h3>
+<p>Fundament under ranked based tests is ranking. Ranking can be an ordered vector or any vector with vector of scores, both of them have to be the same length. For now MulEA provides you two ranked based tests. them are the Kolmogorov-Smirnov test and the Subramanian test. Both of them are encloused in <code>RankedBasedTest</code> class, which provides you a possibility to set input data and configur other parameters including used statistic method.</p>
+<p>As privously, before running any tests you have to prepare proper input data. An example is presented below:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">muleaPkgDir &lt;-<span class="st"> </span><span class="kw">find.package</span>(<span class="st">&quot;MulEA&quot;</span>)
+modelDfFromFile &lt;-<span class="st"> </span>MulEA::<span class="kw">readGmtFileAsDF</span>(<span class="dt">gmtFilePath =</span> <span class="kw">paste</span>(muleaPkgDir,<span class="st">&quot;/example/model.gmt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))</code></pre></div>
+<pre><code>## Error in readLines(fileConnection): cannot open the connection</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataFromExperiment &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;FBgn0004407&quot;</span>, <span class="st">&quot;FBgn0010438&quot;</span>, <span class="st">&quot;FBgn0003742&quot;</span>, <span class="st">&quot;FBgn0029709&quot;</span>, <span class="st">&quot;FBgn0030341&quot;</span>, <span class="st">&quot;FBgn0037044&quot;</span>, <span class="st">&quot;FBgn0002887&quot;</span>, <span class="st">&quot;FBgn0028434&quot;</span>, <span class="st">&quot;FBgn0030170&quot;</span>, <span class="st">&quot;FBgn0263831&quot;</span>)
+dataFromExperimentScores &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.09</span>, <span class="fl">0.11</span>, <span class="fl">0.15</span>, <span class="fl">0.20</span>, <span class="fl">0.21</span>, <span class="fl">0.24</span>, <span class="fl">0.28</span>, <span class="fl">0.30</span>, <span class="fl">0.45</span>, <span class="fl">0.50</span>)</code></pre></div>
+<div id="kolmogorov-smirnov-test" class="section level4">
+<h4>Kolmogorov Smirnov Test</h4>
+<p>Kolmogorov-Smirnov test is achieved by setting <code>method</code> argument to <code>&quot;KS&quot;</code>. It is also required to provide <code>testData</code> argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rankedBasedTestKs &lt;-<span class="st"> </span><span class="kw">RankedBasedTest</span>(<span class="dt">method =</span> <span class="st">&quot;KS&quot;</span>, <span class="dt">gmt =</span> modelDfFromFile, <span class="dt">testData =</span> dataFromExperiment)
+rankedBasedTestKsRes &lt;-<span class="st"> </span>MulEA::<span class="kw">runTest</span>(rankedBasedTestKs)</code></pre></div>
+</div>
+<div id="subramanian-test" class="section level4">
+<h4>Subramanian Test</h4>
+<p>Subramanian method required <code>method</code> argument to be set to <code>&quot;Subramanian&quot;</code>. It;s also required <code>testData</code> and <code>scores</code> to be set. It is important that those two vectors have to be of the same lenght.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rankedBasedTestSubramanian &lt;-<span class="st"> </span><span class="kw">RankedBasedTest</span>(<span class="dt">method =</span> <span class="st">&quot;Subramanian&quot;</span>, <span class="dt">gmt =</span> modelDfFromFile, <span class="dt">testData =</span> dataFromExperiment, <span class="dt">scores =</span> dataFromExperimentScores)
+rankedBasedTestSubramanianRes &lt;-<span class="st"> </span>MulEA::<span class="kw">runTest</span>(rankedBasedTestSubramanian)</code></pre></div>
+<p>Below list is the list of arguments accepted by the constructor of the <code>RankedBasedTest</code>:</p>
+<ul>
+<li><code>method</code> - required* - It allows user to choose method, which will be used to count probabilities. For no it have to be one of this values “KS”, “Subramanian”.</li>
+<li><code>gmt</code> - required* - It is data.frame, which represents model. Read it from file or load from DBs.</li>
+<li><code>testData</code> - required* - Vector of your experimental data. Example: <code>dataFromExperiment &lt;- c(&quot;FBgn0004407&quot;, &quot;FBgn0010438&quot;, &quot;FBgn0003742&quot;)</code>. In case of KS test it makes a role of ranking also. In Subramanian it creates a ranking with scores argument.</li>
+<li><code>scores</code> - if method=“Subramanian”: required*, default: numeric() - This agument is vector of numbers. It creates a ranking with <code>testData</code> argument for Subramanian approach.</li>
+<li><code>numberOfPermutations</code> - default: 1000 - This set number of permutations used to count p-value. You can speed up process of counting by set it to small value, remember that it can result with less accuracy.</li>
+</ul>
+<p>Returned data frame from any ranked based test look like that (column specification):</p>
+<ul>
+<li><code>ontologyId</code> - input copy - Column copies from the input data frame. It include onlology ids. Could be for example ids from GO.</li>
+<li><code>ontologyName</code> - input copy - Column copies from the input data frame. It include onlology names. Could be for example name from GO as “mitochondrion inheritance”.</li>
+<li><code>listOfValues</code> - input copy - Column copies from the input data frame. It include all symbols undet presented ontology id. Example from GO: FBgn0004407, FBgn0010438.</li>
+<li><code>p.value</code> - output - Cells of this column include counted p-value for provided data.</li>
+</ul>
+<table>
+<caption>Ranked Based Test Result Data Frame</caption>
+<thead>
+<tr class="header">
+<th align="left">ontologyId</th>
+<th align="left">ontologyName</th>
+<th align="left">listOfValues</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ID:0000001</td>
+<td align="left">“mitochondrion inheritance”</td>
+<td align="left">FBgn0033690, FBgn0261618</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000002</td>
+<td align="left">“mitochondrial genome maintenance”</td>
+<td align="left">FBgn0004407, FBgn0010438, FBgn0032154, FBgn0039930, FBgn0040268, FBgn0013674, FBgn0037008, FBgn0003116</td>
+<td align="right">0.5644080</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000009</td>
+<td align="left">“alpha-1,6-mannosyltransferase activity”</td>
+<td align="left">FBgn0037743, FBgn0035401</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000010</td>
+<td align="left">“trans-hexaprenyltranstransferase activity”</td>
+<td align="left">FBgn0037044, FBgn0051005</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000012</td>
+<td align="left">“single strand break repair”</td>
+<td align="left">FBgn0026737, FBgn0026751, FBgn0038704</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">ID:0000014</td>
+<td align="left">“single-stranded DNA endodeoxyribonuclease activity”</td>
+<td align="left">FBgn0002887, FBgn0028434, FBgn0030170, FBgn0263831</td>
+<td align="right">0.5340008</td>
+</tr>
+<tr class="odd">
+<td align="left">ID:0000015</td>
+<td align="left">“phosphopyruvate hydratase complex”</td>
+<td align="left">FBgn0000579</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="graph-based-test" class="section level3">
+<h3>Graph Based Test</h3>
+<p>(not implemented yet)</p>
+</div>
+</div>
+<div id="code-snippet" class="section level2">
+<h2>Code Snippet</h2>
+<p>You can copy and paste this code to start working with MulEA more easily. All code from vignette in one place:</p>
+<p><a href="#file">Reading GMT File</a>.</p>
+<p><code>pathToModelGmtFile &lt;- paste(find.package(&quot;MulEA&quot;),&quot;/example/model.gmt&quot;, sep = &quot;&quot;) modelDfFromFile &lt;- MulEA::readGmtFileAsDF(gmtFilePath = pathToModelGmtFile) knitr::kable(modelDfFromFile, caption = &quot;Model Data Frame&quot;)</code></p>
+<p><a href="#local-mulea-db">SQLite DB on local machine</a>.</p>
+<p><code>creationOfLocalDB &lt;- MulEA::startLocalDatabase(&quot;/home/koralgooll/doktorat/Rpackages/mulea/&quot;) creationOfLocalDB &lt;- MulEA::startLocalDatabase(&quot;:memory:&quot;)</code></p>
+<p><code>stopDbResults &lt;- MulEA::stopLocalDatabase()</code></p>
+<p><code>MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = &quot;GO&quot;, version = 0) modelDfFromLocalDB &lt;- MulEA::getModelFromLocalDatabaseAsDf(taxonomy_id = 9001, model_source = &quot;GO&quot;, version = 0) modelListFromLocalDB &lt;- MulEA::getModelFromLocalDatabaseAsList(taxonomy_id = 9001, model_source = &quot;GO&quot;, version = 0) MulEA::removeModelFromLocalDatabase(taxonomy_id = 9001, model_source = &quot;GO&quot;, version = 0)</code></p>
+<p><code>MulEA::saveModelFromDataFrameToGmtFile(modelDF = modelDfFromLocalDB, gmtFilePath = &quot;/home/koralgooll/doktorat/Rpackages/mulea/Mulea/example/fromDf.gmt&quot;)</code></p>
+<p><a href="#contingency-table-base">Statistical set bases tests</a>.</p>
+<p><code>hTestResults &lt;- MulEA::calculateHypergeometricTest(model = modelDfFromLocalDB, sampleVector = dataFromExperiment) fTestResults &lt;- MulEA::calculateFisherTest(model = modelDfFromFile, sampleVector = dataFromExperiment) chTestResults &lt;- MulEA::calculateChiSquaredTest(model = modelDfFromLocalDB, sampleVector = dataFromExperiment)</code></p>
+</div>
+<div id="other" class="section level2">
+<h2>Other</h2>
+<p>(not implemented yet)</p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
