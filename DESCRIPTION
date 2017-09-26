@@ -46,8 +46,8 @@ Collate:
     'PathNetTest.R'
     'SetBasedTest.R'
     'RankedBasedTest.R'
-URL: http://yihui.name/knitr/
-BugReports: https://github.com/yihui/knitr/issues
+URL: https://github.com/koralgooll/MulEA
+BugReports: https://github.com/koralgooll/MulEA/issues
 biocViews:
     BiomedicalInformatics,
     GeneSetEnrichment
