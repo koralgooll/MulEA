@@ -9,8 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r global_options, include=TRUE, echo=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, error = TRUE)
+```{r global_options, include=TRUE, echo=T}
+knitr::opts_chunk$set(echo = T, warning = FALSE, message = FALSE, error = TRUE)
 ```
 
     Functional interpretation of the biological data typically involves identifying key genes, molecules, reactions or pathways by finding non-random changes between two or more conditions or phenotypes. Performing enrichment analysis on set of molecules selected from  differential omics analysis is a method of choice. Among many packages that can be applied for this task, only few could be applied either to multiple species, ontology types or providing an access to multiple statistics.
