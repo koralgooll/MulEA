@@ -4,6 +4,8 @@ import(DBI)
 import(RSQLite)
 import(plyr)
 import(fgsea)
+importFrom("stats", "ks.test", "p.adjust", "phyper")
+importFrom("utils", "count.fields", "read.table")
 
 # Exports:
 export(readGmtFileAsDF)

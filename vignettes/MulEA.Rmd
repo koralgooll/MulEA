@@ -1,6 +1,6 @@
 ---
 title: "MulEA"
-author: "Wiktor Jurkowski, Eszter Ari, David Fazekas, Cezary Turek"
+author: "Wiktor Jurkowski, Eszter Ari, David Fazekas, Leila Gul, Marton Oelbei, Cezary Turek"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -9,17 +9,22 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r global_options, include=TRUE, echo=T}
-knitr::opts_chunk$set(echo = T, warning = FALSE, message = FALSE, error = TRUE)
+```{r global_options, include=TRUE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, error = TRUE)
 ```
 
-    Functional interpretation of the biological data typically involves identifying key genes, molecules, reactions or pathways by finding non-random changes between two or more conditions or phenotypes. Performing enrichment analysis on set of molecules selected from  differential omics analysis is a method of choice. Among many packages that can be applied for this task, only few could be applied either to multiple species, ontology types or providing an access to multiple statistics.
-    MulEA is addressing this gap in addition providing improved way to calculate correction for multiple testing that assume partial dependence between ontology terms and in result limits number of correct associations falsely scored as insignificant. Besides the commonly applied tests, MulEA provides a unique permutation based, empirical false discovery rate correction of the p-values to substitute the too conservative Bonferroni and Benjamini-Hochberg procedures.
-    MulEA allows enrichment analysis using most popular gene and pathway ontologies (GO, KEGG, Reactome). In addition, one can test enrichment in genomic locations and in gene expression, protein domain, miRNA and transcription factors data bases, all created from publicly available resources and presented in standardized manner. Beyond genes or proteins, MulEA even allows working with basically any kind of data types, i.e. small molecules, chromosome region, enhancers, molecular interactions or any other information defined by the user.
-    Mulea currently supports 25 organisms from bacteria to human. Because, in addition to knowledge-bases provided alongside the package, the user may provide its own ontology files, MulEA can work with any biological species.
-    To analyse the data MulEA provide multiple types of statistics in one tool, which allows the user to calculate over-representations using the hypergeometric test, and enrichment analyses of ranked input by the Kolmogorov-Smirnov test.
-    To conclude, MulEA is a comprehensive enrichment software that allows expansive analyses using diverse ontologies, statistical models and p-value correction procedures that can extend our understanding of the results of various high-throughput analyses and therefore expand our knowledge.
+   &nbsp;&nbsp;Functional interpretation of the biological data typically involves identifying key genes, molecules, reactions or pathways by finding non-random changes between two or more conditions or phenotypes. Performing enrichment analysis on set of molecules selected from  differential omics analysis is a method of choice. Among many packages that can be applied for this task, only few could be applied either to multiple species, ontology types or providing an access to multiple statistics.
+   
+   &nbsp;&nbsp;MulEA is addressing this gap in addition providing improved way to calculate correction for multiple testing that assume partial dependence between ontology terms and in result limits number of correct associations falsely scored as insignificant. Besides the commonly applied tests, MulEA provides a unique permutation based, empirical false discovery rate correction of the p-values to substitute the too conservative Bonferroni and Benjamini-Hochberg procedures.
 
+   &nbsp;&nbsp;MulEA allows enrichment analysis using most popular gene and pathway ontologies (GO, KEGG, Reactome). In addition, one can test enrichment in genomic locations and in gene expression, protein domain, miRNA and transcription factors data bases, all created from publicly available resources and presented in standardized manner. Beyond genes or proteins, MulEA even allows working with basically any kind of data types, i.e. small molecules, chromosome region, enhancers, molecular interactions or any other information defined by the user.
+
+   &nbsp;&nbsp;Mulea currently supports 25 organisms from bacteria to human. Because, in addition to knowledge-bases provided alongside the package, the user may provide its own ontology files, MulEA can work with any biological species.
+
+   &nbsp;&nbsp;To analyse the data MulEA provide multiple types of statistics in one tool, which allows the user to calculate over-representations using the hypergeometric test, and enrichment analyses of ranked input by the Kolmogorov-Smirnov test.
+
+   &nbsp;&nbsp;To conclude, MulEA is a comprehensive enrichment software that allows expansive analyses using diverse ontologies, statistical models and p-value correction procedures that can extend our understanding of the results of various high-throughput analyses and therefore expand our knowledge.
+    
 Implemented features include:
 
 - [Mulea Database Workflow](#mulea-database-workflow)
@@ -34,7 +39,6 @@ Implemented features include:
         - [Kolmogorov Smirnov Test](#kolmogorov-smirnov-test)
         - [Subramanian Test](#subramanian-test)
     - [Graph Base](#graph-base)
-- [Code Snippet](#code-snippet)
 - [Other](#other)
 
 
@@ -51,7 +55,7 @@ In order to read the GMT file as a dataframe use: `MulEA::readGmtFileAsDF()`. Me
 
 The ontology is then read into the data frame, such:
 ```{r, results = 'asis'} 
-pathToModelGmtFile <- paste(find.package("MulEA"),"/example/model.gmt", sep = "")
+pathToModelGmtFile <- system.file(package="MulEA", "extdata", "model.gmt")
 modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = pathToModelGmtFile)
 knitr::kable(modelDfFromFile, caption = "Model Data Frame")
 ```
@@ -125,8 +129,7 @@ Hypothesis tests may be performed on data divided into sets. MulEA provides test
 Before we perform this tests, we have to prepare data in proper form. Below is full data input prepered on our example data. Example data are small, to show results for user in a fast way.  
 
 ```{r, results = 'asis', echo = TRUE} 
-muleaPkgDir <- find.package("MulEA")
-modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = paste(muleaPkgDir,"/example/model.gmt", sep = ""))
+modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407", "FBgn0010438", "FBgn0032154", "FBgn0039930", "FBgn0040268", "FBgn0013674",
                                    "FBgn0037008", "FBgn0003116", "FBgn0037743", "FBgn0035401", "FBgn0037044", "FBgn0051005", "FBgn0026737", "FBgn0026751",
@@ -198,8 +201,7 @@ Fundament under ranked based tests is ranking. Ranking can be an ordered vector 
 As privously, before running any tests you have to prepare proper input data. An example is presented below:
 
 ```{r, results = 'asis', echo = TRUE} 
-muleaPkgDir <- find.package("MulEA")
-modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = paste(muleaPkgDir,"/example/model.gmt", sep = ""))
+modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30, 0.45, 0.50)
 ```
@@ -245,50 +247,6 @@ knitr::kable(rankedBasedTestKsRes, caption = "Ranked Based Test Result Data Fram
 
 ### Graph Based Test
 (not implemented yet)
-
-
-
-
-## Code Snippet
-You can copy and paste this code to start working with MulEA more easily. All code from vignette in one place:
-
-[Reading GMT File](#file).
-
-`
-pathToModelGmtFile <- paste(find.package("MulEA"),"/example/model.gmt", sep = "")
-modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = pathToModelGmtFile)
-knitr::kable(modelDfFromFile, caption = "Model Data Frame")
-`
-
-[SQLite DB on local machine](#local-mulea-db).
-
-`
-creationOfLocalDB <- MulEA::startLocalDatabase("/home/koralgooll/doktorat/Rpackages/mulea/")
-creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
-`
-
-`
-stopDbResults <- MulEA::stopLocalDatabase()
-`
-
-`
-MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)
-modelDfFromLocalDB <- MulEA::getModelFromLocalDatabaseAsDf(taxonomy_id = 9001, model_source = "GO", version = 0)
-modelListFromLocalDB <- MulEA::getModelFromLocalDatabaseAsList(taxonomy_id = 9001, model_source = "GO", version = 0)
-MulEA::removeModelFromLocalDatabase(taxonomy_id = 9001, model_source = "GO", version = 0)
-`
-
-`
-MulEA::saveModelFromDataFrameToGmtFile(modelDF = modelDfFromLocalDB, gmtFilePath = "/home/koralgooll/doktorat/Rpackages/mulea/Mulea/example/fromDf.gmt")
-`
-
-[Statistical set bases tests](#contingency-table-base).
-
-`
-hTestResults <- MulEA::calculateHypergeometricTest(model = modelDfFromLocalDB, sampleVector = dataFromExperiment)
-fTestResults <- MulEA::calculateFisherTest(model = modelDfFromFile, sampleVector = dataFromExperiment)
-chTestResults <- MulEA::calculateChiSquaredTest(model = modelDfFromLocalDB, sampleVector = dataFromExperiment)
-`
 
 
 

@@ -17,5 +17,5 @@ Return data frame with model from specific location.
 }
 \examples{
 muleaPkgDir <- find.package("MulEA")
-modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = paste(muleaPkgDir,"/example/model.gmt", sep = ""))
+modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 }

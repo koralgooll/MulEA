@@ -9,7 +9,7 @@ saveModelFromDataFrameToGmtFile(modelDF, gmtFilePath)
 \arguments{
 \item{modelDF}{data frame with model.}
 
-\item{gmtFilePath}{path with name of file, where to save model. Example: "/hmoe/mulea/files/lastModel.gmt"}
+\item{gmtFilePath}{path with name of file, where to save model. Example: "/home/mulea/files/lastModel.gmt"}
 }
 \value{
 Return gmt file under specific location which include model in gmt format.
@@ -19,7 +19,7 @@ Return gmt file under specific location which include model in gmt format.
 }
 \examples{
 muleaPkgDir <- find.package("MulEA")
-modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = paste(muleaPkgDir,"/example/model.gmt", sep = ""))
+modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
 MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)
 modelDfFromLocalDB <- MulEA::getModelFromLocalDatabaseAsDf(taxonomy_id = 9001, model_source = "GO", version = 0)
