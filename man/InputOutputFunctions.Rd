@@ -11,11 +11,9 @@ readGmtFileAsDataFrame(gmtFilePath)
 saveDataFrameAsGmtFile(modelDF, gmtFilePath)
 }
 \arguments{
-\item{gmtFilePath}{path with name of file, where the file is localized. Example: "/R/MulEA/extdata/model.gmt"}
+\item{gmtFilePath}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
 
 \item{modelDF}{data frame with model.}
-
-\item{gmtFilePath}{path with name of file, where to save model. Example: "R/MulEA/extdata/savedModel.gmt"}
 }
 \value{
 Return data frame with model from specific location.

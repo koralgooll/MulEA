@@ -5,7 +5,8 @@
 #'
 #' \code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
 #'
-#' @param gmtFilePath path with name of file, where the file is localized. Example: "/R/MulEA/extdata/model.gmt"
+#' @param gmtFilePath path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"
+#'
 #'
 #' @title Input/Output Functions
 #' @name  InputOutputFunctions
@@ -48,7 +49,6 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 #' \code{saveDataFrameAsGmtFile} saves copy of the model from data frame in gmt file.
 #'
 #' @param modelDF data frame with model.
-#' @param gmtFilePath path with name of file, where to save model. Example: "R/MulEA/extdata/savedModel.gmt"
 #'
 #' @rdname InputOutputFunctions
 #' @export
