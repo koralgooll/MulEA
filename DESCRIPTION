@@ -12,7 +12,7 @@ Authors@R: c(
     person("Marton", "Oelbei", email = "olbei.marton@gmail.com", role =  "ctb"))
 Description: MulEA (Multi Enrichment Analysis) is a package/tool for functional analysis of multi-omics data sets. 
     Among many packages that can be used for this task, only few could be applied either to multiple species, ontology types or providing an access to multiple statistics. MulEA is addressing this gap providing support for 25 species and any kind of data defining the knolwedge base. In addition, MulEA provides a unique permutation based, empirical false discovery rate correction of the p-values
-License: GPL-2 (see LICENSE)
+License: GPL-3 + file LICENSE
 LazyData: TRUE
 Imports:
     DBI (>= 0.7.0),
@@ -29,7 +29,6 @@ Suggests:
     rmarkdown,
     testthat
 VignetteBuilder: knitr
-LinkingTo: 
 Collate:
     'Mulea.R'
     'GenericFunctions.R'
@@ -38,10 +37,8 @@ Collate:
     'Methods.R'
     'MuleaData.R'
     'HypergeometricTest.R'
-    'ChiSquaredTest.R'
     'KolmogorovSmirnovTest.R'
     'SubramanianTest.R'
-    'PathNetTest.R'
     'SetBasedTest.R'
     'RankedBasedTest.R'
 URL: https://github.com/koralgooll/MulEA

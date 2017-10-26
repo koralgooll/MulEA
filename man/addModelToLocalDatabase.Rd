@@ -30,7 +30,6 @@ Return DB queries and status of model adding operation.
 \code{addModelToLocalDatabase} adds model to database under presented public key (taxonomi_id, model_source, version).
 }
 \examples{
-muleaPkgDir <- find.package("MulEA")
 modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
 MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)

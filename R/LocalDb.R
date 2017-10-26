@@ -116,7 +116,6 @@ checkIfDbIsRunning <- function(db = NULL) {
 #'
 #' @return Return DB queries and status of model adding operation.
 #' @examples
-#' muleaPkgDir <- find.package("MulEA")
 #' modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
 #' MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)
@@ -271,7 +270,6 @@ saveModelFromLocalDatabaseToFile <- function(taxonomy_id, model_source, version,
 #'
 #' @return Return list which include model.
 #' @examples
-#' muleaPkgDir <- find.package("MulEA")
 #' modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
 #' MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)
@@ -295,7 +293,6 @@ getModelFromLocalDatabaseAsList <- function(taxonomy_id, model_source, version) 
 #'
 #' @return Return data frame which include model.
 #' @examples
-#' muleaPkgDir <- find.package("MulEA")
 #' modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
 #' MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)
@@ -326,7 +323,6 @@ getModelFromLocalDatabaseAsDf <- function(taxonomy_id, model_source, version) {
 #'
 #' @return Return status of delete operation.
 #' @examples
-#' muleaPkgDir <- find.package("MulEA")
 #' modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
 #' MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)

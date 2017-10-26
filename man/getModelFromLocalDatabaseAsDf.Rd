@@ -20,7 +20,6 @@ Return data frame which include model.
 \code{getModelFromLocalDatabaseAsDf} takes copy of the model in data frame form.
 }
 \examples{
-muleaPkgDir <- find.package("MulEA")
 modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
 MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)

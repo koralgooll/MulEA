@@ -8,7 +8,6 @@
 #'
 #' @return Return data frame with model from specific location.
 #' @examples
-#' muleaPkgDir <- find.package("MulEA")
 #' modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 readGmtFileAsDF <- function(gmtFilePath) {
     fileConnection <- file(gmtFilePath)
@@ -47,7 +46,6 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 #'
 #' @return Return gmt file under specific location which include model in gmt format.
 #' @examples
-#' muleaPkgDir <- find.package("MulEA")
 #' modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
 #' MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)
