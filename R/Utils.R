@@ -56,7 +56,7 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 #' @return Return gmt file under specific location which include model in gmt format.
 #' @examples
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
-#' MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = "~/fromDb.gmt")
+#' MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
 saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
     vectorOfModel <- plyr::daply(.data = modelDF, .variables = c("ontologyId"), .fun = function(dataFrameRow){
         collapsedListOfValues <- paste(dataFrameRow[,3][[1]], collapse = "\t")

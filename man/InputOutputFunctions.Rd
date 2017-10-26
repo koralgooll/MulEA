@@ -32,5 +32,5 @@ Return gmt file under specific location which include model in gmt format.
 \examples{
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
-MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = "~/fromDb.gmt")
+MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
 }
