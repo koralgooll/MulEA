@@ -33,7 +33,6 @@ Collate:
     'Mulea.R'
     'GenericFunctions.R'
     'Utils.R'
-    'LocalDb.R'
     'Methods.R'
     'MuleaData.R'
     'HypergeometricTest.R'

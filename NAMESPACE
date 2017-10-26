@@ -8,14 +8,8 @@ importFrom("stats", "ks.test", "p.adjust", "phyper")
 importFrom("utils", "count.fields", "read.table")
 
 # Exports:
-export(readGmtFileAsDF)
-export(startLocalDatabase)
-export(stopLocalDatabase)
-export(addModelToLocalDatabase)
-export(removeModelFromLocalDatabase)
-export(getModelFromLocalDatabaseAsList)
-export(getModelFromLocalDatabaseAsDf)
-export(saveModelFromDataFrameToGmtFile)
+export(readGmtFileAsDataFrame)
+export(saveDataFrameAsGmtFile)
 
 export("SetBasedTest")
 export("RankedBasedTest")

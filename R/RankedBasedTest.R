@@ -9,7 +9,7 @@
 #' @slot numberOfPermutations A number of permutations used in renked test. Default vlue is 1000.
 #' @return RankedBasedTest object. This object represents ranked based tests in Mulea.
 #' @examples
-#' modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
+#' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30, 0.45, 0.50)
 #' rankedBasedTestKs <- RankedBasedTest(method = "KS", gmt = modelDfFromFile, testData = dataFromExperiment)

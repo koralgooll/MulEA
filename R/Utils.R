@@ -1,15 +1,20 @@
 
 # PUBLIC API
-#' \code{readGmtFileAsDF}
+#' @description
+#' \code{readGmtFileAsDataFrame}
 #'
-#' \code{readGmtFileAsDF} read model in data frame form from gmt file.
+#' \code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
 #'
-#' @param gmtFilePath path with name of file, where the file is localized. Example: "/home/mulea/files/lastModel.gmt"
+#' @param gmtFilePath path with name of file, where the file is localized. Example: "/R/MulEA/extdata/model.gmt"
+#'
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
 #'
 #' @return Return data frame with model from specific location.
 #' @examples
-#' modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
-readGmtFileAsDF <- function(gmtFilePath) {
+#' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
+readGmtFileAsDataFrame <- function(gmtFilePath) {
     fileConnection <- file(gmtFilePath)
     lines <- readLines(fileConnection)
     close(fileConnection)
@@ -37,22 +42,22 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 }
 
 # PUBLIC API
-#' \code{saveModelFromDataFrameToGmtFile}
+#' @description
+#' \code{saveDataFrameAsGmtFile}
 #'
-#' \code{saveModelFromDataFrameToGmtFile} saves copy of the model from data frame in gmt file.
+#' \code{saveDataFrameAsGmtFile} saves copy of the model from data frame in gmt file.
 #'
 #' @param modelDF data frame with model.
-#' @param gmtFilePath path with name of file, where to save model. Example: "/home/mulea/files/lastModel.gmt"
+#' @param gmtFilePath path with name of file, where to save model. Example: "R/MulEA/extdata/savedModel.gmt"
+#'
+#' @rdname InputOutputFunctions
+#' @export
 #'
 #' @return Return gmt file under specific location which include model in gmt format.
 #' @examples
-#' modelDfFromFile <- MulEA::readGmtFileAsDF(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
-#' creationOfLocalDB <- MulEA::startLocalDatabase(":memory:")
-#' MulEA::addModelToLocalDatabase(model = modelDfFromFile, taxonomy_id = 9001, model_source = "GO", version = 0)
-#' modelDfFromLocalDB <- MulEA::getModelFromLocalDatabaseAsDf(taxonomy_id = 9001, model_source = "GO", version = 0)
-#' MulEA::saveModelFromDataFrameToGmtFile(modelDF = modelDfFromLocalDB, gmtFilePath = "~/fromDb.gmt")
-#' stopDbResults <- MulEA::stopLocalDatabase()
-saveModelFromDataFrameToGmtFile <- function(modelDF, gmtFilePath) {
+#' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
+#' MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = "~/fromDb.gmt")
+saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
     vectorOfModel <- plyr::daply(.data = modelDF, .variables = c("ontologyId"), .fun = function(dataFrameRow){
         collapsedListOfValues <- paste(dataFrameRow[,3][[1]], collapse = "\t")
         paste(dataFrameRow[1], dataFrameRow[2], collapsedListOfValues, sep = "\t")
