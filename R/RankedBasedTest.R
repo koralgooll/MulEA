@@ -8,6 +8,7 @@
 #' @slot p A power of weight. Default vlue is 1.
 #' @slot numberOfPermutations A number of permutations used in renked test. Default vlue is 1000.
 #' @return RankedBasedTest object. This object represents ranked based tests in Mulea.
+#' @export
 #' @examples
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")

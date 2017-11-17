@@ -10,7 +10,7 @@ vignette: >
 ---
 
 ```{r global_options, include=TRUE, echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, error = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = TRUE, error = FALSE)
 ```
 
    Functional interpretation of the biological data typically involves identifying key genes, molecules, reactions or pathways by finding non-random changes between two or more conditions or phenotypes. Performing enrichment analysis on set of molecules selected from  differential omics analysis is a method of choice. Among many packages that can be applied for this task, only few could be applied either to multiple species, ontology types or providing an access to multiple statistics.
@@ -42,7 +42,10 @@ Implemented features include:
 
 
 ## Mulea Input Output Data Workflow
-There are two ways to work with data in MulEA; directly from GMT files or with properly formated data frames. Detailed instructions below.  
+There are two ways to work with data in MulEA; directly from GMT files or with properly formated data frames. Detailed instructions are in paragraphs below. Remember that before starting work with MulEA you have to load and attach a package:
+```{r, results = 'asis'} 
+library(package="MulEA")
+```
 
 
 ### File
@@ -109,6 +112,7 @@ Basic usage of `SetBasedTest` class lokk like that:
 setBasedTest <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment)
 setBasedTestRes <- MulEA::runTest(setBasedTest)
 ```
+In tests based on sets, Mulea will inform the user when tested data are outside of the model data by message presented above.
 ```{r, results = 'asis', echo = FALSE} 
 knitr::kable(setBasedTestRes, caption = "Set Based Test Result Data Frame")
 ```
@@ -172,10 +176,18 @@ dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30, 0.
 
 Kolmogorov-Smirnov test is achieved by setting `method` argument to `"KS"`. It is also required to provide `testData` argument.
 
-```{r, results = 'asis', echo=TRUE} 
+```{r, results = 'asis', echo=TRUE, warning=FALSE} 
 rankedBasedTestKs <- RankedBasedTest(method = "KS", gmt = modelDfFromFile, testData = dataFromExperiment)
 rankedBasedTestKsRes <- MulEA::runTest(rankedBasedTestKs)
 ```
+During the execution of this chunk you will see many warnings from ks.test function from stats package. Warnings look like that:
+```{r, results = 'asis', echo=TRUE} 
+## Warning in ks.test(matchedFromModelDist, randomFromExperimentDist): cannot
+## compute exact p-value with ties
+```
+The reason is that data which we are using in vignette are artificial one. They are constructed to show you how MulEA is working with understanding.
+When you see any error or warnings when you are working with real data, it should be investigated. MulEA is not stopping warnings and error propagation from packages which are used. The interpretation of those messages belongs to user.
+
 
 #### Subramanian Test
 

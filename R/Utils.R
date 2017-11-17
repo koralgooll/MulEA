@@ -13,8 +13,6 @@
 #' @export
 #'
 #' @return Return data frame with model from specific location.
-#' @examples
-#' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 readGmtFileAsDataFrame <- function(gmtFilePath) {
     fileConnection <- file(gmtFilePath)
     lines <- readLines(fileConnection)
