@@ -25,7 +25,7 @@ cutGmtToPool <- function(gmt, pool) {
   cutDF
 }
 
-gseaPermutationTest <- function(modelWithTestDf, steps, sampleVector, poolVector = character(0)) {
+permutationAdjustment <- function(modelWithTestDf, steps, sampleVector, poolVector = character(0)) {
   sampleVector <- checkIfPoolIncludeSample(modelWithTestDf, sampleVector, poolVector)
 
   R_value_obs <- integer(0)
@@ -79,7 +79,7 @@ gseaPermutationTest <- function(modelWithTestDf, steps, sampleVector, poolVector
 
 adjustPvaluesForMultipleComparisons <- function(modelWithTestsResults, sampleVector, poolVector = character(0), adjustMethod = "bonferroni", steps = 1) {
   if (adjustMethod == "GSEA") {
-    adjustResult <- data.frame(modelWithTestsResults, gseaPermutationTest(modelWithTestDf = modelWithTestsResults, steps = steps, sampleVector = sampleVector, poolVector = poolVector))
+    adjustResult <- data.frame(modelWithTestsResults, permutationAdjustment(modelWithTestDf = modelWithTestsResults, steps = steps, sampleVector = sampleVector, poolVector = poolVector))
   } else {
     adjustResult <- data.frame(modelWithTestsResults, "q.value" = p.adjust(modelWithTestsResults$p.value, method = adjustMethod))
   }
