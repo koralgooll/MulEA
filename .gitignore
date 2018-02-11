@@ -7,4 +7,5 @@ inst/doc/
 Mulea.Rproj
 development/
 workdir/
+*.o
 

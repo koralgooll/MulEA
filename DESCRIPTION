@@ -21,7 +21,10 @@ Imports:
     methods (>= 3.3.2),
     fgsea (>= 1.0.2),
     stats (>= 3.4.1),
-    utils (>= 3.4.1)
+    utils (>= 3.4.1),
+    Rcpp (>= 0.12.13)
+LinkingTo:
+    Rcpp
 Depends:
     R (>= 3.4.0)
 Suggests:
@@ -30,6 +33,7 @@ Suggests:
     testthat
 VignetteBuilder: knitr
 Collate:
+    'RcppExports.R'
     'Mulea.R'
     'GenericFunctions.R'
     'Utils.R'

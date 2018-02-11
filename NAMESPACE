@@ -1,3 +1,5 @@
+useDynLib(MulEA)
+
 # Imports:
 import(methods)
 import(DBI)
@@ -6,6 +8,7 @@ import(plyr)
 import(fgsea)
 importFrom("stats", "ks.test", "p.adjust", "phyper")
 importFrom("utils", "count.fields", "read.table")
+importFrom(Rcpp, evalCpp)
 
 # Exports:
 export(readGmtFileAsDataFrame)
@@ -15,3 +18,7 @@ export("SetBasedTest")
 export("RankedBasedTest")
 
 exportMethods(runTest)
+
+# Exports from Rcpp:
+export(rcpp_hello_world_1)
+export(rcpp_hello_world_2)
