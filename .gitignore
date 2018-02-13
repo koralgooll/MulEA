@@ -8,4 +8,5 @@ Mulea.Rproj
 development/
 workdir/
 *.o
+*.so
 

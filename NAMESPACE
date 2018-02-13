@@ -13,6 +13,7 @@ importFrom(Rcpp, evalCpp)
 # Exports:
 export(readGmtFileAsDataFrame)
 export(saveDataFrameAsGmtFile)
+export(set.based.enrichment.test)
 
 export("SetBasedTest")
 export("RankedBasedTest")
@@ -20,5 +21,7 @@ export("RankedBasedTest")
 exportMethods(runTest)
 
 # Exports from Rcpp:
-export(rcpp_hello_world_1)
-export(rcpp_hello_world_2)
+#export(trial)
+
+# Export all:
+#exportPattern("^[[:alpha:]]+")

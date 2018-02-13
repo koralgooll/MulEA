@@ -34,6 +34,7 @@ Suggests:
 VignetteBuilder: knitr
 Collate:
     'RcppExports.R'
+    'SetBasedEnrichmentTest.R'
     'Mulea.R'
     'GenericFunctions.R'
     'Utils.R'
@@ -50,3 +51,4 @@ biocViews:
     BiomedicalInformatics,
     GeneSetEnrichment
 RoxygenNote: 6.0.1
+SystemRequirements: C++11

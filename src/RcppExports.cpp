@@ -5,30 +5,25 @@
 
 using namespace Rcpp;
 
-// rcpp_hello_world_1
-List rcpp_hello_world_1();
-RcppExport SEXP _MulEA_rcpp_hello_world_1() {
+// trial
+DataFrame trial(Rcpp::List categories, std::vector<std::string> genes, std::vector<std::string> pool, int selectSize, int steps, unsigned int randomSeed);
+RcppExport SEXP _MulEA_trial(SEXP categoriesSEXP, SEXP genesSEXP, SEXP poolSEXP, SEXP selectSizeSEXP, SEXP stepsSEXP, SEXP randomSeedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world_1());
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpp_hello_world_2
-List rcpp_hello_world_2();
-RcppExport SEXP _MulEA_rcpp_hello_world_2() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world_2());
+    Rcpp::traits::input_parameter< Rcpp::List >::type categories(categoriesSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::string> >::type genes(genesSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::string> >::type pool(poolSEXP);
+    Rcpp::traits::input_parameter< int >::type selectSize(selectSizeSEXP);
+    Rcpp::traits::input_parameter< int >::type steps(stepsSEXP);
+    Rcpp::traits::input_parameter< unsigned int >::type randomSeed(randomSeedSEXP);
+    rcpp_result_gen = Rcpp::wrap(trial(categories, genes, pool, selectSize, steps, randomSeed));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_MulEA_rcpp_hello_world_1", (DL_FUNC) &_MulEA_rcpp_hello_world_1, 0},
-    {"_MulEA_rcpp_hello_world_2", (DL_FUNC) &_MulEA_rcpp_hello_world_2, 0},
+    {"_MulEA_trial", (DL_FUNC) &_MulEA_trial, 6},
     {NULL, NULL, 0}
 };
 
