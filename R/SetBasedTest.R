@@ -41,8 +41,10 @@ setMethod("initialize", "SetBasedTest",
               muleaHypergeometricTest <- MuleaHypergeometricTest(gmt = setBaseTestObject@gmt, testData = setBaseTestObject@testData, pool = setBaseTestObject@pool)
               muleaHypergeometricTestRes <- runTest(muleaHypergeometricTest)
               if (length(setBaseTestObject@adjustMethod) != 0) {
-                if (setBaseTestObject@adjustMethod == "EszterMethod") {
+                if (setBaseTestObject@adjustMethod == "SBET") {
                   # adjustResult <- data.frame(modelWithTestsResults, permutationAdjustment(modelWithTestDf = modelWithTestsResults, steps = steps, sampleVector = sampleVector, poolVector = poolVector))
+                  adjustment <- Adjustment()
+                  adjustment@setBasedEnrichmentTest()
                 } else {
                   muleaHypergeometricTestRes <- data.frame(muleaHypergeometricTestRes, "q.value" = p.adjust(muleaHypergeometricTestRes$p.value, method = adjustMethod))
                 }

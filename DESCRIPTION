@@ -35,6 +35,7 @@ VignetteBuilder: knitr
 Collate:
     'RcppExports.R'
     'SetBasedEnrichmentTest.R'
+    'Adjustment.R'
     'Mulea.R'
     'GenericFunctions.R'
     'Utils.R'
