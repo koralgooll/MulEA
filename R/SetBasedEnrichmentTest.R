@@ -45,6 +45,74 @@
 
 # P_val=(choose(length(intersect(BG,DB_i)),length(intersect(IG,DB_i)))*choose(length(BG)-length(intersect(BG,DB_i)),length(IG)-length(intersect(IG,DB_i))))/choose(length(BG),length(IG))
 
+#' PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
+#'
+#' @slot gmt A data.frame representing GMT's reprezentation of model.
+#' @slot testData A data from expeciment to analize accross model.
+#' @slot pool A background data to count test.
+#' @return SetBasedEnrichmentTest object. Used as private function.
+#' @examples
+#' \dontrun{
+#' #It is a private s4 object. Look at SetBasedTest's examples.
+#' }
+SetBasedEnrichmentTest <- setClass("SetBasedEnrichmentTest",
+                       slots = list(
+                         gmt = "data.frame",
+                         testData = "character",
+                         pool = "character",
+                         numberOfPermutations = "numeric",
+                         test = "function"
+                       ))
+
+setMethod("initialize", "SetBasedEnrichmentTest",
+          function(.Object,
+                   gmt = data.frame(),
+                   testData = character(),
+                   pool = character(),
+                   numberOfPermutations = 1000,
+                   test = NULL,
+                   ...) {
+
+            .Object@gmt <- gmt
+            .Object@testData <- testData
+            .Object@pool <- pool
+            .Object@numberOfPermutations = numberOfPermutations
+
+            .Object@test <- function(testObject) {
+
+                pool <- NULL
+                if (0 == length(testObject@pool)) {
+                    pool <- unique(unlist(.Object@gmt[, 'listOfValues']))
+                } else {
+                    pool <- unique(testObject@pool)
+                }
+
+                DB <- .Object@gmt[, 'listOfValues']
+                names(DB) <- .Object@gmt$ontologyId
+                print("SET BASE ENRICHMENT TESR WILL WORK HERE")
+
+                # TODO : move method to clas body.
+                testResults <- set.based.enrichment.test(steps = .Object@numberOfPermutations, pool = pool,
+                                                        select = .Object@testData, DB = DB)
+                # TODO : Set proper names for results in DF.
+                testResults
+            }
+
+            .Object
+          })
+
+#' @describeIn MuleaHypergeometricTest runs test calculations.
+#' @param testObject Object of s4 class represents Mulea Test.
+#' @return runTest method for MuleaHypergeometricTest object. Used as private function.
+#' @examples
+#' \dontrun{
+#' #It is a private method. Look at runTest of SetBasedTest's examples.
+#' }
+setMethod("runTest",
+          signature(testObject = "SetBasedEnrichmentTest"),
+          function(testObject) {
+            testObject@test(testObject)
+          })
 
 
 

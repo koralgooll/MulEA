@@ -1,7 +1,7 @@
 
 #' An S4 class to represent a ranked based tests in Mulea.
 #'
-#' @slot method A method from ranked methods to count results.
+#' @slot method A method from ranked methods to count results. Possible values are: "Subramanian", "KS".
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot scores A vectore of scores per testData.
@@ -53,7 +53,7 @@ setMethod("initialize", "RankedBasedTest",
                                                    p = rankedBaseTestObject@p,
                                                    numberOfPermutations = rankedBaseTestObject@numberOfPermutations)
                 rankedTestRes <- runTest(subramanianTest)
-              } else if (method == "KS") {
+              } else if (rankedBaseTestObject@method == "KS") {
                 ksTest <- KolmogorovSmirnovTest(gmt = rankedBaseTestObject@gmt,
                                                 testData = rankedBaseTestObject@testData,
                                                 numberOfPermutations = rankedBaseTestObject@numberOfPermutations)

@@ -1,10 +1,12 @@
 
 #' An S4 class to represent a set based tests in Mulea.
 #'
+#' @slot method A method from set based methods to count results. Possible values: "Hypergeometric", "SetBaseEnrichment".
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot pool A background data to count test.
 #' @slot adjustMethod A type of algorithm used to adjust values.
+#' @slot numberOfPermutations A number of permutations used in set base enrichment test. Default vlue is 1000.
 #' @return SetBasedTest object. This object represents set based tests in Mulea.
 #' @export
 #' @examples
@@ -20,6 +22,7 @@ SetBasedTest <- setClass("SetBasedTest",
                                       testData = "character",
                                       pool = "character",
                                       adjustMethod = "character",
+                                      numberOfPermutations = "numeric",
                                       test = "function"
                                     ))
 
@@ -29,6 +32,7 @@ setMethod("initialize", "SetBasedTest",
                    testData = character(),
                    pool = character(),
                    adjustMethod = character(),
+                   numberOfPermutations = 10000,
                    test = NULL,
                    ...) {
 
@@ -36,20 +40,27 @@ setMethod("initialize", "SetBasedTest",
             .Object@testData <- testData
             .Object@pool <- pool
             .Object@adjustMethod <- adjustMethod
+            .Object@numberOfPermutations <- numberOfPermutations
 
             .Object@test <- function(setBaseTestObject) {
-              muleaHypergeometricTest <- MuleaHypergeometricTest(gmt = setBaseTestObject@gmt, testData = setBaseTestObject@testData, pool = setBaseTestObject@pool)
-              muleaHypergeometricTestRes <- runTest(muleaHypergeometricTest)
-              if (length(setBaseTestObject@adjustMethod) != 0) {
-                if (setBaseTestObject@adjustMethod == "SBET") {
-                  # adjustResult <- data.frame(modelWithTestsResults, permutationAdjustment(modelWithTestDf = modelWithTestsResults, steps = steps, sampleVector = sampleVector, poolVector = poolVector))
-                  adjustment <- Adjustment()
-                  adjustment@setBasedEnrichmentTest()
-                } else {
-                  muleaHypergeometricTestRes <- data.frame(muleaHypergeometricTestRes, "q.value" = p.adjust(muleaHypergeometricTestRes$p.value, method = adjustMethod))
-                }
+              setBasedTestRes <- NULL
+              if (setBaseTestObject@adjustMethod != "PT") {
+                  muleaHypergeometricTest <- MuleaHypergeometricTest(gmt = setBaseTestObject@gmt,
+                                                                     testData = setBaseTestObject@testData,
+                                                                     pool = setBaseTestObject@pool)
+                  setBasedTestRes <- runTest(muleaHypergeometricTest)
+              } else if (setBaseTestObject@adjustMethod == "PT") {
+                muleaSetBaseEnrichmentTest <- SetBasedEnrichmentTest(gmt = setBaseTestObject@gmt,
+                                                                     testData = setBaseTestObject@testData,
+                                                                     pool = setBaseTestObject@pool,
+                                                                     numberOfPermutations = setBaseTestObject@numberOfPermutations)
+                setBasedTestRes <- runTest(muleaSetBaseEnrichmentTest)
               }
-              muleaHypergeometricTestRes
+
+              if (length(setBaseTestObject@adjustMethod) != 0 && setBaseTestObject@adjustMethod != "PT") {
+                  setBasedTestRes <- data.frame(setBasedTestRes, "q.value" = p.adjust(setBasedTestRes$p.value, method = adjustMethod))
+              }
+              setBasedTestRes
             }
 
             .Object

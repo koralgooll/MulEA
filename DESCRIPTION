@@ -34,13 +34,12 @@ Suggests:
 VignetteBuilder: knitr
 Collate:
     'RcppExports.R'
-    'SetBasedEnrichmentTest.R'
-    'Adjustment.R'
     'Mulea.R'
     'GenericFunctions.R'
     'Utils.R'
     'Methods.R'
     'MuleaData.R'
+    'SetBasedEnrichmentTest.R'
     'HypergeometricTest.R'
     'KolmogorovSmirnovTest.R'
     'SubramanianTest.R'
