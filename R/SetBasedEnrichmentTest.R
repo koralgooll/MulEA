@@ -89,12 +89,9 @@ setMethod("initialize", "SetBasedEnrichmentTest",
 
                 DB <- .Object@gmt[, 'listOfValues']
                 names(DB) <- .Object@gmt$ontologyId
-                print("SET BASE ENRICHMENT TESR WILL WORK HERE")
 
-                # TODO : move method to clas body.
                 testResults <- set.based.enrichment.test(steps = .Object@numberOfPermutations, pool = pool,
                                                         select = .Object@testData, DB = DB)
-                # TODO : Set proper names for results in DF.
                 testResults
             }
 

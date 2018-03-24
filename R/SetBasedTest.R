@@ -44,20 +44,21 @@ setMethod("initialize", "SetBasedTest",
 
             .Object@test <- function(setBaseTestObject) {
               setBasedTestRes <- NULL
-              if (setBaseTestObject@adjustMethod != "PT") {
-                  muleaHypergeometricTest <- MuleaHypergeometricTest(gmt = setBaseTestObject@gmt,
-                                                                     testData = setBaseTestObject@testData,
-                                                                     pool = setBaseTestObject@pool)
-                  setBasedTestRes <- runTest(muleaHypergeometricTest)
-              } else if (setBaseTestObject@adjustMethod == "PT") {
+              muleaHypergeometricTest <- MuleaHypergeometricTest(gmt = setBaseTestObject@gmt,
+                                                                 testData = setBaseTestObject@testData,
+                                                                 pool = setBaseTestObject@pool)
+              setBasedTestRes <- runTest(muleaHypergeometricTest)
+
+              if (!identical(setBaseTestObject@adjustMethod,character(0)) && setBaseTestObject@adjustMethod == "PT") {
                 muleaSetBaseEnrichmentTest <- SetBasedEnrichmentTest(gmt = setBaseTestObject@gmt,
                                                                      testData = setBaseTestObject@testData,
                                                                      pool = setBaseTestObject@pool,
                                                                      numberOfPermutations = setBaseTestObject@numberOfPermutations)
-                setBasedTestRes <- runTest(muleaSetBaseEnrichmentTest)
+                muleaSetBaseEnrichmentTest <- runTest(muleaSetBaseEnrichmentTest)
+                muleaSetBaseEnrichmentTest[muleaSetBaseEnrichmentTest$FDR > 1,]$FDR <- 1
+                setBasedTestRes <- data.frame(setBasedTestRes, "q.value" = muleaSetBaseEnrichmentTest[,'FDR'])
               }
-
-              if (length(setBaseTestObject@adjustMethod) != 0 && setBaseTestObject@adjustMethod != "PT") {
+              if (!identical(setBaseTestObject@adjustMethod,character(0)) && setBaseTestObject@adjustMethod != "PT") {
                   setBasedTestRes <- data.frame(setBasedTestRes, "q.value" = p.adjust(setBasedTestRes$p.value, method = adjustMethod))
               }
               setBasedTestRes
