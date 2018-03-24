@@ -28,7 +28,7 @@ An S4 class to represent a ranked based tests in Mulea.
 \section{Slots}{
 
 \describe{
-\item{\code{method}}{A method from ranked methods to count results.}
+\item{\code{method}}{A method from ranked methods to count results. Possible values are: "Subramanian", "KS".}
 
 \item{\code{gmt}}{A data.frame representing GMT's reprezentation of model.}
 
@@ -36,7 +36,7 @@ An S4 class to represent a ranked based tests in Mulea.
 
 \item{\code{scores}}{A vectore of scores per testData.}
 
-\item{\code{p}}{A power of weight. Default vlue is 1.}
+\item{\code{p}}{A power of weight. Default value is 1.}
 
 \item{\code{numberOfPermutations}}{A number of permutations used in renked test. Default vlue is 1000.}
 }}

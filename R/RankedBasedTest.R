@@ -5,7 +5,7 @@
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot scores A vectore of scores per testData.
-#' @slot p A power of weight. Default vlue is 1.
+#' @slot p A power of weight. Default value is 1.
 #' @slot numberOfPermutations A number of permutations used in renked test. Default vlue is 1000.
 #' @return RankedBasedTest object. This object represents ranked based tests in Mulea.
 #' @export

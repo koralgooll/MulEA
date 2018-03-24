@@ -28,6 +28,8 @@ An S4 class to represent a set based tests in Mulea.
 \section{Slots}{
 
 \describe{
+\item{\code{method}}{A method from set based methods to count results. Possible values: "Hypergeometric", "SetBaseEnrichment".}
+
 \item{\code{gmt}}{A data.frame representing GMT's reprezentation of model.}
 
 \item{\code{testData}}{A data from expeciment to analize accross model.}
@@ -35,6 +37,8 @@ An S4 class to represent a set based tests in Mulea.
 \item{\code{pool}}{A background data to count test.}
 
 \item{\code{adjustMethod}}{A type of algorithm used to adjust values.}
+
+\item{\code{numberOfPermutations}}{A number of permutations used in set base enrichment test. Default vlue is 10000.}
 }}
 
 \examples{

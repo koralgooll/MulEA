@@ -6,7 +6,7 @@
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot pool A background data to count test.
 #' @slot adjustMethod A type of algorithm used to adjust values.
-#' @slot numberOfPermutations A number of permutations used in set base enrichment test. Default vlue is 1000.
+#' @slot numberOfPermutations A number of permutations used in set base enrichment test. Default vlue is 10000.
 #' @return SetBasedTest object. This object represents set based tests in Mulea.
 #' @export
 #' @examples
