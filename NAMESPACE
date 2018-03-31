@@ -6,9 +6,10 @@ import(DBI)
 import(RSQLite)
 import(plyr)
 import(fgsea)
-importFrom("stats", "ks.test", "p.adjust", "phyper")
-importFrom("utils", "count.fields", "read.table")
-importFrom(Rcpp, evalCpp)
+import(Rcpp)
+#importFrom(Rcpp, evalCpp)
+importFrom("stats", "ks.test", "p.adjust", "phyper", "aggregate")
+importFrom("utils", "count.fields", "read.table","flush.console")
 
 # Exports:
 export(readGmtFileAsDataFrame)

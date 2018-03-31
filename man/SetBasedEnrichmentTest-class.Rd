@@ -4,13 +4,27 @@
 \name{SetBasedEnrichmentTest-class}
 \alias{SetBasedEnrichmentTest-class}
 \alias{SetBasedEnrichmentTest}
+\alias{runTest,SetBasedEnrichmentTest-method}
 \title{PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.}
+\usage{
+\S4method{runTest}{SetBasedEnrichmentTest}(testObject)
+}
+\arguments{
+\item{testObject}{Object of s4 class represents Mulea Test.}
+}
 \value{
 SetBasedEnrichmentTest object. Used as private function.
+
+runTest method for SetBasedEnrichmentTest object. Used as private function.
 }
 \description{
 PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 }
+\section{Methods (by generic)}{
+\itemize{
+\item \code{runTest}: runs test calculations.
+}}
+
 \section{Slots}{
 
 \describe{
@@ -24,5 +38,8 @@ PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 \examples{
 \dontrun{
 #It is a private s4 object. Look at SetBasedTest's examples.
+}
+\dontrun{
+#It is a private method. Look at runTest of SetBasedTest's examples.
 }
 }

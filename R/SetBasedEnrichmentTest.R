@@ -98,9 +98,9 @@ setMethod("initialize", "SetBasedEnrichmentTest",
             .Object
           })
 
-#' @describeIn MuleaHypergeometricTest runs test calculations.
+#' @describeIn SetBasedEnrichmentTest runs test calculations.
 #' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for MuleaHypergeometricTest object. Used as private function.
+#' @return runTest method for SetBasedEnrichmentTest object. Used as private function.
 #' @examples
 #' \dontrun{
 #' #It is a private method. Look at runTest of SetBasedTest's examples.
