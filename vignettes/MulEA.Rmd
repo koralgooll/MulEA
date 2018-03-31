@@ -25,19 +25,14 @@ knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = TRUE, error = FALSE
 
 
 
-
-
 Implemented MulEA features include:
 
-- [Mulea Input Output Data Workflow](#mulea-input-output-data-workflow)
-    - [Input Files](#File)
-- [Data Analysis](#data-analysis)
-    - [Set Based Tests](#set-based-tests)
-        - [Hypergeometric Test](#hypergeometric-test)
-        - [Multiple Comparisons Problem](#multiple-comparisons-problem)
-    - [Ranked Based Tests](#ranked-based-tests)
-        - [Kolmogorov Smirnov Test](#kolmogorov-smirnov-test)
-        - [Subramanian Test](#subramanian-test)
+- [Mulea input and output data formats](#mulea-input-and-output-data-formats)
+- [Set Based Test](#set-based-test)
+    - [Permutation-based correction for multiple testing](#permutation-based-correction-for-multiple-testing)
+- [Ranking Based Tests](#ranking-based-tests)
+    - [Kolmogorov Smirnov Test](#kolmogorov-smirnov-test)
+    - [Subramanian Test](#subramanian-test)
 
 
 ## Mulea input and output data formats
@@ -122,6 +117,47 @@ knitr::kable(setBasedTestWithPoolRes, caption = "Set Based Test Result Data Fram
 ```
 
 
+### Permutation based correction for multiple testing  
+
+According to article [Multiple Comparisons Problem](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) you can adjust p-values of tested ontologies by adding the `adjustMethod` argument to `SetBasedTest` class. The value of this argument can newly presented by MulEA method to adjust p-values besed on permutation test. To run that method, please use `"PT"` - permutation test as `adjustMethod` argument.
+You can use common R approach and you can use one of the listed values: `"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`. References to this methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
+
+```{r, results = 'asis', echo = TRUE} 
+setBasedTestWithPoolAndAdjust <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "PT")
+setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
+```
+```{r, results = 'asis', echo = FALSE} 
+knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result With Permutation Test Adjustment Data Frame")
+```
+
+```{r, results = 'asis', echo = TRUE} 
+setBasedTestWithPoolAndAdjust <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH")
+setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
+```
+```{r, results = 'asis', echo = FALSE} 
+knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result Data Frame")
+```
+
+Data frames with adjusted p-values contain one extra column, which include q-values.
+
+`SetBasedTest` class constructor accepts list of arguments, such:
+
+- `gmt` - required* - It is data.frame, which represents model. Read it from file or load from DBs.
+- `testData` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`.
+- `pool = character()` - default: character() - It is vector of background - pool data to experiment data. Example: `dataFromExperimentPool <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0003444", "FBgn0003333"")`
+- `adjustMethod = NA` - default: NA - You can specify an algorithm which helps you with [Multiple Comparisons Problem](#multiple-comparisons-problem).
+
+Column names presented in results data.frame are:
+
+- `ontologyId` - input copy - Column copies from the input data frame. It include onlology ids. Could be for example ids from GO.
+- `ontologyName` - input copy - Column copies from the input data frame. It include onlology names. Could be for example name from GO as "mitochondrion inheritance".
+- `listOfValues` - input copy - Column copies from the input data frame. It include all symbols undet presented ontology id. Example from GO: FBgn0004407, FBgn0010438.
+- `overlappingData` - output - Column includes set of intersection of list of values from model and provided by user experiment vector.
+- `contingencyTable` - output - This colum presents contingeny tables used to count test.
+- `p.value` - output - Cells of this column include counted p-value for provided data.
+- `q.value` - output - Cells of this column include adjusted p-value according to the model. The result of adjustment is q-value.
+
+
 ## Ranking Based Tests
 Fundament under ranked based tests is ranking. Ranking can be an ordered vector or any vector with vector of scores, both of them have to be the same length. For now MulEA provides you two ranked based tests. them are the Kolmogorov-Smirnov test and the Subramanian test. Both of them are encloused in `RankedBasedTest` class, which provides you a possibility to set input data and configur other parameters including used statistic method.
 
@@ -132,6 +168,7 @@ modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(packa
 dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30, 0.45, 0.50)
 ```
+
 
 ### Kolmogorov Smirnov Test  
 
@@ -177,37 +214,3 @@ Returned data frame from any ranked based test look like that (column specificat
 ```{r, results = 'asis', echo = FALSE} 
 knitr::kable(rankedBasedTestKsRes, caption = "Ranked Based Test Result Data Frame")
 ```
-  
-### Permutation-based correction for multiple testing  
-
-According to article [Multiple Comparisons Problem](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) you can adjust p-values of tested ontologies by adding the `adjustMethod` argument to `SetBasedTest` class. The value of this argument can newly presented by MulEA method to adjust p-values besed on permutation test. To run that method, please use `"EszterPermutationTest"` as `adjustMethod` argument.
-You can use common R approach and you can use one of the listed values: "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr". References to this methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
-
-```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH")
-setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
-```
-```{r, results = 'asis', echo = FALSE} 
-knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result Data Frame")
-```
-
-Data frames with adjusted p-values contain one extra column, which include q-values.
-
-`SetBasedTest` class constructor accepts list of arguments, such:
-
-- `gmt` - required* - It is data.frame, which represents model. Read it from file or load from DBs.
-- `testData` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`.
-- `pool = character()` - default: character() - It is vector of background - pool data to experiment data. Example: `dataFromExperimentPool <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0003444", "FBgn0003333"")`
-- `adjustMethod = NA` - default: NA - You can specify an algorithm which helps you with [Multiple Comparisons Problem](#multiple-comparisons-problem).
-
-Column names presented in results data.frame are:
-
-- `ontologyId` - input copy - Column copies from the input data frame. It include onlology ids. Could be for example ids from GO.
-- `ontologyName` - input copy - Column copies from the input data frame. It include onlology names. Could be for example name from GO as "mitochondrion inheritance".
-- `listOfValues` - input copy - Column copies from the input data frame. It include all symbols undet presented ontology id. Example from GO: FBgn0004407, FBgn0010438.
-- `overlappingData` - output - Column includes set of intersection of list of values from model and provided by user experiment vector.
-- `contingencyTable` - output - This colum presents contingeny tables used to count test.
-- `p.value` - output - Cells of this column include counted p-value for provided data.
-- `q.value` - output - Cells of this column include adjusted p-value according to the model. The result of adjustment is q-value.
-
-

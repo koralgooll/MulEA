@@ -5,7 +5,7 @@
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot pool A background data to count test.
-#' @slot adjustMethod A type of algorithm used to adjust values.
+#' @slot adjustMethod A type of algorithm used to adjust values. Possible values: "PT" and all from p.adjust {stats} documentation.
 #' @slot numberOfPermutations A number of permutations used in set base enrichment test. Default vlue is 10000.
 #' @return SetBasedTest object. This object represents set based tests in Mulea.
 #' @export
@@ -16,6 +16,7 @@
 #' setBasedTest <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment)
 #' setBasedTestWithPool <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool)
 #' setBasedTestWithPoolAndAdjust <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH")
+#' setBaseTestWithPermutationTestAdjustment <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, adjustMethod = "PT")
 SetBasedTest <- setClass("SetBasedTest",
                                     slots = list(
                                       gmt = "data.frame",
@@ -78,9 +79,11 @@ setMethod("initialize", "SetBasedTest",
 #' setBasedTest <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment)
 #' setBasedTestWithPool <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool)
 #' setBasedTestWithPoolAndAdjust <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH")
+#' setBaseTestWithPermutationTestAdjustment <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, adjustMethod = "PT")
 #' setBasedTestRes <- MulEA::runTest(setBasedTest)
 #' setBasedTestWithPoolRes <- MulEA::runTest(setBasedTestWithPool)
 #' setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
+#' setBaseTestWithPermutationTestAdjustmentRes <- MulEA::runTest(setBaseTestWithPermutationTestAdjustment)
 setMethod("runTest",
           signature(testObject = "SetBasedTest"),
           function(testObject) {
