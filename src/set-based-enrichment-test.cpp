@@ -79,6 +79,7 @@ void set_seed(unsigned int seed) {
 *
 */
 
+// we can export it also from R as publib by this: //' @export
 // [[Rcpp::export]]
 DataFrame trial(
     Rcpp::List categories,

@@ -8,7 +8,7 @@
 #' @slot adjustMethod A type of algorithm used to adjust values. Possible values: "PT" and all from p.adjust {stats} documentation.
 #' @slot numberOfPermutations A number of permutations used in set base enrichment test. Default vlue is 10000.
 #' @return SetBasedTest object. This object represents set based tests in Mulea.
-#' @export
+#' @export "SetBasedTest"
 #' @examples
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
@@ -56,7 +56,9 @@ setMethod("initialize", "SetBasedTest",
                                                                      pool = setBaseTestObject@pool,
                                                                      numberOfPermutations = setBaseTestObject@numberOfPermutations)
                 muleaSetBaseEnrichmentTest <- runTest(muleaSetBaseEnrichmentTest)
-                muleaSetBaseEnrichmentTest[muleaSetBaseEnrichmentTest$FDR > 1,]$FDR <- 1
+                if(0 != length(muleaSetBaseEnrichmentTest[muleaSetBaseEnrichmentTest$FDR > 1,]$FDR)) {
+                  muleaSetBaseEnrichmentTest[muleaSetBaseEnrichmentTest$FDR > 1,]$FDR <- 1
+                }
                 setBasedTestRes <- data.frame(setBasedTestRes, "q.value" = muleaSetBaseEnrichmentTest[,'FDR'])
               }
               if (!identical(setBaseTestObject@adjustMethod,character(0)) && setBaseTestObject@adjustMethod != "PT") {

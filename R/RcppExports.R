@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 trial <- function(categories, genes, pool, selectSize, steps, randomSeed) {
-    .Call('_MulEA_trial', PACKAGE = 'MulEA', categories, genes, pool, selectSize, steps, randomSeed)
+    .Call(`_MulEA_trial`, categories, genes, pool, selectSize, steps, randomSeed)
 }
 

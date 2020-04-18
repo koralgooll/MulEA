@@ -39,7 +39,7 @@ setMethod("initialize", "MuleaHypergeometricTest",
                   allElements <- unique(unlist(testObject@gmt$listOfValues))
                 }
 
-                testResults <- ddply(.data = testObject@gmt,  .variables = c("ontologyId"), .fun = function(dfRow) {
+                testResults <- plyr::ddply(.data = testObject@gmt,  .variables = c("ontologyId"), .fun = function(dfRow) {
                   poolAndSelectedAndDBiIntersection <- intersect(testObject@testData, dfRow[1, 'listOfValues'][[1]])
 
                   selectedAndInGroup <- length(poolAndSelectedAndDBiIntersection)
