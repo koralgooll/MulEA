@@ -7,7 +7,7 @@
 #' @return KolmogorovSmirnovTest object. Used as private object.
 #' @examples
 #' \dontrun{
-#' #It is a private s4 object. Look at SetBasedTest's examples.
+#' #It is a private s4 object. Look at ORA's examples.
 #' }
 KolmogorovSmirnovTest <- setClass("KolmogorovSmirnovTest",
                                   slots = list(

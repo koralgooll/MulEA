@@ -158,7 +158,7 @@ DataFrame trial(
     delete[] categorySelectFrequency;
   }
 
-  cout << "Done." << endl;
+  // cout << "Done." << endl;
 
   // create data frame from the results
 

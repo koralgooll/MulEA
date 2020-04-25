@@ -53,7 +53,7 @@
 #' @return SetBasedEnrichmentTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private s4 object. Look at SetBasedTest's examples.
+#' #It is a private s4 object. Look at ORA's examples.
 #' }
 SetBasedEnrichmentTest <- setClass("SetBasedEnrichmentTest",
                        slots = list(
@@ -107,7 +107,7 @@ setMethod("initialize", "SetBasedEnrichmentTest",
 #' @return runTest method for SetBasedEnrichmentTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at runTest of SetBasedTest's examples.
+#' #It is a private method. Look at runTest of ORA's examples.
 #' }
 setMethod("runTest",
           signature(testObject = "SetBasedEnrichmentTest"),

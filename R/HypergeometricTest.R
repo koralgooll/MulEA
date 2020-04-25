@@ -7,7 +7,7 @@
 #' @return MuleaHypergeometricTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private s4 object. Look at SetBasedTest's examples.
+#' #It is a private s4 object. Look at ORA's examples.
 #' }
 MuleaHypergeometricTest <- setClass("MuleaHypergeometricTest",
                              slots = list(
@@ -56,7 +56,7 @@ setMethod("initialize", "MuleaHypergeometricTest",
 #' @return runTest method for MuleaHypergeometricTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at runTest of SetBasedTest's examples.
+#' #It is a private method. Look at runTest of ORA's examples.
 #' }
 setMethod("runTest",
           signature(testObject = "MuleaHypergeometricTest"),
