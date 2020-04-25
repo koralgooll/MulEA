@@ -45,25 +45,32 @@ setMethod("initialize", "SetBasedTest",
 
             .Object@test <- function(setBaseTestObject) {
               setBasedTestRes <- NULL
-              muleaHypergeometricTest <- MuleaHypergeometricTest(gmt = setBaseTestObject@gmt,
-                                                                 testData = setBaseTestObject@testData,
-                                                                 pool = setBaseTestObject@pool)
-              setBasedTestRes <- runTest(muleaHypergeometricTest)
 
               if (!identical(setBaseTestObject@adjustMethod,character(0)) && setBaseTestObject@adjustMethod == "PT") {
+                
                 muleaSetBaseEnrichmentTest <- SetBasedEnrichmentTest(gmt = setBaseTestObject@gmt,
                                                                      testData = setBaseTestObject@testData,
                                                                      pool = setBaseTestObject@pool,
                                                                      numberOfPermutations = setBaseTestObject@numberOfPermutations)
+                
                 muleaSetBaseEnrichmentTest <- runTest(muleaSetBaseEnrichmentTest)
+                
                 if(0 != length(muleaSetBaseEnrichmentTest[muleaSetBaseEnrichmentTest$FDR > 1,]$FDR)) {
                   muleaSetBaseEnrichmentTest[muleaSetBaseEnrichmentTest$FDR > 1,]$FDR <- 1
                 }
-                setBasedTestRes <- data.frame(setBasedTestRes, "q.value" = muleaSetBaseEnrichmentTest[,'FDR'])
-              }
-              if (!identical(setBaseTestObject@adjustMethod,character(0)) && setBaseTestObject@adjustMethod != "PT") {
+                
+                # TODO : Choose proper fields, it is for all SetBasedEnrichementTest and HyperGeomTest.
+                setBasedTestRes <- muleaSetBaseEnrichmentTest
+              } else {
+                muleaHypergeometricTest <- MuleaHypergeometricTest(gmt = setBaseTestObject@gmt,
+                                                                   testData = setBaseTestObject@testData,
+                                                                   pool = setBaseTestObject@pool)
+                setBasedTestRes <- runTest(muleaHypergeometricTest)
+                if (!identical(setBaseTestObject@adjustMethod,character(0)) && setBaseTestObject@adjustMethod != "PT") {
                   setBasedTestRes <- data.frame(setBasedTestRes, "q.value" = p.adjust(setBasedTestRes$p.value, method = adjustMethod))
+                }
               }
+              
               setBasedTestRes
             }
 

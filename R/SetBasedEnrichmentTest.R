@@ -61,6 +61,7 @@ SetBasedEnrichmentTest <- setClass("SetBasedEnrichmentTest",
                          testData = "character",
                          pool = "character",
                          numberOfPermutations = "numeric",
+                         only_hyper_geometric_test = "logical",
                          test = "function"
                        ))
 
@@ -69,15 +70,17 @@ setMethod("initialize", "SetBasedEnrichmentTest",
                    gmt = data.frame(),
                    testData = character(),
                    pool = character(),
-                   numberOfPermutations = 1000,
+                   numberOfPermutations = 10000,
                    test = NULL,
+                   only_hyper_geometric_test=FALSE,
                    ...) {
 
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@pool <- pool
-            .Object@numberOfPermutations = numberOfPermutations
-
+            .Object@numberOfPermutations <- numberOfPermutations
+            .Object@only_hyper_geometric_test <- only_hyper_geometric_test
+            
             .Object@test <- function(testObject) {
 
                 pool <- NULL
@@ -91,7 +94,8 @@ setMethod("initialize", "SetBasedEnrichmentTest",
                 names(DB) <- .Object@gmt$ontologyId
 
                 testResults <- set.based.enrichment.test(steps = .Object@numberOfPermutations, pool = pool,
-                                                        select = .Object@testData, DB = DB)
+                                                        select = .Object@testData, DB = DB,
+                                                        only_hyper_geometric_test=testObject@only_hyper_geometric_test)
                 testResults
             }
 
@@ -113,8 +117,9 @@ setMethod("runTest",
 
 
 
-
-set.based.enrichment.test=function(steps, pool, select, DB, nthreads=4) {
+# TODO : Open seed set up possibility.
+set.based.enrichment.test=function(steps, pool, select, DB, nthreads=4, 
+                                   only_hyper_geometric_test=FALSE) {
 
 
   # csinalok egy masolatot a konverzio elott, mert ervin kodjanak az kell
@@ -165,6 +170,9 @@ set.based.enrichment.test=function(steps, pool, select, DB, nthreads=4) {
   }
   P_val_df=data.frame(DB_names, DB_in_select, DB_in_pool, Genes_in_DB, P=P_val, P_adj_Bonf=p.adjust(P_val, method="bonferroni"), P_adj_BH=p.adjust(P_val, method="BH"), R_obs)
 
+  if (only_hyper_geometric_test) {
+    return(P_val_df)
+  }
   ######
   # simualtion
   ######
