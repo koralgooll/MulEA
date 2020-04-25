@@ -55,8 +55,11 @@ setMethod("initialize", "ORA",
                 
                 muleaSetBaseEnrichmentTest <- runTest(muleaSetBaseEnrichmentTest)
                 
-                if(0 != length(muleaSetBaseEnrichmentTest[muleaSetBaseEnrichmentTest$FDR > 1,]$FDR)) {
-                  muleaSetBaseEnrichmentTest[muleaSetBaseEnrichmentTest$FDR > 1,]$FDR <- 1
+                for (i in 1:length(muleaSetBaseEnrichmentTest$FDR)) {
+                  if (!is.nan(muleaSetBaseEnrichmentTest$FDR[i]) 
+                      && muleaSetBaseEnrichmentTest$FDR[i] > 1.0) {
+                    muleaSetBaseEnrichmentTest$FDR[i] <- 1.0
+                  }
                 }
                 
                 # TODO : Choose proper fields, it is for all SetBasedEnrichementTest and HyperGeomTest.

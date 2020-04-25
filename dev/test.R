@@ -27,6 +27,7 @@ mulea_ora_01 <- MulEA::ORA(gmt = model_df, testData = select,
                         numberOfPermutations = number_of_steps)
 mulea_res_01 <- MulEA::runTest(mulea_ora_01)
 
+# TODO : Discuss with Eszter round of FDRs bigger than 1 to 1.
 your_res_01$FDR-mulea_res_01$FDR
 
 
@@ -71,8 +72,9 @@ mulea_res_03 <- MulEA::runTest(mulea_ora_03)
 
 your_res_03$FDR-mulea_res_03$FDR
 
-if(all(your_res_03$P==1)){ stop()}
 
+# TODO : What should catch those examples?
+if(all(your_res_03$P==1)){ stop()}
 if(all(your_res_03$FDR==1)){ stop()}
 
 
@@ -95,10 +97,6 @@ mulea_ora_04 <- MulEA::ORA(gmt = model_df, testData = select,
 mulea_res_04 <- MulEA::runTest(mulea_ora_04)
 
 your_res_04$FDR-mulea_res_04$FDR
-
-
-
-
 
 
 
