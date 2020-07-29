@@ -1,7 +1,17 @@
 # BiocManager::install(version = "3.7")
 # BiocManager::install("fgsea", version = "3.7", update = FALSE)
+# install.packages("BiocManager")
+# BiocManager::install("fgsea")
 # install.packages("RCurl")
 # install.packages("roxygen2")
+# install.packages("devtools")
+# install.packages("DBI")
+# install.packages('plyr')
+# install.packages("RSQLite")
+# BiocManager::install("enrichplot")
+# BiocManager::install("clusterProfiler")
+# extra data -> BiocManager::install("breastCancerMAINZ")
+
 
 
 muleaPkgDir <- find.package("MulEA")
@@ -16,15 +26,19 @@ dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407"
 
 library(MulEA)
 
-setBasedTestWithPoolAndAdjust <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment,
+
+setBasedTestWithPool <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment,
+                                              pool = dataFromExperimentPool)
+setBasedTestWithPoolRes <- MulEA::runTest(setBasedTestWithPool)
+
+
+setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment,
                                               pool = dataFromExperimentPool, adjustMethod = "BH")
 setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
 
-setBasedTestWithPoolAndAdjust <- SetBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment,
-                                              pool = dataFromExperimentPool, adjustMethod = "PT")
-setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
 
-
-
-
+setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment,
+                                              pool = dataFromExperimentPool, adjustMethod = "PT",
+                                              numberOfPermutations = 100)
+setBasedTestWithPoolAndAdjustResNew <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
 
