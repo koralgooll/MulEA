@@ -29,20 +29,39 @@ mulea_ora_01 <- MulEA::ORA(gmt = model_df, testData = select,
 mulea_res_01 <- MulEA::runTest(mulea_ora_01)
 
 
+# Merge model dataframe with mulea results.
+model_with_res <- merge(x = model_df, y = mulea_res_01, 
+                        by.x = "ontologyId", by.y = "DB_names", all = TRUE)
+names(model_df)
+names(mulea_res_01)
+
+model_with_res[[1,'listOfValues']]
+
+enrichplot::cnetplot()
+
+install.packages("ggnetwork")
+
 
 # Plot Processing.
-
 library(ggplot2)
 library(dplyr)
 
-selection_vector = c(1, 7, 15, 24, 27, 51, 61, 84, 86)
-mulea_res_01[selection_vector,] %>% ggplot( aes(x=DB_names, y=FDR, fill=FDR)) +
-  geom_bar(stat="identity") +
-  scale_fill_gradient2(mid='red', high='darkgreen', space='Lab') +
-  coord_flip() +
-  xlab("") +
-  theme_bw()
 
+bar_plot_mulea <- function(result_data_frame, selection_vector=1:10, 
+                           categories_names='DB_names', probabilities_values='FDR') {
+  result_data_frame[selection_vector,] %>% 
+    ggplot( aes_string(x=categories_names, y=probabilities_values, fill=probabilities_values)) +
+    geom_bar(stat="identity") +
+    scale_fill_gradient2(mid='darkgreen', high='red') +
+    coord_flip()
+}
+
+bar_plot_mulea(result_data_frame = mulea_res_01, selection_vector = c(1, 7, 15, 24, 27, 51, 61, 84, 86))
+
+
+
+
+# Thwo variables encoded.
 library(reshape2)
 
 mulea_res_01.long <- melt(mulea_res_01[selection_vector,])
@@ -57,25 +76,6 @@ mulea_res_01.long %>% filter(variable %in% c('P', 'FDR')) %>%
   coord_flip() + 
   xlab("") +
   theme_bw()
-
-
-
-mulea_res_01.long %>% filter(variable %in% c('P', 'FDR')) %>% 
-  ggplot(aes(DB_names, value, alpha=variable, fill=value)) +
-  geom_bar(stat="identity", position = "dodge") +
-  scale_alpha_ordinal(range = c(0.5, 0.9)) +
-  scale_fill_gradient2(mid='red', high='darkgreen', space='Lab') +
-  coord_flip() + 
-  xlab("") +
-  theme_bw()
-
-
-
-
-
-
-
-
 
 
 
