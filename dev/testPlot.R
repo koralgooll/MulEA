@@ -1,6 +1,7 @@
 # Eszter's first example.
 rm(list = ls())
 root_of_cpp_project <- 'D:/projects/science/enrichment-analysis'
+root_of_cpp_project <- '/home/cezary/Cezary/projects/science/enrichment-analysis'
 setwd(root_of_cpp_project)
 
 
@@ -79,4 +80,50 @@ mulea_res_01.long %>% filter(variable %in% c('P', 'FDR')) %>%
 
 
 
+
+
+
+# Graph's plots
+install.packages(c("tidyverse", "tidygraph", "network", "igraph"))
+library(tidyverse)
+edge_list <- tibble(from = c(1, 2, 2, 3, 4), to = c(2, 3, 4, 2, 1))
+node_list <- tibble(id = 1:4)
+
+edge_list
+
+library(network)
+?network()
+edges <- data.frame(from = c(1, 2, 2, 3, 4), to = c(2, 3, 4, 2, 1), weight = c(1, 7, 4, 7, 12))
+nodes <- data.frame(id = c(1, 2, 3, 4), label = c("l-one", "l-two", "l-third", "l-fourth"), stringsAsFactors = FALSE)
+# routes_network <- network(edges, vertex.attr = nodes, matrix.type = "edgelist", ignore.eval = FALSE)
+routes_network <- network(edges, matrix.type = "edgelist", ignore.eval = FALSE)
+plot(routes_network, vertex.cex = 3)
+plot(routes_network, vertex.cex = 3, mode = "circle")
+
+library(igraph)
+routes_igraph <- graph_from_data_frame(d = edges, vertices = nodes, directed = TRUE)
+plot(routes_igraph, edge.arrow.size = 0.2)
+plot(routes_igraph, layout = layout_with_graphopt, edge.arrow.size = 0.2)
+
+
+library(tidygraph)
+library(ggraph)
+routes_tidy <- tbl_graph(nodes = nodes, edges = edges, directed = TRUE)
+routes_igraph_tidy <- as_tbl_graph(routes_igraph)
+
+ggraph(routes_tidy) + geom_edge_link() + geom_node_point() + theme_graph()
+ggraph(routes_tidy, layout = "graphopt") + 
+  geom_node_point() +
+  geom_edge_link(aes(width = weight), alpha = 0.8) + 
+  scale_edge_width(range = c(0.2, 2)) +
+  geom_node_text(aes(label = label), repel = TRUE) +
+  labs(edge_width = "Overlaped genes") +
+  theme_graph()
+
+ggraph(routes_igraph, layout = "linear") + 
+  geom_edge_arc(aes(width = weight), alpha = 0.8) + 
+  scale_edge_width(range = c(0.2, 2)) +
+  geom_node_text(aes(label = label)) +
+  labs(edge_width = "Letters") +
+  theme_graph()
 
