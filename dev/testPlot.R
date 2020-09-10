@@ -38,6 +38,44 @@ names(mulea_res_01)
 
 model_with_res[[1,'listOfValues']]
 
+# Create relaxed dataframe from our structure.
+library(magrittr)
+library(data.table)
+library(dplyr)
+library(tidyr)
+model_with_res_dt <- setDT(model_with_res)
+model_with_res_dt %>% unnest(listOfValues)
+
+
+model_with_res_dt_size = 0
+for (i in 1:nrow(model_with_res_dt[,1])) {
+  model_with_res_dt_size = model_with_res_dt_size + length(model_with_res_dt[[i, 'listOfValues']])
+}
+
+model_with_res_dt_relaxed <- data.table(ontologyId=rep('a',length.out=model_with_res_dt_size), 
+                                        ontologyName=rep('a',length.out=model_with_res_dt_size))
+
+model_with_res_dt_relaxed_counter = 1
+for (i in 1:nrow(model_with_res_dt[,1])) {
+  category_name <- model_with_res_dt[[i, 'ontologyId']]
+  for (item_name in model_with_res_dt[[i, 'listOfValues']]) {
+    model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter, c("ontologyId", "ontologyName"):=list(category_name, item_name)]
+    model_with_res_dt_relaxed_counter = model_with_res_dt_relaxed_counter + 1
+    # print(paste(model_with_res_dt_relaxed_counter, category_name, item_name))
+  }
+}
+print(model_with_res_dt_relaxed)
+
+
+relax_model_with_results <- function(model_with_res) {
+  
+}
+
+
+
+
+
+
 enrichplot::cnetplot()
 
 install.packages("ggnetwork")
