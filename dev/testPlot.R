@@ -47,14 +47,6 @@ model_with_res <- merge(x = model_df, y = mulea_res_01,
                         by.x = "ontologyId", by.y = "DB_names", all = TRUE)
 
 # Create relaxed dataframe from our structure.
-library(magrittr)
-library(data.table)
-library(dplyr)
-library(tidyr)
-
-# model_with_res_dt %>% unnest(listOfValues)
-
-
 model_with_res_dt <- data.table::setDT(model_with_res)
 model_with_res_dt_size = 0
 for (i in 1:nrow(model_with_res_dt[,1])) {
@@ -63,18 +55,20 @@ for (i in 1:nrow(model_with_res_dt[,1])) {
 
 model_with_res_dt_relaxed <- data.table::data.table(
   ontologyId=rep('a',length.out=model_with_res_dt_size), 
-  gen_in_ontology=rep('a',length.out=model_with_res_dt_size))
+  gen_in_ontology=rep('a',length.out=model_with_res_dt_size),
+  ontology_p_stat=rep(1.0,length.out=model_with_res_dt_size))
 
 model_with_res_dt_relaxed_counter = 1
 for (i in 1:nrow(model_with_res_dt[,1])) {
   category_name <- model_with_res_dt[[i, 'ontologyId']]
+  category_p_stat <- model_with_res_dt[[i, 'P']]
   for (item_name in model_with_res_dt[[i, 'listOfValues']]) {
-    model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter, c("ontologyId", "gen_in_ontology"):=list(category_name, item_name)]
+    model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter, 
+                              c("ontologyId", "gen_in_ontology", "ontology_p_stat"):=list(category_name, item_name, category_p_stat)]
     model_with_res_dt_relaxed_counter = model_with_res_dt_relaxed_counter + 1
-    # print(paste(model_with_res_dt_relaxed_counter, category_name, item_name))
   }
 }
-print(model_with_res_dt_relaxed)
+model_with_res_dt_relaxed
 
 
 relax_model_with_results <- function(model_with_res) {
@@ -113,17 +107,43 @@ for (i in 1:(nrow(ontologies)-1)) {
 ontologies_graph_edges
 
 
-nodes <- data.frame(id = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), label = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), stringsAsFactors = FALSE)
-routes_tidy <- tbl_graph(nodes = nodes, edges = ontologies_graph_edges, directed = TRUE)
-ggraph::ggraph(routes_tidy) + ggraph::geom_edge_link() + ggraph::geom_node_point() + ggraph::theme_graph()
-ggraph(routes_tidy) + 
+nodes <- data.frame(id = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), 
+                    label = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), 
+                    p_stat = c(0.6, 0.4, 0.6, 0.8),
+                    stringsAsFactors = FALSE)
+routes_tidy <- tidygraph::tbl_graph(nodes = nodes, edges = ontologies_graph_edges, directed = TRUE)
+library(ggraph)
+
+ggraph(routes_tidy, layout = "graphopt") + 
   geom_node_point() +
   geom_edge_link(aes(width = weight), alpha = 0.8) + 
   scale_edge_width(range = c(0.2, 2)) +
   geom_node_text(aes(label = label), repel = TRUE) +
+# //  geom_node_tile(aes(fill = p_stat), size = 0.25) +
   labs(edge_width = "Overlaped genes") +
   theme_graph()
 
+ggraph(routes_tidy, layout = "linear", circular = TRUE) +
+  geom_node_point(aes(color=p_stat, size=p_stat)) +
+  geom_node_text(aes(label = label), repel = TRUE) + 
+  geom_edge_arc(aes(width = weight), alpha = 0.8) +
+  scale_edge_width(range = c(0.2, 3)) +
+  theme_graph()
+
+
+ggraph(routes_tidy, layout = 'kk', maxiter = 100) + 
+  geom_edge_link(aes(colour = factor(weight))) + 
+  geom_node_point()
+
+ggraph(routes_tidy, layout = 'linear') + 
+  geom_edge_arc(aes(colour = factor(weight)))
+
+ggraph(routes_tidy, layout = 'linear', circular = TRUE) + 
+  geom_edge_arc(aes(colour = factor(weight)))
+
+# Add metadata to node
+ggraph(routes_tidy, 'partition') + 
+  geom_node_tile(aes(fill = p_stat), size = 0.25)
 
 
 library(tidygraph)
@@ -132,8 +152,8 @@ library(ggraph)
 edges <- data.frame(from = c(1, 2, 2, 3, 4), to = c(2, 3, 4, 2, 1), weight = c(1, 7, 4, 7, 12))
 nodes <- data.frame(id = c(1, 2, 3, 4), label = c("l-one", "l-two", "l-third", "l-fourth"), stringsAsFactors = FALSE)
 
-routes_tidy <- tbl_graph(nodes = nodes, edges = edges, directed = TRUE)
-routes_igraph_tidy <- as_tbl_graph(routes_igraph)
+routes_tidy <- tidygraph::tbl_graph(nodes = nodes, edges = edges, directed = TRUE)
+# routes_igraph_tidy <- as_tbl_graph(routes_igraph)
 
 ggraph::ggraph(routes_tidy) + ggraph::geom_edge_link() + ggraph::geom_node_point() + ggraph::theme_graph()
 
