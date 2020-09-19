@@ -29,37 +29,47 @@ mulea_ora_01 <- MulEA::ORA(gmt = model_df, testData = select,
                            numberOfPermutations = number_of_steps)
 mulea_res_01 <- MulEA::runTest(mulea_ora_01)
 
+# Mock data
+model_df <- data.frame('ontologyId'=c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), 
+                       'ontologyName'=c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), 
+                       'listOfValues'=I(list(
+                         c("g_001", "g_002", "g_003", "g_004"), 
+                         c("g_003", "g_004"), 
+                         c("g_003", "g_004", "g_005", "g_006"), 
+                         c("g_004", "g_005", "g_006"))))
+mulea_ora_01 <- MulEA::ORA(gmt = model_df, testData = c("g_002", "g_003", "g_004", "g_005", "g_008", "g_009"),
+                           pool = c("g_001", "g_002", "g_003", "g_004", "g_005", "g_006", "g_007"), adjustMethod = "PT",
+                           numberOfPermutations = 100)
+mulea_res_01 <- MulEA::runTest(mulea_ora_01)
 
 # Merge model dataframe with mulea results.
 model_with_res <- merge(x = model_df, y = mulea_res_01, 
                         by.x = "ontologyId", by.y = "DB_names", all = TRUE)
-names(model_df)
-names(mulea_res_01)
-
-model_with_res[[1,'listOfValues']]
 
 # Create relaxed dataframe from our structure.
 library(magrittr)
 library(data.table)
 library(dplyr)
 library(tidyr)
-model_with_res_dt <- setDT(model_with_res)
-model_with_res_dt %>% unnest(listOfValues)
+
+# model_with_res_dt %>% unnest(listOfValues)
 
 
+model_with_res_dt <- data.table::setDT(model_with_res)
 model_with_res_dt_size = 0
 for (i in 1:nrow(model_with_res_dt[,1])) {
   model_with_res_dt_size = model_with_res_dt_size + length(model_with_res_dt[[i, 'listOfValues']])
 }
 
-model_with_res_dt_relaxed <- data.table(ontologyId=rep('a',length.out=model_with_res_dt_size), 
-                                        ontologyName=rep('a',length.out=model_with_res_dt_size))
+model_with_res_dt_relaxed <- data.table::data.table(
+  ontologyId=rep('a',length.out=model_with_res_dt_size), 
+  gen_in_ontology=rep('a',length.out=model_with_res_dt_size))
 
 model_with_res_dt_relaxed_counter = 1
 for (i in 1:nrow(model_with_res_dt[,1])) {
   category_name <- model_with_res_dt[[i, 'ontologyId']]
   for (item_name in model_with_res_dt[[i, 'listOfValues']]) {
-    model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter, c("ontologyId", "ontologyName"):=list(category_name, item_name)]
+    model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter, c("ontologyId", "gen_in_ontology"):=list(category_name, item_name)]
     model_with_res_dt_relaxed_counter = model_with_res_dt_relaxed_counter + 1
     # print(paste(model_with_res_dt_relaxed_counter, category_name, item_name))
   }
@@ -70,6 +80,70 @@ print(model_with_res_dt_relaxed)
 relax_model_with_results <- function(model_with_res) {
   
 }
+
+
+
+
+ontologies <-unique(model_with_res_dt_relaxed[,'ontologyId'])
+ontologies_graph_edges_num <- sum(1:(nrow(ontologies)-1))
+ontologies_graph_edges <- data.table::data.table(
+  from=rep('a', length.out=ontologies_graph_edges_num), 
+  to=rep('a', length.out=ontologies_graph_edges_num),
+  weight=rep(0, length.out=ontologies_graph_edges_num))
+
+
+ontologies_graph_edges_counter <- 1
+for (i in 1:(nrow(ontologies)-1)) {
+  ontology_name_i <- ontologies[i, ontologyId]
+  print(ontology_name_i)
+  genes_in_ontology_i <- model_with_res_dt_relaxed[ontologyId==ontology_name_i, gen_in_ontology]
+  print(genes_in_ontology_i)
+  
+  for (j in (i+1):nrow(ontologies)) {
+    ontology_name_j <- ontologies[j, ontologyId]
+    genes_in_ontology_j <- model_with_res_dt_relaxed[ontologyId==ontology_name_j, gen_in_ontology]
+    genes_in_ontology_i_j_intersection_num <- length(intersect(genes_in_ontology_i, genes_in_ontology_j))
+    print(genes_in_ontology_i_j_intersection_num)
+    ontologies_graph_edges[ontologies_graph_edges_counter,
+                           c('from', 'to', 'weight'):=list(ontology_name_i, ontology_name_j,
+                                                           genes_in_ontology_i_j_intersection_num)]
+    ontologies_graph_edges_counter = ontologies_graph_edges_counter + 1
+  }
+}
+ontologies_graph_edges
+
+
+nodes <- data.frame(id = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), label = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), stringsAsFactors = FALSE)
+routes_tidy <- tbl_graph(nodes = nodes, edges = ontologies_graph_edges, directed = TRUE)
+ggraph::ggraph(routes_tidy) + ggraph::geom_edge_link() + ggraph::geom_node_point() + ggraph::theme_graph()
+ggraph(routes_tidy) + 
+  geom_node_point() +
+  geom_edge_link(aes(width = weight), alpha = 0.8) + 
+  scale_edge_width(range = c(0.2, 2)) +
+  geom_node_text(aes(label = label), repel = TRUE) +
+  labs(edge_width = "Overlaped genes") +
+  theme_graph()
+
+
+
+library(tidygraph)
+library(ggraph)
+
+edges <- data.frame(from = c(1, 2, 2, 3, 4), to = c(2, 3, 4, 2, 1), weight = c(1, 7, 4, 7, 12))
+nodes <- data.frame(id = c(1, 2, 3, 4), label = c("l-one", "l-two", "l-third", "l-fourth"), stringsAsFactors = FALSE)
+
+routes_tidy <- tbl_graph(nodes = nodes, edges = edges, directed = TRUE)
+routes_igraph_tidy <- as_tbl_graph(routes_igraph)
+
+ggraph::ggraph(routes_tidy) + ggraph::geom_edge_link() + ggraph::geom_node_point() + ggraph::theme_graph()
+
+ggraph(routes_tidy) + 
+  geom_node_point() +
+  geom_edge_link(aes(width = weight), alpha = 0.8) + 
+  scale_edge_width(range = c(0.2, 2)) +
+  geom_node_text(aes(label = label), repel = TRUE) +
+  labs(edge_width = "Overlaped genes") +
+  theme_graph()
 
 
 
@@ -149,8 +223,8 @@ library(ggraph)
 routes_tidy <- tbl_graph(nodes = nodes, edges = edges, directed = TRUE)
 routes_igraph_tidy <- as_tbl_graph(routes_igraph)
 
-ggraph(routes_tidy) + geom_edge_link() + geom_node_point() + theme_graph()
-ggraph(routes_tidy, layout = "graphopt") + 
+ggraph::ggraph(routes_tidy) + ggraph::geom_edge_link() + ggraph::geom_node_point() + ggraph::theme_graph()
+ggraph(routes_tidy) + 
   geom_node_point() +
   geom_edge_link(aes(width = weight), alpha = 0.8) + 
   scale_edge_width(range = c(0.2, 2)) +

@@ -45,9 +45,9 @@ setMethod("initialize", "SubramanianTest",
               samplesToAnalisys <- testObject@scores
               names(samplesToAnalisys) <- testObject@testData
 
-              fgseaRes <- fgsea(pathways = listmodelDfFromFile,
-                                stats = samplesToAnalisys,
-                                gseaParam = testObject@p, nperm = testObject@numberOfPermutations)
+              fgseaRes <- fgsea::fgsea(pathways = listmodelDfFromFile, 
+                                       stats = samplesToAnalisys, 
+                                       gseaParam = testObject@p, nperm = testObject@numberOfPermutations)
 
               resultDf <- merge(testObject@gmt, fgseaRes, by.x = "ontologyId", by.y = "pathway", all = TRUE)[c("ontologyId", "ontologyName", "listOfValues", "pval")]
               colnames(resultDf) <- c("ontologyId", "ontologyName", "listOfValues", "p.value")

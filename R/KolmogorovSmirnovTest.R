@@ -37,7 +37,7 @@ setMethod("initialize", "KolmogorovSmirnovTest",
                                   if (length(matchedFromModelDist) == 0) {
                                     return(NA)
                                   }
-                                  pvaluesFromPermutationTest <- aaply(.data = 1:testObject@numberOfPermutations, .margins = 1, .fun = function(element) {
+                                  pvaluesFromPermutationTest <- plyr::aaply(.data = 1:testObject@numberOfPermutations, .margins = 1, .fun = function(element) {
                                     randomFromExperimentDist <- sort(sample(seq_len(length(testObject@testData)), length(matchedFromModelDist)))
                                     ks.test(matchedFromModelDist, randomFromExperimentDist)$p.value
                                   })

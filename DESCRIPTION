@@ -38,5 +38,5 @@ BugReports: https://github.com/koralgooll/MulEA/issues
 biocViews:
     BiomedicalInformatics,
     GeneSetEnrichment
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 SystemRequirements: C++11

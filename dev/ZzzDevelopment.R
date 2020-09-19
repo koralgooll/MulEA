@@ -1,18 +1,22 @@
-# BiocManager::install(version = "3.7")
-# BiocManager::install("fgsea", version = "3.7", update = FALSE)
 # install.packages("BiocManager")
 # BiocManager::install("fgsea")
-# install.packages("RCurl")
-# install.packages("roxygen2")
-# install.packages("devtools")
 # install.packages("DBI")
-# install.packages('plyr')
 # install.packages("RSQLite")
+# install.packages('plyr')
+
+# install.packages("roxygen2")
+# install.packages("tidygraph")
+# install.packages("ggraph")
+
+
+# install.packages("RCurl")
+# install.packages("devtools")
 # BiocManager::install("enrichplot")
 # BiocManager::install("clusterProfiler")
 # extra data -> BiocManager::install("breastCancerMAINZ")
 
 
+library(MulEA)
 
 muleaPkgDir <- find.package("MulEA")
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = paste(muleaPkgDir,"/extdata/model.gmt", sep = ""))
@@ -23,9 +27,6 @@ dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407"
                                      "FBgn0038704", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831", "FBgn0000579"),
                                    c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111", "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742",
                                      "FBgn0029709", "FBgn0030341")))
-
-library(MulEA)
-
 
 setBasedTestWithPool <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment,
                                               pool = dataFromExperimentPool)
@@ -41,4 +42,3 @@ setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromE
                                               pool = dataFromExperimentPool, adjustMethod = "PT",
                                               numberOfPermutations = 100)
 setBasedTestWithPoolAndAdjustResNew <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
-
