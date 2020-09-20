@@ -30,13 +30,14 @@ mulea_ora_01 <- MulEA::ORA(gmt = model_df, testData = select,
 mulea_res_01 <- MulEA::runTest(mulea_ora_01)
 
 # Mock data
-model_df <- data.frame('ontologyId'=c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), 
-                       'ontologyName'=c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), 
+model_df <- data.frame('ontologyId'=c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004", "CAT_g0005"), 
+                       'ontologyName'=c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004", "CAT_g0005"), 
                        'listOfValues'=I(list(
                          c("g_001", "g_002", "g_003", "g_004"), 
                          c("g_003", "g_004"), 
                          c("g_003", "g_004", "g_005", "g_006"), 
-                         c("g_004", "g_005", "g_006"))))
+                         c("g_004", "g_005", "g_006", "g_007"),
+                         c("g_001", "g_002", "g_007"))))
 mulea_ora_01 <- MulEA::ORA(gmt = model_df, testData = c("g_002", "g_003", "g_004", "g_005", "g_008", "g_009"),
                            pool = c("g_001", "g_002", "g_003", "g_004", "g_005", "g_006", "g_007"), adjustMethod = "PT",
                            numberOfPermutations = 100)
@@ -107,29 +108,58 @@ for (i in 1:(nrow(ontologies)-1)) {
 ontologies_graph_edges
 
 
+nodes_ids <- c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004", "CAT_g0005")
+nodes_p_stat <- c(0.6, 0.4, 0.6, 0.8, 0.1)
+ontologies_graph_nodes <- data.table::data.table(
+  id=nodes_ids, 
+  label=nodes_ids,
+  p_stat=nodes_p_stat)
+
+
 nodes <- data.frame(id = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), 
                     label = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), 
-                    p_stat = c(0.6, 0.4, 0.6, 0.8),
+                    p_stat = c(0.6, 0.4, 0.6, 0.8, 0.1),
                     stringsAsFactors = FALSE)
-routes_tidy <- tidygraph::tbl_graph(nodes = nodes, edges = ontologies_graph_edges, directed = TRUE)
+routes_tidy <- tidygraph::tbl_graph(nodes = ontologies_graph_nodes, edges = ontologies_graph_edges, directed = TRUE)
 library(ggraph)
 
-ggraph(routes_tidy, layout = "graphopt") + 
-  geom_node_point() +
-  geom_edge_link(aes(width = weight), alpha = 0.8) + 
-  scale_edge_width(range = c(0.2, 2)) +
-  geom_node_text(aes(label = label), repel = TRUE) +
-# //  geom_node_tile(aes(fill = p_stat), size = 0.25) +
-  labs(edge_width = "Overlaped genes") +
-  theme_graph()
-
+# ggraph(routes_tidy, layout = "graphopt") + 
+#   geom_node_point() +
+#   geom_edge_link(aes(width = weight), alpha = 0.8) + 
+#   scale_edge_width(range = c(0.2, 2)) +
+#   geom_node_text(aes(label = label), repel = TRUE) +
+#   labs(edge_width = "Overlaped genes") +
+#   theme_graph()
+# 
+# routes_tidy[,p_stat]
+library(ggraph)
+library(ggforce)
 ggraph(routes_tidy, layout = "linear", circular = TRUE) +
-  geom_node_point(aes(color=p_stat, size=p_stat)) +
-  geom_node_text(aes(label = label), repel = TRUE) + 
-  geom_edge_arc(aes(width = weight), alpha = 0.8) +
-  scale_edge_width(range = c(0.2, 3)) +
-  theme_graph()
+  # geom_edge_arc(aes(width = weight, colour = weight), alpha = 0.6) +
+  # scale_edge_color_gradient2(mid='black', high='brown') +
+  geom_edge_arc(aes(width = weight), alpha = 0.5) +
+  scale_edge_width(range = c(0, 3)) +
+  geom_node_point(aes(color=p_stat)) +
+  geom_node_point(aes(color=p_stat, size=(1-p_stat)), show.legend = FALSE) +
+  scale_size_area(max_size = 10) +
+  # guides(fill = guide_legend(reverse = TRUE)) +
+  # guide
+  # guides(size = guide_legend(override.aes = list(size = seq(0,10, by=2)) ) ) +
+  scale_color_gradient2(mid='darkgreen', high='red') +
+  geom_node_text(aes(label = label), repel = TRUE, fonts = "mono") +
+  
+  # theme_void()
+  # theme_no_axes()
+  # theme_minimal()
+  # theme_light()
+  # theme_classic()
+  # theme_gray()
+  # theme_bw()
+  # theme_dark()
+  # TODO : Ask Eszter about theme.
+  theme_graph(background = "grey", base_family = "mono")
 
+# scale_fill_gradient2(mid='darkgreen', high='red')
 
 ggraph(routes_tidy, layout = 'kk', maxiter = 100) + 
   geom_edge_link(aes(colour = factor(weight))) + 
@@ -190,7 +220,7 @@ bar_plot_mulea <- function(result_data_frame, selection_vector=1:10,
 }
 
 bar_plot_mulea(result_data_frame = mulea_res_01, selection_vector = c(1, 7, 15, 24, 27, 51, 61, 84, 86))
-
+bar_plot_mulea(result_data_frame = mulea_res_01)
 
 
 
@@ -258,4 +288,24 @@ ggraph(routes_igraph, layout = "linear") +
   geom_node_text(aes(label = label)) +
   labs(edge_width = "Letters") +
   theme_graph()
+
+
+
+# Heatmap implementation.
+library(ggplot2)
+
+# Dummy data
+x <- LETTERS[1:20]
+y <- paste0("var", seq(1,20))
+data <- expand.grid(X=x, Y=y)
+data$Z <- runif(400, 0, 5)
+
+# Heatmap 
+ggplot(data, aes(X, Y, fill= Z)) + 
+  geom_tile()
+
+ggplot(model_with_res_dt_relaxed, aes(gen_in_ontology, ontologyId, fill= ontology_p_stat)) + 
+  scale_fill_gradient2(mid='darkgreen', high='red', midpoint = 0.5) +
+  geom_tile()
+
 
