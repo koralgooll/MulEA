@@ -309,7 +309,13 @@ ggplot(data, aes(X, Y, fill= Z)) +
 
 
 # Order categories by p-value, top is big p-values 
-ggplot(model_with_res_dt_relaxed, aes(gen_in_ontology, ontologyId, fill= ontology_p_stat)) + 
+model_with_res_dt_relaxed_sort_pval <- model_with_res_dt_relaxed %>% dplyr::arrange(., desc(ontology_p_stat), .by_group = FALSE)
+model_with_res_dt_relaxed_sort_pval[,1] <- factor(model_with_res_dt_relaxed_sort_pval[[1]], levels = unique(model_with_res_dt_relaxed_sort_pval[[1]]))
+
+
+model_with_res_dt_relaxed_sort_pval[,1] <- factor(model_with_res_dt_relaxed_sort_pval[[1]], levels = c('ID:0000009', 'ID:0000010', 'ID:0000012', 'ID:0000014', 'ID:0000015', 'ID:0000001', 'ID:0000002'))
+
+ggplot(model_with_res_dt_relaxed_sort_pval, aes(gen_in_ontology, ontologyId, fill= ontology_p_stat)) + 
   scale_fill_gradient2(mid='darkgreen', high='red', midpoint = 0.5) +
   geom_tile() +
   # theme_void()
