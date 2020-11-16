@@ -2,6 +2,7 @@
 
 export("ORA")
 export("RankedBasedTest")
+export(plotBarplot)
 export(plotGraph)
 export(readGmtFileAsDataFrame)
 export(relaxModelAndResults)

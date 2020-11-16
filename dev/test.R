@@ -135,8 +135,8 @@ mulea_relaxed_resuts <- MulEA::relaxModelAndResults(mulea_model=mulea_ora_M,
 # Plot graph.
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts)
 
-# Plot other...
-
+# Plot barplot
+MulEA::plotBarplot(result_data_frame=mulea_res_M)
 
 
 

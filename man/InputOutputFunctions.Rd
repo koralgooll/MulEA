@@ -4,13 +4,21 @@
 \alias{InputOutputFunctions}
 \alias{relaxModelAndResults}
 \alias{plotGraph}
+\alias{plotBarplot}
 \alias{readGmtFileAsDataFrame}
 \alias{saveDataFrameAsGmtFile}
 \title{Input/Output Functions}
 \usage{
 relaxModelAndResults(mulea_model = NULL, mulea_model_resuts = NULL)
 
-plotGraph(mulea_relaxed_resuts)
+plotGraph(mulea_relaxed_resuts, edge_weight_cutoff = 0)
+
+plotBarplot(
+  result_data_frame,
+  selection_vector = 1:10,
+  categories_names = "DB_names",
+  probabilities_values = "FDR"
+)
 
 readGmtFileAsDataFrame(gmtFilePath)
 
@@ -23,12 +31,18 @@ saveDataFrameAsGmtFile(modelDF, gmtFilePath)
 
 \item{mulea_relaxed_resuts}{data.table in relaxed form.}
 
+\item{result_data_frame}{data.frame returned from test.}
+
+\item{selection_vector}{}
+
 \item{gmtFilePath}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
 
 \item{modelDF}{data frame with model.}
 }
 \value{
 Return relaxed datatable where model and results are merged for plotting purposes.
+
+Return plot.
 
 Return plot.
 
@@ -46,6 +60,10 @@ one relaxed datatable for easy resutls graphical interpretation.
 
 \code{plotGraph} merge model and model relsuts into 
 one relaxed datatable for easy resutls graphical interpretation.
+
+\code{plotBarplot}
+
+\code{plotBarplot} barplot of p-values.
 
 \code{readGmtFileAsDataFrame}
 

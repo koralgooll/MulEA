@@ -61,7 +61,7 @@ relaxModelAndResults <- function(mulea_model=NULL, mulea_model_resuts=NULL) {
 #' @export
 #'
 #' @return Return plot. 
-plotGraph <- function(mulea_relaxed_resuts) {
+plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0) {
   model_with_res_dt_relaxed <- mulea_relaxed_resuts
   ontologies <-unique(model_with_res_dt_relaxed[,'ontologyId'])
   ontologies_graph_edges_num <- sum(1:(nrow(ontologies)-1))
@@ -83,19 +83,19 @@ plotGraph <- function(mulea_relaxed_resuts) {
       genes_in_ontology_j <- model_with_res_dt_relaxed[ontologyId==ontology_name_j, gen_in_ontology]
       genes_in_ontology_i_j_intersection_num <- length(intersect(genes_in_ontology_i, genes_in_ontology_j))
       print(genes_in_ontology_i_j_intersection_num)
-      ontologies_graph_edges[ontologies_graph_edges_counter,
-                             c('from', 'to', 'weight'):=list(ontology_name_i, ontology_name_j,
-                                                             genes_in_ontology_i_j_intersection_num)]
-      ontologies_graph_edges_counter = ontologies_graph_edges_counter + 1
+      if (edge_weight_cutoff < genes_in_ontology_i_j_intersection_num) {
+        ontologies_graph_edges[ontologies_graph_edges_counter,
+                               c('from', 'to', 'weight'):=list(ontology_name_i, ontology_name_j,
+                                                               genes_in_ontology_i_j_intersection_num)]
+        ontologies_graph_edges_counter = ontologies_graph_edges_counter + 1
+      }
     }
   }
-  ontologies_graph_edges
+  ontologies_graph_edges <- ontologies_graph_edges[1:(ontologies_graph_edges_counter-1), ]
   
   
   nodes_ids <- model_with_res_dt_relaxed[,ontologyId]
-  # nodes_ids <- c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004", "CAT_g0005")
   nodes_p_stat <- model_with_res_dt_relaxed[,ontology_p_stat]
-  # nodes_p_stat <- c(0.6, 0.4, 0.6, 0.8, 0.1)
   ontologies_graph_nodes <- data.table::data.table(
     id=nodes_ids, 
     label=nodes_ids,
@@ -103,21 +103,52 @@ plotGraph <- function(mulea_relaxed_resuts) {
   
   ontologies_graph_nodes <- unique(ontologies_graph_nodes)
   
+  routes_tidy <- tidygraph::tbl_graph(nodes = ontologies_graph_nodes,
+                                      edges = ontologies_graph_edges, 
+                                      directed = TRUE)
   
-  routes_tidy <- tidygraph::tbl_graph(nodes = ontologies_graph_nodes, 
-                                      edges = ontologies_graph_edges, directed = TRUE)
-  # library(ggraph)
-  
-  ggraph(routes_tidy, layout = "linear", circular = TRUE) +
-    geom_edge_arc(aes(width = weight), alpha = 0.5) +
-    scale_edge_width(range = c(0, 3)) +
+  graph_plot <- ggraph(routes_tidy, layout = "linear", circular = TRUE)
+  if (0 != nrow(routes_tidy %>% tidygraph::activate(edges) %>% tidygraph::as_tibble())) {
+    
+    graph_plot <- graph_plot + geom_edge_arc(aes(width = weight), alpha = 0.5) 
+  }
+  graph_plot <- graph_plot + scale_edge_width(range = c(0, 3)) +
     geom_node_point(aes(color=p_stat)) +
     geom_node_point(aes(color=p_stat, size=(1-p_stat)), show.legend = FALSE) +
     scale_size_area(max_size = 10) +
     scale_color_gradient2(mid='darkgreen', high='red') +
-    geom_node_text(aes(label = label), repel = TRUE, fonts = "mono") +
+    geom_node_text(aes(label = label), repel = TRUE) +
     theme_graph(base_family = "mono")
+  graph_plot
 }
 
 
 
+# PUBLIC API (Plotting)
+#' @description
+#' \code{plotBarplot}
+#'
+#' \code{plotBarplot} barplot of p-values.
+#'
+#' @param result_data_frame data.frame returned from test.
+#' @param selection_vector 
+#' 
+#' 
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return plot. 
+plotBarplot <- function(result_data_frame, selection_vector=1:10, 
+                           categories_names='DB_names', probabilities_values='FDR') {
+  
+  if (nrow(result_data_frame) < selection_vector[length(selection_vector)]) {
+    selection_vector <- 1:nrow(result_data_frame)
+  }
+    
+  mulea_gg_plot <- ggplot(result_data_frame[selection_vector,], aes_string(x=categories_names, y=probabilities_values, fill=probabilities_values)) +
+    geom_bar(stat="identity") +
+    scale_fill_gradient2(mid='darkgreen', high='red') +
+    coord_flip()
+  mulea_gg_plot
+}
