@@ -128,3 +128,19 @@ mulea_res_M <- MulEA::runTest(mulea_ora_M)
 your_res_M$FDR-mulea_res_M$FDR
 
 
+# Plotting methods tests.
+mulea_relaxed_resuts <- MulEA::relaxModelAndResults(mulea_model=mulea_ora_M, 
+                                                    mulea_model_resuts=mulea_res_M)
+
+# Plot graph.
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts)
+
+# Plot other...
+
+
+
+
+
+
+
+

@@ -2,7 +2,9 @@
 
 export("ORA")
 export("RankedBasedTest")
+export(plotGraph)
 export(readGmtFileAsDataFrame)
+export(relaxModelAndResults)
 export(runTest)
 export(saveDataFrameAsGmtFile)
 importFrom(Rcpp,sourceCpp)

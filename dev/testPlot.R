@@ -120,7 +120,10 @@ nodes <- data.frame(id = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"),
                     label = c("CAT_g0001", "CAT_g0002", "CAT_g0003", "CAT_g0004"), 
                     p_stat = c(0.6, 0.4, 0.6, 0.8, 0.1),
                     stringsAsFactors = FALSE)
-routes_tidy <- tidygraph::tbl_graph(nodes = ontologies_graph_nodes, edges = ontologies_graph_edges, directed = TRUE)
+
+
+routes_tidy <- tidygraph::tbl_graph(nodes = ontologies_graph_nodes, 
+                                    edges = ontologies_graph_edges, directed = TRUE)
 library(ggraph)
 
 # ggraph(routes_tidy, layout = "graphopt") + 
@@ -157,7 +160,7 @@ ggraph(routes_tidy, layout = "linear", circular = TRUE) +
   # theme_bw()
   # theme_dark()
   # TODO : Ask Eszter about theme.
-  theme_graph(background = "grey", base_family = "mono")
+  theme_graph(base_family = "mono")
 
 # scale_fill_gradient2(mid='darkgreen', high='red')
 
@@ -300,12 +303,24 @@ y <- paste0("var", seq(1,20))
 data <- expand.grid(X=x, Y=y)
 data$Z <- runif(400, 0, 5)
 
-# Heatmap 
+# Heatmap---- 
 ggplot(data, aes(X, Y, fill= Z)) + 
   geom_tile()
 
+
+# Order categories by p-value, top is big p-values 
 ggplot(model_with_res_dt_relaxed, aes(gen_in_ontology, ontologyId, fill= ontology_p_stat)) + 
   scale_fill_gradient2(mid='darkgreen', high='red', midpoint = 0.5) +
-  geom_tile()
+  geom_tile() +
+  # theme_void()
+  # theme_no_axes()
+  # theme_minimal()
+  theme_light()
+  # theme_classic()
+  # theme_gray()
+  # theme_bw()
+  # theme_dark()
+  # TODO : Ask Eszter about theme.
+  # theme_graph(base_family = "mono")
 
 
