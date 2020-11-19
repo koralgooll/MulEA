@@ -136,11 +136,32 @@ mulea_relaxed_resuts <- MulEA::relaxModelAndResults(mulea_model=mulea_ora_M,
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts)
 
 # Plot barplot
-MulEA::plotBarplot(result_data_frame=mulea_res_M)
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts)
+
+# Plot heatmap
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_resuts)
 
 
+# Subramanian plots.
+set.seed(1)
+selectScores <- rnorm(length(select))
+rankedBasedTestSubramanian <- MulEA::RankedBasedTest(
+  method = "Subramanian", gmt = modelDfFromFile, 
+  testData = select, scores = selectScores)
+mulea_res_sub <- MulEA::runTest(rankedBasedTestSubramanian)
+# TODO : Return only ontology as a prime key and p.value (P)
+mulea_res_sub <- mulea_res_sub[c('ontologyId', 'p.value')] 
+colnames(mulea_res_sub) <- c('ontologyId', 'P')
+mulea_relaxed_resuts_sub <- MulEA::relaxModelAndResults(mulea_model = rankedBasedTestSubramanian, 
+                                                        mulea_model_resuts = mulea_res_sub, 
+                                                        mulea_model_resuts_ontology_col_name='ontologyId')
 
+# Plot graph.
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_sub)
 
+# Plot barplot
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts_sub)
 
-
+# Plot heatmap
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_resuts_sub)
 

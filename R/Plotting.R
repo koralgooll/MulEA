@@ -5,7 +5,7 @@
 #'
 #' \code{relaxModelAndResults} merge model and model relsuts into 
 #' one relaxed datatable for easy resutls graphical interpretation.
-#'
+#' 
 #' @param mulea_model MulEA object represents model. For example created by MulEA::ORA.
 #' @param mulea_model_resuts Results from model, in most cases it is returned by MulEA::runTest generic method.
 #' 
@@ -15,15 +15,16 @@
 #' @export
 #'
 #' @return Return relaxed datatable where model and results are merged for plotting purposes. 
-relaxModelAndResults <- function(mulea_model=NULL, mulea_model_resuts=NULL) {
+relaxModelAndResults <- function(mulea_model=NULL, mulea_model_resuts=NULL, 
+                                 mulea_model_ontology_col_name="ontologyId", 
+                                 mulea_model_resuts_ontology_col_name='DB_names') {
   
   model_with_res <- merge(x = mulea_model@gmt, y = mulea_model_resuts, 
-                          by.x = "ontologyId", by.y = "DB_names", all = TRUE)
+                          by.x = mulea_model_ontology_col_name, 
+                          by.y = mulea_model_resuts_ontology_col_name, all = TRUE)
   # Create relaxed dataframe from our structure.
-  print(model_with_res)
   model_with_res_dt <- data.table::setDT(model_with_res)
   model_with_res_dt_size = 0
-  print(model_with_res_dt[,1])
   for (i in 1:nrow(model_with_res_dt[,1])) {
     model_with_res_dt_size <- model_with_res_dt_size + length(model_with_res_dt[[i, 'listOfValues']])
   }
@@ -123,15 +124,14 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0) {
 }
 
 
-
 # PUBLIC API (Plotting)
 #' @description
 #' \code{plotBarplot}
 #'
 #' \code{plotBarplot} barplot of p-values.
 #'
-#' @param result_data_frame data.frame returned from test.
-#' @param selection_vector 
+#' @param mulea_relaxed_resuts  data.table in relaxed form.
+#' @param selection_vector vector for selecting variables to plot. 
 #' 
 #' 
 #' @title Input/Output Functions
@@ -139,16 +139,57 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0) {
 #' @export
 #'
 #' @return Return plot. 
-plotBarplot <- function(result_data_frame, selection_vector=1:10, 
-                           categories_names='DB_names', probabilities_values='FDR') {
+plotBarplot <- function(mulea_relaxed_resuts, selection_vector=NULL, 
+                        categories_names='ontologyId', probabilities_values='ontology_p_stat') {
   
-  if (nrow(result_data_frame) < selection_vector[length(selection_vector)]) {
-    selection_vector <- 1:nrow(result_data_frame)
+  if (is.null(selection_vector)) {
+    selection_vector <- 1:nrow(mulea_relaxed_resuts)
   }
-    
-  mulea_gg_plot <- ggplot(result_data_frame[selection_vector,], aes_string(x=categories_names, y=probabilities_values, fill=probabilities_values)) +
+  unique_mulea_relaxed_resuts <- unique(
+    mulea_relaxed_resuts[selection_vector, c(..categories_names, ..probabilities_values)]) 
+  unique_mulea_relaxed_resuts <- unique_mulea_relaxed_resuts %>% 
+    dplyr::arrange(dplyr::desc((!!as.name(probabilities_values))))
+
+  unique_mulea_relaxed_resuts_df <- as.data.frame(unique_mulea_relaxed_resuts)
+  unique_mulea_relaxed_resuts_df[, 1] <- factor(unique_mulea_relaxed_resuts_df[[1]], 
+                                                levels = unique_mulea_relaxed_resuts_df[[1]])
+  mulea_gg_plot <- ggplot(unique_mulea_relaxed_resuts_df, 
+                          aes_string(x=categories_names, y=probabilities_values, 
+                                     fill=probabilities_values)) +
     geom_bar(stat="identity") +
     scale_fill_gradient2(mid='darkgreen', high='red') +
-    coord_flip()
+    coord_flip() +
+    theme_light()
   mulea_gg_plot
+}
+
+
+# PUBLIC API (Plotting)
+#' @description
+#' \code{plotHeatmap}
+#'
+#' \code{plotHeatmap} merge model and model relsuts into 
+#' one relaxed datatable for easy resutls graphical interpretation.
+#'
+#' @param mulea_relaxed_resuts data.table in relaxed form.
+#' 
+#' 
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return plot.
+plotHeatmap <- function(mulea_relaxed_resuts) {
+  
+  model_with_res_dt_relaxed <- mulea_relaxed_resuts
+  model_with_res_dt_relaxed_sort_pval <- model_with_res_dt_relaxed %>% dplyr::arrange(., desc(ontology_p_stat), .by_group = FALSE)
+  model_with_res_dt_relaxed_sort_pval[,1] <- factor(model_with_res_dt_relaxed_sort_pval[[1]], 
+                                                    levels = unique(model_with_res_dt_relaxed_sort_pval[[1]]))
+  model_with_res_dt_relaxed_sort_pval[,2] <- factor(model_with_res_dt_relaxed_sort_pval[[2]], 
+                                                    levels = unique(rev(model_with_res_dt_relaxed_sort_pval[[2]])))
+  ggplot(model_with_res_dt_relaxed_sort_pval, aes(gen_in_ontology, ontologyId, fill= ontology_p_stat)) + 
+    scale_fill_gradient2(mid='darkgreen', high='red') +
+    geom_tile() +
+    theme_light() +
+    theme(axis.text.x = element_text(angle = 90))
 }
