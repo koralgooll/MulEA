@@ -1,4 +1,13 @@
 
+filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts, 
+                                            statistics_value_colname='ontology_p_stat', 
+                                            statistics_value_cutoff=0.05) {
+  
+  mulea_relaxed_resuts_filtered_na <- mulea_relaxed_resuts[!is.na(mulea_relaxed_resuts[[statistics_value_colname]]),]
+  mulea_relaxed_resuts_filtered_cutoff <- mulea_relaxed_resuts_filtered_na[mulea_relaxed_resuts_filtered_na[[statistics_value_colname]]<=statistics_value_cutoff,]
+  mulea_relaxed_resuts_filtered_cutoff
+}
+
 # PUBLIC API (Plotting)
 #' @description
 #' \code{relaxModelAndResults}
@@ -62,8 +71,14 @@ relaxModelAndResults <- function(mulea_model=NULL, mulea_model_resuts=NULL,
 #' @export
 #'
 #' @return Return plot. 
-plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0) {
-  model_with_res_dt_relaxed <- mulea_relaxed_resuts
+plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0, 
+                      statistics_value_colname='ontology_p_stat', 
+                      statistics_value_cutoff=0.05) {
+  
+  model_with_res_dt_relaxed <- MulEA:::filterRelaxedResultsForPlotting(mulea_relaxed_resuts=mulea_relaxed_resuts,
+                                          statistics_value_colname=statistics_value_colname,
+                                          statistics_value_cutoff=statistics_value_cutoff)
+  
   ontologies <-unique(model_with_res_dt_relaxed[,'ontologyId'])
   ontologies_graph_edges_num <- sum(1:(nrow(ontologies)-1))
   ontologies_graph_edges <- data.table::data.table(
@@ -140,22 +155,29 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0) {
 #'
 #' @return Return plot. 
 plotBarplot <- function(mulea_relaxed_resuts, selection_vector=NULL, 
-                        categories_names='ontologyId', probabilities_values='ontology_p_stat') {
+                        categories_names='ontologyId', 
+                        statistics_value_colname='ontology_p_stat', 
+                        statistics_value_cutoff=0.05) {
+  
+  mulea_relaxed_resuts <- MulEA:::filterRelaxedResultsForPlotting(
+    mulea_relaxed_resuts=mulea_relaxed_resuts,
+    statistics_value_colname=statistics_value_colname,
+    statistics_value_cutoff=statistics_value_cutoff)
   
   if (is.null(selection_vector)) {
     selection_vector <- 1:nrow(mulea_relaxed_resuts)
   }
   unique_mulea_relaxed_resuts <- unique(
-    mulea_relaxed_resuts[selection_vector, c(..categories_names, ..probabilities_values)]) 
+    mulea_relaxed_resuts[selection_vector, c(..categories_names, ..statistics_value_colname)]) 
   unique_mulea_relaxed_resuts <- unique_mulea_relaxed_resuts %>% 
-    dplyr::arrange(dplyr::desc((!!as.name(probabilities_values))))
+    dplyr::arrange(dplyr::desc((!!as.name(statistics_value_colname))))
 
   unique_mulea_relaxed_resuts_df <- as.data.frame(unique_mulea_relaxed_resuts)
   unique_mulea_relaxed_resuts_df[, 1] <- factor(unique_mulea_relaxed_resuts_df[[1]], 
                                                 levels = unique_mulea_relaxed_resuts_df[[1]])
   mulea_gg_plot <- ggplot(unique_mulea_relaxed_resuts_df, 
-                          aes_string(x=categories_names, y=probabilities_values, 
-                                     fill=probabilities_values)) +
+                          aes_string(x=categories_names, y=statistics_value_colname, 
+                                     fill=statistics_value_colname)) +
     geom_bar(stat="identity") +
     scale_fill_gradient2(mid='darkgreen', high='red') +
     coord_flip() +
@@ -179,9 +201,15 @@ plotBarplot <- function(mulea_relaxed_resuts, selection_vector=NULL,
 #' @export
 #'
 #' @return Return plot.
-plotHeatmap <- function(mulea_relaxed_resuts) {
+plotHeatmap <- function(mulea_relaxed_resuts, 
+                        statistics_value_colname='ontology_p_stat', 
+                        statistics_value_cutoff=0.05) {
   
-  model_with_res_dt_relaxed <- mulea_relaxed_resuts
+  model_with_res_dt_relaxed <- MulEA:::filterRelaxedResultsForPlotting(
+    mulea_relaxed_resuts=mulea_relaxed_resuts,
+    statistics_value_colname=statistics_value_colname,
+    statistics_value_cutoff=statistics_value_cutoff)
+  
   model_with_res_dt_relaxed_sort_pval <- model_with_res_dt_relaxed %>% dplyr::arrange(., desc(ontology_p_stat), .by_group = FALSE)
   model_with_res_dt_relaxed_sort_pval[,1] <- factor(model_with_res_dt_relaxed_sort_pval[[1]], 
                                                     levels = unique(model_with_res_dt_relaxed_sort_pval[[1]]))

@@ -17,16 +17,26 @@ relaxModelAndResults(
   mulea_model_resuts_ontology_col_name = "DB_names"
 )
 
-plotGraph(mulea_relaxed_resuts, edge_weight_cutoff = 0)
+plotGraph(
+  mulea_relaxed_resuts,
+  edge_weight_cutoff = 0,
+  statistics_value_colname = "ontology_p_stat",
+  statistics_value_cutoff = 0.05
+)
 
 plotBarplot(
   mulea_relaxed_resuts,
   selection_vector = NULL,
   categories_names = "ontologyId",
-  probabilities_values = "ontology_p_stat"
+  statistics_value_colname = "ontology_p_stat",
+  statistics_value_cutoff = 0.05
 )
 
-plotHeatmap(mulea_relaxed_resuts)
+plotHeatmap(
+  mulea_relaxed_resuts,
+  statistics_value_colname = "ontology_p_stat",
+  statistics_value_cutoff = 0.05
+)
 
 readGmtFileAsDataFrame(gmtFilePath)
 

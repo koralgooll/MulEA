@@ -132,36 +132,46 @@ your_res_M$FDR-mulea_res_M$FDR
 mulea_relaxed_resuts <- MulEA::relaxModelAndResults(mulea_model=mulea_ora_M, 
                                                     mulea_model_resuts=mulea_res_M)
 
+# TODO : Change color : wait for Eszter's proposition.
+# TODO : Let's the user choose between names or ids on plots. 
 # Plot graph.
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts)
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts, statistics_value_cutoff = 1.00)
 
 # Plot barplot
-MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts)
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts, statistics_value_cutoff=1.00)
 
+# TODO : Add dynamic colnames in all plots.
 # Plot heatmap
-MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_resuts)
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_resuts, statistics_value_cutoff=1.00)
 
 
 # Subramanian plots.
 set.seed(1)
 selectScores <- rnorm(length(select))
+
+# TODO : Extend or check if BH correction is done on p values.
 rankedBasedTestSubramanian <- MulEA::RankedBasedTest(
   method = "Subramanian", gmt = modelDfFromFile, 
   testData = select, scores = selectScores)
 mulea_res_sub <- MulEA::runTest(rankedBasedTestSubramanian)
 # TODO : Return only ontology as a prime key and p.value (P)
-mulea_res_sub <- mulea_res_sub[c('ontologyId', 'p.value')] 
+mulea_res_sub <- mulea_res_sub[c('ontologyId', 'p.value')]
 colnames(mulea_res_sub) <- c('ontologyId', 'P')
+
+# TODO : Create detailed results - think about. 
 mulea_relaxed_resuts_sub <- MulEA::relaxModelAndResults(mulea_model = rankedBasedTestSubramanian, 
                                                         mulea_model_resuts = mulea_res_sub, 
                                                         mulea_model_resuts_ontology_col_name='ontologyId')
 
+# TODO : Handle empty graph because of cutoff! It is in all plotting functions.
 # Plot graph.
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_sub)
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
 
+# TODO : No p.values (NA) should not be plotted at all.
 # Plot barplot
-MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts_sub)
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
 
 # Plot heatmap
-MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_resuts_sub)
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
 
+# TODO : Improve description and README and etc.
