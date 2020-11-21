@@ -6,7 +6,7 @@
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot scores A vectore of scores per testData.
 #' @slot p A power of weight. Default value is 1.
-#' @slot numberOfPermutations A number of permutations used in renked test. Default vlue is 1000.
+#' @slot numberOfPermutations A number of permutations used in KS test. Default vlue is 1000.
 #' @return RankedBasedTest object. This object represents ranked based tests in Mulea.
 #' @export "RankedBasedTest"
 #' @examples
@@ -50,8 +50,7 @@ setMethod("initialize", "RankedBasedTest",
                 subramanianTest <- SubramanianTest(gmt = rankedBaseTestObject@gmt,
                                                    testData = rankedBaseTestObject@testData,
                                                    scores = rankedBaseTestObject@scores,
-                                                   p = rankedBaseTestObject@p,
-                                                   numberOfPermutations = rankedBaseTestObject@numberOfPermutations)
+                                                   p = rankedBaseTestObject@p)
                 rankedTestRes <- runTest(subramanianTest)
               } else if (rankedBaseTestObject@method == "KS") {
                 ksTest <- KolmogorovSmirnovTest(gmt = rankedBaseTestObject@gmt,

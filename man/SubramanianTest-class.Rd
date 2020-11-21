@@ -35,8 +35,6 @@ PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
 \item{\code{scores}}{A vectore of scores per testData.}
 
 \item{\code{p}}{A power of weight.}
-
-\item{\code{numberOfPermutations}}{A number of permutations used in renked test.}
 }}
 
 \examples{

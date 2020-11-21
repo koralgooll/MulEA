@@ -154,23 +154,23 @@ selectScores <- rnorm(length(select))
 rankedBasedTestSubramanian <- MulEA::RankedBasedTest(
   method = "Subramanian", gmt = modelDfFromFile, 
   testData = select, scores = selectScores)
+
 mulea_res_sub <- MulEA::runTest(rankedBasedTestSubramanian)
 # TODO : Return only ontology as a prime key and p.value (P)
 mulea_res_sub <- mulea_res_sub[c('ontologyId', 'p.value')]
 colnames(mulea_res_sub) <- c('ontologyId', 'P')
 
-# TODO : Create detailed results - think about. 
+# TODO : createDetailedResults - think about function name. 
 mulea_relaxed_resuts_sub <- MulEA::relaxModelAndResults(mulea_model = rankedBasedTestSubramanian, 
                                                         mulea_model_resuts = mulea_res_sub, 
                                                         mulea_model_resuts_ontology_col_name='ontologyId')
 
-# TODO : Handle empty graph because of cutoff! It is in all plotting functions.
 # Plot graph.
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 0.35)
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
 
-# TODO : No p.values (NA) should not be plotted at all.
 # Plot barplot
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts_sub, statistics_value_cutoff = 0.70)
 MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
 
 # Plot heatmap
@@ -180,4 +180,22 @@ MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_val
 # Input example data in file.
 write.csv2(x=data.frame('select'=select, 'score'=selectScores), file = './inst/extdata/selectData.csv')
 write.csv2(x=unique(pool), file = './inst/extdata/poolData.csv')
+
+rankedBasedTestKS <- MulEA::RankedBasedTest(
+  method = "KS", gmt = modelDfFromFile, 
+  testData = select, scores = selectScores)
+mulea_res_ks <- MulEA::runTest(rankedBasedTestKS)
+
+
+mulea_res_ks <- mulea_res_ks[c('ontologyId', 'p.value')]
+colnames(mulea_res_ks) <- c('ontologyId', 'P')
+
+# TODO : createDetailedResults - think about function name. 
+mulea_relaxed_resuts_ks <- MulEA::relaxModelAndResults(mulea_model=rankedBasedTestKS, 
+                                                       mulea_model_resuts=mulea_res_ks, 
+                                                       mulea_model_resuts_ontology_col_name='ontologyId')
+
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_ks, statistics_value_cutoff = 1.00)
+
+
 

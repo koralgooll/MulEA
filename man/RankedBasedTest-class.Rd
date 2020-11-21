@@ -38,7 +38,7 @@ An S4 class to represent a ranked based tests in Mulea.
 
 \item{\code{p}}{A power of weight. Default value is 1.}
 
-\item{\code{numberOfPermutations}}{A number of permutations used in renked test. Default vlue is 1000.}
+\item{\code{numberOfPermutations}}{A number of permutations used in KS test. Default vlue is 1000.}
 }}
 
 \examples{

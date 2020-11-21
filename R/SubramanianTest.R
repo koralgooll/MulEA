@@ -5,7 +5,6 @@
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot scores A vectore of scores per testData.
 #' @slot p A power of weight.
-#' @slot numberOfPermutations A number of permutations used in renked test.
 #' @return KolmogorovSmirnovTest object. Used as private object.
 #' @examples
 #' \dontrun{
@@ -17,7 +16,6 @@ SubramanianTest <- setClass("SubramanianTest",
                               testData = "character",
                               scores = "numeric",
                               p = "numeric",
-                              numberOfPermutations = "numeric",
                               test = "function"
                             ))
 
@@ -27,7 +25,6 @@ setMethod("initialize", "SubramanianTest",
                    testData = character(),
                    scores = numeric(),
                    p = 1,
-                   numberOfPermutations = 1000,
                    test = NULL,
                    ...) {
 
@@ -35,7 +32,6 @@ setMethod("initialize", "SubramanianTest",
             .Object@testData <- testData
             .Object@scores <- scores
             .Object@p <- p
-            .Object@numberOfPermutations <- numberOfPermutations
 
             .Object@test <- function(testObject) {
 
@@ -47,7 +43,7 @@ setMethod("initialize", "SubramanianTest",
 
               fgseaRes <- fgsea::fgsea(pathways = listmodelDfFromFile, 
                                        stats = samplesToAnalisys, 
-                                       gseaParam = testObject@p, nperm = testObject@numberOfPermutations)
+                                       gseaParam = testObject@p)
 
               resultDf <- merge(testObject@gmt, fgseaRes, by.x = "ontologyId", by.y = "pathway", all = TRUE)[c("ontologyId", "ontologyName", "listOfValues", "pval")]
               colnames(resultDf) <- c("ontologyId", "ontologyName", "listOfValues", "p.value")
