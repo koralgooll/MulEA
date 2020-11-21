@@ -101,6 +101,7 @@ your_res_04$FDR-mulea_res_04$FDR
 
 
 # My example from package - I am using it as a test.
+# TODO : Read example from files, it looks better.
 muleaPkgDir <- find.package("MulEA")
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = paste(muleaPkgDir,"/extdata/model.gmt", sep = ""))
 DB <- modelDfFromFile[, 'listOfValues']
@@ -165,6 +166,7 @@ mulea_relaxed_resuts_sub <- MulEA::relaxModelAndResults(mulea_model = rankedBase
 
 # TODO : Handle empty graph because of cutoff! It is in all plotting functions.
 # Plot graph.
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 0.35)
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
 
 # TODO : No p.values (NA) should not be plotted at all.
@@ -175,3 +177,7 @@ MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts_sub, statistics_v
 MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
 
 # TODO : Improve description and README and etc.
+# Input example data in file.
+write.csv2(x=data.frame('select'=select, 'score'=selectScores), file = './inst/extdata/selectData.csv')
+write.csv2(x=unique(pool), file = './inst/extdata/poolData.csv')
+

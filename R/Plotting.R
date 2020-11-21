@@ -34,7 +34,7 @@ relaxModelAndResults <- function(mulea_model=NULL, mulea_model_resuts=NULL,
   # Create relaxed dataframe from our structure.
   model_with_res_dt <- data.table::setDT(model_with_res)
   model_with_res_dt_size = 0
-  for (i in 1:nrow(model_with_res_dt[,1])) {
+  for (i in 1:nrow(model_with_res_dt)) {
     model_with_res_dt_size <- model_with_res_dt_size + length(model_with_res_dt[[i, 'listOfValues']])
   }
   model_with_res_dt_relaxed <- data.table::data.table(
@@ -43,7 +43,7 @@ relaxModelAndResults <- function(mulea_model=NULL, mulea_model_resuts=NULL,
     ontology_p_stat=rep(1.0,length.out=model_with_res_dt_size))
   
   model_with_res_dt_relaxed_counter = 1
-  for (i in 1:nrow(model_with_res_dt[,1])) {
+  for (i in 1:nrow(model_with_res_dt)) {
     category_name <- model_with_res_dt[[i, 'ontologyId']]
     category_p_stat <- model_with_res_dt[[i, 'P']]
     for (item_name in model_with_res_dt[[i, 'listOfValues']]) {
@@ -86,6 +86,9 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0,
     to=rep('a', length.out=ontologies_graph_edges_num),
     weight=rep(0, length.out=ontologies_graph_edges_num))
   
+  if (0 == ontologies_graph_edges_num) {
+    stop('No edges at all. Wrong data.table or manipulate statistics_value_cutoff please.')
+  }
   
   ontologies_graph_edges_counter <- 1
   for (i in 1:(nrow(ontologies)-1)) {
@@ -107,8 +110,7 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0,
       }
     }
   }
-  ontologies_graph_edges <- ontologies_graph_edges[1:(ontologies_graph_edges_counter-1), ]
-  
+  ontologies_graph_edges <- ontologies_graph_edges[0:(ontologies_graph_edges_counter-1), ]
   
   nodes_ids <- model_with_res_dt_relaxed[,ontologyId]
   nodes_p_stat <- model_with_res_dt_relaxed[,ontology_p_stat]
@@ -124,20 +126,21 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0,
                                       directed = TRUE)
   
   graph_plot <- ggraph(routes_tidy, layout = "linear", circular = TRUE)
+  
   if (0 != nrow(routes_tidy %>% tidygraph::activate(edges) %>% tidygraph::as_tibble())) {
-    
     graph_plot <- graph_plot + geom_edge_arc(aes(width = weight), alpha = 0.5) 
   }
+  
   graph_plot <- graph_plot + scale_edge_width(range = c(0, 3)) +
     geom_node_point(aes(color=p_stat)) +
     geom_node_point(aes(color=p_stat, size=(1-p_stat)), show.legend = FALSE) +
     scale_size_area(max_size = 10) +
-    scale_color_gradient2(mid='darkgreen', high='red') +
+    scale_color_gradient2(mid='darkgreen', high='red', limits=c(0.0, 1.0)) +
     geom_node_text(aes(label = label), repel = TRUE) +
     theme_graph(base_family = "mono")
   graph_plot
 }
-
+?continuous_scale
 
 # PUBLIC API (Plotting)
 #' @description
@@ -179,7 +182,7 @@ plotBarplot <- function(mulea_relaxed_resuts, selection_vector=NULL,
                           aes_string(x=categories_names, y=statistics_value_colname, 
                                      fill=statistics_value_colname)) +
     geom_bar(stat="identity") +
-    scale_fill_gradient2(mid='darkgreen', high='red') +
+    scale_fill_gradient2(mid='darkgreen', high='red', limits=c(0.0, 1.0)) +
     coord_flip() +
     theme_light()
   mulea_gg_plot
@@ -216,7 +219,7 @@ plotHeatmap <- function(mulea_relaxed_resuts,
   model_with_res_dt_relaxed_sort_pval[,2] <- factor(model_with_res_dt_relaxed_sort_pval[[2]], 
                                                     levels = unique(rev(model_with_res_dt_relaxed_sort_pval[[2]])))
   ggplot(model_with_res_dt_relaxed_sort_pval, aes(gen_in_ontology, ontologyId, fill= ontology_p_stat)) + 
-    scale_fill_gradient2(mid='darkgreen', high='red') +
+    scale_fill_gradient2(mid='darkgreen', high='red', limits=c(0.0, 1.0)) +
     geom_tile() +
     theme_light() +
     theme(axis.text.x = element_text(angle = 90))
