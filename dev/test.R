@@ -134,7 +134,8 @@ mulea_relaxed_resuts <- MulEA::relaxModelAndResults(mulea_model=mulea_ora_M,
                                                     mulea_model_resuts=mulea_res_M)
 
 # TODO : Change color : wait for Eszter's proposition.
-# TODO : Let's the user choose between names or ids on plots. 
+# TODO : REJECTED : Let's the user choose between names or ids on plots. 
+# TODO : plot base on p.val and p.adj possibility.
 # Plot graph.
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts, statistics_value_cutoff = 1.00)
 
