@@ -33,6 +33,8 @@ PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
 \item{\code{testData}}{A data from expeciment to analize accross model.}
 
 \item{\code{numberOfPermutations}}{A number of permutations used in renked test.}
+
+\item{\code{pAdjustMethod}}{method of calulation of adjusted p-values.}
 }}
 
 \examples{

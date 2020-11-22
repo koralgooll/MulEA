@@ -93,15 +93,12 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0,
   ontologies_graph_edges_counter <- 1
   for (i in 1:(nrow(ontologies)-1)) {
     ontology_name_i <- ontologies[i, ontologyId]
-    print(ontology_name_i)
     genes_in_ontology_i <- model_with_res_dt_relaxed[ontologyId==ontology_name_i, gen_in_ontology]
-    print(genes_in_ontology_i)
     
     for (j in (i+1):nrow(ontologies)) {
       ontology_name_j <- ontologies[j, ontologyId]
       genes_in_ontology_j <- model_with_res_dt_relaxed[ontologyId==ontology_name_j, gen_in_ontology]
       genes_in_ontology_i_j_intersection_num <- length(intersect(genes_in_ontology_i, genes_in_ontology_j))
-      print(genes_in_ontology_i_j_intersection_num)
       if (edge_weight_cutoff < genes_in_ontology_i_j_intersection_num) {
         ontologies_graph_edges[ontologies_graph_edges_counter,
                                c('from', 'to', 'weight'):=list(ontology_name_i, ontology_name_j,

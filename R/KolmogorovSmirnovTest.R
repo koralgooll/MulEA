@@ -4,6 +4,7 @@
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot numberOfPermutations A number of permutations used in renked test.
+#' @slot pAdjustMethod method of calulation of adjusted p-values.
 #' @return KolmogorovSmirnovTest object. Used as private object.
 #' @examples
 #' \dontrun{
@@ -14,6 +15,7 @@ KolmogorovSmirnovTest <- setClass("KolmogorovSmirnovTest",
                                     gmt = "data.frame",
                                     testData = "character",
                                     numberOfPermutations = "numeric",
+                                    pAdjustMethod = "character",
                                     test = "function"
                                   ))
 
@@ -22,12 +24,14 @@ setMethod("initialize", "KolmogorovSmirnovTest",
                    gmt = data.frame(),
                    testData = character(),
                    numberOfPermutations = 1000,
+                   pAdjustMethod = "BH",
                    test = NULL,
                    ...) {
 
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@numberOfPermutations <- numberOfPermutations
+            .Object@pAdjustMethod <- pAdjustMethod
 
             .Object@test <- function(testObject) {
               pvalues <- sapply(testObject@gmt$listOfValues,
@@ -43,7 +47,7 @@ setMethod("initialize", "KolmogorovSmirnovTest",
                                   })
                                   mean(pvaluesFromPermutationTest)
                                 })
-              resultDf <- data.frame(testObject@gmt, "p.value" = pvalues)
+              resultDf <- data.frame(testObject@gmt, "p.value" = pvalues, "p.adj" = p.adjust(pvalues, method = testObject@pAdjustMethod))
               resultDf
             }
 
