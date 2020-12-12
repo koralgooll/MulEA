@@ -45,8 +45,8 @@ setMethod("initialize", "SubramanianTest",
                                        stats = samplesToAnalisys, 
                                        gseaParam = testObject@p)
 
-              resultDf <- merge(testObject@gmt, fgseaRes, by.x = "ontologyId", by.y = "pathway", all = TRUE)[c("ontologyId", "ontologyName", "listOfValues", "pval", "padj")]
-              colnames(resultDf) <- c("ontologyId", "ontologyName", "listOfValues", "p.value", "p.adj")
+              resultDf <- merge(testObject@gmt, fgseaRes, by.x = "ontologyId", by.y = "pathway", all = TRUE)[c("ontologyId", "ontologyName", "pval", "padj")]
+              colnames(resultDf) <- c("ontologyId", "ontologyName", "pValue", "adjustedPValueBenjaminiHochberg")
               resultDf
             }
 

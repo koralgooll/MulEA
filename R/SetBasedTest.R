@@ -63,7 +63,15 @@ setMethod("initialize", "ORA",
                 }
                 
                 # TODO : Choose proper fields, it is for all SetBasedEnrichementTest and HyperGeomTest.
-                setBasedTestRes <- muleaSetBaseEnrichmentTest
+                names(muleaSetBaseEnrichmentTest) <- c('commonGenesOntologySet', 'nrCommonGenesOntologySet',
+                                                       'nrCommonGenesOntologyBackground', 'Genes_in_DB',
+                                                       'pValue', 'P_adj_Bonf', 
+                                                       'adjustedPValueBenjaminiHochberg', 'R_obs', 'R_exp', 
+                                                       'adjustedPValueEmpirical')
+                
+                setBasedTestRes <- muleaSetBaseEnrichmentTest[,!names(muleaSetBaseEnrichmentTest) %in% 
+                                                                c('Genes_in_DB', 'P_adj_Bonf', 
+                                                                  'R_obs', 'R_exp')]
               } else {
                 muleaHypergeometricTest <- MuleaHypergeometricTest(gmt = setBaseTestObject@gmt,
                                                                    testData = setBaseTestObject@testData,

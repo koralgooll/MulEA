@@ -2,7 +2,7 @@
 % Please edit documentation in R/Plotting.R, R/Utils.R
 \name{InputOutputFunctions}
 \alias{InputOutputFunctions}
-\alias{relaxModelAndResults}
+\alias{createDetailedResults}
 \alias{plotGraph}
 \alias{plotBarplot}
 \alias{plotHeatmap}
@@ -10,17 +10,20 @@
 \alias{saveDataFrameAsGmtFile}
 \title{Input/Output Functions}
 \usage{
-relaxModelAndResults(
+createDetailedResults(
   mulea_model = NULL,
   mulea_model_resuts = NULL,
   mulea_model_ontology_col_name = "ontologyId",
-  mulea_model_resuts_ontology_col_name = "DB_names"
+  mulea_model_resuts_ontology_col_name = "commonGenesOntologySet",
+  category_stat_column_name = "pValue"
 )
 
 plotGraph(
   mulea_relaxed_resuts,
   edge_weight_cutoff = 0,
-  statistics_value_colname = "ontology_p_stat",
+  statistics_value_colname = "ontologyStatValue",
+  ontology_id_column_name = "ontologyId",
+  gen_id_in_ontology_column_name = "genIdInOntology",
   statistics_value_cutoff = 0.05
 )
 
@@ -28,13 +31,14 @@ plotBarplot(
   mulea_relaxed_resuts,
   selection_vector = NULL,
   categories_names = "ontologyId",
-  statistics_value_colname = "ontology_p_stat",
+  statistics_value_colname = "ontologyStatValue",
   statistics_value_cutoff = 0.05
 )
 
 plotHeatmap(
   mulea_relaxed_resuts,
-  statistics_value_colname = "ontology_p_stat",
+  statistics_value_colname = "ontologyStatValue",
+  gen_id_in_ontology_column_name = "genIdInOntology",
   statistics_value_cutoff = 0.05
 )
 
@@ -56,7 +60,7 @@ saveDataFrameAsGmtFile(modelDF, gmtFilePath)
 \item{modelDF}{data frame with model.}
 }
 \value{
-Return relaxed datatable where model and results are merged for plotting purposes.
+Return detailed and relaxed datatable where model and results are merged for plotting purposes.
 
 Return plot.
 
@@ -69,9 +73,9 @@ Return data frame with model from specific location.
 Return gmt file under specific location which include model in gmt format.
 }
 \description{
-\code{relaxModelAndResults}
+\code{createDetailedResults}
 
-\code{relaxModelAndResults} merge model and model relsuts into 
+\code{createDetailedResults} merge model and model relsuts into 
 one relaxed datatable for easy resutls graphical interpretation.
 
 \code{plotGraph}
