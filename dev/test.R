@@ -115,7 +115,7 @@ selectDf <- read.csv2(file = './inst/extdata/selectData.csv')
 select <- selectDf[['select']]
 poolDf <- read.csv2(file = './inst/extdata/poolData.csv')
 pool <- poolDf[['pool']]
-number_of_steps <- 100
+number_of_steps <- 1000
 
 mulea_ora_M <- MulEA::ORA(gmt = modelDfFromFile, testData = select,
                            pool = pool, adjustMethod = "PT",
@@ -188,9 +188,6 @@ rankedBasedTestKS <- MulEA::RankedBasedTest(
   method = "KS", gmt = modelDfFromFile, 
   testData = select, scores = selectScores)
 mulea_res_ks <- MulEA::runTest(rankedBasedTestKS)
-
-mulea_res_ks <- mulea_res_ks[c('ontologyId', 'p.value')]
-colnames(mulea_res_ks) <- c('ontologyId', 'P')
 
 # TODO : createDetailedResults - think about function name. 
 mulea_relaxed_resuts_ks <- MulEA::createDetailedResults(
