@@ -97,6 +97,9 @@ Example of results in data.frame form:
   <tr>
     <td><img src="./dev/ora_results.png" alt="1" width=2277px height=166px></td>
   </tr>
+</table>
+
+<table style="padding:10px">
   <tr>
     <td><img src="./dev/ora_detailed_res.png" alt="1" width=339px height=656px></td>
   </tr>
