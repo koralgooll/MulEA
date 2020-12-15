@@ -47,8 +47,8 @@ setMethod("initialize", "KolmogorovSmirnovTest",
                                   })
                                   mean(pvaluesFromPermutationTest)
                                 })
-              resultDf <- data.frame(testObject@gmt, "pValue" = pvalues, "adjustedPValueBenjaminiHochberg" = p.adjust(pvalues, method = testObject@pAdjustMethod))
-              resultDf[c("ontologyId", "ontologyName", "pValue", "adjustedPValueBenjaminiHochberg")]
+              resultDf <- data.frame(testObject@gmt, "pValue" = pvalues, "adjustedPValue" = p.adjust(pvalues, method = testObject@pAdjustMethod))
+              resultDf[c("ontologyId", "ontologyName", "pValue", "adjustedPValue")]
             }
 
             .Object

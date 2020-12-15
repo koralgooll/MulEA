@@ -2,7 +2,7 @@
 % Please edit documentation in R/Plotting.R, R/Utils.R
 \name{InputOutputFunctions}
 \alias{InputOutputFunctions}
-\alias{createDetailedResults}
+\alias{reshapeResults}
 \alias{plotGraph}
 \alias{plotBarplot}
 \alias{plotHeatmap}
@@ -10,12 +10,12 @@
 \alias{saveDataFrameAsGmtFile}
 \title{Input/Output Functions}
 \usage{
-createDetailedResults(
+reshapeResults(
   mulea_model = NULL,
   mulea_model_resuts = NULL,
   mulea_model_ontology_col_name = "ontologyId",
   mulea_model_resuts_ontology_col_name = "commonGenesOntologySet",
-  category_stat_column_name = "pValue"
+  category_stat_column_name = "adjustedPValue"
 )
 
 plotGraph(
@@ -73,9 +73,9 @@ Return data frame with model from specific location.
 Return gmt file under specific location which include model in gmt format.
 }
 \description{
-\code{createDetailedResults}
+\code{reshapeResults}
 
-\code{createDetailedResults} merge model and model relsuts into 
+\code{reshapeResults} merge model and model relsuts into 
 one relaxed datatable for easy resutls graphical interpretation.
 
 \code{plotGraph}

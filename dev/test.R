@@ -105,95 +105,78 @@ your_res_04$FDR-mulea_res_04$FDR
 # write.csv2(x=data.frame('select'=select, 'score'=selectScores), file = './inst/extdata/selectData.csv')
 # write.csv2(x=data.frame('pool'=unique(pool)), file = './inst/extdata/poolData.csv')
 
-# TODO : Improve description and README and etc.
 # Standard procedure.
+# TODO : Update README.md after all.
 library(MulEA)
 muleaPkgDir <- find.package("MulEA")
-modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = paste(muleaPkgDir,"/extdata/model.gmt", sep = ""))
-
+modelDfFromFile <- MulEA::readGmtFileAsDataFrame(
+  gmtFilePath = paste(muleaPkgDir,"/extdata/model.gmt", sep = ""))
 selectDf <- read.csv2(file = './inst/extdata/selectData.csv')
 select <- selectDf[['select']]
 poolDf <- read.csv2(file = './inst/extdata/poolData.csv')
 pool <- poolDf[['pool']]
 number_of_steps <- 1000
 
-mulea_ora_M <- MulEA::ORA(gmt = modelDfFromFile, testData = select,
-                           pool = pool, adjustMethod = "PT",
-                           numberOfPermutations = number_of_steps)
-mulea_res_M <- MulEA::runTest(mulea_ora_M)
+mulea_ora_model <- MulEA::ORA(
+  gmt = modelDfFromFile, testData = select, 
+  pool = pool, adjustMethod = "PT",
+  numberOfPermutations = number_of_steps)
+mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+mulea_ora_reshaped_results <- MulEA::reshapeResults(
+  mulea_model=mulea_ora_model, 
+  mulea_model_resuts=mulea_ora_results, 
+  category_stat_column_name='adjustedPValueEmpirical')
 
 
 # Plotting methods tests.
-mulea_relaxed_pval_resuts <- MulEA::createDetailedResults(mulea_model=mulea_ora_M, 
-                                                    mulea_model_resuts=mulea_res_M)
-# TODO: DONE : plot base on p.val and p.adj possibility.
-mulea_relaxed_adj_pval_emp_resuts <- MulEA::createDetailedResults(mulea_model=mulea_ora_M, 
-                                                     mulea_model_resuts=mulea_res_M,
-                                                     category_stat_column_name='adjustedPValueEmpirical')
+mulea_ora_reshaped_def_results <- MulEA::reshapeResults(
+  mulea_model=mulea_ora_model, 
+  mulea_model_resuts=mulea_ora_results)
+
+# TODO : colname is inherited from category_stat_column_name
+mulea_ora_reshaped_results <- MulEA::reshapeResults(
+  mulea_model=mulea_ora_model, 
+  mulea_model_resuts=mulea_ora_results, 
+  category_stat_column_name='adjustedPValueEmpirical')
 
 
-# Plots for p-values.
-# TODO : REJECTED : Let's the user choose between names or ids on plots.
-# Plot graph.
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_pval_resuts, statistics_value_cutoff = 1.00)
+# Plots.
+# TODO : Add example with names in plot. Not worry too much. :)
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_ora_reshaped_results, statistics_value_cutoff = 1.00)
 
-# Plot barplot
-MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_pval_resuts, statistics_value_cutoff=1.00)
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_ora_reshaped_results, statistics_value_cutoff=1.00)
 
-# Plot heatmap
-MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_pval_resuts, statistics_value_cutoff=1.00)
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_ora_reshaped_results, statistics_value_cutoff=1.00)
+
 
 
 # Plots for empirically adjusted p-values.
 # Plot graph.
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_adj_pval_emp_resuts, statistics_value_cutoff = 1.00)
+# TODO : You need to provide proper colname for statistics_value_colname.
+colnames(mulea_relaxed_adj_pval_emp_resuts) <- c("ontologyId", "genIdInOntology", "empirivalPValue")
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_adj_pval_emp_resuts, statistics_value_cutoff = 1.00,
+                 statistics_value_colname = "empirivalPValue")
 
 # Plot barplot
 MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_adj_pval_emp_resuts, statistics_value_cutoff=1.00)
 
 # Plot heatmap
-MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_adj_pval_emp_resuts, statistics_value_cutoff=1.00)
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_adj_pval_emp_resuts, statistics_value_cutoff=1.00, 
+                   statistics_value_colname = 'empirivalPValue')
 
 
 # Subramanian plots.
-# TODO : DONE : Extend or check if BH correction is done on p values.
+# TODO : Remove the method arg as results of removal of KS. 
 selectScores <- selectDf[['score']]
-rankedBasedTestSubramanian <- MulEA::RankedBasedTest(
-  method = "Subramanian", gmt = modelDfFromFile, 
+mulea_ranked_model <- MulEA::RankedBasedTest(
+  gmt = modelDfFromFile, 
   testData = select, scores = selectScores)
-
-# TODO : listOfValues removed, as it brakes consistency.
-mulea_res_sub <- MulEA::runTest(rankedBasedTestSubramanian)
-
-# TODO : create Detailed Results - think about function name. 
-mulea_relaxed_resuts_sub <- MulEA::createDetailedResults(
-  mulea_model = rankedBasedTestSubramanian, 
-  mulea_model_resuts = mulea_res_sub, 
+mulea_sub_results <- MulEA::runTest(mulea_ranked_model)
+mulea_sub_reshaped_results <- MulEA::reshapeResults(
+  mulea_model = mulea_ranked_model, 
+  mulea_model_resuts = mulea_sub_results, 
   mulea_model_resuts_ontology_col_name='ontologyId')
 
-# Plot graph.
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 0.35)
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
-
-# Plot barplot
-MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts_sub, statistics_value_cutoff = 0.70)
-MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
-
-# Plot heatmap
-MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_resuts_sub, statistics_value_cutoff = 1.00)
-
-
-# Kolmogorov-Smirnov plots.
-rankedBasedTestKS <- MulEA::RankedBasedTest(
-  method = "KS", gmt = modelDfFromFile, 
-  testData = select, scores = selectScores)
-mulea_res_ks <- MulEA::runTest(rankedBasedTestKS)
-
-# TODO : createDetailedResults - think about function name. 
-mulea_relaxed_resuts_ks <- MulEA::createDetailedResults(
-  mulea_model=rankedBasedTestKS, 
-  mulea_model_resuts=mulea_res_ks,
-  mulea_model_resuts_ontology_col_name='ontologyId')
-
-# Plot graph.
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_resuts_ks, statistics_value_cutoff = 1.00)
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_value_cutoff = 1.00)
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_sub_reshaped_results, statistics_value_cutoff=1.00)
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_value_cutoff=1.00)

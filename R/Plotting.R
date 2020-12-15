@@ -10,9 +10,9 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{createDetailedResults}
+#' \code{reshapeResults}
 #'
-#' \code{createDetailedResults} merge model and model relsuts into 
+#' \code{reshapeResults} merge model and model relsuts into 
 #' one relaxed datatable for easy resutls graphical interpretation.
 #' 
 #' @param mulea_model MulEA object represents model. For example created by MulEA::ORA.
@@ -24,10 +24,10 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 #' @export
 #'
 #' @return Return detailed and relaxed datatable where model and results are merged for plotting purposes. 
-createDetailedResults <- function(mulea_model=NULL, mulea_model_resuts=NULL, 
-                                 mulea_model_ontology_col_name='ontologyId', 
-                                 mulea_model_resuts_ontology_col_name='commonGenesOntologySet', 
-                                 category_stat_column_name='pValue') {
+reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL, 
+                           mulea_model_ontology_col_name='ontologyId', 
+                           mulea_model_resuts_ontology_col_name='commonGenesOntologySet', 
+                           category_stat_column_name='adjustedPValue') {
   
   model_with_res <- merge(x = mulea_model@gmt, y = mulea_model_resuts, 
                           by.x = mulea_model_ontology_col_name, 

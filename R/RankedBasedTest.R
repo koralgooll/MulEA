@@ -1,7 +1,6 @@
 
 #' An S4 class to represent a ranked based tests in Mulea.
 #'
-#' @slot method A method from ranked methods to count results. Possible values are: "Subramanian", "KS".
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot scores A vectore of scores per testData.
@@ -13,11 +12,10 @@
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30, 0.45, 0.50)
-#' rankedBasedTestKs <- RankedBasedTest(method = "KS", gmt = modelDfFromFile, testData = dataFromExperiment)
-#' rankedBasedTestSubramanian <- RankedBasedTest(method = "Subramanian", gmt = modelDfFromFile, testData = dataFromExperiment, scores = dataFromExperimentScores)
+#' rankedBasedTestKs <- RankedBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment)
+#' rankedBasedTestSubramanian <- RankedBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, scores = dataFromExperimentScores)
 RankedBasedTest <- setClass("RankedBasedTest",
                             slots = list(
-                              method = "character",
                               gmt = "data.frame",
                               testData = "character",
                               scores = "numeric",
@@ -28,7 +26,6 @@ RankedBasedTest <- setClass("RankedBasedTest",
 
 setMethod("initialize", "RankedBasedTest",
           function(.Object,
-                   method = character(),
                    gmt = data.frame(),
                    testData = character(),
                    scores = numeric(),
@@ -37,7 +34,6 @@ setMethod("initialize", "RankedBasedTest",
                    test = NULL,
                    ...) {
 
-            .Object@method <- method
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@scores <- scores
@@ -46,20 +42,13 @@ setMethod("initialize", "RankedBasedTest",
 
             .Object@test <- function(rankedBaseTestObject) {
               rankedTestRes <- NULL
-              if (rankedBaseTestObject@method == "Subramanian") {
-                subramanianTest <- SubramanianTest(gmt = rankedBaseTestObject@gmt,
-                                                   testData = rankedBaseTestObject@testData,
-                                                   scores = rankedBaseTestObject@scores,
-                                                   p = rankedBaseTestObject@p)
-                rankedTestRes <- runTest(subramanianTest)
-              } else if (rankedBaseTestObject@method == "KS") {
-                ksTest <- KolmogorovSmirnovTest(gmt = rankedBaseTestObject@gmt,
-                                                testData = rankedBaseTestObject@testData,
-                                                numberOfPermutations = rankedBaseTestObject@numberOfPermutations)
-                rankedTestRes <- runTest(ksTest)
-              } else {
-                warning("You have to choose method by typing method parameter to RankedBasedTest object. Choose from 'Subramanian' or 'KS'.")
-              }
+              
+              subramanianTest <- SubramanianTest(gmt = rankedBaseTestObject@gmt,
+                                                 testData = rankedBaseTestObject@testData,
+                                                 scores = rankedBaseTestObject@scores,
+                                                 p = rankedBaseTestObject@p)
+              rankedTestRes <- runTest(subramanianTest)
+              
               rankedTestRes
             }
 

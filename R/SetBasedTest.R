@@ -66,7 +66,7 @@ setMethod("initialize", "ORA",
                 names(muleaSetBaseEnrichmentTest) <- c('commonGenesOntologySet', 'nrCommonGenesOntologySet',
                                                        'nrCommonGenesOntologyBackground', 'Genes_in_DB',
                                                        'pValue', 'P_adj_Bonf', 
-                                                       'adjustedPValueBenjaminiHochberg', 'R_obs', 'R_exp', 
+                                                       'adjustedPValue', 'R_obs', 'R_exp', 
                                                        'adjustedPValueEmpirical')
                 
                 setBasedTestRes <- muleaSetBaseEnrichmentTest[,!names(muleaSetBaseEnrichmentTest) %in% 
