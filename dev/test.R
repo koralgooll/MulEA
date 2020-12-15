@@ -122,6 +122,8 @@ mulea_ora_model <- MulEA::ORA(
   pool = pool, adjustMethod = "PT",
   numberOfPermutations = number_of_steps)
 mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+
+# TODO : Bug after results columns extension.
 mulea_ora_reshaped_results <- MulEA::reshapeResults(
   mulea_model=mulea_ora_model, 
   mulea_model_resuts=mulea_ora_results, 
@@ -133,6 +135,7 @@ mulea_ora_reshaped_def_results <- MulEA::reshapeResults(
   mulea_model=mulea_ora_model, 
   mulea_model_resuts=mulea_ora_results)
 
+# TODO : Add trim_to_testData cutoff.
 # TODO : colname is inherited from category_stat_column_name
 mulea_ora_reshaped_results <- MulEA::reshapeResults(
   mulea_model=mulea_ora_model, 
@@ -180,3 +183,19 @@ mulea_sub_reshaped_results <- MulEA::reshapeResults(
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_value_cutoff = 1.00)
 MulEA::plotBarplot(mulea_relaxed_resuts = mulea_sub_reshaped_results, statistics_value_cutoff=1.00)
 MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_value_cutoff=1.00)
+
+
+
+
+
+
+muleaSetBaseEnrichmentTest <- MulEA:::SetBasedEnrichmentTest(gmt = setBaseTestObject@gmt,
+                                                     testData = setBaseTestObject@testData,
+                                                     pool = setBaseTestObject@pool,
+                                                     numberOfPermutations = setBaseTestObject@numberOfPermutations)
+
+
+
+
+merge(setBaseTestObject@gmt[c('ontologyId', 'ontologyName')], muleaSetBaseEnrichmentTest, by.x = "ontologyId", 
+      by.y = "DB_names", all = TRUE)

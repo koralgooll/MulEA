@@ -55,6 +55,10 @@ setMethod("initialize", "ORA",
                 
                 muleaSetBaseEnrichmentTest <- runTest(muleaSetBaseEnrichmentTest)
                 
+                muleaSetBaseEnrichmentTest <- merge(
+                  setBaseTestObject@gmt[c('ontologyId', 'ontologyName')], muleaSetBaseEnrichmentTest, 
+                  by.x = "ontologyId", by.y = "DB_names", all = TRUE)
+                
                 for (i in 1:length(muleaSetBaseEnrichmentTest$FDR)) {
                   if (!is.nan(muleaSetBaseEnrichmentTest$FDR[i]) 
                       && muleaSetBaseEnrichmentTest$FDR[i] > 1.0) {
@@ -62,9 +66,10 @@ setMethod("initialize", "ORA",
                   }
                 }
                 
-                # TODO : Choose proper fields, it is for all SetBasedEnrichementTest and HyperGeomTest.
-                names(muleaSetBaseEnrichmentTest) <- c('commonGenesOntologySet', 'nrCommonGenesOntologySet',
-                                                       'nrCommonGenesOntologyBackground', 'Genes_in_DB',
+                names(muleaSetBaseEnrichmentTest) <- c('ontologyId', 'ontologyName', 
+                                                       'nrCommonGenesOntologySet',
+                                                       'nrCommonGenesOntologyBackground', 
+                                                       'Genes_in_DB',
                                                        'pValue', 'P_adj_Bonf', 
                                                        'adjustedPValue', 'R_obs', 'R_exp', 
                                                        'adjustedPValueEmpirical')

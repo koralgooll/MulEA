@@ -45,8 +45,15 @@ setMethod("initialize", "SubramanianTest",
                                        stats = samplesToAnalisys, 
                                        gseaParam = testObject@p)
 
-              resultDf <- merge(testObject@gmt, fgseaRes, by.x = "ontologyId", by.y = "pathway", all = TRUE)[c("ontologyId", "ontologyName", "pval", "padj")]
-              colnames(resultDf) <- c("ontologyId", "ontologyName", "pValue", "adjustedPValue")
+              resultDf <- merge(testObject@gmt, fgseaRes, by.x = "ontologyId", 
+                                by.y = "pathway", all = TRUE)
+              resultDf <- plyr::ddply(.data = resultDf, .variables = c('ontologyId'), .fun = function(df_row){
+                nrCommonGenesOntologyBackground <- length(df_row[,'listOfValues'][[1]])
+                cbind(df_row, nrCommonGenesOntologyBackground)
+              })[c("ontologyId", "ontologyName", 'size', 'nrCommonGenesOntologyBackground', "pval", "padj")]
+              colnames(resultDf) <- c("ontologyId", "ontologyName", 
+                                      'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground', 
+                                      "pValue", "adjustedPValue")
               resultDf
             }
 
