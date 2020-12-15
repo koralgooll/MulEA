@@ -26,7 +26,7 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 #' @return Return detailed and relaxed datatable where model and results are merged for plotting purposes. 
 reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL, 
                            mulea_model_ontology_col_name='ontologyId', 
-                           mulea_model_resuts_ontology_col_name='commonGenesOntologySet', 
+                           mulea_model_resuts_ontology_col_name='ontologyId', 
                            category_stat_column_name='adjustedPValue') {
   
   model_with_res <- merge(x = mulea_model@gmt, y = mulea_model_resuts, 

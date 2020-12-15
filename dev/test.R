@@ -117,6 +117,7 @@ poolDf <- read.csv2(file = './inst/extdata/poolData.csv')
 pool <- poolDf[['pool']]
 number_of_steps <- 1000
 
+# TODO : DONE : Common results across set and ranked methods.
 mulea_ora_model <- MulEA::ORA(
   gmt = modelDfFromFile, testData = select, 
   pool = pool, adjustMethod = "PT",

@@ -14,7 +14,7 @@ reshapeResults(
   mulea_model = NULL,
   mulea_model_resuts = NULL,
   mulea_model_ontology_col_name = "ontologyId",
-  mulea_model_resuts_ontology_col_name = "commonGenesOntologySet",
+  mulea_model_resuts_ontology_col_name = "ontologyId",
   category_stat_column_name = "adjustedPValue"
 )
 
