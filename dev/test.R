@@ -124,20 +124,6 @@ mulea_ora_model <- MulEA::ORA(
   numberOfPermutations = number_of_steps)
 mulea_ora_results <- MulEA::runTest(mulea_ora_model)
 
-# TODO : Bug after results columns extension.
-mulea_ora_reshaped_results <- MulEA::reshapeResults(
-  mulea_model=mulea_ora_model, 
-  mulea_model_resuts=mulea_ora_results, 
-  category_stat_column_name='adjustedPValueEmpirical')
-
-
-# Plotting methods tests.
-mulea_ora_reshaped_def_results <- MulEA::reshapeResults(
-  mulea_model=mulea_ora_model, 
-  mulea_model_resuts=mulea_ora_results)
-
-# TODO : Add trim_to_testData cutoff.
-# TODO : colname is inherited from category_stat_column_name
 mulea_ora_reshaped_results <- MulEA::reshapeResults(
   mulea_model=mulea_ora_model, 
   mulea_model_resuts=mulea_ora_results, 
@@ -146,35 +132,20 @@ mulea_ora_reshaped_results <- MulEA::reshapeResults(
 
 # Plots.
 # TODO : Add example with names in plot. Not worry too much. :)
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_ora_reshaped_results, statistics_value_cutoff = 1.00)
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_ora_reshaped_results, statistics_value_cutoff = 1.00, 
+                 statistics_value_colname = 'adjustedPValueEmpirical')
 
-MulEA::plotBarplot(mulea_relaxed_resuts = mulea_ora_reshaped_results, statistics_value_cutoff=1.00)
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_ora_reshaped_results, statistics_value_cutoff=1.00,
+                   statistics_value_colname = 'adjustedPValueEmpirical')
 
-MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_ora_reshaped_results, statistics_value_cutoff=1.00)
-
-
-
-# Plots for empirically adjusted p-values.
-# Plot graph.
-# TODO : You need to provide proper colname for statistics_value_colname.
-colnames(mulea_relaxed_adj_pval_emp_resuts) <- c("ontologyId", "genIdInOntology", "empirivalPValue")
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_relaxed_adj_pval_emp_resuts, statistics_value_cutoff = 1.00,
-                 statistics_value_colname = "empirivalPValue")
-
-# Plot barplot
-MulEA::plotBarplot(mulea_relaxed_resuts = mulea_relaxed_adj_pval_emp_resuts, statistics_value_cutoff=1.00)
-
-# Plot heatmap
-MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_relaxed_adj_pval_emp_resuts, statistics_value_cutoff=1.00, 
-                   statistics_value_colname = 'empirivalPValue')
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_ora_reshaped_results, statistics_value_cutoff=1.00,
+                   statistics_value_colname = 'adjustedPValueEmpirical')
 
 
-# Subramanian plots.
-# TODO : Remove the method arg as results of removal of KS. 
+# Subramanian plots. 
 selectScores <- selectDf[['score']]
 mulea_ranked_model <- MulEA::RankedBasedTest(
-  gmt = modelDfFromFile, 
-  testData = select, scores = selectScores)
+  gmt = modelDfFromFile, testData = select, scores = selectScores)
 mulea_sub_results <- MulEA::runTest(mulea_ranked_model)
 mulea_sub_reshaped_results <- MulEA::reshapeResults(
   mulea_model = mulea_ranked_model, 
@@ -185,18 +156,3 @@ MulEA::plotGraph(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_val
 MulEA::plotBarplot(mulea_relaxed_resuts = mulea_sub_reshaped_results, statistics_value_cutoff=1.00)
 MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_value_cutoff=1.00)
 
-
-
-
-
-
-muleaSetBaseEnrichmentTest <- MulEA:::SetBasedEnrichmentTest(gmt = setBaseTestObject@gmt,
-                                                     testData = setBaseTestObject@testData,
-                                                     pool = setBaseTestObject@pool,
-                                                     numberOfPermutations = setBaseTestObject@numberOfPermutations)
-
-
-
-
-merge(setBaseTestObject@gmt[c('ontologyId', 'ontologyName')], muleaSetBaseEnrichmentTest, by.x = "ontologyId", 
-      by.y = "DB_names", all = TRUE)

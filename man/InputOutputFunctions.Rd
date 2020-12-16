@@ -15,13 +15,14 @@ reshapeResults(
   mulea_model_resuts = NULL,
   mulea_model_ontology_col_name = "ontologyId",
   mulea_model_resuts_ontology_col_name = "ontologyId",
-  category_stat_column_name = "adjustedPValue"
+  category_stat_column_name = "adjustedPValue",
+  cut_off_to_test_data = TRUE
 )
 
 plotGraph(
   mulea_relaxed_resuts,
   edge_weight_cutoff = 0,
-  statistics_value_colname = "ontologyStatValue",
+  statistics_value_colname = "adjustedPValue",
   ontology_id_column_name = "ontologyId",
   gen_id_in_ontology_column_name = "genIdInOntology",
   statistics_value_cutoff = 0.05
@@ -31,13 +32,13 @@ plotBarplot(
   mulea_relaxed_resuts,
   selection_vector = NULL,
   categories_names = "ontologyId",
-  statistics_value_colname = "ontologyStatValue",
+  statistics_value_colname = "adjustedPValue",
   statistics_value_cutoff = 0.05
 )
 
 plotHeatmap(
   mulea_relaxed_resuts,
-  statistics_value_colname = "ontologyStatValue",
+  statistics_value_colname = "adjustedPValue",
   gen_id_in_ontology_column_name = "genIdInOntology",
   statistics_value_cutoff = 0.05
 )

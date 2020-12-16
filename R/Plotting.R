@@ -1,4 +1,12 @@
 
+
+validate_column_names_and_function_args <- function(data, ...) {
+  arguments <- list(...)
+  if (!all(unlist(arguments) %in% names(data))) {
+    stop('Wrongly set data column names.')
+  }
+}
+  
 filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts, 
                                             statistics_value_colname='ontologyStatValue', 
                                             statistics_value_cutoff=0.05) {
@@ -27,7 +35,8 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL, 
                            mulea_model_ontology_col_name='ontologyId', 
                            mulea_model_resuts_ontology_col_name='ontologyId', 
-                           category_stat_column_name='adjustedPValue') {
+                           category_stat_column_name='adjustedPValue',
+                           cut_off_to_test_data=TRUE) {
   
   model_with_res <- merge(x = mulea_model@gmt, y = mulea_model_resuts, 
                           by.x = mulea_model_ontology_col_name, 
@@ -53,6 +62,10 @@ reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL,
       model_with_res_dt_relaxed_counter = model_with_res_dt_relaxed_counter + 1
     }
   }
+  if (cut_off_to_test_data) {
+    model_with_res_dt_relaxed <- model_with_res_dt_relaxed[genIdInOntology %in% mulea_ora_model@testData]
+  }
+  names(model_with_res_dt_relaxed) <- c("ontologyId", "genIdInOntology", category_stat_column_name)
   model_with_res_dt_relaxed
 }
 
@@ -73,11 +86,14 @@ reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL,
 #'
 #' @return Return plot. 
 plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0, 
-                      statistics_value_colname='ontologyStatValue', 
+                      statistics_value_colname='adjustedPValue', 
                       ontology_id_column_name='ontologyId',
                       gen_id_in_ontology_column_name='genIdInOntology',
                       statistics_value_cutoff=0.05) {
   
+  MulEA:::validate_column_names_and_function_args(
+    data = mulea_relaxed_resuts, 
+    statistics_value_colname, ontology_id_column_name, gen_id_in_ontology_column_name)
   mulea_relaxed_resuts <- data.table::setDT(mulea_relaxed_resuts)
   model_with_res_dt_relaxed <- MulEA:::filterRelaxedResultsForPlotting(mulea_relaxed_resuts=mulea_relaxed_resuts,
                                           statistics_value_colname=statistics_value_colname,
@@ -136,7 +152,8 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0,
     geom_node_point(aes(color=p_stat)) +
     geom_node_point(aes(color=p_stat, size=(1-p_stat)), show.legend = FALSE) +
     scale_size_area(max_size = 10) +
-    scale_color_gradient2(mid='darkgreen', high='red', limits=c(0.0, 1.0)) +
+    scale_color_gradient2(mid='darkgreen', high='red', limits=c(0.0, 1.0), 
+                          name=statistics_value_colname) +
     geom_node_text(aes(label = label), repel = TRUE) +
     theme_graph(base_family = "mono")
   graph_plot
@@ -160,9 +177,12 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0,
 #' @return Return plot. 
 plotBarplot <- function(mulea_relaxed_resuts, selection_vector=NULL, 
                         categories_names='ontologyId', 
-                        statistics_value_colname='ontologyStatValue', 
+                        statistics_value_colname='adjustedPValue', 
                         statistics_value_cutoff=0.05) {
   
+  MulEA:::validate_column_names_and_function_args(
+    data = mulea_relaxed_resuts, 
+    statistics_value_colname, categories_names)
   mulea_relaxed_resuts <- MulEA:::filterRelaxedResultsForPlotting(
     mulea_relaxed_resuts=mulea_relaxed_resuts,
     statistics_value_colname=statistics_value_colname,
@@ -206,10 +226,13 @@ plotBarplot <- function(mulea_relaxed_resuts, selection_vector=NULL,
 #'
 #' @return Return plot.
 plotHeatmap <- function(mulea_relaxed_resuts, 
-                        statistics_value_colname='ontologyStatValue',
+                        statistics_value_colname='adjustedPValue',
                         gen_id_in_ontology_column_name='genIdInOntology',
                         statistics_value_cutoff=0.05) {
   
+  MulEA:::validate_column_names_and_function_args(
+    data = mulea_relaxed_resuts, 
+    statistics_value_colname, gen_id_in_ontology_column_name)
   model_with_res_dt_relaxed <- MulEA:::filterRelaxedResultsForPlotting(
     mulea_relaxed_resuts=mulea_relaxed_resuts,
     statistics_value_colname=statistics_value_colname,
