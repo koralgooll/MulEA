@@ -114,7 +114,7 @@ MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_v
 
 <table style="padding:10px">
   <tr>
-    <td><img src="./dev/ora_detailed_res.png" alt="1" width=339px height=656px></td>
+    <td><img src="./dev/ora_detailed_res.png" alt="1" width=339px height=326px></td>
   </tr>
 </table>
 
