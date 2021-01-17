@@ -22,7 +22,7 @@ Loading libraries and loading example input data:
 library(MulEA)
 muleaPkgDir <- find.package("MulEA")
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(
-    gmtFilePath = paste(muleaPkgDir,"/extdata/model.gmt", sep = ""))
+  gmtFilePath = paste(muleaPkgDir,"/extdata/model.gmt", sep = ""))
 selectDf <- read.csv2(file = './inst/extdata/selectData.csv')
 select <- selectDf[['select']]
 poolDf <- read.csv2(file = './inst/extdata/poolData.csv')
@@ -36,14 +36,15 @@ Running MulEA (two from few implemented approaches):
 
 ```{r}
 mulea_ora_model <- MulEA::ORA(
-    gmt = modelDfFromFile, testData = select, 
-    pool = pool, adjustMethod = "PT",
-    numberOfPermutations = number_of_steps)
+  gmt = modelDfFromFile, testData = select, 
+  pool = pool, adjustMethod = "PT",
+  numberOfPermutations = number_of_steps)
 mulea_ora_results <- MulEA::runTest(mulea_ora_model)
-mulea_ora_detailed_results <- MulEA::createDetailedResults(
-    mulea_model=mulea_ora_model, 
-    mulea_model_resuts=mulea_ora_results, 
-    category_stat_column_name='adjustedPValueEmpirical')
+
+mulea_ora_reshaped_results <- MulEA::reshapeResults(
+  mulea_model=mulea_ora_model, 
+  mulea_model_resuts=mulea_ora_results, 
+  category_stat_column_name='adjustedPValueEmpirical')
 ```
 
 - Ranked based tests represented by `RankedBasedTest` class (Subramanian method):
@@ -51,22 +52,28 @@ mulea_ora_detailed_results <- MulEA::createDetailedResults(
 ```{r}
 selectScores <- selectDf[['score']]
 mulea_ranked_model <- MulEA::RankedBasedTest(
-    method = "Subramanian", gmt = modelDfFromFile, 
-    testData = select, scores = selectScores)
+  gmt = modelDfFromFile, testData = select, scores = selectScores)
+
 mulea_sub_results <- MulEA::runTest(mulea_ranked_model)
-mulea_sub_detailed_results <- MulEA::createDetailedResults(
-    mulea_model = mulea_ranked_model, 
-    mulea_model_resuts = mulea_sub_results, 
-    mulea_model_resuts_ontology_col_name='ontologyId')
+
+mulea_sub_reshaped_results <- MulEA::reshapeResults(
+  mulea_model = mulea_ranked_model, 
+  mulea_model_resuts = mulea_sub_results, 
+  mulea_model_resuts_ontology_col_name='ontologyId')
 ```
 
 
 ## Results
 
 ```{r}
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_ora_detailed_results, statistics_value_cutoff = 1.00)
-MulEA::plotBarplot(mulea_relaxed_resuts = mulea_ora_detailed_results, statistics_value_cutoff=1.00)
-MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_ora_detailed_results, statistics_value_cutoff=1.00)
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_ora_reshaped_results, statistics_value_cutoff = 1.00, 
+                 statistics_value_colname = 'adjustedPValueEmpirical')
+                 
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_ora_reshaped_results, statistics_value_cutoff=1.00,
+                   statistics_value_colname = 'adjustedPValueEmpirical')
+                   
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_ora_reshaped_results, statistics_value_cutoff=1.00,
+                   statistics_value_colname = 'adjustedPValueEmpirical')
 ```
 
 <table style="padding:10px">
@@ -78,9 +85,11 @@ MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_ora_detailed_results, statistics_v
 </table>
 
 ```{r}
-MulEA::plotGraph(mulea_relaxed_resuts=mulea_sub_detailed_results, statistics_value_cutoff = 1.00)
-MulEA::plotBarplot(mulea_relaxed_resuts = mulea_sub_detailed_results, statistics_value_cutoff=1.00)
-MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_sub_detailed_results, statistics_value_cutoff=1.00)
+MulEA::plotGraph(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_value_cutoff = 1.00)
+
+MulEA::plotBarplot(mulea_relaxed_resuts = mulea_sub_reshaped_results, statistics_value_cutoff=1.00)
+
+MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_value_cutoff=1.00)
 ```
 
 <table style="padding:10px">
