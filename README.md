@@ -65,6 +65,9 @@ mulea_sub_reshaped_results <- MulEA::reshapeResults(
 
 ## Results
 
+
+- Plotting results:
+
 ```{r}
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_ora_reshaped_results, statistics_value_cutoff = 1.00, 
                  statistics_value_colname = 'adjustedPValueEmpirical')
@@ -100,7 +103,8 @@ MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_v
   </tr>
 </table>
 
-Example of results in data.frame form:
+
+- Example of results in data.frame form:
 
 <table style="padding:10px">
   <tr>
@@ -116,6 +120,7 @@ Example of results in data.frame form:
 
 
 # Detailed Description
+
 Functional interpretation of the biological data typically involves identifying key genes, molecules, reactions or pathways by finding non-random changes between two or more conditions or phenotype. Performing enrichment analysis on set of molecules selected from  differential omics analysis is a method of choice. Among many packages that can be applied for this task, only few could be applied either to multiple species, ontology types or providing an access to multiple statistics.
 
 MulEA is addressing this gap in addition providing improved way to calculate correction for multiple testing that assume partial dependence between ontology terms and in result limits number of correct associations falsely scored as insignificant. Besides the commonly applied tests, MulEA provides a unique permutation based, empirical false discovery rate correction of the p-values to substitute the too conservative Bonferroni and Benjamini-Hochberg procedures.
