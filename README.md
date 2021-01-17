@@ -21,12 +21,17 @@ Loading libraries and loading example input data:
 ```{r}
 library(MulEA)
 muleaPkgDir <- find.package("MulEA")
+
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(
   gmtFilePath = paste(muleaPkgDir,"/extdata/model.gmt", sep = ""))
+
 selectDf <- read.csv2(file = './inst/extdata/selectData.csv')
 select <- selectDf[['select']]
+selectScores <- selectDf[['score']]
+
 poolDf <- read.csv2(file = './inst/extdata/poolData.csv')
 pool <- poolDf[['pool']]
+
 number_of_steps <- 1000
 ```
 
@@ -39,6 +44,7 @@ mulea_ora_model <- MulEA::ORA(
   gmt = modelDfFromFile, testData = select, 
   pool = pool, adjustMethod = "PT",
   numberOfPermutations = number_of_steps)
+  
 mulea_ora_results <- MulEA::runTest(mulea_ora_model)
 
 mulea_ora_reshaped_results <- MulEA::reshapeResults(
@@ -50,7 +56,6 @@ mulea_ora_reshaped_results <- MulEA::reshapeResults(
 - Ranked based tests represented by `RankedBasedTest` class (Subramanian method):
 
 ```{r}
-selectScores <- selectDf[['score']]
 mulea_ranked_model <- MulEA::RankedBasedTest(
   gmt = modelDfFromFile, testData = select, scores = selectScores)
 
@@ -106,11 +111,19 @@ MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_sub_reshaped_results, statistics_v
 
 - Example of results in data.frame form:
 
+```{r}
+View(mulea_ora_results)
+```
+
 <table style="padding:10px">
   <tr>
     <td><img src="./dev/ora_results.png" alt="1" width=2277px height=166px></td>
   </tr>
 </table>
+
+```{r}
+View(mulea_ora_reshaped_results)
+```
 
 <table style="padding:10px">
   <tr>
