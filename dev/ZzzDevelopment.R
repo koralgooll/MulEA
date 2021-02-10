@@ -42,3 +42,12 @@ setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromE
                                               pool = dataFromExperimentPool, adjustMethod = "PT",
                                               numberOfPermutations = 100)
 setBasedTestWithPoolAndAdjustResNew <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
+
+
+
+pathToModelGmtFile <- '/home/cezary/Downloads/Caenorhabditis_elegans_interactions_SS_GMT_ncbiGeneID.gmt'
+KnowledgeBaseDf <- MulEA::readGmtFileAsDataFrame(gmtFilePath = pathToModelGmtFile)
+
+
+
+

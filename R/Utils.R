@@ -15,7 +15,10 @@
 #' @return Return data frame with model from specific location.
 readGmtFileAsDataFrame <- function(gmtFilePath) {
     fileConnection <- file(gmtFilePath)
-    lines <- readLines(fileConnection)
+    tryCatchRes <- tryCatch(
+        lines <- readLines(fileConnection),
+        warning=function(w) {}
+    )
     close(fileConnection)
     gmtAsDF <- plyr::adply(.data = lines, .margins = 1, .fun = function(line) {
         fields <- strsplit(line, split = "\t")[[1]]
