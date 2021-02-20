@@ -5,6 +5,7 @@
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot scores A vectore of scores per testData.
 #' @slot p A power of weight. Default value is 1.
+#' @slot scoreType Defines the GSEA score type. Only positive scores - "pos", only negative scores - "neg" and mixed (standard) - "std".
 #' @slot numberOfPermutations A number of permutations used in KS test. Default vlue is 1000.
 #' @return RankedBasedTest object. This object represents ranked based tests in Mulea.
 #' @export "RankedBasedTest"
@@ -20,6 +21,7 @@ RankedBasedTest <- setClass("RankedBasedTest",
                               testData = "character",
                               scores = "numeric",
                               p = "numeric",
+                              scoreType = "character",
                               numberOfPermutations = "numeric",
                               test = "function"
                             ))
@@ -30,6 +32,7 @@ setMethod("initialize", "RankedBasedTest",
                    testData = character(),
                    scores = numeric(),
                    p = 1,
+                   scoreType = "std",
                    numberOfPermutations = 1000,
                    test = NULL,
                    ...) {
@@ -38,6 +41,8 @@ setMethod("initialize", "RankedBasedTest",
             .Object@testData <- testData
             .Object@scores <- scores
             .Object@p <- p
+            .Object@scoreType <- scoreType
+            
             .Object@numberOfPermutations <- numberOfPermutations
 
             .Object@test <- function(rankedBaseTestObject) {
@@ -46,7 +51,8 @@ setMethod("initialize", "RankedBasedTest",
               subramanianTest <- SubramanianTest(gmt = rankedBaseTestObject@gmt,
                                                  testData = rankedBaseTestObject@testData,
                                                  scores = rankedBaseTestObject@scores,
-                                                 p = rankedBaseTestObject@p)
+                                                 p = rankedBaseTestObject@p, 
+                                                 scoreType = rankedBaseTestObject@scoreType)
               rankedTestRes <- runTest(subramanianTest)
               
               rankedTestRes

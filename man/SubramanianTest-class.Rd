@@ -35,6 +35,8 @@ PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
 \item{\code{scores}}{A vectore of scores per testData.}
 
 \item{\code{p}}{A power of weight.}
+
+\item{\code{scoreType}}{Defines the GSEA score type. Only positive scores - "pos", only negative scores - "neg" and mixed (standard) - "std".}
 }}
 
 \examples{

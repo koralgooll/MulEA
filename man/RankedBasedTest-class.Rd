@@ -36,6 +36,8 @@ An S4 class to represent a ranked based tests in Mulea.
 
 \item{\code{p}}{A power of weight. Default value is 1.}
 
+\item{\code{scoreType}}{Defines the GSEA score type. Only positive scores - "pos", only negative scores - "neg" and mixed (standard) - "std".}
+
 \item{\code{numberOfPermutations}}{A number of permutations used in KS test. Default vlue is 1000.}
 }}
 

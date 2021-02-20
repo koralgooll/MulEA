@@ -5,6 +5,7 @@
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot scores A vectore of scores per testData.
 #' @slot p A power of weight.
+#' @slot scoreType Defines the GSEA score type. Only positive scores - "pos", only negative scores - "neg" and mixed (standard) - "std".
 #' @return KolmogorovSmirnovTest object. Used as private object.
 #' @examples
 #' \dontrun{
@@ -16,6 +17,7 @@ SubramanianTest <- setClass("SubramanianTest",
                               testData = "character",
                               scores = "numeric",
                               p = "numeric",
+                              scoreType = "character",
                               test = "function"
                             ))
 
@@ -25,6 +27,7 @@ setMethod("initialize", "SubramanianTest",
                    testData = character(),
                    scores = numeric(),
                    p = 1,
+                   scoreType = "std",
                    test = NULL,
                    ...) {
 
@@ -32,6 +35,7 @@ setMethod("initialize", "SubramanianTest",
             .Object@testData <- testData
             .Object@scores <- scores
             .Object@p <- p
+            .Object@scoreType <- scoreType
 
             .Object@test <- function(testObject) {
 
@@ -43,7 +47,8 @@ setMethod("initialize", "SubramanianTest",
 
               fgseaRes <- fgsea::fgsea(pathways = listmodelDfFromFile, 
                                        stats = samplesToAnalisys, 
-                                       gseaParam = testObject@p)
+                                       gseaParam = testObject@p,
+                                       scoreType = testObject@scoreType)
 
               resultDf <- merge(testObject@gmt, fgseaRes, by.x = "ontologyId", 
                                 by.y = "pathway", all = TRUE)
