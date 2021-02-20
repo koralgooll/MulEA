@@ -63,7 +63,7 @@ reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL,
     }
   }
   if (cut_off_to_test_data) {
-    model_with_res_dt_relaxed <- model_with_res_dt_relaxed[genIdInOntology %in% mulea_ora_model@testData]
+    model_with_res_dt_relaxed <- model_with_res_dt_relaxed[genIdInOntology %in% mulea_model@testData]
   }
   names(model_with_res_dt_relaxed) <- c("ontologyId", "genIdInOntology", category_stat_column_name)
   model_with_res_dt_relaxed
