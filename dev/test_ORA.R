@@ -10,12 +10,16 @@ input_select_scores <- input_rank[['V2']]
 # Setup params
 number_of_steps <- 10
 
-# Perform GSEA
+# Perform ORA
 # IMPORTANT : Scores are very different based on scoreType param.
 mulea_ora_model <- MulEA::ORA(
   gmt = input_gmt, testData = input_select, adjustMethod = "PT",
   numberOfPermutations = number_of_steps)
 mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+# BUG : Problem with sample size, input_select is bigger than pool without replacement!
+pool <- unique(unlist(mulea_ora_model@gmt[, 'listOfValues']))
+length(pool)
+length(input_select)
 
 mulea_ora_reshaped_results <- MulEA::reshapeResults(
   mulea_model=mulea_ora_model, 
