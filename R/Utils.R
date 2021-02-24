@@ -67,3 +67,42 @@ saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
     writeLines(vectorOfModel, con = fileConnection, sep = "\n", useBytes = FALSE)
     close(fileConnection)
 }
+
+# PUBLIC API
+#' @description
+#' \code{readEdbFileAsDataFrame}
+#'
+#' \code{readEdbFileAsDataFrame} read GSEA results in data frame form from .edb file.
+#'
+#' @param edbFilePath path with name of file, where the file is localized or where to save model.
+#'
+#'
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return data frame with model from specific location.
+readEdbFileAsDataFrame <- function(edbFilePath) {
+    
+    xml_parsed <- XML::xmlTreeParse(edbFilePath, useInternalNodes = T)
+    geneset_list <- XML::xpathApply(xml_parsed, path = '/EDB/DTG/@GENESET')
+    es_list <- XML::xpathApply(xml_parsed, path = '/EDB/DTG/@ES')
+    nes_list <- XML::xpathApply(xml_parsed, path = '/EDB/DTG/@NES')
+    fdr_list <- XML::xpathApply(xml_parsed, path = '/EDB/DTG/@FDR')
+    np_list <- XML::xpathApply(xml_parsed, path = '/EDB/DTG/@NP')
+    
+    gsea_bi_res_df <- data.frame('ontology_id'=c(), 'es'=c(), 'nes'=c(), 'fdr'=c(), 'np'=c())
+    
+    
+    for (i in 1:length(geneset_list)) {
+        onlology_id <- strsplit(geneset_list[[i]][['GENESET']], '#')[[1]][2]
+        es <- es_list[[i]][['ES']]
+        nes <- nes_list[[i]][['NES']]
+        fdr <- fdr_list[[i]][['FDR']]
+        np <- np_list[[i]][['NP']]
+        gsea_bi_res_df_i <- data.frame('ontology_id'=onlology_id, 'es'=es, 'nes'=nes, 'fdr'=fdr, 'np'=np)
+        gsea_bi_res_df <- rbind(gsea_bi_res_df, gsea_bi_res_df_i)
+    }
+    
+    gsea_bi_res_df
+}

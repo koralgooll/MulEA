@@ -38,3 +38,16 @@ MulEA::plotGraph(mulea_relaxed_resuts=mulea_sub_reshaped_results,
 # DONOTRUN : Takes time, but shows interesting warnings. 
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_sub_reshaped_results, 
                  statistics_value_cutoff = 1.00)
+
+
+# Start GSEA (Broad Institute) and read results.
+edbFilePath <- 'D:/projects/science/GSEA_4.1.0/results/my_analysis.GseaPreranked.1613825545589/edb/results.edb'
+MulEA::readEdbFileAsDataFrame(edbFilePath = edbFilePath)
+
+
+
+
+
+
+
+

@@ -8,6 +8,7 @@
 \alias{plotHeatmap}
 \alias{readGmtFileAsDataFrame}
 \alias{saveDataFrameAsGmtFile}
+\alias{readEdbFileAsDataFrame}
 \title{Input/Output Functions}
 \usage{
 reshapeResults(
@@ -46,6 +47,8 @@ plotHeatmap(
 readGmtFileAsDataFrame(gmtFilePath)
 
 saveDataFrameAsGmtFile(modelDF, gmtFilePath)
+
+readEdbFileAsDataFrame(edbFilePath)
 }
 \arguments{
 \item{mulea_model}{MulEA object represents model. For example created by MulEA::ORA.}
@@ -59,6 +62,8 @@ saveDataFrameAsGmtFile(modelDF, gmtFilePath)
 \item{gmtFilePath}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
 
 \item{modelDF}{data frame with model.}
+
+\item{edbFilePath}{path with name of file, where the file is localized or where to save model.}
 }
 \value{
 Return detailed and relaxed datatable where model and results are merged for plotting purposes.
@@ -72,6 +77,8 @@ Return plot.
 Return data frame with model from specific location.
 
 Return gmt file under specific location which include model in gmt format.
+
+Return data frame with model from specific location.
 }
 \description{
 \code{reshapeResults}
@@ -100,6 +107,10 @@ one relaxed datatable for easy resutls graphical interpretation.
 \code{saveDataFrameAsGmtFile}
 
 \code{saveDataFrameAsGmtFile} saves copy of the model from data frame in gmt file.
+
+\code{readEdbFileAsDataFrame}
+
+\code{readEdbFileAsDataFrame} read GSEA results in data frame form from .edb file.
 }
 \examples{
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
