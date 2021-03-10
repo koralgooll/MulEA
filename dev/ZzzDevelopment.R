@@ -51,3 +51,44 @@ KnowledgeBaseDf <- MulEA::readGmtFileAsDataFrame(gmtFilePath = pathToModelGmtFil
 
 
 
+
+
+# Read inputs
+input_gmt <- MulEA::readGmtFileAsDataFrame('D:/projects/science/GSEA_4.1.0/inputs/KEGG_Paths2geneSymbols.gmt')
+input_rank <- read.table(file='D:/projects/science/GSEA_4.1.0/inputs/lung_FoldChange.rnk', sep='\t')
+input_select <- input_rank[['V1']]
+input_select_scores <- input_rank[['V2']]
+
+# Setup params
+number_of_steps <- 10
+
+# Perform ORA
+# IMPORTANT : Scores are very different based on scoreType param.
+mulea_ora_model <- MulEA::ORA(
+  gmt = input_gmt, testData = input_select, adjustMethod = "PT",
+  numberOfPermutations = number_of_steps)
+mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+
+
+mulea_ora_model@testData
+
+mulea_ora_model@pool <- unique(unlist(mulea_ora_model@gmt[, 'listOfValues']))
+
+mulea_ora_model@pool
+
+length(mulea_ora_model@testData)
+length(mulea_ora_model@pool)
+
+
+all(mulea_ora_model@testData %in% mulea_ora_model@pool)
+
+mulea_ora_model@testData <- mulea_ora_model@testData[mulea_ora_model@testData %in% mulea_ora_model@pool]
+length(mulea_ora_model@testData)
+
+length(mulea_ora_model@testData %in% mulea_ora_model@pool)
+
+all(c('a', 'b', 'e') %in% c('a', 'b', 'c', 'd'))
+
+
+
+rstudioapi::writeRStudioPreference(name = "console_max_lines", value = as.integer('10000'))

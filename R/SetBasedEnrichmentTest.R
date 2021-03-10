@@ -82,20 +82,27 @@ setMethod("initialize", "SetBasedEnrichmentTest",
             .Object@only_hyper_geometric_test <- only_hyper_geometric_test
             
             .Object@test <- function(testObject) {
-
                 pool <- NULL
                 if (0 == length(testObject@pool)) {
                     pool <- unique(unlist(.Object@gmt[, 'listOfValues']))
                 } else {
                     pool <- unique(testObject@pool)
                 }
-
+                
+                testData <- .Object@testData
+                if (!all(testData %in% pool)) {
+                  testData <- testData[testData %in% pool]
+                  warning("Not all elements of testData (sample) are from pool.", 
+                          "TestData vector is automatically cut off to pool vector.")
+                }
+                
                 DB <- .Object@gmt[, 'listOfValues']
                 names(DB) <- .Object@gmt$ontologyId
 
                 testResults <- set.based.enrichment.test(steps = .Object@numberOfPermutations, pool = pool,
-                                                        select = .Object@testData, DB = DB,
+                                                        select = testData, DB = DB,
                                                         only_hyper_geometric_test=testObject@only_hyper_geometric_test)
+                
                 testResults
             }
 
@@ -127,7 +134,7 @@ set.based.enrichment.test=function(steps, pool, select, DB, nthreads=4,
   select0<-select
   pool0<-pool
 
-  ## convert the database and the select and pollt to sorted integer lists
+  ## convert the database and the select and pool to sorted integer lists
   gene.list<-unique(unlist(DB))
   gene.string.to.integer<-data.frame(string.id=gene.list ,integer.id=seq(gene.list))
 

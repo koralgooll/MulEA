@@ -3,8 +3,7 @@ library(MulEA)
 
 # Read inputs
 # TODO : Change to relative package path when Eszter accepts publicity of data.
-input_gmt <- MulEA::readGmtFileAsDataFrame('D:/projects/science/MulEA
-                                           /inst/tests/inputs/KEGG_Paths2geneSymbols.gmt')
+input_gmt <- MulEA::readGmtFileAsDataFrame('D:/projects/science/MulEA/inst/tests/inputs/KEGG_Paths2geneSymbols.gmt')
 
 # Lung
 input_rank_lung_fc <- read.table(file='D:/projects/science/MulEA/inst/tests/inputs/lung_FoldChange.rnk', 
