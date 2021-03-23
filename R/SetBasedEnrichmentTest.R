@@ -92,7 +92,7 @@ setMethod("initialize", "SetBasedEnrichmentTest",
                 testData <- .Object@testData
                 if (!all(testData %in% pool)) {
                   testData <- testData[testData %in% pool]
-                  warning("Not all elements of testData (sample) are from pool.", 
+                  warning("Not all elements of testData (sample) are from pool. ", 
                           "TestData vector is automatically cut off to pool vector.")
                 }
                 
