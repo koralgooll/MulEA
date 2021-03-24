@@ -20,7 +20,10 @@ readGmtFileAsDataFrame <- function(gmtFilePath) {
         warning=function(w) {}
     )
     close(fileConnection)
+    
     lines <- lines[!grepl('^#+', lines, fixed = FALSE)]
+    lines <- lines["" != lines]
+    
     gmtAsDF <- plyr::adply(.data = lines, .margins = 1, .fun = function(line) {
         fields <- strsplit(line, split = "\t")[[1]]
         category <- fields[1]
