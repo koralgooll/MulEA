@@ -9,6 +9,8 @@
 \alias{readGmtFileAsDataFrame}
 \alias{saveDataFrameAsGmtFile}
 \alias{readEdbFileAsDataFrame}
+\alias{filterOntology}
+\alias{generateInputData}
 \title{Input/Output Functions}
 \usage{
 reshapeResults(
@@ -49,6 +51,16 @@ readGmtFileAsDataFrame(gmtFilePath)
 saveDataFrameAsGmtFile(modelDF, gmtFilePath)
 
 readEdbFileAsDataFrame(edbFilePath)
+
+filterOntology(input_gmt, min = NULL, max = NULL)
+
+generateInputData(
+  input_gmt,
+  sample_ratio = 0.5,
+  group_under_over_representation_ratio = 0.9,
+  number_of_over_representation_groups = 1,
+  number_of_under_representation_groups = 1
+)
 }
 \arguments{
 \item{mulea_model}{MulEA object represents model. For example created by MulEA::ORA.}
@@ -64,6 +76,16 @@ readEdbFileAsDataFrame(edbFilePath)
 \item{modelDF}{data frame with model.}
 
 \item{edbFilePath}{path with name of file, where the file is localized or where to save model.}
+
+\item{input_gmt}{input dataframe, read from gmt file.}
+
+\item{min}{minimum size of term. Default 20% from quantile on term size distribution.}
+
+\item{max}{maximum size of term. Default 80% from quantile on term size distribution.}
+
+\item{sample_ratio}{}
+
+\item{number_of_under_representation_groups}{}
 }
 \value{
 Return detailed and relaxed datatable where model and results are merged for plotting purposes.
@@ -77,6 +99,10 @@ Return plot.
 Return data frame with model from specific location.
 
 Return gmt file under specific location which include model in gmt format.
+
+Return data frame with model from specific location.
+
+Return data frame with model from specific location.
 
 Return data frame with model from specific location.
 }
@@ -111,6 +137,14 @@ one relaxed datatable for easy resutls graphical interpretation.
 \code{readEdbFileAsDataFrame}
 
 \code{readEdbFileAsDataFrame} read GSEA results in data frame form from .edb file.
+
+\code{filterOntology}
+
+\code{filterOntology} cut ontology to specific terms sizes.
+
+\code{generateInputData}
+
+\code{generateInputData} generate artificial GO with specific terms under or over represented.
 }
 \examples{
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))

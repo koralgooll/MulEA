@@ -2,6 +2,8 @@
 
 export("ORA")
 export("RankedBasedTest")
+export(filterOntology)
+export(generateInputData)
 export(plotBarplot)
 export(plotGraph)
 export(plotHeatmap)
