@@ -242,6 +242,10 @@ generateInputData <- function(input_gmt, sample_ratio=0.5,
                                          input_select)
         print(paste(under_repr_log[[term_id]], ' {', length(real_term_in_sample), '}', sep = ''))
     }
-    
-    input_select
+
+    to_return <- list()
+    to_return$input_select <- input_select
+    to_return$go_change_repr_over <- input_gmt[go_change_repr_over,]$ontologyId
+    to_return$go_change_repr_under <- input_gmt[go_change_repr_under,]$ontologyId
+    return(to_return)
 }

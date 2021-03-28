@@ -9,10 +9,27 @@ gmtFilePath <- paste(
 
 input_gmt <- MulEA::readGmtFileAsDataFrame(gmtFilePath)
 
+
+# Functions definitions.
+
 filter_ontology <- function(input_gmt, min=NULL, max=NULL) {
   if (is.null(min)) {
+    terms_sizes <- plyr::laply(.data = input_gmt$listOfValues, .fun = function(term) {
+      length(term)
+    })
+    term_size_dist_q <- quantile(terms_sizes, probs = seq(0, 1, 0.1), type = 2, na.rm = FALSE)
     
+    min = term_size_dist_q['20%']
   }
+  
+  if (is.null(max)) {
+    terms_sizes <- plyr::laply(.data = input_gmt$listOfValues, .fun = function(term) {
+      length(term)
+    })
+    term_size_dist_q <- quantile(terms_sizes, probs = seq(0, 1, 0.1), type = 2, na.rm = FALSE)
+    max = term_size_dist_q['80%']
+  }
+  
   filtered_input_gmt <- plyr::ddply(.data = input_gmt, .variables = c("ontologyId"), .fun = function(df_row) {
     if (length(df_row$listOfValues[[1]]) > min) {
       df_row
@@ -103,22 +120,11 @@ number_of_steps <- 10
 
 hist_data <- c()
 
-
-terms_sizes <- plyr::laply(.data = input_gmt$listOfValues, .fun = function(term) {
-  length(term)
-})
-term_size_dist_q <- quantile(terms_sizes, probs = seq(0, 1, 0.1), type = 2, na.rm = FALSE)
-
-min_go_term_size = term_size_dist_q['20%']
-max_go_term_size = term_size_dist_q['80%']
-
 no_over_repr_terms=3 
 no_under_repr_terms=2
 
-for (i in 1:10) {
-  input_gmt_filtered <- filter_ontology(input_gmt = input_gmt, 
-                                        min=min_go_term_size, 
-                                        max=max_go_term_size)
+for (i in 1:1) {
+  input_gmt_filtered <- filter_ontology(input_gmt = input_gmt)
   
   input_select <- generate_input_data(
     input_gmt = input_gmt_filtered, 
@@ -181,3 +187,26 @@ MulEA::plotHeatmap(mulea_relaxed_resuts=mulea_ora_reshaped_results,
 MulEA::plotGraph(mulea_relaxed_resuts=mulea_ora_reshaped_results,
                  statistics_value_colname = "adjustedPValueEmpirical",
                  statistics_value_cutoff = 0.05)
+
+
+
+
+
+
+for (i in 1:1) {
+  input_gmt_filtered <- MulEA::filterOntology(input_gmt = input_gmt)
+  
+  input_select <- MulEA::generateInputData(
+    input_gmt = input_gmt_filtered, 
+    number_of_over_representation_groups = no_over_repr_terms,
+    number_of_under_representation_groups = no_under_repr_terms)
+  
+  mulea_ora_model <- MulEA::ORA(
+    gmt = input_gmt_filtered, testData = input_select, adjustMethod = "PT",
+    numberOfPermutations = number_of_steps)
+  mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+}
+
+
+
+
