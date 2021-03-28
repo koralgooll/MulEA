@@ -8,6 +8,9 @@ gmtFilePath <- paste(find.package("MulEA"),
 input_gmt <- MulEA::readGmtFileAsDataFrame(gmtFilePath)
 input_gmt_filtered <- MulEA::filterOntology(input_gmt = input_gmt)
 
+filteredGmtFilePath <- paste(find.package("MulEA"), 
+                     "/tests/outputs/KEGG_filtered.gmt", sep = "")
+MulEA::saveDataFrameAsGmtFile(modelDF = input_gmt_filtered, gmtFilePath = filteredGmtFilePath)
 
 # Generate artificial select vector.
 no_over_repr_terms=3 
