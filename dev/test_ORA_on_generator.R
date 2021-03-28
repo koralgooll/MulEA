@@ -41,9 +41,9 @@ select_over_repr <- mulea_ora_results$ontologyId %in% input_generated$go_change_
 data.frame(mulea_ora_results[select_over_repr,], 
            'rank'=mulea_ora_results_rank[select_over_repr])
 
-select_over_repr <- mulea_ora_results$ontologyId %in% input_generated$go_change_repr_under
-data.frame(mulea_ora_results[select_over_repr,], 
-           'rank'=mulea_ora_results_rank[select_over_repr])
+select_under_repr <- mulea_ora_results$ontologyId %in% input_generated$go_change_repr_under
+data.frame(mulea_ora_results[select_under_repr,], 
+           'rank'=mulea_ora_results_rank[select_under_repr])
 
 
 # Visualization of results.
