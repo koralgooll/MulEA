@@ -31,7 +31,8 @@ compare_methods <- function(input_gmt_filtered,
     input_gmt = input_gmt_filtered, sample_ratio=sample_ratio,
     group_under_over_representation_ratio=group_under_over_representation_ratio,
     number_of_over_representation_groups = no_over_repr_terms,
-    number_of_under_representation_groups = no_under_repr_terms)
+    number_of_under_representation_groups = no_under_repr_terms, 
+    turn_on_log = turn_on_log)
   
   # Perform ORA test.
   input_select <- input_generated$input_select
@@ -94,9 +95,21 @@ compare_methods <- function(input_gmt_filtered,
   
 }
 
-compare_methods(input_gmt_filtered = input_gmt_filtered)
-compare_methods(input_gmt_filtered = input_gmt_filtered)
-compare_methods(input_gmt_filtered = input_gmt_filtered)
-compare_methods(input_gmt_filtered = input_gmt_filtered)
+
+compare_methods(input_gmt_filtered = input_gmt_filtered, turn_on_log = TRUE)
+
+comparison_res <- data.frame(matrix(ncol = 3, nrow = 0))
+colnames(comparison_res) <- c('by_value', 'by_rank_mean', 'by_rank_median')
+
+no_of_iters <- 1000
+for (variable in 1:no_of_iters) {
+  comparison_res[nrow(comparison_res) + 1,] = compare_methods(input_gmt_filtered = input_gmt_filtered)
+}
+
+comparison_res
+
+sum(comparison_res$by_value)/no_of_iters
+sum(comparison_res$by_rank_mean)/no_of_iters
+sum(comparison_res$by_rank_median)/no_of_iters
 
 
