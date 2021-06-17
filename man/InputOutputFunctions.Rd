@@ -59,7 +59,8 @@ generateInputData(
   sample_ratio = 0.5,
   group_under_over_representation_ratio = 0.9,
   number_of_over_representation_groups = 1,
-  number_of_under_representation_groups = 1
+  number_of_under_representation_groups = 1,
+  turn_on_log = FALSE
 )
 }
 \arguments{

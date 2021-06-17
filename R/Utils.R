@@ -113,6 +113,7 @@ readEdbFileAsDataFrame <- function(edbFilePath) {
 
 
 # PUBLIC API
+# TODO : Add quantile parameters as separate! Nothing do is default.
 #' @description
 #' \code{filterOntology}
 #'
@@ -185,7 +186,7 @@ filterOntology <- function(input_gmt, min=NULL, max=NULL) {
 generateInputData <- function(input_gmt, sample_ratio=0.5,
                                 group_under_over_representation_ratio=0.9,
                                 number_of_over_representation_groups=1, 
-                                number_of_under_representation_groups=1) {
+                                number_of_under_representation_groups=1, turn_on_log=FALSE) {
     input_select <- plyr::llply(.data = input_gmt$listOfValues, .fun = function(term) {
         size <- length(term)
         size_of_sample <- floor(size * sample_ratio)
@@ -202,8 +203,6 @@ generateInputData <- function(input_gmt, sample_ratio=0.5,
     
     go_change_repr_over <- go_change_repr[1:number_of_over_representation_groups]
     go_change_repr_under <- go_change_repr[-1:-number_of_over_representation_groups]
-    
-    print('***')
     
     
     over_repr_log <- sapply(as.character(go_change_repr_over), function(x) NULL)
@@ -229,18 +228,20 @@ generateInputData <- function(input_gmt, sample_ratio=0.5,
         under_repr_log[[as.character(term_id)]] <- paste(term_id, ' [', size, '] ', ' -> ', ' [', length(input_select_term), ']', sep = '')
     }
     
-    print("Over representation terms:")
-    for (term_id in names(over_repr_log)) {
-        real_term_in_sample <- intersect(input_gmt$listOfValues[[as.integer(term_id)]], 
-                                         input_select)
-        print(paste(over_repr_log[[term_id]], ' {', length(real_term_in_sample), '}', sep = ''))
-    }
-    
-    print("Under representation terms:")
-    for (term_id in names(under_repr_log)) {
-        real_term_in_sample <- intersect(input_gmt$listOfValues[[as.integer(term_id)]], 
-                                         input_select)
-        print(paste(under_repr_log[[term_id]], ' {', length(real_term_in_sample), '}', sep = ''))
+    if (turn_on_log) {
+        print("Over representation terms (term_id [size of term in GO] -> [size of term solo] {size of term with overlapping}):")
+        for (term_id in names(over_repr_log)) {
+            real_term_in_sample <- intersect(input_gmt$listOfValues[[as.integer(term_id)]], 
+                                             input_select)
+            print(paste(over_repr_log[[term_id]], ' {', length(real_term_in_sample), '}', sep = ''))
+        }
+        
+        print("Under representation terms (term_id [size of term in GO] -> [size of term solo] {size of term with overlapping})::")
+        for (term_id in names(under_repr_log)) {
+            real_term_in_sample <- intersect(input_gmt$listOfValues[[as.integer(term_id)]], 
+                                             input_select)
+            print(paste(under_repr_log[[term_id]], ' {', length(real_term_in_sample), '}', sep = ''))
+        }
     }
 
     to_return <- list()
