@@ -23,6 +23,7 @@ Imports:
     fgsea (>= 1.0.2),
     stats (>= 3.4.1),
     utils (>= 3.4.1),
+    parallel (>= 4.0.2),
     Rcpp
 LinkingTo:
     Rcpp

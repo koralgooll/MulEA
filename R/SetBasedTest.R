@@ -7,6 +7,7 @@
 #' @slot pool A background data to count test.
 #' @slot adjustMethod A type of algorithm used to adjust values. Possible values: "PT" and all from p.adjust {stats} documentation.
 #' @slot numberOfPermutations A number of permutations used in set base enrichment test. Default vlue is 10000.
+#' @slot nthreads Number of processor's threads used in calculations.
 #' @return ORA object. This object represents set based tests in Mulea.
 #' @export "ORA"
 #' @examples
@@ -24,6 +25,7 @@ ORA <- setClass("ORA",
                   pool = "character",
                   adjustMethod = "character",
                   numberOfPermutations = "numeric",
+                  nthreads = "numeric",
                   test = "function"
                 ))
 
@@ -35,6 +37,7 @@ setMethod("initialize", "ORA",
                    adjustMethod = character(),
                    numberOfPermutations = 10000,
                    test = NULL,
+                   nthreads = 4,
                    ...) {
 
             .Object@gmt <- gmt
@@ -42,6 +45,7 @@ setMethod("initialize", "ORA",
             .Object@pool <- pool
             .Object@adjustMethod <- adjustMethod
             .Object@numberOfPermutations <- numberOfPermutations
+            .Object@nthreads <- nthreads
 
             .Object@test <- function(setBaseTestObject) {
               setBasedTestRes <- NULL
@@ -51,7 +55,8 @@ setMethod("initialize", "ORA",
                 muleaSetBaseEnrichmentTest <- SetBasedEnrichmentTest(gmt = setBaseTestObject@gmt,
                                                                      testData = setBaseTestObject@testData,
                                                                      pool = setBaseTestObject@pool,
-                                                                     numberOfPermutations = setBaseTestObject@numberOfPermutations)
+                                                                     numberOfPermutations = setBaseTestObject@numberOfPermutations, 
+                                                                     nthreads = setBaseTestObject@nthreads)
                 
                 muleaSetBaseEnrichmentTest <- runTest(muleaSetBaseEnrichmentTest)
                 
