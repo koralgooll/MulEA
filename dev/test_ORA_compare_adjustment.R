@@ -1,6 +1,7 @@
 
 library(MulEA)
 
+## TODO : Question about base files.
 # Read and filter inputs.
 gmtFilePath <- paste(find.package("MulEA"), 
                      "/tests/inputs/KEGG_example_c_elegans_Leila.gmt", sep = "")
@@ -22,7 +23,7 @@ input_gmt_filtered <- MulEA::readGmtFileAsDataFrame(gmtFilePath = filteredGmtFil
 compare_methods <- function(input_gmt_filtered, 
                             no_over_repr_terms=1, no_under_repr_terms=1,
                             sample_ratio=0.2, group_under_over_representation_ratio=0.5,
-                            seed=NULL, turn_on_log=FALSE) {
+                            seed=NULL, turn_on_log=FALSE, number_of_perm_in_adj=10000) {
   if (!is.null(seed)) {
     set.seed(seed = seed)
   }
@@ -35,14 +36,21 @@ compare_methods <- function(input_gmt_filtered,
     turn_on_log = turn_on_log)
   
   # Perform ORA test.
+  if (turn_on_log) {
+    print(input_generated)
+  }
   input_select <- input_generated$input_select
   
-  number_of_steps <- 1000
+  number_of_steps <- number_of_perm_in_adj
   mulea_ora_model <- MulEA::ORA(
     gmt = input_gmt_filtered, testData = input_select, adjustMethod = "PT",
     numberOfPermutations = number_of_steps)
   mulea_ora_results <- MulEA::runTest(mulea_ora_model)
   
+  if (turn_on_log) {
+    debug_mulea_ora_results <<- mulea_ora_results
+    print(mulea_ora_results)
+  }
   # warnings()
   
   
@@ -96,7 +104,51 @@ compare_methods <- function(input_gmt_filtered,
 }
 
 
+# Find optimal usage.
+
+no_over_repr_terms <- 1:20
+no_under_repr_terms <- 0:10
+sample_ratio <- seq(0, 0.3, by=0.1)
+group_under_over_representation_ratio <- seq(0.1, 0.9, by=0.2)
+value_score <- 0
+rank_mean_score <- 0
+rank_median_score <- 0
+
+comparison_space <- expand.grid(
+  no_over_repr_terms=no_over_repr_terms, no_under_repr_terms=no_under_repr_terms,
+  sample_ratio=sample_ratio, 
+  group_under_over_representation_ratio=group_under_over_representation_ratio,
+  value_score=value_score, rank_mean_score=rank_mean_score, rank_median_score=rank_median_score)
+
+
+# for (row_i in 1:nrow(comparison_space)) {
+for (row_i in 1:20) {
+  comparison_res <- data.frame(matrix(ncol = 3, nrow = 0))
+  colnames(comparison_res) <- c('by_value', 'by_rank_mean', 'by_rank_median')
+  
+  current_comp_space <- comparison_space[row_i,]
+  
+  no_of_iters <- 10
+  for (variable in 1:no_of_iters) {
+    comparison_res[nrow(comparison_res) + 1,] <- compare_methods(
+      input_gmt_filtered = input_gmt_filtered, 
+      no_over_repr_terms=current_comp_space$no_over_repr_terms, 
+      no_under_repr_terms=current_comp_space$no_under_repr_terms,
+      sample_ratio=current_comp_space$sample_ratio, 
+      group_under_over_representation_ratio=current_comp_space$group_under_over_representation_ratio, 
+      turn_on_log = TRUE)
+  }
+  
+  comparison_space[row_i,]$value_score <- sum(comparison_res$by_value)/no_of_iters
+  comparison_space[row_i,]$rank_mean_score <- sum(comparison_res$by_rank_mean)/no_of_iters
+  comparison_space[row_i,]$rank_median_score <- sum(comparison_res$by_rank_median)/no_of_iters
+}
+
+
+
 compare_methods(input_gmt_filtered = input_gmt_filtered, turn_on_log = TRUE)
+
+
 
 comparison_res <- data.frame(matrix(ncol = 3, nrow = 0))
 colnames(comparison_res) <- c('by_value', 'by_rank_mean', 'by_rank_median')
@@ -111,5 +163,47 @@ comparison_res
 sum(comparison_res$by_value)/no_of_iters
 sum(comparison_res$by_rank_mean)/no_of_iters
 sum(comparison_res$by_rank_median)/no_of_iters
+
+
+
+input_generated_serilize <- input_generated
+
+
+
+
+
+input_generated <- MulEA::generateInputData(
+  input_gmt = input_gmt_filtered, sample_ratio=0.1,
+  group_under_over_representation_ratio=0.5,
+  number_of_over_representation_groups = 3,
+  number_of_under_representation_groups = 1, 
+  turn_on_log = FALSE)
+
+# Here is sample input.
+print(input_generated)
+input_select <- input_generated$input_select
+
+# This arg is responsible for number of permutations.
+number_of_steps <- 1000
+mulea_ora_model <- MulEA::ORA(
+  gmt = input_gmt_filtered, testData = input_select, adjustMethod = "PT",
+  numberOfPermutations = number_of_steps)
+mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+
+# Here will be zeros. If not re run the procedure.
+mulea_ora_results
+
+
+
+selectFilePath <- paste(find.package("MulEA"), 
+                        "/tests/outputs/input_select.rds", sep = "")
+saveRDS(object = input_select, file = selectFilePath)
+input_select_from_file <- readRDS(file = selectFilePath)
+
+selectCsvFilePath <- paste(find.package("MulEA"), 
+                           "/tests/outputs/input_select.csv", sep = "")
+write.csv(input_select, file = selectCsvFilePath)
+
+
 
 

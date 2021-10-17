@@ -31,9 +31,16 @@ input_generated <- MulEA::generateInputData(
 # Perform ORA test.
 input_select <- input_generated$input_select
 number_of_steps <- 1000
+
 mulea_ora_model <- MulEA::ORA(
   gmt = input_gmt_filtered, testData = input_select, adjustMethod = "PT",
-  numberOfPermutations = number_of_steps)
+  numberOfPermutations = number_of_steps, nthreads = 16)
+
+mulea_ora_results <- NULL
+mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+
+
+
 mulea_ora_results <- MulEA::runTest(mulea_ora_model)
 
 warnings()

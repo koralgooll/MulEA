@@ -8,13 +8,13 @@ input_select <- input_rank[['V1']]
 input_select_scores <- input_rank[['V2']]
 
 # Setup params
-number_of_steps <- 10
+number_of_steps <- 10000
 
 
 # Perform ORA
 mulea_ora_model <- MulEA::ORA(
   gmt = input_gmt, testData = input_select, adjustMethod = "PT",
-  numberOfPermutations = number_of_steps)
+  numberOfPermutations = number_of_steps, nthreads = 4)
 mulea_ora_results <- MulEA::runTest(mulea_ora_model)
 
 
