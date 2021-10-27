@@ -184,69 +184,62 @@ filterOntology <- function(input_gmt, min=NULL, max=NULL) {
 #'
 #' @return Return data frame with model from specific location.
 generateInputData <- function(input_gmt, sample_ratio=0.5,
-                                group_under_over_representation_ratio=0.9,
+                              #TODO : Separate under_over parameter int two.
+                                group_under_over_representation_ratio=0.1,
                                 number_of_over_representation_groups=1, 
                                 number_of_under_representation_groups=1, turn_on_log=FALSE) {
-    input_select <- plyr::llply(.data = input_gmt$listOfValues, .fun = function(term) {
-        size <- length(term)
-        size_of_sample <- floor(size * sample_ratio)
-        input_select_indicator <- sample(1:size, size_of_sample, replace=FALSE)
-        input_select_term <- term[input_select_indicator]
-    })
     
-    input_select <- unique(unlist(input_select))
-    input_select
+    # Initialize all by noise size. 
+    sample_label <- rep('noise', length(input_gmt$ontologyId))
+    sample_values <- rep(c(''), length(input_gmt$ontologyId))
+    gmt_for_generator <- data.frame(input_gmt, "sample_label"=sample_label, "listOfSampleValues"=sample_values)
     
-    go_size <- length(input_gmt$listOfValues)
+    # Choose terms for over and under representation.
+    go_size <- length(gmt_for_generator$listOfValues)
     size_of_over_under_repr <- number_of_over_representation_groups + number_of_under_representation_groups
     go_change_repr <- sample(1:go_size, size_of_over_under_repr, replace=FALSE)
     
-    go_change_repr_over <- go_change_repr[1:number_of_over_representation_groups]
-    go_change_repr_under <- go_change_repr[-1:-number_of_over_representation_groups]
+    over_under_label <- c(rep('over', number_of_over_representation_groups), rep('under', number_of_under_representation_groups))
+    over_under_label <- sample(over_under_label)
+    terms_to_manipulation <- data.frame('term_id' = go_change_repr, 'over_under_label' = over_under_label)
     
-    
-    over_repr_log <- sapply(as.character(go_change_repr_over), function(x) NULL)
-    for (term_id in go_change_repr_over) {
-        term <- input_gmt$listOfValues[[term_id]]
-        size <- length(term)
-        size_of_sample <- floor(size * group_under_over_representation_ratio)
-        input_select_indicator <- sample(1:size, size_of_sample, replace=FALSE)
-        input_select_term <- term[input_select_indicator]
-        input_select <- c(input_select, input_select_term)
-        over_repr_log[[as.character(term_id)]] <- paste(term_id, ' [', size, '] ', ' -> ', ' [', length(input_select_term), ']', sep = '')
+    for (i in 1:length(terms_to_manipulation$term_id)) {
+        term_row <- terms_to_manipulation[i,]
+        gmt_for_generator[term_row$term_id,]$sample_label <- term_row$over_under_label
     }
     
+    # Permute all rows in gmt_for_generator.
+    permutation_mask <- sample(1:go_size)
+    gmt_for_generator <- gmt_for_generator[permutation_mask,]
     
-    under_repr_log <- sapply(as.character(go_change_repr_under), function(x) NULL)
-    for (term_id in go_change_repr_under) {
-        term <- input_gmt$listOfValues[[term_id]]
-        size <- length(term)
-        size_of_sample <- floor(size * group_under_over_representation_ratio)
-        input_select_indicator <- sample(1:size, size_of_sample, replace=FALSE)
-        input_select_term <- term[input_select_indicator]
-        input_select <- setdiff(input_select, input_select_term)
-        under_repr_log[[as.character(term_id)]] <- paste(term_id, ' [', size, '] ', ' -> ', ' [', length(input_select_term), ']', sep = '')
-    }
     
-    if (turn_on_log) {
-        print("Over representation terms (term_id [size of term in GO] -> [size of term solo] {size of term with overlapping}):")
-        for (term_id in names(over_repr_log)) {
-            real_term_in_sample <- intersect(input_gmt$listOfValues[[as.integer(term_id)]], 
-                                             input_select)
-            print(paste(over_repr_log[[term_id]], ' {', length(real_term_in_sample), '}', sep = ''))
+    for (i in 1:length(gmt_for_generator$ontologyId)) {
+        term_row <- gmt_for_generator[i,]
+        term_size <- length(term_row$listOfValues[[1]])
+        if (term_row$sample_label == "over") {
+            over_repr_ratio <- sample_ratio + group_under_over_representation_ratio
+            # Think to randomly floor or ceiling.
+            size_of_sample <- floor(term_size * over_repr_ratio)
+        }
+        if (term_row$sample_label == "under") {
+            under_repr_ratio <- sample_ratio - group_under_over_representation_ratio
+            size_of_sample <- floor(term_size * under_repr_ratio)
+        }
+        if (term_row$sample_label == "noise") {
+            size_of_sample <- floor(term_size * sample_ratio)
         }
         
-        print("Under representation terms (term_id [size of term in GO] -> [size of term solo] {size of term with overlapping})::")
-        for (term_id in names(under_repr_log)) {
-            real_term_in_sample <- intersect(input_gmt$listOfValues[[as.integer(term_id)]], 
-                                             input_select)
-            print(paste(under_repr_log[[term_id]], ' {', length(real_term_in_sample), '}', sep = ''))
-        }
+        input_select_indicator <- sample(1:term_size, size_of_sample, replace=FALSE)
+        input_select_term <- term_row$listOfValues[[1]][input_select_indicator]
+        
+        gmt_for_generator[i,]$listOfSampleValues <- I(list(input_select_term))
     }
-
+    
+    input_select <- unique(unlist(gmt_for_generator$listOfSampleValues))
+    
     to_return <- list()
     to_return$input_select <- input_select
-    to_return$go_change_repr_over <- input_gmt[go_change_repr_over,]$ontologyId
-    to_return$go_change_repr_under <- input_gmt[go_change_repr_under,]$ontologyId
+    to_return$gmt_for_generator <- gmt_for_generator
+    
     return(to_return)
 }
