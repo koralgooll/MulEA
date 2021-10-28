@@ -184,10 +184,9 @@ filterOntology <- function(input_gmt, min=NULL, max=NULL) {
 #'
 #' @return Return data frame with model from specific location.
 generateInputData <- function(input_gmt, sample_ratio=0.5,
-                              #TODO : Separate under_over parameter int two.
-                                group_under_over_representation_ratio=0.1,
-                                number_of_over_representation_groups=1, 
-                                number_of_under_representation_groups=1, turn_on_log=FALSE) {
+                              over_repr_ratio=0.1, under_repr_ratio=0.1,
+                              number_of_over_representation_groups=1, 
+                              number_of_under_representation_groups=1, turn_on_log=FALSE) {
     
     # Initialize all by noise size. 
     sample_label <- rep('noise', length(input_gmt$ontologyId))
@@ -199,9 +198,11 @@ generateInputData <- function(input_gmt, sample_ratio=0.5,
     size_of_over_under_repr <- number_of_over_representation_groups + number_of_under_representation_groups
     go_change_repr <- sample(1:go_size, size_of_over_under_repr, replace=FALSE)
     
-    over_under_label <- c(rep('over', number_of_over_representation_groups), rep('under', number_of_under_representation_groups))
+    over_under_label <- c(rep('over', number_of_over_representation_groups), 
+                          rep('under', number_of_under_representation_groups))
     over_under_label <- sample(over_under_label)
-    terms_to_manipulation <- data.frame('term_id' = go_change_repr, 'over_under_label' = over_under_label)
+    terms_to_manipulation <- data.frame('term_id' = go_change_repr, 
+                                        'over_under_label' = over_under_label)
     
     for (i in 1:length(terms_to_manipulation$term_id)) {
         term_row <- terms_to_manipulation[i,]
@@ -217,13 +218,13 @@ generateInputData <- function(input_gmt, sample_ratio=0.5,
         term_row <- gmt_for_generator[i,]
         term_size <- length(term_row$listOfValues[[1]])
         if (term_row$sample_label == "over") {
-            over_repr_ratio <- sample_ratio + group_under_over_representation_ratio
+            total_over_repr_ratio <- sample_ratio + over_repr_ratio
             # Think to randomly floor or ceiling.
-            size_of_sample <- floor(term_size * over_repr_ratio)
+            size_of_sample <- floor(term_size * total_over_repr_ratio)
         }
         if (term_row$sample_label == "under") {
-            under_repr_ratio <- sample_ratio - group_under_over_representation_ratio
-            size_of_sample <- floor(term_size * under_repr_ratio)
+            total_under_repr_ratio <- sample_ratio - under_repr_ratio
+            size_of_sample <- floor(term_size * total_under_repr_ratio)
         }
         if (term_row$sample_label == "noise") {
             size_of_sample <- floor(term_size * sample_ratio)
