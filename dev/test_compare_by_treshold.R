@@ -37,7 +37,11 @@ construct_comparison_space <- function(nubmer_of_over_repr_terms_range=5:10,
 comparison_space <- construct_comparison_space()
 
 # Call method on search space.
-compare_by_treshold <- function(comparison_space, input_gmt_filtered) {
+compare_by_treshold <- function(comparison_space, input_gmt_filtered, treshold=0.05) {
+  # DEB : i <- 2
+  comparison_res <- data.frame(matrix(ncol = 6, nrow = 0))
+  colnames(comparison_res) <- c('pt_PCER', 'bh_PCER', 'pv_PCER', 
+                                'pt_FDR', 'bh_FDR', 'pv_FDR')
   for (i in 1:length(comparison_space$no_over_repr_terms)) {
     comparison_case <- comparison_space[i,]
     print(i)
@@ -61,13 +65,75 @@ compare_by_treshold <- function(comparison_space, input_gmt_filtered) {
     
     mulea_ora_results <- NULL
     mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+    
+    # Compare results.
+    over_repr_in <- input_generated$gmt_for_generator[
+      input_generated$gmt_for_generator$sample_label == "over",]$ontologyId
+    under_repr_in <- input_generated$gmt_for_generator[
+      input_generated$gmt_for_generator$sample_label == "under",]$ontologyId
+    
+    pt_res <- mulea_ora_results[
+      mulea_ora_results$adjustedPValueEmpirical < treshold,]$ontologyId
+    bh_res <- mulea_ora_results[
+      mulea_ora_results$adjustedPValue < treshold,]$ontologyId
+    pv_res <- mulea_ora_results[
+      mulea_ora_results$pValue < treshold,]$ontologyId
+    
+    
+    # Per comparison error rate (PCER): the expected value of the number
+    # of Type I errors over the number of hypotheses,
+    # PCER = E(V)/m
+    m <- nrow(mulea_ora_results)
+    
+    pt_false_positive <- pt_res %in% over_repr_in
+    pt_false_positive_no <- length(pt_false_positive) - sum(pt_false_positive)
+    pt_PCER <- pt_false_positive_no/m
+    
+    bh_false_positive <- bh_res %in% over_repr_in
+    bh_false_positive_no <- length(bh_false_positive) - sum(bh_false_positive)
+    bh_PCER <- bh_false_positive_no/m
+    
+    pv_false_positive <- pv_res %in% over_repr_in
+    pv_false_positive_no <- length(pv_false_positive) - sum(pv_false_positive)
+    pv_PCER <- pv_false_positive_no/m
+    
+    # False discovery rate (FDR) is the expected proportion of Type I errors
+    # among the rejected hypotheses
+    # FDR = E(V/R | R>0)P(R>0)
+    pt_false_positive <- pt_res %in% over_repr_in
+    pt_false_positive_no <- length(pt_false_positive) - sum(pt_false_positive)
+    pt_FDR <- pt_false_positive_no/length(pt_false_positive)
+    
+    bh_false_positive <- bh_res %in% over_repr_in
+    bh_false_positive_no <- length(bh_false_positive) - sum(bh_false_positive)
+    bh_FDR <- bh_false_positive_no/length(bh_false_positive)
+    
+    pv_false_positive <- pv_res %in% over_repr_in
+    pv_false_positive_no <- length(pv_false_positive) - sum(pv_false_positive)
+    pv_FDR <- pv_false_positive_no/length(pv_false_positive)
+    
+    
+    # over_repr_pt_res <- over_repr_in %in% pt_res
+    # over_repr_bh_res <- over_repr_in %in% bh_res
+    # over_repr_pv_res <- over_repr_in %in% pv_res
+    # pt_res_score <- sum(over_repr_pt_res) / length(over_repr_in)
+    # bh_res_score <- sum(over_repr_bh_res) / length(over_repr_in)
+    # pv_res_score <- sum(over_repr_pv_res) / length(over_repr_in)
+    # pt_res_score_ratio <- pt_res_score / pt_res
+    # bh_res_score_ratio <- bh_res_score / bh_res
+    # pv_res_score_ratio <- pv_res_score_ratio / pv_res
+    comparison_res[i, ] = data.frame(pt_PCER, bh_PCER, pv_PCER, 
+                                     pt_FDR, bh_FDR, pv_FDR)
+    
   }
+  return(comparison_res)
 }
 
-compare_by_treshold(comparison_space = comparison_space, 
-                    input_gmt_filtered = input_gmt_filtered)
+nrow(comparison_space)
+compare_res <- compare_by_treshold(comparison_space = comparison_space[506:540,], 
+                                   input_gmt_filtered = input_gmt_filtered)
 
-
+boxplot(compare_res)
 
 # DELETE - for debug only
 input_gmt=input_gmt_filtered
