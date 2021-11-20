@@ -167,13 +167,11 @@ filterOntology <- function(input_gmt, min=NULL, max=NULL) {
 
 # PUBLIC API
 #' @description
-#' \code{generateInputData}
+#' \code{decorateGmtByUnderOvenAndNoise}
 #'
-#' \code{generateInputData} generate artificial GO with specific terms under or over represented.
+#' \code{decorateGmtByUnderOvenAndNoise} decorates GO with labels (over, under, noise) per term.
 #'
 #' @param input_gmt input dataframe, read from gmt file.
-#' @param sample_ratio  
-#' @param group_under_over_representation_ratio
 #' @param number_of_over_representation_groups
 #' @param number_of_under_representation_groups
 #'
@@ -183,17 +181,16 @@ filterOntology <- function(input_gmt, min=NULL, max=NULL) {
 #' @export
 #'
 #' @return Return data frame with model from specific location.
-generateInputData <- function(input_gmt, sample_ratio=0.5,
-                              over_repr_ratio=0.1, under_repr_ratio=0.1,
-                              number_of_over_representation_groups=1, 
-                              number_of_under_representation_groups=1, turn_on_log=FALSE) {
+decorateGmtByUnderOvenAndNoise <- function(
+    input_gmt, 
+    number_of_over_representation_groups=1, 
+    number_of_under_representation_groups=0) {
     
-    # Initialize all by noise size. 
+    # Initialize all by noise labels.
     sample_label <- rep('noise', length(input_gmt$ontologyId))
-    sample_values <- rep(c(''), length(input_gmt$ontologyId))
-    gmt_for_generator <- data.frame(input_gmt, "sample_label"=sample_label, "listOfSampleValues"=sample_values)
-    
-    # Choose terms for over and under representation.
+    gmt_for_generator <- data.frame(input_gmt, "sample_label"=sample_label)
+
+    # Choose and label terms for over and under representation.
     go_size <- length(gmt_for_generator$listOfValues)
     size_of_over_under_repr <- number_of_over_representation_groups + number_of_under_representation_groups
     go_change_repr <- sample(1:go_size, size_of_over_under_repr, replace=FALSE)
@@ -209,38 +206,84 @@ generateInputData <- function(input_gmt, sample_ratio=0.5,
         gmt_for_generator[term_row$term_id,]$sample_label <- term_row$over_under_label
     }
     
-    # Permute all rows in gmt_for_generator.
-    permutation_mask <- sample(1:go_size)
-    gmt_for_generator <- gmt_for_generator[permutation_mask,]
-    
-    
-    for (i in 1:length(gmt_for_generator$ontologyId)) {
-        term_row <- gmt_for_generator[i,]
-        term_size <- length(term_row$listOfValues[[1]])
-        if (term_row$sample_label == "over") {
-            total_over_repr_ratio <- sample_ratio + over_repr_ratio
-            # Think to randomly floor or ceiling.
-            size_of_sample <- floor(term_size * total_over_repr_ratio)
-        }
-        if (term_row$sample_label == "under") {
-            total_under_repr_ratio <- sample_ratio - under_repr_ratio
-            size_of_sample <- floor(term_size * total_under_repr_ratio)
-        }
-        if (term_row$sample_label == "noise") {
-            size_of_sample <- floor(term_size * sample_ratio)
-        }
-        
-        input_select_indicator <- sample(1:term_size, size_of_sample, replace=FALSE)
-        input_select_term <- term_row$listOfValues[[1]][input_select_indicator]
-        
-        gmt_for_generator[i,]$listOfSampleValues <- I(list(input_select_term))
+    return(gmt_for_generator)
+}
+
+
+# PUBLIC API
+#' @description
+#' \code{convertListToGmtDataFrame}
+#'
+#' \code{convertListToGmtDataFrame} conver ontology representation from list to gmt dataframe.
+#'
+#' @param ontologyReprAsList input list with elements names as ontologyId and genes in each element.
+#'
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return data frame with model.
+convertListToGmtDataFrame <- function(ontologyReprAsList) {
+    listAsGmtDataFrame <- plyr::ldply(.data = ontologyReprAsList, .id = c('ontologyId'), .fun = function(element) {
+        print(element)
+        ontology_name <- stringi::stri_rand_strings(length = 5, n=1)
+        data.frame('ontologyName' = ontology_name, 'listOfValues' = I(list(element)), stringsAsFactors = FALSE)
+    })
+    return(listAsGmtDataFrame)
+}
+
+
+# PUBLIC API
+#' @description
+#' \code{generateInputSamples}
+#'
+#' \code{generateInputSamples} generate artificial GO with specific terms under or over represented.
+#'
+#' @param input_gmt input dataframe, read from gmt file.
+#' @param noise_ratio  
+#' @param group_under_over_representation_ratio
+#' @param number_of_over_representation_groups
+#' @param number_of_under_representation_groups
+#'
+#'
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return data frame with model from specific location.
+generateInputSamples <- function(input_gmt_decorated, noise_ratio=0.2,
+                              over_repr_ratio=0.5, under_repr_ratio=0.05,
+                              rand_from_unique=TRUE, number_of_samples=1) {
+    all_genes_in_ontology <- NULL
+    all_genes_in_enrichment <- NULL
+    if (rand_from_unique) {
+        all_genes_in_ontology <- unique(unlist(input_gmt_decorated$listOfValues))
+        all_genes_in_enrichment <- unique(unlist(
+            input_gmt_decorated[input_gmt_decorated$sample_label == 'over',]$listOfValues))
+    } else {
+        all_genes_in_ontology <- unlist(input_gmt_decorated$listOfValues)
+        all_genes_in_enrichment <- unlist(
+            input_gmt_decorated[input_gmt_decorated$sample_label == 'over',]$listOfValues)
     }
     
-    input_select <- unique(unlist(gmt_for_generator$listOfSampleValues))
+    size_of_ontology <- length(all_genes_in_ontology)
+    size_of_noise <- ceiling(size_of_ontology * noise_ratio)
     
-    to_return <- list()
-    to_return$input_select <- input_select
-    to_return$gmt_for_generator <- gmt_for_generator
+    size_of_enrichment <- ceiling(length(all_genes_in_enrichment) * over_repr_ratio)
     
-    return(to_return)
+    samples <- vector("list", number_of_samples)
+    for (i in 1:length(samples)) {
+        sample_noise <- all_genes_in_ontology[
+            sample(1:length(all_genes_in_ontology), size_of_noise, replace=FALSE)]
+        sample_enrichment <- all_genes_in_enrichment[
+            sample(1:length(all_genes_in_enrichment), size_of_enrichment, replace=FALSE)]
+        samples[[i]] <- unique(c(sample_noise, sample_enrichment))
+    }
+    
+    return(samples)
 }
+
+
+
+
+
