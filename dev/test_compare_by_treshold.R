@@ -21,7 +21,7 @@ under_repr_ratio = 0.05
 number_of_over_representation_groups = 5
 number_of_under_representation_groups = 0
 number_of_samples = 1
-number_of_tests = 1000
+number_of_tests = 100
 number_of_steps = 5000
 
 

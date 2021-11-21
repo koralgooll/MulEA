@@ -387,3 +387,70 @@ getMultipleTestsSummary <- function(
     return(sumary_res)
 }
 
+
+# PUBLIC API
+#' @description
+#' \code{simulateMultipleTests}
+#'
+#' \code{simulateMultipleTests} generate artificial GO with specific terms under or over represented.
+#'
+#' @param input_gmt_filtered gmt data frame with ontology for tests.
+#' @param number_of_tests number of tests to perform.  
+#' @param noise_ratio ratio of noise in data from [0,1] interval.
+#' @param number_of_over_representation_groups number of terms to over represent. 
+#' @param number_of_under_representation_groups number of terms to under represent.
+#'
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return data frame with FDR. TPRs per test.
+simulateMultipleTests <- function(
+    input_gmt_filtered, number_of_tests = 10, 
+    noise_ratio = 0.35, over_repr_ratio  = 0.5,
+    number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered)*0.1), 
+    number_of_under_representation_groups = 0, 
+    number_of_steps = 5000, nthreads = 16) {
+    
+    print("Mulea calculation time:")
+    tictoc::tic()
+    number_of_samples <- 1
+    tests_res <- vector("list", number_of_tests)
+    for (i in 1:number_of_tests) {
+        print(i)
+        
+        input_gmt_decorated <- MulEA:::decorateGmtByUnderOvenAndNoise(
+            input_gmt = input_gmt_filtered,
+            number_of_over_representation_groups = number_of_over_representation_groups,
+            number_of_under_representation_groups = number_of_under_representation_groups)
+        
+        samples <- MulEA:::generateInputSamples(
+            input_gmt_decorated, 
+            noise_ratio=noise_ratio, 
+            over_repr_ratio=over_repr_ratio, 
+            number_of_samples=number_of_samples)
+        
+        if (length(samples) != 1) {
+            warning("sample is not size 1")
+        }
+        
+        input_select <- unlist(samples)
+        
+        mulea_ora_model <- MulEA::ORA(
+            gmt = input_gmt_filtered, testData = input_select, adjustMethod = "PT",
+            numberOfPermutations = number_of_steps, nthreads = nthreads)
+        
+        mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+        tests_res[[i]]$mulea_res <- mulea_ora_results
+        tests_res[[i]]$test_data <- input_gmt_decorated
+        tests_res[[i]]$metadate <- list(
+            'noise_ratio' = noise_ratio,
+            'number_of_tests'= number_of_tests,
+            'over_repr_ratio' = over_repr_ratio,
+            'number_of_over_representation_groups' = number_of_over_representation_groups
+        )
+    }
+    tictoc::toc()
+    return(tests_res)
+}
+
