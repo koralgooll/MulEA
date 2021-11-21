@@ -17,14 +17,15 @@ License: GPL-3 + file LICENSE
 LazyData: TRUE
 Imports:
     DBI (>= 0.7.0),
-    RSQLite (>= 2.0.0),
-    plyr (>= 1.8.4),
-    methods (>= 3.3.2),
     fgsea (>= 1.0.2),
-    stats (>= 3.4.1),
-    utils (>= 3.4.1),
+    ggplot2 (>= 3.3.3),
+    methods (>= 3.3.2),
     parallel (>= 4.0.2),
-    Rcpp
+    plyr (>= 1.8.4),
+    Rcpp,
+    RSQLite (>= 2.0.0),
+    stats (>= 3.4.1),
+    utils (>= 3.4.1)
 LinkingTo:
     Rcpp
 Depends:
@@ -35,7 +36,9 @@ Depends:
 Suggests:
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    tidyverse,
+    tictoc
 VignetteBuilder: knitr
 URL: https://github.com/koralgooll/MulEA
 BugReports: https://github.com/koralgooll/MulEA/issues

@@ -283,7 +283,107 @@ generateInputSamples <- function(input_gmt_decorated, noise_ratio=0.2,
     return(samples)
 }
 
+# IMPORTANT : URL to graph gallery.
+# https://www.r-graph-gallery.com/index.html
 
-
-
+# PUBLIC API
+#' @description
+#' \code{getMultipleTestsSummary}
+#'
+#' \code{getMultipleTestsSummary} generate artificial GO with specific terms under or over represented.
+#'
+#' @param tests_res list of multiple tests results.
+#' @param comparison_col_name column name which indicated data to compare on.  
+#' @param labels label datatable by additional columns with values.
+#' @param cut_off threshold for value selected by comparison_col_name
+#'
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return data frame with FDR. TPRs per test.
+getMultipleTestsSummary <- function(
+    tests_res, 
+    comparison_col_name,
+    labels=list(),
+    cut_off = 0.05) {
+    
+    # Summarize results.
+    print("Mulea sumary time:")
+    tictoc::tic()
+    
+    sumary_res <- data.frame(matrix(ncol = 9, nrow = 0))
+    colnames(sumary_res) <- c('test_no', 
+                              'TP', 'TP_size', 
+                              'FP', 'FP_size',
+                              'FN', 'FN_size',
+                              'TN', 'TN_size'
+    )
+    number_of_tests <- length(mult_tests_01)
+    for (i in 1:number_of_tests) {
+        # Actual condition
+        # Total population = P + N
+        total_population <- tests_res[[i]]$test_data$ontologyId
+        total_population_size <- length(total_population)
+        # Positive (P)
+        P <- tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label == 'over',]$ontologyId
+        P_size <- length(P)
+        # Negative (N)
+        N <- setdiff(total_population, P)
+        N_size <- length(N)
+        if (P_size + N_size != total_population_size) {
+            warning("Not OK size of Actual in contingency table")
+        }
+        
+        # Predicted condition
+        # Predicted Positive (PP)
+        PP <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] <= cut_off, ]$ontologyId
+        PP_size <- length(PP)
+        # Predicted Negative (PN)
+        PN <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] > cut_off, ]$ontologyId
+        PN_size <- length(PN)
+        if (PP_size + PN_size != total_population_size) {
+            warning("Not OK size of Predicted in contingency table")
+        }
+        
+        # True positive (TP) : hit
+        TP <- intersect(P, PP)
+        TP_size <- length(TP)
+        # False positive (FP) : type I error, false alarm, overestimation
+        FP <- setdiff(PP, P)
+        FP_size <- length(FP)
+        # False negative (FN) : type II error, miss, underestimation
+        FN <- setdiff(P, PP)
+        FN_size <- length(FN)
+        # True negative (TN) : correct rejection
+        TN <- setdiff(total_population, union(P, PP))
+        TN_size <- length(TN)
+        
+        if (TP_size + FP_size + FN_size + TN_size != total_population_size) {
+            warning("Not OK size of total  contingency table")
+        }
+        
+        sumary_res[i, ] <- data.frame(
+            'test_no' = i, 
+            'TP' = I(list(TP)), 'TP_size' = TP_size, 
+            'FP' = I(list(FP)), 'FP_size' = FP_size,
+            'FN' = I(list(FN)), 'FN_size' = FN_size,
+            'TN' = I(list(TN)), 'TN_size' = TN_size)
+    }
+    
+    sumary_res <- tibble(sumary_res) %>% 
+        mutate(FPR=FP_size/(FP_size+TN_size)) %>% 
+        mutate(TPR=TP_size/(TP_size+FN_size))
+    
+    for (label_id in seq_along(labels)) {
+        # IMPORTANT : Labels are as charecters in datatable
+        label_name <- as.character(names(labels)[[label_id]])
+        label_value <- as.character(labels[[label_id]])
+        sumary_res <- sumary_res %>% mutate(!!label_name:=label_value)
+    }
+    
+    tictoc::toc()
+    
+    return(sumary_res)
+}
 

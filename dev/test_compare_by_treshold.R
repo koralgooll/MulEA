@@ -15,7 +15,7 @@ input_gmt_filtered <- MulEA::readGmtFileAsDataFrame(gmtFilePath = filteredGmtFil
 set.seed(seed = 1234)
 
 # DEBUG : Global input data.
-noise_ratio = 0.2
+noise_ratio = 0.5
 over_repr_ratio = 0.5
 under_repr_ratio = 0.05
 number_of_over_representation_groups = 5
@@ -58,72 +58,6 @@ for (i in 1:number_of_tests) {
 }
 toc()
 
-
-# Summarize results.
-print("Mulea sumary time:")
-tic()
-cut_off <- 0.05
-comparison_col_name <- 'pValue'
-sumary_res <- data.frame(matrix(ncol = 9, nrow = 0))
-colnames(sumary_res) <- c('test_no', 
-                          'TP', 'TP_size', 
-                          'FP', 'FP_size',
-                          'FN', 'FN_size',
-                          'TN', 'TN_size'
-                          )
-for (i in 1:number_of_tests) {
-  # Actual condition
-  # Total population = P + N
-  total_population <- tests_res[[i]]$test_data$ontologyId
-  total_population_size <- length(total_population)
-  # Positive (P)
-  P <- tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label == 'over',]$ontologyId
-  P_size <- length(P)
-  # Negative (N)
-  N <- setdiff(total_population, P)
-  N_size <- length(N)
-  if (P_size + N_size != total_population_size) {
-    warning("Not OK size of Actual in contingency table")
-  }
-    
-  # Predicted condition
-  # Predicted Positive (PP)
-  PP <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] <= cut_off, ]$ontologyId
-  PP_size <- length(PP)
-  # Predicted Negative (PN)
-  PN <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] > cut_off, ]$ontologyId
-  PN_size <- length(PN)
-  if (PP_size + PN_size != total_population_size) {
-    warning("Not OK size of Predicted in contingency table")
-  }
-  
-  # True positive (TP) : hit
-  TP <- intersect(P, PP)
-  TP_size <- length(TP)
-  # False positive (FP) : type I error, false alarm, overestimation
-  FP <- setdiff(PP, P)
-  FP_size <- length(FP)
-  # False negative (FN) : type II error, miss, underestimation
-  FN <- setdiff(P, PP)
-  FN_size <- length(FN)
-  # True negative (TN) : correct rejection
-  TN <- setdiff(total_population, union(P, PP))
-  TN_size <- length(TN)
-  
-  if (TP_size + FP_size + FN_size + TN_size != total_population_size) {
-    warning("Not OK size of total  contingency table")
-  }
-  
-  sumary_res[i, ] <- data.frame(
-    'test_no' = i, 
-    'TP' = I(list(TP)), 'TP_size' = TP_size, 
-    'FP' = I(list(FP)), 'FP_size' = FP_size,
-    'FN' = I(list(FN)), 'FN_size' = FN_size,
-    'TN' = I(list(TN)), 'TN_size' = TN_size)
-}
-toc()
-
-
 library(tidyverse)
 # False positive rate (FPR), probability of false alarm, fall-out
 # True positive rate (TPR), recall, sensitivity (SEN), probability of detection, hit rate, power
@@ -131,8 +65,8 @@ roc <- tibble(sumary_res) %>%
   mutate(FPR=FP_size/(FP_size+TN_size)) %>% 
   mutate(TPR=TP_size/(TP_size+FN_size))
 
-write_rds(tests_res, "tests_res-5-05-03-1000.rds")
-read_test<-read_rds("tests_res-5-05-02-1000.rds")
+# write_rds(tests_res, "tests_res-5-05-05-1000.rds")
+# read_test<-read_rds("tests_res-5-05-03-1000.rds")
 
 library(ggplot2)
 ggplot(roc, aes(x=FPR, y=TPR)) + 
@@ -178,6 +112,8 @@ ggplot(roc, aes(FPR,TPR)) +
   geom_point() +
   geom_smooth(method='lm', formula= y~x) +
   coord_cartesian(xlim=c(0,1), ylim=c(0,1))
+
+
 
 
 # Construct search space.
