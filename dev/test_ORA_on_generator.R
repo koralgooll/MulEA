@@ -23,14 +23,14 @@ no_under_repr_terms=2
 set.seed(seed = 1234)
 input_generated <- MulEA::generateInputData(
   input_gmt = input_gmt_filtered, sample_ratio=0.2,
-  group_under_over_representation_ratio=0.8,
+  over_repr_ratio = 0.1, under_repr_ratio = 0.1,
   number_of_over_representation_groups = no_over_repr_terms,
   number_of_under_representation_groups = no_under_repr_terms)
 
 
 # Perform ORA test.
 input_select <- input_generated$input_select
-number_of_steps <- 1000
+number_of_steps <- 10000
 
 mulea_ora_model <- MulEA::ORA(
   gmt = input_gmt_filtered, testData = input_select, adjustMethod = "PT",
@@ -39,13 +39,10 @@ mulea_ora_model <- MulEA::ORA(
 mulea_ora_results <- NULL
 mulea_ora_results <- MulEA::runTest(mulea_ora_model)
 
-
-
-mulea_ora_results <- MulEA::runTest(mulea_ora_model)
-
 warnings()
 
 # Summary of results
+gmt_for_generator <- input_generated$gmt_for_generator
 mulea_ora_results_rank <- data.table::frank(mulea_ora_results, cols='adjustedPValueEmpirical')
 names(mulea_ora_results_rank) <- mulea_ora_results$ontologyId 
 

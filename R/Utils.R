@@ -312,14 +312,18 @@ getMultipleTestsSummary <- function(
     print("Mulea sumary time:")
     tictoc::tic()
     
-    sumary_res <- data.frame(matrix(ncol = 9, nrow = 0))
+    metadata_len <- length(tests_res[[1]]$metadata)
+    
+    
+    sumary_res <- data.frame(matrix(ncol = 9 + metadata_len, nrow = 0))
     colnames(sumary_res) <- c('test_no', 
                               'TP', 'TP_size', 
                               'FP', 'FP_size',
                               'FN', 'FN_size',
-                              'TN', 'TN_size'
+                              'TN', 'TN_size',
+                              names(tests_res[[1]]$metadata)
     )
-    number_of_tests <- length(mult_tests_01)
+    number_of_tests <- length(tests_res)
     for (i in 1:number_of_tests) {
         # Actual condition
         # Total population = P + N
@@ -362,13 +366,26 @@ getMultipleTestsSummary <- function(
         if (TP_size + FP_size + FN_size + TN_size != total_population_size) {
             warning("Not OK size of total  contingency table")
         }
-        
-        sumary_res[i, ] <- data.frame(
+    
+        sumary_res_tmp <- data.frame(
             'test_no' = i, 
             'TP' = I(list(TP)), 'TP_size' = TP_size, 
             'FP' = I(list(FP)), 'FP_size' = FP_size,
             'FN' = I(list(FN)), 'FN_size' = FN_size,
             'TN' = I(list(TN)), 'TN_size' = TN_size)
+        for (metadata_entry in names(tests_res[[i]]$metadata)) {
+            if ('input_select' == metadata_entry) {
+                sumary_res_tmp <- cbind(
+                    sumary_res_tmp, 
+                    'input_select'=I(tests_res[[i]]$metadata[metadata_entry]))
+            } else {
+                sumary_res_tmp <- cbind(
+                    sumary_res_tmp, 
+                    metadata_entry=as.character(tests_res[[i]]$metadata[metadata_entry]))
+            }
+        }
+        
+        sumary_res[i, ] <- sumary_res_tmp
     }
     
     sumary_res <- tibble(sumary_res) %>% 
@@ -385,6 +402,43 @@ getMultipleTestsSummary <- function(
     tictoc::toc()
     
     return(sumary_res)
+}
+
+# PUBLIC API
+#' @description
+#' \code{getMultipleTestsSummaryAcrossCutOff}
+#'
+#' \code{getMultipleTestsSummaryAcrossCutOff} doing summary across cutoff range.
+#'
+#' @param tests_res list of multiple tests results.
+#' @param cut_off_range threshold for value selected by comparison_col_name
+#'
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return data frame with FDR. TPRs per test.
+getMultipleTestsSummaryAcrossCutOff <- function(
+    tests_res,
+    cut_off_range = seq(0, 1, 0.1)) {
+    tests_res_sum <- NULL
+    for (cut_off in cut_off_range) {
+        tests_res_sum_p <- MulEA:::getMultipleTestsSummary(
+            tests_res = tests_res, comparison_col_name = 'pValue', 
+            labels = list('method'='p', 'cut_off'=cut_off), cut_off = cut_off)
+        
+        tests_res_sum_bh <- MulEA:::getMultipleTestsSummary(
+            tests_res = tests_res, comparison_col_name = 'adjustedPValue', 
+            labels = list('method'='bh', 'cut_off'=cut_off), cut_off = cut_off)
+        
+        tests_res_sum_pt <- MulEA:::getMultipleTestsSummary(
+            tests_res = tests_res, comparison_col_name = 'adjustedPValueEmpirical', 
+            labels = list('method'='pt', 'cut_off'=cut_off), cut_off = cut_off)
+        
+        tests_res_sum <- rbind(tests_res_sum, tests_res_sum_p, 
+                               tests_res_sum_pt, tests_res_sum_bh)
+    }
+    return(tests_res_sum)
 }
 
 
@@ -443,14 +497,59 @@ simulateMultipleTests <- function(
         mulea_ora_results <- MulEA::runTest(mulea_ora_model)
         tests_res[[i]]$mulea_res <- mulea_ora_results
         tests_res[[i]]$test_data <- input_gmt_decorated
-        tests_res[[i]]$metadate <- list(
+        tests_res[[i]]$metadata <- list(
             'noise_ratio' = noise_ratio,
             'number_of_tests'= number_of_tests,
             'over_repr_ratio' = over_repr_ratio,
-            'number_of_over_representation_groups' = number_of_over_representation_groups
+            'number_of_over_representation_groups' = number_of_over_representation_groups,
+            'input_select' = input_select
         )
     }
     tictoc::toc()
     return(tests_res)
 }
 
+
+# PUBLIC API
+#' @description
+#' \code{simulateMultipleTestsWithRatioParam}
+#'
+#' \code{simulateMultipleTestsWithRatioParam} generate artificial GO with specific terms under or over represented.
+#'
+#' @param input_gmt_filtered gmt data frame with ontology for tests.
+#' @param number_of_tests number of tests to perform.  
+#' @param noise_ratio_range range of ratios of noise in data from [0,1] interval.
+#' @param number_of_over_representation_groups number of terms to over represent.
+#' @param number_of_steps
+#'
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return data frame with FDR. TPRs per test.
+simulateMultipleTestsWithRatioParam <- function(
+    input_gmt_filtered,
+    noise_ratio_range=seq(0.1, 0.5, 0.1), 
+    number_of_tests = 100, 
+    over_repr_ratio = 0.5, 
+    number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered)*0.05), 
+    number_of_steps = 5000, nthreads = 16) {
+    tictoc::tic()
+    sim_mult_tests <- list()
+    for (noise_ratio in noise_ratio_range) {
+        print("noise_ratio")
+        print(noise_ratio)
+        sim_mult_tests <- c(
+            sim_mult_tests, 
+            MulEA:::simulateMultipleTests(
+                input_gmt_filtered = input_gmt_filtered, number_of_tests = number_of_tests, 
+                noise_ratio = noise_ratio, over_repr_ratio = over_repr_ratio,
+                number_of_over_representation_groups = number_of_over_representation_groups, 
+                number_of_under_representation_groups = 0, 
+                number_of_steps = number_of_steps, nthreads = nthreads)
+        )
+    }
+    print('MulEA : ratio search calculation time:')
+    tictoc::toc()
+    return(sim_mult_tests)
+}

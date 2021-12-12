@@ -44,7 +44,7 @@ compare_methods <- function(input_gmt_filtered,
   number_of_steps <- number_of_perm_in_adj
   mulea_ora_model <- MulEA::ORA(
     gmt = input_gmt_filtered, testData = input_select, adjustMethod = "PT",
-    numberOfPermutations = number_of_steps)
+    numberOfPermutations = number_of_steps, nthreads = 16)
   mulea_ora_results <- MulEA::runTest(mulea_ora_model)
   
   if (turn_on_log) {
@@ -106,9 +106,9 @@ compare_methods <- function(input_gmt_filtered,
 
 # Find optimal usage.
 
-no_over_repr_terms <- 1:20
+no_over_repr_terms <- 0:20
 no_under_repr_terms <- 0:10
-sample_ratio <- seq(0, 0.3, by=0.1)
+sample_ratio <- seq(0.1, 0.3, by=0.1)
 group_under_over_representation_ratio <- seq(0.1, 0.9, by=0.2)
 value_score <- 0
 rank_mean_score <- 0
