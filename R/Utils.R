@@ -315,12 +315,13 @@ getMultipleTestsSummary <- function(
     metadata_len <- length(tests_res[[1]]$metadata)
     
     
-    sumary_res <- data.frame(matrix(ncol = 9 + metadata_len, nrow = 0))
+    sumary_res <- data.frame(matrix(ncol = 10 + metadata_len, nrow = 0))
     colnames(sumary_res) <- c('test_no', 
                               'TP', 'TP_size', 
                               'FP', 'FP_size',
                               'FN', 'FN_size',
                               'TN', 'TN_size',
+                              'over_repr_terms',
                               names(tests_res[[1]]$metadata)
     )
     number_of_tests <- length(tests_res)
@@ -366,13 +367,17 @@ getMultipleTestsSummary <- function(
         if (TP_size + FP_size + FN_size + TN_size != total_population_size) {
             warning("Not OK size of total  contingency table")
         }
-    
+        
+        over_repr_terms <- tests_res[[i]]$test_data[
+            tests_res[[i]]$test_data$sample_label!='noise',]$ontologyId
+        
         sumary_res_tmp <- data.frame(
             'test_no' = i, 
             'TP' = I(list(TP)), 'TP_size' = TP_size, 
             'FP' = I(list(FP)), 'FP_size' = FP_size,
             'FN' = I(list(FN)), 'FN_size' = FN_size,
-            'TN' = I(list(TN)), 'TN_size' = TN_size)
+            'TN' = I(list(TN)), 'TN_size' = TN_size,
+            'over_repr_terms' = I(list(over_repr_terms)))
         for (metadata_entry in names(tests_res[[i]]$metadata)) {
             if ('input_select' == metadata_entry) {
                 sumary_res_tmp <- cbind(
@@ -393,7 +398,7 @@ getMultipleTestsSummary <- function(
         mutate(TPR=TP_size/(TP_size+FN_size))
     
     for (label_id in seq_along(labels)) {
-        # IMPORTANT : Labels are as charecters in datatable
+        # IMPORTANT : Labels are as characters in datatable
         label_name <- as.character(names(labels)[[label_id]])
         label_value <- as.character(labels[[label_id]])
         sumary_res <- sumary_res %>% mutate(!!label_name:=label_value)

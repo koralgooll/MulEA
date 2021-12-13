@@ -52,17 +52,21 @@ sim_mult_tests_res <- MulEA:::simulateMultipleTestsWithRatioParam(
   over_repr_ratio = 0.6,
   number_of_tests = 100)
 
-write_rds(sim_mult_tests_res, "dev\\sim_mult_tests_small_res.rds")
-sim_mult_tests_res <- read_rds("dev\\sim_mult_tests_small_res.rds")
+# write_rds(sim_mult_tests_res, "dev\\sim_mult_tests_small_res.rds")
+sim_mult_tests_res <- readr::read_rds("dev\\sim_mult_tests_small_res.rds")
 
-write_rds(sim_mult_tests_res, "dev\\sim_mult_tests_big_res.rds")
+sim_mult_tests_res_sum_small <- MulEA:::getMultipleTestsSummaryAcrossCutOff(
+  tests_res=sim_mult_tests_res, cut_off_range = seq(0, 1, 0.01))
+
+# write_rds(sim_mult_tests_res, "dev\\sim_mult_tests_big_res.rds")
 sim_mult_tests_res <- read_rds("dev\\sim_mult_tests_big_res.rds")
 
 
-sim_mult_tests_res_sum <- MulEA:::getMultipleTestsSummaryAcrossCutOff(
+sim_mult_tests_res_sum_big <- MulEA:::getMultipleTestsSummaryAcrossCutOff(
   tests_res=sim_mult_tests_res, cut_off_range = seq(0, 1, 0.01))
 
-
+sim_mult_tests_res_sum <- sim_mult_tests_res_sum_big
+sim_mult_tests_res_sum <- sim_mult_tests_res_sum_small
 
 comp_mult_tests <- sim_mult_tests_res_sum
 mult_tests_03_04_sum <- sim_mult_tests_res_sum

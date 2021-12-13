@@ -62,18 +62,30 @@ max(all_p_FPR)
 # cut_off = 0.05
 # 0.3 ratio
 write_rds(nice_small_sim_f[[1]]$input_select[[1]], "dev\\sim_mult_tests_small_sample_1.rds")
+write_rds(nice_small_sim_f[[1]][["over_repr_terms"]][[1]], 
+          "dev\\sim_mult_tests_small_over_repr_terms_1.rds")
 # 0.4 ratio
 write_rds(nice_small_sim_f[[8]]$input_select[[1]], "dev\\sim_mult_tests_small_sample_2.rds")
+write_rds(nice_small_sim_f[[8]][["over_repr_terms"]][[1]], 
+          "dev\\sim_mult_tests_small_over_repr_terms_2.rds")
 readr::read_rds("dev\\sim_mult_tests_small_sample_1.rds")
+
+readr::read_rds("dev\\sim_mult_tests_small_over_repr_terms_1.rds")
+readr::read_rds("dev\\sim_mult_tests_small_over_repr_terms_2.rds")
 
 
 # cut_off = 0.05
 # 0.3 ratio
 write_rds(nice_small_sim_f[[10]]$input_select[[1]], "dev\\sim_mult_tests_big_sample_1.rds")
+write_rds(nice_small_sim_f[[10]][["over_repr_terms"]][[1]], 
+          "dev\\sim_mult_tests_big_over_repr_terms_1.rds")
 # 0.3 ratio
 write_rds(nice_small_sim_f[[6]]$input_select[[1]], "dev\\sim_mult_tests_big_sample_2.rds")
+write_rds(nice_small_sim_f[[6]][["over_repr_terms"]][[1]], 
+          "dev\\sim_mult_tests_big_over_repr_terms_2.rds")
 readr::read_rds("dev\\sim_mult_tests_small_sample_1.rds")
 
-
+readr::read_rds("dev\\sim_mult_tests_big_over_repr_terms_1.rds")
+readr::read_rds("dev\\sim_mult_tests_big_over_repr_terms_2.rds")
 
 
