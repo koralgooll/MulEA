@@ -1,8 +1,6 @@
 
 # PUBLIC API
 #' @description
-#' \code{readGmtFileAsDataFrame}
-#'
 #' \code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
 #'
 #' @param gmtFilePath path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"
@@ -12,7 +10,7 @@
 #' @name  InputOutputFunctions
 #' @export
 #'
-#' @return Return data frame with model from specific location.
+#' @return Returns data frame with the model from a specific location.
 readGmtFileAsDataFrame <- function(gmtFilePath) {
     fileConnection <- file(gmtFilePath)
     tryCatchRes <- tryCatch(
@@ -49,16 +47,14 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 
 # PUBLIC API
 #' @description
-#' \code{saveDataFrameAsGmtFile}
-#'
-#' \code{saveDataFrameAsGmtFile} saves copy of the model from data frame in gmt file.
+#' \code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a .gmt file.
 #'
 #' @param modelDF data frame with model.
 #'
 #' @rdname InputOutputFunctions
 #' @export
 #'
-#' @return Return gmt file under specific location which include model in gmt format.
+#' @return Returns the model as a .gmt file at a specific location.
 #' @examples
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
@@ -74,9 +70,7 @@ saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
 
 # PUBLIC API
 #' @description
-#' \code{readEdbFileAsDataFrame}
-#'
-#' \code{readEdbFileAsDataFrame} read GSEA results in data frame form from .edb file.
+#' \code{readEdbFileAsDataFrame} read GSEA results as a dataframe from .edb file.
 #'
 #' @param edbFilePath path with name of file, where the file is localized or where to save model.
 #'
@@ -85,7 +79,7 @@ saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
 #' @name  InputOutputFunctions
 #' @export
 #'
-#' @return Return data frame with model from specific location.
+#' @return Return data frame with model from a .edb file.
 readEdbFileAsDataFrame <- function(edbFilePath) {
     
     xml_parsed <- XML::xmlTreeParse(edbFilePath, useInternalNodes = T)
@@ -115,9 +109,7 @@ readEdbFileAsDataFrame <- function(edbFilePath) {
 # PUBLIC API
 # TODO : Add quantile parameters as separate! Nothing do is default.
 #' @description
-#' \code{filterOntology}
-#'
-#' \code{filterOntology} cut ontology to specific terms sizes.
+#' \code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
 #'
 #' @param input_gmt input dataframe, read from gmt file.
 #' @param min minimum size of term. Default 20% from quantile on term size distribution. 
@@ -235,9 +227,7 @@ convertListToGmtDataFrame <- function(ontologyReprAsList) {
 
 # PUBLIC API
 #' @description
-#' \code{generateInputSamples}
-#'
-#' \code{generateInputSamples} generate artificial GO with specific terms under or over represented.
+#' \code{generateInputSamples} Generates artificial GO with specific terms (under or over represented).
 #'
 #' @param input_gmt input dataframe, read from gmt file.
 #' @param noise_ratio  
