@@ -25,11 +25,11 @@ muleaPkgDir <- find.package("MulEA")
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(
   gmtFilePath = paste(muleaPkgDir,"/extdata/model.gmt", sep = ""))
 
-selectDf <- read.csv2(file = './inst/extdata/selectData.csv')
+selectDf <- read.csv2(file = paste(muleaPkgDir,"/extdata/selectData.csv", sep = ""))
 select <- selectDf[['select']]
 selectScores <- selectDf[['score']]
 
-poolDf <- read.csv2(file = './inst/extdata/poolData.csv')
+poolDf <- read.csv2(file = paste(muleaPkgDir,"/extdata/poolData.csv", sep = ""))
 pool <- poolDf[['pool']]
 
 number_of_steps <- 1000

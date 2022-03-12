@@ -18,13 +18,11 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{reshapeResults}
-#'
-#' \code{reshapeResults} merge model and model relsuts into 
-#' one relaxed datatable for easy resutls graphical interpretation.
+#' \code{reshapeResults} merge model and model results into 
+#' one relaxed datatable.
 #' 
-#' @param mulea_model MulEA object represents model. For example created by MulEA::ORA.
-#' @param mulea_model_resuts Results from model, in most cases it is returned by MulEA::runTest generic method.
+#' @param mulea_model the MulEA object represents model. For example created by MulEA::ORA.
+#' @param mulea_model_resuts Results from model, in most cases returned by MulEA::runTest generic method.
 #' 
 #' 
 #' @title Input/Output Functions
@@ -72,10 +70,7 @@ reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL,
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{plotGraph}
-#'
-#' \code{plotGraph} merge model and model relsuts into 
-#' one relaxed datatable for easy resutls graphical interpretation.
+#' \code{plotGraph} Plots graph representation of enrichment results. 
 #'
 #' @param mulea_relaxed_resuts data.table in relaxed form.
 #' 
@@ -162,9 +157,7 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0,
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{plotBarplot}
-#'
-#' \code{plotBarplot} barplot of p-values.
+#' \code{plotBarplot} Plots barplot of p-values.
 #'
 #' @param mulea_relaxed_resuts  data.table in relaxed form.
 #' @param selection_vector vector for selecting variables to plot. 
@@ -212,10 +205,7 @@ plotBarplot <- function(mulea_relaxed_resuts, selection_vector=NULL,
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{plotHeatmap}
-#'
-#' \code{plotHeatmap} merge model and model relsuts into 
-#' one relaxed datatable for easy resutls graphical interpretation.
+#' \code{plotHeatmap} Plots heatmap of enriched terms and obtained p-values.
 #'
 #' @param mulea_relaxed_resuts data.table in relaxed form.
 #' 

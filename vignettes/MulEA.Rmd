@@ -1,6 +1,6 @@
 ---
 title: "MulEA"
-author: "Wiktor Jurkowski, Eszter Ari, David Fazekas, Leila Gul, Marton Oelbei, Cezary Turek"
+author: "Cezary Turek, Márton Ölbei, Leila Gul, Dávid Fazekas, Gergely Fekete, Ervin Tasnádi, Balázs Papp, Orsolya Liska, Wiktor Jurkowski & Eszter Ari"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -15,15 +15,26 @@ knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = TRUE, error = FALSE
 
 ## Introduction
 
-   Functional interpretation of the biological data typically involves identifying key genes, molecules, reactions or pathways by finding non-random changes between two or more conditions or phenotypes and it is often followed by enrichment analysis on set of molecules selected from differential omics analysis. Among many packages that can be applied for this task, only few provide a support for multiple species, ontology types or include statistical tests beyond simple overrepresentation analysis.
+   Functional interpretation of the biological data typically involves identifying key genes, molecules, reactions or pathways by finding non-random changes between two or more conditions or phenotypes, and it is often followed by enrichment analysis on set of molecules selected from differential -omics analyses. Among many packages that can be applied for this task, only few provide a support for multiple species, ontology types or include statistical tests beyond simple overrepresentation analysis.
    
-   MulEA is addressing this gap by allowing enrichment analysis not only within most popular gene and pathway ontologies (GO, KEGG, Reactome) but also in gene expression, protein domain, miRNA and transcription factors data bases created from publicly available resources and presented in standardized manner. Beyond genes or proteins space, MulEA allows working with any kind of data types, i.e. small molecules, chromosome regions, enhancers, molecular interactions or any other information defined by the user as long as it is provided in GMT format (see below) and contain reasonably large amount of categories to test. To analyse the data MulEA provide multiple types of statistics in one tool including hypergeometric test for count based analysis (in contingency table), and analyses of ranked input by modified Kolmogorov-Smirnov test.
+   MulEA is addressing this gap by allowing enrichment analysis not only within the most popular gene and pathway ontologies (e.g. GO, KEGG, Reactome), but also in gene expression, protein domain, miRNA and transcription factors data bases created from publicly available resources, presented in standardized manner. Beyond genes or proteins, MulEA allows the user to work with with any kind of data types, i.e. small molecules, chromosome regions, enhancers, molecular interactions or any other information defined by the, provided it is submitted in the GMT format (see below), and contains reasonably large amount of categories to test. To analyse the data MulEA, provides multiple types of statistical tests in one tool, including the hypergeometric test for count based analysis (in contingency table), and analyses of ranked input by modified Kolmogorov-Smirnov test.
    
    In addition, MulEA features improved way to calculate correction for multiple testing that assume partial dependence between ontology terms. By calculating permutation based, empirical false discovery rate correction of the p-values it limits number of incorrectly picked categories falsely scored as significant (false positives) or insignificant (false negatives).
    
 ## Supported organisms and knowledge bases
 
+MuEA supports the following organisms (where appropriate data is available): 
 
+```{r echo=FALSE}
+knitr::kable(data.frame(Species=c("Bos taurus","Caenorhabditis elegans","Danio rerio","Daphnia pulex","Drosophila melanogaster","Drosophila simulans","Gallus gallus","Homo sapiens","Macaca mulatta","Mus musculus","Pan troglodytes","Rattus norvegicus","Xenopus laevis","Xenopus tropicalis","Arabidopsis thaliana","Zea mays","Neurospora crassa","Saccharomyces cerevisae","Schizosaccharomyces pombe","Chlamydomonas reinhardtii","Dictyostelium discoideum","Tetrahymena thermophila","Bacillus subtilis","Bacteroides thetaiotaomicron","Bifidobacterium longum","Escherichia coli","Mycobacterium tuberculosis","Salmonella enterica"),
+                 TaxID=c("9913","6239","7955","6669","7227","7240","9031","9606","9544","10090","9598","10116","8355","8364","3702","4577","5141","4932","284812","3055","44689","5911","1423","818","216816","83333","1773","99287")), caption = "Supported species and corresponding taxonomy IDs")
+```
+For the above species MulEA provides .gmt files for the following biological databases (where data is available):
+
+```{r echo=FALSE}
+knitr::kable(data.frame(Categories=c("Ontologies","Pathways","Gene expression","Transcription factor","miRNA","Protein domain","Genomic location"),
+                 Resources=c("Gene Ontology KEGG Reactome","Wikipathways Pathway Commons SignaLink","modENCODE FlyAtlas","SignaLink HTRI TRRUST ATRM YEASTRACT DBTBS RegulonDB SalmoNet","miRTarBase","PFAM","Ensembl: 5-10-20 consecutive genes Chromosome Bands Operons")), caption = "Categories and resources for the built-in .gmt files")
+```
 
 Implemented MulEA features include:
 
@@ -42,9 +53,9 @@ As a first step load the package:
 library(package="MulEA")
 ```
 
-There are two input types necessary to run the analysis: 1) knowledge base that defines space of categories and 2) a ranked list of elements to be tested. MulEA supports reading the knowledge base directly from GMT files or with properly formated data frames.
+There are two input types required to run the analysis: 1) knowledge base that defines space of categories and 2) a ranked list of elements to be tested. MulEA supports reading the knowledge base directly from GMT files or with properly formatted data frames.
 
-MulEA expects knowledge base to be in Gene Matrix Transposed (GMT) file format (*.gmt). This is a three column tabular format used in one of the first implementations of ranked based test for gene set enrichment analysis and due to its simplicity it makes generation of knolwedge bases relatively straightforward ([format explanation](http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29)). Example of the GMT file is included in MulEA installation directory. 
+MulEA expects knowledge base to be in Gene Matrix Transposed (GMT) file format (*.gmt). This is a three column tabular format used in one of the first implementations of ranked based test for gene set enrichment analysis, and due to its simplicity it makes generation of knowledge bases relatively straightforward ([format explanation](http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29)). Example of the GMT file is included in MulEA installation directory. 
 
 In order to create data frame containing the knowledge base read the GMT file with `MulEA::readGmtFileAsDataFrame()` method. The method requires one parameter `gmtFilePath` to provide path to the file.
 
@@ -62,13 +73,13 @@ KnowledgeBaseDf <- MulEA::readGmtFileAsDataFrame(gmtFilePath = pathToModelGmtFil
 knitr::kable(KnowledgeBaseDf, caption = "Model Data Frame")
 ```
 
-This data frame meets the criteria requried by the package. Please follow the same structure and style to avoid pitfals such as incorrect recognition of knowledge base categories that might impact results quality. 
+This example data frame meets the criteria required by the package. Please follow the same structure and style to avoid pitfalls, such as incorrect recognition of knowledge base categories that might impact results. 
 
 ```{r, results = 'markup', echo=TRUE} 
 str(KnowledgeBaseDf)
 ```
 
-If you would like to save the knolwedge base as a GMT file, use: `MulEA::saveDataFrameAsGmtFile()` with two arguments `modelDF`, `gmtFilePath`.
+If you would like to save the knowledge base as a GMT file, use: `MulEA::saveDataFrameAsGmtFile()` with two arguments `modelDF`, `gmtFilePath`.
 
 `modelDF` - ontology data frame which represents the GMT file.
 `gmtFilePath` - path to a new file in which the ontology will be saved. Example: `"R/MulEA/extdata/savedModel.gmt"`
@@ -79,9 +90,9 @@ If you would like to save the knolwedge base as a GMT file, use: `MulEA::saveDat
 
 
 ## Set Based Test
-Set-based tests are most commonly used in enrichment analysis. Counts of genes or other entities are collected in form of 2x2 contingency table with rows representing 1) specific knowledge base category and 2) genes in remaining categories and columns corresponding to: 1) the data set under and 2) remaining part of the background set.  This class is  and alows adjusting test's results by Benjamin-Hochberg and permutation tests.  
+Set-based tests are the most commonly applied tests in enrichment analysis. Counts of genes or other entities are collected in form of 2x2 contingency table with rows representing 1) specific knowledge base category and 2) genes in remaining categories and columns corresponding to: 1) the data set under and 2) remaining part of the background set.  This class allows adjusting the test's results (p-values) for multiple testing by Benjamini-Hochberg and permutation tests.  
 
-We start performing set enrichment test by putting the data in a proper form. 
+We start performing the set based enrichment test by submitting the data in the required form. 
 
 ```{r, results = 'asis', echo = TRUE} 
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
@@ -93,6 +104,7 @@ dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407"
                                    "FBgn0029709", "FBgn0030341")))
 ```
 
+
 MulEA implements hypergeometric test as highly configurable `ORA` class.
 
 ```{r, results = 'asis', echo = TRUE} 
@@ -100,7 +112,7 @@ setBasedTest <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment)
 setBasedTestRes <- MulEA::runTest(setBasedTest)
 ```
 
-In set-based test, Mulea will inform the user when tested data are not covered by selected knowledge base:
+In the set-based test, MulEA will inform the user when the tested data are not covered by selected knowledge base:
 
 ```{r, results = 'asis', echo = FALSE} 
 knitr::kable(setBasedTestRes, caption = "Set Based Test Result Data Frame")
@@ -119,8 +131,8 @@ knitr::kable(setBasedTestWithPoolRes, caption = "Set Based Test Result Data Fram
 
 ### Permutation based correction for multiple testing  
 
-According to article [Multiple Comparisons Problem](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) you can adjust p-values of tested ontologies by adding the `adjustMethod` argument to `SetBasedTest` class. The value of this argument can newly presented by MulEA method to adjust p-values besed on permutation test. To run that method, please use `"PT"` - permutation test as `adjustMethod` argument.
-You can use common R approach and you can use one of the listed values: `"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`. References to this methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
+[Multiple Comparisons Problem](https://en.wikipedia.org/wiki/Multiple_comparisons_problem): once can adjust the p-values of the tested ontologies by adding the `adjustMethod` argument to `SetBasedTest` class. The value of this argument can be newly presented by MulEA method to adjust p-values besed on permutation test. To run this method, please use `"PT"` - permutation test as the argument for `adjustMethod`.
+Other available arguments for `adjustMethod` are: `"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`. References to these methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
 
 ```{r, results = 'asis', echo = TRUE} 
 setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "PT")
@@ -142,7 +154,7 @@ Data frames with adjusted p-values contain one extra column, which include q-val
 
 `ORA` class constructor accepts list of arguments, such:
 
-- `gmt` - required* - It is data.frame, which represents model. Read it from file or load from DBs.
+- `gmt` - required* - a data.frame, which represents the model. Read it from file or load from DBs.
 - `testData` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`.
 - `pool = character()` - default: character() - It is vector of background - pool data to experiment data. Example: `dataFromExperimentPool <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0003444", "FBgn0003333"")`
 - `adjustMethod = NA` - default: NA - You can specify an algorithm which helps you with [Multiple Comparisons Problem](#multiple-comparisons-problem).
@@ -159,9 +171,9 @@ Column names presented in results data.frame are:
 
 
 ## Ranking Based Tests
-Fundament under ranked based tests is ranking. Ranking can be an ordered vector or any vector with vector of scores, both of them have to be the same length. For now MulEA provides you two ranked based tests. them are the Kolmogorov-Smirnov test and the Subramanian test. Both of them are encloused in `RankedBasedTest` class, which provides you a possibility to set input data and configur other parameters including used statistic method.
+The ranked list based enrichment analysis needs an ordered list of genes (e.g. transcripts or proteins) as input. Ranking can be an ordered vector or any vector with a vector of scores, both of them having to be the same length. For now MulEA provides you two ranked based tests, the Kolmogorov-Smirnov test and the Subramanian test. Both of them are enclosed in the `RankedBasedTest` class, which provides you a method to set input data and configure other parameters including the used statistic methods.
 
-As privously, before running any tests you have to prepare proper input data. An example is presented below:
+As mentioned previously, before running any tests you have to prepare proper input data. An example is presented below:
 
 ```{r, results = 'asis', echo = TRUE} 
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
@@ -172,39 +184,39 @@ dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30, 0.
 
 ### Kolmogorov Smirnov Test  
 
-Kolmogorov-Smirnov test is achieved by setting `method` argument to `"KS"`. It is also required to provide `testData` argument.
+Kolmogorov-Smirnov test is achieved by setting `method` argument to `"KS"`. It is also required to provide the argument for `testData`.
 
 ```{r, results = 'asis', echo=TRUE, warning=FALSE} 
-rankedBasedTestKs <- RankedBasedTest(method = "KS", gmt = modelDfFromFile, testData = dataFromExperiment)
-rankedBasedTestKsRes <- MulEA::runTest(rankedBasedTestKs)
+#rankedBasedTestKs <- RankedBasedTest(method = "KS", gmt = modelDfFromFile, testData = dataFromExperiment)
+#rankedBasedTestKsRes <- MulEA::runTest(rankedBasedTestKs)
 ```
-During the execution of this chunk you will see many warnings from ks.test function from stats package. Warnings look like that:
+During the execution of this chunk you will see many warnings from ks.test function from stats package. Warnings like the following that:
 ```{r, results = 'asis', echo=TRUE} 
 ## Warning in ks.test(matchedFromModelDist, randomFromExperimentDist): cannot
 ## compute exact p-value with ties
 ```
-The reason is that data which we are using in vignette are artificial one. They are constructed to show you how MulEA is working with understanding.
+The reason is that data which we are using in the vignette are artificial. They are constructed to show you how MulEA is working.
 When you see any error or warnings when you are working with real data, it should be investigated. MulEA is not stopping warnings and error propagation from packages which are used. The interpretation of those messages belongs to user.
 
 
 ### Subramanian Test
 
-Subramanian method required `method` argument to be set to `"Subramanian"`. It;s also required `testData` and `scores` to be set. It is important that those two vectors have to be of the same lenght.
+To use the Subramanian set the `method` argument to `"Subramanian"`, and input `testData` and `scores`. It is important that the latter two vectors have to be of the same length.
 
 ```{r, results = 'asis', echo=TRUE} 
 rankedBasedTestSubramanian <- RankedBasedTest(method = "Subramanian", gmt = modelDfFromFile, testData = dataFromExperiment, scores = dataFromExperimentScores)
 rankedBasedTestSubramanianRes <- MulEA::runTest(rankedBasedTestSubramanian)
 ```
 
-Below list is the list of arguments accepted by the constructor of the `RankedBasedTest`:
+Below is the list of arguments accepted by the constructor of the `RankedBasedTest`:
 
-- `method` - required* - It allows user to choose method, which will be used to count probabilities. For no it have to be one of this values "KS", "Subramanian".
-- `gmt` - required* - It is data.frame, which represents model. Read it from file or load from DBs.
-- `testData` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`. In case of KS test it makes a role of ranking also. In Subramanian it creates a ranking with scores argument.
-- `scores` - if method="Subramanian": required*, default: numeric() - This agument is vector of numbers. It creates a ranking with `testData` argument for Subramanian approach.
-- `numberOfPermutations` - default: 1000 - This set number of permutations used to count p-value. You can speed up process of counting by set it to small value, remember that it can result with less accuracy.
+- `method` - required* - It allows user to choose the method, which will be used to count probabilities, one of "KS" or "Subramanian".
+- `gmt` - required* - The data.frame, which represents model. Read it from file or load from DBs.
+- `testData` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`. In case of KS test it ranks them. When applying the Subramanian method it creates a ranking using the scores argument.
+- `scores` - if method="Subramanian": required*, default: numeric() - This argument is a vector of numbers. It creates a ranking with `testData` argument for Subramanian approach.
+- `numberOfPermutations` - default: 1000 - This set number of permutations used to count p-value. You can speed up process of counting by set it to small value, but remember that it may impact the accuracy of your test.
 
-Returned data frame from any ranked based test look like that (column specification):
+Returned data frame from any ranked based test look like the following (column specification):
 
 - `ontologyId` - input copy - Column copies from the input data frame. It include onlology ids. Could be for example ids from GO.
 - `ontologyName` - input copy - Column copies from the input data frame. It include onlology names. Could be for example name from GO as "mitochondrion inheritance".
@@ -212,5 +224,5 @@ Returned data frame from any ranked based test look like that (column specificat
 - `p.value` - output - Cells of this column include counted p-value for provided data.
 
 ```{r, results = 'asis', echo = FALSE} 
-knitr::kable(rankedBasedTestKsRes, caption = "Ranked Based Test Result Data Frame")
+#knitr::kable(rankedBasedTestKsRes, caption = "Ranked Based Test Result Data Frame")
 ```
