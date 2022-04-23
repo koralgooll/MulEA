@@ -15,7 +15,7 @@ convert_model_list_to_model_df <- function(model_list) {
 
 # Test Case 01
 source("src/set-based-enrichment-test.R") # It contains the R source of enrichment analizis and it compiles the C++ part.
-load(file="test-parameters-01.RData") # It loas a dummy databaseinto variabla 'DB', and a 'pool' and 'selet' lists; The DB contains only disjoint sets.  One of the sets is empty.
+load(file="D:\\projects\\science\\enrichment-analysis\\test-parameters-01.RData") # It loas a dummy databaseinto variabla 'DB', and a 'pool' and 'selet' lists; The DB contains only disjoint sets.  One of the sets is empty.
 number_of_steps <- 100
 
 your_res_01 <- set.based.enrichment.test(steps=number_of_steps, pool=pool, 

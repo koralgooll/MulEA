@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // enrichment_test_simulation
 DataFrame enrichment_test_simulation(Rcpp::List DB_of_categories, std::vector<std::string> list_of_all_genes, std::vector<std::string> pool, int selectSize, int steps, unsigned int randomSeed);
 RcppExport SEXP _MulEA_enrichment_test_simulation(SEXP DB_of_categoriesSEXP, SEXP list_of_all_genesSEXP, SEXP poolSEXP, SEXP selectSizeSEXP, SEXP stepsSEXP, SEXP randomSeedSEXP) {

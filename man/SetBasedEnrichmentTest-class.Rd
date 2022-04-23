@@ -33,6 +33,8 @@ PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 \item{\code{testData}}{A data from expeciment to analize accross model.}
 
 \item{\code{pool}}{A background data to count test.}
+
+\item{\code{nthreads}}{Number of processor's threads used in calculations.}
 }}
 
 \examples{

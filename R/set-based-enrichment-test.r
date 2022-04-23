@@ -1,14 +1,14 @@
 #####################################################################################################
 # Function for FDR corrected hypergeometric enrichment test
 #####################################################################################################
-set.based.enrichment.test=function(steps, pool, select, DB, nthread=1) {
+set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=FALSE) {
   
   
   ## convert the database and the select and pollt to sorted integer lists
   list_of_all_genes<-unique(c(unlist(DB),pool))
 
   
-  select <- intersect ( select, pool) 
+  select <- intersect (select, pool) 
   
   ############
   
@@ -28,7 +28,7 @@ set.based.enrichment.test=function(steps, pool, select, DB, nthread=1) {
   )
   
   
-   # for every DB entity in the DB list
+  # for every DB entity in the DB list
   for (i in 1:number_of_DB_categories)
   {
     # create a vector of genes connected to the i-th DB category
@@ -87,7 +87,7 @@ set.based.enrichment.test=function(steps, pool, select, DB, nthread=1) {
         steps, 
         0) 
       , error = print)  # RCPP calling
-  }else if(nthread>1 && round(nthread)==nthread)
+  } else if (nthread>1 && round(nthread) == nthread)
   {
     
     # paralel call of C++ 
@@ -144,14 +144,13 @@ set.based.enrichment.test=function(steps, pool, select, DB, nthread=1) {
           pool, 
           length(select), 
           steps_per_thread[[idx]], 
-          seeds_per_thread[[idx]]) 
-        , error = print)  # RCPP hívás
-      
+          seeds_per_thread[[idx]]), 
+          error = print)  # RCPP hívás
       return(simulation_result_tbl)
     })
     
     stopCluster(cl)
-    simulation_result_tbl<-do.call(rbind, result_of_paralel)  
+    simulation_result_tbl<-do.call(rbind, result_of_paralel)
     
   }else{
     stop("nthred parameter must be a positive integer number")

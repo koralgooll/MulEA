@@ -10,7 +10,14 @@
 \alias{saveDataFrameAsGmtFile}
 \alias{readEdbFileAsDataFrame}
 \alias{filterOntology}
-\alias{generateInputData}
+\alias{decorateGmtByUnderOvenAndNoise}
+\alias{convertListToGmtDataFrame}
+\alias{generateInputSamples}
+\alias{getMultipleTestsSummary}
+\alias{getSummaryToRoc}
+\alias{getMultipleTestsSummaryAcrossCutOff}
+\alias{simulateMultipleTests}
+\alias{simulateMultipleTestsWithRatioParam}
 \title{Input/Output Functions}
 \usage{
 reshapeResults(
@@ -54,19 +61,63 @@ readEdbFileAsDataFrame(edbFilePath)
 
 filterOntology(input_gmt, min = NULL, max = NULL)
 
-generateInputData(
+decorateGmtByUnderOvenAndNoise(
   input_gmt,
-  sample_ratio = 0.5,
-  group_under_over_representation_ratio = 0.9,
   number_of_over_representation_groups = 1,
-  number_of_under_representation_groups = 1,
-  turn_on_log = FALSE
+  number_of_under_representation_groups = 0
+)
+
+convertListToGmtDataFrame(ontologyReprAsList)
+
+generateInputSamples(
+  input_gmt_decorated,
+  noise_ratio = 0.2,
+  over_repr_ratio = 0.5,
+  under_repr_ratio = 0.05,
+  rand_from_unique = TRUE,
+  number_of_samples = 1
+)
+
+getMultipleTestsSummary(
+  tests_res,
+  comparison_col_name,
+  labels = list(),
+  cut_off = 0.05
+)
+
+getSummaryToRoc(
+  tests_res,
+  cut_off_resolution = 0.01,
+  methods_names = c("pValue", "adjustedPValue", "adjustedPValueEmpirical")
+)
+
+getMultipleTestsSummaryAcrossCutOff(tests_res, cut_off_range = seq(0, 1, 0.1))
+
+simulateMultipleTests(
+  input_gmt_filtered,
+  number_of_tests = 10,
+  noise_ratio = 0.35,
+  over_repr_ratio = 0.5,
+  number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered) * 0.1),
+  number_of_under_representation_groups = 0,
+  number_of_steps = 5000,
+  nthreads = 16
+)
+
+simulateMultipleTestsWithRatioParam(
+  input_gmt_filtered,
+  noise_ratio_range = seq(0.1, 0.5, 0.1),
+  number_of_tests = 100,
+  over_repr_ratio = 0.5,
+  number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered) * 0.2),
+  number_of_steps = 5000,
+  nthreads = 16
 )
 }
 \arguments{
-\item{mulea_model}{MulEA object represents model. For example created by MulEA::ORA.}
+\item{mulea_model}{the MulEA object represents model. For example created by MulEA::ORA.}
 
-\item{mulea_model_resuts}{Results from model, in most cases it is returned by MulEA::runTest generic method.}
+\item{mulea_model_resuts}{Results from model, in most cases returned by MulEA::runTest generic method.}
 
 \item{mulea_relaxed_resuts}{data.table in relaxed form.}
 
@@ -84,9 +135,31 @@ generateInputData(
 
 \item{max}{maximum size of term. Default 80% from quantile on term size distribution.}
 
-\item{sample_ratio}{}
+\item{number_of_over_representation_groups}{number of terms to over represent.}
 
-\item{number_of_under_representation_groups}{}
+\item{number_of_under_representation_groups}{number of terms to under represent.}
+
+\item{ontologyReprAsList}{input list with elements names as ontologyId and genes in each element.}
+
+\item{noise_ratio}{ratio of noise in data from [0,1] interval.}
+
+\item{tests_res}{list of multiple tests results.}
+
+\item{comparison_col_name}{column name which indicated data to compare on.}
+
+\item{labels}{label datatable by additional columns with values.}
+
+\item{cut_off}{threshold for value selected by comparison_col_name}
+
+\item{cut_off_range}{threshold for value selected by comparison_col_name}
+
+\item{input_gmt_filtered}{gmt data frame with ontology for tests.}
+
+\item{number_of_tests}{number of tests to perform.}
+
+\item{number_of_steps}{}
+
+\item{noise_ratio_range}{range of ratios of noise in data from [0,1] interval.}
 }
 \value{
 Return detailed and relaxed datatable where model and results are merged for plotting purposes.
@@ -97,55 +170,77 @@ Return plot.
 
 Return plot.
 
-Return data frame with model from specific location.
+Returns data frame with the model from a specific location.
 
-Return gmt file under specific location which include model in gmt format.
+Returns the model as a .gmt file at a specific location.
 
-Return data frame with model from specific location.
-
-Return data frame with model from specific location.
+Return data frame with model from a .edb file.
 
 Return data frame with model from specific location.
+
+Return data frame with model from specific location.
+
+Return data frame with model.
+
+Return data frame with model from specific location.
+
+Return data frame with FDR. TPRs per test.
+
+Return data frame which is the base to count ROC.
+
+Return data frame with FDR. TPRs per test.
+
+Return data frame with FDR. TPRs per test.
+
+Return data frame with FDR. TPRs per test.
 }
 \description{
-\code{reshapeResults}
+\code{reshapeResults} merge model and model results into 
+one relaxed datatable.
 
-\code{reshapeResults} merge model and model relsuts into 
-one relaxed datatable for easy resutls graphical interpretation.
+\code{plotGraph} Plots graph representation of enrichment results.
 
-\code{plotGraph}
+\code{plotBarplot} Plots barplot of p-values.
 
-\code{plotGraph} merge model and model relsuts into 
-one relaxed datatable for easy resutls graphical interpretation.
-
-\code{plotBarplot}
-
-\code{plotBarplot} barplot of p-values.
-
-\code{plotHeatmap}
-
-\code{plotHeatmap} merge model and model relsuts into 
-one relaxed datatable for easy resutls graphical interpretation.
-
-\code{readGmtFileAsDataFrame}
+\code{plotHeatmap} Plots heatmap of enriched terms and obtained p-values.
 
 \code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
 
-\code{saveDataFrameAsGmtFile}
+\code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a .gmt file.
 
-\code{saveDataFrameAsGmtFile} saves copy of the model from data frame in gmt file.
+\code{readEdbFileAsDataFrame} read GSEA results as a dataframe from .edb file.
 
-\code{readEdbFileAsDataFrame}
+\code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
 
-\code{readEdbFileAsDataFrame} read GSEA results in data frame form from .edb file.
+\code{decorateGmtByUnderOvenAndNoise}
 
-\code{filterOntology}
+\code{decorateGmtByUnderOvenAndNoise} decorates GO with labels (over, under, noise) per term.
 
-\code{filterOntology} cut ontology to specific terms sizes.
+\code{convertListToGmtDataFrame}
 
-\code{generateInputData}
+\code{convertListToGmtDataFrame} conver ontology representation from list to gmt dataframe.
 
-\code{generateInputData} generate artificial GO with specific terms under or over represented.
+\code{generateInputSamples} Generates artificial GO with specific terms (under or over represented).
+
+\code{getMultipleTestsSummary}
+
+\code{getMultipleTestsSummary} generate artificial GO with specific terms under or over represented.
+
+\code{getSummaryToRoc}
+
+\code{getSummaryToRoc} generate artificial GO with specific terms under or over represented.
+
+\code{getMultipleTestsSummaryAcrossCutOff}
+
+\code{getMultipleTestsSummaryAcrossCutOff} doing summary across cutoff range.
+
+\code{simulateMultipleTests}
+
+\code{simulateMultipleTests} generate artificial GO with specific terms under or over represented.
+
+\code{simulateMultipleTestsWithRatioParam}
+
+\code{simulateMultipleTestsWithRatioParam} generate artificial GO with specific terms under or over represented.
 }
 \examples{
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))

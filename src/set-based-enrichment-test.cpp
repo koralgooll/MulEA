@@ -80,7 +80,6 @@ void set_seed(unsigned int seed) {
  *  and so on.
  * 
  */
-
 // [[Rcpp::export]]
 DataFrame enrichment_test_simulation(Rcpp::List DB_of_categories, 
                                      std::vector<std::string> list_of_all_genes, 

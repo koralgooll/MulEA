@@ -1,3 +1,4 @@
+# IMPORTANT FILE!!! Generate statistics to plots!
 library(MulEA)
 library(readr)
 library(tidyverse)
@@ -41,32 +42,54 @@ number_of_steps = 5000
 # then go inside into MulEA::ORA, MulEA:::decorateGmtByUnderOvenAndNoise, 
 # MulEA:::generateInputSamples. Real waterfall of params. :)
 sim_mult_tests_res <- MulEA:::simulateMultipleTestsWithRatioParam(
+  input_gmt_filtered = input_gmt_filtered, 
+  over_repr_ratio = 0.85,
+  number_of_tests = 3, nthreads = 16)
+sim_mult_tests_res <- MulEA:::simulateMultipleTestsWithRatioParam(
+  input_gmt_filtered = input_gmt_filtered, 
+  over_repr_ratio = 0.85,
+  number_of_tests = 10, nthreads = 16)
+print(object.size(sim_mult_tests_res))
+sim_mult_tests_res_a <- MulEA:::simulateMultipleTestsWithRatioParam(
+  input_gmt_filtered = input_gmt_filtered, 
+  over_repr_ratio = 0.75,
+  number_of_tests = 30, nthreads = 16)
+sim_mult_tests_res_b <- MulEA:::simulateMultipleTestsWithRatioParam(
+  input_gmt_filtered = input_gmt_filtered, 
+  over_repr_ratio = 0.85,
+  number_of_tests = 30, nthreads = 16)
+sim_mult_tests_res_c <- MulEA:::simulateMultipleTestsWithRatioParam(
+  input_gmt_filtered = input_gmt_filtered, 
+  over_repr_ratio = 0.95,
+  number_of_tests = 30, nthreads = 16)
+print(object.size(sim_mult_tests_res))
+
+# readr::write_rds(sim_mult_tests_res, file = "dev\\new_tests_res\\sim_mult_tests_res_small_085_10.rds")
+sim_mult_tests_res <- readr::read_rds("dev\\new_tests_res\\sim_mult_tests_res_small_085_3.rds")
+sim_mult_tests_res <- readr::read_rds("dev\\new_tests_res\\sim_mult_tests_res_big_085_10.rds")
+sim_mult_tests_res <- readr::read_rds("dev\\new_tests_res\\sim_mult_tests_res_small_085_10.rds")
+sim_mult_tests_res_sum <- MulEA:::getMultipleTestsSummaryAcrossCutOff(
+  tests_res=sim_mult_tests_res)
+print(object.size(sim_mult_tests_res_sum))
+sim_mult_tests_res_to_roc <- MulEA::getSummaryToRoc(tests_res = sim_mult_tests_res)
+
+
+
+# WORK to PAPER.
+# Was over_repr_ratio = 0.6, 
+# probably because of the best performance of method in this space?
+sim_mult_tests_res <- MulEA:::simulateMultipleTestsWithRatioParam(
   input_gmt_filtered=input_gmt_filtered, 
-  over_repr_ratio = 0.6,
-  number_of_tests = 2)
+  over_repr_ratio = 0.95,
+  number_of_tests = 100, 
+  nthreads = 16)
+
+
+# WORK to PAPER.
+sim_mult_tests_res <- read_rds("dev\\new_tests_res\\sim_mult_tests_res_big_075_30.rds")
 sim_mult_tests_res_sum <- MulEA:::getMultipleTestsSummaryAcrossCutOff(
   tests_res=sim_mult_tests_res)
 
-sim_mult_tests_res <- MulEA:::simulateMultipleTestsWithRatioParam(
-  input_gmt_filtered=input_gmt_filtered, 
-  over_repr_ratio = 0.6,
-  number_of_tests = 100)
-
-# write_rds(sim_mult_tests_res, "dev\\sim_mult_tests_small_res.rds")
-sim_mult_tests_res <- readr::read_rds("dev\\sim_mult_tests_small_res.rds")
-
-sim_mult_tests_res_sum_small <- MulEA:::getMultipleTestsSummaryAcrossCutOff(
-  tests_res=sim_mult_tests_res, cut_off_range = seq(0, 1, 0.01))
-
-# write_rds(sim_mult_tests_res, "dev\\sim_mult_tests_big_res.rds")
-sim_mult_tests_res <- read_rds("dev\\sim_mult_tests_big_res.rds")
-
-
-sim_mult_tests_res_sum_big <- MulEA:::getMultipleTestsSummaryAcrossCutOff(
-  tests_res=sim_mult_tests_res, cut_off_range = seq(0, 1, 0.01))
-
-sim_mult_tests_res_sum <- sim_mult_tests_res_sum_big
-sim_mult_tests_res_sum <- sim_mult_tests_res_sum_small
 
 comp_mult_tests <- sim_mult_tests_res_sum
 mult_tests_03_04_sum <- sim_mult_tests_res_sum

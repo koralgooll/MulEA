@@ -244,6 +244,7 @@ convertListToGmtDataFrame <- function(ontologyReprAsList) {
 generateInputSamples <- function(input_gmt_decorated, noise_ratio=0.2,
                               over_repr_ratio=0.5, under_repr_ratio=0.05,
                               rand_from_unique=TRUE, number_of_samples=1) {
+    # TODO : Add under representation generation base on under_repr_ratio.
     all_genes_in_ontology <- NULL
     all_genes_in_enrichment <- NULL
     if (rand_from_unique) {
@@ -324,7 +325,7 @@ getMultipleTestsSummary <- function(
         P <- tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label == 'over',]$ontologyId
         P_size <- length(P)
         # Negative (N)
-        N <- setdiff(total_population, P)
+        N <- tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label != 'over',]$ontologyId
         N_size <- length(N)
         if (P_size + N_size != total_population_size) {
             warning("Not OK size of Actual in contingency table")
@@ -345,13 +346,13 @@ getMultipleTestsSummary <- function(
         TP <- intersect(P, PP)
         TP_size <- length(TP)
         # False positive (FP) : type I error, false alarm, overestimation
-        FP <- setdiff(PP, P)
+        FP <- intersect(N, PP)
         FP_size <- length(FP)
         # False negative (FN) : type II error, miss, underestimation
-        FN <- setdiff(P, PP)
+        FN <- intersect(P, PN)
         FN_size <- length(FN)
         # True negative (TN) : correct rejection
-        TN <- setdiff(total_population, union(P, PP))
+        TN <- intersect(N, PN)
         TN_size <- length(TN)
         
         if (TP_size + FP_size + FN_size + TN_size != total_population_size) {
@@ -359,7 +360,7 @@ getMultipleTestsSummary <- function(
         }
         
         over_repr_terms <- tests_res[[i]]$test_data[
-            tests_res[[i]]$test_data$sample_label!='noise',]$ontologyId
+            tests_res[[i]]$test_data$sample_label == 'over',]$ontologyId
         
         sumary_res_tmp <- data.frame(
             'test_no' = i, 
@@ -368,6 +369,7 @@ getMultipleTestsSummary <- function(
             'FN' = I(list(FN)), 'FN_size' = FN_size,
             'TN' = I(list(TN)), 'TN_size' = TN_size,
             'over_repr_terms' = I(list(over_repr_terms)))
+        
         for (metadata_entry in names(tests_res[[i]]$metadata)) {
             if ('input_select' == metadata_entry) {
                 sumary_res_tmp <- cbind(
@@ -385,7 +387,9 @@ getMultipleTestsSummary <- function(
     
     sumary_res <- tibble(sumary_res) %>% 
         mutate(FPR=FP_size/(FP_size+TN_size)) %>% 
-        mutate(TPR=TP_size/(TP_size+FN_size))
+        mutate(TPR=TP_size/(TP_size+FN_size)) %>%
+        mutate(FDR=FP_size/(TP_size+FP_size)) %>%
+        mutate(NPV=TN_size/(FN_size+TN_size))
     
     for (label_id in seq_along(labels)) {
         # IMPORTANT : Labels are as characters in datatable
@@ -397,6 +401,78 @@ getMultipleTestsSummary <- function(
     tictoc::toc()
     
     return(sumary_res)
+}
+
+# PUBLIC API
+#' @description
+#' \code{getSummaryToRoc}
+#'
+#' \code{getSummaryToRoc} generate artificial GO with specific terms under or over represented.
+#'
+#' @param tests_res list of multiple tests results.
+#'
+#' @title Input/Output Functions
+#' @name  InputOutputFunctions
+#' @export
+#'
+#' @return Return data frame which is the base to count ROC.
+getSummaryToRoc <- function(tests_res, cut_off_resolution=0.01,
+                            methods_names=c('pValue', 'adjustedPValue', 'adjustedPValueEmpirical')) {
+    
+    print("Mulea ROC data calculation time:")
+    tictoc::tic()
+    
+    number_of_tests <- length(tests_res)
+    data_to_roc <- data.frame("sample_label"=c(), "pValue"=c(), 
+                              "adjustedPValue"=c(), 
+                              "adjustedPValueEmpirical"=c())
+    for (i in 1:number_of_tests) {
+        tests_res[[i]]$mulea_res[,c("pValue", "adjustedPValue", 
+                                    "adjustedPValueEmpirical")]
+        data_to_roc <- rbind(data_to_roc, data.frame("sample_label" = 
+                                                         tests_res[[i]]$test_data[,c("sample_label")], 
+                                                     tests_res[[i]]$mulea_res[,c("pValue", "adjustedPValue", 
+                                                                                 "adjustedPValueEmpirical")]))
+    }
+    
+    roc_stats <- tibble(
+        TP_val = numeric(),
+        TN_val = numeric(),
+        FP_val = numeric(),
+        FN_val = numeric(),
+        TPR = numeric(),
+        FPR = numeric(),
+        sum_test = numeric(),
+        cut_off = numeric(),
+        method = character()
+    )
+    
+    for (method_name in methods_names) {
+        for (cut_off in seq(0, 1, cut_off_resolution)) {
+            sim_mult_tests_res_to_roc_summary <- data_to_roc %>% 
+                mutate(., PP=!!as.name(method_name)<=cut_off) %>%
+                mutate(., TP=(PP == TRUE & sample_label=='over'), 
+                       TN=(PP == FALSE & sample_label!='over'),
+                       FP=(PP == TRUE & sample_label!='over'),
+                       FN=(PP == FALSE & sample_label=='over'))
+            
+            sim_sum <- sim_mult_tests_res_to_roc_summary %>% summarise(
+                TP_val = sum(TP), TN_val = sum(TN), FP_val = sum(FP), FN_val = sum(FN))
+            
+            sim_sum_roc <- sim_sum %>% mutate(
+                TPR = TP_val/(TP_val+FN_val),
+                FPR = FP_val/(FP_val+TN_val),
+                sum_test = TP_val+TN_val+FP_val+FN_val,
+                cut_off = cut_off,
+                method=method_name)
+            
+            roc_stats <- roc_stats %>% add_row(sim_sum_roc)
+        }
+    }
+    
+    tictoc::toc()
+    
+    return(roc_stats)
 }
 
 # PUBLIC API
@@ -418,6 +494,7 @@ getMultipleTestsSummaryAcrossCutOff <- function(
     cut_off_range = seq(0, 1, 0.1)) {
     tests_res_sum <- NULL
     for (cut_off in cut_off_range) {
+        print(cut_off)
         tests_res_sum_p <- MulEA:::getMultipleTestsSummary(
             tests_res = tests_res, comparison_col_name = 'pValue', 
             labels = list('method'='p', 'cut_off'=cut_off), cut_off = cut_off)
@@ -524,10 +601,10 @@ simulateMultipleTests <- function(
 #' @return Return data frame with FDR. TPRs per test.
 simulateMultipleTestsWithRatioParam <- function(
     input_gmt_filtered,
-    noise_ratio_range=seq(0.1, 0.5, 0.1), 
+    noise_ratio_range = seq(0.1, 0.5, 0.1), 
     number_of_tests = 100, 
     over_repr_ratio = 0.5, 
-    number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered)*0.05), 
+    number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered)*0.2), 
     number_of_steps = 5000, nthreads = 16) {
     tictoc::tic()
     sim_mult_tests <- list()

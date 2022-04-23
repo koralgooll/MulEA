@@ -3,11 +3,11 @@ library(MulEA)
 library(tidyverse)
 
 
+
 # TPR wrapped by method.
 # Manipulate by jitter height for better graph.
 # jitter height for small is 0.25
 comp_mult_tests %>% ggplot(aes(x=noise_ratio, y=TPR, fill=noise_ratio)) + 
-  geom_jitter(aes(colour=noise_ratio), size=0.4, height = 0.1) +
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
   facet_grid(~method) + #facet_wrap
@@ -19,7 +19,6 @@ comp_mult_tests %>% ggplot(aes(x=noise_ratio, y=TPR, fill=noise_ratio)) +
 # TPR wrapped by ratio.
 # jitter height for small is 0.25
 comp_mult_tests %>% ggplot(aes(x=method, y=TPR, fill=method)) + 
-  geom_jitter(aes(colour=noise_ratio), size=0.4, height = 0.1) + 
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
   facet_grid(~noise_ratio) +
@@ -28,27 +27,61 @@ comp_mult_tests %>% ggplot(aes(x=method, y=TPR, fill=method)) +
   xlab('Noise Ratio') + ylab('True Positive Rate') +
   ylim(c(0,1))
 
+
 # FPR wrapped by method.
 comp_mult_tests %>% ggplot(aes(x=noise_ratio, y=FPR, fill=noise_ratio)) + 
-  geom_jitter(aes(colour=noise_ratio), size=0.4, height = 0.1) + 
+  # geom_jitter(aes(colour=noise_ratio), size=0.4, height = 0.1) + 
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
   facet_grid(~method) + #facet_wrap
   theme(legend.position="right") +
   scale_fill_brewer(palette="PuBuGn") + 
-  xlab('Noise Ratio') + ylab('False Positive Rate') +
-  ylim(c(0,0.15))
+  xlab('Noise Ratio') + ylab('False Positive Rate')
+# +
+#   ylim(c(0,0.30))
 
 # FPR wrapped by ratio.
 comp_mult_tests %>% ggplot(aes(x=method, y=FPR, fill=method)) + 
-  geom_jitter(aes(colour=noise_ratio), size=0.4, height = 0.1) + 
+  # geom_jitter(aes(colour=noise_ratio), size=0.4, height = 0.1) + 
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
   facet_grid(~noise_ratio) +
   theme(legend.position="right") +
   scale_fill_brewer(palette="PuBuGn") + 
-  xlab('Noise Ratio') + ylab('False Positive Rate') +
-  ylim(c(0,0.15))
+  xlab('Noise Ratio') + ylab('False Positive Rate')
+# +
+#   ylim(c(0,0.15))
+
+
+# FDR wrapped by method.
+comp_mult_tests %>% ggplot(aes(x=noise_ratio, y=FDR, fill=noise_ratio)) + 
+  # geom_jitter(aes(colour=noise_ratio), size=0.4, height = 0.1) + 
+  geom_boxplot(alpha=0.5, fatten=2) +
+  geom_violin(alpha=0.3) +
+  facet_grid(~method) + #facet_wrap
+  theme(legend.position="right") +
+  scale_fill_brewer(palette="PuBuGn") + 
+  xlab('Noise Ratio') + ylab('False Discovery Rate')
+
+# FDR wrapped by ratio.
+comp_mult_tests %>% ggplot(aes(x=method, y=FDR, fill=method)) + 
+  # geom_jitter(aes(colour=noise_ratio), size=0.4, height = 0.1) + 
+  geom_boxplot(alpha=0.5, fatten=2) +
+  geom_violin(alpha=0.3) +
+  facet_grid(~noise_ratio) +
+  theme(legend.position="right") +
+  scale_fill_brewer(palette="PuBuGn") + 
+  xlab('Noise Ratio') + ylab('False Discovery Rate')
+
+
+# TODO : IMPORTANT!
+# Not mean approach to ROC:
+mult_tests_03_04_sum %>% ggplot(aes(FPR, TPR, colour=method)) + 
+  geom_point() +
+  # geom_step() +
+  facet_wrap(~method) +
+  geom_abline(color="black") +
+  scale_fill_brewer(palette="PuBu")
 
 
 # ROC curve plot.
