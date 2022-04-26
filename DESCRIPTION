@@ -47,3 +47,5 @@ biocViews:
     GeneSetEnrichment
 RoxygenNote: 7.1.2
 SystemRequirements: C++11
+Config/testthat/edition: 3
+Config/testthat/parallel: true
