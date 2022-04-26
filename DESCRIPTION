@@ -29,7 +29,7 @@ Imports:
 LinkingTo:
     Rcpp
 Depends:
-    R (>= 3.5.0),
+    R (>= 4.2.0),
     magrittr (>= 1.5),
     ggraph (>= 2.0.3),
     data.table (>= 1.13.0),
