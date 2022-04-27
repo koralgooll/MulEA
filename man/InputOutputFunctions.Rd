@@ -123,25 +123,38 @@ simulateMultipleTestsWithRatioParam(
 
 \item{selection_vector}{vector for selecting variables to plot.}
 
-\item{gmtFilePath}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
+\item{gmtFilePath}{path with name of file, where the file is localized or
+where to save model. Example: "/R/MulEA/extdata/model.gmt"}
 
 \item{modelDF}{data frame with model.}
 
-\item{edbFilePath}{path with name of file, where the file is localized or where to save model.}
+\item{edbFilePath}{path with name of file, where the file is localized or
+where to save model.}
 
 \item{input_gmt}{input dataframe, read from gmt file.}
 
-\item{min}{minimum size of term. Default 20% from quantile on term size distribution.}
+\item{min}{minimum size of term. Default 20% from quantile on term size
+distribution.}
 
-\item{max}{maximum size of term. Default 80% from quantile on term size distribution.}
+\item{max}{maximum size of term. Default 80% from quantile on term size
+distribution.}
 
 \item{number_of_over_representation_groups}{number of terms to over represent.}
 
 \item{number_of_under_representation_groups}{number of terms to under represent.}
 
-\item{ontologyReprAsList}{input list with elements names as ontologyId and genes in each element.}
+\item{ontologyReprAsList}{input list with elements names as ontologyId and
+genes in each element.}
 
 \item{noise_ratio}{ratio of noise in data from [0,1] interval.}
+
+\item{over_repr_ratio}{numeric; over representation ratio.}
+
+\item{under_repr_ratio}{numeric; under representation ratio.}
+
+\item{rand_from_unique}{logical}
+
+\item{number_of_samples}{integer; number of sample.}
 
 \item{tests_res}{list of multiple tests results.}
 
@@ -206,29 +219,36 @@ one relaxed datatable.
 
 \code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
 
-\code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a .gmt file.
+\code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a
+.gmt file.
 
 \code{readEdbFileAsDataFrame} read GSEA results as a dataframe from .edb file.
 
-\code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
+\code{filterOntology} Filters ontology to only contain terms between given
+min. and max. sizes.
 
 \code{decorateGmtByUnderOvenAndNoise}
 
-\code{decorateGmtByUnderOvenAndNoise} decorates GO with labels (over, under, noise) per term.
+\code{decorateGmtByUnderOvenAndNoise} decorates GO with labels (over, under,
+noise) per term.
 
 \code{convertListToGmtDataFrame}
 
-\code{convertListToGmtDataFrame} conver ontology representation from list to gmt dataframe.
+\code{convertListToGmtDataFrame} conver ontology representation from list to
+gmt dataframe.
 
-\code{generateInputSamples} Generates artificial GO with specific terms (under or over represented).
+\code{generateInputSamples} Generates artificial GO with specific terms
+(under or over represented).
 
 \code{getMultipleTestsSummary}
 
-\code{getMultipleTestsSummary} generate artificial GO with specific terms under or over represented.
+\code{getMultipleTestsSummary} generate artificial GO with specific terms
+under or over represented.
 
 \code{getSummaryToRoc}
 
-\code{getSummaryToRoc} generate artificial GO with specific terms under or over represented.
+\code{getSummaryToRoc} generate artificial GO with specific terms under or
+over represented.
 
 \code{getMultipleTestsSummaryAcrossCutOff}
 
@@ -236,13 +256,19 @@ one relaxed datatable.
 
 \code{simulateMultipleTests}
 
-\code{simulateMultipleTests} generate artificial GO with specific terms under or over represented.
+\code{simulateMultipleTests} generate artificial GO with specific terms under
+or over represented.
 
 \code{simulateMultipleTestsWithRatioParam}
 
-\code{simulateMultipleTestsWithRatioParam} generate artificial GO with specific terms under or over represented.
+\code{simulateMultipleTestsWithRatioParam} generate artificial GO with
+specific terms under or over represented.
 }
 \examples{
-modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
-MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
+modelDfFromFile <- readGmtFileAsDataFrame(
+    gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
+saveDataFrameAsGmtFile(
+    modelDF = modelDfFromFile,
+    gmtFilePath = paste(system.file(package="MulEA", "extdata"),
+    "fromDb.gmt", sep = "/"))
 }
