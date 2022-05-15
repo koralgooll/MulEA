@@ -74,6 +74,9 @@ print(object.size(sim_mult_tests_res_sum))
 sim_mult_tests_res_to_roc <- MulEA::getSummaryToRoc(tests_res = sim_mult_tests_res)
 
 
+# IDEAS:
+# Add ROC curve and TPR, FPR, FDR and etc plots for all!!!
+
 
 # WORK to PAPER.
 # Was over_repr_ratio = 0.6, 
