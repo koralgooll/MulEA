@@ -1,5 +1,3 @@
-
-library(MulEA)
 context("ORA")
 
 test_that("ORA : object creation test.", {
