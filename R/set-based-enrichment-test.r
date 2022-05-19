@@ -8,7 +8,7 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
   list_of_all_genes<-unique(c(unlist(DB),pool))
 
   
-  select <- intersect (select, pool) 
+  select <- intersect(select, pool) 
   
   ############
   
