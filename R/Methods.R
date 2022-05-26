@@ -9,24 +9,31 @@ checkIfPoolIncludeSample <- function(model, sampleVector, poolVector = NULL) {
     }
   } else {
     if (0 != sum(!(sampleVector %in% unique(unlist(model$listOfValues))))) {
-      warning("testData are outside of gmt.", " ",
-              paste(setdiff(sampleVector, unique(unlist(model$listOfValues))), collapse = ", "))
-      return(setdiff(sampleVector, setdiff(sampleVector, unique(unlist(model$listOfValues)))))
+      warning("testData are outside of gmt.", " ", paste(
+        setdiff(sampleVector, unique(unlist(model$listOfValues))),
+        collapse = ", "))
+      return(setdiff(
+        sampleVector, setdiff(sampleVector, unique(unlist(model$listOfValues)))))
     }
   }
   return(sampleVector)
 }
 
 cutGmtToPool <- function(gmt, pool) {
-  cutDF <- plyr::ddply(.data = gmt,  .variables = c("ontologyId"), .fun = function(dfRow) {
+  cutDF <- plyr::ddply(
+    .data = gmt,  .variables = c("ontologyId"), .fun = function(dfRow) {
     dfRow$listOfValues[[1]] <- intersect(dfRow$listOfValues[[1]], pool)
     dfRow
   })
   cutDF
 }
 
-permutationAdjustment <- function(modelWithTestDf, steps, sampleVector, poolVector = character(0)) {
-  sampleVector <- checkIfPoolIncludeSample(modelWithTestDf, sampleVector, poolVector)
+permutationAdjustment <- function(modelWithTestDf,
+                                  steps,
+                                  sampleVector,
+                                  poolVector = character(0)) {
+  sampleVector <- checkIfPoolIncludeSample(
+    modelWithTestDf, sampleVector, poolVector)
 
   R_value_obs <- integer(0)
   pValueVectorFromDf <- round(modelWithTestDf$p.value, digits = 15)
@@ -46,17 +53,21 @@ permutationAdjustment <- function(modelWithTestDf, steps, sampleVector, poolVect
   for (j in 1:steps) {
     randomData <- sample(allElements, length(sampleVector))
     for (i in 1:length(modelWithTestDf$p.value)) {
-      poolAndSelectedAndDBiIntersection <- intersect(randomData, modelWithTestDf[i, 'listOfValues'][[1]])
+      poolAndSelectedAndDBiIntersection <- intersect(
+        randomData, modelWithTestDf[i, 'listOfValues'][[1]])
 
       selectedAndInGroup <- length(poolAndSelectedAndDBiIntersection)
       selectedAndOutOfGroup <- length(randomData) - selectedAndInGroup
-      outOfSelectionAndInGroup <- length(modelWithTestDf[i, 'listOfValues'][[1]]) - selectedAndInGroup
-      outOfSelectionAndOutOfGroup <- length(allElements) - (selectedAndInGroup + selectedAndOutOfGroup + outOfSelectionAndInGroup)
+      outOfSelectionAndInGroup <- length(
+        modelWithTestDf[i, 'listOfValues'][[1]]) - selectedAndInGroup
+      outOfSelectionAndOutOfGroup <- length(allElements) - 
+        (selectedAndInGroup + selectedAndOutOfGroup + outOfSelectionAndInGroup)
 
-      simulationMatrix[i,j] = phyper(selectedAndInGroup - 1,
-                                     selectedAndInGroup + outOfSelectionAndInGroup,
-                                     selectedAndOutOfGroup + outOfSelectionAndOutOfGroup,
-                                     selectedAndInGroup + selectedAndOutOfGroup, lower.tail = FALSE)
+      simulationMatrix[i,j] = phyper(
+        selectedAndInGroup - 1,
+        selectedAndInGroup + outOfSelectionAndInGroup,
+        selectedAndOutOfGroup + outOfSelectionAndOutOfGroup,
+        selectedAndInGroup + selectedAndOutOfGroup, lower.tail = FALSE)
     }
   }
 
@@ -77,20 +88,31 @@ permutationAdjustment <- function(modelWithTestDf, steps, sampleVector, poolVect
 }
 
 
-adjustPvaluesForMultipleComparisons <- function(modelWithTestsResults, sampleVector, poolVector = character(0), adjustMethod = "bonferroni", steps = 1) {
+adjustPvaluesForMultipleComparisons <- function(modelWithTestsResults,
+                                                sampleVector,
+                                                poolVector = character(0),
+                                                adjustMethod = "bonferroni",
+                                                steps = 1) {
   if (adjustMethod == "GSEA") {
-    adjustResult <- data.frame(modelWithTestsResults, permutationAdjustment(modelWithTestDf = modelWithTestsResults, steps = steps, sampleVector = sampleVector, poolVector = poolVector))
+    adjustResult <- data.frame(
+      modelWithTestsResults,
+      permutationAdjustment(
+        modelWithTestDf = modelWithTestsResults,
+        steps = steps,
+        sampleVector = sampleVector,
+        poolVector = poolVector))
   } else {
-    adjustResult <- data.frame(modelWithTestsResults, "q.value" = p.adjust(modelWithTestsResults$p.value, method = adjustMethod))
+    adjustResult <- data.frame(
+      modelWithTestsResults,
+      "q.value" = p.adjust(
+        modelWithTestsResults$p.value, method = adjustMethod))
   }
   adjustResult
 }
 
-
 calculateTestOnContingencyTable <- function(testMethod, ...) {
   function(model, sampleVector, poolVector = NULL) {
     sampleVector <- checkIfPoolIncludeSample(model, sampleVector, poolVector)
-
 
     if (0 != length(poolVector)) {
       allElements <- unique(poolVector)
@@ -99,13 +121,18 @@ calculateTestOnContingencyTable <- function(testMethod, ...) {
       allElements <- unique(unlist(model$listOfValues))
     }
 
-    testResults <- ddply(.data = model,  .variables = c("ontologyId"), .fun = function(dfRow) {
-      poolAndSelectedAndDBiIntersection <- intersect(sampleVector, dfRow[1, 'listOfValues'][[1]])
+    testResults <- ddply(
+      .data = model,  .variables = c("ontologyId"), .fun = function(dfRow) {
+        poolAndSelectedAndDBiIntersection <- intersect(
+          sampleVector, dfRow[1, 'listOfValues'][[1]])
 
       selectedAndInGroup <- length(poolAndSelectedAndDBiIntersection)
-      selectedAndOutOfGroup <- length(setdiff(sampleVector, poolAndSelectedAndDBiIntersection))
-      outOfSelectionAndInGroup <- length(setdiff(dfRow[1, 'listOfValues'][[1]], sampleVector))
-      outOfSelectionAndOutOfGroup <- length(setdiff(allElements, union(sampleVector, dfRow[1, 'listOfValues'][[1]])))
+      selectedAndOutOfGroup <- length(
+        setdiff(sampleVector, poolAndSelectedAndDBiIntersection))
+      outOfSelectionAndInGroup <- length(
+        setdiff(dfRow[1, 'listOfValues'][[1]], sampleVector))
+      outOfSelectionAndOutOfGroup <- length(setdiff(
+        allElements, union(sampleVector, dfRow[1, 'listOfValues'][[1]])))
 
       contingencyTable <- matrix(c(selectedAndInGroup,
                                    selectedAndOutOfGroup,
@@ -123,6 +150,7 @@ calculateTestOnContingencyTable <- function(testMethod, ...) {
   }
 }
 
-#calculateFisherTest <- calculateTestOnContingencyTable(fisher.test, alternative = 'greater')
+#calculateFisherTest <- calculateTestOnContingencyTable(
+#  fisher.test, alternative = 'greater')
 
 #calculateChiSquaredTest <- calculateTestOnContingencyTable(chisq.test)

@@ -7,12 +7,15 @@ validate_column_names_and_function_args <- function(data, ...) {
   }
 }
   
-filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts, 
-                                            statistics_value_colname='ontologyStatValue', 
-                                            statistics_value_cutoff=0.05) {
+filterRelaxedResultsForPlotting <- function(
+    mulea_relaxed_resuts,
+    statistics_value_colname='ontologyStatValue',
+    statistics_value_cutoff=0.05) {
   
-  mulea_relaxed_resuts_filtered_na <- mulea_relaxed_resuts[!is.na(mulea_relaxed_resuts[[statistics_value_colname]]),]
-  mulea_relaxed_resuts_filtered_cutoff <- mulea_relaxed_resuts_filtered_na[mulea_relaxed_resuts_filtered_na[[statistics_value_colname]]<=statistics_value_cutoff,]
+  include <- !is.na(mulea_relaxed_resuts[[statistics_value_colname]])
+  mulea_relaxed_resuts_filtered_na <- mulea_relaxed_resuts[include,]
+  include <- mulea_relaxed_resuts_filtered_na[[statistics_value_colname]]<=statistics_value_cutoff
+  mulea_relaxed_resuts_filtered_cutoff <- mulea_relaxed_resuts_filtered_na[include, ]
   mulea_relaxed_resuts_filtered_cutoff
 }
 
@@ -21,15 +24,18 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 #' \code{reshapeResults} merge model and model results into 
 #' one relaxed datatable.
 #' 
-#' @param mulea_model the MulEA object represents model. For example created by MulEA::ORA.
-#' @param mulea_model_resuts Results from model, in most cases returned by MulEA::runTest generic method.
+#' @param mulea_model the MulEA object represents model. For example created by
+#' MulEA::ORA.
+#' @param mulea_model_resuts Results from model, in most cases returned by
+#' MulEA::runTest generic method.
 #' 
 #' 
 #' @title Input/Output Functions
 #' @name  InputOutputFunctions
 #' @export
 #'
-#' @return Return detailed and relaxed datatable where model and results are merged for plotting purposes. 
+#' @return Return detailed and relaxed datatable where model and results are
+#' merged for plotting purposes. 
 reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL, 
                            mulea_model_ontology_col_name='ontologyId', 
                            mulea_model_resuts_ontology_col_name='ontologyId', 
@@ -43,7 +49,8 @@ reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL,
   model_with_res_dt <- data.table::setDT(model_with_res)
   model_with_res_dt_size = 0
   for (i in 1:nrow(model_with_res_dt)) {
-    model_with_res_dt_size <- model_with_res_dt_size + length(model_with_res_dt[[i, 'listOfValues']])
+    model_with_res_dt_size <- model_with_res_dt_size + length(
+      model_with_res_dt[[i, 'listOfValues']])
   }
   model_with_res_dt_relaxed <- data.table::data.table(
     ontologyId=rep('a',length.out=model_with_res_dt_size), 
@@ -55,6 +62,7 @@ reshapeResults <- function(mulea_model=NULL, mulea_model_resuts=NULL,
     category_name <- model_with_res_dt[[i, 'ontologyId']]
     category_p_stat <- model_with_res_dt[[i, category_stat_column_name]]
     for (item_name in model_with_res_dt[[i, 'listOfValues']]) {
+      # THE LINE BELOW DOES NOT UPDATE THE OBJECT IS THIS INTENTIONAL?
       model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter, 
                                 c("ontologyId", "genIdInOntology", "ontologyStatValue"):=list(category_name, item_name, category_p_stat)]
       model_with_res_dt_relaxed_counter = model_with_res_dt_relaxed_counter + 1
@@ -90,9 +98,10 @@ plotGraph <- function(mulea_relaxed_resuts, edge_weight_cutoff=0,
     data = mulea_relaxed_resuts, 
     statistics_value_colname, ontology_id_column_name, gen_id_in_ontology_column_name)
   mulea_relaxed_resuts <- data.table::setDT(mulea_relaxed_resuts)
-  model_with_res_dt_relaxed <- MulEA:::filterRelaxedResultsForPlotting(mulea_relaxed_resuts=mulea_relaxed_resuts,
-                                          statistics_value_colname=statistics_value_colname,
-                                          statistics_value_cutoff=statistics_value_cutoff)
+  model_with_res_dt_relaxed <- MulEA:::filterRelaxedResultsForPlotting(
+    mulea_relaxed_resuts=mulea_relaxed_resuts,
+    statistics_value_colname=statistics_value_colname,
+    statistics_value_cutoff=statistics_value_cutoff)
   
   ontologies <-unique(model_with_res_dt_relaxed[, ..ontology_id_column_name])
   ontologies_graph_edges_num <- sum(1:(nrow(ontologies)-1))

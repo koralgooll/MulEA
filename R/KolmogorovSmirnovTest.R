@@ -34,20 +34,30 @@ setMethod("initialize", "KolmogorovSmirnovTest",
             .Object@pAdjustMethod <- pAdjustMethod
 
             .Object@test <- function(testObject) {
-              pvalues <- sapply(testObject@gmt$listOfValues,
-                                function(categoryValues) {
-                                  matchedFromModel <- match(categoryValues, testObject@testData)
-                                  matchedFromModelDist <- matchedFromModel[!is.na(matchedFromModel)]
-                                  if (length(matchedFromModelDist) == 0) {
-                                    return(NA)
-                                  }
-                                  pvaluesFromPermutationTest <- plyr::aaply(.data = 1:testObject@numberOfPermutations, .margins = 1, .fun = function(element) {
-                                    randomFromExperimentDist <- sort(sample(seq_len(length(testObject@testData)), length(matchedFromModelDist)))
-                                    ks.test(matchedFromModelDist, randomFromExperimentDist)$p.value
-                                  })
-                                  mean(pvaluesFromPermutationTest)
-                                })
-              resultDf <- data.frame(testObject@gmt, "pValue" = pvalues, "adjustedPValue" = p.adjust(pvalues, method = testObject@pAdjustMethod))
+              pvalues <- sapply(
+                testObject@gmt$listOfValues,
+                function(categoryValues) {
+                  matchedFromModel <- match(categoryValues, testObject@testData)
+                  matchedFromModelDist <- matchedFromModel[!is.na(matchedFromModel)]
+                  if (length(matchedFromModelDist) == 0) {
+                    return(NA)
+                  }
+                  pvaluesFromPermutationTest <- plyr::aaply(
+                    .data = 1:testObject@numberOfPermutations,
+                    .margins = 1,
+                    .fun = function(element) {
+                  randomFromExperimentDist <- sort(sample(
+                    seq_len(length(testObject@testData)),
+                    length(matchedFromModelDist)))
+                  ks.test(matchedFromModelDist, randomFromExperimentDist)$p.value
+                })
+                mean(pvaluesFromPermutationTest)
+              })
+              resultDf <- data.frame(
+                testObject@gmt,
+                "pValue" = pvalues,
+                "adjustedPValue" = p.adjust(pvalues,
+                                            method = testObject@pAdjustMethod))
               resultDf[c("ontologyId", "ontologyName", "pValue", "adjustedPValue")]
             }
 
@@ -57,7 +67,8 @@ setMethod("initialize", "KolmogorovSmirnovTest",
 
 #' @describeIn KolmogorovSmirnovTest runs test calculations.
 #' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for KolmogorovSmirnovTest object. Used as private function.
+#' @return runTest method for KolmogorovSmirnovTest object. Used as private
+#' function.
 #' @examples
 #' \dontrun{
 #' #It is a private method. Look at runTest of RankedBasedTest's examples.

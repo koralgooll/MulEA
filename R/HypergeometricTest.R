@@ -30,14 +30,17 @@ setMethod("initialize", "MuleaHypergeometricTest",
             .Object@pool <- pool
 
             .Object@test <- function(testObject) {
-                testObject@testData <- checkIfPoolIncludeSample(testObject@gmt, testObject@testData, testObject@pool)
+                testObject@testData <- checkIfPoolIncludeSample(
+                  testObject@gmt, testObject@testData, testObject@pool)
                 
-                muleaSetBaseEnrichmentTest <- SetBasedEnrichmentTest(gmt = testObject@gmt,
-                                                                     testData = testObject@testData,
-                                                                     pool = testObject@pool,
-                                                                     only_hyper_geometric_test=TRUE)
+                muleaSetBaseEnrichmentTest <- SetBasedEnrichmentTest(
+                  gmt = testObject@gmt,
+                  testData = testObject@testData,
+                  pool = testObject@pool,
+                  only_hyper_geometric_test=TRUE)
                 
-                muleaSetBaseEnrichmentTestResult <- runTest(muleaSetBaseEnrichmentTest)
+                muleaSetBaseEnrichmentTestResult <- runTest(
+                  muleaSetBaseEnrichmentTest)
                 
                 testResults <- data.frame(
                   'ontologyName' = muleaSetBaseEnrichmentTestResult$DB_names,
@@ -53,7 +56,8 @@ setMethod("initialize", "MuleaHypergeometricTest",
 
 #' @describeIn MuleaHypergeometricTest runs test calculations.
 #' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for MuleaHypergeometricTest object. Used as private function.
+#' @return runTest method for MuleaHypergeometricTest object. Used as private
+#' function.
 #' @examples
 #' \dontrun{
 #' #It is a private method. Look at runTest of ORA's examples.
