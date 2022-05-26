@@ -112,8 +112,8 @@ readEdbFileAsDataFrame <- function(edbFilePath) {
 #' \code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
 #'
 #' @param input_gmt input dataframe, read from gmt file.
-#' @param min minimum size of term. Default 20% from quantile on term size distribution. 
-#' @param max maximum size of term. Default 80% from quantile on term size distribution.
+#' @param min minimum size of term. Default 20 percent from quantile on term size distribution. 
+#' @param max maximum size of term. Default 80 percent from quantile on term size distribution.
 #'
 #'
 #' @title Input/Output Functions
@@ -164,8 +164,8 @@ filterOntology <- function(input_gmt, min=NULL, max=NULL) {
 #' \code{decorateGmtByUnderOvenAndNoise} decorates GO with labels (over, under, noise) per term.
 #'
 #' @param input_gmt input dataframe, read from gmt file.
-#' @param number_of_over_representation_groups
-#' @param number_of_under_representation_groups
+#' @param number_of_over_representation_groups integer
+#' @param number_of_under_representation_groups integer
 #'
 #'
 #' @title Input/Output Functions
@@ -230,10 +230,10 @@ convertListToGmtDataFrame <- function(ontologyReprAsList) {
 #' \code{generateInputSamples} Generates artificial GO with specific terms (under or over represented).
 #'
 #' @param input_gmt input dataframe, read from gmt file.
-#' @param noise_ratio  
-#' @param group_under_over_representation_ratio
-#' @param number_of_over_representation_groups
-#' @param number_of_under_representation_groups
+#' @param noise_ratio numeric 
+#' @param group_under_over_representation_ratio numeric
+#' @param number_of_over_representation_groups integer
+#' @param number_of_under_representation_groups integer
 #'
 #'
 #' @title Input/Output Functions

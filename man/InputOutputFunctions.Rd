@@ -131,9 +131,9 @@ simulateMultipleTestsWithRatioParam(
 
 \item{input_gmt}{input dataframe, read from gmt file.}
 
-\item{min}{minimum size of term. Default 20% from quantile on term size distribution.}
+\item{min}{minimum size of term. Default 20 percent from quantile on term size distribution.}
 
-\item{max}{maximum size of term. Default 80% from quantile on term size distribution.}
+\item{max}{maximum size of term. Default 80 percent from quantile on term size distribution.}
 
 \item{number_of_over_representation_groups}{number of terms to over represent.}
 
@@ -160,6 +160,8 @@ simulateMultipleTestsWithRatioParam(
 \item{number_of_steps}{}
 
 \item{noise_ratio_range}{range of ratios of noise in data from [0,1] interval.}
+
+\item{group_under_over_representation_ratio}{numeric}
 }
 \value{
 Return detailed and relaxed datatable where model and results are merged for plotting purposes.
