@@ -5,45 +5,51 @@ Title: MulEA - A Tool for Multi Enrichment Analysis
 Version: 0.99.10
 Date: 2016-04-08
 Authors@R: c(
-    person("Wiktor", "Jurkowski", email = "Wiktor.Jurkowski@earlham.ac.uk", role = "aut"),
+    person("Wiktor", "Jurkowski", role = "aut"),
     person("Eszter", "Ari", email = "arieszter@gmail.com", role = c("aut", "cph")),
     person("Cezary", "Turek", email = "Cezary.Turek@gmail.com", role =  c("aut", "cre")),
-    person("Peter", "Forgacs", email = "Peter.Forgacs3@gmail.com", role =  "ctb"),
-    person("Leila", "Gul", email = "Lejla.Gul@earlham.ac.uk", role =  "ctb"),
-    person("Marton", "Oelbei", email = "olbei.marton@gmail.com", role =  "ctb"))
-Description: MulEA (Multi Enrichment Analysis) is a package/tool for functional analysis of multi-omics data sets. 
-    Among many packages that can be used for this task, only few could be applied either to multiple species, ontology types or providing an access to multiple statistics. MulEA is addressing this gap providing support for 25 species and any kind of data defining the knolwedge base. In addition, MulEA provides a unique permutation based, empirical false discovery rate correction of the p-values
+    person("Peter", "Forgacs",  role =  "ctb"),
+    person("Leila", "Gul",  role =  "ctb"),
+    person("Marton", "Oelbei",  role =  "ctb"),
+    person("Tamás", "Stirling",  role =  "ctb"))
+Maintainer: Cezary Turek <Cezary.Turek@gmail.com>
+Description: MulEA (Multi Enrichment Analysis) is a package/tool for functional
+    analysis of multi-omics data sets. Among many packages that can be used for
+    this task, only few could be applied either to multiple species, ontology
+    types or providing an access to multiple statistics. MulEA is addressing
+    this gap providing support for 25 species and any kind of data defining the
+    knolwedge base. In addition, MulEA provides a unique permutation based,
+    empirical false discovery rate correction of the p-values
 License: GPL-3 + file LICENSE
 LazyData: TRUE
+Depends:
+    R (>= 4.2.0)
 Imports:
+    data.table (>= 1.13.0),
     DBI (>= 0.7.0),
     fgsea (>= 1.0.2),
     ggplot2 (>= 3.3.3),
+    ggraph (>= 2.0.3),
+    magrittr (>= 1.5),
     methods (>= 3.3.2),
     parallel (>= 4.0.2),
     plyr (>= 1.8.4),
     Rcpp,
     RSQLite (>= 2.0.0),
     stats (>= 3.4.1),
+    tidyverse (>= 1.3.1),
     utils (>= 3.4.1)
-LinkingTo:
-    Rcpp
-Depends:
-    R (>= 3.5.0),
-    magrittr (>= 1.5),
-    ggraph (>= 2.0.3),
-    data.table (>= 1.13.0),
-    tidyverse (>= 1.3.1)
 Suggests:
     knitr,
     rmarkdown,
     testthat,
     tictoc
+LinkingTo:
+    Rcpp
 VignetteBuilder: knitr
 URL: https://github.com/koralgooll/MulEA
 BugReports: https://github.com/koralgooll/MulEA/issues
-biocViews:
-    BiomedicalInformatics,
-    GeneSetEnrichment
 RoxygenNote: 7.1.2
 SystemRequirements: C++11
+Config/testthat/edition: 3
+Config/testthat/parallel: true

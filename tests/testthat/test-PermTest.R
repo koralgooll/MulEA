@@ -1,4 +1,3 @@
-library(MulEA)
 context("set.based.enrichment.test")
 
 create_random_db <- function() {
