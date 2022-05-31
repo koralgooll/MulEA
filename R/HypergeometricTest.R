@@ -37,12 +37,14 @@ setMethod("initialize", "MuleaHypergeometricTest",
                                                                      pool = testObject@pool,
                                                                      only_hyper_geometric_test=TRUE)
                 
-                muleaSetBaseEnrichmentTestResult <- runTest(muleaSetBaseEnrichmentTest)
+                muleaSetBaseEnrichmentTestResult <<- runTest(muleaSetBaseEnrichmentTest)
+                testObjectGlobal <<- testObject
+                
                 
                 testResults <- data.frame(
                   'ontologyName' = muleaSetBaseEnrichmentTestResult$DB_names,
                   'listOfValues' = testObject@gmt$listOfValues,
-                  'p.value' = muleaSetBaseEnrichmentTestResult$P, row.names = NULL)
+                  'p.value' = muleaSetBaseEnrichmentTestResult$P_val, row.names = NULL)
                 
                 testResults
             }
