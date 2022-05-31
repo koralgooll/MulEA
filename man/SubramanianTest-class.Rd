@@ -13,7 +13,9 @@
 \item{testObject}{Object of s4 class represents Mulea Test.}
 }
 \value{
-KolmogorovSmirnovTest object. Used as private object.
+dataframe with presented columns 'ontologyId', 'ontologyName', 
+'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
+'pValue', 'adjustedPValue'
 
 runTest method for SubramanianTest object. Used as private function.
 }

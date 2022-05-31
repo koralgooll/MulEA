@@ -6,7 +6,9 @@
 #' @slot scores A vectore of scores per testData.
 #' @slot p A power of weight.
 #' @slot scoreType Defines the GSEA score type. Only positive scores - "pos", only negative scores - "neg" and mixed (standard) - "std".
-#' @return KolmogorovSmirnovTest object. Used as private object.
+#' @return dataframe with presented columns 'ontologyId', 'ontologyName', 
+#' 'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
+#' 'pValue', 'adjustedPValue'
 #' @examples
 #' \dontrun{
 #' #It is a private s4 object. Look at RankedBasedTest's examples.

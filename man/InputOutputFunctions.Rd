@@ -160,6 +160,8 @@ simulateMultipleTestsWithRatioParam(
 \item{number_of_steps}{}
 
 \item{noise_ratio_range}{range of ratios of noise in data from [0,1] interval.}
+
+\item{group_under_over_representation_ratio}{ratio of over represented group.}
 }
 \value{
 Return detailed and relaxed datatable where model and results are merged for plotting purposes.
