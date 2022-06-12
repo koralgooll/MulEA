@@ -131,10 +131,6 @@ setMethod("runTest",
 # TODO : Open seed set up possibility.
 set.based.enrichment.test.wrapper=function(steps, pool, select, DB, nthreads=4,
                                    only_hyper_geometric_test=FALSE) {
-  if (only_hyper_geometric_test) {
-    print("NOT AVAILABLE OPTION ANYMORE - only_hyper_geometric_test")
-  }
-  
   # print("nthreads")
   # print(nthreads)
   # print("steps")
@@ -145,7 +141,6 @@ set.based.enrichment.test.wrapper=function(steps, pool, select, DB, nthreads=4,
   # print(select)
   # print("DB")
   # print(DB)
-  
   
   setEnrTestRes <- set.based.enrichment.test(steps=steps, pool=pool, select=select, DB=DB, nthread=nthreads)
   return(setEnrTestRes)

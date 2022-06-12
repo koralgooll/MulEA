@@ -164,9 +164,11 @@ filterOntology <- function(input_gmt, min=NULL, max=NULL) {
 #' \code{decorateGmtByUnderOvenAndNoise} decorates GO with labels (over, under, noise) per term.
 #'
 #' @param input_gmt input dataframe, read from gmt file.
-#' @param number_of_over_representation_groups integer
-#' @param number_of_under_representation_groups integer
-#'
+#' @param number_of_over_representation_groups set the number of groups 
+#' which will be chosen to over representation.
+#' @param number_of_under_representation_groups set the number of groups 
+#' which will be chosen to under representation.
+#' 
 #'
 #' @title Input/Output Functions
 #' @name  InputOutputFunctions
@@ -230,10 +232,10 @@ convertListToGmtDataFrame <- function(ontologyReprAsList) {
 #' \code{generateInputSamples} Generates artificial GO with specific terms (under or over represented).
 #'
 #' @param input_gmt input dataframe, read from gmt file.
-#' @param noise_ratio numeric 
-#' @param group_under_over_representation_ratio numeric
-#' @param number_of_over_representation_groups integer
-#' @param number_of_under_representation_groups integer
+#' @param noise_ratio level of noise in the sample, value from 0 to 1.
+#' @param group_under_over_representation_ratio ratio of over represented group.
+#' @param number_of_over_representation_groups number of groups chosen to over representation.
+#' @param number_of_under_representation_groups number of groups chosen to under representation.
 #'
 #'
 #' @title Input/Output Functions

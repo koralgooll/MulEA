@@ -178,7 +178,7 @@ As mentioned previously, before running any tests you have to prepare proper inp
 ```{r, results = 'asis', echo = TRUE} 
 modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
-dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30, 0.45, 0.50)
+dataFromExperimentScores <- c(-0.35, -0.22, -0.09, 0.11, 0.15, 0.20, 0.24, 0.28, 0.45, 0.50)
 ```
 
 

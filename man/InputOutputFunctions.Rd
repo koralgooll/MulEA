@@ -115,9 +115,11 @@ simulateMultipleTestsWithRatioParam(
 )
 }
 \arguments{
-\item{mulea_model}{the MulEA object represents model. For example created by MulEA::ORA.}
+\item{mulea_model}{the MulEA object represents model. For example created by
+MulEA::ORA.}
 
-\item{mulea_model_resuts}{Results from model, in most cases returned by MulEA::runTest generic method.}
+\item{mulea_model_resuts}{Results from model, in most cases returned by
+MulEA::runTest generic method.}
 
 \item{mulea_relaxed_resuts}{data.table in relaxed form.}
 
@@ -161,10 +163,11 @@ simulateMultipleTestsWithRatioParam(
 
 \item{noise_ratio_range}{range of ratios of noise in data from [0,1] interval.}
 
-\item{group_under_over_representation_ratio}{numeric}
+\item{group_under_over_representation_ratio}{ratio of over represented group.}
 }
 \value{
-Return detailed and relaxed datatable where model and results are merged for plotting purposes.
+Return detailed and relaxed datatable where model and results are
+merged for plotting purposes.
 
 Return plot.
 

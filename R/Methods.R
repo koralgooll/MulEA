@@ -149,8 +149,3 @@ calculateTestOnContingencyTable <- function(testMethod, ...) {
     testResults
   }
 }
-
-#calculateFisherTest <- calculateTestOnContingencyTable(
-#  fisher.test, alternative = 'greater')
-
-#calculateChiSquaredTest <- calculateTestOnContingencyTable(chisq.test)
