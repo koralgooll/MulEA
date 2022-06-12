@@ -1,4 +1,5 @@
 
+
 #' Method num.
 #' @name runTest
 #' @rdname runTest-methods
@@ -45,4 +46,5 @@
 #' rankedBasedTestSubramanianRes <- MulEA::runTest(rankedBasedTestSubramanian)
 #' @return Results in form of data frame. Structure of data frame depends on
 #' object processed by this generic method.
-setGeneric("runTest", function(testObject) standardGeneric("runTest"))
+setGeneric("runTest", function(testObject)
+  standardGeneric("runTest"))
