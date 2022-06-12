@@ -15,7 +15,8 @@
 \value{
 MuleaHypergeometricTest object. Used as private function.
 
-runTest method for MuleaHypergeometricTest object. Used as private function.
+runTest method for MuleaHypergeometricTest object. Used as private
+function.
 }
 \description{
 PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.

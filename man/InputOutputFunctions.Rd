@@ -200,7 +200,7 @@ Return data frame with FDR. TPRs per test.
 Return data frame with FDR. TPRs per test.
 }
 \description{
-\code{reshapeResults} merge model and model results into 
+\code{reshapeResults} merge model and model results into
 one relaxed datatable.
 
 \code{plotGraph} Plots graph representation of enrichment results.

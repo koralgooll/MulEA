@@ -1,4 +1,3 @@
-
 #' An S4 class to represent a ranked based tests in Mulea.
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
@@ -26,16 +25,18 @@
 #' rankedBasedTestSubramanian <- RankedBasedTest(gmt = modelDfFromFile,
 #'                                               testData = dataFromExperiment,
 #'                                               scores = dataFromExperimentScores)
-RankedBasedTest <- setClass("RankedBasedTest",
-                            slots = list(
-                              gmt = "data.frame",
-                              testData = "character",
-                              scores = "numeric",
-                              p = "numeric",
-                              scoreType = "character",
-                              numberOfPermutations = "numeric",
-                              test = "function"
-                            ))
+RankedBasedTest <- setClass(
+  "RankedBasedTest",
+  slots = list(
+    gmt = "data.frame",
+    testData = "character",
+    scores = "numeric",
+    p = "numeric",
+    scoreType = "character",
+    numberOfPermutations = "numeric",
+    test = "function"
+  )
+)
 
 setMethod("initialize", "RankedBasedTest",
           function(.Object,
@@ -47,7 +48,6 @@ setMethod("initialize", "RankedBasedTest",
                    numberOfPermutations = 1000,
                    test = NULL,
                    ...) {
-
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@scores <- scores
@@ -55,7 +55,7 @@ setMethod("initialize", "RankedBasedTest",
             .Object@scoreType <- scoreType
             
             .Object@numberOfPermutations <- numberOfPermutations
-
+            
             .Object@test <- function(rankedBaseTestObject) {
               rankedTestRes <- NULL
               
@@ -64,14 +64,15 @@ setMethod("initialize", "RankedBasedTest",
                 testData = rankedBaseTestObject@testData,
                 scores = rankedBaseTestObject@scores,
                 p = rankedBaseTestObject@p,
-                scoreType = rankedBaseTestObject@scoreType)
+                scoreType = rankedBaseTestObject@scoreType
+              )
               rankedTestRes <- runTest(subramanianTest)
               
               rankedTestRes
             }
-
+            
             .Object
-
+            
           })
 
 #' @describeIn RankedBasedTest runs test calculations.

@@ -56,16 +56,18 @@
 #' \dontrun{
 #' #It is a private s4 object. Look at ORA's examples.
 #' }
-SetBasedEnrichmentTest <- setClass("SetBasedEnrichmentTest",
-                       slots = list(
-                         gmt = "data.frame",
-                         testData = "character",
-                         pool = "character",
-                         numberOfPermutations = "numeric",
-                         only_hyper_geometric_test = "logical",
-                         nthreads = "numeric",
-                         test = "function"
-                       ))
+SetBasedEnrichmentTest <- setClass(
+  "SetBasedEnrichmentTest",
+  slots = list(
+    gmt = "data.frame",
+    testData = "character",
+    pool = "character",
+    numberOfPermutations = "numeric",
+    only_hyper_geometric_test = "logical",
+    nthreads = "numeric",
+    test = "function"
+  )
+)
 
 setMethod("initialize", "SetBasedEnrichmentTest",
           function(.Object,
@@ -74,42 +76,50 @@ setMethod("initialize", "SetBasedEnrichmentTest",
                    pool = character(),
                    numberOfPermutations = 10000,
                    test = NULL,
-                   only_hyper_geometric_test=FALSE,
-                   nthreads=4,
+                   only_hyper_geometric_test = FALSE,
+                   nthreads = 4,
                    ...) {
-
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@pool <- pool
             .Object@numberOfPermutations <- numberOfPermutations
-            .Object@only_hyper_geometric_test <- only_hyper_geometric_test
+            .Object@only_hyper_geometric_test <-
+              only_hyper_geometric_test
             .Object@nthreads <- nthreads
             
             .Object@test <- function(testObject) {
-                pool <- NULL
-                if (0 == length(testObject@pool)) {
-                    pool <- unique(unlist(.Object@gmt[, 'listOfValues']))
-                } else {
-                    pool <- unique(testObject@pool)
-                }
-                
-                testData <- .Object@testData
-                if (!all(testData %in% pool)) {
-                  testData <- testData[testData %in% pool]
-                  warning("Not all elements of testData (sample) are from pool. ", 
-                          "TestData vector is automatically cut off to pool vector.")
-                }
-                
-                DB <- .Object@gmt[, 'listOfValues']
-                names(DB) <- .Object@gmt$ontologyId
-
-                testResults <- set.based.enrichment.test.wrapper(steps = .Object@numberOfPermutations, pool = pool,
-                                                        select = testData, DB = DB,
-                                                        only_hyper_geometric_test=testObject@only_hyper_geometric_test, 
-                                                        nthreads=testObject@nthreads)
-                testResults
+              pool <- NULL
+              if (0 == length(testObject@pool)) {
+                pool <- unique(unlist(.Object@gmt[, 'listOfValues']))
+              } else {
+                pool <- unique(testObject@pool)
+              }
+              
+              testData <- .Object@testData
+              if (!all(testData %in% pool)) {
+                testData <- testData[testData %in% pool]
+                warning(
+                  "Not all elements of testData (sample) are from pool. ",
+                  "TestData vector is automatically cut off to pool vector."
+                )
+              }
+              
+              DB <- .Object@gmt[, 'listOfValues']
+              names(DB) <- .Object@gmt$ontologyId
+              
+              testResults <-
+                set.based.enrichment.test.wrapper(
+                  steps = .Object@numberOfPermutations,
+                  pool = pool,
+                  select = testData,
+                  DB = DB,
+                  only_hyper_geometric_test =
+                    testObject@only_hyper_geometric_test,
+                  nthreads = testObject@nthreads
+                )
+              testResults
             }
-
+            
             .Object
           })
 
@@ -129,8 +139,12 @@ setMethod("runTest",
 
 
 # TODO : Open seed set up possibility.
-set.based.enrichment.test.wrapper=function(steps, pool, select, DB, nthreads=4,
-                                   only_hyper_geometric_test=FALSE) {
+set.based.enrichment.test.wrapper = function(steps,
+                                             pool,
+                                             select,
+                                             DB,
+                                             nthreads = 4,
+                                             only_hyper_geometric_test = FALSE) {
   # print("nthreads")
   # print(nthreads)
   # print("steps")
@@ -142,6 +156,13 @@ set.based.enrichment.test.wrapper=function(steps, pool, select, DB, nthreads=4,
   # print("DB")
   # print(DB)
   
-  setEnrTestRes <- set.based.enrichment.test(steps=steps, pool=pool, select=select, DB=DB, nthread=nthreads)
+  setEnrTestRes <-
+    set.based.enrichment.test(
+      steps = steps,
+      pool = pool,
+      select = select,
+      DB = DB,
+      nthread = nthreads
+    )
   return(setEnrTestRes)
 }
