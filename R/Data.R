@@ -1,7 +1,7 @@
-#' Gene Set Example in GMT Format
+#' Gene Set Example
 #'
-#' A data frame containing 7 gene sets in Gene Matrix Transposed (GMT) format.
-#' Each row represents a gene set. 
+#' Data frame parsed from a Gene Matrix Transposed (GMT) file containing 7 gene
+#' sets. Each row represents a gene set. 
 #'
 #' @format A data frame with 7 rows and 3 variables:
 #' \describe{
@@ -35,5 +35,5 @@
 #'   \item{pool}{DEFINITION}
 #' }
 #' @source SOURCE
-"poolData"
+"poolDf"
 
