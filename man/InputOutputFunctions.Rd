@@ -115,9 +115,11 @@ simulateMultipleTestsWithRatioParam(
 )
 }
 \arguments{
-\item{mulea_model}{the MulEA object represents model. For example created by MulEA::ORA.}
+\item{mulea_model}{the MulEA object represents model. For example created by
+MulEA::ORA.}
 
-\item{mulea_model_resuts}{Results from model, in most cases returned by MulEA::runTest generic method.}
+\item{mulea_model_resuts}{Results from model, in most cases returned by
+MulEA::runTest generic method.}
 
 \item{mulea_relaxed_resuts}{data.table in relaxed form.}
 
@@ -131,9 +133,9 @@ simulateMultipleTestsWithRatioParam(
 
 \item{input_gmt}{input dataframe, read from gmt file.}
 
-\item{min}{minimum size of term. Default 20% from quantile on term size distribution.}
+\item{min}{minimum size of term. Default 20 percent from quantile on term size distribution.}
 
-\item{max}{maximum size of term. Default 80% from quantile on term size distribution.}
+\item{max}{maximum size of term. Default 80 percent from quantile on term size distribution.}
 
 \item{number_of_over_representation_groups}{number of terms to over represent.}
 
@@ -164,7 +166,8 @@ simulateMultipleTestsWithRatioParam(
 \item{group_under_over_representation_ratio}{ratio of over represented group.}
 }
 \value{
-Return detailed and relaxed datatable where model and results are merged for plotting purposes.
+Return detailed and relaxed datatable where model and results are
+merged for plotting purposes.
 
 Return plot.
 
@@ -197,7 +200,7 @@ Return data frame with FDR. TPRs per test.
 Return data frame with FDR. TPRs per test.
 }
 \description{
-\code{reshapeResults} merge model and model results into 
+\code{reshapeResults} merge model and model results into
 one relaxed datatable.
 
 \code{plotGraph} Plots graph representation of enrichment results.

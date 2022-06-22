@@ -108,7 +108,7 @@ dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407"
 MulEA implements hypergeometric test as highly configurable `ORA` class.
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTest <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment)
+setBasedTest <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, nthreads = 2)
 setBasedTestRes <- MulEA::runTest(setBasedTest)
 ```
 
@@ -121,7 +121,7 @@ knitr::kable(setBasedTestRes, caption = "Set Based Test Result Data Frame")
 Usage with definition of pool data, which can be different that in presented model is presented below:
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPool <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool)
+setBasedTestWithPool <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, nthreads = 2)
 setBasedTestWithPoolRes <- MulEA::runTest(setBasedTestWithPool)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -135,7 +135,7 @@ knitr::kable(setBasedTestWithPoolRes, caption = "Set Based Test Result Data Fram
 Other available arguments for `adjustMethod` are: `"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`. References to these methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "PT")
+setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "PT", nthreads = 2)
 setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -143,7 +143,7 @@ knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result 
 ```
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH")
+setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH", nthreads = 2)
 setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 
