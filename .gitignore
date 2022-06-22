@@ -8,6 +8,7 @@ development/
 workdir/
 *.o
 *.so
+README_cache/*
 multipleTesting.pdf
 src-i386/*
 src-x64/*
