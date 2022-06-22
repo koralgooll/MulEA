@@ -8,4 +8,7 @@ development/
 workdir/
 *.o
 *.so
-
+log1.txt
+multipleTesting.pdf
+src-i386/*
+src-x64/*
