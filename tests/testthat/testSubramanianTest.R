@@ -72,7 +72,7 @@ test_that("RankedBasedTest : out of ontology elements.", {
   
   testthat::expect_warning(muleaTestRes <-
                              MulEA::runTest(mulea_ranked_based_test_model))
-  testthat::expect_equal(muleaTestRes$pValue, 3 / 8)
+  testthat::expect_equal(muleaTestRes$pValue, 610101/2e+06)
 })
 
 test_that("RankedBasedTest : DB1 + DB2.", {

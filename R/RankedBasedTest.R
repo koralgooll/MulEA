@@ -20,8 +20,6 @@
 #'                         "FBgn0263831")
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
 #'                               0.45, 0.50)
-#' rankedBasedTestKs <- RankedBasedTest(
-#'   gmt = modelDfFromFile, testData = dataFromExperiment)
 #' rankedBasedTestSubramanian <- RankedBasedTest(gmt = modelDfFromFile,
 #'                                               testData = dataFromExperiment,
 #'                                               scores = dataFromExperimentScores)
@@ -80,7 +78,6 @@ setMethod("initialize", "RankedBasedTest",
 #' @return runTest method for RankedBasedTest object. Returns results of
 #' counting using methods from ranking based area.
 #' @examples
-#' rankedBasedTestKsRes <- MulEA::runTest(rankedBasedTestKs)
 #' rankedBasedTestSubramanianRes <- MulEA::runTest(rankedBasedTestSubramanian)
 setMethod("runTest",
           signature(testObject = "RankedBasedTest"),

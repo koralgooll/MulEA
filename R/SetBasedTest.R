@@ -43,7 +43,7 @@ setMethod("initialize", "ORA",
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@pool <- pool
-            .Object@adjustMethod <- adjustMethod
+            .Object@adjustMethod <- 'PT'
             .Object@numberOfPermutations <- numberOfPermutations
             .Object@nthreads <- nthreads
             
