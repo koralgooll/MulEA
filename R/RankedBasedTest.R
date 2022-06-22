@@ -13,7 +13,6 @@
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30, 0.45, 0.50)
-#' rankedBasedTestKs <- RankedBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment)
 #' rankedBasedTestSubramanian <- RankedBasedTest(gmt = modelDfFromFile, testData = dataFromExperiment, scores = dataFromExperimentScores)
 RankedBasedTest <- setClass("RankedBasedTest",
                             slots = list(
@@ -66,7 +65,6 @@ setMethod("initialize", "RankedBasedTest",
 #' @param testObject Object of s4 class represents Mulea Test.
 #' @return runTest method for RankedBasedTest object. Returns results of counting using methods from ranking based area.
 #' @examples
-#' rankedBasedTestKsRes <- MulEA::runTest(rankedBasedTestKs)
 #' rankedBasedTestSubramanianRes <- MulEA::runTest(rankedBasedTestSubramanian)
 setMethod("runTest",
           signature(testObject = "RankedBasedTest"),
