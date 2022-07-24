@@ -46,7 +46,7 @@
 #'   method = "Subramanian",
 #'   gmt = modelDfFromFile,
 #'   testData = dataFromExperiment,
-#'   scores = dataFromExperimentScores)
+#'   element_scores = dataFromExperimentScores)
 #' rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 #' @return Results in form of data frame. Structure of data frame depends on
 #' object processed by this generic method.

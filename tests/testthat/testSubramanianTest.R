@@ -1,7 +1,7 @@
 library(MulEA)
-context("RankedBasedTest")
+context("GSEA")
 
-test_that("RankedBasedTest : object creation test.", {
+test_that("GSEA : object creation test.", {
   gmtMock <- data.frame(
     ontologyId = "GO:0000001",
     ontologyName = "Imagin gen ontology to tests.",
@@ -11,16 +11,16 @@ test_that("RankedBasedTest : object creation test.", {
   testDataMock <- c("a", "b", "c")
   scoreDataMock <- c(0.1, 0.5, 1)
   
-  mulea_ranked_based_test_model <- MulEA::RankedBasedTest(gmt = gmtMock,
+  mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock,
                                                           testData = testDataMock,
-                                                          scores = scoreDataMock)
+                                                          element_scores = scoreDataMock)
   
   testthat::expect_equal(mulea_ranked_based_test_model@gmt, gmtMock)
   testthat::expect_equal(mulea_ranked_based_test_model@testData, c("a", "b", "c"))
-  testthat::expect_equal(mulea_ranked_based_test_model@scores, c(0.1, 0.5, 1))
+  testthat::expect_equal(mulea_ranked_based_test_model@element_scores, c(0.1, 0.5, 1))
 })
 
-test_that("RankedBasedTest : no scores vector.", {
+test_that("GSEA : no element_scores vector.", {
   gmtMock <- data.frame(
     ontologyId = "GO:0000001",
     ontologyName = "Imagin gen ontology to tests.",
@@ -29,12 +29,12 @@ test_that("RankedBasedTest : no scores vector.", {
   )
   testDataMock <- c("a", "b", "d")
   
-  mulea_ranked_based_test_model <- MulEA::RankedBasedTest(gmt = gmtMock, testData = testDataMock)
+  mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock, testData = testDataMock)
   testthat::expect_error(muleaTestRes <-
                            MulEA::run_test(mulea_ranked_based_test_model))
 })
 
-test_that("RankedBasedTest : GSEA error propagation.", {
+test_that("GSEA : GSEA error propagation.", {
   gmtMock <- data.frame(
     ontologyId = "GO:0000001",
     ontologyName = "Imagin gen ontology to tests.",
@@ -44,10 +44,10 @@ test_that("RankedBasedTest : GSEA error propagation.", {
   testDataMock <- c("a", "b", "c")
   scoreDataMock <- c(0.1, 0.5, 1)
   
-  mulea_ranked_based_test_model <- MulEA::RankedBasedTest(
+  mulea_ranked_based_test_model <- MulEA::GSEA(
     gmt = gmtMock,
     testData = testDataMock,
-    scores = scoreDataMock,
+    element_scores = scoreDataMock,
     scoreType = "pos"
   )
   
@@ -55,7 +55,7 @@ test_that("RankedBasedTest : GSEA error propagation.", {
                            MulEA::run_test(mulea_ranked_based_test_model))
 })
 
-test_that("RankedBasedTest : out of ontology elements.", {
+test_that("GSEA : out of ontology elements.", {
   set.seed(1)
   gmtMock <- data.frame(
     ontologyId = "GO:0000001",
@@ -66,16 +66,16 @@ test_that("RankedBasedTest : out of ontology elements.", {
   testDataMock <- c("a", "b", "e", "f")
   scoreDataMock <- c(0.1, 0.5, 0.7, 1)
   
-  mulea_ranked_based_test_model <- MulEA::RankedBasedTest(gmt = gmtMock,
+  mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock,
                                                           testData = testDataMock,
-                                                          scores = scoreDataMock)
+                                                          element_scores = scoreDataMock)
   
   testthat::expect_warning(muleaTestRes <-
                              MulEA::run_test(mulea_ranked_based_test_model))
   testthat::expect_equal(muleaTestRes$pValue, 610101/2e+06)
 })
 
-test_that("RankedBasedTest : DB1 + DB2.", {
+test_that("GSEA : DB1 + DB2.", {
   set.seed(1)
   gmtMock1 <- data.frame(
     ontologyId = "GO:0000001",
@@ -93,15 +93,15 @@ test_that("RankedBasedTest : DB1 + DB2.", {
   testDataMock <- c("d", "e", "f")
   scoreDataMock <- c(-0.3, 0.4, 0.5)
   
-  mulea_ranked_based_test_model <- MulEA::RankedBasedTest(gmt = gmtMock,
+  mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock,
                                                           testData = testDataMock,
-                                                          scores = scoreDataMock)
+                                                          element_scores = scoreDataMock)
   
   muleaTestRes <- MulEA::run_test(mulea_ranked_based_test_model)
   testthat::expect_equal(muleaTestRes$pValue, c(169 / 330, 107 / 219))
 })
 
-test_that("RankedBasedTest : DB1 + DB2 out of pool.", {
+test_that("GSEA : DB1 + DB2 out of pool.", {
   set.seed(1)
   gmtMock1 <- data.frame(
     ontologyId = "GO:0000001",
@@ -119,9 +119,9 @@ test_that("RankedBasedTest : DB1 + DB2 out of pool.", {
   testDataMock <- c("b", "d", "e", "f")
   scoreDataMock <- c(-1, 0, 0, 1)
   
-  mulea_ranked_based_test_model <- MulEA::RankedBasedTest(gmt = gmtMock,
+  mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock,
                                                           testData = testDataMock,
-                                                          scores = scoreDataMock)
+                                                          element_scores = scoreDataMock)
   
   muleaTestRes <- MulEA::run_test(mulea_ranked_based_test_model)
   testthat::expect_equal(muleaTestRes$pValue, c(156 / 653, 251 / 492))

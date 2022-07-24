@@ -46,7 +46,7 @@ ora_model <- ORA(
   testData = selectDf$select, 
   pool = poolDf$pool,
   adjustMethod = "PT",
-  numberOfPermutations = 1000
+  number_of_permutations = 1000
 )
 
 ora_results <- run_test(ora_model)
@@ -102,10 +102,10 @@ Define an S4 object of class `RankedBasedTest`, run ranked based test
 (Subramanian method) and reshape results:
 
 ``` r
-ranked_model <- RankedBasedTest(
+ranked_model <- GSEA(
   gmt = geneSet,
   testData = selectDf$select,
-  scores = selectDf$score
+  element_scores = selectDf$score
 )
 
 ranked_results <- run_test(ranked_model)
