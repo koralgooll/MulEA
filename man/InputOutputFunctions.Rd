@@ -2,7 +2,7 @@
 % Please edit documentation in R/Plotting.R, R/Utils.R
 \name{InputOutputFunctions}
 \alias{InputOutputFunctions}
-\alias{reshapeResults}
+\alias{reshape_results}
 \alias{plotGraph}
 \alias{plotBarplot}
 \alias{plotHeatmap}
@@ -12,13 +12,13 @@
 \alias{convertListToGmtDataFrame}
 \title{Input/Output Functions}
 \usage{
-reshapeResults(
-  mulea_model = NULL,
-  mulea_model_resuts = NULL,
-  mulea_model_ontology_col_name = "ontologyId",
-  mulea_model_resuts_ontology_col_name = "ontologyId",
-  category_stat_column_name = "adjustedPValue",
-  cut_off_to_test_data = TRUE
+reshape_results(
+  model = NULL,
+  model_results = NULL,
+  model_ontology_col_name = "ontologyId",
+  ontology_id_colname = "ontologyId",
+  p_value_type_colname = "adjustedPValue",
+  p_value_max_threshold = TRUE
 )
 
 plotGraph(
@@ -54,10 +54,10 @@ filterOntology(input_gmt, min = NULL, max = NULL)
 convertListToGmtDataFrame(ontologyReprAsList)
 }
 \arguments{
-\item{mulea_model}{the MulEA object represents model. For example created by
+\item{model}{the MulEA object represents model. For example created by
 MulEA::ORA.}
 
-\item{mulea_model_resuts}{Results from model, in most cases returned by
+\item{model_results}{Results from model, in most cases returned by
 MulEA::run_test generic method.}
 
 \item{mulea_relaxed_resuts}{data.table in relaxed form.}
@@ -95,7 +95,7 @@ Return data frame with model from specific location.
 Return data frame with model.
 }
 \description{
-\code{reshapeResults} merge model and model results into
+\code{reshape_results} merge model and model results into
 one relaxed datatable.
 
 \code{plotGraph} Plots graph representation of enrichment results.

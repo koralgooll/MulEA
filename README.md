@@ -51,10 +51,10 @@ ora_model <- ORA(
 
 ora_results <- run_test(ora_model)
 
-ora_reshaped_results <- reshapeResults(
-  mulea_model = ora_model, 
-  mulea_model_resuts = ora_results, 
-  category_stat_column_name='adjustedPValueEmpirical'
+ora_reshaped_results <- reshape_results(
+  model = ora_model, 
+  model_results = ora_results, 
+  p_value_type_colname='adjustedPValueEmpirical'
 )
 ```
 
@@ -110,10 +110,10 @@ ranked_model <- RankedBasedTest(
 
 ranked_results <- run_test(ranked_model)
 
-ranked_reshaped_results <- reshapeResults(
-  mulea_model = ranked_model, 
-  mulea_model_resuts = ranked_results, 
-  mulea_model_resuts_ontology_col_name='ontologyId'
+ranked_reshaped_results <- reshape_results(
+  model = ranked_model, 
+  model_results = ranked_results, 
+  ontology_id_colname='ontologyId'
 )
 ```
 

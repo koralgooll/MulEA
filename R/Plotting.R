@@ -20,12 +20,12 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{reshapeResults} merge model and model results into
+#' \code{reshape_results} merge model and model results into
 #' one relaxed datatable.
 #'
-#' @param mulea_model the MulEA object represents model. For example created by
+#' @param model the MulEA object represents model. For example created by
 #' MulEA::ORA.
-#' @param mulea_model_resuts Results from model, in most cases returned by
+#' @param model_results Results from model, in most cases returned by
 #' MulEA::run_test generic method.
 #'
 #'
@@ -35,19 +35,19 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 #'
 #' @return Return detailed and relaxed datatable where model and results are
 #' merged for plotting purposes.
-reshapeResults <-
-  function(mulea_model = NULL,
-           mulea_model_resuts = NULL,
-           mulea_model_ontology_col_name = 'ontologyId',
-           mulea_model_resuts_ontology_col_name = 'ontologyId',
-           category_stat_column_name = 'adjustedPValue',
-           cut_off_to_test_data = TRUE) {
+reshape_results <-
+  function(model = NULL,
+           model_results = NULL,
+           model_ontology_col_name = 'ontologyId',
+           ontology_id_colname = 'ontologyId',
+           p_value_type_colname = 'adjustedPValue',
+           p_value_max_threshold = TRUE) {
     model_with_res <-
       merge(
-        x = mulea_model@gmt,
-        y = mulea_model_resuts,
-        by.x = mulea_model_ontology_col_name,
-        by.y = mulea_model_resuts_ontology_col_name,
+        x = model@gmt,
+        y = model_results,
+        by.x = model_ontology_col_name,
+        by.y = ontology_id_colname,
         all = TRUE
       )
     # Create relaxed dataframe from our structure.
@@ -67,7 +67,7 @@ reshapeResults <-
     for (i in 1:nrow(model_with_res_dt)) {
       category_name <- model_with_res_dt[[i, 'ontologyId']]
       category_p_stat <-
-        model_with_res_dt[[i, category_stat_column_name]]
+        model_with_res_dt[[i, p_value_type_colname]]
       for (item_name in model_with_res_dt[[i, 'listOfValues']]) {
         # THE LINE BELOW DOES NOT UPDATE THE OBJECT IS THIS INTENTIONAL?
         model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter,
@@ -76,12 +76,12 @@ reshapeResults <-
         model_with_res_dt_relaxed_counter = model_with_res_dt_relaxed_counter + 1
       }
     }
-    if (cut_off_to_test_data) {
+    if (p_value_max_threshold) {
       model_with_res_dt_relaxed <-
-        model_with_res_dt_relaxed[genIdInOntology %in% mulea_model@testData]
+        model_with_res_dt_relaxed[genIdInOntology %in% model@testData]
     }
     names(model_with_res_dt_relaxed) <-
-      c("ontologyId", "genIdInOntology", category_stat_column_name)
+      c("ontologyId", "genIdInOntology", p_value_type_colname)
     model_with_res_dt_relaxed
   }
 
