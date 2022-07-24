@@ -87,12 +87,12 @@ setMethod("initialize", "SetBasedEnrichmentTest",
               only_hyper_geometric_test
             .Object@nthreads <- nthreads
             
-            .Object@test <- function(testObject) {
+            .Object@test <- function(model) {
               pool <- NULL
-              if (0 == length(testObject@pool)) {
+              if (0 == length(model@pool)) {
                 pool <- unique(unlist(.Object@gmt[, 'listOfValues']))
               } else {
-                pool <- unique(testObject@pool)
+                pool <- unique(model@pool)
               }
               
               testData <- .Object@testData
@@ -114,8 +114,8 @@ setMethod("initialize", "SetBasedEnrichmentTest",
                   select = testData,
                   DB = DB,
                   only_hyper_geometric_test =
-                    testObject@only_hyper_geometric_test,
-                  nthreads = testObject@nthreads
+                    model@only_hyper_geometric_test,
+                  nthreads = model@nthreads
                 )
               testResults
             }
@@ -124,16 +124,16 @@ setMethod("initialize", "SetBasedEnrichmentTest",
           })
 
 #' @describeIn SetBasedEnrichmentTest runs test calculations.
-#' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for SetBasedEnrichmentTest object. Used as private function.
+#' @param model Object of s4 class represents Mulea Test.
+#' @return run_test method for SetBasedEnrichmentTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at runTest of ORA's examples.
+#' #It is a private method. Look at run_test of ORA's examples.
 #' }
-setMethod("runTest",
-          signature(testObject = "SetBasedEnrichmentTest"),
-          function(testObject) {
-            testObject@test(testObject)
+setMethod("run_test",
+          signature(model = "SetBasedEnrichmentTest"),
+          function(model) {
+            model@test(model)
           })
 
 

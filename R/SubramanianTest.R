@@ -39,25 +39,25 @@ setMethod("initialize", "SubramanianTest",
             .Object@p <- p
             .Object@scoreType <- scoreType
             
-            .Object@test <- function(testObject) {
-              listmodelDfFromFile <- testObject@gmt$listOfValues
+            .Object@test <- function(model) {
+              listmodelDfFromFile <- model@gmt$listOfValues
               names(listmodelDfFromFile) <-
-                testObject@gmt$ontologyId
+                model@gmt$ontologyId
               
-              samplesToAnalisys <- testObject@scores
-              names(samplesToAnalisys) <- testObject@testData
+              samplesToAnalisys <- model@scores
+              names(samplesToAnalisys) <- model@testData
               
               fgseaRes <-
                 fgsea::fgsea(
                   pathways = listmodelDfFromFile,
                   stats = samplesToAnalisys,
-                  gseaParam = testObject@p,
-                  scoreType = testObject@scoreType
+                  gseaParam = model@p,
+                  scoreType = model@scoreType
                 )
               
               resultDf <-
                 merge(
-                  testObject@gmt,
+                  model@gmt,
                   fgseaRes,
                   by.x = "ontologyId",
                   by.y = "pathway",
@@ -96,14 +96,14 @@ setMethod("initialize", "SubramanianTest",
           })
 
 #' @describeIn SubramanianTest runs test calculations.
-#' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for SubramanianTest object. Used as private function.
+#' @param model Object of s4 class represents Mulea Test.
+#' @return run_test method for SubramanianTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at runTest of RankedBasedTest's examples.
+#' #It is a private method. Look at run_test of RankedBasedTest's examples.
 #' }
-setMethod("runTest",
-          signature(testObject = "SubramanianTest"),
-          function(testObject) {
-            testObject@test(testObject)
+setMethod("run_test",
+          signature(model = "SubramanianTest"),
+          function(model) {
+            model@test(model)
           })

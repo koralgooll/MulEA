@@ -24,7 +24,7 @@ Import the MulEA package and import the example data sets:
 library(MulEA)
 
 # import example gene set
-# import other gene sets using readGmtFileAsDataFrame()
+# import other gene sets from a GMT file using readGmtFileAsDataFrame()
 data(geneSet) 
 
 # import "WHAT ARE WE IMPORTING HERE?"
@@ -49,7 +49,7 @@ ora_model <- ORA(
   numberOfPermutations = 1000
 )
 
-ora_results <- runTest(ora_model)
+ora_results <- run_test(ora_model)
 
 ora_reshaped_results <- reshapeResults(
   mulea_model = ora_model, 
@@ -108,7 +108,7 @@ ranked_model <- RankedBasedTest(
   scores = selectDf$score
 )
 
-ranked_results <- runTest(ranked_model)
+ranked_results <- run_test(ranked_model)
 
 ranked_reshaped_results <- reshapeResults(
   mulea_model = ranked_model, 

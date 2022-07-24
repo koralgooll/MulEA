@@ -4,19 +4,19 @@
 \name{RankedBasedTest-class}
 \alias{RankedBasedTest-class}
 \alias{RankedBasedTest}
-\alias{runTest,RankedBasedTest-method}
+\alias{run_test,RankedBasedTest-method}
 \title{An S4 class to represent a ranked based tests in Mulea.}
 \usage{
-\S4method{runTest}{RankedBasedTest}(testObject)
+\S4method{run_test}{RankedBasedTest}(model)
 }
 \arguments{
-\item{testObject}{Object of s4 class represents Mulea Test.}
+\item{model}{Object of s4 class represents Mulea Test.}
 }
 \value{
 RankedBasedTest object. This object represents ranked based tests in
 Mulea.
 
-runTest method for RankedBasedTest object. Returns results of
+run_test method for RankedBasedTest object. Returns results of
 counting using methods from ranking based area.
 }
 \description{
@@ -24,7 +24,7 @@ An S4 class to represent a ranked based tests in Mulea.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{runTest}: runs test calculations.
+\item \code{run_test}: runs test calculations.
 }}
 
 \section{Slots}{
@@ -57,5 +57,5 @@ dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
 rankedBasedTestSubramanian <- RankedBasedTest(gmt = modelDfFromFile,
                                               testData = dataFromExperiment,
                                               scores = dataFromExperimentScores)
-rankedBasedTestSubramanianRes <- MulEA::runTest(rankedBasedTestSubramanian)
+rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 }

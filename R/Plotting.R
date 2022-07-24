@@ -26,7 +26,7 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 #' @param mulea_model the MulEA object represents model. For example created by
 #' MulEA::ORA.
 #' @param mulea_model_resuts Results from model, in most cases returned by
-#' MulEA::runTest generic method.
+#' MulEA::run_test generic method.
 #'
 #'
 #' @title Input/Output Functions

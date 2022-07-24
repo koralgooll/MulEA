@@ -38,7 +38,7 @@ test_that("ORA : testData out of DB model.", {
                nthreads = 2)
   
   testthat::expect_warning(muleaTestRes <-
-                             MulEA::runTest(mulea_ora_model))
+                             MulEA::run_test(mulea_ora_model))
   testthat::expect_equal(muleaTestRes$pValue, 1)
 })
 
@@ -60,7 +60,7 @@ test_that("ORA : testData out of pool.", {
     nthreads = 2)
   
   testthat::expect_warning(muleaTestRes <-
-                             MulEA::runTest(mulea_ora_model))
+                             MulEA::run_test(mulea_ora_model))
   testthat::expect_equal(muleaTestRes$pValue, 1 / 3)
 })
 
@@ -81,7 +81,7 @@ test_that("ORA : matrix 2,2,2,2.", {
     adjustMethod = "PT", 
     nthreads = 2)
   
-  muleaTestRes <- MulEA::runTest(mulea_ora_model)
+  muleaTestRes <- MulEA::run_test(mulea_ora_model)
   testthat::expect_equal(muleaTestRes$pValue, 53 / 70)
 })
 
@@ -128,7 +128,7 @@ test_that("ORA : pool >> var + DBi, matrix 2,2,2,18.", {
     adjustMethod = "PT", 
     nthreads = 2)
   
-  muleaTestRes <- MulEA::runTest(mulea_ora_model)
+  muleaTestRes <- MulEA::run_test(mulea_ora_model)
   testthat::expect_equal(muleaTestRes$pValue, 37 / 322)
 })
 
@@ -149,7 +149,7 @@ test_that("ORA : DBi not include pool, matrix 2,0,2,2.", {
     adjustMethod = "PT", 
     nthreads = 2)
   
-  muleaTestRes <- MulEA::runTest(mulea_ora_model)
+  muleaTestRes <- MulEA::run_test(mulea_ora_model)
   testthat::expect_equal(muleaTestRes$pValue, 0.4)
 })
 
@@ -174,7 +174,7 @@ test_that("ORA : DB1 + DB2 => pool, matrix 1,3,2,2 and 2,2,1,3.", {
                                 adjustMethod = "PT", 
                                 nthreads = 2)
   
-  muleaTestRes <- MulEA::runTest(mulea_ora_model)
+  muleaTestRes <- MulEA::run_test(mulea_ora_model)
   testthat::expect_equal(muleaTestRes$pValue, c(13 / 14, 0.5))
 })
 
@@ -228,7 +228,7 @@ test_that("ORA : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
     adjustMethod = "PT", 
     nthreads = 2)
   
-  muleaTestRes <- MulEA::runTest(mulea_ora_model)
+  muleaTestRes <- MulEA::run_test(mulea_ora_model)
   testthat::expect_equal(muleaTestRes$pValue, c(37 / 322, 27 / 3542))
 })
 
@@ -244,7 +244,7 @@ test_that("ORA : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
   mulea_ora_model <- MulEA::ORA(
     gmt = gmtMock, testData = testDataMock, pool=poolMock, nthreads = 2)
   
-  muleaTestRes <- MulEA::runTest(mulea_ora_model)
+  muleaTestRes <- MulEA::run_test(mulea_ora_model)
   testthat::expect_equal(muleaTestRes$pValue[c(1,2)], c(1, 19205/26423))
 })
 

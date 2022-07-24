@@ -4,25 +4,25 @@
 \name{ORA-class}
 \alias{ORA-class}
 \alias{ORA}
-\alias{runTest,ORA-method}
+\alias{run_test,ORA-method}
 \title{An S4 class to represent a set based tests in Mulea.}
 \usage{
-\S4method{runTest}{ORA}(testObject)
+\S4method{run_test}{ORA}(model)
 }
 \arguments{
-\item{testObject}{Object of s4 class represents Mulea Test.}
+\item{model}{Object of s4 class represents Mulea Test.}
 }
 \value{
 ORA object. This object represents set based tests in Mulea.
 
-runTest method for ORA object. Returns results of counting using methods from set based area.
+run_test method for ORA object. Returns results of counting using methods from set based area.
 }
 \description{
 An S4 class to represent a set based tests in Mulea.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{runTest}: runs test calculations.
+\item \code{run_test}: runs test calculations.
 }}
 
 \section{Slots}{
@@ -65,8 +65,8 @@ setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile,
                                      pool = dataFromExperimentPool, 
                                      adjustMethod = "BH", nthreads = 2)
 setBaseTestWithPermutationTestAdjustment <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, adjustMethod = "PT", nthreads = 2)
-setBasedTestRes <- MulEA::runTest(setBasedTest)
-setBasedTestWithPoolRes <- MulEA::runTest(setBasedTestWithPool)
-setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
-setBaseTestWithPermutationTestAdjustmentRes <- MulEA::runTest(setBaseTestWithPermutationTestAdjustment)
+setBasedTestRes <- MulEA::run_test(setBasedTest)
+setBasedTestWithPoolRes <- MulEA::run_test(setBasedTestWithPool)
+setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
+setBaseTestWithPermutationTestAdjustmentRes <- MulEA::run_test(setBaseTestWithPermutationTestAdjustment)
 }

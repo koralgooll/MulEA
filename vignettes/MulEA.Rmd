@@ -109,7 +109,7 @@ MulEA implements hypergeometric test as highly configurable `ORA` class.
 
 ```{r, results = 'asis', echo = TRUE} 
 setBasedTest <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, nthreads = 2)
-setBasedTestRes <- MulEA::runTest(setBasedTest)
+setBasedTestRes <- MulEA::run_test(setBasedTest)
 ```
 
 In the set-based test, MulEA will inform the user when the tested data are not covered by selected knowledge base:
@@ -122,7 +122,7 @@ Usage with definition of pool data, which can be different that in presented mod
 
 ```{r, results = 'asis', echo = TRUE} 
 setBasedTestWithPool <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, nthreads = 2)
-setBasedTestWithPoolRes <- MulEA::runTest(setBasedTestWithPool)
+setBasedTestWithPoolRes <- MulEA::run_test(setBasedTestWithPool)
 ```
 ```{r, results = 'asis', echo = FALSE} 
 knitr::kable(setBasedTestWithPoolRes, caption = "Set Based Test Result Data Frame")
@@ -136,7 +136,7 @@ Other available arguments for `adjustMethod` are: `"holm"`, `"hochberg"`, `"homm
 
 ```{r, results = 'asis', echo = TRUE} 
 setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "PT", nthreads = 2)
-setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
+setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 
 knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result With Permutation Test Adjustment Data Frame")
@@ -144,7 +144,7 @@ knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result 
 
 ```{r, results = 'asis', echo = TRUE} 
 setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH", nthreads = 2)
-setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
+setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 
 knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result Data Frame")
@@ -188,7 +188,7 @@ Kolmogorov-Smirnov test is achieved by setting `method` argument to `"KS"`. It i
 
 ```{r, results = 'asis', echo=TRUE, warning=FALSE} 
 #rankedBasedTestKs <- RankedBasedTest(method = "KS", gmt = modelDfFromFile, testData = dataFromExperiment)
-#rankedBasedTestKsRes <- MulEA::runTest(rankedBasedTestKs)
+#rankedBasedTestKsRes <- MulEA::run_test(rankedBasedTestKs)
 ```
 During the execution of this chunk you will see many warnings from ks.test function from stats package. Warnings like the following that:
 ```{r, results = 'asis', echo=TRUE} 
@@ -205,7 +205,7 @@ To use the Subramanian set the `method` argument to `"Subramanian"`, and input `
 
 ```{r, results = 'asis', echo=TRUE} 
 rankedBasedTestSubramanian <- RankedBasedTest(method = "Subramanian", gmt = modelDfFromFile, testData = dataFromExperiment, scores = dataFromExperimentScores)
-rankedBasedTestSubramanianRes <- MulEA::runTest(rankedBasedTestSubramanian)
+rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 ```
 
 Below is the list of arguments accepted by the constructor of the `RankedBasedTest`:

@@ -630,7 +630,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
       nthreads = nthreads
     )
     
-    mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+    mulea_ora_results <- MulEA::run_test(mulea_ora_model)
     tests_res[[i]]$mulea_res <- mulea_ora_results
     tests_res[[i]]$test_data <- input_gmt_decorated
     tests_res[[i]]$metadata <- list(

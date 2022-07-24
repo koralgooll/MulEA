@@ -48,25 +48,25 @@ setMethod("initialize", "ORA",
             .Object@numberOfPermutations <- numberOfPermutations
             .Object@nthreads <- nthreads
             
-            .Object@test <- function(setBaseTestObject) {
+            .Object@test <- function(setBasemodel) {
               setBasedTestRes <- NULL
               
-              if (!identical(setBaseTestObject@adjustMethod, character(0)) &&
-                  setBaseTestObject@adjustMethod == "PT") {
+              if (!identical(setBasemodel@adjustMethod, character(0)) &&
+                  setBasemodel@adjustMethod == "PT") {
                 muleaSetBaseEnrichmentTest <-
                   SetBasedEnrichmentTest(
-                    gmt = setBaseTestObject@gmt,
-                    testData = setBaseTestObject@testData,
-                    pool = setBaseTestObject@pool,
-                    numberOfPermutations = setBaseTestObject@numberOfPermutations,
-                    nthreads = setBaseTestObject@nthreads
+                    gmt = setBasemodel@gmt,
+                    testData = setBasemodel@testData,
+                    pool = setBasemodel@pool,
+                    numberOfPermutations = setBasemodel@numberOfPermutations,
+                    nthreads = setBasemodel@nthreads
                   )
                 
                 muleaSetBaseEnrichmentTest <-
-                  runTest(muleaSetBaseEnrichmentTest)
+                  run_test(muleaSetBaseEnrichmentTest)
                 
                 muleaSetBaseEnrichmentTest <- merge(
-                  setBaseTestObject@gmt[c('ontologyId', 'ontologyName')],
+                  setBasemodel@gmt[c('ontologyId', 'ontologyName')],
                   muleaSetBaseEnrichmentTest,
                   by.x = "ontologyId",
                   by.y = "DB_names",
@@ -102,13 +102,13 @@ setMethod("initialize", "ORA",
               } else {
                 muleaHypergeometricTest <-
                   MuleaHypergeometricTest(
-                    gmt = setBaseTestObject@gmt,
-                    testData = setBaseTestObject@testData,
-                    pool = setBaseTestObject@pool
+                    gmt = setBasemodel@gmt,
+                    testData = setBasemodel@testData,
+                    pool = setBasemodel@pool
                   )
-                setBasedTestRes <- runTest(muleaHypergeometricTest)
-                if (!identical(setBaseTestObject@adjustMethod, character(0)) &&
-                    setBaseTestObject@adjustMethod != "PT") {
+                setBasedTestRes <- run_test(muleaHypergeometricTest)
+                if (!identical(setBasemodel@adjustMethod, character(0)) &&
+                    setBasemodel@adjustMethod != "PT") {
                   setBasedTestRes <-
                     data.frame(
                       setBasedTestRes,
@@ -125,8 +125,8 @@ setMethod("initialize", "ORA",
           })
 
 #' @describeIn ORA runs test calculations.
-#' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for ORA object. Returns results of counting using methods from set based area.
+#' @param model Object of s4 class represents Mulea Test.
+#' @return run_test method for ORA object. Returns results of counting using methods from set based area.
 #' @examples
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
@@ -141,12 +141,12 @@ setMethod("initialize", "ORA",
 #'                                      pool = dataFromExperimentPool, 
 #'                                      adjustMethod = "BH", nthreads = 2)
 #' setBaseTestWithPermutationTestAdjustment <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, adjustMethod = "PT", nthreads = 2)
-#' setBasedTestRes <- MulEA::runTest(setBasedTest)
-#' setBasedTestWithPoolRes <- MulEA::runTest(setBasedTestWithPool)
-#' setBasedTestWithPoolAndAdjustRes <- MulEA::runTest(setBasedTestWithPoolAndAdjust)
-#' setBaseTestWithPermutationTestAdjustmentRes <- MulEA::runTest(setBaseTestWithPermutationTestAdjustment)
-setMethod("runTest",
-          signature(testObject = "ORA"),
-          function(testObject) {
-            testObject@test(testObject)
+#' setBasedTestRes <- MulEA::run_test(setBasedTest)
+#' setBasedTestWithPoolRes <- MulEA::run_test(setBasedTestWithPool)
+#' setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
+#' setBaseTestWithPermutationTestAdjustmentRes <- MulEA::run_test(setBaseTestWithPermutationTestAdjustment)
+setMethod("run_test",
+          signature(model = "ORA"),
+          function(model) {
+            model@test(model)
           })

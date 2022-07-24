@@ -58,7 +58,7 @@ convertListToGmtDataFrame(ontologyReprAsList)
 MulEA::ORA.}
 
 \item{mulea_model_resuts}{Results from model, in most cases returned by
-MulEA::runTest generic method.}
+MulEA::run_test generic method.}
 
 \item{mulea_relaxed_resuts}{data.table in relaxed form.}
 

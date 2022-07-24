@@ -5,7 +5,7 @@ editor_options:
 ---
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r echo=FALSE}
+```{r echo = FALSE}
 knitr::opts_chunk$set(
   warning = FALSE, 
   message = FALSE,
@@ -24,7 +24,7 @@ Fast analysis of biological data which results are well interpretable plots.
 
 ## Install Development Version
 
-```{r}
+```{r, eval = FALSE}
 library(devtools)
 install_github("https://github.com/koralgooll/MulEA.git")
 ```
@@ -61,7 +61,7 @@ ora_model <- ORA(
   numberOfPermutations = 1000
 )
 
-ora_results <- runTest(ora_model)
+ora_results <- run_test(ora_model)
 
 ora_reshaped_results <- reshapeResults(
   mulea_model = ora_model, 
@@ -113,7 +113,7 @@ ranked_model <- RankedBasedTest(
   scores = selectDf$score
 )
 
-ranked_results <- runTest(ranked_model)
+ranked_results <- run_test(ranked_model)
 
 ranked_reshaped_results <- reshapeResults(
   mulea_model = ranked_model, 

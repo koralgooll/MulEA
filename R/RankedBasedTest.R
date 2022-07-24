@@ -54,17 +54,17 @@ setMethod("initialize", "RankedBasedTest",
             
             .Object@numberOfPermutations <- numberOfPermutations
             
-            .Object@test <- function(rankedBaseTestObject) {
+            .Object@test <- function(rankedBasemodel) {
               rankedTestRes <- NULL
               
               subramanianTest <- SubramanianTest(
-                gmt = rankedBaseTestObject@gmt,
-                testData = rankedBaseTestObject@testData,
-                scores = rankedBaseTestObject@scores,
-                p = rankedBaseTestObject@p,
-                scoreType = rankedBaseTestObject@scoreType
+                gmt = rankedBasemodel@gmt,
+                testData = rankedBasemodel@testData,
+                scores = rankedBasemodel@scores,
+                p = rankedBasemodel@p,
+                scoreType = rankedBasemodel@scoreType
               )
-              rankedTestRes <- runTest(subramanianTest)
+              rankedTestRes <- run_test(subramanianTest)
               
               rankedTestRes
             }
@@ -74,13 +74,13 @@ setMethod("initialize", "RankedBasedTest",
           })
 
 #' @describeIn RankedBasedTest runs test calculations.
-#' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for RankedBasedTest object. Returns results of
+#' @param model Object of s4 class represents Mulea Test.
+#' @return run_test method for RankedBasedTest object. Returns results of
 #' counting using methods from ranking based area.
 #' @examples
-#' rankedBasedTestSubramanianRes <- MulEA::runTest(rankedBasedTestSubramanian)
-setMethod("runTest",
-          signature(testObject = "RankedBasedTest"),
-          function(testObject) {
-            testObject@test(testObject)
+#' rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
+setMethod("run_test",
+          signature(model = "RankedBasedTest"),
+          function(model) {
+            model@test(model)
           })

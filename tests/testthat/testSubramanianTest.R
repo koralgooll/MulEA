@@ -31,7 +31,7 @@ test_that("RankedBasedTest : no scores vector.", {
   
   mulea_ranked_based_test_model <- MulEA::RankedBasedTest(gmt = gmtMock, testData = testDataMock)
   testthat::expect_error(muleaTestRes <-
-                           MulEA::runTest(mulea_ranked_based_test_model))
+                           MulEA::run_test(mulea_ranked_based_test_model))
 })
 
 test_that("RankedBasedTest : GSEA error propagation.", {
@@ -52,7 +52,7 @@ test_that("RankedBasedTest : GSEA error propagation.", {
   )
   
   testthat::expect_error(muleaTestRes <-
-                           MulEA::runTest(mulea_ranked_based_test_model))
+                           MulEA::run_test(mulea_ranked_based_test_model))
 })
 
 test_that("RankedBasedTest : out of ontology elements.", {
@@ -71,7 +71,7 @@ test_that("RankedBasedTest : out of ontology elements.", {
                                                           scores = scoreDataMock)
   
   testthat::expect_warning(muleaTestRes <-
-                             MulEA::runTest(mulea_ranked_based_test_model))
+                             MulEA::run_test(mulea_ranked_based_test_model))
   testthat::expect_equal(muleaTestRes$pValue, 610101/2e+06)
 })
 
@@ -97,7 +97,7 @@ test_that("RankedBasedTest : DB1 + DB2.", {
                                                           testData = testDataMock,
                                                           scores = scoreDataMock)
   
-  muleaTestRes <- MulEA::runTest(mulea_ranked_based_test_model)
+  muleaTestRes <- MulEA::run_test(mulea_ranked_based_test_model)
   testthat::expect_equal(muleaTestRes$pValue, c(169 / 330, 107 / 219))
 })
 
@@ -123,6 +123,6 @@ test_that("RankedBasedTest : DB1 + DB2 out of pool.", {
                                                           testData = testDataMock,
                                                           scores = scoreDataMock)
   
-  muleaTestRes <- MulEA::runTest(mulea_ranked_based_test_model)
+  muleaTestRes <- MulEA::run_test(mulea_ranked_based_test_model)
   testthat::expect_equal(muleaTestRes$pValue, c(156 / 653, 251 / 492))
 })

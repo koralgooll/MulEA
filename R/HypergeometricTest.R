@@ -29,25 +29,25 @@ setMethod("initialize", "MuleaHypergeometricTest",
             .Object@testData <- testData
             .Object@pool <- pool
             
-            .Object@test <- function(testObject) {
-              testObject@testData <- checkIfPoolIncludeSample(testObject@gmt, testObject@testData, testObject@pool)
+            .Object@test <- function(model) {
+              model@testData <- checkIfPoolIncludeSample(model@gmt, model@testData, model@pool)
               
               muleaSetBaseEnrichmentTest <-
                 SetBasedEnrichmentTest(
-                  gmt = testObject@gmt,
-                  testData = testObject@testData,
-                  pool = testObject@pool,
+                  gmt = model@gmt,
+                  testData = model@testData,
+                  pool = model@pool,
                   only_hyper_geometric_test = TRUE
                 )
               
               muleaSetBaseEnrichmentTestResult <<-
-                runTest(muleaSetBaseEnrichmentTest)
-              testObjectGlobal <<- testObject
+                run_test(muleaSetBaseEnrichmentTest)
+              modelGlobal <<- model
               
               
               testResults <- data.frame(
                 'ontologyName' = muleaSetBaseEnrichmentTestResult$DB_names,
-                'listOfValues' = testObject@gmt$listOfValues,
+                'listOfValues' = model@gmt$listOfValues,
                 'p.value' = muleaSetBaseEnrichmentTestResult$P_val,
                 row.names = NULL
               )
@@ -60,15 +60,15 @@ setMethod("initialize", "MuleaHypergeometricTest",
           })
 
 #' @describeIn MuleaHypergeometricTest runs test calculations.
-#' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for MuleaHypergeometricTest object. Used as private
+#' @param model Object of s4 class represents Mulea Test.
+#' @return run_test method for MuleaHypergeometricTest object. Used as private
 #' function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at runTest of ORA's examples.
+#' #It is a private method. Look at run_test of ORA's examples.
 #' }
-setMethod("runTest",
-          signature(testObject = "MuleaHypergeometricTest"),
-          function(testObject) {
-            testObject@test(testObject)
+setMethod("run_test",
+          signature(model = "MuleaHypergeometricTest"),
+          function(model) {
+            model@test(model)
           })
