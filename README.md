@@ -87,7 +87,7 @@ plot_barplot(
 <img src="man/figures/README-ora-barplot-1.png" width="100%" />
 
 ``` r
-plotHeatmap(
+plot_heatmap(
   reshaped_results=ora_reshaped_results,
   p_value_max_threshold=1.00,
   p_value_type_colname = 'adjustedPValueEmpirical'
@@ -137,7 +137,7 @@ plot_barplot(
   p_value_max_threshold=1.00
 )
 
-plotHeatmap(
+plot_heatmap(
   reshaped_results=mulea_sub_reshaped_results,
   p_value_max_threshold=1.00
 )

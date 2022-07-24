@@ -5,7 +5,7 @@
 \alias{reshape_results}
 \alias{plot_graph}
 \alias{plot_barplot}
-\alias{plotHeatmap}
+\alias{plot_heatmap}
 \alias{readGmtFileAsDataFrame}
 \alias{saveDataFrameAsGmtFile}
 \alias{filterOntology}
@@ -38,7 +38,7 @@ plot_barplot(
   p_value_max_threshold = 0.05
 )
 
-plotHeatmap(
+plot_heatmap(
   reshaped_results,
   p_value_type_colname = "adjustedPValue",
   ontology_element_colname = "genIdInOntology",
@@ -102,7 +102,7 @@ one relaxed datatable.
 
 \code{plot_barplot} Plots barplot of p-values.
 
-\code{plotHeatmap} Plots heatmap of enriched terms and obtained p-values.
+\code{plot_heatmap} Plots heatmap of enriched terms and obtained p-values.
 
 \code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
 

@@ -252,7 +252,7 @@ plot_barplot <-
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{plotHeatmap} Plots heatmap of enriched terms and obtained p-values.
+#' \code{plot_heatmap} Plots heatmap of enriched terms and obtained p-values.
 #'
 #' @param reshaped_results data.table in relaxed form.
 #'
@@ -262,7 +262,7 @@ plot_barplot <-
 #' @export
 #'
 #' @return Return plot.
-plotHeatmap <- function(reshaped_results,
+plot_heatmap <- function(reshaped_results,
                         p_value_type_colname = 'adjustedPValue',
                         ontology_element_colname = 'genIdInOntology',
                         p_value_max_threshold = 0.05) {
