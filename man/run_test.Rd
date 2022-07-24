@@ -60,7 +60,7 @@ rankedBasedTestSubramanian <- RankedBasedTest(
   method = "Subramanian",
   gmt = modelDfFromFile,
   testData = dataFromExperiment,
-  scores = dataFromExperimentScores)
+  element_scores = dataFromExperimentScores)
 rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 }
 \seealso{

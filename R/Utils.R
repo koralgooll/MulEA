@@ -626,7 +626,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
       gmt = input_gmt_filtered,
       testData = input_select,
       adjustMethod = "PT",
-      numberOfPermutations = number_of_steps,
+      number_of_permutations = number_of_steps,
       nthreads = nthreads
     )
     

@@ -38,7 +38,7 @@ An S4 class to represent a set based tests in Mulea.
 
 \item{\code{adjustMethod}}{A type of algorithm used to adjust values. Possible values: "PT" and all from p.adjust {stats} documentation.}
 
-\item{\code{numberOfPermutations}}{A number of permutations used in set base enrichment test. Default vlue is 10000.}
+\item{\code{number_of_permutations}}{A number of permutations used in set base enrichment test. Default vlue is 10000.}
 
 \item{\code{nthreads}}{Number of processor's threads used in calculations.}
 }}

@@ -2,15 +2,15 @@
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot testData A data from expeciment to analize accross model.
-#' @slot scores A vectore of scores per testData.
+#' @slot element_scores A vectore of element_scores per testData.
 #' @slot p A power of weight. Default value is 1.
-#' @slot scoreType Defines the GSEA score type. Only positive scores - "pos",
-#' only negative scores - "neg" and mixed (standard) - "std".
-#' @slot numberOfPermutations A number of permutations used in KS test. Default
+#' @slot scoreType Defines the GSEA score type. Only positive element_scores - "pos",
+#' only negative element_scores - "neg" and mixed (standard) - "std".
+#' @slot number_of_permutations A number of permutations used in KS test. Default
 #' vlue is 1000.
-#' @return RankedBasedTest object. This object represents ranked based tests in
+#' @return GSEA object. This object represents ranked based tests in
 #' Mulea.
-#' @export "RankedBasedTest"
+#' @export "GSEA"
 #' @examples
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(
 #'   gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
@@ -20,39 +20,39 @@
 #'                         "FBgn0263831")
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
 #'                               0.45, 0.50)
-#' rankedBasedTestSubramanian <- RankedBasedTest(gmt = modelDfFromFile,
+#' GSEASubramanian <- GSEA(gmt = modelDfFromFile,
 #'                                               testData = dataFromExperiment,
-#'                                               scores = dataFromExperimentScores)
-RankedBasedTest <- setClass(
-  "RankedBasedTest",
+#'                                               element_scores = dataFromExperimentScores)
+GSEA <- setClass(
+  "GSEA",
   slots = list(
     gmt = "data.frame",
     testData = "character",
-    scores = "numeric",
+    element_scores = "numeric",
     p = "numeric",
     scoreType = "character",
-    numberOfPermutations = "numeric",
+    number_of_permutations = "numeric",
     test = "function"
   )
 )
 
-setMethod("initialize", "RankedBasedTest",
+setMethod("initialize", "GSEA",
           function(.Object,
                    gmt = data.frame(),
                    testData = character(),
-                   scores = numeric(),
+                   element_scores = numeric(),
                    p = 1,
                    scoreType = "std",
-                   numberOfPermutations = 1000,
+                   number_of_permutations = 1000,
                    test = NULL,
                    ...) {
             .Object@gmt <- gmt
             .Object@testData <- testData
-            .Object@scores <- scores
+            .Object@element_scores <- element_scores
             .Object@p <- p
             .Object@scoreType <- scoreType
             
-            .Object@numberOfPermutations <- numberOfPermutations
+            .Object@number_of_permutations <- number_of_permutations
             
             .Object@test <- function(rankedBasemodel) {
               rankedTestRes <- NULL
@@ -60,7 +60,7 @@ setMethod("initialize", "RankedBasedTest",
               subramanianTest <- SubramanianTest(
                 gmt = rankedBasemodel@gmt,
                 testData = rankedBasemodel@testData,
-                scores = rankedBasemodel@scores,
+                element_scores = rankedBasemodel@element_scores,
                 p = rankedBasemodel@p,
                 scoreType = rankedBasemodel@scoreType
               )
@@ -73,14 +73,14 @@ setMethod("initialize", "RankedBasedTest",
             
           })
 
-#' @describeIn RankedBasedTest runs test calculations.
+#' @describeIn GSEA runs test calculations.
 #' @param model Object of s4 class represents Mulea Test.
-#' @return run_test method for RankedBasedTest object. Returns results of
+#' @return run_test method for GSEA object. Returns results of
 #' counting using methods from ranking based area.
 #' @examples
-#' rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
+#' GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
 setMethod("run_test",
-          signature(model = "RankedBasedTest"),
+          signature(model = "GSEA"),
           function(model) {
             model@test(model)
           })

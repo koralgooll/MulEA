@@ -2,9 +2,9 @@
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot testData A data from expeciment to analize accross model.
-#' @slot scores A vectore of scores per testData.
+#' @slot element_scores A vectore of element_scores per testData.
 #' @slot p A power of weight.
-#' @slot scoreType Defines the GSEA score type. Only positive scores - "pos", only negative scores - "neg" and mixed (standard) - "std".
+#' @slot scoreType Defines the GSEA score type. Only positive element_scores - "pos", only negative element_scores - "neg" and mixed (standard) - "std".
 #' @return dataframe with presented columns 'ontologyId', 'ontologyName',
 #' 'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
 #' 'pValue', 'adjustedPValue'
@@ -17,7 +17,7 @@ SubramanianTest <- setClass(
   slots = list(
     gmt = "data.frame",
     testData = "character",
-    scores = "numeric",
+    element_scores = "numeric",
     p = "numeric",
     scoreType = "character",
     test = "function"
@@ -28,14 +28,14 @@ setMethod("initialize", "SubramanianTest",
           function(.Object,
                    gmt = data.frame(),
                    testData = character(),
-                   scores = numeric(),
+                   element_scores = numeric(),
                    p = 1,
                    scoreType = "std",
                    test = NULL,
                    ...) {
             .Object@gmt <- gmt
             .Object@testData <- testData
-            .Object@scores <- scores
+            .Object@element_scores <- element_scores
             .Object@p <- p
             .Object@scoreType <- scoreType
             
@@ -44,7 +44,7 @@ setMethod("initialize", "SubramanianTest",
               names(listmodelDfFromFile) <-
                 model@gmt$ontologyId
               
-              samplesToAnalisys <- model@scores
+              samplesToAnalisys <- model@element_scores
               names(samplesToAnalisys) <- model@testData
               
               fgseaRes <-

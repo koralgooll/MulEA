@@ -5,7 +5,7 @@
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot pool A background data to count test.
 #' @slot adjustMethod A type of algorithm used to adjust values. Possible values: "PT" and all from p.adjust {stats} documentation.
-#' @slot numberOfPermutations A number of permutations used in set base enrichment test. Default vlue is 10000.
+#' @slot number_of_permutations A number of permutations used in set base enrichment test. Default vlue is 10000.
 #' @slot nthreads Number of processor's threads used in calculations.
 #' @return ORA object. This object represents set based tests in Mulea.
 #' @export "ORA"
@@ -25,7 +25,7 @@ ORA <- setClass(
     testData = "character",
     pool = "character",
     adjustMethod = "character",
-    numberOfPermutations = "numeric",
+    number_of_permutations = "numeric",
     nthreads = "numeric",
     test = "function"
   )
@@ -37,7 +37,7 @@ setMethod("initialize", "ORA",
                    testData = character(),
                    pool = character(),
                    adjustMethod = character(),
-                   numberOfPermutations = 10000,
+                   number_of_permutations = 10000,
                    test = NULL,
                    nthreads = 4,
                    ...) {
@@ -45,7 +45,7 @@ setMethod("initialize", "ORA",
             .Object@testData <- testData
             .Object@pool <- pool
             .Object@adjustMethod <- 'PT'
-            .Object@numberOfPermutations <- numberOfPermutations
+            .Object@number_of_permutations <- number_of_permutations
             .Object@nthreads <- nthreads
             
             .Object@test <- function(setBasemodel) {
@@ -58,7 +58,7 @@ setMethod("initialize", "ORA",
                     gmt = setBasemodel@gmt,
                     testData = setBasemodel@testData,
                     pool = setBasemodel@pool,
-                    numberOfPermutations = setBasemodel@numberOfPermutations,
+                    number_of_permutations = setBasemodel@number_of_permutations,
                     nthreads = setBasemodel@nthreads
                   )
                 

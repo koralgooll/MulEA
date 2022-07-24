@@ -62,7 +62,7 @@ SetBasedEnrichmentTest <- setClass(
     gmt = "data.frame",
     testData = "character",
     pool = "character",
-    numberOfPermutations = "numeric",
+    number_of_permutations = "numeric",
     only_hyper_geometric_test = "logical",
     nthreads = "numeric",
     test = "function"
@@ -74,7 +74,7 @@ setMethod("initialize", "SetBasedEnrichmentTest",
                    gmt = data.frame(),
                    testData = character(),
                    pool = character(),
-                   numberOfPermutations = 10000,
+                   number_of_permutations = 10000,
                    test = NULL,
                    only_hyper_geometric_test = FALSE,
                    nthreads = 4,
@@ -82,7 +82,7 @@ setMethod("initialize", "SetBasedEnrichmentTest",
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@pool <- pool
-            .Object@numberOfPermutations <- numberOfPermutations
+            .Object@number_of_permutations <- number_of_permutations
             .Object@only_hyper_geometric_test <-
               only_hyper_geometric_test
             .Object@nthreads <- nthreads
@@ -109,7 +109,7 @@ setMethod("initialize", "SetBasedEnrichmentTest",
               
               testResults <-
                 set.based.enrichment.test.wrapper(
-                  steps = .Object@numberOfPermutations,
+                  steps = .Object@number_of_permutations,
                   pool = pool,
                   select = testData,
                   DB = DB,
