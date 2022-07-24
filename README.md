@@ -67,10 +67,10 @@ View(ora_results)
 Plot results:
 
 ``` r
-plotGraph(
-  mulea_relaxed_resuts=ora_reshaped_results,
-  statistics_value_cutoff = 1.00,
-  statistics_value_colname = "adjustedPValueEmpirical"
+plot_graph(
+  reshaped_results=ora_reshaped_results,
+  p_value_max_threshold = 1.00,
+  p_value_type_colname = "adjustedPValueEmpirical"
 )
 ```
 
@@ -78,9 +78,9 @@ plotGraph(
 
 ``` r
 plotBarplot(
-  mulea_relaxed_resuts = ora_reshaped_results,
-  statistics_value_cutoff=1.00,
-  statistics_value_colname = "adjustedPValueEmpirical"
+  reshaped_results = ora_reshaped_results,
+  p_value_max_threshold=1.00,
+  p_value_type_colname = "adjustedPValueEmpirical"
 )
 ```
 
@@ -88,9 +88,9 @@ plotBarplot(
 
 ``` r
 plotHeatmap(
-  mulea_relaxed_resuts=ora_reshaped_results,
-  statistics_value_cutoff=1.00,
-  statistics_value_colname = 'adjustedPValueEmpirical'
+  reshaped_results=ora_reshaped_results,
+  p_value_max_threshold=1.00,
+  p_value_type_colname = 'adjustedPValueEmpirical'
 )
 ```
 
@@ -127,19 +127,19 @@ Plot results:
 
 ``` r
 # TODO FIX ERROR: Wrongly set data column names
-plotGraph(
-  mulea_relaxed_resuts=ranked_results,
-  statistics_value_cutoff = 1.00
+plot_graph(
+  reshaped_results=ranked_results,
+  p_value_max_threshold = 1.00
 )
 
 plotBarplot(
-  mulea_relaxed_resuts = ranked_results,
-  statistics_value_cutoff=1.00
+  reshaped_results = ranked_results,
+  p_value_max_threshold=1.00
 )
 
 plotHeatmap(
-  mulea_relaxed_resuts=mulea_sub_reshaped_results,
-  statistics_value_cutoff=1.00
+  reshaped_results=mulea_sub_reshaped_results,
+  p_value_max_threshold=1.00
 )
 ```
 

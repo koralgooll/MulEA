@@ -3,7 +3,7 @@
 \name{InputOutputFunctions}
 \alias{InputOutputFunctions}
 \alias{reshape_results}
-\alias{plotGraph}
+\alias{plot_graph}
 \alias{plotBarplot}
 \alias{plotHeatmap}
 \alias{readGmtFileAsDataFrame}
@@ -21,28 +21,28 @@ reshape_results(
   p_value_max_threshold = TRUE
 )
 
-plotGraph(
-  mulea_relaxed_resuts,
-  edge_weight_cutoff = 0,
-  statistics_value_colname = "adjustedPValue",
-  ontology_id_column_name = "ontologyId",
-  gen_id_in_ontology_column_name = "genIdInOntology",
-  statistics_value_cutoff = 0.05
+plot_graph(
+  reshaped_results,
+  shared_elements_min_threshold = 0,
+  p_value_type_colname = "adjustedPValue",
+  ontology_id_colname = "ontologyId",
+  ontology_element_colname = "genIdInOntology",
+  p_value_max_threshold = 0.05
 )
 
 plotBarplot(
-  mulea_relaxed_resuts,
+  reshaped_results,
   selection_vector = NULL,
   categories_names = "ontologyId",
-  statistics_value_colname = "adjustedPValue",
-  statistics_value_cutoff = 0.05
+  p_value_type_colname = "adjustedPValue",
+  p_value_max_threshold = 0.05
 )
 
 plotHeatmap(
-  mulea_relaxed_resuts,
-  statistics_value_colname = "adjustedPValue",
-  gen_id_in_ontology_column_name = "genIdInOntology",
-  statistics_value_cutoff = 0.05
+  reshaped_results,
+  p_value_type_colname = "adjustedPValue",
+  ontology_element_colname = "genIdInOntology",
+  p_value_max_threshold = 0.05
 )
 
 readGmtFileAsDataFrame(gmtFilePath)
@@ -60,7 +60,7 @@ MulEA::ORA.}
 \item{model_results}{Results from model, in most cases returned by
 MulEA::run_test generic method.}
 
-\item{mulea_relaxed_resuts}{data.table in relaxed form.}
+\item{reshaped_results}{data.table in relaxed form.}
 
 \item{selection_vector}{vector for selecting variables to plot.}
 
@@ -98,7 +98,7 @@ Return data frame with model.
 \code{reshape_results} merge model and model results into
 one relaxed datatable.
 
-\code{plotGraph} Plots graph representation of enrichment results.
+\code{plot_graph} Plots graph representation of enrichment results.
 
 \code{plotBarplot} Plots barplot of p-values.
 
