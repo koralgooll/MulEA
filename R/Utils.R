@@ -191,13 +191,8 @@ filterOntology <- function(input_gmt,
 #' which will be chosen to over representation.
 #' @param number_of_under_representation_groups set the number of groups
 #' which will be chosen to under representation.
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with model from specific location.
+#' @noRd
 decorateGmtByUnderOvenAndNoise <- function(input_gmt,
                                            number_of_over_representation_groups = 1,
                                            number_of_under_representation_groups = 0) {
@@ -273,13 +268,8 @@ convertListToGmtDataFrame <- function(ontologyReprAsList) {
 #' @param group_under_over_representation_ratio ratio of over represented group.
 #' @param number_of_over_representation_groups number of groups chosen to over representation.
 #' @param number_of_under_representation_groups number of groups chosen to under representation.
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with model from specific location.
+#' @noRd
 generateInputSamples <-
   function(input_gmt_decorated,
            noise_ratio = 0.2,
@@ -331,12 +321,8 @@ generateInputSamples <-
 #' @param comparison_col_name column name which indicated data to compare on.
 #' @param labels label datatable by additional columns with values.
 #' @param cut_off threshold for value selected by comparison_col_name
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with FDR. TPRs per test.
+#' @noRd
 getMultipleTestsSummary <- function(tests_res,
                                     comparison_col_name,
                                     labels = list(),
@@ -465,12 +451,8 @@ getMultipleTestsSummary <- function(tests_res,
 #' \code{getSummaryToRoc} generate artificial GO with specific terms under or over represented.
 #'
 #' @param tests_res list of multiple tests results.
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame which is the base to count ROC.
+#' @noRd
 getSummaryToRoc <- function(tests_res,
                             cut_off_resolution = 0.01,
                             methods_names = c('pValue', 'adjustedPValue', 'adjustedPValueEmpirical')) {
@@ -554,12 +536,8 @@ getSummaryToRoc <- function(tests_res,
 #'
 #' @param tests_res list of multiple tests results.
 #' @param cut_off_range threshold for value selected by comparison_col_name
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with FDR. TPRs per test.
+#' @noRd
 getMultipleTestsSummaryAcrossCutOff <- function(tests_res,
                                                 cut_off_range = seq(0, 1, 0.1)) {
   tests_res_sum <- NULL
@@ -606,12 +584,8 @@ getMultipleTestsSummaryAcrossCutOff <- function(tests_res,
 #' @param noise_ratio ratio of noise in data from [0,1] interval.
 #' @param number_of_over_representation_groups number of terms to over represent.
 #' @param number_of_under_representation_groups number of terms to under represent.
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with FDR. TPRs per test.
+#' @noRd
 simulateMultipleTests <- function(input_gmt_filtered,
                                   number_of_tests = 10,
                                   noise_ratio = 0.35,
@@ -682,13 +656,9 @@ simulateMultipleTests <- function(input_gmt_filtered,
 #' @param number_of_tests number of tests to perform.
 #' @param noise_ratio_range range of ratios of noise in data from [0,1] interval.
 #' @param number_of_over_representation_groups number of terms to over represent.
-#' @param number_of_steps
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
+#' @param number_of_steps number of steps.
 #' @return Return data frame with FDR. TPRs per test.
+#' @noRd
 simulateMultipleTestsWithRatioParam <- function(input_gmt_filtered,
                                                 noise_ratio_range = seq(0.1, 0.5, 0.1),
                                                 number_of_tests = 100,
