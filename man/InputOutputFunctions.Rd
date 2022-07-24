@@ -8,7 +8,6 @@
 \alias{plotHeatmap}
 \alias{readGmtFileAsDataFrame}
 \alias{saveDataFrameAsGmtFile}
-\alias{readEdbFileAsDataFrame}
 \alias{filterOntology}
 \alias{decorateGmtByUnderOvenAndNoise}
 \alias{convertListToGmtDataFrame}
@@ -56,8 +55,6 @@ plotHeatmap(
 readGmtFileAsDataFrame(gmtFilePath)
 
 saveDataFrameAsGmtFile(modelDF, gmtFilePath)
-
-readEdbFileAsDataFrame(edbFilePath)
 
 filterOntology(input_gmt, min = NULL, max = NULL)
 
@@ -129,8 +126,6 @@ MulEA::runTest generic method.}
 
 \item{modelDF}{data frame with model.}
 
-\item{edbFilePath}{path with name of file, where the file is localized or where to save model.}
-
 \item{input_gmt}{input dataframe, read from gmt file.}
 
 \item{min}{minimum size of term. Default 20 percent from quantile on term size distribution.}
@@ -179,8 +174,6 @@ Returns data frame with the model from a specific location.
 
 Returns the model as a .gmt file at a specific location.
 
-Return data frame with model from a .edb file.
-
 Return data frame with model from specific location.
 
 Return data frame with model from specific location.
@@ -212,8 +205,6 @@ one relaxed datatable.
 \code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
 
 \code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a .gmt file.
-
-\code{readEdbFileAsDataFrame} read GSEA results as a dataframe from .edb file.
 
 \code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
 
