@@ -195,10 +195,10 @@ plot_graph <- function(reshaped_results,
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{plotBarplot} Plots barplot of p-values.
+#' \code{plot_barplot} Plots barplot of p-values.
 #'
 #' @param reshaped_results  data.table in relaxed form.
-#' @param selection_vector vector for selecting variables to plot.
+#' @param selected_rows_to_plot vector for selecting variables to plot.
 #'
 #'
 #' @title Input/Output Functions
@@ -206,25 +206,25 @@ plot_graph <- function(reshaped_results,
 #' @export
 #'
 #' @return Return plot.
-plotBarplot <-
+plot_barplot <-
   function(reshaped_results,
-           selection_vector = NULL,
-           categories_names = 'ontologyId',
+           selected_rows_to_plot = NULL,
+           ontology_id_colname = 'ontologyId',
            p_value_type_colname = 'adjustedPValue',
            p_value_max_threshold = 0.05) {
     MulEA:::validate_column_names_and_function_args(data = reshaped_results,
-                                                    p_value_type_colname, categories_names)
+                                                    p_value_type_colname, ontology_id_colname)
     reshaped_results <- MulEA:::filterRelaxedResultsForPlotting(
       reshaped_results = reshaped_results,
       p_value_type_colname = p_value_type_colname,
       p_value_max_threshold = p_value_max_threshold
     )
     
-    if (is.null(selection_vector)) {
-      selection_vector <- 1:nrow(reshaped_results)
+    if (is.null(selected_rows_to_plot)) {
+      selected_rows_to_plot <- 1:nrow(reshaped_results)
     }
     unique_reshaped_results <-
-      unique(reshaped_results[selection_vector, c(..categories_names, ..p_value_type_colname)])
+      unique(reshaped_results[selected_rows_to_plot, c(..ontology_id_colname, ..p_value_type_colname)])
     unique_reshaped_results <- unique_reshaped_results %>%
       dplyr::arrange(dplyr::desc((!!as.name(
         p_value_type_colname
@@ -237,7 +237,7 @@ plotBarplot <-
              levels = unique_reshaped_results_df[[1]])
     mulea_gg_plot <- ggplot(
       unique_reshaped_results_df,
-      aes_string(x = categories_names, y = p_value_type_colname,
+      aes_string(x = ontology_id_colname, y = p_value_type_colname,
                  fill = p_value_type_colname)
     ) +
       geom_bar(stat = "identity") +

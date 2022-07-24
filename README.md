@@ -77,7 +77,7 @@ plot_graph(
 <img src="man/figures/README-ora-graph-1.png" width="100%" />
 
 ``` r
-plotBarplot(
+plot_barplot(
   reshaped_results = ora_reshaped_results,
   p_value_max_threshold=1.00,
   p_value_type_colname = "adjustedPValueEmpirical"
@@ -132,7 +132,7 @@ plot_graph(
   p_value_max_threshold = 1.00
 )
 
-plotBarplot(
+plot_barplot(
   reshaped_results = ranked_results,
   p_value_max_threshold=1.00
 )

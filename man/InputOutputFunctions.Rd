@@ -4,7 +4,7 @@
 \alias{InputOutputFunctions}
 \alias{reshape_results}
 \alias{plot_graph}
-\alias{plotBarplot}
+\alias{plot_barplot}
 \alias{plotHeatmap}
 \alias{readGmtFileAsDataFrame}
 \alias{saveDataFrameAsGmtFile}
@@ -30,10 +30,10 @@ plot_graph(
   p_value_max_threshold = 0.05
 )
 
-plotBarplot(
+plot_barplot(
   reshaped_results,
-  selection_vector = NULL,
-  categories_names = "ontologyId",
+  selected_rows_to_plot = NULL,
+  ontology_id_colname = "ontologyId",
   p_value_type_colname = "adjustedPValue",
   p_value_max_threshold = 0.05
 )
@@ -62,7 +62,7 @@ MulEA::run_test generic method.}
 
 \item{reshaped_results}{data.table in relaxed form.}
 
-\item{selection_vector}{vector for selecting variables to plot.}
+\item{selected_rows_to_plot}{vector for selecting variables to plot.}
 
 \item{gmtFilePath}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
 
@@ -100,7 +100,7 @@ one relaxed datatable.
 
 \code{plot_graph} Plots graph representation of enrichment results.
 
-\code{plotBarplot} Plots barplot of p-values.
+\code{plot_barplot} Plots barplot of p-values.
 
 \code{plotHeatmap} Plots heatmap of enriched terms and obtained p-values.
 
