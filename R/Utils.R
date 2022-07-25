@@ -229,21 +229,21 @@ decorateGmtByUnderOvenAndNoise <- function(input_gmt,
 
 # PUBLIC API
 #' @description
-#' \code{convertListToGmtDataFrame}
+#' \code{list_to_gmt}
 #'
-#' \code{convertListToGmtDataFrame} conver ontology representation from list to gmt dataframe.
+#' \code{list_to_gmt} conver ontology representation from list to gmt dataframe.
 #'
-#' @param ontologyReprAsList input list with elements names as ontologyId and genes in each element.
+#' @param gmt_list input list with elements names as ontologyId and genes in each element.
 #'
 #' @title Input/Output Functions
 #' @name  InputOutputFunctions
 #' @export
 #'
 #' @return Return data frame with model.
-convertListToGmtDataFrame <- function(ontologyReprAsList) {
+list_to_gmt <- function(gmt_list) {
   listAsGmtDataFrame <-
     plyr::ldply(
-      .data = ontologyReprAsList,
+      .data = gmt_list,
       .id = c('ontologyId'),
       .fun = function(element) {
         print(element)

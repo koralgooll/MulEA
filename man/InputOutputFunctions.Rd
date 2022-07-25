@@ -9,7 +9,7 @@
 \alias{read_gmt}
 \alias{write_gmt}
 \alias{filterOntology}
-\alias{convertListToGmtDataFrame}
+\alias{list_to_gmt}
 \title{Input/Output Functions}
 \usage{
 reshape_results(
@@ -51,7 +51,7 @@ write_gmt(gmt, file)
 
 filterOntology(input_gmt, min = NULL, max = NULL)
 
-convertListToGmtDataFrame(ontologyReprAsList)
+list_to_gmt(gmt_list)
 }
 \arguments{
 \item{model}{the MulEA object represents model. For example created by
@@ -74,7 +74,7 @@ MulEA::run_test generic method.}
 
 \item{max}{maximum size of term. Default 80 percent from quantile on term size distribution.}
 
-\item{ontologyReprAsList}{input list with elements names as ontologyId and genes in each element.}
+\item{gmt_list}{input list with elements names as ontologyId and genes in each element.}
 }
 \value{
 Return detailed and relaxed datatable where model and results are
@@ -110,9 +110,9 @@ one relaxed datatable.
 
 \code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
 
-\code{convertListToGmtDataFrame}
+\code{list_to_gmt}
 
-\code{convertListToGmtDataFrame} conver ontology representation from list to gmt dataframe.
+\code{list_to_gmt} conver ontology representation from list to gmt dataframe.
 }
 \examples{
 modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
