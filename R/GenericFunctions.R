@@ -11,8 +11,8 @@
 #' @seealso \code{\link{gsea}}, \code{\link{ora}}
 #' @export
 #' @examples
-#' modelDfFromFile <- readGmtFileAsDataFrame(
-#'   gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
+#' modelDfFromFile <- read_gmt(
+#'   file = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c(
 #'   "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
 #'   "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")

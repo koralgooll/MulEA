@@ -22,7 +22,7 @@ Import the example data sets:
 
 ``` r
 # import example gene set
-# import other gene sets from a GMT file using readGmtFileAsDataFrame()
+# import other gene sets from a GMT file using read_gmt()
 data(geneSet) 
 
 # import "WHAT ARE WE IMPORTING HERE?"

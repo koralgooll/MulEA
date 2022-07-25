@@ -6,7 +6,7 @@
 \alias{plot_graph}
 \alias{plot_barplot}
 \alias{plot_heatmap}
-\alias{readGmtFileAsDataFrame}
+\alias{read_gmt}
 \alias{saveDataFrameAsGmtFile}
 \alias{filterOntology}
 \alias{convertListToGmtDataFrame}
@@ -45,7 +45,7 @@ plot_heatmap(
   p_value_max_threshold = 0.05
 )
 
-readGmtFileAsDataFrame(gmtFilePath)
+read_gmt(file)
 
 saveDataFrameAsGmtFile(modelDF, gmtFilePath)
 
@@ -64,7 +64,7 @@ MulEA::run_test generic method.}
 
 \item{selected_rows_to_plot}{vector for selecting variables to plot.}
 
-\item{gmtFilePath}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
+\item{file}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
 
 \item{modelDF}{data frame with model.}
 
@@ -104,7 +104,7 @@ one relaxed datatable.
 
 \code{plot_heatmap} Plots heatmap of enriched terms and obtained p-values.
 
-\code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
+\code{read_gmt} read model in data frame form from gmt file.
 
 \code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a .gmt file.
 
@@ -115,6 +115,6 @@ one relaxed datatable.
 \code{convertListToGmtDataFrame} conver ontology representation from list to gmt dataframe.
 }
 \examples{
-modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
-MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
+modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
+MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
 }

@@ -1,8 +1,8 @@
 # PUBLIC API
 #' @description
-#' \code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
+#' \code{read_gmt} read model in data frame form from gmt file.
 #'
-#' @param gmtFilePath path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"
+#' @param file path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"
 #'
 #'
 #' @title Input/Output Functions
@@ -10,8 +10,8 @@
 #' @export
 #'
 #' @return Returns data frame with the model from a specific location.
-readGmtFileAsDataFrame <- function(gmtFilePath) {
-  fileConnection <- file(gmtFilePath)
+read_gmt <- function(file) {
+  fileConnection <- file(file)
   tryCatchRes <- tryCatch(
     lines <- readLines(fileConnection),
     warning = function(w) {
@@ -76,8 +76,8 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 #'
 #' @return Returns the model as a .gmt file at a specific location.
 #' @examples
-#' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
-#' MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
+#' modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
+#' MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
 saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
   vectorOfModel <-
     plyr::daply(

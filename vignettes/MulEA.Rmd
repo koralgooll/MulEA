@@ -62,16 +62,16 @@ There are two input types required to run the analysis: 1) knowledge base that d
 
 MulEA expects knowledge base to be in Gene Matrix Transposed (GMT) file format (*.gmt). This is a three column tabular format used in one of the first implementations of ranked based test for gene set enrichment analysis, and due to its simplicity it makes generation of knowledge bases relatively straightforward ([format explanation](http://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29)). Example of the GMT file is included in MulEA installation directory. 
 
-In order to create data frame containing the knowledge base read the GMT file with `MulEA::readGmtFileAsDataFrame()` method. The method requires one parameter `gmtFilePath` to provide path to the file.
+In order to create data frame containing the knowledge base read the GMT file with `MulEA::read_gmt()` method. The method requires one parameter `file` to provide path to the file.
 
-`gmtFilePath` - path to the file. Example: `"R/MulEA/extdata/model.gmt"`
+`file` - path to the file. Example: `"R/MulEA/extdata/model.gmt"`
 
 ```{r, results = 'asis'} 
 # Get path to the example file
 pathToModelGmtFile <- system.file(package="MulEA", "extdata", "model.gmt")
 
 # Read GMT
-KnowledgeBaseDf <- MulEA::readGmtFileAsDataFrame(gmtFilePath = pathToModelGmtFile)
+KnowledgeBaseDf <- MulEA::read_gmt(file = pathToModelGmtFile)
 ```
 
 ```{r, results = 'asis', echo = FALSE} 
@@ -100,7 +100,7 @@ Set-based tests are the most commonly applied tests in enrichment analysis. Coun
 We start performing the set based enrichment test by submitting the data in the required form. 
 
 ```{r, results = 'asis', echo = TRUE} 
-modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
+modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
 dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407", "FBgn0010438", "FBgn0032154", "FBgn0039930", "FBgn0040268", "FBgn0013674",
                                    "FBgn0037008", "FBgn0003116", "FBgn0037743", "FBgn0035401", "FBgn0037044", "FBgn0051005", "FBgn0026737", "FBgn0026751",
@@ -181,7 +181,7 @@ The ranked list based enrichment analysis needs an ordered list of genes (e.g. t
 As mentioned previously, before running any tests you have to prepare proper input data. An example is presented below:
 
 ```{r, results = 'asis', echo = TRUE} 
-modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
+modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
 dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 dataFromExperimentScores <- c(-0.35, -0.22, -0.09, 0.11, 0.15, 0.20, 0.24, 0.28, 0.45, 0.50)
 ```
