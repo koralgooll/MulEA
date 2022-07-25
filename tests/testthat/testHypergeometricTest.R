@@ -13,17 +13,17 @@ test_that("ORA : object creation test.", {
   
   mulea_ora_model <- MulEA::ORA(
     gmt = gmtMock,
-    testData = testDataMock,
+    element_names = testDataMock,
     pool = poolMock,
     adjustMethod = "PT", 
     nthreads = 2)
   
   testthat::expect_equal(mulea_ora_model@gmt, gmtMock)
-  testthat::expect_equal(mulea_ora_model@testData, c("a", "b", "c"))
+  testthat::expect_equal(mulea_ora_model@element_names, c("a", "b", "c"))
   testthat::expect_equal(mulea_ora_model@pool, c("a", "c", "d"))
 })
 
-test_that("ORA : testData out of DB model.", {
+test_that("ORA : element_names out of DB model.", {
   gmtMock <- data.frame(
     ontologyId = "GO:0000001",
     ontologyName = "Imagin gen ontology to tests.",
@@ -33,7 +33,7 @@ test_that("ORA : testData out of DB model.", {
   testDataMock <- c("a", "b", "d")
   mulea_ora_model <-
     MulEA::ORA(gmt = gmtMock,
-               testData = testDataMock,
+               element_names = testDataMock,
                adjustMethod = "PT", 
                nthreads = 2)
   
@@ -42,7 +42,7 @@ test_that("ORA : testData out of DB model.", {
   testthat::expect_equal(muleaTestRes$pValue, 1)
 })
 
-test_that("ORA : testData out of pool.", {
+test_that("ORA : element_names out of pool.", {
   gmtMock <- data.frame(
     ontologyId = "GO:0000001",
     ontologyName = "Imagin gen ontology to tests.",
@@ -54,7 +54,7 @@ test_that("ORA : testData out of pool.", {
   
   mulea_ora_model <- MulEA::ORA(
     gmt = gmtMock,
-    testData = testDataMock,
+    element_names = testDataMock,
     pool = poolMock,
     adjustMethod = "PT", 
     nthreads = 2)
@@ -76,7 +76,7 @@ test_that("ORA : matrix 2,2,2,2.", {
   
   mulea_ora_model <- MulEA::ORA(
     gmt = gmtMock,
-    testData = testDataMock,
+    element_names = testDataMock,
     pool = poolMock,
     adjustMethod = "PT", 
     nthreads = 2)
@@ -123,7 +123,7 @@ test_that("ORA : pool >> var + DBi, matrix 2,2,2,18.", {
   
   mulea_ora_model <- MulEA::ORA(
     gmt = gmtMock,
-    testData = testDataMock,
+    element_names = testDataMock,
     pool = poolMock,
     adjustMethod = "PT", 
     nthreads = 2)
@@ -144,7 +144,7 @@ test_that("ORA : DBi not include pool, matrix 2,0,2,2.", {
   
   mulea_ora_model <- MulEA::ORA(
     gmt = gmtMock,
-    testData = testDataMock,
+    element_names = testDataMock,
     pool = poolMock,
     adjustMethod = "PT", 
     nthreads = 2)
@@ -170,7 +170,7 @@ test_that("ORA : DB1 + DB2 => pool, matrix 1,3,2,2 and 2,2,1,3.", {
   testDataMock <- c("d", "e", "f")
 
   mulea_ora_model <- MulEA::ORA(gmt = gmtMock,
-                                testData = testDataMock,
+                                element_names = testDataMock,
                                 adjustMethod = "PT", 
                                 nthreads = 2)
   
@@ -223,7 +223,7 @@ test_that("ORA : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
   
   mulea_ora_model <- MulEA::ORA(
     gmt = gmtMock,
-    testData = testDataMock,
+    element_names = testDataMock,
     pool = poolMock,
     adjustMethod = "PT", 
     nthreads = 2)
@@ -242,7 +242,7 @@ test_that("ORA : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
                        c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111", "FBgn0022222", "FBgn0777777", "FBgn0333333")))
   
   mulea_ora_model <- MulEA::ORA(
-    gmt = gmtMock, testData = testDataMock, pool=poolMock, nthreads = 2)
+    gmt = gmtMock, element_names = testDataMock, pool=poolMock, nthreads = 2)
   
   muleaTestRes <- MulEA::run_test(mulea_ora_model)
   testthat::expect_equal(muleaTestRes$pValue[c(1,2)], c(1, 19205/26423))

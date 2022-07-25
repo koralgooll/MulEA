@@ -43,7 +43,7 @@ p-value adjustment) and reshape results:
 ``` r
 ora_model <- ORA(
   gmt = geneSet,
-  testData = selectDf$select, 
+  element_names = selectDf$select, 
   pool = poolDf$pool,
   adjustMethod = "PT",
   number_of_permutations = 1000
@@ -104,7 +104,7 @@ Define an S4 object of class `RankedBasedTest`, run ranked based test
 ``` r
 ranked_model <- GSEA(
   gmt = geneSet,
-  testData = selectDf$select,
+  element_names = selectDf$select,
   element_scores = selectDf$score
 )
 

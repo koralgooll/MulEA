@@ -78,7 +78,7 @@ reshape_results <-
     }
     if (p_value_max_threshold) {
       model_with_res_dt_relaxed <-
-        model_with_res_dt_relaxed[genIdInOntology %in% model@testData]
+        model_with_res_dt_relaxed[genIdInOntology %in% model@element_names]
     }
     names(model_with_res_dt_relaxed) <-
       c("ontologyId", "genIdInOntology", p_value_type_colname)

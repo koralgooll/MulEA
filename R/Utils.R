@@ -624,7 +624,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
     
     mulea_ora_model <- MulEA::ORA(
       gmt = input_gmt_filtered,
-      testData = input_select,
+      element_names = input_select,
       adjustMethod = "PT",
       number_of_permutations = number_of_steps,
       nthreads = nthreads

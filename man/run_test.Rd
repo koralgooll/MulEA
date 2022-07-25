@@ -40,14 +40,14 @@ dataFromExperimentPool <- unique(
    c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111",
      "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742",
      "FBgn0029709", "FBgn0030341")))
-setBasedTest <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment,
+setBasedTest <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment,
                    nthreads = 2)
 setBasedTestWithPool <- ORA(gmt = modelDfFromFile,
-                            testData = dataFromExperiment,
+                            element_names = dataFromExperiment,
                             pool = dataFromExperimentPool,
                             nthreads = 2)
 setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile,
-                                     testData = dataFromExperiment,
+                                     element_names = dataFromExperiment,
                                      pool = dataFromExperimentPool,
                                      adjustMethod = "BH",
                                      nthreads = 2)
@@ -59,7 +59,7 @@ dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28,
 rankedBasedTestSubramanian <- RankedBasedTest(
   method = "Subramanian",
   gmt = modelDfFromFile,
-  testData = dataFromExperiment,
+  element_names = dataFromExperiment,
   element_scores = dataFromExperimentScores)
 rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 }

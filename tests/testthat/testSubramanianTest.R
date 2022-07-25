@@ -12,11 +12,11 @@ test_that("GSEA : object creation test.", {
   scoreDataMock <- c(0.1, 0.5, 1)
   
   mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock,
-                                                          testData = testDataMock,
+                                                          element_names = testDataMock,
                                                           element_scores = scoreDataMock)
   
   testthat::expect_equal(mulea_ranked_based_test_model@gmt, gmtMock)
-  testthat::expect_equal(mulea_ranked_based_test_model@testData, c("a", "b", "c"))
+  testthat::expect_equal(mulea_ranked_based_test_model@element_names, c("a", "b", "c"))
   testthat::expect_equal(mulea_ranked_based_test_model@element_scores, c(0.1, 0.5, 1))
 })
 
@@ -29,7 +29,7 @@ test_that("GSEA : no element_scores vector.", {
   )
   testDataMock <- c("a", "b", "d")
   
-  mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock, testData = testDataMock)
+  mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock, element_names = testDataMock)
   testthat::expect_error(muleaTestRes <-
                            MulEA::run_test(mulea_ranked_based_test_model))
 })
@@ -46,7 +46,7 @@ test_that("GSEA : GSEA error propagation.", {
   
   mulea_ranked_based_test_model <- MulEA::GSEA(
     gmt = gmtMock,
-    testData = testDataMock,
+    element_names = testDataMock,
     element_scores = scoreDataMock,
     element_score_type = "pos"
   )
@@ -67,7 +67,7 @@ test_that("GSEA : out of ontology elements.", {
   scoreDataMock <- c(0.1, 0.5, 0.7, 1)
   
   mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock,
-                                                          testData = testDataMock,
+                                                          element_names = testDataMock,
                                                           element_scores = scoreDataMock)
   
   testthat::expect_warning(muleaTestRes <-
@@ -94,7 +94,7 @@ test_that("GSEA : DB1 + DB2.", {
   scoreDataMock <- c(-0.3, 0.4, 0.5)
   
   mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock,
-                                                          testData = testDataMock,
+                                                          element_names = testDataMock,
                                                           element_scores = scoreDataMock)
   
   muleaTestRes <- MulEA::run_test(mulea_ranked_based_test_model)
@@ -120,7 +120,7 @@ test_that("GSEA : DB1 + DB2 out of pool.", {
   scoreDataMock <- c(-1, 0, 0, 1)
   
   mulea_ranked_based_test_model <- MulEA::GSEA(gmt = gmtMock,
-                                                          testData = testDataMock,
+                                                          element_names = testDataMock,
                                                           element_scores = scoreDataMock)
   
   muleaTestRes <- MulEA::run_test(mulea_ranked_based_test_model)

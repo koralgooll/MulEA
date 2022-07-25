@@ -1,7 +1,7 @@
 #' PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
-#' @slot testData A data from expeciment to analize accross model.
+#' @slot element_names A data from expeciment to analize accross model.
 #' @slot pool A background data to count test.
 #' @return MuleaHypergeometricTest object. Used as private function.
 #' @examples
@@ -12,7 +12,7 @@ MuleaHypergeometricTest <- setClass(
   "MuleaHypergeometricTest",
   slots = list(
     gmt = "data.frame",
-    testData = "character",
+    element_names = "character",
     pool = "character",
     test = "function"
   )
@@ -21,21 +21,21 @@ MuleaHypergeometricTest <- setClass(
 setMethod("initialize", "MuleaHypergeometricTest",
           function(.Object,
                    gmt = data.frame(),
-                   testData = character(),
+                   element_names = character(),
                    pool = character(),
                    test = NULL,
                    ...) {
             .Object@gmt <- gmt
-            .Object@testData <- testData
+            .Object@element_names <- element_names
             .Object@pool <- pool
             
             .Object@test <- function(model) {
-              model@testData <- checkIfPoolIncludeSample(model@gmt, model@testData, model@pool)
+              model@element_names <- checkIfPoolIncludeSample(model@gmt, model@element_names, model@pool)
               
               muleaSetBaseEnrichmentTest <-
                 SetBasedEnrichmentTest(
                   gmt = model@gmt,
-                  testData = model@testData,
+                  element_names = model@element_names,
                   pool = model@pool,
                   only_hyper_geometric_test = TRUE
                 )

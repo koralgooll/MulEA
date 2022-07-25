@@ -108,7 +108,7 @@ dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407"
 MulEA implements hypergeometric test as highly configurable `ORA` class.
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTest <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, nthreads = 2)
+setBasedTest <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, nthreads = 2)
 setBasedTestRes <- MulEA::run_test(setBasedTest)
 ```
 
@@ -121,7 +121,7 @@ knitr::kable(setBasedTestRes, caption = "Set Based Test Result Data Frame")
 Usage with definition of pool data, which can be different that in presented model is presented below:
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPool <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, nthreads = 2)
+setBasedTestWithPool <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, pool = dataFromExperimentPool, nthreads = 2)
 setBasedTestWithPoolRes <- MulEA::run_test(setBasedTestWithPool)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -135,7 +135,7 @@ knitr::kable(setBasedTestWithPoolRes, caption = "Set Based Test Result Data Fram
 Other available arguments for `adjustMethod` are: `"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`. References to these methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "PT", nthreads = 2)
+setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "PT", nthreads = 2)
 setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -143,7 +143,7 @@ knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result 
 ```
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH", nthreads = 2)
+setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH", nthreads = 2)
 setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -155,7 +155,7 @@ Data frames with adjusted p-values contain one extra column, which include q-val
 `ORA` class constructor accepts list of arguments, such:
 
 - `gmt` - required* - a data.frame, which represents the model. Read it from file or load from DBs.
-- `testData` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`.
+- `element_names` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`.
 - `pool = character()` - default: character() - It is vector of background - pool data to experiment data. Example: `dataFromExperimentPool <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0003444", "FBgn0003333"")`
 - `adjustMethod = NA` - default: NA - You can specify an algorithm which helps you with [Multiple Comparisons Problem](#multiple-comparisons-problem).
 
@@ -184,10 +184,10 @@ dataFromExperimentScores <- c(-0.35, -0.22, -0.09, 0.11, 0.15, 0.20, 0.24, 0.28,
 
 ### Kolmogorov Smirnov Test  
 
-Kolmogorov-Smirnov test is achieved by setting `method` argument to `"KS"`. It is also required to provide the argument for `testData`.
+Kolmogorov-Smirnov test is achieved by setting `method` argument to `"KS"`. It is also required to provide the argument for `element_names`.
 
 ```{r, results = 'asis', echo=TRUE, warning=FALSE} 
-#rankedBasedTestKs <- GSEA(method = "KS", gmt = modelDfFromFile, testData = dataFromExperiment)
+#rankedBasedTestKs <- GSEA(method = "KS", gmt = modelDfFromFile, element_names = dataFromExperiment)
 #rankedBasedTestKsRes <- MulEA::run_test(rankedBasedTestKs)
 ```
 During the execution of this chunk you will see many warnings from ks.test function from stats package. Warnings like the following that:
@@ -201,10 +201,10 @@ When you see any error or warnings when you are working with real data, it shoul
 
 ### Subramanian Test
 
-To use the Subramanian set the `method` argument to `"Subramanian"`, and input `testData` and `element_scores`. It is important that the latter two vectors have to be of the same length.
+To use the Subramanian set the `method` argument to `"Subramanian"`, and input `element_names` and `element_scores`. It is important that the latter two vectors have to be of the same length.
 
 ```{r, results = 'asis', echo=TRUE} 
-rankedBasedTestSubramanian <- GSEA(method = "Subramanian", gmt = modelDfFromFile, testData = dataFromExperiment, element_scores = dataFromExperimentScores)
+rankedBasedTestSubramanian <- GSEA(method = "Subramanian", gmt = modelDfFromFile, element_names = dataFromExperiment, element_scores = dataFromExperimentScores)
 rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 ```
 
@@ -212,8 +212,8 @@ Below is the list of arguments accepted by the constructor of the `GSEA`:
 
 - `method` - required* - It allows user to choose the method, which will be used to count probabilities, one of "KS" or "Subramanian".
 - `gmt` - required* - The data.frame, which represents model. Read it from file or load from DBs.
-- `testData` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`. In case of KS test it ranks them. When applying the Subramanian method it creates a ranking using the element_scores argument.
-- `element_scores` - if method="Subramanian": required*, default: numeric() - This argument is a vector of numbers. It creates a ranking with `testData` argument for Subramanian approach.
+- `element_names` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`. In case of KS test it ranks them. When applying the Subramanian method it creates a ranking using the element_scores argument.
+- `element_scores` - if method="Subramanian": required*, default: numeric() - This argument is a vector of numbers. It creates a ranking with `element_names` argument for Subramanian approach.
 - `number_of_permutations` - default: 1000 - This set number of permutations used to count p-value. You can speed up process of counting by set it to small value, but remember that it may impact the accuracy of your test.
 
 Returned data frame from any ranked based test look like the following (column specification):

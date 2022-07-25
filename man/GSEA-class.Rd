@@ -32,9 +32,9 @@ An S4 class to represent a ranked based tests in Mulea.
 \describe{
 \item{\code{gmt}}{A data.frame representing GMT's reprezentation of model.}
 
-\item{\code{testData}}{A data from expeciment to analize accross model.}
+\item{\code{element_names}}{A data from expeciment to analize accross model.}
 
-\item{\code{element_scores}}{A vectore of element_scores per testData.}
+\item{\code{element_scores}}{A vectore of element_scores per element_names.}
 
 \item{\code{p}}{A power of weight. Default value is 1.}
 
@@ -55,7 +55,7 @@ dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742",
 dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
                               0.45, 0.50)
 GSEASubramanian <- GSEA(gmt = modelDfFromFile,
-                                              testData = dataFromExperiment,
+                                              element_names = dataFromExperiment,
                                               element_scores = dataFromExperimentScores)
 GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
 }

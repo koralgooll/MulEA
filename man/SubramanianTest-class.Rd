@@ -32,9 +32,9 @@ PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
 \describe{
 \item{\code{gmt}}{A data.frame representing GMT's reprezentation of model.}
 
-\item{\code{testData}}{A data from expeciment to analize accross model.}
+\item{\code{element_names}}{A data from expeciment to analize accross model.}
 
-\item{\code{element_scores}}{A vectore of element_scores per testData.}
+\item{\code{element_scores}}{A vectore of element_scores per element_names.}
 
 \item{\code{p}}{A power of weight.}
 

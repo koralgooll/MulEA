@@ -2,7 +2,7 @@
 #'
 #' @slot method A method from set based methods to count results. Possible values: "Hypergeometric", "SetBaseEnrichment".
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
-#' @slot testData A data from expeciment to analize accross model.
+#' @slot element_names A data from expeciment to analize accross model.
 #' @slot pool A background data to count test.
 #' @slot adjustMethod A type of algorithm used to adjust values. Possible values: "PT" and all from p.adjust {stats} documentation.
 #' @slot number_of_permutations A number of permutations used in set base enrichment test. Default vlue is 10000.
@@ -13,16 +13,16 @@
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 #' dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407", "FBgn0010438", "FBgn0032154", "FBgn0039930", "FBgn0040268", "FBgn0013674", "FBgn0037008", "FBgn0003116", "FBgn0037743", "FBgn0035401", "FBgn0037044", "FBgn0051005", "FBgn0026737", "FBgn0026751", "FBgn0038704", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831", "FBgn0000579"), c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111", "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742", "FBgn0029709", "FBgn0030341")))
-#' setBasedTest <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, 
+#' setBasedTest <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, 
 #'                     nthreads = 2)
-#' setBasedTestWithPool <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, nthreads = 2)
-#' setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH", nthreads = 2)
-#' setBaseTestWithPermutationTestAdjustment <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, adjustMethod = "PT", nthreads = 2)
+#' setBasedTestWithPool <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, pool = dataFromExperimentPool, nthreads = 2)
+#' setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH", nthreads = 2)
+#' setBaseTestWithPermutationTestAdjustment <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, adjustMethod = "PT", nthreads = 2)
 ORA <- setClass(
   "ORA",
   slots = list(
     gmt = "data.frame",
-    testData = "character",
+    element_names = "character",
     pool = "character",
     adjustMethod = "character",
     number_of_permutations = "numeric",
@@ -34,7 +34,7 @@ ORA <- setClass(
 setMethod("initialize", "ORA",
           function(.Object,
                    gmt = data.frame(),
-                   testData = character(),
+                   element_names = character(),
                    pool = character(),
                    adjustMethod = character(),
                    number_of_permutations = 10000,
@@ -42,7 +42,7 @@ setMethod("initialize", "ORA",
                    nthreads = 4,
                    ...) {
             .Object@gmt <- gmt
-            .Object@testData <- testData
+            .Object@element_names <- element_names
             .Object@pool <- pool
             .Object@adjustMethod <- 'PT'
             .Object@number_of_permutations <- number_of_permutations
@@ -56,7 +56,7 @@ setMethod("initialize", "ORA",
                 muleaSetBaseEnrichmentTest <-
                   SetBasedEnrichmentTest(
                     gmt = setBasemodel@gmt,
-                    testData = setBasemodel@testData,
+                    element_names = setBasemodel@element_names,
                     pool = setBasemodel@pool,
                     number_of_permutations = setBasemodel@number_of_permutations,
                     nthreads = setBasemodel@nthreads
@@ -103,7 +103,7 @@ setMethod("initialize", "ORA",
                 muleaHypergeometricTest <-
                   MuleaHypergeometricTest(
                     gmt = setBasemodel@gmt,
-                    testData = setBasemodel@testData,
+                    element_names = setBasemodel@element_names,
                     pool = setBasemodel@pool
                   )
                 setBasedTestRes <- run_test(muleaHypergeometricTest)
@@ -131,16 +131,16 @@ setMethod("initialize", "ORA",
 #' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
 #' dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407", "FBgn0010438", "FBgn0032154", "FBgn0039930", "FBgn0040268", "FBgn0013674", "FBgn0037008", "FBgn0003116", "FBgn0037743", "FBgn0035401", "FBgn0037044", "FBgn0051005", "FBgn0026737", "FBgn0026751", "FBgn0038704", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831", "FBgn0000579"), c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111", "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742", "FBgn0029709", "FBgn0030341")))
-#' setBasedTest <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, 
+#' setBasedTest <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, 
 #'                     nthreads = 2)
 #' setBasedTestWithPool <- ORA(gmt = modelDfFromFile, 
-#'                             testData = dataFromExperiment, 
+#'                             element_names = dataFromExperiment, 
 #'                             pool = dataFromExperimentPool, nthreads = 2)
 #' setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, 
-#'                                      testData = dataFromExperiment, 
+#'                                      element_names = dataFromExperiment, 
 #'                                      pool = dataFromExperimentPool, 
 #'                                      adjustMethod = "BH", nthreads = 2)
-#' setBaseTestWithPermutationTestAdjustment <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment, adjustMethod = "PT", nthreads = 2)
+#' setBaseTestWithPermutationTestAdjustment <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, adjustMethod = "PT", nthreads = 2)
 #' setBasedTestRes <- MulEA::run_test(setBasedTest)
 #' setBasedTestWithPoolRes <- MulEA::run_test(setBasedTestWithPool)
 #' setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
