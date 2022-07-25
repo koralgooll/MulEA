@@ -18,7 +18,7 @@ SubramanianTest <- setClass(
     gmt = "data.frame",
     testData = "character",
     element_scores = "numeric",
-    p = "numeric",
+    gsea_power = "numeric",
     element_score_type = "character",
     test = "function"
   )
@@ -29,14 +29,14 @@ setMethod("initialize", "SubramanianTest",
                    gmt = data.frame(),
                    testData = character(),
                    element_scores = numeric(),
-                   p = 1,
+                   gsea_power = 1,
                    element_score_type = "std",
                    test = NULL,
                    ...) {
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@element_scores <- element_scores
-            .Object@p <- p
+            .Object@gsea_power <- gsea_power
             .Object@element_score_type <- element_score_type
             
             .Object@test <- function(model) {
@@ -51,7 +51,7 @@ setMethod("initialize", "SubramanianTest",
                 fgsea::fgsea(
                   pathways = listmodelDfFromFile,
                   stats = samplesToAnalisys,
-                  gseaParam = model@p,
+                  gseaParam = model@gsea_power,
                   scoreType = model@element_score_type
                 )
               

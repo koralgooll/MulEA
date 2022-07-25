@@ -29,7 +29,7 @@ GSEA <- setClass(
     gmt = "data.frame",
     testData = "character",
     element_scores = "numeric",
-    p = "numeric",
+    gsea_power = "numeric",
     element_score_type = "character",
     number_of_permutations = "numeric",
     test = "function"
@@ -41,7 +41,7 @@ setMethod("initialize", "GSEA",
                    gmt = data.frame(),
                    testData = character(),
                    element_scores = numeric(),
-                   p = 1,
+                   gsea_power = 1,
                    element_score_type = "std",
                    number_of_permutations = 1000,
                    test = NULL,
@@ -49,7 +49,7 @@ setMethod("initialize", "GSEA",
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@element_scores <- element_scores
-            .Object@p <- p
+            .Object@gsea_power <- gsea_power
             .Object@element_score_type <- element_score_type
             
             .Object@number_of_permutations <- number_of_permutations
@@ -61,7 +61,7 @@ setMethod("initialize", "GSEA",
                 gmt = rankedBasemodel@gmt,
                 testData = rankedBasemodel@testData,
                 element_scores = rankedBasemodel@element_scores,
-                p = rankedBasemodel@p,
+                gsea_power = rankedBasemodel@gsea_power,
                 element_score_type = rankedBasemodel@element_score_type
               )
               rankedTestRes <- run_test(subramanianTest)
