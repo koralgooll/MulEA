@@ -67,9 +67,9 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 
 # PUBLIC API
 #' @description
-#' \code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a .gmt file.
+#' \code{write_gmt} saves copy of the model from dataframe as a .gmt file.
 #'
-#' @param modelDF data frame with model.
+#' @param gmt data frame with model.
 #'
 #' @rdname InputOutputFunctions
 #' @export
@@ -77,11 +77,11 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 #' @return Returns the model as a .gmt file at a specific location.
 #' @examples
 #' modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
-#' MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
-saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
+#' MulEA::write_gmt(gmt = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
+write_gmt <- function(gmt, file) {
   vectorOfModel <-
     plyr::daply(
-      .data = modelDF,
+      .data = gmt,
       .variables = c("ontologyId"),
       .fun = function(dataFrameRow) {
         collapsedListOfValues <-
@@ -89,7 +89,7 @@ saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
         paste(dataFrameRow[1], dataFrameRow[2], collapsedListOfValues, sep = "\t")
       }
     )
-  fileConnection <- file(gmtFilePath)
+  fileConnection <- file(file)
   writeLines(vectorOfModel,
              con = fileConnection,
              sep = "\n",

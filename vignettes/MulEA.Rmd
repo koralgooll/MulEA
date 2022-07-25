@@ -84,13 +84,13 @@ This example data frame meets the criteria required by the package. Please follo
 str(KnowledgeBaseDf)
 ```
 
-If you would like to save the knowledge base as a GMT file, use: `MulEA::saveDataFrameAsGmtFile()` with two arguments `modelDF`, `gmtFilePath`.
+If you would like to save the knowledge base as a GMT file, use: `MulEA::write_gmt()` with two arguments `gmt`, `file`.
 
-`modelDF` - ontology data frame which represents the GMT file.
-`gmtFilePath` - path to a new file in which the ontology will be saved. Example: `"R/MulEA/extdata/savedModel.gmt"`
+`gmt` - ontology data frame which represents the GMT file.
+`file` - path to a new file in which the ontology will be saved. Example: `"R/MulEA/extdata/savedModel.gmt"`
 
 ```{r, eval=FALSE} 
-   MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = pathToModelGmtFile)  
+   MulEA::write_gmt(gmt = modelDfFromFile, file = pathToModelGmtFile)  
 ```
 
 

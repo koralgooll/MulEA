@@ -7,7 +7,7 @@
 \alias{plot_barplot}
 \alias{plot_heatmap}
 \alias{read_gmt}
-\alias{saveDataFrameAsGmtFile}
+\alias{write_gmt}
 \alias{filterOntology}
 \alias{convertListToGmtDataFrame}
 \title{Input/Output Functions}
@@ -47,7 +47,7 @@ plot_heatmap(
 
 read_gmt(file)
 
-saveDataFrameAsGmtFile(modelDF, gmtFilePath)
+write_gmt(gmt, file)
 
 filterOntology(input_gmt, min = NULL, max = NULL)
 
@@ -66,7 +66,7 @@ MulEA::run_test generic method.}
 
 \item{file}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
 
-\item{modelDF}{data frame with model.}
+\item{gmt}{data frame with model.}
 
 \item{input_gmt}{input dataframe, read from gmt file.}
 
@@ -106,7 +106,7 @@ one relaxed datatable.
 
 \code{read_gmt} read model in data frame form from gmt file.
 
-\code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a .gmt file.
+\code{write_gmt} saves copy of the model from dataframe as a .gmt file.
 
 \code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
 
@@ -116,5 +116,5 @@ one relaxed datatable.
 }
 \examples{
 modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
-MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
+MulEA::write_gmt(gmt = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
 }
