@@ -4,7 +4,7 @@
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot element_scores A vectore of element_scores per testData.
 #' @slot p A power of weight.
-#' @slot scoreType Defines the GSEA score type. Only positive element_scores - "pos", only negative element_scores - "neg" and mixed (standard) - "std".
+#' @slot element_score_type Defines the GSEA score type. Only positive element_scores - "pos", only negative element_scores - "neg" and mixed (standard) - "std".
 #' @return dataframe with presented columns 'ontologyId', 'ontologyName',
 #' 'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
 #' 'pValue', 'adjustedPValue'
@@ -19,7 +19,7 @@ SubramanianTest <- setClass(
     testData = "character",
     element_scores = "numeric",
     p = "numeric",
-    scoreType = "character",
+    element_score_type = "character",
     test = "function"
   )
 )
@@ -30,14 +30,14 @@ setMethod("initialize", "SubramanianTest",
                    testData = character(),
                    element_scores = numeric(),
                    p = 1,
-                   scoreType = "std",
+                   element_score_type = "std",
                    test = NULL,
                    ...) {
             .Object@gmt <- gmt
             .Object@testData <- testData
             .Object@element_scores <- element_scores
             .Object@p <- p
-            .Object@scoreType <- scoreType
+            .Object@element_score_type <- element_score_type
             
             .Object@test <- function(model) {
               listmodelDfFromFile <- model@gmt$listOfValues
@@ -52,7 +52,7 @@ setMethod("initialize", "SubramanianTest",
                   pathways = listmodelDfFromFile,
                   stats = samplesToAnalisys,
                   gseaParam = model@p,
-                  scoreType = model@scoreType
+                  scoreType = model@element_score_type
                 )
               
               resultDf <-

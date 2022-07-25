@@ -48,7 +48,7 @@ test_that("GSEA : GSEA error propagation.", {
     gmt = gmtMock,
     testData = testDataMock,
     element_scores = scoreDataMock,
-    scoreType = "pos"
+    element_score_type = "pos"
   )
   
   testthat::expect_error(muleaTestRes <-

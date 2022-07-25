@@ -4,7 +4,7 @@
 #' @slot testData A data from expeciment to analize accross model.
 #' @slot element_scores A vectore of element_scores per testData.
 #' @slot p A power of weight. Default value is 1.
-#' @slot scoreType Defines the GSEA score type. Only positive element_scores - "pos",
+#' @slot element_score_type Defines the GSEA score type. Only positive element_scores - "pos",
 #' only negative element_scores - "neg" and mixed (standard) - "std".
 #' @slot number_of_permutations A number of permutations used in KS test. Default
 #' vlue is 1000.
@@ -30,7 +30,7 @@ GSEA <- setClass(
     testData = "character",
     element_scores = "numeric",
     p = "numeric",
-    scoreType = "character",
+    element_score_type = "character",
     number_of_permutations = "numeric",
     test = "function"
   )
@@ -42,7 +42,7 @@ setMethod("initialize", "GSEA",
                    testData = character(),
                    element_scores = numeric(),
                    p = 1,
-                   scoreType = "std",
+                   element_score_type = "std",
                    number_of_permutations = 1000,
                    test = NULL,
                    ...) {
@@ -50,7 +50,7 @@ setMethod("initialize", "GSEA",
             .Object@testData <- testData
             .Object@element_scores <- element_scores
             .Object@p <- p
-            .Object@scoreType <- scoreType
+            .Object@element_score_type <- element_score_type
             
             .Object@number_of_permutations <- number_of_permutations
             
@@ -62,7 +62,7 @@ setMethod("initialize", "GSEA",
                 testData = rankedBasemodel@testData,
                 element_scores = rankedBasemodel@element_scores,
                 p = rankedBasemodel@p,
-                scoreType = rankedBasemodel@scoreType
+                element_score_type = rankedBasemodel@element_score_type
               )
               rankedTestRes <- run_test(subramanianTest)
               
