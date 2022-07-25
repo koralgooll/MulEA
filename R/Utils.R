@@ -100,9 +100,9 @@ write_gmt <- function(gmt, file) {
 # PUBLIC API
 # TODO : Add quantile parameters as separate! Nothing do is default.
 #' @description
-#' \code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
+#' \code{filter_ontology} Filters ontology to only contain terms between given min. and max. sizes.
 #'
-#' @param input_gmt input dataframe, read from gmt file.
+#' @param gmt input dataframe, read from gmt file.
 #' @param min minimum size of term. Default 20 percent from quantile on term size distribution.
 #' @param max maximum size of term. Default 80 percent from quantile on term size distribution.
 #'
@@ -112,13 +112,13 @@ write_gmt <- function(gmt, file) {
 #' @export
 #'
 #' @return Return data frame with model from specific location.
-filterOntology <- function(input_gmt,
-                           min = NULL,
-                           max = NULL) {
-  if (is.null(min)) {
+filter_ontology <- function(gmt,
+                           min_nr_of_elements = NULL,
+                           max_nr_of_elements = NULL) {
+  if (is.null(min_nr_of_elements)) {
     terms_sizes <-
       plyr::laply(
-        .data = input_gmt$listOfValues,
+        .data = gmt$listOfValues,
         .fun = function(term) {
           length(term)
         }
@@ -131,13 +131,13 @@ filterOntology <- function(input_gmt,
         na.rm = FALSE
       )
     
-    min = term_size_dist_q['20%']
+    min_nr_of_elements = term_size_dist_q['20%']
   }
   
-  if (is.null(max)) {
+  if (is.null(max_nr_of_elements)) {
     terms_sizes <-
       plyr::laply(
-        .data = input_gmt$listOfValues,
+        .data = gmt$listOfValues,
         .fun = function(term) {
           length(term)
         }
@@ -149,15 +149,15 @@ filterOntology <- function(input_gmt,
         type = 2,
         na.rm = FALSE
       )
-    max = term_size_dist_q['80%']
+    max_nr_of_elements = term_size_dist_q['80%']
   }
   
   filtered_input_gmt <-
     plyr::ddply(
-      .data = input_gmt,
+      .data = gmt,
       .variables = c("ontologyId"),
       .fun = function(df_row) {
-        if (length(df_row$listOfValues[[1]]) > min) {
+        if (length(df_row$listOfValues[[1]]) > min_nr_of_elements) {
           df_row
         } else {
           df_row[-1, ]
@@ -169,7 +169,7 @@ filterOntology <- function(input_gmt,
       .data = filtered_input_gmt,
       .variables = c("ontologyId"),
       .fun = function(df_row) {
-        if (length(df_row$listOfValues[[1]]) < max) {
+        if (length(df_row$listOfValues[[1]]) < max_nr_of_elements) {
           df_row
         } else {
           df_row[-1, ]

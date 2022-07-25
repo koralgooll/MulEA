@@ -8,7 +8,7 @@
 \alias{plot_heatmap}
 \alias{read_gmt}
 \alias{write_gmt}
-\alias{filterOntology}
+\alias{filter_ontology}
 \alias{list_to_gmt}
 \title{Input/Output Functions}
 \usage{
@@ -49,7 +49,7 @@ read_gmt(file)
 
 write_gmt(gmt, file)
 
-filterOntology(input_gmt, min = NULL, max = NULL)
+filter_ontology(gmt, min_nr_of_elements = NULL, max_nr_of_elements = NULL)
 
 list_to_gmt(gmt_list)
 }
@@ -66,15 +66,13 @@ MulEA::run_test generic method.}
 
 \item{file}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
 
-\item{gmt}{data frame with model.}
+\item{gmt}{input dataframe, read from gmt file.}
 
-\item{input_gmt}{input dataframe, read from gmt file.}
+\item{gmt_list}{input list with elements names as ontologyId and genes in each element.}
 
 \item{min}{minimum size of term. Default 20 percent from quantile on term size distribution.}
 
 \item{max}{maximum size of term. Default 80 percent from quantile on term size distribution.}
-
-\item{gmt_list}{input list with elements names as ontologyId and genes in each element.}
 }
 \value{
 Return detailed and relaxed datatable where model and results are
@@ -108,7 +106,7 @@ one relaxed datatable.
 
 \code{write_gmt} saves copy of the model from dataframe as a .gmt file.
 
-\code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
+\code{filter_ontology} Filters ontology to only contain terms between given min. and max. sizes.
 
 \code{list_to_gmt}
 
