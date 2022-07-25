@@ -2,11 +2,11 @@
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot element_names A data from expeciment to analize accross model.
-#' @slot pool A background data to count test.
+#' @slot background_element_names A background data to count test.
 #' @return MuleaHypergeometricTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private s4 object. Look at ORA's examples.
+#' #It is a private s4 object. Look at ora's examples.
 #' }
 MuleaHypergeometricTest <- setClass(
   "MuleaHypergeometricTest",
@@ -65,7 +65,7 @@ setMethod("initialize", "MuleaHypergeometricTest",
 #' function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at run_test of ORA's examples.
+#' #It is a private method. Look at run_test of ora's examples.
 #' }
 setMethod("run_test",
           signature(model = "MuleaHypergeometricTest"),

@@ -101,7 +101,7 @@ test_that("GSEA : DB1 + DB2.", {
   testthat::expect_equal(muleaTestRes$pValue, c(169 / 330, 107 / 219))
 })
 
-test_that("GSEA : DB1 + DB2 out of pool.", {
+test_that("GSEA : DB1 + DB2 out of background_element_names.", {
   set.seed(1)
   gmtMock1 <- data.frame(
     ontologyId = "GO:0000001",

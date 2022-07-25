@@ -32,7 +32,7 @@
 #' @format A data frame with 33 rows and 2 variables:
 #' \describe{
 #'   \item{X}{Row names}
-#'   \item{pool}{DEFINITION}
+#'   \item{background_element_names}{DEFINITION}
 #' }
 #' @source SOURCE
 "poolDf"

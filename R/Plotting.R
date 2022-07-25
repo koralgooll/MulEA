@@ -24,7 +24,7 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #' one relaxed datatable.
 #'
 #' @param model the MulEA object represents model. For example created by
-#' MulEA::ORA.
+#' MulEA::ora.
 #' @param model_results Results from model, in most cases returned by
 #' MulEA::run_test generic method.
 #'

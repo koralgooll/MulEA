@@ -39,9 +39,9 @@ PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 
 \examples{
 \dontrun{
-#It is a private s4 object. Look at ORA's examples.
+#It is a private s4 object. Look at ora's examples.
 }
 \dontrun{
-#It is a private method. Look at run_test of ORA's examples.
+#It is a private method. Look at run_test of ora's examples.
 }
 }

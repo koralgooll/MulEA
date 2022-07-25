@@ -622,12 +622,12 @@ simulateMultipleTests <- function(input_gmt_filtered,
     
     input_select <- unlist(samples)
     
-    mulea_ora_model <- MulEA::ORA(
+    mulea_ora_model <- MulEA::ora(
       gmt = input_gmt_filtered,
       element_names = input_select,
-      adjustMethod = "PT",
+      p_value_adjustment_method = "PT",
       number_of_permutations = number_of_steps,
-      nthreads = nthreads
+      number_of_cpu_threads = nthreads
     )
     
     mulea_ora_results <- MulEA::run_test(mulea_ora_model)

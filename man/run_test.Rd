@@ -40,17 +40,17 @@ dataFromExperimentPool <- unique(
    c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111",
      "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742",
      "FBgn0029709", "FBgn0030341")))
-setBasedTest <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment,
-                   nthreads = 2)
-setBasedTestWithPool <- ORA(gmt = modelDfFromFile,
+setBasedTest <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment,
+                   number_of_cpu_threads = 2)
+setBasedTestWithPool <- ora(gmt = modelDfFromFile,
                             element_names = dataFromExperiment,
-                            pool = dataFromExperimentPool,
-                            nthreads = 2)
-setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile,
+                            background_element_names = dataFromExperimentPool,
+                            number_of_cpu_threads = 2)
+setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile,
                                      element_names = dataFromExperiment,
-                                     pool = dataFromExperimentPool,
-                                     adjustMethod = "BH",
-                                     nthreads = 2)
+                                     background_element_names = dataFromExperimentPool,
+                                     p_value_adjustment_method = "BH",
+                                     number_of_cpu_threads = 2)
 setBasedTestRes <- run_test(setBasedTest)
 setBasedTestWithPoolRes <- run_test(setBasedTestWithPool)
 setBasedTestWithPoolAndAdjustRes <- run_test(setBasedTestWithPoolAndAdjust)

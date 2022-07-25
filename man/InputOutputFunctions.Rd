@@ -55,7 +55,7 @@ convertListToGmtDataFrame(ontologyReprAsList)
 }
 \arguments{
 \item{model}{the MulEA object represents model. For example created by
-MulEA::ORA.}
+MulEA::ora.}
 
 \item{model_results}{Results from model, in most cases returned by
 MulEA::run_test generic method.}

@@ -49,8 +49,13 @@ Implemented MulEA features include:
 ## Mulea input and output data formats
 As a first step load the package:
 
-```{r, results = 'asis'} 
+```{r, results = 'asis', eval = FALSE} 
 library(package="MulEA")
+```
+
+```{r, echo = FALSE}
+library(devtools)
+load_all()
 ```
 
 There are two input types required to run the analysis: 1) knowledge base that defines space of categories and 2) a ranked list of elements to be tested. MulEA supports reading the knowledge base directly from GMT files or with properly formatted data frames.
@@ -105,10 +110,10 @@ dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407"
 ```
 
 
-MulEA implements hypergeometric test as highly configurable `ORA` class.
+MulEA implements hypergeometric test as highly configurable `ora` class.
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTest <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, nthreads = 2)
+setBasedTest <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, number_of_cpu_threads = 2)
 setBasedTestRes <- MulEA::run_test(setBasedTest)
 ```
 
@@ -118,10 +123,10 @@ In the set-based test, MulEA will inform the user when the tested data are not c
 knitr::kable(setBasedTestRes, caption = "Set Based Test Result Data Frame")
 ```
 
-Usage with definition of pool data, which can be different that in presented model is presented below:
+Usage with definition of background_element_names data, which can be different that in presented model is presented below:
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPool <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, pool = dataFromExperimentPool, nthreads = 2)
+setBasedTestWithPool <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, number_of_cpu_threads = 2)
 setBasedTestWithPoolRes <- MulEA::run_test(setBasedTestWithPool)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -135,7 +140,7 @@ knitr::kable(setBasedTestWithPoolRes, caption = "Set Based Test Result Data Fram
 Other available arguments for `adjustMethod` are: `"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`. References to these methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "PT", nthreads = 2)
+setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, p_value_adjustment_method = "PT", number_of_cpu_threads = 2)
 setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -143,7 +148,7 @@ knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result 
 ```
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile, element_names = dataFromExperiment, pool = dataFromExperimentPool, adjustMethod = "BH", nthreads = 2)
+setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, p_value_adjustment_method = "BH", number_of_cpu_threads = 2)
 setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -152,12 +157,12 @@ knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result 
 
 Data frames with adjusted p-values contain one extra column, which include q-values.
 
-`ORA` class constructor accepts list of arguments, such:
+`ora` class constructor accepts list of arguments, such:
 
 - `gmt` - required* - a data.frame, which represents the model. Read it from file or load from DBs.
 - `element_names` - required* - Vector of your experimental data. Example: `dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742")`.
-- `pool = character()` - default: character() - It is vector of background - pool data to experiment data. Example: `dataFromExperimentPool <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0003444", "FBgn0003333"")`
-- `adjustMethod = NA` - default: NA - You can specify an algorithm which helps you with [Multiple Comparisons Problem](#multiple-comparisons-problem).
+- `background_element_names = character()` - default: character() - It is vector of background - background_element_names data to experiment data. Example: `dataFromExperimentPool <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0003444", "FBgn0003333"")`
+- `p_value_adjustment_method = NA` - default: NA - You can specify an algorithm which helps you with [Multiple Comparisons Problem](#multiple-comparisons-problem).
 
 Column names presented in results data.frame are:
 

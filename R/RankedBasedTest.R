@@ -20,7 +20,7 @@
 #'                         "FBgn0263831")
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
 #'                               0.45, 0.50)
-#' GSEASubramanian <- GSEA(gmt = modelDfFromFile,
+#' rankedBasedTestSubramanian <- GSEA(gmt = modelDfFromFile,
 #'                                               element_names = dataFromExperiment,
 #'                                               element_scores = dataFromExperimentScores)
 GSEA <- setClass(
@@ -78,7 +78,7 @@ setMethod("initialize", "GSEA",
 #' @return run_test method for GSEA object. Returns results of
 #' counting using methods from ranking based area.
 #' @examples
-#' GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
+#' rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 setMethod("run_test",
           signature(model = "GSEA"),
           function(model) {

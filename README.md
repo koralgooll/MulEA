@@ -8,21 +8,19 @@
 Fast analysis of biological data which results are well interpretable
 plots.
 
-## Install Development Version
+## Install Development Version and Load Package
 
 ``` r
 library(devtools)
 install_github("https://github.com/koralgooll/MulEA.git")
+library(MulEA)
 ```
 
 ## Example Run
 
-Import the MulEA package and import the example data sets:
+Import the example data sets:
 
 ``` r
-# import package
-library(MulEA)
-
 # import example gene set
 # import other gene sets from a GMT file using readGmtFileAsDataFrame()
 data(geneSet) 
@@ -36,16 +34,16 @@ data(poolDf)
 
 ## Set Based Test
 
-Define an S4 object of class `ORA` (stands for Over-Representation
+Define an S4 object of class `ora` (stands for Over-Representation
 Analysis), run set based tests (hypergeometric test with empirical
 p-value adjustment) and reshape results:
 
 ``` r
-ora_model <- ORA(
+ora_model <- ora(
   gmt = geneSet,
   element_names = selectDf$select, 
-  pool = poolDf$pool,
-  adjustMethod = "PT",
+  background_element_names = poolDf$background_element_names,
+  p_value_adjustment_method = "PT",
   number_of_permutations = 1000
 )
 
