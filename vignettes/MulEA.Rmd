@@ -176,7 +176,7 @@ Column names presented in results data.frame are:
 
 
 ## Ranking Based Tests
-The ranked list based enrichment analysis needs an ordered list of genes (e.g. transcripts or proteins) as input. Ranking can be an ordered vector or any vector with a vector of element_scores, both of them having to be the same length. For now MulEA provides you two ranked based tests, the Kolmogorov-Smirnov test and the Subramanian test. Both of them are enclosed in the `GSEA` class, which provides you a method to set input data and configure other parameters including the used statistic methods.
+The ranked list based enrichment analysis needs an ordered list of genes (e.g. transcripts or proteins) as input. Ranking can be an ordered vector or any vector with a vector of element_scores, both of them having to be the same length. For now MulEA provides you two ranked based tests, the Kolmogorov-Smirnov test and the Subramanian test. Both of them are enclosed in the `gsea` class, which provides you a method to set input data and configure other parameters including the used statistic methods.
 
 As mentioned previously, before running any tests you have to prepare proper input data. An example is presented below:
 
@@ -192,7 +192,7 @@ dataFromExperimentScores <- c(-0.35, -0.22, -0.09, 0.11, 0.15, 0.20, 0.24, 0.28,
 Kolmogorov-Smirnov test is achieved by setting `method` argument to `"KS"`. It is also required to provide the argument for `element_names`.
 
 ```{r, results = 'asis', echo=TRUE, warning=FALSE} 
-#rankedBasedTestKs <- GSEA(method = "KS", gmt = modelDfFromFile, element_names = dataFromExperiment)
+#rankedBasedTestKs <- gsea(method = "KS", gmt = modelDfFromFile, element_names = dataFromExperiment)
 #rankedBasedTestKsRes <- MulEA::run_test(rankedBasedTestKs)
 ```
 During the execution of this chunk you will see many warnings from ks.test function from stats package. Warnings like the following that:
@@ -209,11 +209,11 @@ When you see any error or warnings when you are working with real data, it shoul
 To use the Subramanian set the `method` argument to `"Subramanian"`, and input `element_names` and `element_scores`. It is important that the latter two vectors have to be of the same length.
 
 ```{r, results = 'asis', echo=TRUE} 
-rankedBasedTestSubramanian <- GSEA(method = "Subramanian", gmt = modelDfFromFile, element_names = dataFromExperiment, element_scores = dataFromExperimentScores)
+rankedBasedTestSubramanian <- gsea(method = "Subramanian", gmt = modelDfFromFile, element_names = dataFromExperiment, element_scores = dataFromExperimentScores)
 rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 ```
 
-Below is the list of arguments accepted by the constructor of the `GSEA`:
+Below is the list of arguments accepted by the constructor of the `gsea`:
 
 - `method` - required* - It allows user to choose the method, which will be used to count probabilities, one of "KS" or "Subramanian".
 - `gmt` - required* - The data.frame, which represents model. Read it from file or load from DBs.

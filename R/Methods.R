@@ -109,7 +109,7 @@ adjustPvaluesForMultipleComparisons <-
            poolVector = character(0),
            adjustMethod = "bonferroni",
            steps = 1) {
-    if (adjustMethod == "GSEA") {
+    if (adjustMethod == "gsea") {
       adjustResult <- data.frame(
         modelWithTestsResults,
         permutationAdjustment(

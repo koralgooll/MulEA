@@ -100,7 +100,7 @@ Define an S4 object of class `RankedBasedTest`, run ranked based test
 (Subramanian method) and reshape results:
 
 ``` r
-ranked_model <- GSEA(
+ranked_model <- gsea(
   gmt = geneSet,
   element_names = selectDf$select,
   element_scores = selectDf$score

@@ -10,7 +10,7 @@
 #' vlue is 1000.
 #' @return GSEA object. This object represents ranked based tests in
 #' Mulea.
-#' @export "GSEA"
+#' @export
 #' @examples
 #' modelDfFromFile <- MulEA::read_gmt(
 #'   file = system.file(package="MulEA", "extdata", "model.gmt"))
@@ -20,11 +20,11 @@
 #'                         "FBgn0263831")
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
 #'                               0.45, 0.50)
-#' rankedBasedTestSubramanian <- GSEA(gmt = modelDfFromFile,
+#' rankedBasedTestSubramanian <- gsea(gmt = modelDfFromFile,
 #'                                               element_names = dataFromExperiment,
 #'                                               element_scores = dataFromExperimentScores)
-GSEA <- setClass(
-  "GSEA",
+gsea <- setClass(
+  "gsea",
   slots = list(
     gmt = "data.frame",
     element_names = "character",
@@ -36,7 +36,7 @@ GSEA <- setClass(
   )
 )
 
-setMethod("initialize", "GSEA",
+setMethod("initialize", "gsea",
           function(.Object,
                    gmt = data.frame(),
                    element_names = character(),
@@ -73,14 +73,14 @@ setMethod("initialize", "GSEA",
             
           })
 
-#' @describeIn GSEA runs test calculations.
+#' @describeIn gsea runs test calculations.
 #' @param model Object of s4 class represents Mulea Test.
 #' @return run_test method for GSEA object. Returns results of
 #' counting using methods from ranking based area.
 #' @examples
 #' rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 setMethod("run_test",
-          signature(model = "GSEA"),
+          signature(model = "gsea"),
           function(model) {
             model@test(model)
           })
