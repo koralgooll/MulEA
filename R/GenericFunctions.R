@@ -1,12 +1,18 @@
-#' Method num.
-
-#' @name runTest
-#' @rdname runTest-methods
-#' @param testObject Object of s4 class represents one of Mulea's Tests.
+#' Run enrichment analysis procedure
+#' 
+#' This is a generic function that chooses an enrichment analysis procedure
+#' based on the model class and runs the analysis.
+#' @param model An S4 object which represents one of Mulea's Tests. See details
+#' for more information.
+#' @details The function requires the definition of a model. Models currently
+#' implemented in MulEA include Gene Set Enrichment Analysis (GSEA) and
+#' Over-Representation Analysis (ORA). These models must be defined through
+#' their specific functions which are provided in this package. 
+#' @seealso \code{\link{gsea}}, \code{\link{ora}}
 #' @export
 #' @examples
-#' modelDfFromFile <- readGmtFileAsDataFrame(
-#'   gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
+#' modelDfFromFile <- read_gmt(
+#'   file = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c(
 #'   "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
 #'   "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
@@ -20,29 +26,29 @@
 #'    c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111",
 #'      "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742",
 #'      "FBgn0029709", "FBgn0030341")))
-#' setBasedTest <- ORA(gmt = modelDfFromFile, testData = dataFromExperiment,
-#'                    nthreads = 2)
-#' setBasedTestWithPool <- ORA(gmt = modelDfFromFile,
-#'                             testData = dataFromExperiment,
-#'                             pool = dataFromExperimentPool,
-#'                             nthreads = 2)
-#' setBasedTestWithPoolAndAdjust <- ORA(gmt = modelDfFromFile,
-#'                                      testData = dataFromExperiment,
-#'                                      pool = dataFromExperimentPool,
-#'                                      adjustMethod = "BH",
-#'                                      nthreads = 2)
-#' setBasedTestRes <- runTest(setBasedTest)
-#' setBasedTestWithPoolRes <- runTest(setBasedTestWithPool)
-#' setBasedTestWithPoolAndAdjustRes <- runTest(setBasedTestWithPoolAndAdjust)
+#' setBasedTest <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment,
+#'                    number_of_cpu_threads = 2)
+#' setBasedTestWithPool <- ora(gmt = modelDfFromFile,
+#'                             element_names = dataFromExperiment,
+#'                             background_element_names = dataFromExperimentPool,
+#'                             number_of_cpu_threads = 2)
+#' setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile,
+#'                                      element_names = dataFromExperiment,
+#'                                      background_element_names = dataFromExperimentPool,
+#'                                      p_value_adjustment_method = "BH",
+#'                                      number_of_cpu_threads = 2)
+#' setBasedTestRes <- run_test(setBasedTest)
+#' setBasedTestWithPoolRes <- run_test(setBasedTestWithPool)
+#' setBasedTestWithPoolAndAdjustRes <- run_test(setBasedTestWithPoolAndAdjust)
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28,
 #'                               0.30, 0.45, 0.50)
 #' rankedBasedTestSubramanian <- RankedBasedTest(
 #'   method = "Subramanian",
 #'   gmt = modelDfFromFile,
-#'   testData = dataFromExperiment,
-#'   scores = dataFromExperimentScores)
-#' rankedBasedTestSubramanianRes <- MulEA::runTest(rankedBasedTestSubramanian)
+#'   element_names = dataFromExperiment,
+#'   element_scores = dataFromExperimentScores)
+#' rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
 #' @return Results in form of data frame. Structure of data frame depends on
 #' object processed by this generic method.
-setGeneric("runTest", function(testObject)
-  standardGeneric("runTest"))
+setGeneric("run_test", function(model)
+  standardGeneric("run_test"))

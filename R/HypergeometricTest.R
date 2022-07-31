@@ -1,18 +1,18 @@
 #' PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
-#' @slot testData A data from expeciment to analize accross model.
-#' @slot pool A background data to count test.
+#' @slot element_names A data from expeciment to analize accross model.
+#' @slot background_element_names A background data to count test.
 #' @return MuleaHypergeometricTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private s4 object. Look at ORA's examples.
+#' #It is a private s4 object. Look at ora's examples.
 #' }
 MuleaHypergeometricTest <- setClass(
   "MuleaHypergeometricTest",
   slots = list(
     gmt = "data.frame",
-    testData = "character",
+    element_names = "character",
     pool = "character",
     test = "function"
   )
@@ -21,33 +21,33 @@ MuleaHypergeometricTest <- setClass(
 setMethod("initialize", "MuleaHypergeometricTest",
           function(.Object,
                    gmt = data.frame(),
-                   testData = character(),
+                   element_names = character(),
                    pool = character(),
                    test = NULL,
                    ...) {
             .Object@gmt <- gmt
-            .Object@testData <- testData
+            .Object@element_names <- element_names
             .Object@pool <- pool
             
-            .Object@test <- function(testObject) {
-              testObject@testData <- checkIfPoolIncludeSample(testObject@gmt, testObject@testData, testObject@pool)
+            .Object@test <- function(model) {
+              model@element_names <- checkIfPoolIncludeSample(model@gmt, model@element_names, model@pool)
               
               muleaSetBaseEnrichmentTest <-
                 SetBasedEnrichmentTest(
-                  gmt = testObject@gmt,
-                  testData = testObject@testData,
-                  pool = testObject@pool,
+                  gmt = model@gmt,
+                  element_names = model@element_names,
+                  pool = model@pool,
                   only_hyper_geometric_test = TRUE
                 )
               
               muleaSetBaseEnrichmentTestResult <<-
-                runTest(muleaSetBaseEnrichmentTest)
-              testObjectGlobal <<- testObject
+                run_test(muleaSetBaseEnrichmentTest)
+              modelGlobal <<- model
               
               
               testResults <- data.frame(
                 'ontologyName' = muleaSetBaseEnrichmentTestResult$DB_names,
-                'listOfValues' = testObject@gmt$listOfValues,
+                'listOfValues' = model@gmt$listOfValues,
                 'p.value' = muleaSetBaseEnrichmentTestResult$P_val,
                 row.names = NULL
               )
@@ -60,15 +60,15 @@ setMethod("initialize", "MuleaHypergeometricTest",
           })
 
 #' @describeIn MuleaHypergeometricTest runs test calculations.
-#' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for MuleaHypergeometricTest object. Used as private
+#' @param model Object of s4 class represents Mulea Test.
+#' @return run_test method for MuleaHypergeometricTest object. Used as private
 #' function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at runTest of ORA's examples.
+#' #It is a private method. Look at run_test of ora's examples.
 #' }
-setMethod("runTest",
-          signature(testObject = "MuleaHypergeometricTest"),
-          function(testObject) {
-            testObject@test(testObject)
+setMethod("run_test",
+          signature(model = "MuleaHypergeometricTest"),
+          function(model) {
+            model@test(model)
           })

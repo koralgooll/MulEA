@@ -48,21 +48,21 @@
 #' PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
-#' @slot testData A data from expeciment to analize accross model.
+#' @slot element_names A data from expeciment to analize accross model.
 #' @slot pool A background data to count test.
 #' @slot nthreads Number of processor's threads used in calculations.
 #' @return SetBasedEnrichmentTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private s4 object. Look at ORA's examples.
+#' #It is a private s4 object. Look at ora's examples.
 #' }
 SetBasedEnrichmentTest <- setClass(
   "SetBasedEnrichmentTest",
   slots = list(
     gmt = "data.frame",
-    testData = "character",
+    element_names = "character",
     pool = "character",
-    numberOfPermutations = "numeric",
+    number_of_permutations = "numeric",
     only_hyper_geometric_test = "logical",
     nthreads = "numeric",
     test = "function"
@@ -72,34 +72,34 @@ SetBasedEnrichmentTest <- setClass(
 setMethod("initialize", "SetBasedEnrichmentTest",
           function(.Object,
                    gmt = data.frame(),
-                   testData = character(),
+                   element_names = character(),
                    pool = character(),
-                   numberOfPermutations = 10000,
+                   number_of_permutations = 10000,
                    test = NULL,
                    only_hyper_geometric_test = FALSE,
                    nthreads = 4,
                    ...) {
             .Object@gmt <- gmt
-            .Object@testData <- testData
+            .Object@element_names <- element_names
             .Object@pool <- pool
-            .Object@numberOfPermutations <- numberOfPermutations
+            .Object@number_of_permutations <- number_of_permutations
             .Object@only_hyper_geometric_test <-
               only_hyper_geometric_test
             .Object@nthreads <- nthreads
             
-            .Object@test <- function(testObject) {
+            .Object@test <- function(model) {
               pool <- NULL
-              if (0 == length(testObject@pool)) {
+              if (0 == length(model@pool)) {
                 pool <- unique(unlist(.Object@gmt[, 'listOfValues']))
               } else {
-                pool <- unique(testObject@pool)
+                pool <- unique(model@pool)
               }
               
-              testData <- .Object@testData
-              if (!all(testData %in% pool)) {
-                testData <- testData[testData %in% pool]
+              element_names <- .Object@element_names
+              if (!all(element_names %in% pool)) {
+                element_names <- element_names[element_names %in% pool]
                 warning(
-                  "Not all elements of testData (sample) are from pool. ",
+                  "Not all elements of element_names (sample) are from pool. ",
                   "TestData vector is automatically cut off to pool vector."
                 )
               }
@@ -109,13 +109,13 @@ setMethod("initialize", "SetBasedEnrichmentTest",
               
               testResults <-
                 set.based.enrichment.test.wrapper(
-                  steps = .Object@numberOfPermutations,
+                  steps = .Object@number_of_permutations,
                   pool = pool,
-                  select = testData,
+                  select = element_names,
                   DB = DB,
                   only_hyper_geometric_test =
-                    testObject@only_hyper_geometric_test,
-                  nthreads = testObject@nthreads
+                    model@only_hyper_geometric_test,
+                  nthreads = model@nthreads
                 )
               testResults
             }
@@ -124,16 +124,16 @@ setMethod("initialize", "SetBasedEnrichmentTest",
           })
 
 #' @describeIn SetBasedEnrichmentTest runs test calculations.
-#' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for SetBasedEnrichmentTest object. Used as private function.
+#' @param model Object of s4 class represents Mulea Test.
+#' @return run_test method for SetBasedEnrichmentTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at runTest of ORA's examples.
+#' #It is a private method. Look at run_test of ora's examples.
 #' }
-setMethod("runTest",
-          signature(testObject = "SetBasedEnrichmentTest"),
-          function(testObject) {
-            testObject@test(testObject)
+setMethod("run_test",
+          signature(model = "SetBasedEnrichmentTest"),
+          function(model) {
+            model@test(model)
           })
 
 

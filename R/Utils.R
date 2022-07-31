@@ -1,8 +1,8 @@
 # PUBLIC API
 #' @description
-#' \code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
+#' \code{read_gmt} read model in data frame form from gmt file.
 #'
-#' @param gmtFilePath path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"
+#' @param file path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"
 #'
 #'
 #' @title Input/Output Functions
@@ -10,8 +10,8 @@
 #' @export
 #'
 #' @return Returns data frame with the model from a specific location.
-readGmtFileAsDataFrame <- function(gmtFilePath) {
-  fileConnection <- file(gmtFilePath)
+read_gmt <- function(file) {
+  fileConnection <- file(file)
   tryCatchRes <- tryCatch(
     lines <- readLines(fileConnection),
     warning = function(w) {
@@ -67,21 +67,21 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 
 # PUBLIC API
 #' @description
-#' \code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a .gmt file.
+#' \code{write_gmt} saves copy of the model from dataframe as a .gmt file.
 #'
-#' @param modelDF data frame with model.
+#' @param gmt data frame with model.
 #'
 #' @rdname InputOutputFunctions
 #' @export
 #'
 #' @return Returns the model as a .gmt file at a specific location.
 #' @examples
-#' modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
-#' MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
-saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
+#' modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
+#' MulEA::write_gmt(gmt = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
+write_gmt <- function(gmt, file) {
   vectorOfModel <-
     plyr::daply(
-      .data = modelDF,
+      .data = gmt,
       .variables = c("ontologyId"),
       .fun = function(dataFrameRow) {
         collapsedListOfValues <-
@@ -89,7 +89,7 @@ saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
         paste(dataFrameRow[1], dataFrameRow[2], collapsedListOfValues, sep = "\t")
       }
     )
-  fileConnection <- file(gmtFilePath)
+  fileConnection <- file(file)
   writeLines(vectorOfModel,
              con = fileConnection,
              sep = "\n",
@@ -98,63 +98,11 @@ saveDataFrameAsGmtFile <- function(modelDF, gmtFilePath) {
 }
 
 # PUBLIC API
-#' @description
-#' \code{readEdbFileAsDataFrame} read GSEA results as a dataframe from .edb file.
-#'
-#' @param edbFilePath path with name of file, where the file is localized or where to save model.
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
-#' @return Return data frame with model from a .edb file.
-readEdbFileAsDataFrame <- function(edbFilePath) {
-  xml_parsed <- XML::xmlTreeParse(edbFilePath, useInternalNodes = T)
-  geneset_list <-
-    XML::xpathApply(xml_parsed, path = '/EDB/DTG/@GENESET')
-  es_list <- XML::xpathApply(xml_parsed, path = '/EDB/DTG/@ES')
-  nes_list <- XML::xpathApply(xml_parsed, path = '/EDB/DTG/@NES')
-  fdr_list <- XML::xpathApply(xml_parsed, path = '/EDB/DTG/@FDR')
-  np_list <- XML::xpathApply(xml_parsed, path = '/EDB/DTG/@NP')
-  
-  gsea_bi_res_df <-
-    data.frame(
-      'ontology_id' = c(),
-      'es' = c(),
-      'nes' = c(),
-      'fdr' = c(),
-      'np' = c()
-    )
-  
-  
-  for (i in 1:length(geneset_list)) {
-    onlology_id <- strsplit(geneset_list[[i]][['GENESET']], '#')[[1]][2]
-    es <- es_list[[i]][['ES']]
-    nes <- nes_list[[i]][['NES']]
-    fdr <- fdr_list[[i]][['FDR']]
-    np <- np_list[[i]][['NP']]
-    gsea_bi_res_df_i <-
-      data.frame(
-        'ontology_id' = onlology_id,
-        'es' = es,
-        'nes' = nes,
-        'fdr' = fdr,
-        'np' = np
-      )
-    gsea_bi_res_df <- rbind(gsea_bi_res_df, gsea_bi_res_df_i)
-  }
-  
-  gsea_bi_res_df
-}
-
-
-# PUBLIC API
 # TODO : Add quantile parameters as separate! Nothing do is default.
 #' @description
-#' \code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
+#' \code{filter_ontology} Filters ontology to only contain terms between given min. and max. sizes.
 #'
-#' @param input_gmt input dataframe, read from gmt file.
+#' @param gmt input dataframe, read from gmt file.
 #' @param min minimum size of term. Default 20 percent from quantile on term size distribution.
 #' @param max maximum size of term. Default 80 percent from quantile on term size distribution.
 #'
@@ -164,13 +112,13 @@ readEdbFileAsDataFrame <- function(edbFilePath) {
 #' @export
 #'
 #' @return Return data frame with model from specific location.
-filterOntology <- function(input_gmt,
-                           min = NULL,
-                           max = NULL) {
-  if (is.null(min)) {
+filter_ontology <- function(gmt,
+                           min_nr_of_elements = NULL,
+                           max_nr_of_elements = NULL) {
+  if (is.null(min_nr_of_elements)) {
     terms_sizes <-
       plyr::laply(
-        .data = input_gmt$listOfValues,
+        .data = gmt$listOfValues,
         .fun = function(term) {
           length(term)
         }
@@ -183,13 +131,13 @@ filterOntology <- function(input_gmt,
         na.rm = FALSE
       )
     
-    min = term_size_dist_q['20%']
+    min_nr_of_elements = term_size_dist_q['20%']
   }
   
-  if (is.null(max)) {
+  if (is.null(max_nr_of_elements)) {
     terms_sizes <-
       plyr::laply(
-        .data = input_gmt$listOfValues,
+        .data = gmt$listOfValues,
         .fun = function(term) {
           length(term)
         }
@@ -201,15 +149,15 @@ filterOntology <- function(input_gmt,
         type = 2,
         na.rm = FALSE
       )
-    max = term_size_dist_q['80%']
+    max_nr_of_elements = term_size_dist_q['80%']
   }
   
   filtered_input_gmt <-
     plyr::ddply(
-      .data = input_gmt,
+      .data = gmt,
       .variables = c("ontologyId"),
       .fun = function(df_row) {
-        if (length(df_row$listOfValues[[1]]) > min) {
+        if (length(df_row$listOfValues[[1]]) > min_nr_of_elements) {
           df_row
         } else {
           df_row[-1, ]
@@ -221,7 +169,7 @@ filterOntology <- function(input_gmt,
       .data = filtered_input_gmt,
       .variables = c("ontologyId"),
       .fun = function(df_row) {
-        if (length(df_row$listOfValues[[1]]) < max) {
+        if (length(df_row$listOfValues[[1]]) < max_nr_of_elements) {
           df_row
         } else {
           df_row[-1, ]
@@ -243,13 +191,8 @@ filterOntology <- function(input_gmt,
 #' which will be chosen to over representation.
 #' @param number_of_under_representation_groups set the number of groups
 #' which will be chosen to under representation.
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with model from specific location.
+#' @noRd
 decorateGmtByUnderOvenAndNoise <- function(input_gmt,
                                            number_of_over_representation_groups = 1,
                                            number_of_under_representation_groups = 0) {
@@ -286,21 +229,21 @@ decorateGmtByUnderOvenAndNoise <- function(input_gmt,
 
 # PUBLIC API
 #' @description
-#' \code{convertListToGmtDataFrame}
+#' \code{list_to_gmt}
 #'
-#' \code{convertListToGmtDataFrame} conver ontology representation from list to gmt dataframe.
+#' \code{list_to_gmt} conver ontology representation from list to gmt dataframe.
 #'
-#' @param ontologyReprAsList input list with elements names as ontologyId and genes in each element.
+#' @param gmt_list input list with elements names as ontologyId and genes in each element.
 #'
 #' @title Input/Output Functions
 #' @name  InputOutputFunctions
 #' @export
 #'
 #' @return Return data frame with model.
-convertListToGmtDataFrame <- function(ontologyReprAsList) {
+list_to_gmt <- function(gmt_list) {
   listAsGmtDataFrame <-
     plyr::ldply(
-      .data = ontologyReprAsList,
+      .data = gmt_list,
       .id = c('ontologyId'),
       .fun = function(element) {
         print(element)
@@ -325,13 +268,8 @@ convertListToGmtDataFrame <- function(ontologyReprAsList) {
 #' @param group_under_over_representation_ratio ratio of over represented group.
 #' @param number_of_over_representation_groups number of groups chosen to over representation.
 #' @param number_of_under_representation_groups number of groups chosen to under representation.
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with model from specific location.
+#' @noRd
 generateInputSamples <-
   function(input_gmt_decorated,
            noise_ratio = 0.2,
@@ -383,12 +321,8 @@ generateInputSamples <-
 #' @param comparison_col_name column name which indicated data to compare on.
 #' @param labels label datatable by additional columns with values.
 #' @param cut_off threshold for value selected by comparison_col_name
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with FDR. TPRs per test.
+#' @noRd
 getMultipleTestsSummary <- function(tests_res,
                                     comparison_col_name,
                                     labels = list(),
@@ -517,12 +451,8 @@ getMultipleTestsSummary <- function(tests_res,
 #' \code{getSummaryToRoc} generate artificial GO with specific terms under or over represented.
 #'
 #' @param tests_res list of multiple tests results.
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame which is the base to count ROC.
+#' @noRd
 getSummaryToRoc <- function(tests_res,
                             cut_off_resolution = 0.01,
                             methods_names = c('pValue', 'adjustedPValue', 'adjustedPValueEmpirical')) {
@@ -606,12 +536,8 @@ getSummaryToRoc <- function(tests_res,
 #'
 #' @param tests_res list of multiple tests results.
 #' @param cut_off_range threshold for value selected by comparison_col_name
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with FDR. TPRs per test.
+#' @noRd
 getMultipleTestsSummaryAcrossCutOff <- function(tests_res,
                                                 cut_off_range = seq(0, 1, 0.1)) {
   tests_res_sum <- NULL
@@ -658,12 +584,8 @@ getMultipleTestsSummaryAcrossCutOff <- function(tests_res,
 #' @param noise_ratio ratio of noise in data from [0,1] interval.
 #' @param number_of_over_representation_groups number of terms to over represent.
 #' @param number_of_under_representation_groups number of terms to under represent.
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
 #' @return Return data frame with FDR. TPRs per test.
+#' @noRd
 simulateMultipleTests <- function(input_gmt_filtered,
                                   number_of_tests = 10,
                                   noise_ratio = 0.35,
@@ -700,15 +622,15 @@ simulateMultipleTests <- function(input_gmt_filtered,
     
     input_select <- unlist(samples)
     
-    mulea_ora_model <- MulEA::ORA(
+    mulea_ora_model <- MulEA::ora(
       gmt = input_gmt_filtered,
-      testData = input_select,
-      adjustMethod = "PT",
-      numberOfPermutations = number_of_steps,
-      nthreads = nthreads
+      element_names = input_select,
+      p_value_adjustment_method = "PT",
+      number_of_permutations = number_of_steps,
+      number_of_cpu_threads = nthreads
     )
     
-    mulea_ora_results <- MulEA::runTest(mulea_ora_model)
+    mulea_ora_results <- MulEA::run_test(mulea_ora_model)
     tests_res[[i]]$mulea_res <- mulea_ora_results
     tests_res[[i]]$test_data <- input_gmt_decorated
     tests_res[[i]]$metadata <- list(
@@ -734,13 +656,9 @@ simulateMultipleTests <- function(input_gmt_filtered,
 #' @param number_of_tests number of tests to perform.
 #' @param noise_ratio_range range of ratios of noise in data from [0,1] interval.
 #' @param number_of_over_representation_groups number of terms to over represent.
-#' @param number_of_steps
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
+#' @param number_of_steps number of steps.
 #' @return Return data frame with FDR. TPRs per test.
+#' @noRd
 simulateMultipleTestsWithRatioParam <- function(input_gmt_filtered,
                                                 noise_ratio_range = seq(0.1, 0.5, 0.1),
                                                 number_of_tests = 100,

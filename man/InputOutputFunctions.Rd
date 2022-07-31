@@ -2,168 +2,77 @@
 % Please edit documentation in R/Plotting.R, R/Utils.R
 \name{InputOutputFunctions}
 \alias{InputOutputFunctions}
-\alias{reshapeResults}
-\alias{plotGraph}
-\alias{plotBarplot}
-\alias{plotHeatmap}
-\alias{readGmtFileAsDataFrame}
-\alias{saveDataFrameAsGmtFile}
-\alias{readEdbFileAsDataFrame}
-\alias{filterOntology}
-\alias{decorateGmtByUnderOvenAndNoise}
-\alias{convertListToGmtDataFrame}
-\alias{generateInputSamples}
-\alias{getMultipleTestsSummary}
-\alias{getSummaryToRoc}
-\alias{getMultipleTestsSummaryAcrossCutOff}
-\alias{simulateMultipleTests}
-\alias{simulateMultipleTestsWithRatioParam}
+\alias{reshape_results}
+\alias{plot_graph}
+\alias{plot_barplot}
+\alias{plot_heatmap}
+\alias{read_gmt}
+\alias{write_gmt}
+\alias{filter_ontology}
+\alias{list_to_gmt}
 \title{Input/Output Functions}
 \usage{
-reshapeResults(
-  mulea_model = NULL,
-  mulea_model_resuts = NULL,
-  mulea_model_ontology_col_name = "ontologyId",
-  mulea_model_resuts_ontology_col_name = "ontologyId",
-  category_stat_column_name = "adjustedPValue",
-  cut_off_to_test_data = TRUE
+reshape_results(
+  model = NULL,
+  model_results = NULL,
+  model_ontology_col_name = "ontologyId",
+  ontology_id_colname = "ontologyId",
+  p_value_type_colname = "adjustedPValue",
+  p_value_max_threshold = TRUE
 )
 
-plotGraph(
-  mulea_relaxed_resuts,
-  edge_weight_cutoff = 0,
-  statistics_value_colname = "adjustedPValue",
-  ontology_id_column_name = "ontologyId",
-  gen_id_in_ontology_column_name = "genIdInOntology",
-  statistics_value_cutoff = 0.05
+plot_graph(
+  reshaped_results,
+  shared_elements_min_threshold = 0,
+  p_value_type_colname = "adjustedPValue",
+  ontology_id_colname = "ontologyId",
+  ontology_element_colname = "genIdInOntology",
+  p_value_max_threshold = 0.05
 )
 
-plotBarplot(
-  mulea_relaxed_resuts,
-  selection_vector = NULL,
-  categories_names = "ontologyId",
-  statistics_value_colname = "adjustedPValue",
-  statistics_value_cutoff = 0.05
+plot_barplot(
+  reshaped_results,
+  selected_rows_to_plot = NULL,
+  ontology_id_colname = "ontologyId",
+  p_value_type_colname = "adjustedPValue",
+  p_value_max_threshold = 0.05
 )
 
-plotHeatmap(
-  mulea_relaxed_resuts,
-  statistics_value_colname = "adjustedPValue",
-  gen_id_in_ontology_column_name = "genIdInOntology",
-  statistics_value_cutoff = 0.05
+plot_heatmap(
+  reshaped_results,
+  p_value_type_colname = "adjustedPValue",
+  ontology_element_colname = "genIdInOntology",
+  p_value_max_threshold = 0.05
 )
 
-readGmtFileAsDataFrame(gmtFilePath)
+read_gmt(file)
 
-saveDataFrameAsGmtFile(modelDF, gmtFilePath)
+write_gmt(gmt, file)
 
-readEdbFileAsDataFrame(edbFilePath)
+filter_ontology(gmt, min_nr_of_elements = NULL, max_nr_of_elements = NULL)
 
-filterOntology(input_gmt, min = NULL, max = NULL)
-
-decorateGmtByUnderOvenAndNoise(
-  input_gmt,
-  number_of_over_representation_groups = 1,
-  number_of_under_representation_groups = 0
-)
-
-convertListToGmtDataFrame(ontologyReprAsList)
-
-generateInputSamples(
-  input_gmt_decorated,
-  noise_ratio = 0.2,
-  over_repr_ratio = 0.5,
-  under_repr_ratio = 0.05,
-  rand_from_unique = TRUE,
-  number_of_samples = 1
-)
-
-getMultipleTestsSummary(
-  tests_res,
-  comparison_col_name,
-  labels = list(),
-  cut_off = 0.05
-)
-
-getSummaryToRoc(
-  tests_res,
-  cut_off_resolution = 0.01,
-  methods_names = c("pValue", "adjustedPValue", "adjustedPValueEmpirical")
-)
-
-getMultipleTestsSummaryAcrossCutOff(tests_res, cut_off_range = seq(0, 1, 0.1))
-
-simulateMultipleTests(
-  input_gmt_filtered,
-  number_of_tests = 10,
-  noise_ratio = 0.35,
-  over_repr_ratio = 0.5,
-  number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered) * 0.1),
-  number_of_under_representation_groups = 0,
-  number_of_steps = 5000,
-  nthreads = 16
-)
-
-simulateMultipleTestsWithRatioParam(
-  input_gmt_filtered,
-  noise_ratio_range = seq(0.1, 0.5, 0.1),
-  number_of_tests = 100,
-  over_repr_ratio = 0.5,
-  number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered) * 0.2),
-  number_of_steps = 5000,
-  nthreads = 16
-)
+list_to_gmt(gmt_list)
 }
 \arguments{
-\item{mulea_model}{the MulEA object represents model. For example created by
-MulEA::ORA.}
+\item{model}{the MulEA object represents model. For example created by
+MulEA::ora.}
 
-\item{mulea_model_resuts}{Results from model, in most cases returned by
-MulEA::runTest generic method.}
+\item{model_results}{Results from model, in most cases returned by
+MulEA::run_test generic method.}
 
-\item{mulea_relaxed_resuts}{data.table in relaxed form.}
+\item{reshaped_results}{data.table in relaxed form.}
 
-\item{selection_vector}{vector for selecting variables to plot.}
+\item{selected_rows_to_plot}{vector for selecting variables to plot.}
 
-\item{gmtFilePath}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
+\item{file}{path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"}
 
-\item{modelDF}{data frame with model.}
+\item{gmt}{input dataframe, read from gmt file.}
 
-\item{edbFilePath}{path with name of file, where the file is localized or where to save model.}
-
-\item{input_gmt}{input dataframe, read from gmt file.}
+\item{gmt_list}{input list with elements names as ontologyId and genes in each element.}
 
 \item{min}{minimum size of term. Default 20 percent from quantile on term size distribution.}
 
 \item{max}{maximum size of term. Default 80 percent from quantile on term size distribution.}
-
-\item{number_of_over_representation_groups}{number of terms to over represent.}
-
-\item{number_of_under_representation_groups}{number of terms to under represent.}
-
-\item{ontologyReprAsList}{input list with elements names as ontologyId and genes in each element.}
-
-\item{noise_ratio}{ratio of noise in data from [0,1] interval.}
-
-\item{tests_res}{list of multiple tests results.}
-
-\item{comparison_col_name}{column name which indicated data to compare on.}
-
-\item{labels}{label datatable by additional columns with values.}
-
-\item{cut_off}{threshold for value selected by comparison_col_name}
-
-\item{cut_off_range}{threshold for value selected by comparison_col_name}
-
-\item{input_gmt_filtered}{gmt data frame with ontology for tests.}
-
-\item{number_of_tests}{number of tests to perform.}
-
-\item{number_of_steps}{}
-
-\item{noise_ratio_range}{range of ratios of noise in data from [0,1] interval.}
-
-\item{group_under_over_representation_ratio}{ratio of over represented group.}
 }
 \value{
 Return detailed and relaxed datatable where model and results are
@@ -179,75 +88,31 @@ Returns data frame with the model from a specific location.
 
 Returns the model as a .gmt file at a specific location.
 
-Return data frame with model from a .edb file.
-
-Return data frame with model from specific location.
-
 Return data frame with model from specific location.
 
 Return data frame with model.
-
-Return data frame with model from specific location.
-
-Return data frame with FDR. TPRs per test.
-
-Return data frame which is the base to count ROC.
-
-Return data frame with FDR. TPRs per test.
-
-Return data frame with FDR. TPRs per test.
-
-Return data frame with FDR. TPRs per test.
 }
 \description{
-\code{reshapeResults} merge model and model results into
+\code{reshape_results} merge model and model results into
 one relaxed datatable.
 
-\code{plotGraph} Plots graph representation of enrichment results.
+\code{plot_graph} Plots graph representation of enrichment results.
 
-\code{plotBarplot} Plots barplot of p-values.
+\code{plot_barplot} Plots barplot of p-values.
 
-\code{plotHeatmap} Plots heatmap of enriched terms and obtained p-values.
+\code{plot_heatmap} Plots heatmap of enriched terms and obtained p-values.
 
-\code{readGmtFileAsDataFrame} read model in data frame form from gmt file.
+\code{read_gmt} read model in data frame form from gmt file.
 
-\code{saveDataFrameAsGmtFile} saves copy of the model from dataframe as a .gmt file.
+\code{write_gmt} saves copy of the model from dataframe as a .gmt file.
 
-\code{readEdbFileAsDataFrame} read GSEA results as a dataframe from .edb file.
+\code{filter_ontology} Filters ontology to only contain terms between given min. and max. sizes.
 
-\code{filterOntology} Filters ontology to only contain terms between given min. and max. sizes.
+\code{list_to_gmt}
 
-\code{decorateGmtByUnderOvenAndNoise}
-
-\code{decorateGmtByUnderOvenAndNoise} decorates GO with labels (over, under, noise) per term.
-
-\code{convertListToGmtDataFrame}
-
-\code{convertListToGmtDataFrame} conver ontology representation from list to gmt dataframe.
-
-\code{generateInputSamples} Generates artificial GO with specific terms (under or over represented).
-
-\code{getMultipleTestsSummary}
-
-\code{getMultipleTestsSummary} generate artificial GO with specific terms under or over represented.
-
-\code{getSummaryToRoc}
-
-\code{getSummaryToRoc} generate artificial GO with specific terms under or over represented.
-
-\code{getMultipleTestsSummaryAcrossCutOff}
-
-\code{getMultipleTestsSummaryAcrossCutOff} doing summary across cutoff range.
-
-\code{simulateMultipleTests}
-
-\code{simulateMultipleTests} generate artificial GO with specific terms under or over represented.
-
-\code{simulateMultipleTestsWithRatioParam}
-
-\code{simulateMultipleTestsWithRatioParam} generate artificial GO with specific terms under or over represented.
+\code{list_to_gmt} conver ontology representation from list to gmt dataframe.
 }
 \examples{
-modelDfFromFile <- MulEA::readGmtFileAsDataFrame(gmtFilePath = system.file(package="MulEA", "extdata", "model.gmt"))
-MulEA::saveDataFrameAsGmtFile(modelDF = modelDfFromFile, gmtFilePath = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
+modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
+MulEA::write_gmt(gmt = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
 }

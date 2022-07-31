@@ -4,27 +4,27 @@
 \name{SubramanianTest-class}
 \alias{SubramanianTest-class}
 \alias{SubramanianTest}
-\alias{runTest,SubramanianTest-method}
+\alias{run_test,SubramanianTest-method}
 \title{PRIVATE class : An S4 class to represent a ranked based tests in Mulea.}
 \usage{
-\S4method{runTest}{SubramanianTest}(testObject)
+\S4method{run_test}{SubramanianTest}(model)
 }
 \arguments{
-\item{testObject}{Object of s4 class represents Mulea Test.}
+\item{model}{Object of s4 class represents Mulea Test.}
 }
 \value{
 dataframe with presented columns 'ontologyId', 'ontologyName',
 'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
 'pValue', 'adjustedPValue'
 
-runTest method for SubramanianTest object. Used as private function.
+run_test method for SubramanianTest object. Used as private function.
 }
 \description{
 PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{runTest}: runs test calculations.
+\item \code{run_test}: runs test calculations.
 }}
 
 \section{Slots}{
@@ -32,13 +32,13 @@ PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
 \describe{
 \item{\code{gmt}}{A data.frame representing GMT's reprezentation of model.}
 
-\item{\code{testData}}{A data from expeciment to analize accross model.}
+\item{\code{element_names}}{A data from expeciment to analize accross model.}
 
-\item{\code{scores}}{A vectore of scores per testData.}
+\item{\code{element_scores}}{A vectore of element_scores per element_names.}
 
 \item{\code{p}}{A power of weight.}
 
-\item{\code{scoreType}}{Defines the GSEA score type. Only positive scores - "pos", only negative scores - "neg" and mixed (standard) - "std".}
+\item{\code{element_score_type}}{Defines the GSEA score type. Only positive element_scores - "pos", only negative element_scores - "neg" and mixed (standard) - "std".}
 }}
 
 \examples{
@@ -46,6 +46,6 @@ PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
 #It is a private s4 object. Look at RankedBasedTest's examples.
 }
 \dontrun{
-#It is a private method. Look at runTest of RankedBasedTest's examples.
+#It is a private method. Look at run_test of RankedBasedTest's examples.
 }
 }

@@ -5,28 +5,28 @@ validate_column_names_and_function_args <- function(data, ...) {
   }
 }
 
-filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
-                                            statistics_value_colname = 'ontologyStatValue',
-                                            statistics_value_cutoff = 0.05) {
-  include <- !is.na(mulea_relaxed_resuts[[statistics_value_colname]])
-  mulea_relaxed_resuts_filtered_na <-
-    mulea_relaxed_resuts[include,]
+filterRelaxedResultsForPlotting <- function(reshaped_results,
+                                            p_value_type_colname = 'ontologyStatValue',
+                                            p_value_max_threshold = 0.05) {
+  include <- !is.na(reshaped_results[[p_value_type_colname]])
+  reshaped_results_filtered_na <-
+    reshaped_results[include,]
   include <-
-    mulea_relaxed_resuts_filtered_na[[statistics_value_colname]] <= statistics_value_cutoff
-  mulea_relaxed_resuts_filtered_cutoff <-
-    mulea_relaxed_resuts_filtered_na[include, ]
-  mulea_relaxed_resuts_filtered_cutoff
+    reshaped_results_filtered_na[[p_value_type_colname]] <= p_value_max_threshold
+  reshaped_results_filtered_cutoff <-
+    reshaped_results_filtered_na[include, ]
+  reshaped_results_filtered_cutoff
 }
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{reshapeResults} merge model and model results into
+#' \code{reshape_results} merge model and model results into
 #' one relaxed datatable.
 #'
-#' @param mulea_model the MulEA object represents model. For example created by
-#' MulEA::ORA.
-#' @param mulea_model_resuts Results from model, in most cases returned by
-#' MulEA::runTest generic method.
+#' @param model the MulEA object represents model. For example created by
+#' MulEA::ora.
+#' @param model_results Results from model, in most cases returned by
+#' MulEA::run_test generic method.
 #'
 #'
 #' @title Input/Output Functions
@@ -35,19 +35,19 @@ filterRelaxedResultsForPlotting <- function(mulea_relaxed_resuts,
 #'
 #' @return Return detailed and relaxed datatable where model and results are
 #' merged for plotting purposes.
-reshapeResults <-
-  function(mulea_model = NULL,
-           mulea_model_resuts = NULL,
-           mulea_model_ontology_col_name = 'ontologyId',
-           mulea_model_resuts_ontology_col_name = 'ontologyId',
-           category_stat_column_name = 'adjustedPValue',
-           cut_off_to_test_data = TRUE) {
+reshape_results <-
+  function(model = NULL,
+           model_results = NULL,
+           model_ontology_col_name = 'ontologyId',
+           ontology_id_colname = 'ontologyId',
+           p_value_type_colname = 'adjustedPValue',
+           p_value_max_threshold = TRUE) {
     model_with_res <-
       merge(
-        x = mulea_model@gmt,
-        y = mulea_model_resuts,
-        by.x = mulea_model_ontology_col_name,
-        by.y = mulea_model_resuts_ontology_col_name,
+        x = model@gmt,
+        y = model_results,
+        by.x = model_ontology_col_name,
+        by.y = ontology_id_colname,
         all = TRUE
       )
     # Create relaxed dataframe from our structure.
@@ -67,7 +67,7 @@ reshapeResults <-
     for (i in 1:nrow(model_with_res_dt)) {
       category_name <- model_with_res_dt[[i, 'ontologyId']]
       category_p_stat <-
-        model_with_res_dt[[i, category_stat_column_name]]
+        model_with_res_dt[[i, p_value_type_colname]]
       for (item_name in model_with_res_dt[[i, 'listOfValues']]) {
         # THE LINE BELOW DOES NOT UPDATE THE OBJECT IS THIS INTENTIONAL?
         model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter,
@@ -76,21 +76,21 @@ reshapeResults <-
         model_with_res_dt_relaxed_counter = model_with_res_dt_relaxed_counter + 1
       }
     }
-    if (cut_off_to_test_data) {
+    if (p_value_max_threshold) {
       model_with_res_dt_relaxed <-
-        model_with_res_dt_relaxed[genIdInOntology %in% mulea_model@testData]
+        model_with_res_dt_relaxed[genIdInOntology %in% model@element_names]
     }
     names(model_with_res_dt_relaxed) <-
-      c("ontologyId", "genIdInOntology", category_stat_column_name)
+      c("ontologyId", "genIdInOntology", p_value_type_colname)
     model_with_res_dt_relaxed
   }
 
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{plotGraph} Plots graph representation of enrichment results.
+#' \code{plot_graph} Plots graph representation of enrichment results.
 #'
-#' @param mulea_relaxed_resuts data.table in relaxed form.
+#' @param reshaped_results data.table in relaxed form.
 #'
 #'
 #' @title Input/Output Functions
@@ -98,28 +98,28 @@ reshapeResults <-
 #' @export
 #'
 #' @return Return plot.
-plotGraph <- function(mulea_relaxed_resuts,
-                      edge_weight_cutoff = 0,
-                      statistics_value_colname = 'adjustedPValue',
-                      ontology_id_column_name = 'ontologyId',
-                      gen_id_in_ontology_column_name = 'genIdInOntology',
-                      statistics_value_cutoff = 0.05) {
+plot_graph <- function(reshaped_results,
+                      shared_elements_min_threshold = 0,
+                      p_value_type_colname = 'adjustedPValue',
+                      ontology_id_colname = 'ontologyId',
+                      ontology_element_colname = 'genIdInOntology',
+                      p_value_max_threshold = 0.05) {
   MulEA:::validate_column_names_and_function_args(
-    data = mulea_relaxed_resuts,
-    statistics_value_colname,
-    ontology_id_column_name,
-    gen_id_in_ontology_column_name
+    data = reshaped_results,
+    p_value_type_colname,
+    ontology_id_colname,
+    ontology_element_colname
   )
-  mulea_relaxed_resuts <- data.table::setDT(mulea_relaxed_resuts)
+  reshaped_results <- data.table::setDT(reshaped_results)
   model_with_res_dt_relaxed <-
     MulEA:::filterRelaxedResultsForPlotting(
-      mulea_relaxed_resuts = mulea_relaxed_resuts,
-      statistics_value_colname = statistics_value_colname,
-      statistics_value_cutoff = statistics_value_cutoff
+      reshaped_results = reshaped_results,
+      p_value_type_colname = p_value_type_colname,
+      p_value_max_threshold = p_value_max_threshold
     )
   
   ontologies <-
-    unique(model_with_res_dt_relaxed[, ..ontology_id_column_name])
+    unique(model_with_res_dt_relaxed[, ..ontology_id_colname])
   ontologies_graph_edges_num <- sum(1:(nrow(ontologies) - 1))
   ontologies_graph_edges <- data.table::data.table(
     from = rep('a', length.out = ontologies_graph_edges_num),
@@ -128,22 +128,22 @@ plotGraph <- function(mulea_relaxed_resuts,
   )
   
   if (0 == ontologies_graph_edges_num) {
-    stop('No edges at all. Wrong data.table or manipulate statistics_value_cutoff please.')
+    stop('No edges at all. Wrong data.table or manipulate p_value_max_threshold please.')
   }
   
   ontologies_graph_edges_counter <- 1
   for (i in 1:(nrow(ontologies) - 1)) {
     ontology_name_i <- ontologies[i, ontologyId]
     genes_in_ontology_i <-
-      model_with_res_dt_relaxed[ontologyId == ontology_name_i, ][[gen_id_in_ontology_column_name]]
+      model_with_res_dt_relaxed[ontologyId == ontology_name_i, ][[ontology_element_colname]]
     
     for (j in (i + 1):nrow(ontologies)) {
       ontology_name_j <- ontologies[j, ontologyId]
       genes_in_ontology_j <-
-        model_with_res_dt_relaxed[ontologyId == ontology_name_j, ][[gen_id_in_ontology_column_name]]
+        model_with_res_dt_relaxed[ontologyId == ontology_name_j, ][[ontology_element_colname]]
       genes_in_ontology_i_j_intersection_num <-
         length(intersect(genes_in_ontology_i, genes_in_ontology_j))
-      if (edge_weight_cutoff < genes_in_ontology_i_j_intersection_num) {
+      if (shared_elements_min_threshold < genes_in_ontology_i_j_intersection_num) {
         ontologies_graph_edges[ontologies_graph_edges_counter,
                                c('from', 'to', 'weight') := list(ontology_name_i,
                                                                  ontology_name_j,
@@ -157,7 +157,7 @@ plotGraph <- function(mulea_relaxed_resuts,
   
   nodes_ids <- model_with_res_dt_relaxed[, ontologyId]
   nodes_p_stat <-
-    model_with_res_dt_relaxed[[statistics_value_colname]]
+    model_with_res_dt_relaxed[[p_value_type_colname]]
   ontologies_graph_nodes <- data.table::data.table(id = nodes_ids,
                                                    label = nodes_ids,
                                                    p_stat = nodes_p_stat)
@@ -185,7 +185,7 @@ plotGraph <- function(mulea_relaxed_resuts,
       mid = 'darkgreen',
       high = 'red',
       limits = c(0.0, 1.0),
-      name = statistics_value_colname
+      name = p_value_type_colname
     ) +
     geom_node_text(aes(label = label), repel = TRUE) +
     theme_graph(base_family = "mono")
@@ -195,10 +195,10 @@ plotGraph <- function(mulea_relaxed_resuts,
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{plotBarplot} Plots barplot of p-values.
+#' \code{plot_barplot} Plots barplot of p-values.
 #'
-#' @param mulea_relaxed_resuts  data.table in relaxed form.
-#' @param selection_vector vector for selecting variables to plot.
+#' @param reshaped_results  data.table in relaxed form.
+#' @param selected_rows_to_plot vector for selecting variables to plot.
 #'
 #'
 #' @title Input/Output Functions
@@ -206,39 +206,39 @@ plotGraph <- function(mulea_relaxed_resuts,
 #' @export
 #'
 #' @return Return plot.
-plotBarplot <-
-  function(mulea_relaxed_resuts,
-           selection_vector = NULL,
-           categories_names = 'ontologyId',
-           statistics_value_colname = 'adjustedPValue',
-           statistics_value_cutoff = 0.05) {
-    MulEA:::validate_column_names_and_function_args(data = mulea_relaxed_resuts,
-                                                    statistics_value_colname, categories_names)
-    mulea_relaxed_resuts <- MulEA:::filterRelaxedResultsForPlotting(
-      mulea_relaxed_resuts = mulea_relaxed_resuts,
-      statistics_value_colname = statistics_value_colname,
-      statistics_value_cutoff = statistics_value_cutoff
+plot_barplot <-
+  function(reshaped_results,
+           selected_rows_to_plot = NULL,
+           ontology_id_colname = 'ontologyId',
+           p_value_type_colname = 'adjustedPValue',
+           p_value_max_threshold = 0.05) {
+    MulEA:::validate_column_names_and_function_args(data = reshaped_results,
+                                                    p_value_type_colname, ontology_id_colname)
+    reshaped_results <- MulEA:::filterRelaxedResultsForPlotting(
+      reshaped_results = reshaped_results,
+      p_value_type_colname = p_value_type_colname,
+      p_value_max_threshold = p_value_max_threshold
     )
     
-    if (is.null(selection_vector)) {
-      selection_vector <- 1:nrow(mulea_relaxed_resuts)
+    if (is.null(selected_rows_to_plot)) {
+      selected_rows_to_plot <- 1:nrow(reshaped_results)
     }
-    unique_mulea_relaxed_resuts <-
-      unique(mulea_relaxed_resuts[selection_vector, c(..categories_names, ..statistics_value_colname)])
-    unique_mulea_relaxed_resuts <- unique_mulea_relaxed_resuts %>%
+    unique_reshaped_results <-
+      unique(reshaped_results[selected_rows_to_plot, c(..ontology_id_colname, ..p_value_type_colname)])
+    unique_reshaped_results <- unique_reshaped_results %>%
       dplyr::arrange(dplyr::desc((!!as.name(
-        statistics_value_colname
+        p_value_type_colname
       ))))
     
-    unique_mulea_relaxed_resuts_df <-
-      as.data.frame(unique_mulea_relaxed_resuts)
-    unique_mulea_relaxed_resuts_df[, 1] <-
-      factor(unique_mulea_relaxed_resuts_df[[1]],
-             levels = unique_mulea_relaxed_resuts_df[[1]])
+    unique_reshaped_results_df <-
+      as.data.frame(unique_reshaped_results)
+    unique_reshaped_results_df[, 1] <-
+      factor(unique_reshaped_results_df[[1]],
+             levels = unique_reshaped_results_df[[1]])
     mulea_gg_plot <- ggplot(
-      unique_mulea_relaxed_resuts_df,
-      aes_string(x = categories_names, y = statistics_value_colname,
-                 fill = statistics_value_colname)
+      unique_reshaped_results_df,
+      aes_string(x = ontology_id_colname, y = p_value_type_colname,
+                 fill = p_value_type_colname)
     ) +
       geom_bar(stat = "identity") +
       scale_fill_gradient2(mid = 'darkgreen',
@@ -252,9 +252,9 @@ plotBarplot <-
 
 # PUBLIC API (Plotting)
 #' @description
-#' \code{plotHeatmap} Plots heatmap of enriched terms and obtained p-values.
+#' \code{plot_heatmap} Plots heatmap of enriched terms and obtained p-values.
 #'
-#' @param mulea_relaxed_resuts data.table in relaxed form.
+#' @param reshaped_results data.table in relaxed form.
 #'
 #'
 #' @title Input/Output Functions
@@ -262,24 +262,24 @@ plotBarplot <-
 #' @export
 #'
 #' @return Return plot.
-plotHeatmap <- function(mulea_relaxed_resuts,
-                        statistics_value_colname = 'adjustedPValue',
-                        gen_id_in_ontology_column_name = 'genIdInOntology',
-                        statistics_value_cutoff = 0.05) {
-  MulEA:::validate_column_names_and_function_args(data = mulea_relaxed_resuts,
-                                                  statistics_value_colname,
-                                                  gen_id_in_ontology_column_name)
+plot_heatmap <- function(reshaped_results,
+                        p_value_type_colname = 'adjustedPValue',
+                        ontology_element_colname = 'genIdInOntology',
+                        p_value_max_threshold = 0.05) {
+  MulEA:::validate_column_names_and_function_args(data = reshaped_results,
+                                                  p_value_type_colname,
+                                                  ontology_element_colname)
   model_with_res_dt_relaxed <-
     MulEA:::filterRelaxedResultsForPlotting(
-      mulea_relaxed_resuts = mulea_relaxed_resuts,
-      statistics_value_colname = statistics_value_colname,
-      statistics_value_cutoff = statistics_value_cutoff
+      reshaped_results = reshaped_results,
+      p_value_type_colname = p_value_type_colname,
+      p_value_max_threshold = p_value_max_threshold
     )
   
   model_with_res_dt_relaxed_sort_pval <-
     model_with_res_dt_relaxed %>%
     dplyr::arrange(., desc((
-      !!rlang::sym(statistics_value_colname)
+      !!rlang::sym(p_value_type_colname)
     )), .by_group = FALSE)
   model_with_res_dt_relaxed_sort_pval[, 1] <-
     factor(
@@ -292,9 +292,9 @@ plotHeatmap <- function(mulea_relaxed_resuts,
   ggplot(
     model_with_res_dt_relaxed_sort_pval,
     aes(
-      !!rlang::sym(gen_id_in_ontology_column_name),
+      !!rlang::sym(ontology_element_colname),
       ontologyId,
-      fill = !!rlang::sym(statistics_value_colname)
+      fill = !!rlang::sym(p_value_type_colname)
     )
   ) +
     scale_fill_gradient2(mid = 'darkgreen',

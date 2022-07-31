@@ -8,23 +8,21 @@
 Fast analysis of biological data which results are well interpretable
 plots.
 
-## Install Development Version
+## Install Development Version and Load Package
 
 ``` r
 library(devtools)
 install_github("https://github.com/koralgooll/MulEA.git")
+library(MulEA)
 ```
 
 ## Example Run
 
-Import the MulEA package and import the example data sets:
+Import the example data sets:
 
 ``` r
-# import package
-library(MulEA)
-
 # import example gene set
-# import other gene sets using readGmtFileAsDataFrame()
+# import other gene sets from a GMT file using read_gmt()
 data(geneSet) 
 
 # import "WHAT ARE WE IMPORTING HERE?"
@@ -36,25 +34,25 @@ data(poolDf)
 
 ## Set Based Test
 
-Define an S4 object of class `ORA` (stands for Over-Representation
+Define an S4 object of class `ora` (stands for Over-Representation
 Analysis), run set based tests (hypergeometric test with empirical
 p-value adjustment) and reshape results:
 
 ``` r
-ora_model <- ORA(
+ora_model <- ora(
   gmt = geneSet,
-  testData = selectDf$select, 
-  pool = poolDf$pool,
-  adjustMethod = "PT",
-  numberOfPermutations = 1000
+  element_names = selectDf$select, 
+  background_element_names = poolDf$background_element_names,
+  p_value_adjustment_method = "PT",
+  number_of_permutations = 1000
 )
 
-ora_results <- runTest(ora_model)
+ora_results <- run_test(ora_model)
 
-ora_reshaped_results <- reshapeResults(
-  mulea_model = ora_model, 
-  mulea_model_resuts = ora_results, 
-  category_stat_column_name='adjustedPValueEmpirical'
+ora_reshaped_results <- reshape_results(
+  model = ora_model, 
+  model_results = ora_results, 
+  p_value_type_colname='adjustedPValueEmpirical'
 )
 ```
 
@@ -67,30 +65,30 @@ View(ora_results)
 Plot results:
 
 ``` r
-plotGraph(
-  mulea_relaxed_resuts=ora_reshaped_results,
-  statistics_value_cutoff = 1.00,
-  statistics_value_colname = "adjustedPValueEmpirical"
+plot_graph(
+  reshaped_results=ora_reshaped_results,
+  p_value_max_threshold = 1.00,
+  p_value_type_colname = "adjustedPValueEmpirical"
 )
 ```
 
 <img src="man/figures/README-ora-graph-1.png" width="100%" />
 
 ``` r
-plotBarplot(
-  mulea_relaxed_resuts = ora_reshaped_results,
-  statistics_value_cutoff=1.00,
-  statistics_value_colname = "adjustedPValueEmpirical"
+plot_barplot(
+  reshaped_results = ora_reshaped_results,
+  p_value_max_threshold=1.00,
+  p_value_type_colname = "adjustedPValueEmpirical"
 )
 ```
 
 <img src="man/figures/README-ora-barplot-1.png" width="100%" />
 
 ``` r
-plotHeatmap(
-  mulea_relaxed_resuts=ora_reshaped_results,
-  statistics_value_cutoff=1.00,
-  statistics_value_colname = 'adjustedPValueEmpirical'
+plot_heatmap(
+  reshaped_results=ora_reshaped_results,
+  p_value_max_threshold=1.00,
+  p_value_type_colname = 'adjustedPValueEmpirical'
 )
 ```
 
@@ -102,18 +100,18 @@ Define an S4 object of class `RankedBasedTest`, run ranked based test
 (Subramanian method) and reshape results:
 
 ``` r
-ranked_model <- RankedBasedTest(
+ranked_model <- gsea(
   gmt = geneSet,
-  testData = selectDf$select,
-  scores = selectDf$score
+  element_names = selectDf$select,
+  element_scores = selectDf$score
 )
 
-ranked_results <- runTest(ranked_model)
+ranked_results <- run_test(ranked_model)
 
-ranked_reshaped_results <- reshapeResults(
-  mulea_model = ranked_model, 
-  mulea_model_resuts = ranked_results, 
-  mulea_model_resuts_ontology_col_name='ontologyId'
+ranked_reshaped_results <- reshape_results(
+  model = ranked_model, 
+  model_results = ranked_results, 
+  ontology_id_colname='ontologyId'
 )
 ```
 
@@ -127,19 +125,19 @@ Plot results:
 
 ``` r
 # TODO FIX ERROR: Wrongly set data column names
-plotGraph(
-  mulea_relaxed_resuts=ranked_results,
-  statistics_value_cutoff = 1.00
+plot_graph(
+  reshaped_results=ranked_results,
+  p_value_max_threshold = 1.00
 )
 
-plotBarplot(
-  mulea_relaxed_resuts = ranked_results,
-  statistics_value_cutoff=1.00
+plot_barplot(
+  reshaped_results = ranked_results,
+  p_value_max_threshold=1.00
 )
 
-plotHeatmap(
-  mulea_relaxed_resuts=mulea_sub_reshaped_results,
-  statistics_value_cutoff=1.00
+plot_heatmap(
+  reshaped_results=mulea_sub_reshaped_results,
+  p_value_max_threshold=1.00
 )
 ```
 

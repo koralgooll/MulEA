@@ -1,10 +1,10 @@
 #' PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
-#' @slot testData A data from expeciment to analize accross model.
-#' @slot scores A vectore of scores per testData.
+#' @slot element_names A data from expeciment to analize accross model.
+#' @slot element_scores A vectore of element_scores per element_names.
 #' @slot p A power of weight.
-#' @slot scoreType Defines the GSEA score type. Only positive scores - "pos", only negative scores - "neg" and mixed (standard) - "std".
+#' @slot element_score_type Defines the GSEA score type. Only positive element_scores - "pos", only negative element_scores - "neg" and mixed (standard) - "std".
 #' @return dataframe with presented columns 'ontologyId', 'ontologyName',
 #' 'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
 #' 'pValue', 'adjustedPValue'
@@ -16,10 +16,10 @@ SubramanianTest <- setClass(
   "SubramanianTest",
   slots = list(
     gmt = "data.frame",
-    testData = "character",
-    scores = "numeric",
-    p = "numeric",
-    scoreType = "character",
+    element_names = "character",
+    element_scores = "numeric",
+    gsea_power = "numeric",
+    element_score_type = "character",
     test = "function"
   )
 )
@@ -27,37 +27,37 @@ SubramanianTest <- setClass(
 setMethod("initialize", "SubramanianTest",
           function(.Object,
                    gmt = data.frame(),
-                   testData = character(),
-                   scores = numeric(),
-                   p = 1,
-                   scoreType = "std",
+                   element_names = character(),
+                   element_scores = numeric(),
+                   gsea_power = 1,
+                   element_score_type = "std",
                    test = NULL,
                    ...) {
             .Object@gmt <- gmt
-            .Object@testData <- testData
-            .Object@scores <- scores
-            .Object@p <- p
-            .Object@scoreType <- scoreType
+            .Object@element_names <- element_names
+            .Object@element_scores <- element_scores
+            .Object@gsea_power <- gsea_power
+            .Object@element_score_type <- element_score_type
             
-            .Object@test <- function(testObject) {
-              listmodelDfFromFile <- testObject@gmt$listOfValues
+            .Object@test <- function(model) {
+              listmodelDfFromFile <- model@gmt$listOfValues
               names(listmodelDfFromFile) <-
-                testObject@gmt$ontologyId
+                model@gmt$ontologyId
               
-              samplesToAnalisys <- testObject@scores
-              names(samplesToAnalisys) <- testObject@testData
+              samplesToAnalisys <- model@element_scores
+              names(samplesToAnalisys) <- model@element_names
               
               fgseaRes <-
                 fgsea::fgsea(
                   pathways = listmodelDfFromFile,
                   stats = samplesToAnalisys,
-                  gseaParam = testObject@p,
-                  scoreType = testObject@scoreType
+                  gseaParam = model@gsea_power,
+                  scoreType = model@element_score_type
                 )
               
               resultDf <-
                 merge(
-                  testObject@gmt,
+                  model@gmt,
                   fgseaRes,
                   by.x = "ontologyId",
                   by.y = "pathway",
@@ -96,14 +96,14 @@ setMethod("initialize", "SubramanianTest",
           })
 
 #' @describeIn SubramanianTest runs test calculations.
-#' @param testObject Object of s4 class represents Mulea Test.
-#' @return runTest method for SubramanianTest object. Used as private function.
+#' @param model Object of s4 class represents Mulea Test.
+#' @return run_test method for SubramanianTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at runTest of RankedBasedTest's examples.
+#' #It is a private method. Look at run_test of RankedBasedTest's examples.
 #' }
-setMethod("runTest",
-          signature(testObject = "SubramanianTest"),
-          function(testObject) {
-            testObject@test(testObject)
+setMethod("run_test",
+          signature(model = "SubramanianTest"),
+          function(model) {
+            model@test(model)
           })
