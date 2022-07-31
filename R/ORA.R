@@ -8,7 +8,7 @@
 #' @slot number_of_permutations A number of permutations used in set base enrichment test. Default vlue is 10000.
 #' @slot number_of_cpu_threads Number of processor's threads used in calculations.
 #' @return ora object. This object represents set based tests in Mulea.
-#' @export
+#' @export ora
 #' @examples
 #' modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341", "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")

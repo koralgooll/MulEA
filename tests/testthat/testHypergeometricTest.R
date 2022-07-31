@@ -1,5 +1,3 @@
-context("ora")
-
 test_that("ora : object creation test.", {
   gmtMock <- data.frame(
     ontologyId = "GO:0000001",
@@ -10,7 +8,7 @@ test_that("ora : object creation test.", {
   testDataMock <- c("a", "b", "c")
   poolMock <- c("a", "c", "d")
   
-  mulea_ora_model <- ora(
+  mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
@@ -30,7 +28,7 @@ test_that("ora : element_names out of DB model.", {
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "d")
-  mulea_ora_model <- ora(
+  mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
     p_value_adjustment_method = "PT",
@@ -52,7 +50,7 @@ test_that("ora : element_names out of pool.", {
   testDataMock <- c("a", "b", "c")
   poolMock <- c("a", "b", "d")
   
-  mulea_ora_model <- ora(
+  mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
@@ -73,7 +71,7 @@ test_that("ora : matrix 2,2,2,2.", {
   testDataMock <- c("a", "b", "e", "f")
   poolMock <- c("a", "b", "c", "d", "e", "f", "g", "h")
   
-  mulea_ora_model <- ora(
+  mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
@@ -120,7 +118,7 @@ test_that("ora : pool >> var + DBi, matrix 2,2,2,18.", {
       "y"
     )
   
-  mulea_ora_model <- ora(
+  mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
@@ -141,7 +139,7 @@ test_that("ora : DBi not include pool, matrix 2,0,2,2.", {
   testDataMock <- c("a", "b", "e", "f")
   poolMock <- c("a", "b", "e", "f", "g", "h")
   
-  mulea_ora_model <- ora(
+  mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
@@ -168,7 +166,7 @@ test_that("ora : DB1 + DB2 => pool, matrix 1,3,2,2 and 2,2,1,3.", {
   gmtMock <- rbind(gmtMock1, gmtMock2)
   testDataMock <- c("d", "e", "f")
 
-  mulea_ora_model <- ora(
+  mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
     p_value_adjustment_method = "PT",
@@ -222,7 +220,7 @@ test_that("ora : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
       "y"
     )
   
-  mulea_ora_model <- ora(
+  mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
@@ -242,7 +240,7 @@ test_that("ora : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
                          "FBgn0038704", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831", "FBgn0000579"),
                        c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111", "FBgn0022222", "FBgn0777777", "FBgn0333333")))
   
-  mulea_ora_model <- ora(
+  mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names=poolMock,

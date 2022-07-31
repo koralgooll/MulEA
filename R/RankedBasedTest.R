@@ -10,7 +10,7 @@
 #' vlue is 1000.
 #' @return GSEA object. This object represents ranked based tests in
 #' Mulea.
-#' @export
+#' @export gsea
 #' @examples
 #' modelDfFromFile <- MulEA::read_gmt(
 #'   file = system.file(package="MulEA", "extdata", "model.gmt"))

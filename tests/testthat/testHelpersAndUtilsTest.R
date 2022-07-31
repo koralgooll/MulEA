@@ -1,6 +1,3 @@
-library(MulEA)
-context("Methods and Utils")
-
 test_that("Methods : checkIfPoolIncludeSample false", {
   gmtMock <- data.frame(
     ontologyId = "GO:0000001",

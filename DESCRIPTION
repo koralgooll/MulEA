@@ -37,7 +37,7 @@ Depends:
 Suggests:
     knitr,
     rmarkdown,
-    testthat,
+    testthat (>= 3.1.4),
     tictoc
 VignetteBuilder: knitr
 URL: https://github.com/koralgooll/MulEA
@@ -47,3 +47,4 @@ biocViews:
     GeneSetEnrichment
 RoxygenNote: 7.2.0
 SystemRequirements: C++11
+Config/testthat/edition: 3

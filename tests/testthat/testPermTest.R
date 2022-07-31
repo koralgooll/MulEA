@@ -1,6 +1,3 @@
-library(MulEA)
-context("set.based.enrichment.test")
-
 create_random_db <- function() {
   DB <- list()
   for (cat_i in 1:10) {
