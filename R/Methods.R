@@ -75,7 +75,7 @@ permutationAdjustment <- function(modelWithTestDf,
       outOfSelectionAndOutOfGroup <- length(allElements) -
         (selectedAndInGroup + selectedAndOutOfGroup + outOfSelectionAndInGroup)
       
-      simulationMatrix[i, j] = phyper(
+      simulationMatrix[i, j] = stats::phyper(
         selectedAndInGroup - 1,
         selectedAndInGroup + outOfSelectionAndInGroup,
         selectedAndOutOfGroup + outOfSelectionAndOutOfGroup,

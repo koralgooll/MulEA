@@ -54,13 +54,23 @@ filter_ontology(gmt, min_nr_of_elements = NULL, max_nr_of_elements = NULL)
 list_to_gmt(gmt_list)
 }
 \arguments{
-\item{model}{the MulEA object represents model. For example created by
-MulEA::ora.}
+\item{model}{a MulEA model, created e.g. by ora().}
 
-\item{model_results}{Results from model, in most cases returned by
-MulEA::run_test generic method.}
+\item{model_results}{Results from model, returned by run_test().}
+
+\item{model_ontology_col_name}{character}
+
+\item{ontology_id_colname}{character}
+
+\item{p_value_type_colname}{character}
+
+\item{p_value_max_threshold}{logical}
 
 \item{reshaped_results}{data.table in relaxed form.}
+
+\item{shared_elements_min_threshold}{numeric}
+
+\item{ontology_element_colname}{numeric}
 
 \item{selected_rows_to_plot}{vector for selecting variables to plot.}
 
@@ -68,11 +78,11 @@ MulEA::run_test generic method.}
 
 \item{gmt}{input dataframe, read from gmt file.}
 
+\item{min_nr_of_elements}{minimum size of term. Default 20 percent from quantile on term size distribution.}
+
+\item{max_nr_of_elements}{maximum size of term. Default 80 percent from quantile on term size distribution.}
+
 \item{gmt_list}{input list with elements names as ontologyId and genes in each element.}
-
-\item{min}{minimum size of term. Default 20 percent from quantile on term size distribution.}
-
-\item{max}{maximum size of term. Default 80 percent from quantile on term size distribution.}
 }
 \value{
 Return detailed and relaxed datatable where model and results are
@@ -113,6 +123,9 @@ one relaxed datatable.
 \code{list_to_gmt} conver ontology representation from list to gmt dataframe.
 }
 \examples{
-modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
-MulEA::write_gmt(gmt = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
+modelDfFromFile <- read_gmt(
+  file = system.file(package="MulEA", "extdata", "model.gmt"))
+write_gmt(gmt = modelDfFromFile,
+          file = paste(system.file(package="MulEA", "extdata"),
+          "fromDb.gmt", sep = "/"))
 }

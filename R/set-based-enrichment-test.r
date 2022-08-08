@@ -47,15 +47,15 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
   # n: number of non-pool genes among DB
   # k: number of genes in select
   # phyper(q, m, n, k, lower.tail = TRUE, log.p = FALSE)
-  result_df1$P_val=1-phyper(result_df1$DB_in_select-1, result_df1$DB_in_pool, size_pool-result_df1$DB_in_pool, size_select) 
+  result_df1$P_val=1-stats::phyper(result_df1$DB_in_select-1, result_df1$DB_in_pool, size_pool-result_df1$DB_in_pool, size_select) 
   
   
   P_val_round=round(result_df1$P_val, digits=15) ## can change the digits, this is important for the precision of '0' is R
   result_df1$R_obs=rank(P_val_round, na.last = TRUE,ties.method ="max")
   
    
-  result_df1$P_adj_Bonf=p.adjust(result_df1$P_val, method="bonferroni")
-  result_df1$P_adj_BH=p.adjust(result_df1$P_val, method="BH")
+  result_df1$P_adj_Bonf = stats::p.adjust(result_df1$P_val, method="bonferroni")
+  result_df1$P_adj_BH = stats::p.adjust(result_df1$P_val, method="BH")
   
   ################################################
   ############# simualtion
@@ -161,7 +161,7 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
   
   
   names(simulation_result_tbl)<-c("DB_in_pool","intersect.size","multiplicity") # set the column names
-  simulation_result_tbl$p <- 1-phyper(simulation_result_tbl$intersect.size-1, simulation_result_tbl$DB_in_pool, length(pool)-simulation_result_tbl$DB_in_pool,  length(select))
+  simulation_result_tbl$p <- 1-stats::phyper(simulation_result_tbl$intersect.size-1, simulation_result_tbl$DB_in_pool, length(pool)-simulation_result_tbl$DB_in_pool,  length(select))
   
   # test consitency
   stopifnot(steps*length(DB)==sum(simulation_result_tbl$multiplicity))  # ez nem fontos, de igy kell legyen

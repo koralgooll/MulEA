@@ -56,12 +56,12 @@ setBasedTestWithPoolRes <- run_test(setBasedTestWithPool)
 setBasedTestWithPoolAndAdjustRes <- run_test(setBasedTestWithPoolAndAdjust)
 dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28,
                               0.30, 0.45, 0.50)
-rankedBasedTestSubramanian <- RankedBasedTest(
+GSEASubramanian <- GSEA(
   method = "Subramanian",
   gmt = modelDfFromFile,
   element_names = dataFromExperiment,
   element_scores = dataFromExperimentScores)
-rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
+GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
 }
 \seealso{
 \code{\link{gsea}}, \code{\link{ora}}

@@ -54,8 +54,8 @@ dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742",
                         "FBgn0263831")
 dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
                               0.45, 0.50)
-rankedBasedTestSubramanian <- gsea(gmt = modelDfFromFile,
+GSEASubramanian <- gsea(gmt = modelDfFromFile,
                                               element_names = dataFromExperiment,
                                               element_scores = dataFromExperimentScores)
-rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
+GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
 }

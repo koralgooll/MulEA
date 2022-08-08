@@ -192,8 +192,8 @@ dataFromExperimentScores <- c(-0.35, -0.22, -0.09, 0.11, 0.15, 0.20, 0.24, 0.28,
 Kolmogorov-Smirnov test is achieved by setting `method` argument to `"KS"`. It is also required to provide the argument for `element_names`.
 
 ```{r, results = 'asis', echo=TRUE, warning=FALSE} 
-#rankedBasedTestKs <- gsea(method = "KS", gmt = modelDfFromFile, element_names = dataFromExperiment)
-#rankedBasedTestKsRes <- MulEA::run_test(rankedBasedTestKs)
+#GSEAKs <- gsea(method = "KS", gmt = modelDfFromFile, element_names = dataFromExperiment)
+#GSEAKsRes <- MulEA::run_test(GSEAKs)
 ```
 During the execution of this chunk you will see many warnings from ks.test function from stats package. Warnings like the following that:
 ```{r, results = 'asis', echo=TRUE} 
@@ -209,8 +209,8 @@ When you see any error or warnings when you are working with real data, it shoul
 To use the Subramanian set the `method` argument to `"Subramanian"`, and input `element_names` and `element_scores`. It is important that the latter two vectors have to be of the same length.
 
 ```{r, results = 'asis', echo=TRUE} 
-rankedBasedTestSubramanian <- gsea(method = "Subramanian", gmt = modelDfFromFile, element_names = dataFromExperiment, element_scores = dataFromExperimentScores)
-rankedBasedTestSubramanianRes <- MulEA::run_test(rankedBasedTestSubramanian)
+GSEASubramanian <- gsea(method = "Subramanian", gmt = modelDfFromFile, element_names = dataFromExperiment, element_scores = dataFromExperimentScores)
+GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
 ```
 
 Below is the list of arguments accepted by the constructor of the `gsea`:
@@ -229,5 +229,5 @@ Returned data frame from any ranked based test look like the following (column s
 - `p.value` - output - Cells of this column include counted p-value for provided data.
 
 ```{r, results = 'asis', echo = FALSE} 
-#knitr::kable(rankedBasedTestKsRes, caption = "Ranked Based Test Result Data Frame")
+#knitr::kable(GSEAKsRes, caption = "Ranked Based Test Result Data Frame")
 ```
