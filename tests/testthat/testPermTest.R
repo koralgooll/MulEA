@@ -17,7 +17,7 @@ test_that("set.based.enrichment.test.", {
   pool <- unique(unlist(DB))
   select <- c("el_4", "el_5", "el_6")
   nthread <- 2
-  res <- MulEA:::set.based.enrichment.test(
+  res <- set.based.enrichment.test(
     steps = steps,
     pool = pool,
     select = select,

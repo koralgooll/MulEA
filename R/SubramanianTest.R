@@ -24,6 +24,7 @@ SubramanianTest <- setClass(
   )
 )
 
+#' @importFrom fgsea fgsea
 setMethod("initialize", "SubramanianTest",
           function(.Object,
                    gmt = data.frame(),
@@ -46,7 +47,7 @@ setMethod("initialize", "SubramanianTest",
               
               samplesToAnalisys <- model@element_scores
               names(samplesToAnalisys) <- model@element_names
-              
+
               fgseaRes <-
                 fgsea::fgsea(
                   pathways = listmodelDfFromFile,

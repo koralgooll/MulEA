@@ -1,6 +1,7 @@
 #####################################################################################################
 # Function for FDR corrected hypergeometric enrichment test
 #####################################################################################################
+#' @import parallel
 set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=FALSE) {
   
   
@@ -99,7 +100,7 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
     stopifnot(sum(  steps_per_thread)==steps)
     rm(cc,vv)
     
-    library(parallel)
+    requireNamespace("parallel")
     cl <- makeCluster(spec=nthread, type = "PSOCK", 
                       outfile= paste(tempdir(), 'paralell.log', sep = "\\"))
     

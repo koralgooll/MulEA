@@ -124,7 +124,7 @@ filter_ontology <- function(gmt,
         }
       )
     term_size_dist_q <-
-      quantile(
+      stats::quantile(
         terms_sizes,
         probs = seq(0, 1, 0.1),
         type = 2,
@@ -143,7 +143,7 @@ filter_ontology <- function(gmt,
         }
       )
     term_size_dist_q <-
-      quantile(
+      stats::quantile(
         terms_sizes,
         probs = seq(0, 1, 0.1),
         type = 2,
@@ -323,6 +323,8 @@ generateInputSamples <-
 #' @param cut_off threshold for value selected by comparison_col_name
 #' @return Return data frame with FDR. TPRs per test.
 #' @noRd
+#' @importFrom magrittr %>%
+#' @importFrom data.table :=
 getMultipleTestsSummary <- function(tests_res,
                                     comparison_col_name,
                                     labels = list(),
@@ -425,18 +427,18 @@ getMultipleTestsSummary <- function(tests_res,
     sumary_res[i,] <- sumary_res_tmp
   }
   
-  sumary_res <- tibble(sumary_res) %>%
-    mutate(FPR = FP_size / (FP_size + TN_size)) %>%
-    mutate(TPR = TP_size / (TP_size + FN_size)) %>%
-    mutate(FDR = FP_size / (TP_size + FP_size)) %>%
-    mutate(NPV = TN_size / (FN_size + TN_size))
+  sumary_res <- tibble::tibble(sumary_res) %>%
+    dplyr::mutate(FPR = FP_size / (FP_size + TN_size)) %>%
+    dplyr::mutate(TPR = TP_size / (TP_size + FN_size)) %>%
+    dplyr::mutate(FDR = FP_size / (TP_size + FP_size)) %>%
+    dplyr::mutate(NPV = TN_size / (FN_size + TN_size))
   
   for (label_id in seq_along(labels)) {
     # IMPORTANT : Labels are as characters in datatable
     label_name <- as.character(names(labels)[[label_id]])
     label_value <- as.character(labels[[label_id]])
     sumary_res <-
-      sumary_res %>% mutate(!!label_name := label_value)
+      sumary_res %>% dplyr::mutate(!!label_name := label_value)
   }
   
   tictoc::toc()
@@ -453,6 +455,8 @@ getMultipleTestsSummary <- function(tests_res,
 #' @param tests_res list of multiple tests results.
 #' @return Return data frame which is the base to count ROC.
 #' @noRd
+#' @importFrom magrittr %>%
+#' @importFrom plyr .
 getSummaryToRoc <- function(tests_res,
                             cut_off_resolution = 0.01,
                             methods_names = c('pValue', 'adjustedPValue', 'adjustedPValueEmpirical')) {
@@ -479,7 +483,7 @@ getSummaryToRoc <- function(tests_res,
       )
   }
   
-  roc_stats <- tibble(
+  roc_stats <- tibble::tibble(
     TP_val = numeric(),
     TN_val = numeric(),
     FP_val = numeric(),
@@ -494,8 +498,8 @@ getSummaryToRoc <- function(tests_res,
   for (method_name in methods_names) {
     for (cut_off in seq(0, 1, cut_off_resolution)) {
       sim_mult_tests_res_to_roc_summary <- data_to_roc %>%
-        mutate(., PP = !!as.name(method_name) <= cut_off) %>%
-        mutate(
+        dplyr::mutate(., PP = !!as.name(method_name) <= cut_off) %>%
+        dplyr::mutate(
           .,
           TP = (PP == TRUE & sample_label == 'over'),
           TN = (PP == FALSE & sample_label != 'over'),
@@ -504,14 +508,14 @@ getSummaryToRoc <- function(tests_res,
         )
       
       sim_sum <-
-        sim_mult_tests_res_to_roc_summary %>% summarise(
+        sim_mult_tests_res_to_roc_summary %>% dplyr::summarise(
           TP_val = sum(TP),
           TN_val = sum(TN),
           FP_val = sum(FP),
           FN_val = sum(FN)
         )
       
-      sim_sum_roc <- sim_sum %>% mutate(
+      sim_sum_roc <- sim_sum %>% dplyr::mutate(
         TPR = TP_val / (TP_val + FN_val),
         FPR = FP_val / (FP_val + TN_val),
         sum_test = TP_val + TN_val + FP_val + FN_val,
@@ -519,7 +523,7 @@ getSummaryToRoc <- function(tests_res,
         method = method_name
       )
       
-      roc_stats <- roc_stats %>% add_row(sim_sum_roc)
+      roc_stats <- roc_stats %>% tibble::add_row(sim_sum_roc)
     }
   }
   
@@ -543,21 +547,21 @@ getMultipleTestsSummaryAcrossCutOff <- function(tests_res,
   tests_res_sum <- NULL
   for (cut_off in cut_off_range) {
     print(cut_off)
-    tests_res_sum_p <- MulEA:::getMultipleTestsSummary(
+    tests_res_sum_p <- getMultipleTestsSummary(
       tests_res = tests_res,
       comparison_col_name = 'pValue',
       labels = list('method' = 'p', 'cut_off' = cut_off),
       cut_off = cut_off
     )
     
-    tests_res_sum_bh <- MulEA:::getMultipleTestsSummary(
+    tests_res_sum_bh <- getMultipleTestsSummary(
       tests_res = tests_res,
       comparison_col_name = 'adjustedPValue',
       labels = list('method' = 'bh', 'cut_off' = cut_off),
       cut_off = cut_off
     )
     
-    tests_res_sum_pt <- MulEA:::getMultipleTestsSummary(
+    tests_res_sum_pt <- getMultipleTestsSummary(
       tests_res = tests_res,
       comparison_col_name = 'adjustedPValueEmpirical',
       labels = list('method' = 'pt', 'cut_off' = cut_off),
@@ -603,13 +607,13 @@ simulateMultipleTests <- function(input_gmt_filtered,
     print(i)
     
     input_gmt_decorated <-
-      MulEA:::decorateGmtByUnderOvenAndNoise(
+      decorateGmtByUnderOvenAndNoise(
         input_gmt = input_gmt_filtered,
         number_of_over_representation_groups = number_of_over_representation_groups,
         number_of_under_representation_groups = number_of_under_representation_groups
       )
     
-    samples <- MulEA:::generateInputSamples(
+    samples <- generateInputSamples(
       input_gmt_decorated,
       noise_ratio = noise_ratio,
       over_repr_ratio = over_repr_ratio,
@@ -674,7 +678,7 @@ simulateMultipleTestsWithRatioParam <- function(input_gmt_filtered,
     print(noise_ratio)
     sim_mult_tests <- c(
       sim_mult_tests,
-      MulEA:::simulateMultipleTests(
+      simulateMultipleTests(
         input_gmt_filtered = input_gmt_filtered,
         number_of_tests = number_of_tests,
         noise_ratio = noise_ratio,

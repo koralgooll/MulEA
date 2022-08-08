@@ -112,7 +112,7 @@ setMethod("initialize", "ora",
                   setBasedTestRes <-
                     data.frame(
                       setBasedTestRes,
-                      "q.value" = p.adjust(setBasedTestRes$p.value, method = adjustMethod)
+                      "q.value" = stats::p.adjust(setBasedTestRes$p.value, method = adjustMethod)
                     )
                 }
               }

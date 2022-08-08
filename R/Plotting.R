@@ -31,6 +31,7 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #'
 #' @title Input/Output Functions
 #' @name  InputOutputFunctions
+#' @importFrom data.table :=
 #' @export
 #'
 #' @return Return detailed and relaxed datatable where model and results are
@@ -95,16 +96,18 @@ reshape_results <-
 #'
 #' @title Input/Output Functions
 #' @name  InputOutputFunctions
-#' @export
 #'
 #' @return Return plot.
+#' @importFrom magrittr %>%
+#' @importFrom data.table :=
+#' @export
 plot_graph <- function(reshaped_results,
                       shared_elements_min_threshold = 0,
                       p_value_type_colname = 'adjustedPValue',
                       ontology_id_colname = 'ontologyId',
                       ontology_element_colname = 'genIdInOntology',
                       p_value_max_threshold = 0.05) {
-  MulEA:::validate_column_names_and_function_args(
+  validate_column_names_and_function_args(
     data = reshaped_results,
     p_value_type_colname,
     ontology_id_colname,
@@ -112,7 +115,7 @@ plot_graph <- function(reshaped_results,
   )
   reshaped_results <- data.table::setDT(reshaped_results)
   model_with_res_dt_relaxed <-
-    MulEA:::filterRelaxedResultsForPlotting(
+    filterRelaxedResultsForPlotting(
       reshaped_results = reshaped_results,
       p_value_type_colname = p_value_type_colname,
       p_value_max_threshold = p_value_max_threshold
@@ -170,7 +173,7 @@ plot_graph <- function(reshaped_results,
                          directed = TRUE)
   
   graph_plot <-
-    ggraph(routes_tidy, layout = "linear", circular = TRUE)
+    ggraph::ggraph(routes_tidy, layout = "linear", circular = TRUE)
   
   if (0 != nrow(routes_tidy %>% tidygraph::activate(edges) %>% tidygraph::as_tibble())) {
     graph_plot <-
@@ -203,6 +206,7 @@ plot_graph <- function(reshaped_results,
 #'
 #' @title Input/Output Functions
 #' @name  InputOutputFunctions
+#' @importFrom magrittr %>%
 #' @export
 #'
 #' @return Return plot.
@@ -212,9 +216,9 @@ plot_barplot <-
            ontology_id_colname = 'ontologyId',
            p_value_type_colname = 'adjustedPValue',
            p_value_max_threshold = 0.05) {
-    MulEA:::validate_column_names_and_function_args(data = reshaped_results,
+    validate_column_names_and_function_args(data = reshaped_results,
                                                     p_value_type_colname, ontology_id_colname)
-    reshaped_results <- MulEA:::filterRelaxedResultsForPlotting(
+    reshaped_results <- filterRelaxedResultsForPlotting(
       reshaped_results = reshaped_results,
       p_value_type_colname = p_value_type_colname,
       p_value_max_threshold = p_value_max_threshold
@@ -259,6 +263,7 @@ plot_barplot <-
 #'
 #' @title Input/Output Functions
 #' @name  InputOutputFunctions
+#' @importFrom magrittr %>%
 #' @export
 #'
 #' @return Return plot.
@@ -266,11 +271,11 @@ plot_heatmap <- function(reshaped_results,
                         p_value_type_colname = 'adjustedPValue',
                         ontology_element_colname = 'genIdInOntology',
                         p_value_max_threshold = 0.05) {
-  MulEA:::validate_column_names_and_function_args(data = reshaped_results,
+  validate_column_names_and_function_args(data = reshaped_results,
                                                   p_value_type_colname,
                                                   ontology_element_colname)
   model_with_res_dt_relaxed <-
-    MulEA:::filterRelaxedResultsForPlotting(
+    filterRelaxedResultsForPlotting(
       reshaped_results = reshaped_results,
       p_value_type_colname = p_value_type_colname,
       p_value_max_threshold = p_value_max_threshold
