@@ -42,7 +42,7 @@
 #' setBasedTestWithPoolAndAdjustRes <- run_test(setBasedTestWithPoolAndAdjust)
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28,
 #'                               0.30, 0.45, 0.50)
-#' GSEASubramanian <- GSEA(
+#' GSEASubramanian <- gsea(
 #'   method = "Subramanian",
 #'   gmt = modelDfFromFile,
 #'   element_names = dataFromExperiment,
@@ -50,5 +50,6 @@
 #' GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
 #' @return Results in form of data frame. Structure of data frame depends on
 #' object processed by this generic method.
+#' @importFrom methods new
 setGeneric("run_test", function(model)
   standardGeneric("run_test"))

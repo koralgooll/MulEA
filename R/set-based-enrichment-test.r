@@ -101,8 +101,14 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
     rm(cc,vv)
     
     requireNamespace("parallel")
-    cl <- makeCluster(spec=nthread, type = "PSOCK", 
-                      outfile= paste(tempdir(), 'paralell.log', sep = "\\"))
+    
+    if (interactive()) {
+      cl <- makeCluster(spec=nthread,
+                        type = "PSOCK",
+                        outfile= paste(tempdir(), 'paralell.log', sep = "\\"))
+    } else {
+      cl <- makeCluster(spec=nthread, type = "PSOCK")
+    }
     
     current_env <- environment()
     clusterExport(cl,"DB", envir = current_env)

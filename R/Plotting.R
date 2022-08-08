@@ -43,6 +43,7 @@ reshape_results <-
            ontology_id_colname = 'ontologyId',
            p_value_type_colname = 'adjustedPValue',
            p_value_max_threshold = TRUE) {
+    genIdInOntology <- NULL
     model_with_res <-
       merge(
         x = model@gmt,
@@ -109,6 +110,8 @@ plot_graph <- function(reshaped_results,
                       ontology_id_colname = 'ontologyId',
                       ontology_element_colname = 'genIdInOntology',
                       p_value_max_threshold = 0.05) {
+  ontologyId <- NULL
+  edges <- NULL
   validate_column_names_and_function_args(
     data = reshaped_results,
     p_value_type_colname,
@@ -124,7 +127,7 @@ plot_graph <- function(reshaped_results,
     )
   
   ontologies <-
-    unique(model_with_res_dt_relaxed[, ..ontology_id_colname])
+    unique(model_with_res_dt_relaxed[, ontology_id_colname, with = FALSE])
   ontologies_graph_edges_num <- sum(1:(nrow(ontologies) - 1))
   ontologies_graph_edges <- data.table::data.table(
     from = rep('a', length.out = ontologies_graph_edges_num),
@@ -231,7 +234,7 @@ plot_barplot <-
       selected_rows_to_plot <- 1:nrow(reshaped_results)
     }
     unique_reshaped_results <-
-      unique(reshaped_results[selected_rows_to_plot, c(..ontology_id_colname, ..p_value_type_colname)])
+      unique(reshaped_results[selected_rows_to_plot, c(ontology_id_colname, p_value_type_colname), with = FALSE])
     unique_reshaped_results <- unique_reshaped_results %>%
       dplyr::arrange(dplyr::desc((!!as.name(
         p_value_type_colname

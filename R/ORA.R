@@ -70,6 +70,7 @@ setMethod("initialize", "ora",
                    test = NULL,
                    number_of_cpu_threads = 4,
                    ...) {
+            adjustMethod <- NULL
             .Object@gmt <- gmt
             .Object@element_names <- element_names
             .Object@background_element_names <- background_element_names
