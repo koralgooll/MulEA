@@ -251,3 +251,45 @@ test_that("ora : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
   testthat::expect_equal(muleaTestRes$pValue[c(1,2)], c(1, 19205/26423))
 })
 
+test_that("ora : private : matrix 2,2,2,2.", {
+  gmtMock <- data.frame(
+    ontologyId = "GO:0000001",
+    ontologyName = "Imagin gen ontology to tests.",
+    listOfValues = I(list(c("a", "b", "c", "d"))),
+    stringsAsFactors = FALSE
+  )
+  testDataMock <- c("a", "b", "e", "f")
+  poolMock <- c("a", "b", "c", "d", "e", "f", "g", "h")
+  
+  mulea_hyper_test <- MulEA:::MuleaHypergeometricTest(
+    gmt = gmtMock,
+    element_names = testDataMock,
+    pool = poolMock, 
+    number_of_cpu_threads = 2)
+  
+  muleaTestRes <- run_test(mulea_hyper_test)
+  testthat::expect_equal(muleaTestRes$p.value, 53 / 70)
+})
+
+
+test_that("ora : private : DBi not include pool, matrix 2,0,2,2.", {
+  gmtMock <- data.frame(
+    ontologyId = "GO:0000001",
+    ontologyName = "Imagin gen ontology to tests.",
+    listOfValues = I(list(c("a", "b", "c", "d"))),
+    stringsAsFactors = FALSE
+  )
+  testDataMock <- c("a", "b", "e", "f")
+  poolMock <- c("a", "b", "e", "f", "g", "h")
+  
+  mulea_hyper_test <- MulEA:::MuleaHypergeometricTest(
+    gmt = gmtMock,
+    element_names = testDataMock,
+    pool = poolMock, 
+    number_of_cpu_threads = 2)
+  
+  muleaTestRes <- run_test(mulea_hyper_test)
+  testthat::expect_equal(muleaTestRes$p.value, 0.4)
+})
+
+

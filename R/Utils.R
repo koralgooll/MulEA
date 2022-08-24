@@ -47,23 +47,6 @@ read_gmt <- function(file) {
   gmtAsDF[c("ontologyId", "ontologyName", "listOfValues")]
 }
 
-#TODO : Is that hepler needed?
-readGmtFileAsPlaneDF <- function(gmtFilePath) {
-  maxColLength <-
-    max(utils::count.fields(gmtFilePath, sep = '\t', quote = "\""))
-  model <-
-    utils::read.table(
-      file = gmtFilePath,
-      header = FALSE,
-      fill = TRUE,
-      stringsAsFactors = FALSE,
-      sep = "\t",
-      strip.white = TRUE,
-      col.names = paste0("V", seq_len(maxColLength)),
-      quote = "\""
-    )
-  model
-}
 
 # PUBLIC API
 #' @description

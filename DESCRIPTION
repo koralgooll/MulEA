@@ -39,8 +39,7 @@ Imports:
     stats,
     stringi,
     tibble,
-    tidygraph,
-    utils
+    tidygraph
 Suggests:
     devtools,
     knitr,
