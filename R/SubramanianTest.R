@@ -10,7 +10,7 @@
 #' 'pValue', 'adjustedPValue'
 #' @examples
 #' \dontrun{
-#' #It is a private s4 object. Look at RankedBasedTest's examples.
+#' #It is a private s4 object. Look at GSAE's examples.
 #' }
 SubramanianTest <- setClass(
   "SubramanianTest",
@@ -24,6 +24,7 @@ SubramanianTest <- setClass(
   )
 )
 
+#' @importFrom fgsea fgsea
 setMethod("initialize", "SubramanianTest",
           function(.Object,
                    gmt = data.frame(),
@@ -46,7 +47,7 @@ setMethod("initialize", "SubramanianTest",
               
               samplesToAnalisys <- model@element_scores
               names(samplesToAnalisys) <- model@element_names
-              
+
               fgseaRes <-
                 fgsea::fgsea(
                   pathways = listmodelDfFromFile,
@@ -100,7 +101,7 @@ setMethod("initialize", "SubramanianTest",
 #' @return run_test method for SubramanianTest object. Used as private function.
 #' @examples
 #' \dontrun{
-#' #It is a private method. Look at run_test of RankedBasedTest's examples.
+#' #It is a private method. Look at run_test of GSEA's examples.
 #' }
 setMethod("run_test",
           signature(model = "SubramanianTest"),

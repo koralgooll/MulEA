@@ -50,9 +50,9 @@ read_gmt <- function(file) {
 #TODO : Is that hepler needed?
 readGmtFileAsPlaneDF <- function(gmtFilePath) {
   maxColLength <-
-    max(count.fields(gmtFilePath, sep = '\t', quote = "\""))
+    max(utils::count.fields(gmtFilePath, sep = '\t', quote = "\""))
   model <-
-    read.table(
+    utils::read.table(
       file = gmtFilePath,
       header = FALSE,
       fill = TRUE,
@@ -76,8 +76,11 @@ readGmtFileAsPlaneDF <- function(gmtFilePath) {
 #'
 #' @return Returns the model as a .gmt file at a specific location.
 #' @examples
-#' modelDfFromFile <- MulEA::read_gmt(file = system.file(package="MulEA", "extdata", "model.gmt"))
-#' MulEA::write_gmt(gmt = modelDfFromFile, file = paste(system.file(package="MulEA", "extdata"), "fromDb.gmt", sep = "/"))
+#' modelDfFromFile <- read_gmt(
+#'   file = system.file(package="MulEA", "extdata", "model.gmt"))
+#' write_gmt(gmt = modelDfFromFile,
+#'           file = paste(system.file(package="MulEA", "extdata"),
+#'           "fromDb.gmt", sep = "/"))
 write_gmt <- function(gmt, file) {
   vectorOfModel <-
     plyr::daply(
@@ -103,8 +106,8 @@ write_gmt <- function(gmt, file) {
 #' \code{filter_ontology} Filters ontology to only contain terms between given min. and max. sizes.
 #'
 #' @param gmt input dataframe, read from gmt file.
-#' @param min minimum size of term. Default 20 percent from quantile on term size distribution.
-#' @param max maximum size of term. Default 80 percent from quantile on term size distribution.
+#' @param min_nr_of_elements minimum size of term. Default 20 percent from quantile on term size distribution.
+#' @param max_nr_of_elements maximum size of term. Default 80 percent from quantile on term size distribution.
 #'
 #'
 #' @title Input/Output Functions
@@ -124,7 +127,7 @@ filter_ontology <- function(gmt,
         }
       )
     term_size_dist_q <-
-      quantile(
+      stats::quantile(
         terms_sizes,
         probs = seq(0, 1, 0.1),
         type = 2,
@@ -143,7 +146,7 @@ filter_ontology <- function(gmt,
         }
       )
     term_size_dist_q <-
-      quantile(
+      stats::quantile(
         terms_sizes,
         probs = seq(0, 1, 0.1),
         type = 2,
@@ -323,6 +326,8 @@ generateInputSamples <-
 #' @param cut_off threshold for value selected by comparison_col_name
 #' @return Return data frame with FDR. TPRs per test.
 #' @noRd
+#' @importFrom magrittr %>%
+#' @importFrom data.table :=
 getMultipleTestsSummary <- function(tests_res,
                                     comparison_col_name,
                                     labels = list(),
@@ -356,12 +361,10 @@ getMultipleTestsSummary <- function(tests_res,
     total_population <- tests_res[[i]]$test_data$ontologyId
     total_population_size <- length(total_population)
     # Positive (P)
-    P <-
-      tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label == 'over', ]$ontologyId
+    P <- tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label == 'over', ]$ontologyId
     P_size <- length(P)
     # Negative (N)
-    N <-
-      tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label != 'over', ]$ontologyId
+    N <- tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label != 'over', ]$ontologyId
     N_size <- length(N)
     if (P_size + N_size != total_population_size) {
       warning("Not OK size of Actual in contingency table")
@@ -369,12 +372,10 @@ getMultipleTestsSummary <- function(tests_res,
     
     # Predicted condition
     # Predicted Positive (PP)
-    PP <-
-      tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] <= cut_off,]$ontologyId
+    PP <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] <= cut_off,]$ontologyId
     PP_size <- length(PP)
     # Predicted Negative (PN)
-    PN <-
-      tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] > cut_off,]$ontologyId
+    PN <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] > cut_off,]$ontologyId
     PN_size <- length(PN)
     if (PP_size + PN_size != total_population_size) {
       warning("Not OK size of Predicted in contingency table")
@@ -425,18 +426,18 @@ getMultipleTestsSummary <- function(tests_res,
     sumary_res[i,] <- sumary_res_tmp
   }
   
-  sumary_res <- tibble(sumary_res) %>%
-    mutate(FPR = FP_size / (FP_size + TN_size)) %>%
-    mutate(TPR = TP_size / (TP_size + FN_size)) %>%
-    mutate(FDR = FP_size / (TP_size + FP_size)) %>%
-    mutate(NPV = TN_size / (FN_size + TN_size))
+  sumary_res <- tibble::tibble(sumary_res) %>%
+    dplyr::mutate(FPR = FP_size / (FP_size + TN_size)) %>%
+    dplyr::mutate(TPR = TP_size / (TP_size + FN_size)) %>%
+    dplyr::mutate(FDR = FP_size / (TP_size + FP_size)) %>%
+    dplyr::mutate(NPV = TN_size / (FN_size + TN_size))
   
   for (label_id in seq_along(labels)) {
     # IMPORTANT : Labels are as characters in datatable
     label_name <- as.character(names(labels)[[label_id]])
     label_value <- as.character(labels[[label_id]])
     sumary_res <-
-      sumary_res %>% mutate(!!label_name := label_value)
+      sumary_res %>% dplyr::mutate(!!label_name := label_value)
   }
   
   tictoc::toc()
@@ -453,6 +454,9 @@ getMultipleTestsSummary <- function(tests_res,
 #' @param tests_res list of multiple tests results.
 #' @return Return data frame which is the base to count ROC.
 #' @noRd
+#' @importFrom magrittr %>%
+#' @importFrom plyr .
+#' @importFrom rlang .data
 getSummaryToRoc <- function(tests_res,
                             cut_off_resolution = 0.01,
                             methods_names = c('pValue', 'adjustedPValue', 'adjustedPValueEmpirical')) {
@@ -479,7 +483,7 @@ getSummaryToRoc <- function(tests_res,
       )
   }
   
-  roc_stats <- tibble(
+  roc_stats <- tibble::tibble(
     TP_val = numeric(),
     TN_val = numeric(),
     FP_val = numeric(),
@@ -494,32 +498,30 @@ getSummaryToRoc <- function(tests_res,
   for (method_name in methods_names) {
     for (cut_off in seq(0, 1, cut_off_resolution)) {
       sim_mult_tests_res_to_roc_summary <- data_to_roc %>%
-        mutate(., PP = !!as.name(method_name) <= cut_off) %>%
-        mutate(
-          .,
-          TP = (PP == TRUE & sample_label == 'over'),
-          TN = (PP == FALSE & sample_label != 'over'),
-          FP = (PP == TRUE & sample_label != 'over'),
-          FN = (PP == FALSE & sample_label == 'over')
+        dplyr::mutate(PP = !!as.name(method_name) <= cut_off) %>%
+        dplyr::mutate(TP = (.data$PP == TRUE & .data$sample_label == 'over'),
+                      TN = (.data$PP == FALSE & .data$sample_label != 'over'),
+                      FP = (.data$PP == TRUE & .data$sample_label != 'over'),
+                      FN = (.data$PP == FALSE & .data$sample_label == 'over')
         )
+
+       sim_sum <-
+         sim_mult_tests_res_to_roc_summary %>% dplyr::summarise(
+           TP_val = sum(.data$TP),
+           TN_val = sum(.data$TN),
+           FP_val = sum(.data$FP),
+           FN_val = sum(.data$FN)
+         )
       
-      sim_sum <-
-        sim_mult_tests_res_to_roc_summary %>% summarise(
-          TP_val = sum(TP),
-          TN_val = sum(TN),
-          FP_val = sum(FP),
-          FN_val = sum(FN)
-        )
-      
-      sim_sum_roc <- sim_sum %>% mutate(
-        TPR = TP_val / (TP_val + FN_val),
-        FPR = FP_val / (FP_val + TN_val),
-        sum_test = TP_val + TN_val + FP_val + FN_val,
+      sim_sum_roc <- sim_sum %>% dplyr::mutate(
+        TPR = .data$TP_val / (.data$TP_val + .data$FN_val),
+        FPR = .data$FP_val / (.data$FP_val + .data$TN_val),
+        sum_test = .data$TP_val + .data$TN_val + .data$FP_val + .data$FN_val,
         cut_off = cut_off,
         method = method_name
       )
       
-      roc_stats <- roc_stats %>% add_row(sim_sum_roc)
+      roc_stats <- roc_stats %>% tibble::add_row(sim_sum_roc)
     }
   }
   
@@ -543,21 +545,21 @@ getMultipleTestsSummaryAcrossCutOff <- function(tests_res,
   tests_res_sum <- NULL
   for (cut_off in cut_off_range) {
     print(cut_off)
-    tests_res_sum_p <- MulEA:::getMultipleTestsSummary(
+    tests_res_sum_p <- getMultipleTestsSummary(
       tests_res = tests_res,
       comparison_col_name = 'pValue',
       labels = list('method' = 'p', 'cut_off' = cut_off),
       cut_off = cut_off
     )
     
-    tests_res_sum_bh <- MulEA:::getMultipleTestsSummary(
+    tests_res_sum_bh <- getMultipleTestsSummary(
       tests_res = tests_res,
       comparison_col_name = 'adjustedPValue',
       labels = list('method' = 'bh', 'cut_off' = cut_off),
       cut_off = cut_off
     )
     
-    tests_res_sum_pt <- MulEA:::getMultipleTestsSummary(
+    tests_res_sum_pt <- getMultipleTestsSummary(
       tests_res = tests_res,
       comparison_col_name = 'adjustedPValueEmpirical',
       labels = list('method' = 'pt', 'cut_off' = cut_off),
@@ -603,13 +605,13 @@ simulateMultipleTests <- function(input_gmt_filtered,
     print(i)
     
     input_gmt_decorated <-
-      MulEA:::decorateGmtByUnderOvenAndNoise(
+      decorateGmtByUnderOvenAndNoise(
         input_gmt = input_gmt_filtered,
         number_of_over_representation_groups = number_of_over_representation_groups,
         number_of_under_representation_groups = number_of_under_representation_groups
       )
     
-    samples <- MulEA:::generateInputSamples(
+    samples <- generateInputSamples(
       input_gmt_decorated,
       noise_ratio = noise_ratio,
       over_repr_ratio = over_repr_ratio,
@@ -674,7 +676,7 @@ simulateMultipleTestsWithRatioParam <- function(input_gmt_filtered,
     print(noise_ratio)
     sim_mult_tests <- c(
       sim_mult_tests,
-      MulEA:::simulateMultipleTests(
+      simulateMultipleTests(
         input_gmt_filtered = input_gmt_filtered,
         number_of_tests = number_of_tests,
         noise_ratio = noise_ratio,

@@ -40,10 +40,11 @@ setMethod("initialize", "MuleaHypergeometricTest",
                   only_hyper_geometric_test = TRUE
                 )
               
-              muleaSetBaseEnrichmentTestResult <<-
-                run_test(muleaSetBaseEnrichmentTest)
-              modelGlobal <<- model
-              
+              muleaSetBaseEnrichmentTestResult <- run_test(muleaSetBaseEnrichmentTest)
+              modelGlobal <- model
+
+              #muleaSetBaseEnrichmentTestResult <<- run_test(muleaSetBaseEnrichmentTest)
+              #modelGlobal <<- model
               
               testResults <- data.frame(
                 'ontologyName' = muleaSetBaseEnrichmentTestResult$DB_names,

@@ -43,9 +43,9 @@ PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
 
 \examples{
 \dontrun{
-#It is a private s4 object. Look at RankedBasedTest's examples.
+#It is a private s4 object. Look at GSAE's examples.
 }
 \dontrun{
-#It is a private method. Look at run_test of RankedBasedTest's examples.
+#It is a private method. Look at run_test of GSEA's examples.
 }
 }
