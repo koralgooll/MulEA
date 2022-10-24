@@ -1,16 +1,16 @@
 #' An S4 class to represent a set based tests in Mulea.
 #'
 #' @slot method A method from set based methods to count results. Possible
-#' values: "Hypergeometric", "SetBaseEnrichment".
+#' values: "Hypergeometric", "SetBasedEnrichment".
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
-#' @slot element_names A data from expeciment to analize accross model.
+#' @slot element_names A data from experiment to analize accross model.
 #' @slot background_element_names A background data to count test.
 #' @slot p_value_adjustment_method A type of algorithm used to adjust values.
 #' Possible values: "PT" and all from p.adjust {stats} documentation.
-#' @slot number_of_permutations A number of permutations used in set base
-#' enrichment test. Default vlue is 10000.
-#' @slot number_of_cpu_threads Number of processor's threads used in calculations.
-#' @return ora object. This object represents set based tests in Mulea.
+#' @slot number_of_permutations A number of permutations used in set based
+#' enrichment test. Default value is 10000.
+#' @slot number_of_cpu_threads Number of processor threads used in calculations.
+#' @return ora object. This object represents set based tests.
 #' @export ora
 #' @examples
 #' modelDfFromFile <- read_gmt(

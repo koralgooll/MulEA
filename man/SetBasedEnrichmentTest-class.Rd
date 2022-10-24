@@ -22,9 +22,9 @@ PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{run_test}: runs test calculations.
-}}
+\item \code{run_test(SetBasedEnrichmentTest)}: runs test calculations.
 
+}}
 \section{Slots}{
 
 \describe{

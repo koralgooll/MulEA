@@ -5,7 +5,7 @@
 \alias{gsea-class}
 \alias{gsea}
 \alias{run_test,gsea-method}
-\title{An S4 class to represent a ranked based tests in Mulea.}
+\title{Gene Set Enrichment Analysis (GSEA)}
 \usage{
 \S4method{run_test}{gsea}(model)
 }
@@ -13,8 +13,7 @@
 \item{model}{Object of s4 class represents Mulea Test.}
 }
 \value{
-GSEA object. This object represents ranked based tests in
-Mulea.
+GSEA object. This object represents ranked based tests.
 
 run_test method for GSEA object. Returns results of
 counting using methods from ranking based area.
@@ -24,25 +23,29 @@ An S4 class to represent a ranked based tests in Mulea.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{run_test}: runs test calculations.
-}}
+\item \code{run_test(gsea)}: runs test calculations.
 
+}}
 \section{Slots}{
 
 \describe{
-\item{\code{gmt}}{A data.frame representing GMT's reprezentation of model.}
+\item{\code{gmt}}{A data frame which contains the data, imported from a GMT file.}
 
-\item{\code{element_names}}{A data from expeciment to analize accross model.}
+\item{\code{element_names}}{A vector of elements names to include in the analysis,
+ordered by their scores.}
 
-\item{\code{element_scores}}{A vectore of element_scores per element_names.}
+\item{\code{element_scores}}{A vector of element_scores per element_names.}
 
-\item{\code{p}}{A power of weight. Default value is 1.}
+\item{\code{gsea_power}}{A power of weight. Default value is 1.}
 
-\item{\code{element_score_type}}{Defines the GSEA score type. Only positive element_scores - "pos",
-only negative element_scores - "neg" and mixed (standard) - "std".}
+\item{\code{element_score_type}}{Defines the GSEA score type. Only positive
+element_scores - "pos", only negative element_scores - "neg" and mixed
+(standard) - "std".}
 
-\item{\code{number_of_permutations}}{A number of permutations used in KS test. Default
-vlue is 1000.}
+\item{\code{number_of_permutations}}{The number of permutations used in KS test.
+Default value is 1000.}
+
+\item{\code{test}}{character}
 }}
 
 \examples{
@@ -55,7 +58,7 @@ dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742",
 dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
                               0.45, 0.50)
 GSEASubramanian <- gsea(gmt = modelDfFromFile,
-                                              element_names = dataFromExperiment,
-                                              element_scores = dataFromExperimentScores)
+                        element_names = dataFromExperiment,
+                        element_scores = dataFromExperimentScores)
 GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
 }
