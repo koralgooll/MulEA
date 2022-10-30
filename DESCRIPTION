@@ -20,7 +20,7 @@ Description: MulEA (Multi Enrichment Analysis) is a package/tool for functional
     this gap providing support for 25 species and any kind of data defining the
     knolwedge base. In addition, MulEA provides a unique permutation based,
     empirical false discovery rate correction of the p-values.
-License: GPL-3 + file LICENSE
+License: MIT + file LICENSE
 LazyData: TRUE
 Depends:
     R (>= 3.5.0)
