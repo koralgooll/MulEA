@@ -84,7 +84,6 @@ write_gmt <- function(gmt, file) {
 }
 
 # PUBLIC API
-# TODO : Add quantile parameters as separate! Nothing do is default.
 #' @description
 #' \code{filter_ontology} Filters ontology to only contain terms between given min. and max. sizes.
 #'
@@ -263,7 +262,6 @@ generateInputSamples <-
            under_repr_ratio = 0.05,
            rand_from_unique = TRUE,
            number_of_samples = 1) {
-    # TODO : Add under representation generation base on under_repr_ratio.
     all_genes_in_ontology <- NULL
     all_genes_in_enrichment <- NULL
     if (rand_from_unique) {

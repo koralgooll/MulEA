@@ -137,8 +137,6 @@ setMethod("run_test",
           })
 
 
-
-# TODO : Open seed set up possibility.
 set.based.enrichment.test.wrapper = function(steps,
                                              pool,
                                              select,

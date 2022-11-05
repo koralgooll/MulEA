@@ -171,7 +171,7 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
   
   # test consitency
   stopifnot(steps*length(DB)==sum(simulation_result_tbl$multiplicity))  # ez nem fontos, de igy kell legyen
-  if(! all(is.finite(simulation_result_tbl$p)) ) {stop("ERROR_002")} # TODO handle somehow the exception 
+  if(! all(is.finite(simulation_result_tbl$p)) ) {stop("ERROR_002")}
   
   
   # from the manual of phyper(q, m, n, k)
