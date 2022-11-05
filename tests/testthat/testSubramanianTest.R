@@ -31,27 +31,6 @@ test_that("GSEA : no element_scores vector.", {
                            MulEA::run_test(mulea_ranked_based_test_model))
 })
 
-test_that("GSEA : GSEA error propagation.", {
-  gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c"))),
-    stringsAsFactors = FALSE
-  )
-  testDataMock <- c("a", "b", "c")
-  scoreDataMock <- c(0.1, 0.5, 1)
-  
-  mulea_ranked_based_test_model <- MulEA::gsea(
-    gmt = gmtMock,
-    element_names = testDataMock,
-    element_scores = scoreDataMock,
-    element_score_type = "pos"
-  )
-  
-  testthat::expect_error(muleaTestRes <-
-                           MulEA::run_test(mulea_ranked_based_test_model))
-})
-
 test_that("GSEA : out of ontology elements.", {
   set.seed(1)
   gmtMock <- data.frame(

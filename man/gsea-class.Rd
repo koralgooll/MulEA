@@ -24,9 +24,9 @@ An S4 class to represent a ranked based tests in Mulea.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{run_test}: runs test calculations.
-}}
+\item \code{run_test(gsea)}: runs test calculations.
 
+}}
 \section{Slots}{
 
 \describe{

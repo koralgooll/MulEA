@@ -23,9 +23,9 @@ An S4 class to represent a set based tests in Mulea.
 }
 \section{Methods (by generic)}{
 \itemize{
-\item \code{run_test}: runs test calculations.
-}}
+\item \code{run_test(ora)}: runs test calculations.
 
+}}
 \section{Slots}{
 
 \describe{
