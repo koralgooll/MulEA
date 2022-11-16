@@ -110,7 +110,7 @@ plot_graph <- function(reshaped_results,
                       ontology_id_colname = 'ontologyId',
                       ontology_element_colname = 'genIdInOntology',
                       p_value_max_threshold = 0.05) {
-  ontologyId <- NULL
+  ontologyId <- ontology_id_colname
   edges <- NULL
   validate_column_names_and_function_args(
     data = reshaped_results,
@@ -140,14 +140,17 @@ plot_graph <- function(reshaped_results,
   }
   
   ontologies_graph_edges_counter <- 1
+  
   for (i in 1:(nrow(ontologies) - 1)) {
-    ontology_name_i <- ontologies[i, ontologyId]
-    genes_in_ontology_i <-
-      model_with_res_dt_relaxed[ontologyId == ontology_name_i, ][[ontology_element_colname]]
+    ontology_name_i <- ontologies[[i, ontologyId]]
+    filter_model_row_select <- model_with_res_dt_relaxed[[ontologyId]] == ontology_name_i
+    genes_in_ontology_i <- model_with_res_dt_relaxed[filter_model_row_select][[ontology_element_colname]]
     
     for (j in (i + 1):nrow(ontologies)) {
-      ontology_name_j <- ontologies[j, ontologyId]
-      genes_in_ontology_j <- model_with_res_dt_relaxed[ontologyId == ontology_name_j, ][[ontology_element_colname]]
+      ontology_name_j <- ontologies[[j, ontologyId]]
+      
+      filter_model_row_select_j <- model_with_res_dt_relaxed[[ontologyId]] == ontology_name_j
+      genes_in_ontology_j <- model_with_res_dt_relaxed[filter_model_row_select_j][[ontology_element_colname]]
       genes_in_ontology_i_j_intersection_num <-
         length(intersect(genes_in_ontology_i, genes_in_ontology_j))
       if (shared_elements_min_threshold < genes_in_ontology_i_j_intersection_num) {
@@ -162,7 +165,7 @@ plot_graph <- function(reshaped_results,
   ontologies_graph_edges <-
     ontologies_graph_edges[0:(ontologies_graph_edges_counter - 1), ]
   
-  nodes_ids <- model_with_res_dt_relaxed[, ontologyId]
+  nodes_ids <- model_with_res_dt_relaxed[[ontologyId]]
   nodes_p_stat <-
     model_with_res_dt_relaxed[[p_value_type_colname]]
   ontologies_graph_nodes <- data.table::data.table(id = nodes_ids,
