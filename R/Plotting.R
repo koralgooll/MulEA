@@ -199,7 +199,8 @@ plot_graph <- function(reshaped_results,
       name = p_value_type_colname
     ) +
     ggraph::geom_node_text(aes(label = .data$label), repel = TRUE) +
-    ggraph::theme_graph(base_family = "mono")
+    ggraph::theme_graph()
+    #base_family = "mono"
   graph_plot
 }
 
