@@ -105,11 +105,11 @@ reshape_results <-
 #' @importFrom rlang .data
 #' @export
 plot_graph <- function(reshaped_results,
-                      shared_elements_min_threshold = 0,
-                      p_value_type_colname = 'adjustedPValue',
-                      ontology_id_colname = 'ontologyId',
-                      ontology_element_colname = 'genIdInOntology',
-                      p_value_max_threshold = 0.05) {
+                       ontology_id_colname = 'ontologyId',
+                       ontology_element_colname = 'genIdInOntology',
+                       shared_elements_min_threshold = 0,
+                       p_value_type_colname = 'adjustedPValue',
+                       p_value_max_threshold = 0.05) {
   ontologyId <- ontology_id_colname
   edges <- NULL
   validate_column_names_and_function_args(
@@ -188,16 +188,19 @@ plot_graph <- function(reshaped_results,
       graph_plot + ggraph::geom_edge_arc(aes(width = .data$weight), alpha = 0.5)
   }
   
-  graph_plot <- graph_plot + ggraph::scale_edge_width(range = c(0, 3)) +
+  graph_plot <- graph_plot + 
+    ggraph::scale_edge_width(range = c(0, 3), name="Nr. of shared elements") +
     ggraph::geom_node_point(aes(color = .data$p_stat)) +
-    ggraph::geom_node_point(aes(color = .data$p_stat, size = (1 - .data$p_stat)), show.legend = FALSE) +
+    ggraph::geom_node_point(aes(color = .data$p_stat, 
+                                size = (1 - .data$p_stat)), 
+                            show.legend = FALSE) +
     scale_size_area(max_size = 10) +
     scale_color_gradient2(
       mid = 'darkgreen',
       high = 'red',
       limits = c(0.0, 1.0),
       name = p_value_type_colname
-    ) +
+    ) + 
     ggraph::geom_node_text(aes(label = .data$label), repel = TRUE) +
     ggraph::theme_graph()
     #base_family = "mono"
@@ -222,8 +225,8 @@ plot_graph <- function(reshaped_results,
 #' @return Return plot.
 plot_barplot <-
   function(reshaped_results,
-           selected_rows_to_plot = NULL,
            ontology_id_colname = 'ontologyId',
+           selected_rows_to_plot = NULL,
            p_value_type_colname = 'adjustedPValue',
            p_value_max_threshold = 0.05) {
     validate_column_names_and_function_args(data = reshaped_results,
@@ -279,9 +282,9 @@ plot_barplot <-
 #'
 #' @return Return plot.
 plot_heatmap <- function(reshaped_results,
-                        p_value_type_colname = 'adjustedPValue',
-                        ontology_element_colname = 'genIdInOntology',
-                        p_value_max_threshold = 0.05) {
+                         ontology_element_colname = 'genIdInOntology',
+                         p_value_type_colname = 'adjustedPValue',
+                         p_value_max_threshold = 0.05) {
   validate_column_names_and_function_args(data = reshaped_results,
                                                   p_value_type_colname,
                                                   ontology_element_colname)

@@ -23,25 +23,25 @@ reshape_results(
 
 plot_graph(
   reshaped_results,
-  shared_elements_min_threshold = 0,
-  p_value_type_colname = "adjustedPValue",
   ontology_id_colname = "ontologyId",
   ontology_element_colname = "genIdInOntology",
+  shared_elements_min_threshold = 0,
+  p_value_type_colname = "adjustedPValue",
   p_value_max_threshold = 0.05
 )
 
 plot_barplot(
   reshaped_results,
-  selected_rows_to_plot = NULL,
   ontology_id_colname = "ontologyId",
+  selected_rows_to_plot = NULL,
   p_value_type_colname = "adjustedPValue",
   p_value_max_threshold = 0.05
 )
 
 plot_heatmap(
   reshaped_results,
-  p_value_type_colname = "adjustedPValue",
   ontology_element_colname = "genIdInOntology",
+  p_value_type_colname = "adjustedPValue",
   p_value_max_threshold = 0.05
 )
 
@@ -68,9 +68,9 @@ list_to_gmt(gmt_list)
 
 \item{reshaped_results}{data.table in relaxed form.}
 
-\item{shared_elements_min_threshold}{numeric}
-
 \item{ontology_element_colname}{numeric}
+
+\item{shared_elements_min_threshold}{numeric}
 
 \item{selected_rows_to_plot}{vector for selecting variables to plot.}
 

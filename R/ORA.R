@@ -65,7 +65,7 @@ setMethod("initialize", "ora",
                    gmt = data.frame(),
                    element_names = character(),
                    background_element_names = character(),
-                   p_value_adjustment_method = character(),
+                   p_value_adjustment_method = "PT",
                    number_of_permutations = 10000,
                    test = NULL,
                    number_of_cpu_threads = 4,
@@ -74,7 +74,7 @@ setMethod("initialize", "ora",
             .Object@gmt <- gmt
             .Object@element_names <- element_names
             .Object@background_element_names <- background_element_names
-            .Object@p_value_adjustment_method <- 'PT'
+            .Object@p_value_adjustment_method <- p_value_adjustment_method
             .Object@number_of_permutations <- number_of_permutations
             .Object@number_of_cpu_threads <- number_of_cpu_threads
             
@@ -128,22 +128,42 @@ setMethod("initialize", "ora",
                 setBasedTestRes <-
                   muleaSetBaseEnrichmentTest[, !names(muleaSetBaseEnrichmentTest) %in%
                                                c('Genes_in_DB', 'P_adj_Bonf',
-                                                 'R_obs', 'R_exp')]
+                                                 'R_obs', 'R_exp', 'adjustedPValue')]
               } else {
                 muleaHypergeometricTest <-
                   MuleaHypergeometricTest(
                     gmt = setBasemodel@gmt,
                     element_names = setBasemodel@element_names,
-                    pool = setBasemodel@pool
+                    pool = setBasemodel@background_element_names,
+                    number_of_cpu_threads = setBasemodel@number_of_cpu_threads
                   )
                 setBasedTestRes <- run_test(muleaHypergeometricTest)
+                
+                muleaSetBaseEnrichmentTest <- merge(
+                  setBasemodel@gmt[c('ontologyId', 'ontologyName')],
+                  setBasedTestRes,
+                  by.x = "ontologyId",
+                  by.y = "ontologyName",
+                  all = TRUE
+                )
+                
+                names(muleaSetBaseEnrichmentTest) <-
+                  c(
+                    'ontologyId',
+                    'ontologyName',
+                    'listOfValues',
+                    'pValue'
+                  )
                 if (!identical(setBasemodel@p_value_adjustment_method, character(0)) &&
                     setBasemodel@p_value_adjustment_method != "PT") {
-                  setBasedTestRes <-
+                  muleaSetBaseEnrichmentTest <-
                     data.frame(
-                      setBasedTestRes,
-                      "q.value" = stats::p.adjust(setBasedTestRes$p.value, method = adjustMethod)
+                      muleaSetBaseEnrichmentTest,
+                      "adjustedPValue" = stats::p.adjust(muleaSetBaseEnrichmentTest$pValue, method = setBasemodel@p_value_adjustment_method)
                     )
+                  setBasedTestRes <-
+                    muleaSetBaseEnrichmentTest[, !names(muleaSetBaseEnrichmentTest) %in%
+                                                 c('listOfValues')]
                 }
               }
               
