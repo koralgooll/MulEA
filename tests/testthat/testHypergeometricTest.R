@@ -18,6 +18,27 @@ test_that("ora : object creation test.", {
   testthat::expect_equal(mulea_ora_model@gmt, gmtMock)
   testthat::expect_equal(mulea_ora_model@element_names, c("a", "b", "c"))
   testthat::expect_equal(mulea_ora_model@background_element_names, c("a", "c", "d"))
+  testthat::expect_equal(mulea_ora_model@p_value_adjustment_method, "PT")
+})
+
+test_that("ora : object creation test : adjustment type.", {
+  gmtMock <- data.frame(
+    ontologyId = "GO:0000001",
+    ontologyName = "Imagin gen ontology to tests.",
+    listOfValues = I(list(c("a", "b", "c"))),
+    stringsAsFactors = FALSE
+  )
+  testDataMock <- c("a", "b", "c")
+  poolMock <- c("a", "c", "d")
+  
+  mulea_ora_model <- MulEA::ora(
+    gmt = gmtMock,
+    element_names = testDataMock,
+    background_element_names = poolMock,
+    p_value_adjustment_method = "BH", 
+    number_of_cpu_threads = 2)
+  
+  testthat::expect_equal(mulea_ora_model@p_value_adjustment_method, "BH")
 })
 
 test_that("ora : element_names out of DB model.", {
