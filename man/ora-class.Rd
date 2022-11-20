@@ -39,7 +39,7 @@ values: "Hypergeometric", "SetBaseEnrichment".}
 \item{\code{background_element_names}}{A background data to count test.}
 
 \item{\code{p_value_adjustment_method}}{A type of algorithm used to adjust values.
-Possible values: "PT" and all from p.adjust {stats} documentation.}
+Possible values: "eFDR" and all from p.adjust {stats} documentation.}
 
 \item{\code{number_of_permutations}}{A number of permutations used in set base
 enrichment test. Default vlue is 10000.}
@@ -79,7 +79,7 @@ setBasedTestWithPoolAndAdjust <- ora(
 setBaseTestWithPermutationTestAdjustment <- ora(
   gmt = modelDfFromFile,
   element_names = dataFromExperiment,
-  p_value_adjustment_method = "PT",
+  p_value_adjustment_method = "eFDR",
   number_of_cpu_threads = 2
  )
 modelDfFromFile <- read_gmt(
@@ -116,7 +116,7 @@ setBasedTestWithPoolAndAdjust <- ora(
 setBaseTestWithPermutationTestAdjustment <- ora(
   gmt = modelDfFromFile,
   element_names = dataFromExperiment,
-  p_value_adjustment_method = "PT",
+  p_value_adjustment_method = "eFDR",
   number_of_cpu_threads = 2
 )
 setBasedTestRes <- run_test(setBasedTest)

@@ -136,11 +136,11 @@ knitr::kable(setBasedTestWithPoolRes, caption = "Set Based Test Result Data Fram
 
 ### Permutation based correction for multiple testing  
 
-[Multiple Comparisons Problem](https://en.wikipedia.org/wiki/Multiple_comparisons_problem): once can adjust the p-values of the tested ontologies by adding the `adjustMethod` argument to `SetBasedTest` class. The value of this argument can be newly presented by MulEA method to adjust p-values besed on permutation test. To run this method, please use `"PT"` - permutation test as the argument for `adjustMethod`.
+[Multiple Comparisons Problem](https://en.wikipedia.org/wiki/Multiple_comparisons_problem): once can adjust the p-values of the tested ontologies by adding the `adjustMethod` argument to `SetBasedTest` class. The value of this argument can be newly presented by MulEA method to adjust p-values besed on permutation test. To run this method, please use `"eFDR"` - permutation test as the argument for `adjustMethod`.
 Other available arguments for `adjustMethod` are: `"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`. References to these methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, p_value_adjustment_method = "PT", number_of_cpu_threads = 2)
+setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, p_value_adjustment_method = "eFDR", number_of_cpu_threads = 2)
 setBasedTestWithPoolAndAdjustRes <- MulEA::run_test(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 

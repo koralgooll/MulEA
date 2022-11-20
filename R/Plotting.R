@@ -40,8 +40,8 @@ reshape_results <-
   function(model = NULL,
            model_results = NULL,
            model_ontology_col_name = 'ontologyId',
-           ontology_id_colname = 'ontologyId',
-           p_value_type_colname = 'adjustedPValue',
+           ontology_id_colname = 'ontology_id',
+           p_value_type_colname = 'eFDR',
            p_value_max_threshold = TRUE) {
     genIdInOntology <- NULL
     model_with_res <-
@@ -83,7 +83,7 @@ reshape_results <-
         model_with_res_dt_relaxed[genIdInOntology %in% model@element_names]
     }
     names(model_with_res_dt_relaxed) <-
-      c("ontologyId", "genIdInOntology", p_value_type_colname)
+      c('ontology_id', 'element_id_in_ontology', p_value_type_colname)
     model_with_res_dt_relaxed
   }
 
@@ -105,10 +105,10 @@ reshape_results <-
 #' @importFrom rlang .data
 #' @export
 plot_graph <- function(reshaped_results,
-                       ontology_id_colname = 'ontologyId',
-                       ontology_element_colname = 'genIdInOntology',
+                       ontology_id_colname = 'ontology_id',
+                       ontology_element_colname = 'element_id_in_ontology',
                        shared_elements_min_threshold = 0,
-                       p_value_type_colname = 'adjustedPValue',
+                       p_value_type_colname = 'eFDR',
                        p_value_max_threshold = 0.05) {
   ontologyId <- ontology_id_colname
   edges <- NULL
@@ -203,7 +203,6 @@ plot_graph <- function(reshaped_results,
     ) + 
     ggraph::geom_node_text(aes(label = .data$label), repel = TRUE) +
     ggraph::theme_graph()
-    #base_family = "mono"
   graph_plot
 }
 
@@ -225,9 +224,9 @@ plot_graph <- function(reshaped_results,
 #' @return Return plot.
 plot_barplot <-
   function(reshaped_results,
-           ontology_id_colname = 'ontologyId',
+           ontology_id_colname = 'ontology_id',
            selected_rows_to_plot = NULL,
-           p_value_type_colname = 'adjustedPValue',
+           p_value_type_colname = 'eFDR',
            p_value_max_threshold = 0.05) {
     validate_column_names_and_function_args(data = reshaped_results,
                                                     p_value_type_colname, ontology_id_colname)
@@ -282,12 +281,14 @@ plot_barplot <-
 #'
 #' @return Return plot.
 plot_heatmap <- function(reshaped_results,
-                         ontology_element_colname = 'genIdInOntology',
-                         p_value_type_colname = 'adjustedPValue',
+                         ontology_id_colname = 'ontology_id',
+                         ontology_element_colname = 'element_id_in_ontology',
+                         p_value_type_colname = 'eFDR',
                          p_value_max_threshold = 0.05) {
   validate_column_names_and_function_args(data = reshaped_results,
-                                                  p_value_type_colname,
-                                                  ontology_element_colname)
+                                          p_value_type_colname,
+                                          ontology_element_colname, 
+                                          ontology_id_colname)
   model_with_res_dt_relaxed <-
     filterRelaxedResultsForPlotting(
       reshaped_results = reshaped_results,
@@ -312,7 +313,7 @@ plot_heatmap <- function(reshaped_results,
     model_with_res_dt_relaxed_sort_pval,
     aes(
       !!rlang::sym(ontology_element_colname),
-      .data$ontologyId,
+      !!rlang::sym(ontology_id_colname),
       fill = !!rlang::sym(p_value_type_colname)
     )
   ) +
