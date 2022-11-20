@@ -60,7 +60,7 @@ ora_model <- ora(
   gmt = geneSet,
   element_names = selectDf$select, 
   background_element_names = poolDf$background_element_names,
-  p_value_adjustment_method = "PT",
+  p_value_adjustment_method = "eFDR",
   number_of_permutations = 1000
 )
 

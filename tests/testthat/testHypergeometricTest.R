@@ -12,13 +12,13 @@ test_that("ora : object creation test.", {
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
-    p_value_adjustment_method = "PT", 
+    p_value_adjustment_method = "eFDR", 
     number_of_cpu_threads = 2)
   
   testthat::expect_equal(mulea_ora_model@gmt, gmtMock)
   testthat::expect_equal(mulea_ora_model@element_names, c("a", "b", "c"))
   testthat::expect_equal(mulea_ora_model@background_element_names, c("a", "c", "d"))
-  testthat::expect_equal(mulea_ora_model@p_value_adjustment_method, "PT")
+  testthat::expect_equal(mulea_ora_model@p_value_adjustment_method, "eFDR")
 })
 
 test_that("ora : object creation test : adjustment type.", {
@@ -52,13 +52,13 @@ test_that("ora : element_names out of DB model.", {
   mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
-    p_value_adjustment_method = "PT",
+    p_value_adjustment_method = "eFDR",
     number_of_cpu_threads = 2
   )
   
   testthat::expect_warning(muleaTestRes <- run_test(mulea_ora_model))
                              
-  testthat::expect_equal(muleaTestRes$pValue, 1)
+  testthat::expect_equal(muleaTestRes$p_value, 1)
 })
 
 test_that("ora : element_names out of pool.", {
@@ -75,11 +75,11 @@ test_that("ora : element_names out of pool.", {
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
-    p_value_adjustment_method = "PT", 
+    p_value_adjustment_method = "eFDR", 
     number_of_cpu_threads = 2)
   
   testthat::expect_warning(muleaTestRes <- run_test(mulea_ora_model))
-  testthat::expect_equal(muleaTestRes$pValue, 1 / 3)
+  testthat::expect_equal(muleaTestRes$p_value, 1 / 3)
 })
 
 test_that("ora : matrix 2,2,2,2.", {
@@ -96,11 +96,11 @@ test_that("ora : matrix 2,2,2,2.", {
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
-    p_value_adjustment_method = "PT", 
+    p_value_adjustment_method = "eFDR", 
     number_of_cpu_threads = 2)
   
   muleaTestRes <- run_test(mulea_ora_model)
-  testthat::expect_equal(muleaTestRes$pValue, 53 / 70)
+  testthat::expect_equal(muleaTestRes$p_value, 53 / 70)
 })
 
 test_that("ora : pool >> var + DBi, matrix 2,2,2,18.", {
@@ -143,11 +143,11 @@ test_that("ora : pool >> var + DBi, matrix 2,2,2,18.", {
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
-    p_value_adjustment_method = "PT", 
+    p_value_adjustment_method = "eFDR", 
     number_of_cpu_threads = 2)
   
   muleaTestRes <- run_test(mulea_ora_model)
-  testthat::expect_equal(muleaTestRes$pValue, 37 / 322)
+  testthat::expect_equal(muleaTestRes$p_value, 37 / 322)
 })
 
 test_that("ora : DBi not include pool, matrix 2,0,2,2.", {
@@ -164,11 +164,11 @@ test_that("ora : DBi not include pool, matrix 2,0,2,2.", {
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
-    p_value_adjustment_method = "PT", 
+    p_value_adjustment_method = "eFDR", 
     number_of_cpu_threads = 2)
   
   muleaTestRes <- run_test(mulea_ora_model)
-  testthat::expect_equal(muleaTestRes$pValue, 0.4)
+  testthat::expect_equal(muleaTestRes$p_value, 0.4)
 })
 
 test_that("ora : DB1 + DB2 => pool, matrix 1,3,2,2 and 2,2,1,3.", {
@@ -190,12 +190,12 @@ test_that("ora : DB1 + DB2 => pool, matrix 1,3,2,2 and 2,2,1,3.", {
   mulea_ora_model <- MulEA::ora(
     gmt = gmtMock,
     element_names = testDataMock,
-    p_value_adjustment_method = "PT",
+    p_value_adjustment_method = "eFDR",
     number_of_cpu_threads = 2
   )
   
   muleaTestRes <- run_test(mulea_ora_model)
-  testthat::expect_equal(muleaTestRes$pValue, c(13 / 14, 0.5))
+  testthat::expect_equal(muleaTestRes$p_value, c(13 / 14, 0.5))
 })
 
 test_that("ora : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
@@ -245,11 +245,11 @@ test_that("ora : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
     gmt = gmtMock,
     element_names = testDataMock,
     background_element_names = poolMock,
-    p_value_adjustment_method = "PT", 
+    p_value_adjustment_method = "eFDR", 
     number_of_cpu_threads = 2)
   
   muleaTestRes <- run_test(mulea_ora_model)
-  testthat::expect_equal(muleaTestRes$pValue, c(37 / 322, 27 / 3542))
+  testthat::expect_equal(muleaTestRes$p_value, c(37 / 322, 27 / 3542))
 })
 
 
@@ -269,7 +269,7 @@ test_that("ora : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
   )
   
   muleaTestRes <- run_test(mulea_ora_model)
-  testthat::expect_equal(muleaTestRes$pValue[c(1,2)], c(1, 19205/26423))
+  testthat::expect_equal(muleaTestRes$p_value[c(1,2)], c(1, 19205/26423))
 })
 
 test_that("ora : private : matrix 2,2,2,2.", {

@@ -6,7 +6,7 @@
 #' @slot element_names A data from expeciment to analize accross model.
 #' @slot background_element_names A background data to count test.
 #' @slot p_value_adjustment_method A type of algorithm used to adjust values.
-#' Possible values: "PT" and all from p.adjust {stats} documentation.
+#' Possible values: "eFDR" and all from p.adjust {stats} documentation.
 #' @slot number_of_permutations A number of permutations used in set base
 #' enrichment test. Default vlue is 10000.
 #' @slot number_of_cpu_threads Number of processor's threads used in calculations.
@@ -44,7 +44,7 @@
 #' setBaseTestWithPermutationTestAdjustment <- ora(
 #'   gmt = modelDfFromFile,
 #'   element_names = dataFromExperiment,
-#'   p_value_adjustment_method = "PT",
+#'   p_value_adjustment_method = "eFDR",
 #'   number_of_cpu_threads = 2
 #'  )
 ora <- setClass(
@@ -65,7 +65,7 @@ setMethod("initialize", "ora",
                    gmt = data.frame(),
                    element_names = character(),
                    background_element_names = character(),
-                   p_value_adjustment_method = "PT",
+                   p_value_adjustment_method = "eFDR",
                    number_of_permutations = 10000,
                    test = NULL,
                    number_of_cpu_threads = 4,
@@ -82,7 +82,7 @@ setMethod("initialize", "ora",
               setBasedTestRes <- NULL
               
               if (!identical(setBasemodel@p_value_adjustment_method, character(0)) &&
-                  setBasemodel@p_value_adjustment_method == "PT") {
+                  setBasemodel@p_value_adjustment_method == "eFDR") {
                 muleaSetBaseEnrichmentTest <-
                   SetBasedEnrichmentTest(
                     gmt = setBasemodel@gmt,
@@ -112,17 +112,17 @@ setMethod("initialize", "ora",
                 
                 names(muleaSetBaseEnrichmentTest) <-
                   c(
-                    'ontologyId',
-                    'ontologyName',
-                    'nrCommonGenesOntologySet',
-                    'nrCommonGenesOntologyBackground',
+                    'ontology_id',
+                    'ontology_name',
+                    'nr_common_with_tested_elements',
+                    'nr_common_with_backgound_elements',
                     'Genes_in_DB',
-                    'pValue',
+                    'p_value',
                     'P_adj_Bonf',
                     'adjustedPValue',
                     'R_obs',
                     'R_exp',
-                    'adjustedPValueEmpirical'
+                    'eFDR'
                   )
                 
                 setBasedTestRes <-
@@ -149,17 +149,17 @@ setMethod("initialize", "ora",
                 
                 names(muleaSetBaseEnrichmentTest) <-
                   c(
-                    'ontologyId',
-                    'ontologyName',
+                    'ontology_id',
+                    'ontology_name',
                     'listOfValues',
-                    'pValue'
+                    'p_value'
                   )
                 if (!identical(setBasemodel@p_value_adjustment_method, character(0)) &&
-                    setBasemodel@p_value_adjustment_method != "PT") {
+                    setBasemodel@p_value_adjustment_method != "eFDR") {
                   muleaSetBaseEnrichmentTest <-
                     data.frame(
                       muleaSetBaseEnrichmentTest,
-                      "adjustedPValue" = stats::p.adjust(muleaSetBaseEnrichmentTest$pValue, method = setBasemodel@p_value_adjustment_method)
+                      "adjusted_p_value" = stats::p.adjust(muleaSetBaseEnrichmentTest$p_value, method = setBasemodel@p_value_adjustment_method)
                     )
                   setBasedTestRes <-
                     muleaSetBaseEnrichmentTest[, !names(muleaSetBaseEnrichmentTest) %in%
@@ -213,7 +213,7 @@ setMethod("initialize", "ora",
 #' setBaseTestWithPermutationTestAdjustment <- ora(
 #'   gmt = modelDfFromFile,
 #'   element_names = dataFromExperiment,
-#'   p_value_adjustment_method = "PT",
+#'   p_value_adjustment_method = "eFDR",
 #'   number_of_cpu_threads = 2
 #' )
 #' setBasedTestRes <- run_test(setBasedTest)

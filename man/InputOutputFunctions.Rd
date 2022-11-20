@@ -16,32 +16,33 @@ reshape_results(
   model = NULL,
   model_results = NULL,
   model_ontology_col_name = "ontologyId",
-  ontology_id_colname = "ontologyId",
-  p_value_type_colname = "adjustedPValue",
+  ontology_id_colname = "ontology_id",
+  p_value_type_colname = "eFDR",
   p_value_max_threshold = TRUE
 )
 
 plot_graph(
   reshaped_results,
-  ontology_id_colname = "ontologyId",
-  ontology_element_colname = "genIdInOntology",
+  ontology_id_colname = "ontology_id",
+  ontology_element_colname = "element_id_in_ontology",
   shared_elements_min_threshold = 0,
-  p_value_type_colname = "adjustedPValue",
+  p_value_type_colname = "eFDR",
   p_value_max_threshold = 0.05
 )
 
 plot_barplot(
   reshaped_results,
-  ontology_id_colname = "ontologyId",
+  ontology_id_colname = "ontology_id",
   selected_rows_to_plot = NULL,
-  p_value_type_colname = "adjustedPValue",
+  p_value_type_colname = "eFDR",
   p_value_max_threshold = 0.05
 )
 
 plot_heatmap(
   reshaped_results,
-  ontology_element_colname = "genIdInOntology",
-  p_value_type_colname = "adjustedPValue",
+  ontology_id_colname = "ontology_id",
+  ontology_element_colname = "element_id_in_ontology",
+  p_value_type_colname = "eFDR",
   p_value_max_threshold = 0.05
 )
 
