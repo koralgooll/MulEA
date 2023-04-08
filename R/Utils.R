@@ -193,7 +193,7 @@ decorateGmtByUnderOvenAndNoise <- function(input_gmt,
       rep('over', number_of_over_representation_groups),
       rep('under', number_of_under_representation_groups)
     )
-  over_under_label <- sample(over_under_label)
+  
   terms_to_manipulation <- data.frame('term_id' = go_change_repr,
                                       'over_under_label' = over_under_label)
   
