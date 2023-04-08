@@ -1,15 +1,13 @@
-# PUBLIC API
-#' @description
-#' \code{read_gmt} read model in data frame form from gmt file.
+#' Read GMT File
+#' 
+#' Read model data from a Gene Matrix Transposed (GMT) file and parse into a
+#' data frame.
 #'
-#' @param file path with name of file, where the file is localized or where to save model. Example: "/R/MulEA/extdata/model.gmt"
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
+#' @param file character; a path which points to a GMT file.
+#' @return Returns data frame with the model from a specific location.
 #' @export
 #'
-#' @return Returns data frame with the model from a specific location.
+
 read_gmt <- function(file) {
   fileConnection <- file(file)
   tryCatchRes <- tryCatch(
@@ -48,16 +46,14 @@ read_gmt <- function(file) {
 }
 
 
-# PUBLIC API
-#' @description
-#' \code{write_gmt} saves copy of the model from dataframe as a .gmt file.
+#' Write GMT file
+#' 
+#' Write the model data to a Gene Matrix Transposed (GMT) file.
 #'
-#' @param gmt data frame with model.
-#'
-#' @rdname InputOutputFunctions
-#' @export
-#'
+#' @param gmt A data frame which contains the data, imported from a GMT file.
+#' @param file character; a path naming a file.
 #' @return Returns the model as a .gmt file at a specific location.
+#' @export
 #' @examples
 #' modelDfFromFile <- read_gmt(
 #'   file = system.file(package="MulEA", "extdata", "model.gmt"))
@@ -83,23 +79,22 @@ write_gmt <- function(gmt, file) {
   close(fileConnection)
 }
 
-# PUBLIC API
 #' @description
-#' \code{filter_ontology} Filters ontology to only contain terms between given min. and max. sizes.
+#' Filter Ontology
+#' 
+#' Filter ontology to only contain terms between given min. and max. sizes.
 #'
-#' @param gmt input dataframe, read from gmt file.
-#' @param min_nr_of_elements minimum size of term. Default 20 percent from quantile on term size distribution.
-#' @param max_nr_of_elements maximum size of term. Default 80 percent from quantile on term size distribution.
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
+#' @param gmt A data frame which contains the data, imported from a GMT file.
+#' @param min_nr_of_elements minimum size of term. Default 20 percent from
+#' quantile on term size distribution.
+#' @param max_nr_of_elements maximum size of term. Default 80 percent from
+#' quantile on term size distribution.
 #' @return Return data frame with model from specific location.
+#' @export
 filter_ontology <- function(gmt,
                            min_nr_of_elements = NULL,
                            max_nr_of_elements = NULL) {
+  # TODO : Add quantile parameters as separate! Nothing do is default.
   if (is.null(min_nr_of_elements)) {
     terms_sizes <-
       plyr::laply(
@@ -212,19 +207,14 @@ decorateGmtByUnderOvenAndNoise <- function(input_gmt,
 }
 
 
-# PUBLIC API
-#' @description
-#' \code{list_to_gmt}
+#' Convert list to GMT data frame
 #'
-#' \code{list_to_gmt} conver ontology representation from list to gmt dataframe.
+#' Convert ontology representation from list to gmt data frame.
 #'
-#' @param gmt_list input list with elements names as ontologyId and genes in each element.
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#' @export
-#'
+#' @param gmt_list List with element names as ontologyId and genes in each
+#' element.
 #' @return Return data frame with model.
+#' @export
 list_to_gmt <- function(gmt_list) {
   listAsGmtDataFrame <-
     plyr::ldply(

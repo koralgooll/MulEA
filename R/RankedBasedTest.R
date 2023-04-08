@@ -1,16 +1,20 @@
+#' Gene Set Enrichment Analysis (GSEA)
+#' 
 #' An S4 class to represent a ranked based tests in Mulea.
 #'
-#' @slot gmt A data.frame representing GMT's reprezentation of model.
-#' @slot element_names A data from expeciment to analize accross model.
-#' @slot element_scores A vectore of element_scores per element_names.
-#' @slot p A power of weight. Default value is 1.
-#' @slot element_score_type Defines the GSEA score type. Only positive element_scores - "pos",
-#' only negative element_scores - "neg" and mixed (standard) - "std".
-#' @slot number_of_permutations A number of permutations used in KS test. Default
-#' vlue is 1000.
-#' @return GSEA object. This object represents ranked based tests in
-#' Mulea.
-#' @export gsea
+#' @slot gmt A data frame which contains the data, imported from a GMT file.
+#' @slot element_names A vector of elements names to include in the analysis,
+#' ordered by their scores.
+#' @slot element_scores A vector of element_scores per element_names.
+#' @slot gsea_power A power of weight. Default value is 1.
+#' @slot element_score_type Defines the GSEA score type. Only positive
+#' element_scores - "pos", only negative element_scores - "neg" and mixed
+#' (standard) - "std".
+#' @slot number_of_permutations The number of permutations used in KS test.
+#' Default value is 1000.
+#' @slot test character
+#' @return GSEA object. This object represents ranked based tests.
+#' @export
 #' @examples
 #' modelDfFromFile <- MulEA::read_gmt(
 #'   file = system.file(package="MulEA", "extdata", "model.gmt"))
@@ -21,8 +25,8 @@
 #' dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
 #'                               0.45, 0.50)
 #' GSEASubramanian <- gsea(gmt = modelDfFromFile,
-#'                                               element_names = dataFromExperiment,
-#'                                               element_scores = dataFromExperimentScores)
+#'                         element_names = dataFromExperiment,
+#'                         element_scores = dataFromExperimentScores)
 gsea <- setClass(
   "gsea",
   slots = list(

@@ -18,10 +18,9 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
   reshaped_results_filtered_cutoff
 }
 
-# PUBLIC API (Plotting)
-#' @description
-#' \code{reshape_results} merge model and model results into
-#' one relaxed datatable.
+#' Reshape Results
+#' 
+#' This function merges model and model results into a single data frame.
 #'
 #' @param model a MulEA model, created e.g. by ora().
 #' @param model_results Results from model, returned by run_test().
@@ -29,8 +28,8 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #' @param ontology_id_colname character
 #' @param p_value_type_colname character
 #' @param p_value_max_threshold logical
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
+#' @seealso \code{\link{plot_graph}}, \code{\link{plot_barplot}},
+#' \code{\link{plot_heatmap}}
 #' @importFrom data.table :=
 #' @export
 #'
@@ -52,7 +51,6 @@ reshape_results <-
         by.y = ontology_id_colname,
         all = TRUE
       )
-    # Create relaxed dataframe from our structure.
     model_with_res_dt <- data.table::setDT(model_with_res)
     model_with_res_dt_size = 0
     for (i in 1:nrow(model_with_res_dt)) {
@@ -71,7 +69,7 @@ reshape_results <-
       category_p_stat <-
         model_with_res_dt[[i, p_value_type_colname]]
       for (item_name in model_with_res_dt[[i, 'listOfValues']]) {
-        # THE LINE BELOW DOES NOT UPDATE THE OBJECT IS THIS INTENTIONAL?
+        # TODO: THE LINE BELOW DOES NOT UPDATE THE OBJECT IS THIS INTENTIONAL?
         model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter,
                                   c("ontologyId", "genIdInOntology", "ontologyStatValue") :=
                                     list(category_name, item_name, category_p_stat)]
@@ -88,21 +86,20 @@ reshape_results <-
   }
 
 
-# PUBLIC API (Plotting)
-#' @description
-#' \code{plot_graph} Plots graph representation of enrichment results.
+#' Plot Graph (Network)
+#' 
+#' Plots graph representation of enrichment results.
 #'
 #' @param reshaped_results data.table in relaxed form.
 #' @param shared_elements_min_threshold numeric
+#' @param p_value_type_colname character
+#' @param ontology_id_colname character
 #' @param ontology_element_colname numeric
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
-#'
-#' @return Return plot.
+#' @param p_value_max_threshold numeric
+#' @return Return a graph.
 #' @importFrom data.table :=
 #' @importFrom rlang .data
+#' @seealso \code{\link{reshape_results}}
 #' @export
 plot_graph <- function(reshaped_results,
                        ontology_id_colname = 'ontology_id',
@@ -207,21 +204,22 @@ plot_graph <- function(reshaped_results,
 }
 
 
-# PUBLIC API (Plotting)
-#' @description
-#' \code{plot_barplot} Plots barplot of p-values.
+#' Plot Barplot
+#' 
+#' Plots barplot of p-values.
 #'
 #' @param reshaped_results  data.table in relaxed form.
-#' @param selected_rows_to_plot vector for selecting variables to plot.
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
+#' @param selected_rows_to_plot numeric; which rows of the reshaped results data
+#' frame should be included in the plot?
+#' @param ontology_id_colname character
+#' @param p_value_type_colname character
+#' @param p_caue_max_threshold numeric
 #' @importFrom magrittr %>%
 #' @import ggplot2
+#' @seealso \code{\link{reshape_results}}
 #' @export
 #'
-#' @return Return plot.
+#' @return Return a barplot.
 plot_barplot <-
   function(reshaped_results,
            ontology_id_colname = 'ontology_id',
@@ -266,20 +264,20 @@ plot_barplot <-
   }
 
 
-# PUBLIC API (Plotting)
-#' @description
-#' \code{plot_heatmap} Plots heatmap of enriched terms and obtained p-values.
+#' Plot Heatmap
+#' 
+#' Plots heatmap of enriched terms and obtained p-values.
 #'
 #' @param reshaped_results data.table in relaxed form.
-#'
-#'
-#' @title Input/Output Functions
-#' @name  InputOutputFunctions
+#' @param p_value_type_colname character
+#' @param ontology_element_colname character
+#' @param p_value_max_threshold numeric
 #' @importFrom magrittr %>%
 #' @import ggplot2
+#' @seealso \code{\link{reshape_results}}
 #' @export
 #'
-#' @return Return plot.
+#' @return Return a heatmap.
 plot_heatmap <- function(reshaped_results,
                          ontology_id_colname = 'ontology_id',
                          ontology_element_colname = 'element_id_in_ontology',
