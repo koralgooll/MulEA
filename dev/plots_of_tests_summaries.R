@@ -12,20 +12,28 @@ sim_mult_tests_res <- readr::read_rds("dev\\new_tests_res\\sim_mult_tests_res_bi
 set_name <- "big_95"
 
 sim_mult_tests_res_sum <- MulEA:::getMultipleTestsSummaryAcrossCutOff(tests_res=sim_mult_tests_res)
-sim_mult_tests_res_to_roc <- MulEA::getSummaryToRoc(tests_res = sim_mult_tests_res)
+sim_mult_tests_res_to_roc <- MulEA:::getSummaryToRoc(tests_res = sim_mult_tests_res)
+
+# Load saved data:
+mulea_path <- "/home/cezary/science/MulEA/MulEA"
+sim_mult_tests_res_sum <- readr::read_rds(paste(mulea_path, "/dev/sim_res_small_085_1000_sum.rds", sep = ""))
+set_name <- "small_85"
+sim_mult_tests_res_sum <- readr::read_rds(paste(mulea_path, "/dev/sim_res_big_085_200_sum.rds", sep = ""))
+set_name <- "big_85"
 
 # TPR:
 # TPR wrapped by method.
 plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=noise_ratio, y=TPR, fill=noise_ratio)) + 
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
-  facet_grid(~method) + #facet_wrap
+  facet_grid(~forcats::fct_relevel(method, 'p', 'bh', 'pt'), labeller = as_labeller(
+    c(`bh` = "Benjamini-Hochberg", `p` = "Uncorrected p-value", `pt` = "eFDR"))) + #facet_wrap
   theme(legend.position="right") +
-  scale_fill_brewer(palette="PuBuGn") + 
+  scale_fill_brewer(palette="PuBuGn", guide="none") + 
   xlab('Noise Ratio') + ylab('True Positive Rate') +
   ylim(c(0,1))
 ggsave(plot_res, filename = paste0(set_name, "_TPR_method", ".jpeg"), device = "jpeg", 
-         path = "D:\\projects\\science\\MulEA\\dev\\new_plots")
+       path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 # TPR wrapped by ratio.
 plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=method, y=TPR, fill=method)) + 
@@ -37,7 +45,7 @@ plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=method, y=TPR, fill=method))
   xlab('Noise Ratio') + ylab('True Positive Rate') +
   ylim(c(0,1))
 ggsave(plot_res, filename = paste0(set_name, "_TPR_ratio", ".jpeg"), device = "jpeg", 
-       path = "D:\\projects\\science\\MulEA\\dev\\new_plots")
+       path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 
 # FPR:

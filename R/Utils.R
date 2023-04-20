@@ -276,9 +276,10 @@ generateInputSamples <-
       sample_enrichment <- all_genes_in_enrichment[sample(1:length(all_genes_in_enrichment),
                                                           size_of_enrichment,
                                                           replace = FALSE)]
-      samples[[i]] <- unique(c(sample_noise, sample_enrichment))
+      #samples[[i]] <- unique(c(sample_noise, sample_enrichment))
+      samples[[i]] <- list('sample_noise' = sample_noise, 'sample_enrichment' = sample_enrichment)
     }
-    
+
     return(samples)
   }
 
@@ -343,10 +344,10 @@ getMultipleTestsSummary <- function(tests_res,
     
     # Predicted condition
     # Predicted Positive (PP)
-    PP <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] <= cut_off,]$ontologyId
+    PP <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] <= cut_off,]$ontology_id
     PP_size <- length(PP)
     # Predicted Negative (PN)
-    PN <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] > cut_off,]$ontologyId
+    PN <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] > cut_off,]$ontology_id
     PN_size <- length(PN)
     if (PP_size + PN_size != total_population_size) {
       warning("Not OK size of Predicted in contingency table")
@@ -430,7 +431,7 @@ getMultipleTestsSummary <- function(tests_res,
 #' @importFrom rlang .data
 getSummaryToRoc <- function(tests_res,
                             cut_off_resolution = 0.01,
-                            methods_names = c('pValue', 'adjustedPValue', 'adjustedPValueEmpirical')) {
+                            methods_names = c("p_value", "adjusted_p_value", "eFDR")) {
   print("Mulea ROC data calculation time:")
   tictoc::tic()
   
@@ -442,15 +443,15 @@ getSummaryToRoc <- function(tests_res,
     "adjustedPValueEmpirical" = c()
   )
   for (i in 1:number_of_tests) {
-    tests_res[[i]]$mulea_res[, c("pValue", "adjustedPValue",
-                                 "adjustedPValueEmpirical")]
+    # tests_res[[i]]$mulea_res[, c("p_value", "adjusted_p_value", "eFDR")]
     data_to_roc <-
       rbind(
         data_to_roc,
         data.frame("sample_label" =
                      tests_res[[i]]$test_data[, c("sample_label")],
-                   tests_res[[i]]$mulea_res[, c("pValue", "adjustedPValue",
-                                                "adjustedPValueEmpirical")])
+                   tests_res[[i]]$mulea_res[, c("p_value", 
+                                                "adjusted_p_value",
+                                                "eFDR")])
       )
   }
   
@@ -518,21 +519,21 @@ getMultipleTestsSummaryAcrossCutOff <- function(tests_res,
     print(cut_off)
     tests_res_sum_p <- getMultipleTestsSummary(
       tests_res = tests_res,
-      comparison_col_name = 'pValue',
+      comparison_col_name = 'p_value',
       labels = list('method' = 'p', 'cut_off' = cut_off),
       cut_off = cut_off
     )
     
     tests_res_sum_bh <- getMultipleTestsSummary(
       tests_res = tests_res,
-      comparison_col_name = 'adjustedPValue',
+      comparison_col_name = 'adjusted_p_value',
       labels = list('method' = 'bh', 'cut_off' = cut_off),
       cut_off = cut_off
     )
     
     tests_res_sum_pt <- getMultipleTestsSummary(
       tests_res = tests_res,
-      comparison_col_name = 'adjustedPValueEmpirical',
+      comparison_col_name = 'eFDR',
       labels = list('method' = 'pt', 'cut_off' = cut_off),
       cut_off = cut_off
     )
@@ -593,7 +594,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
       warning("sample is not size 1")
     }
     
-    input_select <- unlist(samples)
+    input_select <- unique(unlist(samples))
     
     mulea_ora_model <- MulEA::ora(
       gmt = input_gmt_filtered,
@@ -603,7 +604,18 @@ simulateMultipleTests <- function(input_gmt_filtered,
       number_of_cpu_threads = nthreads
     )
     
+    mulea_ora_model_bh <- MulEA::ora(
+      gmt = input_gmt_filtered,
+      element_names = input_select,
+      p_value_adjustment_method = "BH",
+      number_of_permutations = number_of_steps,
+      number_of_cpu_threads = nthreads
+    )
+    
     mulea_ora_results <- MulEA::run_test(mulea_ora_model)
+    mulea_ora_results_bh <- MulEA::run_test(mulea_ora_model_bh)
+    mulea_ora_results$adjusted_p_value <- mulea_ora_results_bh$adjusted_p_value
+    
     tests_res[[i]]$mulea_res <- mulea_ora_results
     tests_res[[i]]$test_data <- input_gmt_decorated
     tests_res[[i]]$metadata <- list(
@@ -638,7 +650,7 @@ simulateMultipleTestsWithRatioParam <- function(input_gmt_filtered,
                                                 over_repr_ratio = 0.5,
                                                 number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered) *
                                                                                                  0.2),
-                                                number_of_steps = 5000,
+                                                number_of_steps = 10000,
                                                 nthreads = 16) {
   tictoc::tic()
   sim_mult_tests <- list()
