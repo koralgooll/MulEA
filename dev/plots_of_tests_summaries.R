@@ -66,62 +66,99 @@ plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=noise_ratio, y=FPR, fill=noi
   facet_grid(~forcats::fct_relevel(method, 'p', 'bh', 'pt'), labeller = as_labeller(
     c(`bh` = "Benjamini-Hochberg", `p` = "Uncorrected p-value", `pt` = "eFDR"))) + #facet_wrap
   theme(legend.position="right") +
-  scale_fill_brewer(palette="PuBuGn", guide="none") + 
+  scale_fill_brewer(palette="Set1", guide="none") + 
   xlab('Noise Ratio') + ylab('False Positive Rate') +
   ylim(c(0,1))
 ggsave(plot_res, filename = paste0(set_name, "_FPR_method", ".jpeg"), device = "jpeg", 
        path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 
-# FPR wrapped by ratio.
-plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=method, y=FPR, fill=method)) +
+# OK - FPR wrapped by ratio.
+plot_res <- sim_mult_tests_res_sum %>% ggplot(
+  aes(x=forcats::fct_relevel(method, 'p', 'bh', 'pt'), y=FPR, 
+      fill=forcats::fct_relevel(method, 'p', 'bh', 'pt'))) +
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
   facet_grid(~noise_ratio) +
   theme(legend.position="bottom", 
         axis.ticks.x=element_blank(), axis.text.x=element_blank()) +
-  scale_fill_brewer(palette="PuBuGn", 
-                    labels = c("Benjamini-Hochberg", "Uncorrected p-value", "eFDR")) + 
+  guides(fill=guide_legend(title='Method')) +
+  scale_fill_discrete(palette = scales::hue_pal(l = 70), 
+                      labels = c("Uncorrected p-value", "Benjamini-Hochberg", "eFDR")) +
   scale_x_discrete(position = "top") +
-  xlab('Noise Ratio') + ylab('False Positive Rate')
+  xlab('Noise Ratio') + ylab('False Positive Rate') +
+  ylim(c(0,1))
 ggsave(plot_res, filename = paste0(set_name, "_FPR_ratio", ".jpeg"), device = "jpeg", 
        path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 
 # FDR:
-# FDR wrapped by method.
+# OK - FDR wrapped by method.
 plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=noise_ratio, y=FDR, fill=noise_ratio)) +
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
-  facet_grid(~method) + #facet_wrap
+  facet_grid(~forcats::fct_relevel(method, 'p', 'bh', 'pt'), labeller = as_labeller(
+    c(`bh` = "Benjamini-Hochberg", `p` = "Uncorrected p-value", `pt` = "eFDR"))) + #facet_wrap
   theme(legend.position="right") +
-  scale_fill_brewer(palette="PuBuGn") + 
-  xlab('Noise Ratio') + ylab('False Discovery Rate')
+  scale_fill_brewer(palette="Set1", guide="none") + 
+  xlab('Noise Ratio') + ylab('False Discovery Rate') +
+  ylim(c(0,1))
 ggsave(plot_res, filename = paste0(set_name, "_FDR_method", ".jpeg"), device = "jpeg", 
        path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 # FDR wrapped by ratio.
-plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=method, y=FDR, fill=method)) +
+plot_res <- sim_mult_tests_res_sum %>% ggplot(
+  aes(x=forcats::fct_relevel(method, 'p', 'bh', 'pt'), y=FDR, 
+      fill=forcats::fct_relevel(method, 'p', 'bh', 'pt'))) +
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
   facet_grid(~noise_ratio) +
-  theme(legend.position="right") +
-  scale_fill_brewer(palette="PuBuGn") + 
-  xlab('Noise Ratio') + ylab('False Discovery Rate')
+  theme(legend.position="bottom", 
+        axis.ticks.x=element_blank(), axis.text.x=element_blank()) +
+  guides(fill=guide_legend(title='Method')) +
+  scale_fill_discrete(palette = scales::hue_pal(l = 70), 
+                      labels = c("Uncorrected p-value", "Benjamini-Hochberg", "eFDR")) +
+  scale_x_discrete(position = "top") +
+  xlab('Noise Ratio') + ylab('False Discovery Rate') +
+  ylim(c(0,1))
 ggsave(plot_res, filename = paste0(set_name, "_FDR_ratio", ".jpeg"), device = "jpeg", 
        path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 
 # ROC curve plot
-plot_res <- sim_mult_tests_res_to_roc %>% ggplot(aes(FPR, TPR, colour=method)) + 
+plot_res <- sim_mult_tests_res_to_roc %>% ggplot(
+  aes(FPR, TPR, 
+      colour=forcats::fct_relevel(method, 'p_value', 'adjusted_p_value', 'eFDR'))) + 
   # geom_point() +
   geom_step() +
+  theme(legend.position="bottom") +
   # facet_wrap(~method) +
-  geom_abline(color="black") +
-  scale_fill_brewer(palette="PuBu")
+  guides(colour=guide_legend(title='Method')) +
+  scale_colour_discrete(palette = scales::hue_pal(l = 70), 
+                      labels = c("Uncorrected p-value", "Benjamini-Hochberg", "eFDR")) +
+  geom_abline(color="black")
 ggsave(plot_res, filename = paste0(set_name, "_ROC", ".jpeg"), device = "jpeg", 
        path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
+
+# ROC density curve plot
+plot_res <- sim_mult_tests_res_to_roc %>% ggplot(
+  aes(FPR, TPR, 
+      colour=forcats::fct_relevel(method, 'p_value', 'adjusted_p_value', 'eFDR'))) + 
+  geom_point() +
+  # geom_step() +
+  theme(legend.position="bottom") +
+  # facet_wrap(~method) +
+  facet_wrap(~forcats::fct_relevel(method, 'p_value', 'adjusted_p_value', 'eFDR'), 
+             labeller = as_labeller(
+    c(`adjusted_p_value` = "Benjamini-Hochberg", 
+      `p_value` = "Uncorrected p-value", `eFDR` = "eFDR"))) +
+  guides(colour=guide_legend(title='Method')) +
+  scale_colour_discrete(palette = scales::hue_pal(l = 70), 
+                        labels = c("Uncorrected p-value", "Benjamini-Hochberg", "eFDR")) +
+  geom_abline(color="black")
+ggsave(plot_res, filename = paste0(set_name, "_ROC_dens", ".jpeg"), device = "jpeg", 
+       path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 ######################################################################################
 #### END                                                                          ####
