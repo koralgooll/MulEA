@@ -1,3 +1,6 @@
+library(tidyverse)
+library(MulEA)
+
 sim_mult_tests_res <- readr::read_rds("dev\\new_tests_res\\sim_mult_tests_res_small_075_100.rds")
 set_name <- "small_75"
 sim_mult_tests_res <- readr::read_rds("dev\\new_tests_res\\sim_mult_tests_res_small_085_100.rds")
@@ -22,26 +25,33 @@ sim_mult_tests_res_sum <- readr::read_rds(paste(mulea_path, "/dev/sim_res_big_08
 set_name <- "big_85"
 
 # TPR:
-# TPR wrapped by method.
+# OK - TPR wrapped by method.
 plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=noise_ratio, y=TPR, fill=noise_ratio)) + 
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
   facet_grid(~forcats::fct_relevel(method, 'p', 'bh', 'pt'), labeller = as_labeller(
     c(`bh` = "Benjamini-Hochberg", `p` = "Uncorrected p-value", `pt` = "eFDR"))) + #facet_wrap
   theme(legend.position="right") +
-  scale_fill_brewer(palette="PuBuGn", guide="none") + 
+  scale_fill_brewer(palette="Set1", guide="none") + 
   xlab('Noise Ratio') + ylab('True Positive Rate') +
   ylim(c(0,1))
 ggsave(plot_res, filename = paste0(set_name, "_TPR_method", ".jpeg"), device = "jpeg", 
        path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
-# TPR wrapped by ratio.
-plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=method, y=TPR, fill=method)) + 
+
+# OK - TPR wrapped by ratio.
+plot_res <- sim_mult_tests_res_sum %>% ggplot(
+  aes(x=forcats::fct_relevel(method, 'p', 'bh', 'pt'), y=TPR, 
+      fill=forcats::fct_relevel(method, 'p', 'bh', 'pt'))) + 
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
   facet_grid(~noise_ratio) +
-  theme(legend.position="right") +
-  scale_fill_brewer(palette="PuBuGn") + 
+  theme(legend.position="bottom", 
+        axis.ticks.x=element_blank(), axis.text.x=element_blank()) +
+  guides(fill=guide_legend(title='Method')) +
+  scale_fill_discrete(palette = scales::hue_pal(l = 70), 
+                      labels = c("Uncorrected p-value", "Benjamini-Hochberg", "eFDR")) +
+  scale_x_discrete(position = "top") +
   xlab('Noise Ratio') + ylab('True Positive Rate') +
   ylim(c(0,1))
 ggsave(plot_res, filename = paste0(set_name, "_TPR_ratio", ".jpeg"), device = "jpeg", 
@@ -49,28 +59,33 @@ ggsave(plot_res, filename = paste0(set_name, "_TPR_ratio", ".jpeg"), device = "j
 
 
 # FPR:
-# FPR wrapped by method.
+# OK - FPR wrapped by method.
 plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=noise_ratio, y=FPR, fill=noise_ratio)) + 
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
-  facet_grid(~method) + #facet_wrap
+  facet_grid(~forcats::fct_relevel(method, 'p', 'bh', 'pt'), labeller = as_labeller(
+    c(`bh` = "Benjamini-Hochberg", `p` = "Uncorrected p-value", `pt` = "eFDR"))) + #facet_wrap
   theme(legend.position="right") +
-  scale_fill_brewer(palette="PuBuGn") + 
+  scale_fill_brewer(palette="PuBuGn", guide="none") + 
   xlab('Noise Ratio') + ylab('False Positive Rate') +
   ylim(c(0,1))
 ggsave(plot_res, filename = paste0(set_name, "_FPR_method", ".jpeg"), device = "jpeg", 
-       path = "D:\\projects\\science\\MulEA\\dev\\new_plots")
+       path = paste(mulea_path, "/dev/new_plots", sep = ""))
+
 
 # FPR wrapped by ratio.
 plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=method, y=FPR, fill=method)) +
   geom_boxplot(alpha=0.5, fatten=2) +
   geom_violin(alpha=0.3) +
   facet_grid(~noise_ratio) +
-  theme(legend.position="right") +
-  scale_fill_brewer(palette="PuBuGn") + 
+  theme(legend.position="bottom", 
+        axis.ticks.x=element_blank(), axis.text.x=element_blank()) +
+  scale_fill_brewer(palette="PuBuGn", 
+                    labels = c("Benjamini-Hochberg", "Uncorrected p-value", "eFDR")) + 
+  scale_x_discrete(position = "top") +
   xlab('Noise Ratio') + ylab('False Positive Rate')
 ggsave(plot_res, filename = paste0(set_name, "_FPR_ratio", ".jpeg"), device = "jpeg", 
-       path = "D:\\projects\\science\\MulEA\\dev\\new_plots")
+       path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 
 # FDR:
@@ -83,7 +98,7 @@ plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=noise_ratio, y=FDR, fill=noi
   scale_fill_brewer(palette="PuBuGn") + 
   xlab('Noise Ratio') + ylab('False Discovery Rate')
 ggsave(plot_res, filename = paste0(set_name, "_FDR_method", ".jpeg"), device = "jpeg", 
-       path = "D:\\projects\\science\\MulEA\\dev\\new_plots")
+       path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 # FDR wrapped by ratio.
 plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=method, y=FDR, fill=method)) +
@@ -94,7 +109,7 @@ plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=method, y=FDR, fill=method))
   scale_fill_brewer(palette="PuBuGn") + 
   xlab('Noise Ratio') + ylab('False Discovery Rate')
 ggsave(plot_res, filename = paste0(set_name, "_FDR_ratio", ".jpeg"), device = "jpeg", 
-       path = "D:\\projects\\science\\MulEA\\dev\\new_plots")
+       path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 
 # ROC curve plot
@@ -105,7 +120,7 @@ plot_res <- sim_mult_tests_res_to_roc %>% ggplot(aes(FPR, TPR, colour=method)) +
   geom_abline(color="black") +
   scale_fill_brewer(palette="PuBu")
 ggsave(plot_res, filename = paste0(set_name, "_ROC", ".jpeg"), device = "jpeg", 
-       path = "D:\\projects\\science\\MulEA\\dev\\new_plots")
+       path = paste(mulea_path, "/dev/new_plots", sep = ""))
 
 
 ######################################################################################

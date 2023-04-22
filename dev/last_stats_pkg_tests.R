@@ -88,6 +88,9 @@ readr::write_rds(
 sim_mult_tests_res <- readr::read_rds(
   file = paste(mulea_path, "/dev/sim_res_small_085_1000.rds", sep = ""))
 
+sim_mult_tests_res <- readr::read_rds(
+  file = paste(mulea_path, "/dev/sim_res_big_085_200.rds", sep = ""))
+
 sim_mult_tests_res_sum <- MulEA:::getMultipleTestsSummaryAcrossCutOff(
   tests_res=sim_mult_tests_res)
 readr::write_rds(
@@ -97,7 +100,7 @@ readr::write_rds(
 sim_mult_tests_res_to_roc <- MulEA:::getSummaryToRoc(tests_res = sim_mult_tests_res)
 readr::write_rds(
   x = sim_mult_tests_res_to_roc, 
-  file = paste(mulea_path, "/dev/sim_res_small_085_1000_roc.rds", sep = ""))
+  file = paste(mulea_path, "/dev/sim_res_big_085_200_roc.rds", sep = ""))
 
 plot_res <- sim_mult_tests_res_sum %>% ggplot(aes(x=noise_ratio, y=TPR, fill=noise_ratio)) + 
   geom_boxplot(alpha=0.5, fatten=2) +
