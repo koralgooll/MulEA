@@ -19,15 +19,18 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 }
 
 #' Reshape Results
-#' 
-#' This function merges model and model results into a single data frame.
+#' @description
+#' This function takes model and model_results data, 
+#' reshapes them into a suitable format for plotting, 
+#' and returns the resulting data frame, which can be used 
+#' for further analysis or visualization.
 #'
 #' @param model a MulEA model, created e.g. by ora().
 #' @param model_results Results from model, returned by run_test().
-#' @param model_ontology_col_name character
-#' @param ontology_id_colname character
-#' @param p_value_type_colname character
-#' @param p_value_max_threshold logical
+#' @param model_ontology_col_name Character, specifies the column name in the model that contains ontology IDs. It defines which column in the model should be used for matching ontology IDs.
+#' @param ontology_id_colname Character, specifies the column name for ontology IDs in the model results. It indicates which column in the model results contains ontology IDs for merging.
+#' @param p_value_type_colname Character, specifies the column name for p-value types in the model results. It identifies the column containing p-values associated with ontology categories.
+#' @param p_value_max_threshold Logical, indicating whether to apply a p-value threshold when filtering the resulting data. If TRUE, the function filters the data based on a p-value threshold.
 #' @seealso \code{\link{plot_graph}}, \code{\link{plot_barplot}},
 #' \code{\link{plot_heatmap}}
 #' @importFrom data.table :=
@@ -35,6 +38,27 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #'
 #' @return Return detailed and relaxed datatable where model and results are
 #' merged for plotting purposes.
+#' 
+#' #' @examples 
+#' # import example gene set
+#' # import other gene sets from a GMT file using read_gmt()
+#' data(geneSet) 
+#' Run model on geneset
+#' ora_model <- ora(
+#'  gmt = geneSet,
+#'  element_names = selectDf$select, 
+#'  background_element_names = poolDf$background_element_names,
+#'  p_value_adjustment_method = "eFDR",
+#'  number_of_permutations = 1000
+#' )
+#' ora_results <- run_test(ora_model)
+#' Reshape results
+#' ora_reshaped_results <- reshape_results(
+#'  model = ora_model, 
+#'  model_results = ora_results, 
+#'  p_value_type_colname='adjustedPValueEmpirical'
+#' )
+
 reshape_results <-
   function(model = NULL,
            model_results = NULL,
@@ -87,20 +111,54 @@ reshape_results <-
 
 
 #' Plot Graph (Network)
-#' 
+#'
+#' @description
 #' Plots graph representation of enrichment results.
 #'
-#' @param reshaped_results data.table in relaxed form.
-#' @param shared_elements_min_threshold numeric
-#' @param p_value_type_colname character
-#' @param ontology_id_colname character
-#' @param ontology_element_colname numeric
-#' @param p_value_max_threshold numeric
-#' @return Return a graph.
+#' @details 
+#' This function takes reshaped data, filters it based on p-values, 
+#' calculates shared gene elements between ontology IDs, and creates a graph visualizing 
+#' the relationships between ontologies and their associated genes based on shared elements 
+#' and p-values. 
+#' 
+#' @param reshaped_results The input data frame containing reshaped results, typically representing some form of genomic or biological data.
+#' @param shared_elements_min_threshold Numeric, threshold specifying the minimum number of shared elements required between two ontologies to consider them connected by an edge in the graph. Default value is 0.
+#' @param p_value_type_colname Character, the name of the column in reshaped_results that contains p-values associated with the ontology elements. Default value is 'eFDR'.
+#' @param ontology_id_colname Character, the name of the column in reshaped_results that contains ontology IDs. Default value is 'ontology_id'.
+#' @param ontology_element_colname Character, the name of the column in reshaped_results that contains element IDs within the ontology. Default value is 'element_id_in_ontology'.
+#' @param p_value_max_threshold Numeric, a threshold value for filtering rows in reshaped_results based on the p-values. Rows with p-values greater than this threshold will be filtered out. Default value is 0.05.
+#' @return Returns a graph plot.
 #' @importFrom data.table :=
 #' @importFrom rlang .data
 #' @seealso \code{\link{reshape_results}}
 #' @export
+#' 
+#' @examples 
+#' # import example gene set
+#' # import other gene sets from a GMT file using read_gmt()
+#' data(geneSet) 
+#' Run model on geneset
+#' ora_model <- ora(
+#'  gmt = geneSet,
+#'  element_names = selectDf$select, 
+#'  background_element_names = poolDf$background_element_names,
+#'  p_value_adjustment_method = "eFDR",
+#'  number_of_permutations = 1000
+#' )
+#' ora_results <- run_test(ora_model)
+#' Reshape results
+#' ora_reshaped_results <- reshape_results(
+#'  model = ora_model, 
+#'  model_results = ora_results, 
+#'  p_value_type_colname='adjustedPValueEmpirical'
+#' )
+#' Plot graph
+#' plot_graph(
+#'  reshaped_results=ora_reshaped_results,
+#'  p_value_max_threshold = 1.00,
+#'  p_value_type_colname = "adjustedPValueEmpirical"
+#')
+
 plot_graph <- function(reshaped_results,
                        ontology_id_colname = 'ontology_id',
                        ontology_element_colname = 'element_id_in_ontology',
@@ -206,20 +264,50 @@ plot_graph <- function(reshaped_results,
 
 #' Plot Barplot
 #' 
+#' @description 
 #' Plots barplot of p-values.
 #'
-#' @param reshaped_results  data.table in relaxed form.
-#' @param selected_rows_to_plot numeric; which rows of the reshaped results data
+#' @details 
+#' Create a customized barplot of p-values, facilitating visual exploration and analysis of statistical significance within ontology categories.
+#' 
+#' @param reshaped_results  data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.
+#' @param selected_rows_to_plot A numeric vector specifying which rows of the reshaped results data frame should be included in the plot. Default is NULL.
 #' frame should be included in the plot?
-#' @param ontology_id_colname character
-#' @param p_value_type_colname character
-#' @param p_caue_max_threshold numeric
+#' @param ontology_id_colname Character, specifies the column name that contains ontology IDs in the input data.
+#' @param p_value_type_colname Character, specifies the column name for p-values in the input data. Default is 'eFDR'.
+#' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
 #' @importFrom magrittr %>%
 #' @import ggplot2
 #' @seealso \code{\link{reshape_results}}
 #' @export
 #'
-#' @return Return a barplot.
+#' @return Returns a barplot.
+#' 
+#' @examples 
+#' # import example gene set
+#' # import other gene sets from a GMT file using read_gmt()
+#' data(geneSet) 
+#' Run model on geneset
+#' ora_model <- ora(
+#'  gmt = geneSet,
+#'  element_names = selectDf$select, 
+#'  background_element_names = poolDf$background_element_names,
+#'  p_value_adjustment_method = "eFDR",
+#'  number_of_permutations = 1000
+#' )
+#' ora_results <- run_test(ora_model)
+#' Reshape results
+#' ora_reshaped_results <- reshape_results(
+#'  model = ora_model, 
+#'  model_results = ora_results, 
+#'  p_value_type_colname='adjustedPValueEmpirical'
+#' )
+#' plot_barplot(
+#' reshaped_results = ora_reshaped_results,
+#' p_value_max_threshold=1.00,
+#' p_value_type_colname = "adjustedPValueEmpirical"
+#' )
+#' 
 plot_barplot <-
   function(reshaped_results,
            ontology_id_colname = 'ontology_id',
@@ -266,18 +354,46 @@ plot_barplot <-
 
 #' Plot Heatmap
 #' 
+#' @description 
 #' Plots heatmap of enriched terms and obtained p-values.
-#'
-#' @param reshaped_results data.table in relaxed form.
-#' @param p_value_type_colname character
-#' @param ontology_element_colname character
-#' @param p_value_max_threshold numeric
+#' 
+#' @details 
+#'  The `plot_heatmap` function provides a convenient way to create a ggplot2 heatmap illustrating the significance of enriched terms within ontology categories based on their associated p-values.
+#' @param reshaped_results  data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.
+#' @param p_value_type_colname Character, specifies the column name for p-values in the input data. Default is 'eFDR'.
+#' @param ontology_element_colname Character, specifying the column name that contains ontology elements or terms in the input data. Default: 'element_id_in_ontology'.
+#' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
 #' @importFrom magrittr %>%
 #' @import ggplot2
 #' @seealso \code{\link{reshape_results}}
 #' @export
 #'
-#' @return Return a heatmap.
+#' @return Returns a ggplot2 heatmap.
+#' 
+#' @examples 
+#' # import example gene set
+#' # import other gene sets from a GMT file using read_gmt()
+#' data(geneSet) 
+#' Run model on geneset
+#' ora_model <- ora(
+#'  gmt = geneSet,
+#'  element_names = selectDf$select, 
+#'  background_element_names = poolDf$background_element_names,
+#'  p_value_adjustment_method = "eFDR",
+#'  number_of_permutations = 1000
+#' )
+#' ora_results <- run_test(ora_model)
+#' Reshape results
+#' ora_reshaped_results <- reshape_results(
+#'  model = ora_model, 
+#'  model_results = ora_results, 
+#'  p_value_type_colname='adjustedPValueEmpirical'
+#' )
+#' plot_heatmap(
+#'  reshaped_results=ora_reshaped_results,
+#'  p_value_max_threshold=1.00,
+#'  p_value_type_colname = 'adjustedPValueEmpirical'
+#' )
 plot_heatmap <- function(reshaped_results,
                          ontology_id_colname = 'ontology_id',
                          ontology_element_colname = 'element_id_in_ontology',
