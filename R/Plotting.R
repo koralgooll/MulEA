@@ -251,8 +251,8 @@ plot_graph <- function(reshaped_results,
                             show.legend = FALSE) +
     scale_size_area(max_size = 10) +
     scale_color_gradient2(
-      mid = 'darkgreen',
-      high = 'red',
+      mid = '#004687',
+      high = '#ffa600',
       limits = c(0.0, 1.0),
       name = p_value_type_colname
     ) + 
@@ -343,8 +343,8 @@ plot_barplot <-
                  fill = p_value_type_colname)
     ) +
       geom_bar(stat = "identity") +
-      scale_fill_gradient2(mid = 'darkgreen',
-                           high = 'red',
+      scale_fill_gradient2(mid = '#004687',
+                          high = '#ffa600',
                            limits = c(0.0, 1.0)) +
       coord_flip() +
       theme_light()
@@ -431,8 +431,8 @@ plot_heatmap <- function(reshaped_results,
       fill = !!rlang::sym(p_value_type_colname)
     )
   ) +
-    scale_fill_gradient2(mid = 'darkgreen',
-                         high = 'red',
+    scale_fill_gradient2(mid = '#004687',
+                          high = '#ffa600',
                          limits = c(0.0, 1.0)) +
     geom_tile() +
     theme_light() +
