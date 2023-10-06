@@ -370,7 +370,7 @@ plot_barplot <-
 #' @seealso \code{\link{reshape_results}}
 #' @export
 #'
-#' @return Returns a barplot.
+#' @return Returns a lollipop plot
 #' 
 #' @examples 
 #' # import example gene set
@@ -389,12 +389,12 @@ plot_barplot <-
 #' ora_reshaped_results <- reshape_results(
 #'  model = ora_model, 
 #'  model_results = ora_results, 
-#'  p_value_type_colname='adjustedPValueEmpirical'
+#'  p_value_type_colname='eFDR'
 #' )
-#' plot_barplot(
+#' plot_lollipop(
 #' reshaped_results = ora_reshaped_results,
-#' p_value_max_threshold=1.00,
-#' p_value_type_colname = "adjustedPValueEmpirical"
+#' p_value_max_threshold=0.05,
+#' p_value_type_colname = "eFDR"
 #' )
 #' 
 
