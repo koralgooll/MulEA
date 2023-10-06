@@ -435,6 +435,7 @@ plot_heatmap <- function(reshaped_results,
                           high = '#ffa600',
                          limits = c(0.0, 1.0)) +
     geom_tile() +
+    coord_fixed()+
     theme_light() +
     theme(axis.text.x = element_text(angle = 90))
 }
