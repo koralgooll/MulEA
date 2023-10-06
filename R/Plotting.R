@@ -436,7 +436,7 @@ plot_lollipop <-
                         y = 0, 
                         yend = as.numeric(eFDR)),
                     color = 'black')+
-      geom_point(aes(size=5, color = eFDR))+
+      geom_point(aes(size=5, color = eFDR))+guides(size='none')+
       scale_color_gradient2(mid = '#ff6361',
                            high = 'grey90',
                            limits = c(0.0, p_value_max_threshold)) +
