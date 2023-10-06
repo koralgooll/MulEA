@@ -253,7 +253,7 @@ plot_graph <- function(reshaped_results,
     scale_color_gradient2(
       mid = '#004687',
       high = '#ffa600',
-      limits = c(0.0, 1.0),
+      limits = c(0.0, paste0(as.numeric(p_value_max_threshold))) +
       name = p_value_type_colname
     ) + 
     ggraph::geom_node_text(aes(label = .data$label), repel = TRUE) +
@@ -345,7 +345,7 @@ plot_barplot <-
       geom_bar(stat = "identity") +
       scale_fill_gradient2(mid = '#004687',
                           high = '#ffa600',
-                           limits = c(0.0, 1.0)) +
+                         limits = c(0.0, paste0(as.numeric(p_value_max_threshold)))) +
       coord_flip() +
       theme_light()
     mulea_gg_plot
@@ -433,7 +433,7 @@ plot_heatmap <- function(reshaped_results,
   ) +
     scale_fill_gradient2(mid = '#004687',
                           high = '#ffa600',
-                         limits = c(0.0, 1.0)) +
+                         limits = c(0.0, paste0(as.numeric(p_value_max_threshold)))) +
     geom_tile() +
     coord_fixed()+
     theme_light() +
