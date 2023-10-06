@@ -253,7 +253,7 @@ plot_graph <- function(reshaped_results,
     scale_color_gradient2(
       mid = '#004687',
       high = '#ffa600',
-      limits = c(0.0, paste0(as.numeric(p_value_max_threshold))) +
+      limits = c(0.0, paste0(as.numeric(p_value_max_threshold))),
       name = p_value_type_colname
     ) + 
     ggraph::geom_node_text(aes(label = .data$label), repel = TRUE) +
