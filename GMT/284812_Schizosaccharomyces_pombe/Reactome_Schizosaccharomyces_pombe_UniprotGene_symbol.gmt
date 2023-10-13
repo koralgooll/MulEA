@@ -1,0 +1,790 @@
+R-SPO-674695	RNA Polymerase II Pre-transcription Events	eaf1	taf5	taf7	taf12	tfb1	sua7	ptr8	rpb10	spt5	srb10	cbc1	spt3	rpb7	tpr1	iws1	pof4	lsc1	taf13	taf10	tfb4	taf6	pch1	rpb9	rpb4	toa2	ssl1	spt16	tfg1	tfg2	tfg3	pob3	SPBC651.09c	pmh1	tbp1	rad15	rpb1	rpb6	mcs2	csk1	rpb3	rpc10	tfs1	tfa2	taf2	rpb11	tfb2	rpb2	rec14	rpb5	SPAC2G11.14	taf9	spt6	yaf9	crk1	rpb8	tfb5	fcp1	cbc2	tfa1	SPBC13E7.08c	spt4	taf4	SPAC664.03	taf11	toa1	elc1	cdc73
+R-SPO-73857	RNA Polymerase II Transcription	eaf1	zwf1	taf5	phd1	rmt3	taf7	taf12	tfb1	sua7	ptr8	its3	rpb10	pst2	spt5	ppk9	srb10	lsk1	SPAC6B12.03c	eaf6	cbc1	spt3	pmp20	rpb7	tpr1	png1	iws1	pof4	clr6	SPBC36.10	lsc1	taf13	SPBC15C4.03	taf10	pop3	tfb4	pin1	taf6	ssp2	bit61	pch1	tel1	rpb9	png2	pst3	nto1	ppk27	rpb4	pcm1	tpx1	toa2	ssl1	spt16	bet4	tfg1	tfg2	tfg3	mst1	trx2	pob3	SPBC651.09c	pmh1	hta1	hta2	htb1	cdc25	hhf1	hht1	byr1	tbp1	rad15	wis1	rpb1	rpb6	mcs2	csk1	rpb3	cka1	ckb1	rad24	ptb1	pht1	rpc10	tfs1	plo1	sck1	amk2	pgi1	pgr1	tfa2	taf2	rpb11	tfb2	rpb2	rec14	rpb5	pom1	ste20	pst1	tsc1	SPAC2G11.14	ppk5	sds23	taf9	spt6	yaf9	cbs2	sck2	crk1	ksg1	rpb8	SPBC119.18	cdk9	tfb5	ppk1	fcp1	cbc2	tfa1	SPBC13E7.08c	spt4	taf4	sin1	ppk16	SPAC664.03	taf11	toa1	elc1	SPAP8A3.10	cdc73	tsc2	tor2	skh1
+R-SPO-74160	Gene expression (Transcription)	eaf1	sfc7	zwf1	taf5	phd1	rmt3	sfc9	taf7	taf12	tfb1	sua7	ptr8	nup40	its3	SPAC1A6.02	rpb10	rpc11	pst2	spt5	ppk9	srb10	cut11	rpa49	lsk1	SPAC6B12.03c	sfc1	eaf6	cbc1	spt3	pmp20	rpb7	SPAC4F10.18	tpr1	png1	chp2	nup44	iws1	rpa43	nup120	pof4	clr6	SPBC36.10	lsc1	SPCC550.11	thp1	taf13	SPBC15C4.03	taf10	sfc6	pop3	amo1	tfb4	nup211	pin1	sfc4	taf6	ssp2	bit61	pch1	tel1	rpb9	png2	pst3	nto1	ppk27	rpb4	rpc53	pcm1	rpc37	tpx1	toa2	SPCC736.09c	ago1	ssl1	spt16	rpc25	sec13	bet4	tfg1	mug87	tfg2	tfg3	mst1	bdp1	trx2	pob3	rpc6	rpc40	sir2	rpc1	SPBC651.09c	pmh1	rpa12	hta1	hta2	htb1	cdc25	hhf1	hht1	byr1	rpa1	tbp1	rad15	spi1	wis1	rpb1	rpb6	mcs2	csk1	rpb3	cka1	ckb1	swi6	rae1	rad24	ptb1	pht1	rpc10	tfs1	plo1	sck1	amk2	nup186	pgi1	pgr1	tfa2	nhp6	taf2	rpb11	tfb2	rpb2	hba1	rec14	rpb5	pom1	ste20	pst1	tsc1	nup45	SPAC2G11.14	ppk5	sds23	taf9	nup124	spt6	seh1	chp1	rrn3	nsp1	rpc2	cmb1	rrp8	yaf9	nup107	cbs2	sck2	crk1	ksg1	rpc31	rpb8	SPBC119.18	cdk9	rpc17	rpc82	tfb5	ppk1	fcp1	nup82	cbc2	tfa1	brf1	SPBC13E7.08c	spt4	nup184	taf4	tsn1	rpa2	sin1	SPAC890.06	ppk16	SPAC664.03	taf11	rrn7	sfc3	SPBC28F2.11	toa1	elc1	SPAP8A3.10	nup132	nup189	nup85	cdc73	tsc2	tor2	skh1
+R-SPO-75955	RNA Polymerase II Transcription Elongation	eaf1	tfb1	ptr8	rpb10	spt5	srb10	cbc1	rpb7	tpr1	iws1	pof4	lsc1	tfb4	pch1	rpb9	rpb4	ssl1	spt16	tfg1	tfg2	tfg3	pob3	SPBC651.09c	pmh1	rad15	rpb1	rpb6	mcs2	csk1	rpb3	rpc10	tfs1	rpb11	tfb2	rpb2	rec14	rpb5	spt6	yaf9	crk1	rpb8	tfb5	fcp1	cbc2	SPBC13E7.08c	spt4	SPAC664.03	elc1	cdc73
+R-SPO-74158	RNA Polymerase III Transcription	sfc7	sfc9	rpb10	rpc11	sfc1	sfc6	sfc4	rpc53	rpc37	rpc25	bdp1	rpc6	rpc40	rpc1	tbp1	rpb6	rpc10	rpb5	rpc2	rpc31	rpb8	rpc17	rpc82	brf1	sfc3
+R-SPO-76046	RNA Polymerase III Transcription Initiation	sfc7	sfc9	rpb10	rpc11	sfc1	sfc6	sfc4	rpc53	rpc37	rpc25	bdp1	rpc6	rpc40	rpc1	tbp1	rpb6	rpc10	rpb5	rpc2	rpc31	rpb8	rpc17	rpc82	brf1	sfc3
+R-SPO-76061	RNA Polymerase III Transcription Initiation From Type 1 Promoter	sfc7	sfc9	rpb10	rpc11	sfc1	sfc6	sfc4	rpc53	rpc37	rpc25	bdp1	rpc6	rpc40	rpc1	tbp1	rpb6	rpc10	rpb5	rpc2	rpc31	rpb8	rpc17	rpc82	brf1	sfc3
+R-SPO-76066	RNA Polymerase III Transcription Initiation From Type 2 Promoter	sfc7	sfc9	rpb10	rpc11	sfc1	sfc6	sfc4	rpc53	rpc37	rpc25	bdp1	rpc6	rpc40	rpc1	tbp1	rpb6	rpc10	rpb5	rpc2	rpc31	rpb8	rpc17	rpc82	brf1	sfc3
+R-SPO-199991	Membrane Trafficking	spo13	sec31	sed5	ain1	SPAC15A10.12c	SPAC17A5.08	ucp7	use1	sec73	its3	SPAC1A6.03c	ypt4	sec2	bet1	erv25	sec16	did4	fsv1	arc2	trs120	sfp47	sec39	vps24	SPAC9G1.10c	SPBC16E9.09c	ubl1	ric1	sec20	sec27	SPBC1E8.02	syj1	apl1	vps36	trs23	SPBC215.01	syp1	ppk30	apl2	SPBC530.09c	ssa2	ykt6	SPBC15C4.03	SPBC19F8.03c	sat1	vps901	SPCC162.06c	ent1	SPCC285.14	SPCC594.06c	sly1	SPCC970.06	trs85-2	sec28	sec9	SPCC18.02	sec231	ret3	vps25	erd2	atg8	vps20	sec13	vps902	SPCC1620.12c	ufe1	ypt7	gyp10	dot2	ucp8	gyp2	SPAC977.09c	SPBC1348.10c	ypt1	ryh1	ypt2	act2	arf1	ypt5	vti1	arc1	SPCC794.11c	plb1	SPAC20G8.02	sec21	msp1	sar1	rga8	apm4	sft1	bzz1	dnm1	SPAC13G6.05c	cdc15	gos1	uso1	chc1	dph1	pan1	imp2	ssa1	gdi1	arc5	glo3	sec74	gyp51	spo14	abc1	arc4	syb1	SPBPJ4664.04	apl3	tip20	ypt71	apm1	SPBC800.10c	tlg1	sec17	end4	tlg2	bet3	app1	snf7	bos1	emp24	vas2	trs31	sec18	SPBC211.03c	abc4	vps1	psy1	clc1	syj2	SPBC4.03c	trs20	end3	bet5	SPAC1786.02	apl4	sec26	gyp7	sec24	arp2	rga9	arc3	SPBC1778.09	sec22	aps2	SPCC1450.09c	SPCC297.05	atg1	arf6
+R-SPO-5653656	Vesicle-mediated transport	spo13	sec31	sed5	ain1	SPAC15A10.12c	SPAC17A5.08	ucp7	use1	sec73	its3	SPAC1A6.03c	ypt4	sec2	bet1	erv25	sec16	did4	fsv1	arc2	trs120	sfp47	sec39	vps24	SPAC9G1.10c	SPBC16E9.09c	ubl1	ric1	sec20	sec27	SPBC1E8.02	syj1	apl1	vps36	trs23	SPBC215.01	syp1	ppk30	apl2	SPBC530.09c	ssa2	ykt6	SPBC15C4.03	SPBC19F8.03c	sat1	vps901	SPCC162.06c	ent1	SPCC285.14	SPCC594.06c	sly1	SPCC970.06	trs85-2	sec28	sec9	SPCC18.02	sec231	ret3	vps25	erd2	atg8	vps20	sec13	vps902	SPCC1620.12c	ufe1	ypt7	gyp10	dot2	ucp8	gyp2	SPAC977.09c	SPBC1348.10c	ypt1	ryh1	ypt2	act2	arf1	ypt5	vti1	arc1	SPCC794.11c	plb1	SPAC20G8.02	sec21	msp1	sar1	rga8	apm4	sft1	bzz1	dnm1	SPAC13G6.05c	cdc15	gos1	uso1	chc1	dph1	pan1	imp2	ssa1	gdi1	arc5	glo3	sec74	gyp51	spo14	abc1	arc4	syb1	SPBPJ4664.04	apl3	tip20	ypt71	apm1	SPBC800.10c	tlg1	sec17	end4	tlg2	bet3	app1	snf7	bos1	emp24	vas2	trs31	sec18	SPBC211.03c	abc4	vps1	psy1	clc1	syj2	SPBC4.03c	trs20	end3	bet5	SPAC1786.02	apl4	sec26	gyp7	sec24	arp2	rga9	arc3	SPBC1778.09	sec22	aps2	SPCC1450.09c	SPCC297.05	atg1	arf6
+R-SPO-8876198	RAB GEFs exchange GTP for GDP on RABs	spo13	SPAC15A10.12c	ypt4	sec2	trs120	ric1	trs23	SPBC15C4.03	sat1	vps901	SPCC285.14	trs85-2	vps902	ypt1	ryh1	ypt2	ypt5	SPAC13G6.05c	gdi1	bet3	trs31	trs20	bet5	SPCC297.05	atg1
+R-SPO-9007101	Rab regulation of trafficking	spo13	SPAC15A10.12c	ypt4	sec2	trs120	ric1	trs23	SPBC215.01	SPBC15C4.03	sat1	vps901	SPCC285.14	trs85-2	atg8	vps902	SPCC1620.12c	ypt7	gyp2	ypt1	ryh1	ypt2	ypt5	SPAC13G6.05c	gdi1	gyp51	ypt71	bet3	trs31	trs20	bet5	gyp7	SPBC1778.09	SPCC297.05	atg1	arf6
+R-SPO-110313	Translesion synthesis by Y family DNA polymerases bypasses lesions on DNA template	dpb3	rfc3	ufd1	eso1	cdm1	ubp12	rfc1	mug40	dpb2	ubp3	rfc4	rev1	rfc5	cdc27	pol3	pol2	dpb4	cdc1	pcn1	rfc2	rev7	ssb2	ssb3	cdc48	rev3	npl4	ubp1
+R-SPO-110314	Recognition of DNA damage by PCNA-containing replication complex	dpb3	ddb1	pip1	rfc3	pcu4	cdm1	rfc1	rhp18	dpb2	rfc4	rfc5	rhp6	cdc27	pol3	pol2	dpb4	cdc1	pcn1	bun107	rfc2	cdt2	ssb2	ssb3	ubp9
+R-SPO-110373	Resolution of AP sites via the multiple-nucleotide patch replacement pathway	dpb3	rfc3	cdm1	rfc1	dpb2	rfc4	rfc5	cdc17	cdc27	pol3	rad2	pol2	dpb4	cdc1	pcn1	rfc2	ssb2	ssb3
+R-SPO-1640170	Cell Cycle	dpb3	srw1	pmt3	cul1	psc3	nup40	SPAC1A6.02	kap95	pip1	cut11	rfc3	cbf5	hal4	spp1	rem1	mad2	SPAC4F10.18	psm3	mcm10	bub3	nup120	shq1	orc5	nem1	oca2	ark1	cdm1	him1	nudc	rfc1	sna41	spp2	orc6	spb70	mcm7	ppm1	dpb2	sec13	ppk31	psf2	wpl1	psm1	mug87	rfc4	ssl3	jhd1	cnd1	pmh1	rfc5	bub1	cdc2	hta1	hta2	htb1	cdc25	wee1	hhf1	cdc13	ypt1	cdc17	cut1	cut2	rad1	ppa1	ppa2	cig1	rad9	pol1	pim1	spi1	mcm4	cdc27	pol3	mcm3	rad21	pck1	pck2	mcs2	cig2	cek1	rad2	cka1	ckb1	mcm2	cdt1	hus5	cut14	cut3	mcm5	rna1	cdc18	rad24	pht1	mcm6	plo1	rad17	hsk1	orc1	nup186	hus1	slp1	mug134	pol2	dpb4	cdc1	pcn1	orc2	erg24	mis4	ppk8	rfc2	nup124	orc3	seh1	SPAC1D4.02c	mek1	nup107	cnd3	crk1	pab1	klp9	ppk18	ssb2	ssb3	rec11	pds5	sld5	ppe1	clp1	nup184	mrc1	psf1	dna2	SPAC890.06	spo7	paa1	psf3	nup132	nup189	nup85	ned1	skp1	orc4	spo6	cnd2
+R-SPO-453279	Mitotic G1 phase and G1/S transition	dpb3	spp1	rem1	mcm10	orc5	him1	sna41	spp2	orc6	spb70	mcm7	dpb2	pmh1	cdc2	cdc25	cdc13	cig1	pol1	mcm4	mcm3	mcs2	cig2	mcm2	cdt1	mcm5	cdc18	mcm6	hsk1	orc1	pol2	dpb4	orc2	orc3	crk1	ssb2	ssb3	orc4	spo6
+R-SPO-5651801	PCNA-Dependent Long Patch Base Excision Repair	dpb3	rfc3	cdm1	rfc1	dpb2	rfc4	rfc5	cdc17	cdc27	pol3	rad2	pol2	dpb4	cdc1	pcn1	rfc2	ssb2	ssb3
+R-SPO-5656169	Termination of translesion DNA synthesis	dpb3	rfc3	eso1	cdm1	ubp12	rfc1	mug40	dpb2	ubp3	rfc4	rev1	rfc5	cdc27	pol3	pol2	dpb4	cdc1	pcn1	rfc2	ssb2	ssb3	ubp1
+R-SPO-5696397	Gap-filling DNA repair synthesis and ligation in GG-NER	dpb3	rfc3	cdm1	rfc1	dpb2	rfc4	rfc5	cdc27	pol3	pol2	dpb4	cdc1	pcn1	rfc2	ssb2	ssb3
+R-SPO-5696398	Nucleotide Excision Repair	dpb3	tfb1	ptr8	ddb1	rpb10	csn4	pip1	rfc3	prp19	pcu4	rpb7	rhp14	cdm1	rfc1	tfb4	cwf12	rpb9	rhp23	rpb4	mug40	ssl1	dpb2	csn1	rfc4	csn5	cwf11	pmh1	rfc5	cdc17	rad15	rad13	cdc27	pol3	rpb1	rpb6	mcs2	rad16	rpb3	rpc10	tfs1	rpb11	pol2	dpb4	rhp42	tfb2	cdc1	rpb2	pcn1	swi10	rpb5	rfc2	ubp5	crk1	ssb2	ssb3	rpb8	tfb5	csn2	cwf3	rhp26	ckn1	csn3	ubp15	csn71
+R-SPO-5696399	Global Genome Nucleotide Excision Repair (GG-NER)	dpb3	tfb1	ptr8	ddb1	pip1	rfc3	pcu4	rhp14	cdm1	rfc1	tfb4	rhp23	mug40	ssl1	dpb2	rfc4	pmh1	rfc5	rad15	rad13	cdc27	pol3	mcs2	rad16	pol2	dpb4	rhp42	tfb2	cdc1	pcn1	swi10	rfc2	crk1	ssb2	ssb3	tfb5
+R-SPO-5696400	Dual Incision in GG-NER	dpb3	tfb1	ptr8	ddb1	pip1	rfc3	pcu4	rhp14	cdm1	rfc1	tfb4	mug40	ssl1	dpb2	rfc4	rfc5	rad15	rad13	cdc27	pol3	rad16	pol2	dpb4	tfb2	cdc1	pcn1	swi10	rfc2	ssb2	ssb3	tfb5
+R-SPO-6781827	Transcription-Coupled Nucleotide Excision Repair (TC-NER)	dpb3	tfb1	ptr8	ddb1	rpb10	csn4	pip1	rfc3	prp19	pcu4	rpb7	rhp14	cdm1	rfc1	tfb4	cwf12	rpb9	rpb4	mug40	ssl1	dpb2	csn1	rfc4	csn5	cwf11	pmh1	rfc5	cdc17	rad15	rad13	cdc27	pol3	rpb1	rpb6	mcs2	rad16	rpb3	rpc10	tfs1	rpb11	pol2	dpb4	tfb2	cdc1	rpb2	pcn1	swi10	rpb5	rfc2	ubp5	crk1	ssb2	ssb3	rpb8	tfb5	csn2	cwf3	rhp26	ckn1	csn3	ubp15	csn71
+R-SPO-6782135	Dual incision in TC-NER	dpb3	tfb1	ptr8	ddb1	rpb10	pip1	rfc3	prp19	pcu4	rpb7	rhp14	cdm1	rfc1	tfb4	cwf12	rpb9	rpb4	mug40	ssl1	dpb2	rfc4	cwf11	pmh1	rfc5	rad15	rad13	cdc27	pol3	rpb1	rpb6	mcs2	rad16	rpb3	rpc10	tfs1	rpb11	pol2	dpb4	tfb2	cdc1	rpb2	pcn1	swi10	rpb5	rfc2	ubp5	crk1	ssb2	ssb3	rpb8	tfb5	cwf3	rhp26	ckn1	ubp15
+R-SPO-6782210	Gap-filling DNA repair synthesis and ligation in TC-NER	dpb3	tfb1	ptr8	ddb1	rpb10	pip1	rfc3	prp19	pcu4	rpb7	cdm1	rfc1	tfb4	cwf12	rpb9	rpb4	ssl1	dpb2	rfc4	cwf11	pmh1	rfc5	cdc17	rad15	cdc27	pol3	rpb1	rpb6	mcs2	rpb3	rpc10	tfs1	rpb11	pol2	dpb4	tfb2	cdc1	rpb2	pcn1	rpb5	rfc2	ubp5	crk1	ssb2	ssb3	rpb8	tfb5	cwf3	rhp26	ckn1	ubp15
+R-SPO-68952	DNA replication initiation	dpb3	spp1	spp2	spb70	dpb2	pol1	pol2	dpb4
+R-SPO-68962	Activation of the pre-replicative complex	dpb3	spp1	mcm10	orc5	him1	sna41	spp2	orc6	spb70	mcm7	dpb2	cdc2	pol1	mcm4	mcm3	mcm2	cdt1	mcm5	cdc18	mcm6	hsk1	orc1	pol2	dpb4	orc2	orc3	ssb2	ssb3	orc4	spo6
+R-SPO-69002	DNA Replication Pre-Initiation	dpb3	spp1	mcm10	orc5	him1	sna41	spp2	orc6	spb70	mcm7	dpb2	cdc2	pol1	mcm4	mcm3	mcm2	cdt1	mcm5	cdc18	mcm6	hsk1	orc1	pol2	dpb4	orc2	orc3	ssb2	ssb3	orc4	spo6
+R-SPO-69206	G1/S Transition	dpb3	spp1	rem1	mcm10	orc5	him1	sna41	spp2	orc6	spb70	mcm7	dpb2	pmh1	cdc2	cdc25	cdc13	cig1	pol1	mcm4	mcm3	mcs2	cig2	mcm2	cdt1	mcm5	cdc18	mcm6	hsk1	orc1	pol2	dpb4	orc2	orc3	crk1	ssb2	ssb3	orc4	spo6
+R-SPO-69239	Synthesis of DNA	dpb3	rfc3	spp1	rem1	cdm1	rfc1	spp2	spb70	mcm7	dpb2	psf2	rfc4	rfc5	cdc2	cdc13	cdc17	cig1	pol1	mcm4	cdc27	pol3	mcm3	cig2	rad2	mcm2	mcm5	cdc18	mcm6	orc1	pol2	dpb4	cdc1	pcn1	rfc2	ssb2	ssb3	sld5	psf1	dna2	psf3
+R-SPO-69242	S Phase	dpb3	rfc3	spp1	rem1	cdm1	rfc1	spp2	spb70	mcm7	dpb2	psf2	rfc4	rfc5	cdc2	cdc13	cdc17	cig1	pol1	mcm4	cdc27	pol3	mcm3	cig2	rad2	mcm2	mcm5	cdc18	mcm6	orc1	pol2	dpb4	cdc1	pcn1	rfc2	ssb2	ssb3	sld5	psf1	dna2	psf3
+R-SPO-69278	Cell Cycle, Mitotic	dpb3	srw1	pmt3	cul1	psc3	nup40	SPAC1A6.02	kap95	pip1	cut11	rfc3	spp1	rem1	mad2	SPAC4F10.18	psm3	mcm10	bub3	nup120	orc5	nem1	ark1	cdm1	him1	nudc	rfc1	sna41	spp2	orc6	spb70	mcm7	ppm1	dpb2	sec13	ppk31	psf2	wpl1	psm1	mug87	rfc4	ssl3	jhd1	cnd1	pmh1	rfc5	bub1	cdc2	hta1	hta2	htb1	cdc25	wee1	hhf1	cdc13	ypt1	cdc17	cut1	cut2	ppa1	ppa2	cig1	pol1	pim1	spi1	mcm4	cdc27	pol3	mcm3	rad21	pck1	pck2	mcs2	cig2	cek1	rad2	cka1	ckb1	mcm2	cdt1	hus5	cut14	cut3	mcm5	rna1	cdc18	pht1	mcm6	plo1	hsk1	orc1	nup186	slp1	mug134	pol2	dpb4	cdc1	pcn1	orc2	erg24	mis4	rfc2	nup124	orc3	seh1	SPAC1D4.02c	nup107	cnd3	crk1	pab1	klp9	ppk18	ssb2	ssb3	rec11	pds5	sld5	ppe1	clp1	nup184	psf1	dna2	SPAC890.06	spo7	paa1	psf3	nup132	nup189	nup85	ned1	skp1	orc4	spo6	cnd2
+R-SPO-69306	DNA Replication	dpb3	rfc3	spp1	rem1	mcm10	orc5	cdm1	him1	rfc1	sna41	spp2	orc6	spb70	mcm7	dpb2	psf2	rfc4	rfc5	cdc2	cdc13	cdc17	cig1	pol1	mcm4	cdc27	pol3	mcm3	cig2	rad2	mcm2	cdt1	mcm5	cdc18	mcm6	hsk1	orc1	pol2	dpb4	cdc1	pcn1	orc2	rfc2	orc3	ssb2	ssb3	sld5	psf1	dna2	psf3	orc4	spo6
+R-SPO-73884	Base Excision Repair	dpb3	rfc3	thp1	cdm1	rfc1	ung1	dpb2	rfc4	rfc5	cdc17	cdc27	pol3	rad2	pol2	dpb4	cdc1	pcn1	rfc2	nth1	myh1	ssb2	ssb3
+R-SPO-73893	DNA Damage Bypass	dpb3	ddb1	pip1	rfc3	pcu4	ufd1	eso1	cdm1	ubp12	rfc1	rhp18	mug40	dpb2	ubp3	rfc4	rev1	rfc5	rhp6	cdc27	pol3	pol2	dpb4	cdc1	pcn1	bun107	rfc2	rev7	cdt2	ssb2	ssb3	cdc48	rev3	npl4	ubp9	ubp1
+R-SPO-73894	DNA Repair	dpb3	pmt3	ubc13	tfb1	ptr8	ddb1	rpb10	csn4	pip1	rfc3	prp19	hal4	set2	cut15	mdb1	pcu4	rpb7	ufd1	eso1	ppt1	nbs1	rhp14	oca2	thp1	cdm1	ubp12	rfc1	tfb4	cwf12	msh6	tel1	rpb9	rhp18	msh2	rhp23	rpb4	ung1	mug40	spm2	ssl1	dpb2	ubp3	csn1	imp1	mst1	rfc4	pli1	csn5	cwf11	rev1	pmh1	jmj3	rfc5	hta1	hta2	htb1	hhf1	cdc17	rhp6	msh3	rad15	rad13	cdc27	pol3	rad22	rpb1	rpb6	rhp51	mcs2	rad16	rpb3	rad2	hus5	rpc10	tfs1	exo1	pms1	crb2	rpb11	pol2	dpb4	mus81	rhp42	tfb2	cdc1	rpb2	pcn1	swi10	rpb5	rad32	bun107	ppk8	rfc2	ubp5	nth1	rev7	myh1	mek1	mst2	cdt2	crk1	ssb2	ssb3	rpb8	eme1	tfb5	csn2	cdc48	rev3	npl4	cwf3	ubp9	mlh1	rhp26	ubp1	ckn1	csn3	rad50	ubp15	csn71
+R-SPO-73933	Resolution of Abasic Sites (AP sites)	dpb3	rfc3	cdm1	rfc1	dpb2	rfc4	rfc5	cdc17	cdc27	pol3	rad2	pol2	dpb4	cdc1	pcn1	rfc2	ssb2	ssb3
+R-SPO-1428517	The citric acid (TCA) cycle and respiratory electron transport	dld1	idh1	SPAC16E8.17c	SPAC24C9.06c	SPAC24C9.08	qcr6	cyt1	lat1	kgd1	qcr9	atp5	qcr7	atp3	pof2	sdh3	rhp7	atp4	atp7	SPCC1620.08	fum1	kgd2	SPCC1259.09c	mas2	cyc1	cob	atp6	atp9	sdh2	atp2	atp1	qcr8	SPAC27D7.06	SPAC20G8.04c	atp15	rip1	pdb1	glo1	atp20	cit1	pda1	SPAC1635.01	pkp1	atp16	SPBC21C3.09c	sdh4	qcr1	idh2	SPAC824.07	SPAC1805.02c	sdh1	MDH1
+R-SPO-1430728	Metabolism	dld1	zwf1	aim22	pi047	lip5	pi069	erg32	idh1	mct1	SPAC14C4.07	mug182	SPAC16E8.17c	SPAC17A5.13	SPAC17H9.08	SPAC19A8.03	SPAC19G12.05	scs7	SPAC19G12.09	dlp1	its3	SPAC1A6.03c	SPAC22A12.08c	SPAC22A12.10	SPAC23H4.01c	ppk9	mvd1	SPAC24C9.06c	SPAC24C9.08	SPCC1672.03c	hem1	SPAC31G5.05c	gcv1	SPAC3A11.10c	tbp1	SPAC3C7.01c	lcb4	SPAC56E4.03	ggt2	SPAC6B12.04c	ade3	fps1	SPAC6F6.11c	SPAC6G10.03c	SPAC6G10.04c	idp1	SPAC7D4.09c	SPAC9E9.09c	SPAC9G1.08c	SPAC9G1.10c	SPBC2F12.05c	gua1	SPBC19C2.15c	eca39	gut2	SPAC4F10.05c	ura7	aat2	omt2	tal1	apt1	SPAC23A1.14c	SPAC8E11.04c	SPBC8E4.03	SPBC8E4.04	rpn3	SPBC119.03	ppk19	ale1	rpt1	qcr6	pfk1	syj1	mmf1	ade9	SPBC2G2.13c	SPBC354.07c	SPBC354.09c	gpd3	fap1	isa2	erg26	pre3	dps1	SPBC29A3.11c	cyt1	arh1	lys9	dsd1	lac1	SPCC1020.07	pre10	SPCC1795.05c	hem15	SRR	lat1	SPCC965.12	gpx1	isd11	swf1	pgk1	ade8	rbk1	lcf1	SPBC19F5.03	mri1	sam1	kes1	dak2	SPBC21D10.11c	css1	SPBC32F12.10	SPBC3H7.02	kgd1	SPBC3H7.07c	asp1	qcr9	rpn8	ctl1	rpt4	SPCC16C4.10	SPCC1840.05c	atp5	SPCC70.03c	qcr7	ssp2	SPCC13B11.04c	SPCC970.08	SPCC162.03	met7	atp3	rpn2	pof2	ehd3	ppk27	cho1	SPCC1183.03c	SPCC1235.04c	dga1	fmn1	SPCC18.17c	sdh3	rpt3	ade10	SPCC553.02	SPCC1827.02c	rhp7	SPCC737.06c	adi1	SPBC725.01	SPBC725.05c	SPCC61.03	SPBC428.14	SPBC1604.04	atp4	atp7	nas2	SPCC1620.06c	SPCC1620.08	rpn10	erg31	trx2	SPBC646.07c	obp1	SPBC646.16	ptn1	lap2	fum1	SPBC1773.13	pre8	kgd2	SPCC1259.09c	mas2	cyc1	cob	cam1	tpi1	fbp1	SPAC977.09c	SPBC1348.10c	rpn501	rpn502	ppa1	ade1	atp6	atp9	gpd1	sdh2	atp2	atp1	gpa1	pts1	arg3	arg11	ura3	adk1	gsa1	arf1	pck1	pck2	ccr1	dfr1	erg9	cgs1	cdc22	suc22	mts2	pmd1	gpm1	tms1	car1	eno101	pka1	plc1	SPAC4A8.14	let1	rpn11	swo1	tnr3	ndk1	argx	vps34	hxk2	qcr8	rpn12	sck1	ada1	hcs1	asn1	SPCC191.02c	amk2	SPAC27D7.06	fyu1	SPBC660.16	cut6	ado1	plb1	isa1	SPBC1539.07c	pgi1	tdh1	pgr1	mam1	lag1	hem2	ats1	rpn1	SPAC20G8.02	SPAC20G8.04c	SPAC3A12.02	SPBC3D6.06c	ups1	SPBC31F10.02	SPBC31F10.03	atp15	ade2	gpa2	rip1	pdb1	gln1	pcd1	erg24	SPAC13C5.01c	pld1	SPAC31A2.04c	trm112	erg11	SPBC12C2.07c	glo1	hxk1	gcs1	atp20	erg12	gcv2	aps1	ura1	uba4	SPAC16C9.02c	sds23	pup1	gpd2	hem3	hem14	aru1	SPAC11D3.15	shm2	idi1	pis1	rmt2	abc2	pyk1	SPAC4H3.09	erg7	SPAC4G9.20c	ppt1	met9	SPAC13G7.12c	hmg1	cit1	pre6	SPBC582.08	rpn7	cbs2	SPAC1F12.07	SPAC1F12.08	etp1	sck2	pik1	etr1	pda1	SPAC26F1.07	wos2	SPAC3H5.11	SPCC1020.13c	SPBPB21E7.04c	eno102	SPBC839.16	abc1	xks1	erg1	gal10	mug180	gcv3	grx5	SPAPB1A11.02	arv1	SPAPB1A10.07c	SPAP11E10.01	ppk1	fit1	SPBC13A2.03	SPAC1635.01	abc3	dug1	SPBC1198.05	SPAC823.11	pkp1	utr4	SPAC644.05c	atp16	gua1	SPBP35G2.12	lcf2	spe2	met14	SPBC21C3.09c	car2	rpn6	abc4	SPBC1703.08c	SPBC1703.07	sdh4	qcr1	pro3	erg10	spe1	pam1	SPBC106.03	SPAC922.06	ppk16	SPAC869.05c	mel1	SPAC732.02c	ggt1	rpn9	arg82	SPAC1851.02	SPAC1039.07c	SPAC1039.03	tum1	nte1	hem12	ipk1	SPCC4B3.18	oca8	ynd1	idh2	spa1	syj2	SPBC577.10	stt4	SPBC4.06	SPAC9.02c	gdp1	SPAC824.07	lsb6	pro1	SPAC806.06c	ams1	mtq2	pup2	isu1	hem13	SPAC1805.16c	SPAC1805.02c	SPAC1786.02	SPAC15E1.10	SPAC15E1.05c	SPAC15E1.04	sdh1	SPAC1486.06	SPAC144.17c	rki1	jac1	SPAC1093.02	SPCC830.11c	SPCC830.10	SPCC23B6.01c	dpp1	pyr1	erg25	ned1	SPBC1778.03c	SPBC1778.07	SPBC725.04	mdl1	dao1	SPCC1450.09c	SPCC191.05c	MDH1	SPCC569.07	pup3	cox10
+R-SPO-162582	Signal Transduction	dld1	mei4	vma4	vph1	vma6	cpp1	SPAC19A8.06	SPAC19G12.09	its3	SPAC1A6.03c	rpb10	rho3	ppk9	srb10	rga3	vma16	maf1	myo3	lcb4	rng2	SPAC6B12.03c	SPAC6F12.06	vma13	SPAC9E9.09c	SPAC9G1.08c	SPAC9G1.10c	sce3	rpb7	SPAC8E11.04c	SPBC8E4.04	ppk19	fkh1	rga6	vma7	sep1	gef3	lsc1	gem1	lat1	vma8	cwp1	ubp12	vma10	pop3	rga5	rga4	pin1	SPCC1739.01	ssp2	SPCC13B11.04c	gtr2	bit61	vps35	pch1	rpb9	ppk27	gtr1	rpb4	toa2	SPCC736.13	snx3	rhb1	tfg1	tfg2	SPAC22H12.03	mst1	ptn1	jmj3	SPCC1259.09c	nda2	tub1	hta1	hta2	htb1	nda3	cam1	cdc25	hhf1	hht1	SPAC977.09c	SPBC1348.10c	byr1	xpo1	tbp1	ppa1	ppa2	dbp2	ste6	gpa1	spk1	vma1	vma2	wis1	pck1	pck2	ccr1	rpb1	rpb6	cgs1	csk1	rpb3	cka1	ckb1	pka1	plc1	scd2	cps3	swo1	rad24	pht1	rpc10	vma3	vps34	shk1	sck1	par2	amk2	plb1	SPBC1539.07c	map1	rpb11	cdc42	rpb2	gpa2	pdb1	rpb5	cdc4	ncs1	gef2	erg11	ste20	bzz1	gef1	rgs1	tsc1	sds23	sty1	rho1	shk2	rho2	pan1	SPBC17D1.07c	alp11	vps26	gaf1	gdi1	mst2	cbs2	sck2	par1	tif471	pda1	SPAC26F1.07	ksg1	ppb1	psk1	vma9	rho4	spm1	rpb8	rps602	vma5	rho5	ppk1	SPBC800.10c	SPAC1565.02c	pkp1	clp1	sin1	SPBC106.03	SPAC922.06	rmt1	ppk16	myo2	ubp1	efc25	toa1	end3	paa1	SPAC1786.02	vps29	ppk34	cnb1	dpp1	rlc1	tsc2	gcn5	tor2	SPCC1450.09c	skh1
+R-SPO-204174	Regulation of pyruvate dehydrogenase (PDH) complex	dld1	lat1	SPCC1259.09c	pdb1	pda1	pkp1
+R-SPO-389661	Glyoxylate metabolism and glycine degradation	dld1	aim22	lip5	gcv1	SPAC4F10.05c	lat1	kgd1	SPCC70.03c	SPBC725.01	kgd2	SPCC1259.09c	pdb1	gcv2	SPAC4H3.09	pda1	gcv3	dao1
+R-SPO-5362517	Signaling by Retinoic Acid	dld1	SPAC19A8.06	SPAC19G12.09	SPAC9E9.09c	SPBC8E4.04	lat1	SPCC13B11.04c	SPCC736.13	SPCC1259.09c	SPBC1539.07c	pdb1	erg11	pda1	SPAC26F1.07	pkp1	SPBC106.03	SPAC922.06
+R-SPO-6783984	Glycine degradation	dld1	gcv1	gcv2	gcv3
+R-SPO-70268	Pyruvate metabolism	dld1	lat1	SPCC1259.09c	pdb1	glo1	pda1	SPAC1635.01	pkp1	SPAC824.07
+R-SPO-71064	Lysine catabolism	dld1	SPAC56E4.03	fap1	lys9	kgd1	SPBC1773.13	kgd2	SPAP11E10.01	SPAC1039.07c	SPCC569.07
+R-SPO-71291	Metabolism of amino acids and derivatives	dld1	aim22	pi047	lip5	gcv1	tbp1	SPAC56E4.03	SPAC6B12.04c	SPAC6G10.04c	eca39	SPAC4F10.05c	aat2	omt2	SPAC23A1.14c	SPBC8E4.03	rpn3	rpt1	mmf1	SPBC354.09c	fap1	pre3	lys9	pre10	SRR	lat1	mri1	sam1	kgd1	SPBC3H7.07c	rpn8	ctl1	rpt4	SPCC70.03c	rpn2	ehd3	SPCC18.17c	rpt3	adi1	SPBC725.01	nas2	rpn10	SPBC646.16	SPBC1773.13	pre8	kgd2	SPCC1259.09c	rpn501	rpn502	pts1	arg3	arg11	mts2	car1	let1	rpn11	argx	rpn12	asn1	ats1	rpn1	pdb1	gln1	SPAC13C5.01c	SPAC31A2.04c	SPBC12C2.07c	gcv2	SPAC16C9.02c	pup1	aru1	shm2	rmt2	SPAC4H3.09	SPAC4G9.20c	pre6	SPBC582.08	rpn7	SPAC1F12.07	pda1	gcv3	SPAPB1A10.07c	SPAP11E10.01	utr4	spe2	car2	rpn6	pro3	spe1	pam1	rpn9	SPAC1039.07c	tum1	spa1	SPBC577.10	SPAC9.02c	pro1	pup2	SPAC15E1.10	SPBC1778.07	dao1	SPCC569.07	pup3
+R-SPO-71403	Citric acid cycle (TCA cycle)	dld1	idh1	SPAC16E8.17c	SPAC24C9.06c	kgd1	sdh3	SPCC1620.08	fum1	kgd2	sdh2	cit1	SPBC21C3.09c	sdh4	idh2	sdh1	MDH1
+R-SPO-71406	Pyruvate metabolism and Citric Acid (TCA) cycle	dld1	idh1	SPAC16E8.17c	SPAC24C9.06c	lat1	kgd1	sdh3	SPCC1620.08	fum1	kgd2	SPCC1259.09c	sdh2	pdb1	glo1	cit1	pda1	SPAC1635.01	pkp1	SPBC21C3.09c	sdh4	idh2	SPAC824.07	sdh1	MDH1
+R-SPO-9006931	Signaling by Nuclear Receptors	dld1	mei4	SPAC19A8.06	SPAC19G12.09	rpb10	srb10	lcb4	SPAC9E9.09c	rpb7	SPBC8E4.04	sep1	lsc1	lat1	SPCC13B11.04c	pch1	rpb9	rpb4	toa2	SPCC736.13	tfg1	tfg2	mst1	jmj3	SPCC1259.09c	hta1	hta2	htb1	cam1	hhf1	hht1	tbp1	dbp2	spk1	pck1	pck2	ccr1	rpb1	rpb6	csk1	rpb3	swo1	pht1	rpc10	sck1	SPBC1539.07c	rpb11	rpb2	pdb1	rpb5	erg11	gaf1	mst2	sck2	pda1	SPAC26F1.07	ksg1	rpb8	pkp1	SPBC106.03	SPAC922.06	rmt1	toa1	gcn5
+R-SPO-212436	Generic Transcription Pathway	zwf1	phd1	rmt3	tfb1	ptr8	its3	rpb10	pst2	spt5	ppk9	srb10	lsk1	SPAC6B12.03c	eaf6	pmp20	rpb7	png1	pof4	clr6	SPBC36.10	lsc1	SPBC15C4.03	pop3	tfb4	pin1	ssp2	bit61	pch1	tel1	rpb9	png2	pst3	nto1	ppk27	rpb4	tpx1	ssl1	spt16	bet4	tfg1	tfg2	mst1	trx2	pob3	pmh1	hta1	hta2	htb1	cdc25	hhf1	hht1	byr1	rad15	wis1	rpb1	rpb6	mcs2	csk1	rpb3	cka1	ckb1	rad24	ptb1	pht1	rpc10	tfs1	plo1	sck1	amk2	pgi1	pgr1	rpb11	tfb2	rpb2	rpb5	pom1	ste20	pst1	tsc1	ppk5	sds23	cbs2	sck2	crk1	ksg1	rpb8	SPBC119.18	cdk9	tfb5	ppk1	fcp1	spt4	sin1	ppk16	elc1	SPAP8A3.10	tsc2	tor2	skh1
+R-SPO-3700989	Transcriptional Regulation by TP53	zwf1	tfb1	ptr8	its3	rpb10	spt5	ppk9	srb10	lsk1	SPAC6B12.03c	eaf6	pmp20	rpb7	png1	pof4	SPBC36.10	lsc1	SPBC15C4.03	pop3	tfb4	pin1	ssp2	bit61	pch1	tel1	rpb9	png2	nto1	ppk27	rpb4	tpx1	ssl1	spt16	bet4	tfg1	tfg2	mst1	trx2	pob3	pmh1	cdc25	byr1	rad15	wis1	rpb1	rpb6	mcs2	csk1	rpb3	cka1	ckb1	rad24	ptb1	rpc10	tfs1	plo1	sck1	amk2	pgi1	pgr1	rpb11	tfb2	rpb2	rpb5	pom1	ste20	tsc1	ppk5	sds23	cbs2	sck2	crk1	ksg1	rpb8	SPBC119.18	cdk9	tfb5	ppk1	fcp1	spt4	sin1	ppk16	elc1	SPAP8A3.10	tsc2	tor2	skh1
+R-SPO-5628897	TP53 Regulates Metabolic Genes	zwf1	ppk9	pmp20	ssp2	ppk27	tpx1	trx2	rad24	sck1	amk2	pgi1	pgr1	tsc1	sds23	cbs2	sck2	ppk1	ppk16	tsc2
+R-SPO-71336	Pentose phosphate pathway	zwf1	SPAC31G5.05c	tal1	rbk1	SPCC16C4.10	SPCC1840.05c	SPCC1620.06c	SPAC4A8.14	SPBC660.16	SPBC3D6.06c	rki1
+R-SPO-71387	Metabolism of carbohydrates	zwf1	SPAC19G12.05	SPAC19G12.09	SPAC31G5.05c	SPAC9E9.09c	aat2	tal1	SPBC8E4.04	pfk1	gpd3	pgk1	rbk1	dak2	SPBC32F12.10	SPBC3H7.02	SPCC16C4.10	SPCC1840.05c	SPBC725.01	SPCC1620.06c	tpi1	fbp1	gpm1	tms1	eno101	SPAC4A8.14	hxk2	fyu1	SPBC660.16	pgi1	tdh1	SPBC3D6.06c	hxk1	pyk1	SPAC26F1.07	eno102	abc1	xks1	gal10	met14	abc4	SPAC869.05c	SPAC732.02c	ams1	SPAC144.17c	rki1	pyr1	MDH1
+R-SPO-1280218	Adaptive Immune System	ubc7	ubc11	srw1	ubc13	ubr11	cul1	ptr1	pip1	tbp1	SPAC6B12.03c	SPAC6G10.04c	pub3	SPAC10F6.04	ubc6	cut20	rpn3	rpt1	apc10	fkh1	pre3	pre10	SPBC14F5.10c	ubr1	pop3	rkr1	rpn8	rpt4	SPCC1739.01	pof7	bit61	ubc12	SPBC1734.10c	rpn2	ubc1	rsa4	SPCC18.17c	sec231	rpt3	spm2	SPBP8B7.15c	lub1	sog2	nas2	rpn10	SPBC646.16	ptn1	cut23	pre8	jhd1	ptr3	rpn501	rpn502	nuc2	rhp6	ppa1	ppa2	puc1	pts1	sxa1	pck1	pck2	mts2	pmd1	cps3	let1	rpn11	cut9	ubc4	rpn12	shk1	sck1	par2	mam1	slp1	rpn1	cdc42	sar1	SPAC13C5.01c	SPAC31A2.04c	ste20	cul3	prz1	pup1	pof11	shk2	pre6	rpn7	sck2	par1	SPAC12B10.01c	ksg1	SPAC167.07c	apc2	pub1	ufd2	dbl4	apc5	mdv1	ubc8	rpn6	sin1	pam1	cut4	ytm1	rpn9	SPBC577.10	SPBC4.03c	ape1	paa1	rfp2	apc11	pup2	pub2	SPAC15E1.10	sfc2	ubc14	sec24	skp1	tor2	mdl1	pup3	ubc15
+R-SPO-168256	Immune System	ubc7	ubc11	srw1	ded1	pi030	ubc13	vma4	ain1	ubr11	vph1	vma6	mde10	SPAC17A5.08	cpp1	cul1	gmf1	ptr1	kap95	ypt4	rho3	pip1	SPAC26H5.04	dap1	rga3	vma16	lsk1	tbp1	rng2	SPAC6B12.03c	SPAC6F6.11c	SPAC6G10.04c	idp1	SPAC6G10.10c	vma13	SPAC9G1.08c	pub3	gua1	eft201	SPAC10F6.04	ubc6	cut20	apt1	SPAC8E11.04c	rpn3	SPBC119.09c	rpt1	pfk1	apc10	fkh1	vma7	SPBC215.01	pre3	atg7	git7	dsd1	SPBC530.09c	pre10	vma8	SPCC965.06	ssa2	wbp1	cwp1	arp10	SPBC14F5.10c	scs2	ubr1	vma10	pop3	rga5	rkr1	rga4	SPBC32F12.10	rpn8	ctl1	rpt4	SPCC1739.01	SPCC1840.05c	ist1	SPCC285.04	ucp10	pof7	bit61	ubc12	SPCC970.06	SPBC1734.10c	rpn2	hbs1	sec9	ubc1	rsa4	SPCC18.17c	sec231	tpx1	rpt3	spm2	SPBP8B7.15c	lub1	sog2	SPBC887.12	SPBC725.05c	nas2	pku70	rpn10	trx2	SPBC646.16	ptn1	lap2	cut23	pre8	jhd1	ptr3	arp1	ypt7	gyp2	nda3	cam1	tef101	tef102	tef103	rpn501	rpn502	nuc2	byr1	ral2	ryh1	ypt2	rhp6	ppa1	ppa2	puc1	pyp1	spk1	pts1	vma1	vma2	pyp2	pyp3	sxa1	wis1	pck1	pck2	ypt5	ccr1	mts2	pmd1	cap1	gpm1	ckb1	cps3	let1	rpn11	swo1	cut9	ubc4	ndk1	vma3	hxk2	rpn12	shk1	sck1	ada1	atf1	cta1	par2	pgi1	cct8	atf21	mam1	slp1	hem2	rpn1	nhp6	cdc42	sar1	cdb4	pcd1	SPAC13C5.01c	rad32	pld1	SPAC31A2.04c	ste20	hxk1	cul3	atf31	prz1	pup1	pof11	sty1	SPAC30D11.01c	rho1	shk2	aru1	rho2	cct2	SPAC26A3.11	erf4	SPBC17D1.07c	pyk1	ssa1	gdi1	arc5	pre6	rpn7	sck2	mkh1	par1	SPAC12B10.01c	ksg1	ppb1	SPAC167.07c	mug89	vma9	lvs1	rho4	apc2	ost3	syb1	spm1	pub1	apl3	agl1	vma5	ypt71	rho5	ufd2	apm1	pku80	srp14	cdc48	knd1	dbl4	dil1	apc5	app1	mdv1	emp24	pmo25	ubc8	rpn6	SPBC1703.07	sin1	pam1	dlc2	cut4	SPAC1039.11c	ytm1	mel1	rpn9	SPAC1851.02	SPBC577.10	SPBC4.06	SPBC4.03c	ape1	paa1	bet5	rfp2	apc11	pup2	SPAC1805.16c	pub2	SPAC15E1.10	SPAC1486.06	sfc2	ubc14	dlc1	cnb1	dpp1	mis13	sec26	SPAC926.06c	sec24	arp2	skp1	SPBC1778.05c	tor2	mdl1	pup3	ubc15	skh1
+R-SPO-983168	Antigen processing: Ubiquitination & Proteasome degradation	ubc7	ubc11	srw1	ubc13	ubr11	cul1	ptr1	pip1	pub3	SPAC10F6.04	ubc6	cut20	apc10	SPBC14F5.10c	ubr1	rkr1	SPCC1739.01	pof7	ubc12	SPBC1734.10c	ubc1	rsa4	spm2	SPBP8B7.15c	lub1	sog2	cut23	jhd1	ptr3	nuc2	rhp6	puc1	cps3	cut9	ubc4	slp1	cul3	prz1	pof11	SPAC12B10.01c	SPAC167.07c	apc2	pub1	ufd2	dbl4	apc5	mdv1	ubc8	cut4	ytm1	ape1	rfp2	apc11	pub2	sfc2	ubc14	skp1	ubc15
+R-SPO-983169	Class I MHC mediated antigen processing & presentation	ubc7	ubc11	srw1	ubc13	ubr11	cul1	ptr1	pip1	tbp1	SPAC6G10.04c	pub3	SPAC10F6.04	ubc6	cut20	rpn3	rpt1	apc10	pre3	pre10	SPBC14F5.10c	ubr1	rkr1	rpn8	rpt4	SPCC1739.01	pof7	ubc12	SPBC1734.10c	rpn2	ubc1	rsa4	SPCC18.17c	sec231	rpt3	spm2	SPBP8B7.15c	lub1	sog2	nas2	rpn10	SPBC646.16	cut23	pre8	jhd1	ptr3	rpn501	rpn502	nuc2	rhp6	puc1	pts1	mts2	pmd1	cps3	let1	rpn11	cut9	ubc4	rpn12	mam1	slp1	rpn1	sar1	SPAC13C5.01c	SPAC31A2.04c	cul3	prz1	pup1	pof11	pre6	rpn7	SPAC12B10.01c	SPAC167.07c	apc2	pub1	ufd2	dbl4	apc5	mdv1	ubc8	rpn6	pam1	cut4	ytm1	rpn9	SPBC577.10	SPBC4.03c	ape1	rfp2	apc11	pup2	pub2	SPAC15E1.10	sfc2	ubc14	sec24	skp1	mdl1	pup3	ubc15
+R-SPO-6807505	RNA polymerase II transcribes snRNA genes	taf5	sua7	rpb10	srb10	spt3	rpb7	lsc1	taf13	taf6	pch1	rpb9	rpb4	toa2	tfg1	tfg2	tbp1	rpb1	rpb6	csk1	rpb3	rpc10	tfa2	rpb11	rpb2	rpb5	taf9	crk1	rpb8	tfa1	taf11	toa1
+R-SPO-73776	RNA Polymerase II Promoter Escape	taf5	taf7	taf12	tfb1	sua7	ptr8	rpb10	spt3	rpb7	taf13	taf10	tfb4	taf6	rpb9	rpb4	toa2	ssl1	tfg1	tfg2	pmh1	tbp1	rad15	rpb1	rpb6	mcs2	rpb3	rpc10	tfa2	taf2	rpb11	tfb2	rpb2	rpb5	SPAC2G11.14	taf9	crk1	rpb8	tfb5	tfa1	taf4	taf11	toa1
+R-SPO-73779	RNA Polymerase II Transcription Pre-Initiation And Promoter Opening	taf5	taf7	taf12	tfb1	sua7	ptr8	rpb10	spt3	rpb7	taf13	taf10	tfb4	taf6	rpb9	rpb4	toa2	ssl1	tfg1	tfg2	pmh1	tbp1	rad15	rpb1	rpb6	mcs2	rpb3	rpc10	tfa2	taf2	rpb11	tfb2	rpb2	rpb5	SPAC2G11.14	taf9	crk1	rpb8	tfb5	tfa1	taf4	taf11	toa1
+R-SPO-75953	RNA Polymerase II Transcription Initiation	taf5	taf7	taf12	tfb1	sua7	ptr8	rpb10	spt3	rpb7	taf13	taf10	tfb4	taf6	rpb9	rpb4	toa2	ssl1	tfg1	tfg2	pmh1	tbp1	rad15	rpb1	rpb6	mcs2	rpb3	rpc10	tfa2	taf2	rpb11	tfb2	rpb2	rpb5	SPAC2G11.14	taf9	crk1	rpb8	tfb5	tfa1	taf4	taf11	toa1
+R-SPO-76042	RNA Polymerase II Transcription Initiation And Promoter Clearance	taf5	taf7	taf12	tfb1	sua7	ptr8	rpb10	spt3	rpb7	taf13	taf10	tfb4	taf6	rpb9	rpb4	toa2	ssl1	tfg1	tfg2	pmh1	tbp1	rad15	rpb1	rpb6	mcs2	rpb3	rpc10	tfa2	taf2	rpb11	tfb2	rpb2	rpb5	SPAC2G11.14	taf9	crk1	rpb8	tfb5	tfa1	taf4	taf11	toa1
+R-SPO-174143	APC/C-mediated degradation of cell cycle proteins	srw1	mad2	bub3	bub1	slp1	clp1
+R-SPO-176407	Conversion from APC/C:Cdc20 to APC/C:Cdh1 in late anaphase	srw1	clp1
+R-SPO-453276	Regulation of mitotic cell cycle	srw1	mad2	bub3	bub1	slp1	clp1
+R-SPO-2990846	SUMOylation	phd1	pmt3	mei4	smc5	psc3	nup40	SPAC1A6.02	cut11	mdb1	SPAC4F10.18	psm3	png1	ulp1	nup44	nup120	sep1	clr6	thp1	amo1	nup211	png2	sec13	psm1	mug87	pli1	top1	top2	hhf1	dbp2	rad21	rad22	hus5	rna1	rae1	smc6	clr3	nup186	crb2	rhp42	pcn1	hba1	nup45	nup124	seh1	SPAC3H8.09c	nsp1	nup107	hsp3106	nse2	nse1	nse4	rec11	nup82	ppk15	nup184	nop58	SPAC890.06	nup132	nup189	nup85	nse3
+R-SPO-3108232	SUMO E3 ligases SUMOylate target proteins	phd1	pmt3	mei4	smc5	psc3	nup40	SPAC1A6.02	cut11	mdb1	SPAC4F10.18	psm3	png1	nup44	nup120	sep1	clr6	thp1	amo1	nup211	png2	sec13	psm1	mug87	pli1	top1	top2	hhf1	dbp2	rad21	rad22	hus5	rna1	rae1	smc6	clr3	nup186	crb2	rhp42	pcn1	hba1	nup45	nup124	seh1	SPAC3H8.09c	nsp1	nup107	hsp3106	nse2	nse1	nse4	rec11	nup82	ppk15	nup184	nop58	SPAC890.06	nup132	nup189	nup85	nse3
+R-SPO-3214815	HDACs deacetylate histones	phd1	clr6	sol1	mis16	SPCC126.13c	hta1	hta2	htb1	hhf1	hht1	clr3	dep1	rsc9	sds3
+R-SPO-3247509	Chromatin modifying enzymes	phd1	rmt3	clr6	sol1	rps2	mis16	set6	SPCC126.13c	jhd1	hta1	hta2	htb1	hhf1	hht1	atf1	clr3	atf21	atf31	dep1	rsc9	rmt1	set9	sds3	hat1
+R-SPO-392499	Metabolism of proteins	phd1	pmt3	mei4	nep2	rps1002	sec31	sed5	rmt3	rpl8	sec10	smc5	ain1	SPAC15A10.12c	gna1	SPAC17A5.08	cul1	SPAC17H9.07	ddb1	psc3	nup40	SPAC1A6.02	ypt4	mug84	bet1	alg1	erv25	pip1	cut11	mvd1	otu1	sec16	rps1201	rpl44	mdb1	SPAC3A11.03	pcu4	tbp1	lcb4	nip1	SPAC4D7.04c	alg13	alg14	exo84	SPAC6G10.04c	trs120	SPAC7D4.09c	rps5	rpp203	SPBC16E9.09c	rpl1701	gpi1	sce3	rpl2701	ubl1	eft201	dpm1	SPAC4F10.18	psm3	rpl1902	rpl2102	rpl1602	swd1	png1	rpn3	rpt1	sec27	ulp1	nup44	rps1701	rpl1601	pmi40	swd3	trs23	nup120	alg6	sep1	eif3f	pre3	rps902	clr6	dph1	pdf1	pre10	srp72	gpi2	thp1	ssa2	rps2402	alg5	ykt6	SPBC15C4.03	rps3	rpl701	rps2501	tef5	rpl13	rpl502	amo1	rps29	rps27	sof1	cct3	rpl2502	nup211	srp68	rpn8	rpt4	SPCC285.14	pof7	sly1	ubc12	sec8	sup35	png2	tif452	hse1	tif32	rpn2	SPBC17D11.08	sec28	hbs1	rpl101	sec6	rpp0	SPCC18.17c	sec231	rpl2402	ret3	rps2	rps20	rpt3	dph5	rpl35	sec15	moe1	rpl14	mis16	erd2	lub1	sec13	SPBC1271.04c	psm1	nas2	sec65	bet4	mug87	rps102	rpn10	pli1	mug137	cct1	int6	cct6	SPBC646.16	iqw1	ire1	pre8	sec5	jhd1	uap1	dpm3	ypt7	rpl3602	gyp10	rps1501	rpl3702	rps21	rpl39	top1	top2	ras1	hhf1	tef101	tef102	tef103	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpn501	rpn502	ypt1	rpp101	rpp102	ryh1	ypt2	ypt3	ppa1	srp54	dbp2	puc1	rps13	pts1	rad21	pab1	rpl402	arf1	cal1	rpl302	rpl2802	ypt5	rad22	mts2	rpl301	rrg1	tef3	hus5	rna1	let1	rae1	rpn11	gpt2	ptb1	tif1	rpn12	cct4	smc6	tif11	tif211	tif225	tif223	tif51a	tif212	clr3	rpl2801	rps1901	rpl3703	tif35	nup186	cct8	rpl26	tif451	rpl3202	sup45	rpl6	sum1	mam4	rpn1	crb2	SPAC20G8.02	SPAC3A12.02	SPAC3A12.13c	sec21	cct7	rps401	gpi3	rhp42	rib2	sar1	pcn1	rpl1001	tif213	hba1	rpl22	SPAC13C5.01c	SPAC13C5.05c	tif5	gpi18	SPAC31A2.04c	eif3m	trm112	sft1	SPBC12C2.11	rps901	cul3	uba3	rps101	las21	SPAC13G6.05c	nup45	gos1	smp3	prz1	pup1	pof11	uso1	wdr21	nup124	tif224	SPAC1F5.02	seh1	rps7	SPAC3H8.09c	cct2	nsp1	uch1	dph2	rpl901	SPAC56F8.03	ssa1	git5	SPAC17G8.12	pre6	nup107	rpn7	exo70	hsp3106	glo3	SPAC25G10.08	tif471	alg8	spo14	cdt2	nse2	nse1	nse4	rpl1802	its8	dcn1	ubp6	rpl2401	rpl29	rec11	SPBPJ4664.04	alg2	rps602	gpi12	ypt71	gcn2	cis4	sst2	srp14	nup82	cdc48	knd1	rps502	rps403	sec17	lia1	ppk15	bet3	rpl1002	rpl401	rps802	bos1	mdv1	emp24	rps1702	nup184	trs31	sec18	alg9	SPBC211.03c	rpn6	nop58	see1	pam1	rpl31	SPAC890.06	ytm1	pcm2	rpn9	rpl1502	alg12	psy1	gpi10	tif221	mug71	SPBC577.10	ckn1	rpl3801	SPBC4.03c	tif51b	rps402	dpm2	rpl35b	trs20	dph3	eif3h	rps2601	bet5	tif222	uba5	mtq2	pup2	rps2602	nup132	SPAC15E1.10	rpl42	pmm1	nup189	gwt1	sfc2	cct5	rpl3002	rps1502	uch2	rpl2101	nup85	sec26	sec24	SPAC22F8.04	skp1	alg3	nus1	sec22	gpi15	rps001	SPCC1450.15	sec59	pup3	nse3	rpn1301
+R-SPO-4551638	SUMOylation of chromatin organization proteins	phd1	pmt3	nup40	SPAC1A6.02	cut11	SPAC4F10.18	nup44	nup120	clr6	amo1	nup211	sec13	mug87	hhf1	hus5	rae1	clr3	nup186	hba1	nup45	nup124	seh1	nsp1	nup107	nup82	nup184	SPAC890.06	nup132	nup189	nup85
+R-SPO-4839726	Chromatin organization	phd1	rmt3	clr6	sol1	rps2	mis16	set6	SPCC126.13c	jhd1	hta1	hta2	htb1	hhf1	hht1	atf1	clr3	atf21	atf31	dep1	rsc9	rmt1	set9	sds3	hat1
+R-SPO-597592	Post-translational protein modification	phd1	pmt3	mei4	nep2	sec31	sed5	rmt3	smc5	ain1	SPAC15A10.12c	gna1	SPAC17A5.08	cul1	ddb1	psc3	nup40	SPAC1A6.02	ypt4	mug84	bet1	alg1	erv25	pip1	cut11	mvd1	otu1	sec16	mdb1	SPAC3A11.03	pcu4	tbp1	SPAC4D7.04c	alg13	alg14	SPAC6G10.04c	trs120	SPAC7D4.09c	SPBC16E9.09c	gpi1	ubl1	eft201	dpm1	SPAC4F10.18	psm3	swd1	png1	rpn3	rpt1	sec27	ulp1	nup44	pmi40	swd3	trs23	nup120	alg6	sep1	pre3	clr6	dph1	pdf1	pre10	gpi2	thp1	ssa2	alg5	ykt6	SPBC15C4.03	amo1	sof1	nup211	rpn8	rpt4	SPCC285.14	pof7	sly1	ubc12	png2	hse1	rpn2	SPBC17D11.08	sec28	hbs1	SPCC18.17c	sec231	ret3	rps2	rpt3	dph5	mis16	erd2	lub1	sec13	SPBC1271.04c	psm1	nas2	bet4	mug87	rpn10	pli1	mug137	SPBC646.16	iqw1	pre8	jhd1	uap1	dpm3	ypt7	gyp10	top1	top2	ras1	hhf1	tef101	tef102	tef103	rpn501	rpn502	ypt1	ryh1	ypt2	ypt3	dbp2	puc1	pts1	rad21	arf1	cal1	ypt5	rad22	mts2	rrg1	hus5	rna1	let1	rae1	rpn11	gpt2	ptb1	rpn12	smc6	tif51a	clr3	nup186	mam4	rpn1	crb2	SPAC20G8.02	sec21	gpi3	rhp42	rib2	sar1	pcn1	hba1	SPAC13C5.01c	SPAC13C5.05c	gpi18	SPAC31A2.04c	sft1	SPBC12C2.11	cul3	uba3	las21	SPAC13G6.05c	nup45	gos1	smp3	prz1	pup1	pof11	uso1	wdr21	nup124	SPAC1F5.02	seh1	SPAC3H8.09c	nsp1	uch1	dph2	ssa1	pre6	nup107	rpn7	hsp3106	glo3	alg8	spo14	cdt2	nse2	nse1	nse4	its8	dcn1	ubp6	rec11	SPBPJ4664.04	alg2	gpi12	ypt71	sst2	nup82	cdc48	knd1	sec17	lia1	ppk15	bet3	bos1	mdv1	emp24	nup184	trs31	sec18	alg9	SPBC211.03c	rpn6	nop58	see1	pam1	SPAC890.06	ytm1	rpn9	alg12	psy1	gpi10	mug71	SPBC577.10	ckn1	SPBC4.03c	tif51b	dpm2	trs20	dph3	bet5	uba5	pup2	nup132	SPAC15E1.10	pmm1	nup189	gwt1	sfc2	uch2	nup85	sec26	sec24	SPAC22F8.04	skp1	alg3	nus1	sec22	gpi15	SPCC1450.15	sec59	pup3	nse3	rpn1301
+R-SPO-8878171	Transcriptional regulation by RUNX1	phd1	rmt3	pst2	clr6	pst3	hta1	hta2	htb1	hhf1	hht1	pht1	pst1
+R-SPO-8936459	RUNX1 regulates genes involved in megakaryocyte differentiation and platelet function	phd1	rmt3	pst2	clr6	pst3	hta1	hta2	htb1	hhf1	hht1	pht1	pst1
+R-SPO-2555396	Mitotic Metaphase and Anaphase	pmt3	nup40	SPAC1A6.02	kap95	cut11	SPAC4F10.18	nup120	sec13	mug87	cut1	cut2	pim1	spi1	hus5	rna1	nup186	erg24	nup124	seh1	nup107	nup184	SPAC890.06	nup132	nup189	nup85
+R-SPO-2995410	Nuclear Envelope (NE) Reassembly	pmt3	nup40	SPAC1A6.02	kap95	cut11	SPAC4F10.18	nup120	sec13	mug87	pim1	spi1	hus5	rna1	nup186	erg24	nup124	seh1	nup107	nup184	SPAC890.06	nup132	nup189	nup85
+R-SPO-3065679	SUMO is proteolytically processed	pmt3	ulp1
+R-SPO-3108214	SUMOylation of DNA damage response and repair proteins	pmt3	smc5	psc3	mdb1	psm3	thp1	psm1	rad21	rad22	hus5	smc6	rhp42	nse2	nse1	nse4	rec11	nse3
+R-SPO-3215018	Processing and activation of SUMO	pmt3	ulp1
+R-SPO-3232118	SUMOylation of transcription factors	pmt3	mei4	sep1	pli1	hus5	crb2
+R-SPO-3899300	SUMOylation of transcription cofactors	pmt3	png1	png2	pli1	dbp2	hus5	hsp3106	ppk15
+R-SPO-4085377	SUMOylation of SUMOylation proteins	pmt3	nup40	SPAC1A6.02	cut11	SPAC4F10.18	nup44	nup120	amo1	nup211	sec13	mug87	pli1	hus5	rae1	nup186	hba1	nup45	nup124	seh1	nsp1	nup107	nup82	nup184	SPAC890.06	nup132	nup189	nup85
+R-SPO-4570464	SUMOylation of RNA binding proteins	pmt3	nup40	SPAC1A6.02	cut11	SPAC4F10.18	nup44	nup120	amo1	nup211	sec13	mug87	hus5	rae1	nup186	hba1	nup45	nup124	seh1	SPAC3H8.09c	nsp1	nup107	nup82	nup184	nop58	SPAC890.06	nup132	nup189	nup85
+R-SPO-4615885	SUMOylation of DNA replication proteins	pmt3	top1	top2	hus5	pcn1
+R-SPO-5693532	DNA Double-Strand Break Repair	pmt3	ubc13	hal4	set2	cut15	mdb1	ppt1	nbs1	oca2	tel1	spm2	imp1	mst1	pli1	jmj3	hta1	hta2	htb1	hhf1	rad22	rhp51	rad2	hus5	crb2	mus81	rad32	ppk8	mek1	mst2	eme1	rad50
+R-SPO-5693565	Recruitment and ATM-mediated phosphorylation of repair and signaling proteins at DNA double strand breaks	pmt3	ubc13	set2	mdb1	ppt1	nbs1	tel1	spm2	mst1	pli1	jmj3	hta1	hta2	htb1	hhf1	hus5	crb2	rad32	mek1	mst2	rad50
+R-SPO-5693606	DNA Double Strand Break Response	pmt3	ubc13	set2	cut15	mdb1	ppt1	nbs1	tel1	spm2	imp1	mst1	pli1	jmj3	hta1	hta2	htb1	hhf1	hus5	crb2	rad32	mek1	mst2	rad50
+R-SPO-68882	Mitotic Anaphase	pmt3	nup40	SPAC1A6.02	kap95	cut11	SPAC4F10.18	nup120	sec13	mug87	cut1	cut2	pim1	spi1	hus5	rna1	nup186	erg24	nup124	seh1	nup107	nup184	SPAC890.06	nup132	nup189	nup85
+R-SPO-68886	M Phase	pmt3	psc3	nup40	SPAC1A6.02	kap95	cut11	SPAC4F10.18	psm3	nup120	nem1	nudc	sec13	ppk31	wpl1	psm1	mug87	ssl3	jhd1	cnd1	hta1	hta2	htb1	hhf1	ypt1	cut1	cut2	pim1	spi1	rad21	pck1	pck2	cek1	cka1	ckb1	hus5	cut14	cut3	rna1	pht1	plo1	nup186	mug134	erg24	mis4	nup124	seh1	SPAC1D4.02c	nup107	cnd3	klp9	ppk18	rec11	pds5	nup184	SPAC890.06	spo7	nup132	nup189	nup85	ned1	cnd2
+R-SPO-9615933	Postmitotic nuclear pore complex (NPC) reformation	pmt3	nup40	SPAC1A6.02	cut11	SPAC4F10.18	nup120	sec13	mug87	pim1	spi1	hus5	rna1	nup186	nup124	seh1	nup107	nup184	SPAC890.06	nup132	nup189	nup85
+R-SPO-168249	Innate Immune System	ded1	pi030	vma4	ain1	vph1	vma6	mde10	SPAC17A5.08	gmf1	ptr1	kap95	ypt4	rho3	SPAC26H5.04	dap1	rga3	vma16	lsk1	tbp1	rng2	SPAC6F6.11c	idp1	SPAC6G10.10c	vma13	gua1	eft201	apt1	rpn3	SPBC119.09c	rpt1	pfk1	vma7	SPBC215.01	atg7	git7	dsd1	SPBC530.09c	vma8	SPCC965.06	ssa2	wbp1	arp10	scs2	vma10	rga5	rga4	SPBC32F12.10	rpn8	ctl1	SPCC1840.05c	ist1	SPCC285.04	ucp10	SPCC970.06	rpn2	hbs1	sec9	tpx1	SPBC887.12	SPBC725.05c	pku70	trx2	lap2	pre8	arp1	ypt7	gyp2	nda3	cam1	tef101	tef102	tef103	rpn501	rpn502	byr1	ral2	ryh1	ypt2	ppa1	ppa2	pyp1	spk1	vma1	vma2	pyp2	pyp3	sxa1	wis1	pck1	pck2	ypt5	ccr1	cap1	gpm1	ckb1	rpn11	swo1	ndk1	vma3	hxk2	shk1	ada1	atf1	cta1	pgi1	cct8	atf21	hem2	rpn1	nhp6	cdc42	cdb4	pcd1	rad32	pld1	hxk1	atf31	pup1	sty1	SPAC30D11.01c	rho1	aru1	rho2	cct2	SPAC26A3.11	erf4	SPBC17D1.07c	pyk1	ssa1	gdi1	arc5	rpn7	mkh1	par1	ksg1	ppb1	mug89	vma9	lvs1	rho4	ost3	syb1	spm1	apl3	agl1	vma5	ypt71	rho5	apm1	pku80	srp14	cdc48	knd1	dil1	app1	emp24	pmo25	rpn6	SPBC1703.07	pam1	dlc2	SPAC1039.11c	mel1	rpn9	SPAC1851.02	SPBC4.06	ape1	paa1	bet5	pup2	SPAC1805.16c	SPAC1486.06	dlc1	cnb1	dpp1	mis13	sec26	SPAC926.06c	arp2	SPBC1778.05c	skh1
+R-SPO-6798695	Neutrophil degranulation	ded1	pi030	ain1	vph1	mde10	SPAC17A5.08	gmf1	ptr1	kap95	ypt4	rho3	SPAC26H5.04	dap1	rga3	lsk1	tbp1	rng2	SPAC6F6.11c	idp1	SPAC6G10.10c	gua1	eft201	apt1	rpn3	SPBC119.09c	rpt1	pfk1	SPBC215.01	atg7	dsd1	SPBC530.09c	vma8	SPCC965.06	ssa2	wbp1	arp10	scs2	rga5	rga4	SPBC32F12.10	rpn8	ctl1	SPCC1840.05c	ist1	SPCC285.04	ucp10	SPCC970.06	rpn2	hbs1	sec9	tpx1	SPBC887.12	SPBC725.05c	pku70	lap2	pre8	arp1	ypt7	gyp2	nda3	cam1	tef101	tef102	tef103	rpn501	rpn502	ral2	ryh1	ypt2	pyp1	spk1	pyp2	pyp3	sxa1	pck1	pck2	ypt5	cap1	gpm1	ckb1	rpn11	swo1	ndk1	vma3	hxk2	ada1	cta1	pgi1	cct8	hem2	rpn1	nhp6	cdb4	pcd1	pld1	hxk1	pup1	sty1	SPAC30D11.01c	rho1	aru1	rho2	cct2	SPAC26A3.11	erf4	SPBC17D1.07c	pyk1	ssa1	gdi1	arc5	rpn7	mug89	lvs1	rho4	ost3	syb1	spm1	apl3	agl1	ypt71	rho5	apm1	pku80	srp14	cdc48	knd1	dil1	app1	emp24	pmo25	rpn6	SPBC1703.07	pam1	dlc2	SPAC1039.11c	mel1	rpn9	SPAC1851.02	SPBC4.06	ape1	bet5	pup2	SPAC1805.16c	SPAC1486.06	dlc1	mis13	sec26	SPAC926.06c	arp2	SPBC1778.05c
+R-SPO-8939211	ESR-mediated signaling	mei4	rpb10	srb10	lcb4	rpb7	sep1	lsc1	pch1	rpb9	rpb4	toa2	tfg1	tfg2	mst1	jmj3	hta1	hta2	htb1	cam1	hhf1	hht1	tbp1	dbp2	spk1	pck1	pck2	ccr1	rpb1	rpb6	csk1	rpb3	swo1	pht1	rpc10	sck1	rpb11	rpb2	rpb5	gaf1	mst2	sck2	ksg1	rpb8	rmt1	toa1	gcn5
+R-SPO-9018519	Estrogen-dependent gene expression	mei4	rpb10	srb10	rpb7	sep1	lsc1	pch1	rpb9	rpb4	toa2	tfg1	tfg2	mst1	jmj3	hta1	hta2	htb1	hhf1	hht1	tbp1	dbp2	rpb1	rpb6	csk1	rpb3	pht1	rpc10	rpb11	rpb2	rpb5	gaf1	mst2	rpb8	rmt1	toa1	gcn5
+R-SPO-6791226	Major pathway of rRNA processing in the nucleolus and cytosol	fcf1	ebp2	imp4	imp3	utp17	rrp40	mpp10	SPCC1672.07	SPAC2E11.11c	mtr4	ski6	rrp46	las1	ulp1	nop14	rps902	csl4	utp20	rrp42	utp4	ppp1	utp10	utp6	sof1	erb1	SPCC1739.07	snu13	mis3	grn1	rrp5	rps2	rrp45	utp25	utp15	SPBC1604.06c	nop56	bms1	utp22	rrp7	ipi1	fib1	SPBC29A3.06	SPAC57A7.06	SPBC3D6.12	rrp4	rps901	rok1	SPAC12G12.06c	rps7	utp11	mra1	rrp6	rrp43	crb3	SPBC3B8.09	rps602	SPBC713.04c	SPAPB1A10.06c	utp5	dbp8	utp7	rrp3	rrp36	SPAC2E1P5.05	mtr3	nop58	ytm1	utp13	grc3
+R-SPO-72312	rRNA processing	fcf1	ebp2	imp4	imp3	utp17	rrp40	mpp10	SPCC1672.07	SPAC2E11.11c	mtr4	ski6	rrp46	las1	ulp1	nop14	rps902	csl4	utp20	rrp42	utp4	ppp1	utp10	utp6	sof1	erb1	SPCC1739.07	snu13	mis3	grn1	rrp5	rps2	rrp45	utp25	utp15	SPBC1604.06c	nop56	bms1	utp22	rrp7	ipi1	fib1	SPBC29A3.06	SPAC57A7.06	SPBC3D6.12	rrp4	rps901	rok1	SPAC12G12.06c	rps7	utp11	mra1	rrp6	rrp43	crb3	SPBC3B8.09	rps602	SPBC713.04c	SPAPB1A10.06c	utp5	dbp8	utp7	rrp3	rrp36	SPAC2E1P5.05	mtr3	nop58	ytm1	utp13	grc3
+R-SPO-8868773	rRNA processing in the nucleus and cytosol	fcf1	ebp2	imp4	imp3	utp17	rrp40	mpp10	SPCC1672.07	SPAC2E11.11c	mtr4	ski6	rrp46	las1	ulp1	nop14	rps902	csl4	utp20	rrp42	utp4	ppp1	utp10	utp6	sof1	erb1	SPCC1739.07	snu13	mis3	grn1	rrp5	rps2	rrp45	utp25	utp15	SPBC1604.06c	nop56	bms1	utp22	rrp7	ipi1	fib1	SPBC29A3.06	SPAC57A7.06	SPBC3D6.12	rrp4	rps901	rok1	SPAC12G12.06c	rps7	utp11	mra1	rrp6	rrp43	crb3	SPBC3B8.09	rps602	SPBC713.04c	SPAPB1A10.06c	utp5	dbp8	utp7	rrp3	rrp36	SPAC2E1P5.05	mtr3	nop58	ytm1	utp13	grc3
+R-SPO-8953854	Metabolism of RNA	fcf1	rps1002	rpl8	tfb1	ptr8	ysh1	cid16	ebp2	imp4	upf2	cid1	imp3	nup40	SPAC1A6.02	rpb10	utp17	rrp40	mpp10	spt5	cut11	SPCC1672.07	rps1201	rpl44	SPAC2E11.11c	mtr4	cbc1	rps5	rpp203	SPBC2F12.03c	rpl1701	lsm4	tor1	sce3	rpl2701	rpb7	SPAC4F10.18	rpl1902	rpl2102	SPAC23A1.09	rpl1602	ski6	rrp46	las1	ulp1	SPBC19G7.10c	nup44	lsm5	rps1701	rpl1601	mnh1	nup120	nop14	rps902	SPCC550.03c	csl4	rps2402	utp20	rrp42	rps3	rpl701	utp4	ppp1	utp10	utp6	rps2501	rpl13	rpl502	amo1	cid11	rps29	rps27	sof1	tfb4	rpl2502	erb1	nup211	SPCC1739.07	lsm7	rpb9	snu13	sup35	cft1	cft2	tif452	mis3	grn1	rpb4	rrp5	rpl101	rpp0	pcm1	rpl2402	rps2	rps20	rpl35	rrp45	utp25	ssl1	rpl14	sec13	utp15	SPBC1604.06c	SPCC126.11c	lsm2	tfg1	mug87	tfg2	rps102	ski3	nop56	gle1	bms1	rpl3602	utp22	rrp7	pmh1	rps1501	ipi1	rpl3702	rps21	rpl39	nxt1	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	ppa2	rad15	rps13	pab1	fib1	rpl402	pck1	pck2	rpl302	rpl2802	rpb1	rpb6	mcs2	dis3	rpb3	rpl301	rae1	tif1	rpc10	rpl2801	rps1901	rpl3703	SPBC29A3.06	tif35	nup186	rpl26	tif451	rpl3202	sup45	rpl6	rpb11	SPAC57A7.06	rps401	lsm1	SPBC3D6.12	tfb2	rpb2	rpl1001	hba1	rec14	rpb5	mlo3	rpl22	rrp4	rps901	rok1	rps101	nup45	pan2	SPAC22G7.10	upf1	SPAC12G12.06c	nup124	tif412	seh1	ntf2	rps7	utp11	mra1	rrp6	nsp1	rrp43	pta1	rpl901	upf3	crb3	nup107	tif471	crk1	pab1	SPBC13G1.14c	SPBC3B8.09	rpl1802	rpl2401	rpl29	rpb8	rps602	SPBC713.04c	tfb5	SPAPB1A10.06c	utp5	dbp8	nup82	cbc2	rps502	rps403	utp7	rrp3	rrp36	rpl1002	rpl401	rps802	SPAC2E1P5.05	nhm1	rps1702	nup184	mtr3	nop58	SPBC106.12c	rpl31	SPAC890.06	ytm1	rpl1502	utp13	rpl3801	ppk26	rps402	rpl35b	paa1	cid13	rps2601	yth1	rps2602	nup132	rpl42	nup189	pfs2	rpl3002	rps1502	grc3	rpl2101	nup85	lsm6	tor2	rps001	lsm3	mex67
+R-SPO-5688426	Deubiquitination	nep2	otu1	tbp1	SPAC6G10.04c	ubl1	rpn3	rpt1	pre3	pre10	rpn8	rpt4	hse1	rpn2	SPCC18.17c	rpt3	nas2	rpn10	mug137	SPBC646.16	pre8	rpn501	rpn502	pts1	mts2	let1	rpn11	rpn12	rpn1	SPAC13C5.01c	SPAC31A2.04c	pup1	uch1	pre6	rpn7	ubp6	sst2	cdc48	rpn6	pam1	rpn9	SPBC577.10	pup2	SPAC15E1.10	uch2	pup3	rpn1301
+R-SPO-5689603	UCH proteinases	nep2	tbp1	SPAC6G10.04c	ubl1	rpn3	rpt1	pre3	pre10	rpn8	rpt4	rpn2	SPCC18.17c	rpt3	nas2	rpn10	SPBC646.16	pre8	rpn501	rpn502	pts1	mts2	let1	rpn11	rpn12	rpn1	SPAC13C5.01c	SPAC31A2.04c	pup1	uch1	pre6	rpn7	rpn6	pam1	rpn9	SPBC577.10	pup2	SPAC15E1.10	uch2	pup3	rpn1301
+R-SPO-8951664	Neddylation	nep2	cul1	ddb1	pip1	pcu4	ubl1	swd1	swd3	sof1	pof7	ubc12	SPBC17D11.08	mis16	lub1	iqw1	jhd1	puc1	cul3	uba3	prz1	pof11	wdr21	uch1	cdt2	dcn1	knd1	mdv1	ytm1	ckn1	uba5	sfc2	skp1
+R-SPO-156827	L13a-mediated translational silencing of Ceruloplasmin expression	rps1002	rpl8	rps1201	rpl44	nip1	rps5	rpp203	rpl1701	sce3	rpl2701	rpl1902	rpl2102	rpl1602	rps1701	rpl1601	eif3f	rps902	rps2402	rps3	rpl701	rps2501	rpl13	rpl502	rps29	rps27	rpl2502	tif452	tif32	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	moe1	rpl14	rps102	int6	rpl3602	rps1501	rpl3702	rps21	rpl39	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	rps13	pab1	rpl402	rpl302	rpl2802	rpl301	tif1	tif11	tif211	tif212	rpl2801	rps1901	rpl3703	tif35	rpl26	tif451	rpl3202	rpl6	sum1	SPAC3A12.13c	rps401	rpl1001	tif213	rpl22	eif3m	rps901	rps101	rps7	rpl901	SPAC25G10.08	tif471	rpl1802	rpl2401	rpl29	rps602	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	rpl3801	rps402	rpl35b	eif3h	rps2601	rps2602	rpl42	rpl3002	rps1502	rpl2101	rps001
+R-SPO-1799339	SRP-dependent cotranslational protein targeting to membrane	rps1002	rpl8	SPAC17H9.07	rps1201	rpl44	rps5	rpp203	rpl1701	rpl2701	rpl1902	rpl2102	rpl1602	rps1701	rpl1601	rps902	srp72	rps2402	rps3	rpl701	rps2501	rpl13	rpl502	rps29	rps27	rpl2502	srp68	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	rpl14	sec65	rps102	rpl3602	rps1501	rpl3702	rps21	rpl39	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	srp54	rps13	rpl402	rpl302	rpl2802	rpl301	rpl2801	rps1901	rpl3703	rpl26	rpl3202	rpl6	rps401	rpl1001	rpl22	rps901	rps101	rps7	rpl901	rpl1802	rpl2401	rpl29	rps602	srp14	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	rpl3801	rps402	rpl35b	rps2601	rps2602	rpl42	rpl3002	rps1502	rpl2101	rps001
+R-SPO-72613	Eukaryotic Translation Initiation	rps1002	rpl8	rps1201	rpl44	nip1	rps5	rpp203	rpl1701	sce3	rpl2701	rpl1902	rpl2102	rpl1602	rps1701	rpl1601	eif3f	rps902	rps2402	rps3	rpl701	rps2501	rpl13	rpl502	rps29	rps27	rpl2502	tif452	tif32	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	moe1	rpl14	rps102	int6	rpl3602	rps1501	rpl3702	rps21	rpl39	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	rps13	pab1	rpl402	rpl302	rpl2802	rpl301	tif1	tif11	tif211	tif225	tif223	tif212	rpl2801	rps1901	rpl3703	tif35	rpl26	tif451	rpl3202	rpl6	sum1	SPAC3A12.13c	rps401	rpl1001	tif213	rpl22	tif5	eif3m	rps901	rps101	tif224	rps7	rpl901	SPAC56F8.03	SPAC25G10.08	tif471	rpl1802	rpl2401	rpl29	rps602	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	tif221	rpl3801	rps402	rpl35b	eif3h	rps2601	tif222	rps2602	rpl42	rpl3002	rps1502	rpl2101	rps001
+R-SPO-72649	Translation initiation complex formation	rps1002	rps1201	nip1	rps5	sce3	rps1701	eif3f	rps902	rps2402	rps3	rps2501	rps29	rps27	tif452	tif32	rps2	rps20	moe1	rps102	int6	rps1501	rps21	rps2201	rps2202	rps1601	rps1602	rps1801	rps1802	rps1101	rps1102	rps23	rps2302	rps2801	rps2802	rps13	pab1	tif1	tif11	tif211	tif212	rps1901	tif35	tif451	sum1	SPAC3A12.13c	rps401	tif213	eif3m	rps901	rps101	rps7	SPAC25G10.08	tif471	rps602	rps502	rps403	rps802	rps1702	rps402	eif3h	rps2601	rps2602	rps1502	rps001
+R-SPO-72662	Activation of the mRNA upon binding of the cap-binding complex and eIFs, and subsequent binding to 43S	rps1002	rps1201	nip1	rps5	sce3	rps1701	eif3f	rps902	rps2402	rps3	rps2501	rps29	rps27	tif452	tif32	rps2	rps20	moe1	rps102	int6	rps1501	rps21	rps2201	rps2202	rps1601	rps1602	rps1801	rps1802	rps1101	rps1102	rps23	rps2302	rps2801	rps2802	rps13	pab1	tif1	tif11	tif211	tif212	rps1901	tif35	tif451	sum1	SPAC3A12.13c	rps401	tif213	eif3m	rps901	rps101	rps7	SPAC25G10.08	tif471	rps602	rps502	rps403	rps802	rps1702	rps402	eif3h	rps2601	rps2602	rps1502	rps001
+R-SPO-72689	Formation of a pool of free 40S subunits	rps1002	rpl8	rps1201	rpl44	nip1	rps5	rpp203	rpl1701	rpl2701	rpl1902	rpl2102	rpl1602	rps1701	rpl1601	eif3f	rps902	rps2402	rps3	rpl701	rps2501	rpl13	rpl502	rps29	rps27	rpl2502	tif32	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	moe1	rpl14	rps102	int6	rpl3602	rps1501	rpl3702	rps21	rpl39	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	rps13	rpl402	rpl302	rpl2802	rpl301	tif11	rpl2801	rps1901	rpl3703	tif35	rpl26	rpl3202	rpl6	sum1	SPAC3A12.13c	rps401	rpl1001	rpl22	eif3m	rps901	rps101	rps7	rpl901	SPAC25G10.08	rpl1802	rpl2401	rpl29	rps602	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	rpl3801	rps402	rpl35b	eif3h	rps2601	rps2602	rpl42	rpl3002	rps1502	rpl2101	rps001
+R-SPO-72695	Formation of the ternary complex, and subsequently, the 43S complex	rps1002	rps1201	nip1	rps5	rps1701	eif3f	rps902	rps2402	rps3	rps2501	rps29	rps27	tif32	rps2	rps20	moe1	rps102	int6	rps1501	rps21	rps2201	rps2202	rps1601	rps1602	rps1801	rps1802	rps1101	rps1102	rps23	rps2302	rps2801	rps2802	rps13	tif11	tif211	tif212	rps1901	tif35	sum1	SPAC3A12.13c	rps401	tif213	eif3m	rps901	rps101	rps7	SPAC25G10.08	rps602	rps502	rps403	rps802	rps1702	rps402	eif3h	rps2601	rps2602	rps1502	rps001
+R-SPO-72702	Ribosomal scanning and start codon recognition	rps1002	rps1201	nip1	rps5	sce3	rps1701	eif3f	rps902	rps2402	rps3	rps2501	rps29	rps27	tif452	tif32	rps2	rps20	moe1	rps102	int6	rps1501	rps21	rps2201	rps2202	rps1601	rps1602	rps1801	rps1802	rps1101	rps1102	rps23	rps2302	rps2801	rps2802	rps13	tif1	tif11	tif211	tif212	rps1901	tif35	tif451	sum1	SPAC3A12.13c	rps401	tif213	tif5	eif3m	rps901	rps101	rps7	SPAC25G10.08	tif471	rps602	rps502	rps403	rps802	rps1702	rps402	eif3h	rps2601	rps2602	rps1502	rps001
+R-SPO-72706	GTP hydrolysis and joining of the 60S ribosomal subunit	rps1002	rpl8	rps1201	rpl44	nip1	rps5	rpp203	rpl1701	sce3	rpl2701	rpl1902	rpl2102	rpl1602	rps1701	rpl1601	eif3f	rps902	rps2402	rps3	rpl701	rps2501	rpl13	rpl502	rps29	rps27	rpl2502	tif452	tif32	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	moe1	rpl14	rps102	int6	rpl3602	rps1501	rpl3702	rps21	rpl39	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	rps13	rpl402	rpl302	rpl2802	rpl301	tif1	tif11	tif211	tif212	rpl2801	rps1901	rpl3703	tif35	rpl26	tif451	rpl3202	rpl6	sum1	SPAC3A12.13c	rps401	rpl1001	tif213	rpl22	tif5	eif3m	rps901	rps101	rps7	rpl901	SPAC56F8.03	SPAC25G10.08	tif471	rpl1802	rpl2401	rpl29	rps602	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	rpl3801	rps402	rpl35b	eif3h	rps2601	rps2602	rpl42	rpl3002	rps1502	rpl2101	rps001
+R-SPO-72737	Cap-dependent Translation Initiation	rps1002	rpl8	rps1201	rpl44	nip1	rps5	rpp203	rpl1701	sce3	rpl2701	rpl1902	rpl2102	rpl1602	rps1701	rpl1601	eif3f	rps902	rps2402	rps3	rpl701	rps2501	rpl13	rpl502	rps29	rps27	rpl2502	tif452	tif32	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	moe1	rpl14	rps102	int6	rpl3602	rps1501	rpl3702	rps21	rpl39	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	rps13	pab1	rpl402	rpl302	rpl2802	rpl301	tif1	tif11	tif211	tif225	tif223	tif212	rpl2801	rps1901	rpl3703	tif35	rpl26	tif451	rpl3202	rpl6	sum1	SPAC3A12.13c	rps401	rpl1001	tif213	rpl22	tif5	eif3m	rps901	rps101	tif224	rps7	rpl901	SPAC56F8.03	SPAC25G10.08	tif471	rpl1802	rpl2401	rpl29	rps602	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	tif221	rpl3801	rps402	rpl35b	eif3h	rps2601	tif222	rps2602	rpl42	rpl3002	rps1502	rpl2101	rps001
+R-SPO-72766	Translation	rps1002	rpl8	SPAC17H9.07	rps1201	rpl44	nip1	rps5	rpp203	rpl1701	sce3	rpl2701	eft201	rpl1902	rpl2102	rpl1602	rps1701	rpl1601	eif3f	rps902	srp72	rps2402	rps3	rpl701	rps2501	tef5	rpl13	rpl502	rps29	rps27	rpl2502	srp68	sup35	tif452	tif32	hbs1	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	moe1	rpl14	sec65	rps102	int6	rpl3602	rps1501	rpl3702	rps21	rpl39	tef101	tef102	tef103	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	ppa1	srp54	rps13	pab1	rpl402	rpl302	rpl2802	rpl301	tef3	tif1	tif11	tif211	tif225	tif223	tif212	rpl2801	rps1901	rpl3703	tif35	rpl26	tif451	rpl3202	sup45	rpl6	sum1	SPAC3A12.02	SPAC3A12.13c	rps401	rpl1001	tif213	rpl22	tif5	eif3m	trm112	rps901	rps101	tif224	rps7	rpl901	SPAC56F8.03	SPAC25G10.08	tif471	rpl1802	rpl2401	rpl29	rps602	srp14	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	tif221	rpl3801	rps402	rpl35b	eif3h	rps2601	tif222	mtq2	rps2602	rpl42	rpl3002	rps1502	rpl2101	rps001
+R-SPO-927802	Nonsense-Mediated Decay (NMD)	rps1002	rpl8	upf2	rps1201	rpl44	cbc1	rps5	rpp203	SPBC2F12.03c	rpl1701	tor1	rpl2701	rpl1902	rpl2102	SPAC23A1.09	rpl1602	rps1701	rpl1601	mnh1	rps902	rps2402	rps3	rpl701	rps2501	rpl13	rpl502	rps29	rps27	rpl2502	sup35	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	rpl14	rps102	rpl3602	rps1501	rpl3702	rps21	rpl39	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	ppa2	rps13	pab1	rpl402	rpl302	rpl2802	rpl301	rpl2801	rps1901	rpl3703	rpl26	rpl3202	sup45	rpl6	rps401	rpl1001	rpl22	rps901	rps101	upf1	tif412	rps7	rpl901	upf3	tif471	pab1	SPBC13G1.14c	rpl1802	rpl2401	rpl29	rps602	cbc2	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	rpl3801	rps402	rpl35b	paa1	rps2601	rps2602	rpl42	rpl3002	rps1502	rpl2101	tor2	rps001
+R-SPO-975956	Nonsense Mediated Decay (NMD) independent of the Exon Junction Complex (EJC)	rps1002	rpl8	rps1201	rpl44	cbc1	rps5	rpp203	rpl1701	rpl2701	rpl1902	rpl2102	rpl1602	rps1701	rpl1601	rps902	rps2402	rps3	rpl701	rps2501	rpl13	rpl502	rps29	rps27	rpl2502	sup35	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	rpl14	rps102	rpl3602	rps1501	rpl3702	rps21	rpl39	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	rps13	pab1	rpl402	rpl302	rpl2802	rpl301	rpl2801	rps1901	rpl3703	rpl26	rpl3202	sup45	rpl6	rps401	rpl1001	rpl22	rps901	rps101	upf1	rps7	rpl901	tif471	rpl1802	rpl2401	rpl29	rps602	cbc2	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	rpl3801	rps402	rpl35b	rps2601	rps2602	rpl42	rpl3002	rps1502	rpl2101	rps001
+R-SPO-975957	Nonsense Mediated Decay (NMD) enhanced by the Exon Junction Complex (EJC)	rps1002	rpl8	upf2	rps1201	rpl44	cbc1	rps5	rpp203	SPBC2F12.03c	rpl1701	tor1	rpl2701	rpl1902	rpl2102	SPAC23A1.09	rpl1602	rps1701	rpl1601	mnh1	rps902	rps2402	rps3	rpl701	rps2501	rpl13	rpl502	rps29	rps27	rpl2502	sup35	rpl101	rpp0	rpl2402	rps2	rps20	rpl35	rpl14	rps102	rpl3602	rps1501	rpl3702	rps21	rpl39	rps2201	rps2202	rpl2301	rpl2302	rps1601	rps1602	rps1801	rps1802	rpl2001	rpl2002	rpl801	rpl802	rpl803	rps1101	rps1102	rps23	rps2302	rpl1101	rpl1102	rps2801	rps2802	rpl1201	rpl1202	rpp101	rpp102	ppa2	rps13	pab1	rpl402	rpl302	rpl2802	rpl301	rpl2801	rps1901	rpl3703	rpl26	rpl3202	sup45	rpl6	rps401	rpl1001	rpl22	rps901	rps101	upf1	tif412	rps7	rpl901	upf3	tif471	pab1	SPBC13G1.14c	rpl1802	rpl2401	rpl29	rps602	cbc2	rps502	rps403	rpl1002	rpl401	rps802	rps1702	rpl31	rpl1502	rpl3801	rps402	rpl35b	paa1	rps2601	rps2602	rpl42	rpl3002	rps1502	rpl2101	tor2	rps001
+R-SPO-2672351	Stimuli-sensing channels	pi030	SPBC19C7.11	SPBC887.02
+R-SPO-382551	Transport of small molecules	pi030	vma4	SPAC14C4.07	SPAC15A10.06	vph1	vma6	cul1	zhf1	cta5	vma16	cta4	sut1	vma13	atm1	SPAC4F10.16c	apl1	vma7	apl2	ccc2	vma8	pmr1	SPBC19C7.11	vma10	SPBC3H7.02	SPCC1672.11c	ctl1	yea4	SPCC18.02	SPBC887.02	SPBC887.12	vma1	vma2	cgs1	pmd1	pka1	isp6	vma3	mam1	gms1	SPAC3A12.06c	mrs2	hmt1	apm4	SPAC24B11.12c	SPAC11D3.06	chc1	abc2	itr1	SPAC6C3.06c	SPAC12B10.09	vma9	ost3	abc1	apl3	mug180	vma5	pmc1	SPAPB1A11.02	cis4	ptr2	knd1	abc3	SPAC977.17	abc4	SPAC869.05c	SPAC1039.03	SPCC4B3.13	clc1	ctr6	SPBC21B10.09	SPAP8A3.03	SPAC323.07c	SPAC22F8.04	aps2	mdl1
+R-SPO-983712	Ion channel transport	pi030	cta5	cta4	SPAC4F10.16c	ccc2	pmr1	SPBC19C7.11	SPCC1672.11c	SPBC887.02	SPBC887.12	SPAC24B11.12c	SPAC6C3.06c	pmc1
+R-SPO-199977	ER to Golgi Anterograde Transport	sec31	sed5	ain1	SPAC15A10.12c	SPAC17A5.08	bet1	erv25	sec16	trs120	SPBC16E9.09c	sec27	trs23	ykt6	SPCC285.14	sly1	sec28	sec231	ret3	erd2	sec13	gyp10	ypt1	arf1	SPAC20G8.02	sec21	sar1	sft1	SPAC13G6.05c	gos1	uso1	glo3	spo14	SPBPJ4664.04	sec17	bet3	bos1	emp24	trs31	sec18	SPBC211.03c	psy1	SPBC4.03c	trs20	bet5	sec26	sec24	sec22
+R-SPO-204005	COPII-mediated vesicle transport	sec31	sed5	SPAC15A10.12c	bet1	sec16	trs120	trs23	ykt6	SPCC285.14	sly1	sec231	sec13	gyp10	ypt1	SPAC20G8.02	sar1	sft1	SPAC13G6.05c	spo14	sec17	bet3	bos1	trs31	sec18	psy1	SPBC4.03c	trs20	bet5	sec24	sec22
+R-SPO-446203	Asparagine N-linked glycosylation	sec31	sed5	ain1	SPAC15A10.12c	gna1	SPAC17A5.08	bet1	alg1	erv25	mvd1	sec16	SPAC4D7.04c	alg13	alg14	trs120	SPAC7D4.09c	SPBC16E9.09c	dpm1	sec27	pmi40	trs23	alg6	pdf1	alg5	ykt6	SPCC285.14	sly1	sec28	sec231	ret3	erd2	sec13	uap1	dpm3	gyp10	ypt1	arf1	cal1	gpt2	SPAC20G8.02	sec21	sar1	SPAC13C5.05c	sft1	SPBC12C2.11	SPAC13G6.05c	gos1	uso1	SPAC1F5.02	glo3	alg8	spo14	SPBPJ4664.04	alg2	sec17	bet3	bos1	emp24	trs31	sec18	alg9	SPBC211.03c	alg12	psy1	SPBC4.03c	dpm2	trs20	bet5	pmm1	sec26	sec24	SPAC22F8.04	alg3	nus1	sec22	sec59
+R-SPO-948021	Transport to the Golgi and subsequent modification	sec31	sed5	ain1	SPAC15A10.12c	SPAC17A5.08	bet1	erv25	sec16	trs120	SPBC16E9.09c	sec27	trs23	ykt6	SPCC285.14	sly1	sec28	sec231	ret3	erd2	sec13	gyp10	ypt1	arf1	SPAC20G8.02	sec21	sar1	sft1	SPAC13G6.05c	gos1	uso1	glo3	spo14	SPBPJ4664.04	sec17	bet3	bos1	emp24	trs31	sec18	SPBC211.03c	psy1	SPBC4.03c	trs20	bet5	sec26	sec24	sec22
+R-SPO-156580	Phase II - Conjugation of compounds	pi047	SPAC19G12.09	ggt2	SPBC8E4.04	SPBC119.03	sam1	SPBC3H7.02	SPCC737.06c	gsa1	fyu1	SPBC31F10.03	trm112	gcs1	SPAC11D3.15	SPAC26F1.07	SPBPB21E7.04c	dug1	met14	SPAC869.05c	ggt1	mtq2
+R-SPO-156581	Methylation	pi047	SPBC119.03	sam1	trm112	SPBPB21E7.04c	mtq2
+R-SPO-1614635	Sulfur amino acid metabolism	pi047	SPAC23A1.14c	mri1	sam1	adi1	SPAC16C9.02c	utr4	tum1
+R-SPO-211859	Biological oxidations	pi047	SPAC19G12.09	SPAC3A11.10c	ggt2	SPAC9E9.09c	SPBC8E4.04	SPBC119.03	SPCC965.12	sam1	SPBC3H7.02	SPCC13B11.04c	SPCC737.06c	gsa1	SPCC191.02c	fyu1	SPBC1539.07c	SPBC31F10.03	trm112	erg11	gcs1	SPAC11D3.15	SPAC26F1.07	SPBPB21E7.04c	mug180	SPAPB1A11.02	dug1	met14	SPAC869.05c	ggt1	SPAC1039.03	mtq2
+R-SPO-5694530	Cargo concentration in the ER	sed5	sec231	sar1	bos1	SPBC4.03c	sec24	sec22
+R-SPO-6807878	COPI-mediated anterograde transport	sed5	ain1	SPAC17A5.08	bet1	erv25	SPBC16E9.09c	sec27	ykt6	sec28	ret3	erd2	ypt1	arf1	sec21	sft1	gos1	uso1	glo3	SPBPJ4664.04	sec17	bos1	emp24	sec18	SPBC211.03c	sec26
+R-SPO-6811438	Intra-Golgi traffic	sed5	sec73	bet1	ykt6	arf1	sft1	gos1	sec74	sec17	sec18
+R-SPO-6811442	Intra-Golgi and retrograde Golgi-to-ER traffic	sed5	SPAC17A5.08	use1	sec73	SPAC1A6.03c	bet1	erv25	fsv1	sec39	SPBC16E9.09c	ric1	sec20	sec27	ykt6	sat1	SPCC594.06c	SPCC970.06	sec28	ret3	erd2	SPCC1620.12c	ufe1	SPAC977.09c	SPBC1348.10c	ypt1	ryh1	arf1	vti1	plb1	sec21	sft1	gos1	glo3	sec74	gyp51	syb1	SPBPJ4664.04	tip20	tlg1	sec17	tlg2	emp24	sec18	SPBC211.03c	SPAC1786.02	sec26	SPBC1778.09	sec22	SPCC1450.09c
+R-SPO-9609507	Protein localization	sed5	SPAC14C4.10c	sgt2	SPAC29A4.14c	mug138	pex13	sym1	idp1	ubc6	cym1	sbh1	fap1	pex14	scs2	SPCC1183.03c	pex5	pex16	arg3	ccr1	ubc4	cta1	pex7	sss1	hsp60	SPAC4G9.14	pex11	SPAC17C9.14	pex12	syb1	SPCC24B10.10c	psy1	oca8	fis1	jac1	pas4	SPBC725.04	dao1
+R-SPO-9609523	Insertion of tail-anchored proteins into the endoplasmic reticulum membrane	sed5	sgt2	ubc6	sbh1	scs2	sss1	syb1	psy1	oca8
+R-SPO-3214858	RMTs methylate histone arginines	rmt3	rps2	hta1	hta2	hhf1	rmt1
+R-SPO-8876725	Protein methylation	rmt3	SPAC3A11.03	eft201	ssa2	hbs1	rps2	tef101	tef102	tef103	rrg1	rib2	ssa1	cdc48	see1
+R-SPO-196757	Metabolism of folate and pterines	pi069	SPAC14C4.07	SPAC9E9.09c	ade9	met7	dfr1	shm2	met9	SPBC839.16	SPBC1703.08c
+R-SPO-196849	Metabolism of water-soluble vitamins and cofactors	pi069	SPAC14C4.07	mug182	SPAC17H9.08	SPAC6F6.11c	SPAC9E9.09c	ade9	SPBC21D10.11c	met7	SPCC1235.04c	fmn1	SPCC553.02	SPBC725.05c	SPCC61.03	SPBC1604.04	dfr1	tnr3	uba4	shm2	abc2	met9	SPAC1F12.08	SPAC3H5.11	SPBC839.16	SPBC1703.08c	SPCC4B3.18	oca8	SPAC806.06c	SPAC1486.06	SPAC1093.02	pyr1	SPBC1778.03c
+R-SPO-196854	Metabolism of vitamins and cofactors	pi069	SPAC14C4.07	mug182	SPAC17A5.13	SPAC17H9.08	dlp1	SPAC6F6.11c	idp1	SPAC9E9.09c	ade9	dps1	SPBC21D10.11c	met7	SPCC1235.04c	fmn1	SPCC553.02	SPBC725.05c	SPCC61.03	SPBC1604.04	cam1	ccr1	dfr1	swo1	tnr3	sck1	uba4	shm2	abc2	ppt1	met9	SPAC1F12.08	sck2	SPAC3H5.11	SPBC839.16	SPBC1703.08c	SPCC4B3.18	oca8	SPAC806.06c	SPAC1486.06	SPAC1093.02	pyr1	SPBC1778.03c
+R-SPO-191273	Cholesterol biosynthesis	erg32	mvd1	fps1	erg26	erg31	erg9	hcs1	erg24	erg11	erg12	idi1	erg7	hmg1	erg1	arv1	erg10	erg25
+R-SPO-556833	Metabolism of lipids	erg32	mct1	SPAC19A8.03	SPAC19G12.05	scs7	SPAC19G12.09	its3	SPAC1A6.03c	SPAC22A12.08c	SPAC22A12.10	SPAC23H4.01c	ppk9	mvd1	SPAC3A11.10c	SPAC3C7.01c	lcb4	ggt2	fps1	SPAC6G10.03c	SPAC7D4.09c	SPAC9G1.10c	SPBC2F12.05c	SPBC19C2.15c	gut2	SPBC8E4.04	ppk19	ale1	syj1	SPBC354.07c	erg26	SPBC29A3.11c	dsd1	lac1	SPCC965.12	gpx1	lcf1	SPBC19F5.03	kes1	css1	ctl1	ssp2	SPCC162.03	ppk27	cho1	dga1	SPCC1827.02c	SPBC725.05c	SPBC428.14	erg31	SPBC646.07c	obp1	ptn1	lap2	SPAC977.09c	SPBC1348.10c	gpd1	arf1	erg9	pmd1	vps34	hcs1	amk2	cut6	plb1	mam1	lag1	SPAC20G8.02	SPBC31F10.02	erg24	pld1	erg11	erg12	sds23	gpd2	idi1	pis1	abc2	SPAC4H3.09	erg7	SPAC13G7.12c	hmg1	cbs2	pik1	etr1	SPAC26F1.07	wos2	SPCC1020.13c	erg1	arv1	ppk1	fit1	SPBC13A2.03	SPAC823.11	lcf2	SPBC1703.07	erg10	SPBC106.03	SPAC922.06	ppk16	mel1	ggt1	SPAC1851.02	SPAC1039.07c	nte1	syj2	stt4	SPBC4.06	lsb6	SPAC1786.02	SPAC15E1.05c	SPCC23B6.01c	dpp1	erg25	ned1	SPBC725.04	mdl1	SPCC1450.09c
+R-SPO-6807047	Cholesterol biosynthesis via desmosterol	erg32	erg31
+R-SPO-6807062	Cholesterol biosynthesis via lathosterol	erg32	erg31
+R-SPO-8957322	Metabolism of steroids	erg32	SPAC19G12.09	SPAC23H4.01c	mvd1	fps1	SPAC7D4.09c	SPBC2F12.05c	SPBC8E4.04	erg26	SPCC162.03	erg31	obp1	erg9	pmd1	hcs1	mam1	erg24	erg11	erg12	idi1	erg7	hmg1	SPAC26F1.07	erg1	arv1	erg10	SPBC106.03	SPAC922.06	erg25	mdl1
+R-SPO-1222556	ROS and RNS production in phagocytes	vma4	vph1	vma6	vma16	vma13	vma7	vma8	vma10	vma1	vma2	ccr1	vma3	vma9	vma5
+R-SPO-2262752	Cellular responses to stress	vma4	vph1	vma6	nup40	SPAC1A6.02	cut11	vma16	vma13	prr1	pmp20	SPBC16E9.15	SPAC4F10.18	nup44	nup120	vma7	nbs1	bag102	vma8	pss1	ssa2	bag101	SPBC21H7.06c	ssn6	vma10	pop3	amo1	nup211	gtr2	tel1	mas5	hbs1	gtr1	tpx1	sec13	rhb1	mug87	mst1	trx2	cyc1	hta1	hta2	htb1	hhf1	hht1	tef101	tef102	tef103	byr1	ssc1	spk1	sod1	byr2	vma1	vma2	wis1	bip1	rae1	swo1	rad24	pht1	vma3	cta1	clr3	nup186	pgr1	mip1	hsf1	frp1	hba1	rad32	nup45	sty1	nup124	seh1	nsp1	SPAC27F1.06c	ssa1	mst2	nup107	ccs1	gsk3	wos2	vma9	spm1	vma5	nup82	cdc48	nup184	sod2	SPAC890.06	sti1	nup132	rad50	nup189	nup85	zuo1	SPBC1778.05c	tor2	SPCC63.13	skh1
+R-SPO-74752	Signaling by Insulin receptor	vma4	vph1	vma6	vma16	vma13	vma7	vma8	vma10	vma1	vma2	vma3	sck1	sck2	ksg1	vma9	vma5
+R-SPO-77387	Insulin receptor recycling	vma4	vph1	vma6	vma16	vma13	vma7	vma8	vma10	vma1	vma2	vma3	vma9	vma5
+R-SPO-8953897	Cellular responses to external stimuli	vma4	vph1	vma6	nup40	SPAC1A6.02	cut11	vma16	vma13	prr1	pmp20	SPBC16E9.15	SPAC4F10.18	nup44	nup120	vma7	nbs1	bag102	vma8	pss1	ssa2	bag101	SPBC21H7.06c	ssn6	vma10	pop3	amo1	nup211	gtr2	tel1	mas5	hbs1	gtr1	tpx1	sec13	rhb1	mug87	mst1	trx2	cyc1	hta1	hta2	htb1	hhf1	hht1	tef101	tef102	tef103	byr1	ssc1	spk1	sod1	byr2	vma1	vma2	wis1	bip1	rae1	swo1	rad24	pht1	vma3	cta1	clr3	nup186	pgr1	mip1	hsf1	frp1	hba1	rad32	nup45	sty1	nup124	seh1	nsp1	SPAC27F1.06c	ssa1	mst2	nup107	ccs1	gsk3	wos2	vma9	spm1	vma5	nup82	cdc48	nup184	sod2	SPAC890.06	sti1	nup132	rad50	nup189	nup85	zuo1	SPBC1778.05c	tor2	SPCC63.13	skh1
+R-SPO-9006934	Signaling by Receptor Tyrosine Kinases	vma4	vph1	vma6	rho3	vma16	lcb4	SPAC6B12.03c	vma13	vma7	vma8	ubp12	vma10	pop3	bit61	cam1	ppa1	ppa2	spk1	vma1	vma2	pck1	pck2	ccr1	swo1	vma3	sck1	map1	ste20	rho1	rho2	sck2	par1	ksg1	vma9	rho4	spm1	vma5	rho5	sin1	ubp1	paa1	tor2
+R-SPO-917937	Iron uptake and transport	vma4	SPAC14C4.07	vph1	vma6	cul1	vma16	vma13	vma7	vma8	vma10	vma1	vma2	vma3	vma9	vma5	knd1
+R-SPO-917977	Transferrin endocytosis and recycling	vma4	vph1	vma6	vma16	vma13	vma7	vma8	vma10	vma1	vma2	vma3	vma9	vma5
+R-SPO-9639288	Amino acids regulate mTORC1	vma4	vph1	vma6	vma16	vma13	vma7	vma8	vma10	pop3	gtr2	gtr1	rhb1	vma1	vma2	vma3	mip1	vma9	vma5	SPBC1778.05c	tor2
+R-SPO-77289	Mitochondrial Fatty Acid Beta-Oxidation	mct1	SPBC31F10.02	SPAC4H3.09	etr1
+R-SPO-8978868	Fatty acid metabolism	mct1	SPAC19G12.05	SPAC19G12.09	SPAC1A6.03c	ppk9	SPAC3A11.10c	ggt2	SPBC19C2.15c	SPBC8E4.04	SPBC29A3.11c	SPCC965.12	gpx1	lcf1	ssp2	ppk27	dga1	SPBC646.07c	lap2	SPAC977.09c	SPBC1348.10c	amk2	cut6	plb1	SPBC31F10.02	sds23	abc2	SPAC4H3.09	cbs2	etr1	SPAC26F1.07	wos2	ppk1	lcf2	SPBC1703.07	ppk16	ggt1	SPAC1786.02	SPBC725.04	SPCC1450.09c
+R-SPO-264876	Insulin processing	sec10	exo84	sec8	sec6	sec15	sec5	SPAC17G8.12	exo70	cis4
+R-SPO-2980736	Peptide hormone metabolism	sec10	exo84	sec8	sec6	sec15	sec5	SPAC17G8.12	exo70	cis4
+R-SPO-9033241	Peroxisomal protein import	SPAC14C4.10c	mug138	pex13	idp1	fap1	pex14	pex5	ccr1	ubc4	cta1	pex7	pex12	pas4	SPBC725.04	dao1
+R-SPO-196807	Nicotinate metabolism	mug182	SPCC553.02	SPCC61.03	SPAC3H5.11	SPAC806.06c	SPAC1486.06	SPBC1778.03c
+R-SPO-197264	Nicotinamide salvaging	mug182	SPCC61.03	SPAC1486.06	SPBC1778.03c
+R-SPO-425393	Transport of inorganic cations/anions and amino acids/oligopeptides	SPAC15A10.06	SPBC3H7.02	SPAC3A12.06c	SPAC12B10.09	ptr2	SPAC869.05c
+R-SPO-425407	SLC-mediated transmembrane transport	SPAC15A10.06	zhf1	sut1	SPBC3H7.02	ctl1	yea4	SPCC18.02	gms1	SPAC3A12.06c	SPAC11D3.06	itr1	SPAC12B10.09	cis4	ptr2	SPAC869.05c	SPCC4B3.13	ctr6	SPBC21B10.09	SPAP8A3.03	SPAC323.07c	SPAC22F8.04
+R-SPO-425986	Sodium/Proton exchangers	SPAC15A10.06
+R-SPO-109582	Hemostasis	ain1	pep7	SPAC1A6.03c	SPAC27E2.03c	SPAC9G1.05	SPBC16A3.08c	chp2	nto1	SPAC22H12.03	sec1	cdc37	nda2	tub1	cam1	hht1	SPAC977.09c	SPBC1348.10c	cut7	gpa1	sod1	pck1	pck2	ypt5	ccr1	cgs1	pka1	swi6	vti1	plb1	SPBC3D6.13c	gpa2	vps45	sty1	chp1	acp1	ksg1	tea2	abc1	spm1	pmc1	acp2	rax1	abc4	plg7	psy1	fzo1	SPAC1786.02	SPCC1450.09c	nse3
+R-SPO-114608	Platelet degranulation 	ain1	SPAC27E2.03c	SPAC9G1.05	SPBC16A3.08c	nto1	sec1	cdc37	nda2	tub1	cam1	sod1	vti1	SPBC3D6.13c	abc1	abc4	nse3
+R-SPO-76002	Platelet activation, signaling and aggregation	ain1	SPAC1A6.03c	SPAC27E2.03c	SPAC9G1.05	SPBC16A3.08c	nto1	SPAC22H12.03	sec1	cdc37	nda2	tub1	cam1	SPAC977.09c	SPBC1348.10c	gpa1	sod1	pck1	pck2	vti1	plb1	SPBC3D6.13c	gpa2	sty1	ksg1	abc1	spm1	abc4	psy1	SPAC1786.02	SPCC1450.09c	nse3
+R-SPO-76005	Response to elevated platelet cytosolic Ca2+	ain1	SPAC27E2.03c	SPAC9G1.05	SPBC16A3.08c	nto1	sec1	cdc37	nda2	tub1	cam1	sod1	pck1	pck2	vti1	SPBC3D6.13c	abc1	abc4	psy1	nse3
+R-SPO-446193	Biosynthesis of the N-glycan precursor (dolichol lipid-linked oligosaccharide, LLO) and transfer to a nascent protein	gna1	alg1	mvd1	SPAC4D7.04c	alg13	alg14	SPAC7D4.09c	dpm1	pmi40	alg6	pdf1	alg5	uap1	dpm3	gpt2	SPAC13C5.05c	SPBC12C2.11	alg8	alg2	alg9	alg12	dpm2	pmm1	SPAC22F8.04	alg3	nus1	sec59
+R-SPO-446210	Synthesis of UDP-N-acetyl-glucosamine	gna1	uap1	SPAC13C5.05c	SPBC12C2.11
+R-SPO-446219	Synthesis of substrates in N-glycan biosythesis	gna1	mvd1	SPAC4D7.04c	SPAC7D4.09c	dpm1	pmi40	pdf1	alg5	uap1	dpm3	SPAC13C5.05c	SPBC12C2.11	dpm2	pmm1	SPAC22F8.04	nus1	sec59
+R-SPO-113418	Formation of the Early Elongation Complex	tfb1	ptr8	rpb10	spt5	cbc1	rpb7	tfb4	rpb9	rpb4	ssl1	tfg1	tfg2	pmh1	rad15	rpb1	rpb6	mcs2	rpb3	rpc10	rpb11	tfb2	rpb2	rpb5	crk1	rpb8	tfb5	fcp1	cbc2	spt4
+R-SPO-5696395	Formation of Incision Complex in GG-NER	tfb1	ptr8	ddb1	pip1	pcu4	rhp14	tfb4	rhp23	ssl1	pmh1	rad15	rad13	mcs2	rad16	rhp42	tfb2	swi10	crk1	ssb2	ssb3	tfb5
+R-SPO-6781823	Formation of TC-NER Pre-Incision Complex	tfb1	ptr8	ddb1	rpb10	csn4	pip1	pcu4	rpb7	tfb4	rpb9	rpb4	ssl1	csn1	csn5	pmh1	rad15	rpb1	rpb6	mcs2	rpb3	rpc10	rpb11	tfb2	rpb2	rpb5	crk1	rpb8	tfb5	csn2	rhp26	ckn1	csn3	csn71
+R-SPO-6796648	TP53 Regulates Transcription of DNA Repair Genes	tfb1	ptr8	rpb10	spt5	srb10	lsk1	rpb7	pof4	lsc1	tfb4	pch1	rpb9	rpb4	ssl1	spt16	tfg1	tfg2	pob3	pmh1	rad15	rpb1	rpb6	mcs2	csk1	rpb3	rpc10	tfs1	rpb11	tfb2	rpb2	rpb5	crk1	rpb8	cdk9	tfb5	fcp1	spt4	elc1
+R-SPO-72086	mRNA Capping	tfb1	ptr8	rpb10	spt5	cbc1	rpb7	tfb4	rpb9	rpb4	pcm1	ssl1	tfg1	tfg2	pmh1	rad15	rpb1	rpb6	mcs2	rpb3	rpc10	rpb11	tfb2	rpb2	rpb5	crk1	rpb8	tfb5	cbc2
+R-SPO-73772	RNA Polymerase I Promoter Escape	tfb1	ptr8	rpb10	rpa49	chp2	rpa43	tfb4	ssl1	rpc40	pmh1	rpa12	hta1	hta2	htb1	hhf1	hht1	rpa1	tbp1	rad15	rpb6	mcs2	swi6	pht1	rpc10	tfb2	rpb5	chp1	rrn3	crk1	rpb8	tfb5	rpa2	rrn7
+R-SPO-73854	RNA Polymerase I Promoter Clearance	tfb1	ptr8	rpb10	rpa49	chp2	rpa43	tfb4	ssl1	rpc40	pmh1	rpa12	hta1	hta2	htb1	hhf1	hht1	rpa1	tbp1	rad15	rpb6	mcs2	swi6	pht1	rpc10	tfb2	rpb5	chp1	rrn3	crk1	rpb8	tfb5	rpa2	rrn7
+R-SPO-73864	RNA Polymerase I Transcription	tfb1	ptr8	rpb10	rpa49	chp2	rpa43	tfb4	ssl1	rpc40	pmh1	rpa12	hta1	hta2	htb1	hhf1	hht1	rpa1	tbp1	rad15	rpb6	mcs2	swi6	pht1	rpc10	tfb2	rpb5	chp1	rrn3	crk1	rpb8	tfb5	rpa2	rrn7
+R-SPO-77075	RNA Pol II CTD phosphorylation and interaction with CE	tfb1	ptr8	rpb10	spt5	rpb7	tfb4	rpb9	rpb4	pcm1	ssl1	tfg1	tfg2	pmh1	rad15	rpb1	rpb6	mcs2	rpb3	rpc10	rpb11	tfb2	rpb2	rpb5	crk1	rpb8	tfb5
+R-SPO-1474244	Extracellular matrix organization	mde10	scd2	SPAC1039.07c
+R-SPO-8941237	Invadopodia formation	mde10	scd2
+R-SPO-166016	Toll Like Receptor 4 (TLR4) Cascade	SPAC17A5.08	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	emp24	paa1	skh1
+R-SPO-168898	Toll-like Receptor Cascades	SPAC17A5.08	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	nhp6	atf31	sty1	par1	spm1	emp24	paa1	skh1
+R-SPO-6811434	COPI-dependent Golgi-to-ER retrograde traffic	SPAC17A5.08	use1	erv25	sec39	SPBC16E9.09c	sec20	sec27	SPCC970.06	sec28	ret3	erd2	ufe1	ypt1	arf1	sec21	glo3	SPBPJ4664.04	tip20	sec17	emp24	sec18	SPBC211.03c	sec26	sec22
+R-SPO-8856688	Golgi-to-ER retrograde transport	SPAC17A5.08	use1	SPAC1A6.03c	erv25	sec39	SPBC16E9.09c	sec20	sec27	SPCC970.06	sec28	ret3	erd2	ufe1	SPAC977.09c	SPBC1348.10c	ypt1	arf1	plb1	sec21	glo3	SPBPJ4664.04	tip20	sec17	emp24	sec18	SPBC211.03c	SPAC1786.02	sec26	sec22	SPCC1450.09c
+R-SPO-8856828	Clathrin-mediated endocytosis	ucp7	its3	arc2	sfp47	SPAC9G1.10c	ubl1	SPBC1E8.02	syj1	apl1	syp1	ppk30	apl2	SPBC530.09c	ssa2	SPBC19F8.03c	vps901	ent1	SPCC18.02	vps902	ucp8	act2	ypt5	arc1	SPCC794.11c	msp1	rga8	apm4	bzz1	dnm1	cdc15	chc1	dph1	pan1	imp2	ssa1	arc5	abc1	arc4	syb1	apl3	apm1	SPBC800.10c	end4	app1	abc4	vps1	clc1	syj2	end3	arp2	rga9	arc3	aps2
+R-SPO-1474151	Tetrahydrobiopterin (BH4) synthesis, recycling, salvage and regulation	SPAC17A5.13	cam1	ccr1	swo1	sck1	sck2
+R-SPO-8978934	Metabolism of cofactors	SPAC17A5.13	dlp1	idp1	dps1	cam1	ccr1	swo1	sck1	ppt1	sck2
+R-SPO-1280215	Cytokine Signaling in Immune system	cpp1	SPAC9G1.08c	SPAC8E11.04c	cwp1	byr1	ppa1	ppa2	spk1	wis1	sck1	atf1	atf21	atf31	sty1	sck2	par1	ksg1	spm1	paa1	skh1
+R-SPO-5673001	RAF/MAP kinase cascade	cpp1	SPAC9G1.08c	SPAC8E11.04c	cwp1	byr1	spk1	wis1	skh1
+R-SPO-5683057	MAPK family signaling cascades	cpp1	SPAC9G1.08c	SPAC8E11.04c	cwp1	byr1	xpo1	spk1	wis1	shk1	cdc42	sty1	shk2	spm1	clp1	skh1
+R-SPO-5684996	MAPK1/MAPK3 signaling	cpp1	SPAC9G1.08c	SPAC8E11.04c	cwp1	byr1	spk1	wis1	skh1
+R-SPO-9607240	FLT3 Signaling	cpp1	SPAC9G1.08c	SPAC8E11.04c	cwp1	byr1	spk1	wis1	sck1	sck2	ksg1	skh1
+R-SPO-9648002	RAS processing	cpp1	SPAC9G1.08c	SPAC8E11.04c	cwp1
+R-SPO-983231	Factors involved in megakaryocyte development and platelet production	pep7	chp2	hht1	cut7	ypt5	cgs1	pka1	swi6	vps45	chp1	acp1	tea2	acp2	rax1	fzo1
+R-SPO-453274	Mitotic G2-G2/M phases	cul1	pip1	ark1	ppm1	cdc25	wee1	ppa1	ppa2	plo1	pab1	ppe1	paa1	skp1
+R-SPO-69275	G2/M Transition	cul1	pip1	ark1	ppm1	cdc25	wee1	ppa1	ppa2	plo1	pab1	ppe1	paa1	skp1
+R-SPO-8854050	FBXL7 down-regulates AURKA during mitotic entry and in early mitosis	cul1	pip1	ark1	skp1
+R-SPO-159231	Transport of Mature mRNA Derived from an Intronless Transcript	ysh1	nup40	SPAC1A6.02	cut11	cbc1	SPAC4F10.18	nup44	nup120	amo1	nup211	cft1	cft2	tif452	sec13	mug87	rae1	nup186	tif451	hba1	mlo3	nup45	SPAC22G7.10	nup124	seh1	nsp1	pta1	nup107	nup82	cbc2	nup184	SPAC890.06	yth1	nup132	nup189	pfs2	nup85	mex67
+R-SPO-159234	Transport of Mature mRNAs Derived from Intronless Transcripts	ysh1	nup40	SPAC1A6.02	cut11	cbc1	SPAC4F10.18	nup44	nup120	amo1	nup211	cft1	cft2	tif452	sec13	mug87	rae1	nup186	tif451	hba1	mlo3	nup45	SPAC22G7.10	nup124	seh1	nsp1	pta1	nup107	nup82	cbc2	nup184	SPAC890.06	yth1	nup132	nup189	pfs2	nup85	mex67
+R-SPO-72202	Transport of Mature Transcript to Cytoplasm	ysh1	nup40	SPAC1A6.02	cut11	cbc1	SPAC4F10.18	SPAC23A1.09	nup44	mnh1	nup120	amo1	nup211	cft1	cft2	tif452	sec13	SPCC126.11c	mug87	gle1	nxt1	rae1	nup186	tif451	hba1	mlo3	nup45	SPAC22G7.10	nup124	tif412	seh1	ntf2	nsp1	pta1	upf3	nup107	SPBC13G1.14c	nup82	cbc2	nup184	SPBC106.12c	SPAC890.06	yth1	nup132	nup189	pfs2	nup85	mex67
+R-SPO-72203	Processing of Capped Intron-Containing Pre-mRNA	ysh1	nup40	SPAC1A6.02	cut11	cbc1	SPAC4F10.18	SPAC23A1.09	nup44	mnh1	nup120	amo1	nup211	cft1	cft2	tif452	sec13	SPCC126.11c	mug87	gle1	nxt1	rae1	nup186	tif451	hba1	mlo3	nup45	SPAC22G7.10	nup124	tif412	seh1	ntf2	nsp1	pta1	upf3	nup107	SPBC13G1.14c	nup82	cbc2	nup184	SPBC106.12c	SPAC890.06	yth1	nup132	nup189	pfs2	nup85	mex67
+R-SPO-75067	Processing of Capped Intronless Pre-mRNA	ysh1	cbc1	cft1	cft2	SPAC22G7.10	pta1	cbc2	yth1	pfs2
+R-SPO-77595	Processing of Intronless Pre-mRNAs	ysh1	cbc1	cft1	cft2	SPAC22G7.10	pta1	cbc2	yth1	pfs2
+R-SPO-429914	Deadenylation-dependent mRNA decay	cid16	cid1	rrp40	lsm4	sce3	ski6	rrp46	SPBC19G7.10c	lsm5	SPCC550.03c	csl4	rrp42	cid11	lsm7	tif452	rrp45	lsm2	ski3	pab1	dis3	tif1	tif451	lsm1	rec14	rrp4	pan2	tif412	rrp43	tif471	nhm1	mtr3	ppk26	cid13	lsm6	lsm3
+R-SPO-429947	Deadenylation of mRNA	cid16	cid1	sce3	cid11	tif452	pab1	tif1	tif451	pan2	tif412	tif471	ppk26	cid13
+R-SPO-196783	Coenzyme A biosynthesis	SPAC17H9.08	SPAC1F12.08	SPCC4B3.18
+R-SPO-199220	Vitamin B5 (pantothenate) metabolism	SPAC17H9.08	SPAC1F12.08	SPCC4B3.18
+R-SPO-2470946	Cohesin Loading onto Chromatin	psc3	psm3	wpl1	psm1	ssl3	rad21	mis4	rec11	pds5
+R-SPO-2500257	Resolution of Sister Chromatid Cohesion	psc3	psm3	wpl1	psm1	rad21	plo1	rec11	pds5
+R-SPO-68877	Mitotic Prometaphase	psc3	psm3	nudc	wpl1	psm1	cnd1	rad21	cka1	ckb1	cut14	cut3	plo1	cnd3	rec11	pds5	cnd2
+R-SPO-68884	Mitotic Telophase/Cytokinesis	psc3	psm3	wpl1	psm1	ssl3	rad21	plo1	mis4	klp9	rec11	pds5
+R-SPO-1483248	Synthesis of PIPs at the ER membrane	SPAC19A8.03	SPBC19F5.03	stt4	lsb6
+R-SPO-1483255	PI Metabolism	SPAC19A8.03	its3	SPAC3C7.01c	SPAC9G1.10c	ppk19	syj1	SPBC19F5.03	SPBC725.05c	ptn1	arf1	vps34	pik1	nte1	syj2	stt4	lsb6
+R-SPO-1483257	Phospholipid metabolism	SPAC19A8.03	its3	SPAC1A6.03c	SPAC22A12.08c	SPAC22A12.10	SPAC3C7.01c	lcb4	SPAC6G10.03c	SPAC9G1.10c	gut2	ppk19	ale1	syj1	SPBC354.07c	SPBC19F5.03	kes1	ctl1	cho1	dga1	SPCC1827.02c	SPBC725.05c	SPBC428.14	obp1	ptn1	SPAC977.09c	SPBC1348.10c	gpd1	arf1	vps34	plb1	SPAC20G8.02	pld1	gpd2	pis1	SPAC13G7.12c	pik1	SPCC1020.13c	SPBC13A2.03	SPAC1851.02	SPAC1039.07c	nte1	syj2	stt4	SPBC4.06	lsb6	SPAC1786.02	SPAC15E1.05c	SPCC23B6.01c	ned1	SPCC1450.09c
+R-SPO-1632852	Macroautophagy	SPAC19A8.03	ppk9	mug66	SPAC29A4.17c	did4	taf1	vps24	atg13	atg14	ppk19	atg3	atg7	vps38	atg9	SPCC162.06c	ssp2	tel1	ppk27	atg5	atg8	vps20	pex5	cka1	ckb1	vps34	amk2	atg6	sds23	cbs2	atg18	ppk1	atg4	hsv2	mug179	SPBP35G2.11c	snf7	dlc2	ppk16	atg12	ATG10	atg1
+R-SPO-1660499	Synthesis of PIPs at the plasma membrane	SPAC19A8.03	its3	SPAC9G1.10c	syj1	ptn1	syj2	lsb6
+R-SPO-1660516	Synthesis of PIPs at the early endosome membrane	SPAC19A8.03	SPAC3C7.01c	ppk19	SPBC19F5.03	vps34	lsb6
+R-SPO-1660517	Synthesis of PIPs at the late endosome membrane	SPAC19A8.03	ppk19	vps34
+R-SPO-9612973	Autophagy	SPAC19A8.03	ppk9	mug66	SPAC29A4.17c	did4	taf1	vps24	atg13	atg14	ppk19	atg3	atg7	vps38	atg9	SPCC162.06c	ssp2	tel1	ppk27	atg5	atg8	vps20	pex5	cka1	ckb1	vps34	amk2	atg6	sds23	cbs2	atg18	ppk1	atg4	hsv2	mug179	SPBP35G2.11c	snf7	dlc2	ppk16	atg12	ATG10	atg1
+R-SPO-5365859	RA biosynthesis pathway	SPAC19A8.06	SPAC19G12.09	SPAC9E9.09c	SPBC8E4.04	SPCC13B11.04c	SPCC736.13	SPBC1539.07c	erg11	SPAC26F1.07	SPBC106.03	SPAC922.06
+R-SPO-112310	Neurotransmitter release cycle	uga1	ypt4	SPCC18.02	ypt2	syb1	SPAC1002.12c
+R-SPO-112315	Transmission across Chemical Synapses	uga1	ypt4	SPAC9E9.09c	SPBC119.03	SPCC18.02	cam1	ypt2	cgs1	pka1	gln1	SPBPB21E7.04c	syb1	SPAC1002.12c	ppk34
+R-SPO-112316	Neuronal System	uga1	ypt4	SPAC9E9.09c	SPBC119.03	SPCC18.02	cam1	ypt2	cgs1	pka1	gln1	SPBPB21E7.04c	syb1	SPAC1002.12c	ppk34
+R-SPO-888590	GABA synthesis, release, reuptake and degradation	uga1	SPAC1002.12c
+R-SPO-916853	Degradation of GABA	uga1	SPAC1002.12c
+R-SPO-159227	Transport of the SLBP independent Mature mRNA	nup40	SPAC1A6.02	cut11	cbc1	SPAC4F10.18	nup44	nup120	amo1	nup211	tif452	sec13	mug87	rae1	nup186	tif451	hba1	mlo3	nup45	nup124	seh1	nsp1	nup107	nup82	cbc2	nup184	SPAC890.06	nup132	nup189	nup85	mex67
+R-SPO-159236	Transport of Mature mRNA derived from an Intron-Containing Transcript	nup40	SPAC1A6.02	cut11	cbc1	SPAC4F10.18	SPAC23A1.09	nup44	mnh1	nup120	amo1	nup211	sec13	SPCC126.11c	mug87	gle1	nxt1	rae1	nup186	hba1	mlo3	nup45	nup124	tif412	seh1	ntf2	nsp1	upf3	nup107	SPBC13G1.14c	nup82	cbc2	nup184	SPBC106.12c	SPAC890.06	nup132	nup189	nup85	mex67
+R-SPO-211000	Gene Silencing by RNA	nup40	SPAC1A6.02	rpb10	cut11	rpb7	SPAC4F10.18	nup44	nup120	SPCC550.11	amo1	nup211	rpb9	rpb4	SPCC736.09c	ago1	sec13	mug87	hta1	hta2	htb1	hhf1	hht1	spi1	rpb1	rpb6	rpb3	rae1	pht1	rpc10	nup186	rpb11	rpb2	hba1	rpb5	nup45	nup124	seh1	nsp1	nup107	rpb8	nup82	nup184	tsn1	SPAC890.06	nup132	nup189	nup85
+R-SPO-3371453	Regulation of HSF1-mediated heat shock response	nup40	SPAC1A6.02	cut11	prr1	SPAC4F10.18	nup44	nup120	bag102	pss1	ssa2	bag101	SPBC21H7.06c	amo1	nup211	sec13	mug87	ssc1	spk1	bip1	rae1	rad24	nup186	hsf1	hba1	nup45	nup124	seh1	nsp1	ssa1	nup107	gsk3	nup82	nup184	SPAC890.06	nup132	nup189	nup85	zuo1	SPCC63.13
+R-SPO-3371556	Cellular response to heat stress	nup40	SPAC1A6.02	cut11	prr1	SPBC16E9.15	SPAC4F10.18	nup44	nup120	bag102	pss1	ssa2	bag101	SPBC21H7.06c	pop3	amo1	nup211	hbs1	sec13	mug87	tef101	tef102	tef103	ssc1	spk1	bip1	rae1	swo1	rad24	clr3	nup186	mip1	hsf1	hba1	nup45	nup124	seh1	nsp1	SPAC27F1.06c	ssa1	nup107	gsk3	wos2	nup82	cdc48	nup184	SPAC890.06	nup132	nup189	nup85	zuo1	tor2	SPCC63.13
+R-SPO-5578749	Transcriptional regulation by small RNAs	nup40	SPAC1A6.02	rpb10	cut11	rpb7	SPAC4F10.18	nup44	nup120	SPCC550.11	amo1	nup211	rpb9	rpb4	ago1	sec13	mug87	hta1	hta2	htb1	hhf1	hht1	spi1	rpb1	rpb6	rpb3	rae1	pht1	rpc10	nup186	rpb11	rpb2	hba1	rpb5	nup45	nup124	seh1	nsp1	nup107	rpb8	nup82	nup184	SPAC890.06	nup132	nup189	nup85
+R-SPO-70263	Gluconeogenesis	SPAC19G12.05	aat2	gpd3	pgk1	SPBC725.01	tpi1	fbp1	gpm1	eno101	pgi1	tdh1	eno102	pyr1	MDH1
+R-SPO-70326	Glucose metabolism	SPAC19G12.05	aat2	pfk1	gpd3	pgk1	SPCC1840.05c	SPBC725.01	tpi1	fbp1	gpm1	eno101	hxk2	pgi1	tdh1	hxk1	pyk1	eno102	SPAC732.02c	SPAC144.17c	pyr1	MDH1
+R-SPO-75105	Fatty acyl-CoA biosynthesis	SPAC19G12.05	SPBC19C2.15c	lcf1	SPBC646.07c	cut6	lcf2	SPBC1703.07
+R-SPO-1660661	Sphingolipid de novo biosynthesis	scs7	lcb4	dsd1	lac1	lag1	SPAC823.11	dpp1
+R-SPO-428157	Sphingolipid metabolism	scs7	lcb4	dsd1	lac1	css1	SPBC725.05c	lag1	SPAC823.11	mel1	dpp1
+R-SPO-156590	Glutathione conjugation	SPAC19G12.09	ggt2	SPBC8E4.04	SPCC737.06c	gsa1	SPBC31F10.03	gcs1	SPAC11D3.15	SPAC26F1.07	dug1	ggt1
+R-SPO-192105	Synthesis of bile acids and bile salts	SPAC19G12.09	SPAC23H4.01c	SPBC2F12.05c	SPBC8E4.04	obp1	pmd1	mam1	SPAC26F1.07	erg25	mdl1
+R-SPO-193144	Estrogen biosynthesis	SPAC19G12.09	SPBC8E4.04	SPCC162.03	SPAC26F1.07	SPBC106.03	SPAC922.06
+R-SPO-193368	Synthesis of bile acids and bile salts via 7alpha-hydroxycholesterol	SPAC19G12.09	SPBC8E4.04	pmd1	mam1	SPAC26F1.07	mdl1
+R-SPO-193775	Synthesis of bile acids and bile salts via 24-hydroxycholesterol	SPAC19G12.09	SPBC8E4.04	SPAC26F1.07
+R-SPO-193807	Synthesis of bile acids and bile salts via 27-hydroxycholesterol	SPAC19G12.09	SPBC8E4.04	SPAC26F1.07
+R-SPO-194068	Bile acid and bile salt metabolism	SPAC19G12.09	SPAC23H4.01c	SPBC2F12.05c	SPBC8E4.04	obp1	pmd1	mam1	SPAC26F1.07	erg25	mdl1
+R-SPO-196071	Metabolism of steroid hormones	SPAC19G12.09	SPAC7D4.09c	SPBC8E4.04	SPCC162.03	SPAC26F1.07	SPBC106.03	SPAC922.06
+R-SPO-2142753	Arachidonic acid metabolism	SPAC19G12.09	SPAC1A6.03c	SPAC3A11.10c	ggt2	SPBC8E4.04	SPCC965.12	gpx1	dga1	lap2	SPAC977.09c	SPBC1348.10c	plb1	abc2	SPAC26F1.07	wos2	ggt1	SPAC1786.02	SPCC1450.09c
+R-SPO-2162123	Synthesis of Prostaglandins (PG) and Thromboxanes (TX)	SPAC19G12.09	SPBC8E4.04	SPAC26F1.07	wos2
+R-SPO-5661270	Formation of xylulose-5-phosphate	SPAC19G12.09	SPBC8E4.04	tms1	SPAC26F1.07	xks1
+R-SPO-2142789	Ubiquinol biosynthesis	dlp1	dps1	ppt1
+R-SPO-1257604	PIP3 activates AKT signaling	its3	maf1	SPAC6B12.03c	pop3	SPCC1739.01	bit61	ptn1	ppa1	ppa2	cka1	ckb1	cps3	sck1	par2	ste20	sck2	par1	ksg1	psk1	sin1	paa1	tsc2	tor2
+R-SPO-199418	Negative regulation of the PI3K/AKT network	its3	ptn1	ppa1	ppa2	sck1	par2	sck2	par1	paa1
+R-SPO-5633007	Regulation of TP53 Activity	its3	SPAC6B12.03c	eaf6	png1	pop3	pin1	bit61	tel1	png2	nto1	spt16	mst1	pob3	byr1	wis1	cka1	ckb1	sck1	pom1	ste20	ppk5	sck2	ksg1	sin1	tor2	skh1
+R-SPO-6804758	Regulation of TP53 Activity through Acetylation	its3	eaf6	png1	pin1	png2	nto1	mst1	byr1	wis1	sck1	sck2	skh1
+R-SPO-6811555	PI5P Regulates TP53 Acetylation	its3	png1	pin1	png2	byr1	wis1	skh1
+R-SPO-6811558	PI5P, PP2A and IER3 Regulate PI3K/AKT Signaling	its3	ppa1	ppa2	sck1	par2	sck2	par1	paa1
+R-SPO-8847453	Synthesis of PIPs in the nucleus	its3
+R-SPO-9006925	Intracellular signaling by second messengers	its3	maf1	SPAC6B12.03c	pop3	SPCC1739.01	bit61	ptn1	cam1	ppa1	ppa2	pck1	pck2	cgs1	cka1	ckb1	pka1	cps3	sck1	par2	ste20	sck2	par1	ksg1	psk1	sin1	paa1	ppk34	tsc2	tor2
+R-SPO-111885	Opioid Signalling	SPAC1A6.03c	cam1	SPAC977.09c	SPBC1348.10c	gpa1	spk1	cgs1	pka1	plc1	plb1	gpa2	SPAC1786.02	ppk34	SPCC1450.09c
+R-SPO-111995	phospho-PLA2 pathway	SPAC1A6.03c	SPAC977.09c	SPBC1348.10c	spk1	plb1	SPAC1786.02	SPCC1450.09c
+R-SPO-111996	Ca-dependent events	SPAC1A6.03c	cam1	SPAC977.09c	SPBC1348.10c	spk1	cgs1	pka1	plb1	SPAC1786.02	ppk34	SPCC1450.09c
+R-SPO-112040	G-protein mediated events	SPAC1A6.03c	cam1	SPAC977.09c	SPBC1348.10c	gpa1	spk1	cgs1	pka1	plc1	plb1	gpa2	SPAC1786.02	ppk34	SPCC1450.09c
+R-SPO-112043	PLC beta mediated events	SPAC1A6.03c	cam1	SPAC977.09c	SPBC1348.10c	gpa1	spk1	cgs1	pka1	plc1	plb1	gpa2	SPAC1786.02	ppk34	SPCC1450.09c
+R-SPO-1482788	Acyl chain remodelling of PC	SPAC1A6.03c	ale1	SPAC977.09c	SPBC1348.10c	plb1	SPAC1786.02	SPCC1450.09c
+R-SPO-1482798	Acyl chain remodeling of CL	SPAC1A6.03c	SPBC428.14	SPAC977.09c	SPBC1348.10c	plb1	SPAC1786.02	SPCC1450.09c
+R-SPO-1482801	Acyl chain remodelling of PS	SPAC1A6.03c	ale1	SPBC354.07c	kes1	obp1	SPAC977.09c	SPBC1348.10c	plb1	SPAC1786.02	SPCC23B6.01c	SPCC1450.09c
+R-SPO-1482839	Acyl chain remodelling of PE	SPAC1A6.03c	SPAC6G10.03c	ale1	SPAC977.09c	SPBC1348.10c	plb1	SPAC1786.02	SPCC1450.09c
+R-SPO-1482922	Acyl chain remodelling of PI	SPAC1A6.03c	ale1	SPAC977.09c	SPBC1348.10c	plb1	SPAC1786.02	SPCC1450.09c
+R-SPO-1482925	Acyl chain remodelling of PG	SPAC1A6.03c	SPAC22A12.08c	SPBC428.14	SPAC977.09c	SPBC1348.10c	plb1	SPAC1786.02	SPCC1450.09c
+R-SPO-1483115	Hydrolysis of LPC	SPAC1A6.03c	SPAC977.09c	SPBC1348.10c	plb1	SPAC1786.02	SPCC1450.09c
+R-SPO-1483152	Hydrolysis of LPE	SPAC1A6.03c	SPAC977.09c	SPBC1348.10c	plb1	SPAC1786.02	SPCC1450.09c
+R-SPO-1483166	Synthesis of PA	SPAC1A6.03c	gut2	SPBC428.14	SPAC977.09c	SPBC1348.10c	gpd1	plb1	SPAC20G8.02	pld1	gpd2	SPCC1020.13c	SPAC1851.02	SPBC4.06	SPAC1786.02	SPCC1450.09c
+R-SPO-1483206	Glycerophospholipid biosynthesis	SPAC1A6.03c	SPAC22A12.08c	SPAC22A12.10	lcb4	SPAC6G10.03c	gut2	ale1	SPBC354.07c	kes1	ctl1	cho1	dga1	SPCC1827.02c	SPBC428.14	obp1	SPAC977.09c	SPBC1348.10c	gpd1	plb1	SPAC20G8.02	pld1	gpd2	pis1	SPAC13G7.12c	SPCC1020.13c	SPBC13A2.03	SPAC1851.02	SPAC1039.07c	SPBC4.06	SPAC1786.02	SPAC15E1.05c	SPCC23B6.01c	ned1	SPCC1450.09c
+R-SPO-372790	Signaling by GPCR	SPAC1A6.03c	rho3	gef3	SPAC22H12.03	cam1	SPAC977.09c	SPBC1348.10c	ste6	gpa1	spk1	pck1	pck2	cgs1	pka1	plc1	sck1	plb1	gpa2	ncs1	gef2	gef1	rgs1	rho1	rho2	pan1	sck2	ksg1	rho4	rho5	SPBC800.10c	efc25	end3	SPAC1786.02	ppk34	dpp1	SPCC1450.09c
+R-SPO-388396	GPCR downstream signalling	SPAC1A6.03c	rho3	gef3	SPAC22H12.03	cam1	SPAC977.09c	SPBC1348.10c	ste6	gpa1	spk1	pck1	pck2	cgs1	pka1	plc1	sck1	plb1	gpa2	ncs1	gef2	gef1	rgs1	rho1	rho2	pan1	sck2	ksg1	rho4	rho5	SPBC800.10c	efc25	end3	SPAC1786.02	ppk34	SPCC1450.09c
+R-SPO-392518	Signal amplification	SPAC1A6.03c	SPAC977.09c	SPBC1348.10c	gpa1	plb1	gpa2	sty1	spm1	SPAC1786.02	SPCC1450.09c
+R-SPO-418346	Platelet homeostasis	SPAC1A6.03c	SPAC977.09c	SPBC1348.10c	ccr1	plb1	sty1	spm1	pmc1	plg7	SPAC1786.02	SPCC1450.09c
+R-SPO-418592	ADP signalling through P2Y purinoceptor 1	SPAC1A6.03c	SPAC977.09c	SPBC1348.10c	gpa1	plb1	gpa2	sty1	spm1	SPAC1786.02	SPCC1450.09c
+R-SPO-418594	G alpha (i) signalling events	SPAC1A6.03c	cam1	SPAC977.09c	SPBC1348.10c	gpa1	spk1	cgs1	pka1	plc1	plb1	gpa2	ncs1	SPAC1786.02	ppk34	SPCC1450.09c
+R-SPO-432142	Platelet sensitization by LDL	SPAC1A6.03c	SPAC977.09c	SPBC1348.10c	plb1	sty1	spm1	SPAC1786.02	SPCC1450.09c
+R-SPO-6811436	COPI-independent Golgi-to-ER retrograde traffic	SPAC1A6.03c	SPAC977.09c	SPBC1348.10c	plb1	SPAC1786.02	SPCC1450.09c
+R-SPO-2995383	Initiation of Nuclear Envelope (NE) Reformation	kap95	erg24
+R-SPO-264642	Acetylcholine Neurotransmitter Release Cycle	ypt4	SPCC18.02	ypt2	syb1
+R-SPO-8873719	RAB geranylgeranylation	ypt4	SPBC15C4.03	bet4	ypt7	ras1	ypt1	ryh1	ypt2	ypt3	ypt5	ptb1	ypt71
+R-SPO-73762	RNA Polymerase I Transcription Initiation	rpb10	rpa49	rpa43	rpc40	rpa12	rpa1	rpb6	rpc10	rpb5	rrn3	rpb8	rpa2
+R-SPO-1483076	Synthesis of CL	SPAC22A12.08c
+R-SPO-1483191	Synthesis of PC	SPAC22A12.10	ctl1	cho1	SPCC1827.02c	SPAC13G7.12c	ned1
+R-SPO-1483213	Synthesis of PE	SPAC22A12.10	SPAC13G7.12c	SPAC1039.07c	SPAC15E1.05c	ned1
+R-SPO-429958	mRNA decay by 3' to 5' exoribonuclease	rrp40	ski6	rrp46	SPCC550.03c	csl4	rrp42	rrp45	ski3	dis3	rec14	rrp4	rrp43	nhm1	mtr3
+R-SPO-162710	Synthesis of glycosylphosphatidylinositol (GPI)	mug84	gpi1	gpi2	gpi3	gpi18	las21	smp3	its8	gpi12	gpi10	dpm2	gwt1	gpi15	SPCC1450.15
+R-SPO-163125	Post-translational modification: synthesis of GPI-anchored proteins	mug84	gpi1	dpm1	gpi2	dpm3	gpi3	gpi18	las21	smp3	its8	gpi12	gpi10	dpm2	gwt1	gpi15	SPCC1450.15
+R-SPO-425366	Transport of bile salts and organic acids, metal ions and amine compounds	zhf1	ctl1	SPCC18.02	SPAC11D3.06	itr1	cis4	SPCC4B3.13	ctr6	SPAP8A3.03	SPAC323.07c
+R-SPO-425410	Metal ion SLC transporters	zhf1	cis4	ctr6	SPAP8A3.03
+R-SPO-435354	Zinc transporters	zhf1	cis4	SPAP8A3.03
+R-SPO-435368	Zinc efflux and compartmentalization by the SLC30 family	zhf1	cis4
+R-SPO-166520	Signaling by NTRKs	rho3	ppa1	ppa2	spk1	sck1	map1	rho1	rho2	sck2	par1	rho4	spm1	rho5	paa1
+R-SPO-187037	Signaling by NTRK1 (TRKA)	rho3	ppa1	ppa2	spk1	sck1	map1	rho1	rho2	sck2	par1	rho4	spm1	rho5	paa1
+R-SPO-194315	Signaling by Rho GTPases	rho3	rga3	myo3	rng2	SPAC6F12.06	SPAC9G1.10c	ppk19	rga6	gef3	gem1	rga5	rga4	pin1	jmj3	nda2	tub1	hta1	hta2	htb1	nda3	cam1	cdc25	hhf1	hht1	ste6	pck1	pck2	scd2	rad24	pht1	vps34	shk1	sck1	cdc42	cdc4	gef2	bzz1	gef1	rho1	shk2	rho2	pan1	SPBC17D1.07c	alp11	gdi1	sck2	ksg1	rho4	rho5	SPBC800.10c	SPAC1565.02c	myo2	efc25	end3	rlc1
+R-SPO-194840	Rho GTPase cycle	rho3	rga3	SPAC6F12.06	SPAC9G1.10c	rga6	gef3	gem1	rga5	rga4	ste6	cdc42	gef2	bzz1	gef1	rho1	rho2	pan1	gdi1	rho4	rho5	SPBC800.10c	SPAC1565.02c	efc25	end3
+R-SPO-195258	RHO GTPase Effectors	rho3	myo3	rng2	ppk19	pin1	jmj3	nda2	tub1	hta1	hta2	htb1	nda3	cam1	cdc25	hhf1	hht1	pck1	pck2	scd2	rad24	pht1	vps34	shk1	sck1	cdc42	cdc4	rho1	shk2	rho2	SPBC17D1.07c	alp11	sck2	ksg1	rho4	rho5	myo2	rlc1
+R-SPO-198203	PI3K/AKT activation	rho3	rho1	rho2	rho4	rho5
+R-SPO-392451	G beta:gamma signalling through PI3Kgamma	rho3	sck1	rho1	rho2	sck2	ksg1	rho4	rho5
+R-SPO-397795	G-protein beta:gamma signalling	rho3	sck1	rho1	rho2	sck2	ksg1	rho4	rho5
+R-SPO-416482	G alpha (12/13) signalling events	rho3	gef3	ste6	gpa1	gpa2	gef2	gef1	rho1	rho2	pan1	rho4	rho5	SPBC800.10c	efc25	end3
+R-SPO-5625740	RHO GTPases activate PKNs	rho3	jmj3	hta1	hta2	htb1	cdc25	hhf1	hht1	rad24	pht1	sck1	rho1	rho2	sck2	ksg1	rho4	rho5
+R-SPO-1852241	Organelle biogenesis and maintenance	sec2	atp5	atp3	pof2	rhp7	atp4	atp7	nda2	tub1	nda3	ypt3	atp6	atp9	atp2	atp1	arf1	clr3	SPCC191.02c	atp15	atp20	atp16	SPBC211.03c	sod2	hst2
+R-SPO-5617833	Cilium Assembly	sec2	nda2	tub1	nda3	ypt3	arf1	clr3	SPBC211.03c
+R-SPO-5620912	Anchoring of the basal body to the plasma membrane	sec2	ypt3
+R-SPO-163680	AMPK inhibits chREBP transcriptional activation activity	ppk9	ssp2	ppk27	amk2	sds23	cbs2	ppk1	ppk16
+R-SPO-163685	Integration of energy metabolism	ppk9	tal1	lcf1	ssp2	ppk27	gpa1	pck1	pck2	cgs1	pka1	plc1	amk2	cut6	gpa2	sds23	cbs2	ppk1	lcf2	ppk16	SPAC1851.02
+R-SPO-165159	MTOR signalling	ppk9	sce3	fkh1	ssp2	gtr2	ppk27	gtr1	rhb1	sck1	amk2	tsc1	sds23	cbs2	sck2	tif471	psk1	rps602	ppk1	ppk16	tsc2
+R-SPO-200425	Carnitine metabolism	ppk9	SPBC29A3.11c	ssp2	ppk27	amk2	cut6	sds23	cbs2	ppk1	ppk16
+R-SPO-380972	Energy dependent regulation of mTOR by LKB1-AMPK	ppk9	ssp2	ppk27	amk2	tsc1	sds23	cbs2	ppk1	ppk16	tsc2
+R-SPO-446199	Synthesis of Dolichyl-phosphate	mvd1	SPAC4D7.04c	SPAC7D4.09c	pdf1	nus1	sec59
+R-SPO-163200	Respiratory electron transport, ATP synthesis by chemiosmotic coupling, and heat production by uncoupling proteins.	SPAC24C9.08	qcr6	cyt1	qcr9	atp5	qcr7	atp3	pof2	rhp7	atp4	atp7	mas2	cyc1	cob	atp6	atp9	atp2	atp1	qcr8	SPAC27D7.06	SPAC20G8.04c	atp15	rip1	atp20	atp16	qcr1	SPAC1805.02c
+R-SPO-166187	Mitochondrial Uncoupling	SPAC24C9.08
+R-SPO-9673163	Oleoyl-phe metabolism	SPAC24C9.08
+R-SPO-5689896	Ovarian tumor domain proteases	otu1	cdc48
+R-SPO-110312	Translesion synthesis by REV1	rfc3	rfc1	rfc4	rev1	rfc5	pcn1	rfc2	rev7	ssb2	ssb3	rev3
+R-SPO-110320	Translesion Synthesis by POLH	rfc3	ufd1	eso1	rfc1	rfc4	rfc5	pcn1	rfc2	ssb2	ssb3	cdc48	npl4
+R-SPO-176187	Activation of ATR in response to replication stress	rfc3	hal4	mcm10	orc5	oca2	him1	sna41	orc6	mcm7	rfc4	rfc5	cdc2	cdc25	rad1	rad9	mcm4	mcm3	mcm2	mcm5	cdc18	mcm6	rad17	hsk1	orc1	hus1	orc2	ppk8	rfc2	orc3	ssb2	ssb3	mrc1	orc4	spo6
+R-SPO-5655862	Translesion synthesis by POLK	rfc3	rfc1	mug40	rfc4	rev1	rfc5	pcn1	rfc2	rev7	ssb2	ssb3	rev3
+R-SPO-5656121	Translesion synthesis by POLI	rfc3	rfc1	rfc4	rev1	rfc5	pcn1	rfc2	rev7	ssb2	ssb3	rev3
+R-SPO-69091	Polymerase switching	rfc3	spp1	cdm1	rfc1	spp2	spb70	rfc4	rfc5	pol1	cdc27	pol3	cdc1	pcn1	rfc2
+R-SPO-69109	Leading Strand Synthesis	rfc3	spp1	cdm1	rfc1	spp2	spb70	rfc4	rfc5	pol1	cdc27	pol3	cdc1	pcn1	rfc2
+R-SPO-69186	Lagging Strand Synthesis	rfc3	spp1	cdm1	rfc1	spp2	spb70	rfc4	rfc5	cdc17	pol1	cdc27	pol3	rad2	cdc1	pcn1	rfc2	ssb2	ssb3	dna2
+R-SPO-69190	DNA strand elongation	rfc3	spp1	cdm1	rfc1	spp2	spb70	psf2	rfc4	rfc5	cdc17	pol1	cdc27	pol3	rad2	cdc1	pcn1	rfc2	ssb2	ssb3	sld5	psf1	dna2	psf3
+R-SPO-69481	G2/M Checkpoints	rfc3	hal4	mcm10	orc5	oca2	him1	sna41	orc6	mcm7	rfc4	rfc5	cdc2	cdc25	rad1	rad9	mcm4	mcm3	mcm2	mcm5	cdc18	rad24	mcm6	rad17	hsk1	orc1	hus1	orc2	ppk8	rfc2	orc3	mek1	ssb2	ssb3	mrc1	orc4	spo6
+R-SPO-69620	Cell Cycle Checkpoints	rfc3	hal4	mad2	mcm10	bub3	orc5	oca2	him1	sna41	orc6	mcm7	rfc4	rfc5	bub1	cdc2	cdc25	rad1	rad9	mcm4	mcm3	mcm2	mcm5	cdc18	rad24	mcm6	rad17	hsk1	orc1	hus1	slp1	orc2	ppk8	rfc2	orc3	mek1	ssb2	ssb3	mrc1	orc4	spo6
+R-SPO-157579	Telomere Maintenance	cbf5	shq1
+R-SPO-171319	Telomere Extension By Telomerase	cbf5	shq1
+R-SPO-180786	Extension of Telomeres	cbf5	shq1
+R-SPO-73886	Chromosome Maintenance	cbf5	shq1
+R-SPO-9603798	Class I peroxisomal membrane protein import	SPAC29A4.14c	pex13	sym1	pex14	pex16	SPAC4G9.14	pex11	SPAC17C9.14	pex12	SPCC24B10.10c	fis1
+R-SPO-5685942	HDR through Homologous Recombination (HRR)	hal4	oca2	rhp51	mus81	ppk8	eme1
+R-SPO-5693538	Homology Directed Repair	hal4	nbs1	oca2	tel1	mst1	rad22	rhp51	rad2	mus81	rad32	ppk8	mst2	eme1	rad50
+R-SPO-5693567	HDR through Homologous Recombination (HRR) or Single Strand Annealing (SSA)	hal4	nbs1	oca2	tel1	mst1	rad22	rhp51	mus81	rad32	ppk8	mst2	eme1	rad50
+R-SPO-5693579	Homologous DNA Pairing and Strand Exchange	hal4	oca2	rhp51	ppk8
+R-SPO-5693616	Presynaptic phase of homologous DNA pairing and strand exchange	hal4	oca2	rhp51	ppk8
+R-SPO-69601	Ubiquitin Mediated Degradation of Phosphorylated Cdc25A	hal4	oca2	cdc25	ppk8	mek1
+R-SPO-69610	p53-Independent DNA Damage Response	hal4	oca2	cdc25	ppk8	mek1
+R-SPO-69613	p53-Independent G1/S DNA damage checkpoint	hal4	oca2	cdc25	ppk8	mek1
+R-SPO-69615	G1/S DNA Damage Checkpoints	hal4	oca2	cdc25	ppk8	mek1
+R-SPO-5205647	Mitophagy	SPAC29A4.17c	atg5	atg8	cka1	ckb1	atg12	atg1
+R-SPO-8934903	Receptor Mediated Mitophagy	SPAC29A4.17c	atg5	atg8	cka1	ckb1	atg12	atg1
+R-SPO-9663891	Selective autophagy	SPAC29A4.17c	tel1	atg5	atg8	pex5	cka1	ckb1	SPBP35G2.11c	atg12	atg1
+R-SPO-936837	Ion transport by P-type ATPases	cta5	cta4	SPAC4F10.16c	ccc2	pmr1	SPCC1672.11c	SPBC887.12	SPAC24B11.12c	SPAC6C3.06c	pmc1
+R-SPO-109581	Apoptosis	ppk11	bir1	sid1	spn1	spn7	nak1	cyc1	spn3	spn4	spn5	nhp6	msp1	dnm1	spn6	cmb1	ppk2	oma1	vps1	SPBC28F2.11
+R-SPO-5357801	Programmed Cell Death	ppk11	bir1	sid1	spn1	spn7	nak1	cyc1	spn3	spn4	spn5	nhp6	msp1	dnm1	spn6	cmb1	ppk2	oma1	vps1	SPBC28F2.11
+R-SPO-75153	Apoptotic execution phase	ppk11	sid1	nak1	nhp6	msp1	dnm1	cmb1	ppk2	vps1	SPBC28F2.11
+R-SPO-15869	Metabolism of nucleotides	SPCC1672.03c	ade3	gua1	ura7	apt1	SPBC2G2.13c	SPCC1020.07	SPCC1795.05c	ade8	ade10	trx2	ade1	ura3	adk1	cdc22	suc22	ndk1	ada1	ado1	pgr1	ade2	pcd1	ura1	SPBC1198.05	SPAC644.05c	gua1	SPBP35G2.12	ynd1	gdp1	SPAC1805.16c	SPAC15E1.04	SPCC830.11c	SPCC830.10	SPCC191.05c
+R-SPO-74259	Purine catabolism	SPCC1672.03c	SPBP35G2.12	SPAC1805.16c	SPCC830.10	SPCC191.05c
+R-SPO-8956319	Nucleobase catabolism	SPCC1672.03c	SPBP35G2.12	ynd1	gdp1	SPAC1805.16c	SPCC830.10	SPCC191.05c
+R-SPO-5693548	Sensing of DNA Double Strand Breaks	cut15	nbs1	tel1	imp1	mst1	rad32	mst2	rad50
+R-SPO-109606	Intrinsic Pathway for Apoptosis	bir1	spn1	spn7	cyc1	spn3	spn4	spn5	spn6
+R-SPO-111469	SMAC, XIAP-regulated apoptotic response	bir1	spn1	spn7	spn3	spn4	spn5	spn6
+R-SPO-111471	Apoptotic factor-mediated response	bir1	spn1	spn7	cyc1	spn3	spn4	spn5	spn6
+R-SPO-189200	Cellular hexose transport	sut1
+R-SPO-189445	Metabolism of porphyrins	hem1	hem15	hem2	ups1	hem3	hem14	abc2	etp1	abc3	hem12	hem13	cox10
+R-SPO-189451	Heme biosynthesis	hem1	hem15	hem2	ups1	hem3	hem14	etp1	hem12	hem13	cox10
+R-SPO-6807070	PTEN Regulation	maf1	SPCC1739.01	ptn1	cka1	ckb1	cps3	sck1	sck2
+R-SPO-8943724	Regulation of PTEN gene transcription	maf1
+R-SPO-2142691	Synthesis of Leukotrienes (LT) and Eoxins (EX)	SPAC3A11.10c	ggt2	SPCC965.12	lap2	abc2	ggt1
+R-SPO-5423646	Aflatoxin activation and detoxification	SPAC3A11.10c	ggt2	SPCC965.12	ggt1
+R-SPO-1236975	Antigen processing-Cross presentation	tbp1	SPAC6G10.04c	rpn3	rpt1	pre3	pre10	rpn8	rpt4	rpn2	SPCC18.17c	rpt3	nas2	rpn10	SPBC646.16	pre8	rpn501	rpn502	pts1	mts2	let1	rpn11	rpn12	rpn1	SPAC13C5.01c	SPAC31A2.04c	pup1	pre6	rpn7	rpn6	pam1	rpn9	SPBC577.10	pup2	SPAC15E1.10	pup3
+R-SPO-1236978	Cross-presentation of soluble exogenous antigens (endosomes)	tbp1	SPAC6G10.04c	rpn3	rpt1	pre3	pre10	rpn8	rpt4	rpn2	SPCC18.17c	rpt3	nas2	rpn10	SPBC646.16	pre8	rpn501	rpn502	pts1	mts2	let1	rpn11	rpn12	rpn1	SPAC13C5.01c	SPAC31A2.04c	pup1	pre6	rpn7	rpn6	pam1	rpn9	SPBC577.10	pup2	SPAC15E1.10	pup3
+R-SPO-350562	Regulation of ornithine decarboxylase (ODC)	tbp1	SPAC6G10.04c	rpn3	rpt1	pre3	pre10	rpn8	rpt4	rpn2	SPCC18.17c	rpt3	nas2	rpn10	SPBC646.16	pre8	rpn501	rpn502	pts1	mts2	let1	rpn11	rpn12	rpn1	SPAC13C5.01c	SPAC31A2.04c	pup1	pre6	rpn7	rpn6	spe1	pam1	rpn9	spa1	SPBC577.10	pup2	SPAC15E1.10	pup3
+R-SPO-351202	Metabolism of polyamines	tbp1	SPAC6G10.04c	SPBC8E4.03	rpn3	rpt1	pre3	pre10	rpn8	rpt4	rpn2	SPCC18.17c	rpt3	nas2	rpn10	SPBC646.16	pre8	rpn501	rpn502	pts1	mts2	let1	rpn11	rpn12	ats1	rpn1	SPAC13C5.01c	SPAC31A2.04c	SPBC12C2.07c	pup1	pre6	rpn7	spe2	rpn6	spe1	pam1	rpn9	spa1	SPBC577.10	pup2	SPAC15E1.10	pup3
+R-SPO-5689880	Ub-specific processing proteases	tbp1	SPAC6G10.04c	rpn3	rpt1	pre3	pre10	rpn8	rpt4	rpn2	SPCC18.17c	rpt3	nas2	rpn10	SPBC646.16	pre8	rpn501	rpn502	pts1	mts2	let1	rpn11	rpn12	rpn1	SPAC13C5.01c	SPAC31A2.04c	pup1	pre6	rpn7	ubp6	rpn6	pam1	rpn9	SPBC577.10	pup2	SPAC15E1.10	pup3	rpn1301
+R-SPO-5627123	RHO GTPases activate PAKs	myo3	shk1	cdc42	cdc4	shk2	myo2	rlc1
+R-SPO-194138	Signaling by VEGF	lcb4	SPAC6B12.03c	pop3	bit61	cam1	pck1	pck2	ccr1	swo1	sck1	ste20	sck2	ksg1	sin1	tor2
+R-SPO-390466	Chaperonin-mediated protein folding	lcb4	cct3	cct1	cct6	cct4	cct8	cct7	cct2	git5	cct5
+R-SPO-390471	Association of TriC/CCT with target proteins during biosynthesis	lcb4	cct3	cct1	cct6	cct4	cct8	cct7	cct2	cct5
+R-SPO-391251	Protein folding	lcb4	cct3	cct1	cct6	cct4	cct8	cct7	cct2	git5	cct5
+R-SPO-4420097	VEGFA-VEGFR2 Pathway	lcb4	SPAC6B12.03c	pop3	bit61	cam1	pck1	pck2	ccr1	swo1	sck1	ste20	sck2	ksg1	sin1	tor2
+R-SPO-5218921	VEGFR2 mediated cell proliferation	lcb4	pck1	pck2	ksg1
+R-SPO-9009391	Extra-nuclear estrogen signaling	lcb4	cam1	spk1	pck1	pck2	ccr1	swo1	sck1	sck2	ksg1
+R-SPO-917729	Endosomal Sorting Complex Required For Transport (ESCRT)	did4	vps24	vps36	SPCC162.06c	vps25	vps20	dot2	snf7
+R-SPO-5626467	RHO GTPases activate IQGAPs	rng2	nda2	tub1	nda3	cam1	cdc42	SPBC17D1.07c	alp11
+R-SPO-71240	Tryptophan catabolism	SPAC56E4.03	SPAC6B12.04c	SPBC1773.13	SPCC569.07
+R-SPO-174403	Glutathione synthesis and recycling	ggt2	SPCC737.06c	gsa1	SPBC31F10.03	gcs1	SPAC11D3.15	dug1	ggt1
+R-SPO-388841	Costimulation by the CD28 family	SPAC6B12.03c	pop3	bit61	ppa1	ppa2	shk1	sck1	par2	cdc42	ste20	shk2	sck2	par1	ksg1	sin1	paa1	tor2
+R-SPO-389356	CD28 co-stimulation	SPAC6B12.03c	pop3	bit61	shk1	sck1	cdc42	ste20	shk2	sck2	ksg1	sin1	tor2
+R-SPO-389357	CD28 dependent PI3K/Akt signaling	SPAC6B12.03c	pop3	bit61	sck1	ste20	sck2	ksg1	sin1	tor2
+R-SPO-5218920	VEGFR2 mediated vascular permeability	SPAC6B12.03c	pop3	bit61	cam1	ccr1	swo1	sck1	ste20	sck2	ksg1	sin1	tor2
+R-SPO-6804757	Regulation of TP53 Degradation	SPAC6B12.03c	pop3	bit61	sck1	ste20	sck2	ksg1	sin1	tor2
+R-SPO-6806003	Regulation of TP53 Expression and Degradation	SPAC6B12.03c	pop3	bit61	sck1	ste20	sck2	ksg1	sin1	tor2
+R-SPO-8963691	Phenylalanine and tyrosine metabolism	SPAC6B12.04c	omt2
+R-SPO-8964208	Phenylalanine metabolism	SPAC6B12.04c	omt2
+R-SPO-8964539	Glutamate and glutamine metabolism	SPAC6B12.04c	SPBC725.01	gln1	car2	pro3	pro1
+R-SPO-113501	Inhibition of replication initiation of damaged DNA by RB1/E2F1	spp1	spp2	spb70	pol1
+R-SPO-113510	E2F mediated regulation of DNA replication	spp1	spp2	spb70	pol1
+R-SPO-69166	Removal of the Flap Intermediate	spp1	cdm1	spp2	spb70	pol1	cdc27	pol3	rad2	cdc1	pcn1	ssb2	ssb3	dna2
+R-SPO-69183	Processive synthesis on the lagging strand	spp1	cdm1	spp2	spb70	cdc17	pol1	cdc27	pol3	rad2	cdc1	pcn1	ssb2	ssb3	dna2
+R-SPO-6811440	Retrograde transport at the Trans-Golgi-Network	fsv1	ric1	sat1	SPCC594.06c	SPCC1620.12c	ypt1	ryh1	vti1	gyp51	syb1	tlg1	sec17	tlg2	sec18	SPBC1778.09
+R-SPO-73817	Purine ribonucleoside monophosphate biosynthesis	ade3	gua1	ade8	ade10	ade1	ade2	gua1
+R-SPO-8956320	Nucleobase biosynthesis	ade3	gua1	ade8	ade10	ade1	ura3	ade2	ura1	gua1
+R-SPO-964975	Vitamins B6 activation to pyridoxal phosphate	SPAC6F6.11c	SPAC1093.02
+R-SPO-389542	NADPH regeneration	idp1
+R-SPO-1266738	Developmental Biology	sfp47	mbx1	apl1	apl2	byr1	spk1	wis1	msp1	apm4	dnm1	sty1	chc1	spm1	apl3	pvg4	vps1	clc1	aps2	skh1
+R-SPO-373760	L1CAM interactions	sfp47	apl1	apl2	byr1	spk1	wis1	msp1	apm4	dnm1	chc1	apl3	vps1	clc1	aps2	skh1
+R-SPO-422475	Axon guidance	sfp47	apl1	apl2	byr1	spk1	wis1	msp1	apm4	dnm1	chc1	apl3	vps1	clc1	aps2	skh1
+R-SPO-437239	Recycling pathway of L1	sfp47	apl1	apl2	spk1	msp1	apm4	dnm1	chc1	apl3	vps1	clc1	aps2
+R-SPO-9675108	Nervous system development	sfp47	apl1	apl2	byr1	spk1	wis1	msp1	apm4	dnm1	chc1	apl3	vps1	clc1	aps2	skh1
+R-SPO-193048	Androgen biosynthesis	SPAC7D4.09c
+R-SPO-3371511	HSF1 activation	prr1	hbs1	tef101	tef102	tef103	swo1	rad24	clr3	hsf1	wos2	cdc48
+R-SPO-3371568	Attenuation phase	prr1	SPBC16E9.15	swo1	hsf1	SPAC27F1.06c	wos2
+R-SPO-3371571	HSF1-dependent transactivation	prr1	SPBC16E9.15	ssa2	pop3	swo1	mip1	hsf1	SPAC27F1.06c	ssa1	wos2	tor2
+R-SPO-1369007	Mitochondrial ABC transporters	atm1	pmd1	mam1	hmt1	mdl1
+R-SPO-382556	ABC-family proteins mediated transport	atm1	pmd1	mam1	hmt1	abc2	abc1	abc3	abc4	mdl1
+R-SPO-112311	Neurotransmitter clearance	SPAC9E9.09c	SPBC119.03	SPBPB21E7.04c
+R-SPO-211945	Phase I - Functionalization of compounds	SPAC9E9.09c	SPCC13B11.04c	SPCC191.02c	SPBC1539.07c	erg11	mug180	SPAPB1A11.02	SPAC1039.03
+R-SPO-380612	Metabolism of serotonin	SPAC9E9.09c
+R-SPO-380615	Serotonin clearance from the synaptic cleft	SPAC9E9.09c
+R-SPO-5652084	Fructose metabolism	SPAC9E9.09c	dak2	tms1	SPAC26F1.07
+R-SPO-70350	Fructose catabolism	SPAC9E9.09c	dak2
+R-SPO-71384	Ethanol oxidation	SPAC9E9.09c	SPCC13B11.04c	SPCC191.02c	SPBC1539.07c
+R-SPO-202131	Metabolism of nitric oxide: NOS3 activation and regulation	SPAC9G1.08c	SPAC8E11.04c	swf1	cam1	ccr1	swo1	sck1	sck2
+R-SPO-203615	eNOS activation	SPAC9G1.08c	SPAC8E11.04c	swf1	cam1	ccr1	swo1	sck1	sck2
+R-SPO-1483249	Inositol phosphate metabolism	SPAC9G1.10c	syj1	asp1	SPCC970.08	ptn1	cam1	plc1	aps1	arg82	ipk1
+R-SPO-1660514	Synthesis of PIPs at the Golgi membrane	SPAC9G1.10c	ppk19	SPBC19F5.03	ptn1	arf1	vps34	pik1	stt4	lsb6
+R-SPO-1855183	Synthesis of IP2, IP, and Ins in the cytosol	SPAC9G1.10c	syj1
+R-SPO-1855204	Synthesis of IP3 and IP4 in the cytosol	SPAC9G1.10c	syj1	SPCC970.08	ptn1	cam1	plc1
+R-SPO-3299685	Detoxification of Reactive Oxygen Species	pmp20	tpx1	trx2	cyc1	sod1	cta1	pgr1	frp1	ccs1	sod2
+R-SPO-69017	CDK-mediated phosphorylation and removal of Cdc6	rem1	cdc2	cdc13	cig1	cig2	cdc18
+R-SPO-69052	Switching of origins to a post-replicative state	rem1	mcm7	cdc2	cdc13	cig1	mcm4	mcm3	cig2	mcm2	mcm5	cdc18	mcm6	orc1
+R-SPO-69202	Cyclin E associated events during G1/S transition 	rem1	pmh1	cdc2	cdc25	cdc13	cig1	mcs2	cig2	crk1
+R-SPO-75876	Synthesis of very long-chain fatty acyl-CoAs	SPBC19C2.15c	lcf1	SPBC646.07c	lcf2
+R-SPO-430039	mRNA decay by 5' to 3' exoribonuclease	lsm4	SPBC19G7.10c	lsm5	lsm7	lsm2	lsm1	lsm6	lsm3
+R-SPO-166208	mTORC1-mediated signalling	sce3	fkh1	tif471	psk1	rps602
+R-SPO-70895	Branched-chain amino acid catabolism	eca39	ehd3
+R-SPO-8856825	Cargo recognition for clathrin-mediated endocytosis	ubl1	SPBC1E8.02	apl1	apl2	SPBC530.09c	SPBC19F8.03c	ent1	SPCC18.02	SPCC794.11c	apm4	dph1	pan1	abc1	syb1	apl3	apm1	abc4	aps2
+R-SPO-163560	Triglyceride catabolism	gut2
+R-SPO-8979227	Triglyceride metabolism	gut2	dga1	ned1
+R-SPO-141405	Inhibition of the proteolytic activity of APC/C required for the onset of anaphase by mitotic spindle checkpoint components	mad2	bub3	bub1	slp1
+R-SPO-141430	Inactivation of APC/C via direct inhibition of the APC/C complex	mad2	bub3	bub1	slp1
+R-SPO-176408	Regulation of APC/C activators between G1/S and early anaphase	mad2	bub3	bub1	slp1
+R-SPO-69618	Mitotic Spindle Checkpoint	mad2	bub3	bub1	slp1
+R-SPO-156842	Eukaryotic Translation Elongation	eft201	tef5	hbs1	tef101	tef102	tef103	tef3
+R-SPO-156902	Peptide chain elongation	eft201
+R-SPO-163841	Gamma carboxylation, hypusine formation and arylsulfatase activation	eft201	dph1	dph5	SPBC1271.04c	tif51a	mam4	dph2	lia1	mug71	tif51b	dph3
+R-SPO-5358493	Synthesis of diphthamide-EEF2	eft201	dph1	dph5	dph2	mug71	dph3
+R-SPO-162699	Synthesis of dolichyl-phosphate mannose	dpm1	dpm3	dpm2
+R-SPO-111457	Release of apoptotic factors from the mitochondria	spn1	spn7	cyc1	spn3	spn4	spn5	spn6
+R-SPO-499943	Interconversion of nucleotide di- and triphosphates	ura7	SPBC2G2.13c	SPCC1795.05c	trx2	adk1	cdc22	suc22	ndk1	pgr1	SPBC1198.05	SPAC644.05c	SPAC15E1.04	SPCC830.11c
+R-SPO-8963693	Aspartate and asparagine metabolism	aat2	SPBC354.09c	SPBC725.01	asn1
+R-SPO-163754	Insulin effects increased synthesis of Xylulose-5-Phosphate	tal1
+R-SPO-74217	Purine salvage	apt1	ada1	ado1	SPAC1805.16c
+R-SPO-8956321	Nucleotide salvage	apt1	SPCC1020.07	ada1	ado1	pcd1	SPAC1805.16c
+R-SPO-1614558	Degradation of cysteine and homocysteine	SPAC23A1.14c	tum1
+R-SPO-1614603	Cysteine formation from homocysteine	SPAC23A1.14c
+R-SPO-351143	Agmatine biosynthesis	SPBC8E4.03	spe1
+R-SPO-379397	Enzymatic degradation of dopamine by COMT	SPBC119.03	SPBPB21E7.04c
+R-SPO-379398	Enzymatic degradation of Dopamine by monoamine oxidase	SPBC119.03	SPBPB21E7.04c
+R-SPO-379401	Dopamine clearance from the synaptic cleft	SPBC119.03	SPBPB21E7.04c
+R-SPO-5668599	RHO GTPases Activate NADPH Oxidases	ppk19	pin1	pck1	pck2	scd2	vps34
+R-SPO-1268020	Mitochondrial protein import	cym1	SPCC1183.03c	arg3	hsp60	jac1
+R-SPO-611105	Respiratory electron transport	qcr6	cyt1	qcr9	qcr7	mas2	cyc1	cob	qcr8	SPAC27D7.06	SPAC20G8.04c	rip1	qcr1	SPAC1805.02c
+R-SPO-70171	Glycolysis	pfk1	gpd3	pgk1	SPCC1840.05c	tpi1	gpm1	eno101	hxk2	pgi1	tdh1	hxk1	pyk1	eno102	SPAC732.02c	SPAC144.17c
+R-SPO-525793	Myogenesis	mbx1	sty1	spm1	pvg4
+R-SPO-1168372	Downstream signaling events of B Cell Receptor (BCR)	fkh1	pck2
+R-SPO-2025928	Calcineurin activates NFAT	fkh1
+R-SPO-983705	Signaling by the B Cell Receptor (BCR)	fkh1	pck2
+R-SPO-8849175	Threonine catabolism	mmf1
+R-SPO-174824	Plasma lipoprotein assembly, remodeling, and clearance	apl1	apl2	isp6	apm4	chc1	apl3	mug180	SPAPB1A11.02	SPAC1039.03	clc1	aps2
+R-SPO-8866427	VLDLR internalisation and degradation	apl1	apl2	isp6	apm4	chc1	apl3	clc1	aps2
+R-SPO-8964038	LDL clearance	apl1	apl2	isp6	apm4	chc1	apl3	mug180	SPAPB1A11.02	SPAC1039.03	clc1	aps2
+R-SPO-8964043	Plasma lipoprotein clearance	apl1	apl2	isp6	apm4	chc1	apl3	mug180	SPAPB1A11.02	SPAC1039.03	clc1	aps2
+R-SPO-446205	Synthesis of GDP-mannose	pmi40	pmm1
+R-SPO-1362409	Mitochondrial iron-sulfur cluster biogenesis	isa2	arh1	isd11	SPBC21D10.11c	SPCC1183.03c	isa1	grx5	isu1	jac1
+R-SPO-8854214	TBC/RABGAPs	SPBC215.01	atg8	SPCC1620.12c	ypt7	gyp2	ryh1	gyp51	ypt71	gyp7	SPBC1778.09	arf6
+R-SPO-2559583	Cellular Senescence	nbs1	ssn6	tel1	mst1	trx2	hta1	hta2	htb1	hhf1	hht1	byr1	byr2	wis1	pht1	rad32	sty1	mst2	spm1	rad50	skh1
+R-SPO-2559586	DNA Damage/Telomere Stress Induced Senescence	nbs1	tel1	mst1	rad32	mst2	rad50
+R-SPO-5685939	HDR through MMEJ (alt-NHEJ)	nbs1	rad2	rad32	rad50
+R-SPO-5693607	Processing of DNA double-strand break ends	nbs1	tel1	mst1	rad32	mst2	rad50
+R-SPO-199992	trans-Golgi Network Vesicle Budding	apl2	sec9	arf1	chc1	syb1	apm1	vas2	SPBC211.03c	psy1	clc1	apl4
+R-SPO-432720	Lysosome Vesicle Biogenesis	apl2	chc1	apm1	vas2	clc1	apl4
+R-SPO-68616	Assembly of the ORC complex at the origin of replication	orc5	orc6	orc1	orc2	orc3	orc4
+R-SPO-68689	CDC6 association with the ORC:origin complex	orc5	orc6	cdc18	orc1	orc2	orc3	orc4
+R-SPO-68827	CDT1 association with the CDC6:ORC:origin complex	orc5	orc6	cdt1	cdc18	orc1	orc2	orc3	orc4
+R-SPO-68867	Assembly of the pre-replicative complex	orc5	orc6	mcm7	mcm4	mcm3	mcm2	cdt1	mcm5	cdc18	mcm6	orc1	orc2	orc3	orc4
+R-SPO-5633008	TP53 Regulates Transcription of Cell Death Genes	SPBC36.10	SPBC15C4.03	bet4	ptb1	SPBC119.18	SPAP8A3.10
+R-SPO-6803204	TP53 Regulates Transcription of Genes Involved in Cytochrome C Release	SPBC36.10	SPBC119.18	SPAP8A3.10
+R-SPO-168643	Nucleotide-binding domain, leucine rich repeat containing receptor (NLR) signaling pathways	git7	trx2	byr1	wis1	swo1	sty1	spm1	skh1
+R-SPO-622312	Inflammasomes	git7	trx2	swo1
+R-SPO-844456	The NLRP3 inflammasome	git7	trx2	swo1
+R-SPO-2395516	Electron transport from NADPH to Ferredoxin	arh1
+R-SPO-2980766	Nuclear Envelope Breakdown	nem1	pck1	pck2	spo7	ned1
+R-SPO-4419969	Depolymerisation of the Nuclear Lamina	nem1	pck1	pck2	spo7	ned1
+R-SPO-68875	Mitotic Prophase	nem1	ppk31	jhd1	hta1	hta2	htb1	hhf1	ypt1	pck1	pck2	cek1	pht1	plo1	mug134	SPAC1D4.02c	ppk18	spo7	ned1
+R-SPO-73614	Pyrimidine salvage	SPCC1020.07	pcd1
+R-SPO-977347	Serine biosynthesis	SRR	SPBC3H7.07c	SPAC1F12.07	SPAPB1A10.07c
+R-SPO-110329	Cleavage of the damaged pyrimidine 	thp1	ung1	nth1
+R-SPO-212165	Epigenetic regulation of gene expression	thp1	sir2	hta1	hta2	htb1	hhf1	hht1	pht1	rrp8
+R-SPO-5221030	TET1,2,3 and TDG demethylate DNA	thp1
+R-SPO-73928	Depyrimidination	thp1	ung1	nth1
+R-SPO-73929	Base-Excision Repair, AP Site Formation	thp1	ung1	nth1	myh1
+R-SPO-3371497	HSP90 chaperone cycle for steroid hormone receptors (SHR)	ssa2	mas5	swo1	SPAC27F1.06c	ssa1	wos2	sti1
+R-SPO-2142712	Synthesis of 12-eicosatetraenoic acid derivatives	gpx1
+R-SPO-9018676	Biosynthesis of D-series resolvins	gpx1	lap2
+R-SPO-9018677	Biosynthesis of DHA-derived SPMs	gpx1	lap2
+R-SPO-9018678	Biosynthesis of specialized proresolving mediators (SPMs)	gpx1	lap2
+R-SPO-9018679	Biosynthesis of EPA-derived SPMs	gpx1	lap2
+R-SPO-9018896	Biosynthesis of E-series 18(S)-resolvins	gpx1	lap2
+R-SPO-9020265	Biosynthesis of aspirin-triggered D-series resolvins	gpx1	lap2
+R-SPO-9023661	Biosynthesis of E-series 18(R)-resolvins	gpx1	lap2
+R-SPO-480985	Synthesis of dolichyl-phosphate-glucose	alg5
+R-SPO-1227986	Signaling by ERBB2	ubp12	sck1	sck2	ubp1
+R-SPO-1358803	Downregulation of ERBB2:ERBB3 signaling	ubp12	sck1	sck2	ubp1
+R-SPO-8863795	Downregulation of ERBB2 signaling	ubp12	sck1	sck2	ubp1
+R-SPO-6803205	TP53 regulates transcription of several additional cell death genes whose specific roles in p53-dependent apoptosis remain uncertain	SPBC15C4.03	bet4	ptb1
+R-SPO-400451	Free fatty acids regulate insulin secretion	lcf1	gpa1	plc1	gpa2	lcf2
+R-SPO-422356	Regulation of insulin secretion	lcf1	gpa1	pck1	pck2	plc1	gpa2	lcf2
+R-SPO-434313	Intracellular metabolism of fatty acids regulates insulin secretion	lcf1	lcf2
+R-SPO-9648025	EML4 and NUDC in mitotic spindle formation	nudc	plo1
+R-SPO-2559580	Oxidative Stress Induced Senescence	ssn6	trx2	hta1	hta2	htb1	hhf1	hht1	byr1	byr2	wis1	pht1	sty1	spm1	skh1
+R-SPO-1237112	Methionine salvage pathway	mri1	adi1	SPAC16C9.02c	utr4
+R-SPO-2408508	Metabolism of ingested SeMet, Sec, MeSec into H2Se	sam1
+R-SPO-2408522	Selenoamino acid metabolism	sam1
+R-SPO-6814122	Cooperation of PDCL (PhLP1) and TRiC/CCT in G-protein beta folding	cct3	cct1	cct6	cct4	cct8	cct7	cct2	git5	cct5
+R-SPO-947581	Molybdenum cofactor biosynthesis	SPBC21D10.11c	uba4
+R-SPO-1660662	Glycosphingolipid metabolism	css1	SPBC725.05c	mel1
+R-SPO-3322077	Glycogen synthesis	SPBC32F12.10	SPCC1840.05c	fyu1
+R-SPO-8982491	Glycogen metabolism	SPBC32F12.10	SPCC1840.05c	fyu1
+R-SPO-156584	Cytosolic sulfonation of small molecules	SPBC3H7.02	met14	SPAC869.05c
+R-SPO-1630316	Glycosaminoglycan metabolism	SPBC3H7.02	abc1	met14	abc4	SPAC869.05c
+R-SPO-174362	Transport and synthesis of PAPS	SPBC3H7.02	met14	SPAC869.05c
+R-SPO-427601	Multifunctional anion exchangers	SPBC3H7.02	SPAC869.05c
+R-SPO-1855167	Synthesis of pyrophosphates in the cytosol	asp1	SPCC970.08	aps1	ipk1
+R-SPO-6798163	Choline catabolism	ctl1
+R-SPO-198323	AKT phosphorylates targets in the cytosol	SPCC1739.01	cps3	sck1	sck2	tsc2
+R-SPO-8948751	Regulation of PTEN stability and activity	SPCC1739.01	ptn1	cka1	ckb1	cps3	sck1	sck2
+R-SPO-70221	Glycogen breakdown (glycogenolysis)	SPCC1840.05c
+R-SPO-70370	Galactose catabolism	SPCC1840.05c	gal10
+R-SPO-1592230	Mitochondrial biogenesis	atp5	atp3	pof2	rhp7	atp4	atp7	atp6	atp9	atp2	atp1	SPCC191.02c	atp15	atp20	atp16	sod2	hst2
+R-SPO-163210	Formation of ATP by chemiosmotic coupling	atp5	atp3	pof2	rhp7	atp4	atp7	atp6	atp9	atp2	atp1	atp15	atp20	atp16
+R-SPO-8949613	Cristae formation	atp5	atp3	pof2	rhp7	atp4	atp7	atp6	atp9	atp2	atp1	atp15	atp20	atp16
+R-SPO-5358508	Mismatch Repair	msh6	msh2	cdc17	msh3	exo1	pms1	pcn1	mlh1
+R-SPO-5358565	Mismatch repair (MMR) directed by MSH2:MSH6 (MutSalpha)	msh6	msh2	cdc17	exo1	pms1	pcn1	mlh1
+R-SPO-70688	Proline catabolism	SPCC70.03c
+R-SPO-2161522	Abacavir transport and metabolism	SPCC13B11.04c	SPBC1539.07c
+R-SPO-2161541	Abacavir metabolism	SPCC13B11.04c	SPBC1539.07c
+R-SPO-195721	Signaling by WNT	vps35	snx3	cam1	sty1	vps26	ppb1	spm1	vps29	cnb1
+R-SPO-3238698	WNT ligand biogenesis and trafficking	vps35	snx3	vps26	vps29
+R-SPO-1855191	Synthesis of IPs in the nucleus	SPCC970.08	arg82	ipk1
+R-SPO-6804756	Regulation of TP53 Activity through Phosphorylation	tel1	spt16	pob3	cka1	ckb1	pom1	ppk5
+R-SPO-9664873	Pexophagy	tel1	atg8	pex5	SPBP35G2.11c
+R-SPO-72764	Eukaryotic Translation Termination	sup35	sup45	trm112	mtq2
+R-SPO-5689901	Metalloprotease DUBs	hse1	mug137	sst2
+R-SPO-425397	Transport of vitamins, nucleosides, and related molecules	yea4	gms1	SPBC21B10.09	SPAC22F8.04
+R-SPO-727802	Transport of nucleotide sugars	yea4	gms1	SPAC22F8.04
+R-SPO-5358606	Mismatch repair (MMR) directed by MSH2:MSH3 (MutSbeta)	msh2	cdc17	msh3
+R-SPO-196843	Vitamin B2 (riboflavin) metabolism	SPCC1235.04c	fmn1	SPBC725.05c
+R-SPO-1482883	Acyl chain remodeling of DAG and TAG	dga1
+R-SPO-75109	Triglyceride biosynthesis	dga1	ned1
+R-SPO-8848584	Wax and plasmalogen biosynthesis	dga1
+R-SPO-9640463	Wax biosynthesis	dga1
+R-SPO-181429	Serotonin Neurotransmitter Release Cycle	SPCC18.02
+R-SPO-181430	Norepinephrine Neurotransmitter Release Cycle	SPCC18.02
+R-SPO-212676	Dopamine Neurotransmitter Release Cycle	SPCC18.02
+R-SPO-442660	Na+/Cl- dependent neurotransmitter transporters	SPCC18.02
+R-SPO-983170	Antigen Presentation: Folding, assembly and peptide loading of class I MHC	sec231	pmd1	mam1	sar1	SPBC4.03c	ape1	sec24	mdl1
+R-SPO-426486	Small interfering RNA (siRNA) biogenesis	SPCC736.09c	ago1	tsn1
+R-SPO-426496	Post-transcriptional silencing by small RNAs	ago1
+R-SPO-3214847	HATs acetylate histones	mis16	htb1	hhf1	atf1	atf21	atf31	hat1
+R-SPO-3214841	PKMTs methylate histone lysines	set6	hhf1	set9
+R-SPO-69273	Cyclin A/B1/B2 associated events during G2/M transition	ppm1	cdc25	ppa1	ppa2	pab1	ppe1	paa1
+R-SPO-6814848	Glycerophospholipid catabolism	SPBC725.05c	nte1
+R-SPO-2465910	MASTL Facilitates Mitotic Progression	ppk31	cek1	mug134	ppk18
+R-SPO-176974	Unwinding of DNA	psf2	sld5	psf1	psf3
+R-SPO-204626	Hypusine synthesis from eIF5A-lysine	SPBC1271.04c	tif51a	lia1	tif51b
+R-SPO-196819	Vitamin B1 (thiamin) metabolism	SPBC1604.04	tnr3
+R-SPO-73843	5-Phosphoribose 1-diphosphate biosynthesis	SPCC1620.06c	SPAC4A8.14	SPBC3D6.06c
+R-SPO-114508	Effects of PIP2 hydrolysis	SPAC22H12.03	pck1	pck2
+R-SPO-416476	G alpha (q) signalling events	SPAC22H12.03	gpa1	pck1	pck2	plc1	gpa2	rgs1
+R-SPO-426048	Arachidonate production from DAG	SPAC22H12.03
+R-SPO-202403	TCR signaling	ptn1	pck1	pck2	ksg1
+R-SPO-202424	Downstream TCR signaling	ptn1	pck1	pck2	ksg1
+R-SPO-8948747	Regulation of PTEN localization	ptn1
+R-SPO-381070	IRE1alpha activates chaperones	ire1
+R-SPO-381119	Unfolded Protein Response (UPR)	ire1	tif211	tif212	tif213	gcn2
+R-SPO-9018681	Biosynthesis of protectins	lap2
+R-SPO-114516	Disinhibition of SNARE formation	sec1	pck1	pck2	psy1
+R-SPO-2299718	Condensation of Prophase Chromosomes	jhd1	hta1	hta2	htb1	hhf1	pht1
+R-SPO-3214842	HDMs demethylate histones	jhd1	hhf1
+R-SPO-427359	SIRT1 negatively regulates rRNA expression	sir2	hta1	hta2	htb1	hhf1	hht1	pht1	rrp8
+R-SPO-5250941	Negative epigenetic regulation of rRNA expression	sir2	hta1	hta2	htb1	hhf1	hht1	pht1	rrp8
+R-SPO-2514853	Condensation of Prometaphase Chromosomes	cnd1	cka1	ckb1	cut14	cut3	cnd3	cnd2
+R-SPO-5625886	Activated PKN1 stimulates transcription of AR (androgen receptor) regulated genes KLK2 and KLK3	jmj3	hta1	hta2	htb1	hhf1	hht1	pht1	sck1	sck2
+R-SPO-111932	CaMK IV-mediated phosphorylation of CREB	cam1	ppk34
+R-SPO-111933	Calmodulin induced events	cam1	cgs1	pka1	ppk34
+R-SPO-111997	CaM pathway	cam1	cgs1	pka1	ppk34
+R-SPO-112314	Neurotransmitter receptors and postsynaptic signal transmission	cam1	cgs1	pka1	ppk34
+R-SPO-1489509	DAG and IP3 signaling	cam1	pck1	pck2	cgs1	pka1	ppk34
+R-SPO-2454202	Fc epsilon receptor (FCERI) signaling	cam1	byr1	wis1	pck1	pck2	sty1	mkh1	ksg1	ppb1	spm1	cnb1	skh1
+R-SPO-2871809	FCERI mediated Ca+2 mobilization	cam1	ppb1	cnb1
+R-SPO-3858494	Beta-catenin independent WNT signaling	cam1	sty1	ppb1	spm1	cnb1
+R-SPO-4086398	Ca2+ pathway	cam1	sty1	ppb1	spm1	cnb1
+R-SPO-438064	Post NMDA receptor activation events	cam1	cgs1	pka1	ppk34
+R-SPO-442729	CREB1 phosphorylation through the activation of CaMKII/CaMKK/CaMKIV cascasde	cam1	ppk34
+R-SPO-442755	Activation of NMDA receptors and postsynaptic events	cam1	cgs1	pka1	ppk34
+R-SPO-5607763	CLEC7A (Dectin-1) induces NFAT activation	cam1	ppb1	cnb1
+R-SPO-5607764	CLEC7A (Dectin-1) signaling	cam1	pck1	pck2	ppb1	cnb1
+R-SPO-5621481	C-type lectin receptors (CLRs)	cam1	pck1	pck2	ppb1	cnb1
+R-SPO-9619229	Activation of RAC1 downstream of NMDARs	cam1	ppk34
+R-SPO-156711	Polo-like kinase mediated events	cdc25	wee1	plo1
+R-SPO-6791312	TP53 Regulates Transcription of Cell Cycle Genes	cdc25	plo1
+R-SPO-6804115	TP53 regulates transcription of additional cell cycle genes whose exact role in the p53 pathway remain uncertain	cdc25	plo1
+R-SPO-69473	G2/M DNA damage checkpoint	cdc25	rad24	mek1
+R-SPO-75035	Chk1/Chk2(Cds1) mediated inactivation of Cyclin B:Cdk1 complex	cdc25	rad24	mek1
+R-SPO-110056	MAPK3 (ERK1) activation	byr1	spk1	wis1	skh1
+R-SPO-112409	RAF-independent MAPK1/3 activation	byr1	spk1	wis1	skh1
+R-SPO-112411	MAPK1 (ERK2) activation	byr1	spk1	wis1	skh1
+R-SPO-166058	MyD88:MAL(TIRAP) cascade initiated on plasma membrane	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-166166	MyD88-independent TLR4 cascade 	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-168138	Toll Like Receptor 9 (TLR9) Cascade	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-168142	Toll Like Receptor 10 (TLR10) Cascade	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-168164	Toll Like Receptor 3 (TLR3) Cascade	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-168176	Toll Like Receptor 5 (TLR5) Cascade	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-168179	Toll Like Receptor TLR1:TLR2 Cascade	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-168181	Toll Like Receptor 7/8 (TLR7/8) Cascade	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-168188	Toll Like Receptor TLR6:TLR2 Cascade	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-168638	NOD1/2 Signaling Pathway	byr1	wis1	sty1	spm1	skh1
+R-SPO-181438	Toll Like Receptor 2 (TLR2) Cascade	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-2871796	FCERI mediated MAPK activation	byr1	wis1	sty1	mkh1	spm1	skh1
+R-SPO-445144	Signal transduction by L1	byr1	spk1	wis1	skh1
+R-SPO-448424	Interleukin-17 signaling	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-449147	Signaling by Interleukins	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-450294	MAP kinase activation	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-450302	activated TAK1 mediates p38 MAPK activation	byr1	wis1	skh1
+R-SPO-450321	JNK (c-Jun kinases) phosphorylation and  activation mediated by activated human TAK1	byr1	wis1	sty1	spm1	skh1
+R-SPO-5674135	MAP2K and MAPK activation	byr1	spk1	wis1	skh1
+R-SPO-5674499	Negative feedback regulation of MAPK pathway	byr1	spk1	wis1	skh1
+R-SPO-5675221	Negative regulation of MAPK pathway	byr1	spk1	wis1	skh1
+R-SPO-937061	TRIF(TICAM1)-mediated TLR4 signaling 	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-975138	TRAF6 mediated induction of NFkB and MAP kinases upon TLR7/8 or 9 activation	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-975155	MyD88 dependent cascade initiated on endosome	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-975871	MyD88 cascade initiated on plasma membrane	byr1	ppa1	ppa2	spk1	wis1	atf1	atf21	atf31	sty1	par1	spm1	paa1	skh1
+R-SPO-162658	Golgi Cisternae Pericentriolar Stack Reorganization	ypt1	plo1	SPAC1D4.02c
+R-SPO-5687128	MAPK6/MAPK4 signaling	xpo1	shk1	cdc42	sty1	shk2	spm1	clp1
+R-SPO-2467813	Separation of Sister Chromatids	cut1	cut2
+R-SPO-379716	Cytosolic tRNA aminoacylation	ppa1
+R-SPO-379724	tRNA Aminoacylation	ppa1	SPAC3A12.02
+R-SPO-379726	Mitochondrial tRNA aminoacylation	ppa1	SPAC3A12.02
+R-SPO-71737	Pyrophosphate hydrolysis	ppa1	SPAC3A12.02
+R-SPO-198725	Nuclear Events (kinase and transcription factor activation)	ppa1	ppa2	spk1	sck1	map1	sck2	par1	spm1	paa1
+R-SPO-198753	ERK/MAPK targets	ppa1	ppa2	spk1	par1	spm1	paa1
+R-SPO-202670	ERKs are inactivated	ppa1	ppa2	spk1	par1	spm1	paa1
+R-SPO-389513	CTLA4 inhibitory signaling	ppa1	ppa2	sck1	par2	sck2	par1	paa1
+R-SPO-450282	MAPK targets/ Nuclear events mediated by MAP kinases	ppa1	ppa2	spk1	atf1	atf21	atf31	sty1	par1	spm1	paa1
+R-SPO-983189	Kinesins	cut7	tea2
+R-SPO-202040	G-protein activation	gpa1	gpa2
+R-SPO-399997	Acetylcholine regulates insulin secretion	gpa1	pck1	pck2	plc1	gpa2
+R-SPO-434316	Fatty Acids bound to GPR40 (FFAR1) regulate insulin secretion	gpa1	plc1	gpa2
+R-SPO-169893	Prolonged ERK activation events	spk1
+R-SPO-170968	Frs2-mediated activation	spk1
+R-SPO-187687	Signalling to ERKs	spk1
+R-SPO-450341	Activation of the AP-1 family of transcription factors	spk1	atf1	atf21	atf31	sty1	spm1
+R-SPO-9634635	Estrogen-stimulated signaling through PRKCZ	spk1	pck1	pck2	ksg1
+R-SPO-70635	Urea cycle	arg3	arg11	car1	argx	aru1	SPAC4G9.20c
+R-SPO-500753	Pyrimidine biosynthesis	ura3	ura1
+R-SPO-2132295	MHC class II antigen presentation	sxa1
+R-SPO-5620916	VxPx cargo-targeting to cilium	arf1	SPBC211.03c
+R-SPO-5620920	Cargo trafficking to the periciliary membrane	arf1	SPBC211.03c
+R-SPO-532668	N-glycan trimming in the ER and Calnexin/Calreticulin cycle	cal1	SPAC1F5.02
+R-SPO-901042	Calnexin/calreticulin cycle	cal1	SPAC1F5.02
+R-SPO-2029480	Fcgamma receptor (FCGR) dependent phagocytosis	pck1	pck2	shk1	cdc42	pld1	dpp1
+R-SPO-2029485	Role of phospholipids in phagocytosis	pck1	pck2	pld1	dpp1
+R-SPO-2179392	EGFR Transactivation by Gastrin	pck1	pck2
+R-SPO-2871837	FCERI mediated NF-kB activation	pck1	pck2
+R-SPO-450520	HuR (ELAVL1) binds and stabilizes mRNA	pck1	pck2	tif35
+R-SPO-450531	Regulation of mRNA stability by proteins that bind AU-rich elements	pck1	pck2	tif35
+R-SPO-881907	Gastrin-CREB signalling pathway via PKC and MAPK	pck1	pck2
+R-SPO-1169091	Activation of NF-kappaB in B cells	pck2
+R-SPO-392154	Nitric oxide stimulates guanylate cyclase	ccr1
+R-SPO-397014	Muscle contraction	ccr1	pmc1
+R-SPO-5576891	Cardiac conduction	ccr1	pmc1
+R-SPO-5578775	Ion homeostasis	ccr1	pmc1
+R-SPO-5685938	HDR through Single Strand Annealing (SSA)	rad22
+R-SPO-111931	PKA-mediated phosphorylation of CREB	cgs1	pka1
+R-SPO-163359	Glucagon signaling in metabolic regulation	cgs1	pka1
+R-SPO-163615	PKA activation	cgs1	pka1
+R-SPO-164378	PKA activation in glucagon signalling	cgs1	pka1
+R-SPO-180024	DARPP-32 events	cgs1	pka1
+R-SPO-432040	Vasopressin regulates renal water homeostasis via Aquaporins	cgs1	pka1	SPAC977.17
+R-SPO-442720	CREB1 phosphorylation through the activation of Adenylate Cyclase	cgs1	pka1
+R-SPO-445717	Aquaporin-mediated transport	cgs1	pka1	SPAC977.17
+R-SPO-5358351	Signaling by Hedgehog	cgs1	pka1
+R-SPO-5610787	Hedgehog 'off' state	cgs1	pka1
+R-SPO-159418	Recycling of bile acids and salts	pmd1	mam1	mdl1
+R-SPO-5652227	Fructose biosynthesis	tms1	SPAC26F1.07
+R-SPO-170822	Regulation of Glucokinase by Glucokinase Regulatory Protein	hxk2	hxk1
+R-SPO-2029482	Regulation of actin dynamics for phagocytic cup formation	shk1	cdc42
+R-SPO-389359	CD28 dependent Vav1 pathway	shk1	cdc42	shk2
+R-SPO-2565942	Regulation of PLK1 Activity at G2/M Transition	plo1
+R-SPO-109704	PI3K Cascade	sck1	sck2	ksg1
+R-SPO-112399	IRS-mediated signalling	sck1	sck2	ksg1
+R-SPO-165158	Activation of AKT2	sck1	sck2	ksg1
+R-SPO-165181	Inhibition of TSC complex formation by PKB	sck1	tsc1	sck2	tsc2
+R-SPO-198693	AKT phosphorylates targets in the nucleus	sck1	sck2	psk1
+R-SPO-2404192	Signaling by Type 1 Insulin-like Growth Factor 1 Receptor (IGF1R)	sck1	sck2	ksg1
+R-SPO-2428924	IGF1R signaling cascade	sck1	sck2	ksg1
+R-SPO-2428928	IRS-related events triggered by IGF1R	sck1	sck2	ksg1
+R-SPO-74751	Insulin receptor signalling cascade	sck1	sck2	ksg1
+R-SPO-9031628	NGF-stimulated transcription	sck1	map1	sck2
+R-SPO-68949	Orc1 removal from chromatin	orc1
+R-SPO-74182	Ketone body metabolism	hcs1	SPBC106.03	SPAC922.06
+R-SPO-77111	Synthesis of Ketone Bodies	hcs1	SPBC106.03	SPAC922.06
+R-SPO-381042	PERK regulates gene expression	tif211	tif212	tif213	gcn2
+R-SPO-72731	Recycling of eIF2:GDP	tif211	tif225	tif223	tif212	tif213	tif224	tif221	tif222
+R-SPO-2151201	Transcriptional activation of mitochondrial biogenesis	SPCC191.02c	sod2	hst2
+R-SPO-156588	Glucuronidation	fyu1
+R-SPO-173599	Formation of the active cofactor, UDP-glucuronate	fyu1
+R-SPO-163765	ChREBP activates metabolic gene expression	cut6	SPAC1851.02
+R-SPO-351200	Interconversion of polyamines	ats1
+R-SPO-140342	Apoptosis induced DNA fragmentation	nhp6	cmb1	SPBC28F2.11
+R-SPO-163282	Mitochondrial transcription initiation	nhp6	cmb1	SPBC28F2.11
+R-SPO-5686938	Regulation of TLR by endogenous ligand	nhp6
+R-SPO-75944	Transcription from mitochondrial promoters	nhp6	cmb1	SPBC28F2.11
+R-SPO-1483226	Synthesis of PI	SPAC20G8.02	pis1	SPCC1020.13c	SPBC13A2.03
+R-SPO-425561	Sodium/Calcium exchangers	SPAC3A12.06c
+R-SPO-8949215	Mitochondrial calcium ion transport	SPAC3A12.06c
+R-SPO-5223345	Miscellaneous transport and binding events	mrs2	ost3
+R-SPO-5693537	Resolution of D-Loop Structures	mus81	eme1
+R-SPO-5693568	Resolution of D-loop Structures through Holliday Junction Intermediates	mus81	eme1
+R-SPO-169911	Regulation of Apoptosis	msp1	dnm1	oma1	vps1
+R-SPO-112313	Neurotransmitter uptake and metabolism In glial cells	gln1
+R-SPO-210455	Astrocytic Glutamate-Glutamine Uptake And Metabolism	gln1
+R-SPO-1834949	Cytosolic sensors of pathogen-associated DNA 	rad32
+R-SPO-2187338	Visual phototransduction	ncs1
+R-SPO-2514856	The phototransduction cascade	ncs1
+R-SPO-2514859	Inactivation, recovery and regulation of the phototransduction cascade	ncs1
+R-SPO-211897	Cytochrome P450 - arranged by substrate type	erg11
+R-SPO-211916	Vitamins	erg11
+R-SPO-211976	Endogenous sterols	erg11
+R-SPO-193648	NRAGE signals death through JNK	sty1	spm1
+R-SPO-193704	p75 NTR receptor-mediated signalling	sty1	spm1
+R-SPO-204998	Cell death signalling via NRAGE, NRIF and NADE	sty1	spm1
+R-SPO-446652	Interleukin-1 family signaling	sty1	spm1
+R-SPO-73887	Death Receptor Signalling	sty1	spm1
+R-SPO-9007892	Interleukin-38 signaling	sty1	spm1
+R-SPO-189085	Digestion of dietary carbohydrate	SPAC30D11.01c	agl1	SPAC1039.11c
+R-SPO-8935690	Digestion	SPAC30D11.01c	SPAPB18E9.04c	agl1	SPAC1039.11c
+R-SPO-8963743	Digestion and absorption	SPAC30D11.01c	SPAPB18E9.04c	agl1	SPAC1039.11c
+R-SPO-71262	Carnitine synthesis	shm2
+R-SPO-110331	Cleavage of the damaged purine	myh1
+R-SPO-73927	Depurination	myh1
+R-SPO-71288	Creatine metabolism	rmt2
+R-SPO-189483	Heme degradation	abc2	abc3
+R-SPO-196741	Cobalamin (Cbl, vitamin B12) transport and metabolism	abc2
+R-SPO-429593	Inositol transporters	itr1
+R-SPO-8964540	Alanine metabolism	SPBC582.08
+R-SPO-77286	mitochondrial fatty acid beta-oxidation of saturated fatty acids	etr1
+R-SPO-77346	Beta oxidation of decanoyl-CoA to octanoyl-CoA-CoA	etr1
+R-SPO-196108	Pregnenolone biosynthesis	SPAC26F1.07
+R-SPO-114604	GPVI-mediated activation cascade	ksg1
+R-SPO-2730905	Role of LAT2/NTAL/LAB on calcium mobilization	ksg1
+R-SPO-192456	Digestion of dietary lipid	SPAPB18E9.04c
+R-SPO-2142845	Hyaluronan metabolism	abc1	abc4
+R-SPO-2142850	Hyaluronan biosynthesis and export	abc1	abc4
+R-SPO-198765	Signalling to ERK5	spm1
+R-SPO-418359	Reduction of cytosolic Ca++ levels	pmc1
+R-SPO-418360	Platelet calcium homeostasis	pmc1
+R-SPO-8964572	Lipid particle organization	fit1
+R-SPO-427975	Proton/oligopeptide cotransporters	ptr2
+R-SPO-1483148	Synthesis of PG	SPBC13A2.03
+R-SPO-2393930	Phosphate bond hydrolysis by NUDT proteins	SPBP35G2.12
+R-SPO-432030	Transport of glycerol from adipocytes to the liver by Aquaporins	SPAC977.17
+R-SPO-432047	Passive transport by Aquaporins	SPAC977.17
+R-SPO-194002	Glucocorticoid biosynthesis	SPBC106.03	SPAC922.06
+R-SPO-77108	Utilization of Ketone Bodies	SPBC106.03	SPAC922.06
+R-SPO-5676934	Protein repair	pcm2
+R-SPO-9634600	Regulation of glycolysis by fructose 2,6-bisphosphate metabolism	SPAC732.02c	SPAC144.17c
+R-SPO-1442490	Collagen degradation	SPAC1039.07c
+R-SPO-1474228	Degradation of the extracellular matrix	SPAC1039.07c
+R-SPO-196836	Vitamin C (ascorbate) metabolism	oca8
+R-SPO-8850843	Phosphate bond hydrolysis by NTPDase proteins	ynd1	gdp1
+R-SPO-442380	Zinc influx into cells by the SLC39 gene family	SPAP8A3.03
+R-SPO-209776	Metabolism of amine-derived hormones	SPAC9.02c
+R-SPO-209931	Serotonin and melatonin biosynthesis	SPAC9.02c
+R-SPO-8853383	Lysosomal oligosaccharide catabolism	ams1
+R-SPO-373076	Class A/1 (Rhodopsin-like receptors)	dpp1
+R-SPO-419408	Lysosphingolipid and LPA receptors	dpp1
+R-SPO-500792	GPCR ligand binding	dpp1
+R-SPO-196780	Biotin transport and metabolism	pyr1
+R-SPO-6787639	GDP-fucose biosynthesis	SPAC22F8.04
+R-SPO-70921	Histidine catabolism	SPBC1778.07
+R-SPO-389599	Alpha-oxidation of phytanate	SPBC725.04
+R-SPO-390918	Peroxisomal lipid metabolism	SPBC725.04

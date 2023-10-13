@@ -1,0 +1,7 @@
+NHR	NHR	nr0b1	zgc:92696	nr2f2	pg	smad3a	PPARG	nr1h3	erbeta2	si:ch211-239e6.3	zgc:65770	SF1-A	nr0b2a	wu:fb58h09	ATM	Su(fu)	yot	gli1	cmet	zg05	Stat3	NUR77	bmpr2a	bmpr1b	acvr1b	bmpr2b
+HH	HH	ptc1	Cdx1a	zg1	pdx-1	zgc:165581	gsk3b	srf	Stat3	wu:fj62g06	Hhip	nfkb1	jak2a	stat5b	madh4	bmpr2a	ptpn11	bmpr2b	pdgfrl	im:680590	Su(fu)
+TGF	TGF	smad3a	PPARG	im:7142603	insra	lef1	dvl3	fgfrl1	zERK1	RAF1	ephb2a	zERK2	activin beta A	acvr2b	bmpr1b	zgc:136731	acvrl1	zgc:113595	acvr1b	BMP2b	creb1	zgc:92234	akt1	zgc:153025	v-erb-b	plcg1	gsk3b	smad7	il-6ra	lrp6	egfr	crfb7	her-8a	ptk2	jak2a	stat5b	ghr.a	sirt1	Hes5e	zgc:123263	BMP4	bmpr2a	bmpr2b	ai39657	wu:fa55e10	dab2	Su(fu)	ror2	bambi
+WNT/Wingless	WNT/Wingless	smad3a	PPARG	foxo5	Su(fu)	im:7142603	insra	lef1	dvl3	fgfrl1	RAF1	ephb2a	creb1	LRP6	v-erb-b	plcg1	gsk3b	zgc:92234	acvrl1	DKK1	nlk	tlc	smo	PRLR	prlr.b	madh4	dab2	ankrd6b	jak2a	gli1	IRb	prdm5	ror2	bmpr1b
+RTK	RTK	smad3a	PPARG	fc10d03	kitla	ntn1b	hgfb	IGF-1L	igf2	im:7142603	insra	ctnnb1	lef1	dvl3	fgfrl1	zERK1	RAF1	wu:fa04e08	efnb1	ephb2a	zERK2	creb1	zgc:63601	v-erb-b	plcg1	gsk3b	zgc:92234	smad7	acvrl1	zgc:55423	il-6ra	pdgfrb2	sflt1	lrp6	egf	egfr	crfb7	her-8a	ptk2	jak2a	stat5b	ghr.a	sirt1	zgc:136731	Hes5e	zgc:123263	fosab	acvr1b	fa16d03	bmpr1b	fgfr1b	zgc:85888	mkp3	prlr.b	PRLR	bmpr2b	bmpr2a	dob	hgfa	cmet	wu:fa55e10	mapkapk2	madh4	ptpn11	Su(fu)	insb	ror2
+Notch	Notch	edn1	etID309871.5	Notch5	igf1rb	ctnnb1	jag2	smo
+JAK/STAT	JAK/STAT	zERK1	il6	il-6ra	plcg1	lrp6	egfr	zgc:194510	crfb7	her-8a	ptk2	socs1	jak2a	stat5b	gh	ghr.a	fj22f05	prl2	prl	zgc:92234	igf1ra	ptpn11	fgfrl1b beta	sp5

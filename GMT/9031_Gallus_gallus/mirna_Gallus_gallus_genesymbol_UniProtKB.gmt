@@ -1,0 +1,14 @@
+#GMT database for MulEA software (http://www.mulea.org/)
+#source_url: http://mirtarbase.mbc.nctu.edu.tw/
+#source_version: 6.0
+#source_last_update: 15-09-2015
+#gmt_download_date: 01-08-2017
+#gmt_file_version: 1
+#gmt_entry_names: miRNA name
+gga-miR-21-5p	MIRT438450	Q98TX3
+gga-miR-124a-3p	MIRT003905	A0A3Q2UAJ4
+gga-miR-365-3p	MIRT006160	P83038
+gga-miR-26a-5p	MIRT438247	A0A8V1AAW9
+gga-miR-10a-5p	MIRT000625	A0A8V0X5X4
+gga-miR-133a-3p	MIRT438518	A0A1D5PSH3
+gga-miR-2131-5p	MIRT000616	P12276	A0A8V0YCT4	A0A8V0X898	A0A1D5PHZ9
