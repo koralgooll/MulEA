@@ -1,0 +1,505 @@
+---
+title: "*MulEA*: an *R* package for Multi-Enrichment Analysis"
+format: gfm
+---
+![MulEA](images/MulEA_logo.png){fig-align="right"}
+
+## Installing the *MulEA* package using *devtools*
+
+```{r install}
+#| eval: false
+library(devtools)
+install_github("https://github.com/koralgooll/MulEA.git")
+```
+
+## An example of how to use the *MulEA* package
+
+### The data set to analyse
+
+-   Analysed microarray data from NCBI ![GEO](images/geo_main.gif) database: [GSE55662](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55662)
+-   It was published by [Méhi *et al.* (2014) in *Molecular Biology and Evolution*](https://doi.org/10.1093/molbev/msu223).
+-   The authors studied the evolution of antibiotic resistance in *Escerichia coli* bacteria.
+-   They treated the bacteria with *ciprofloxacin* antibiotic and measured the gene expression changes.
+-   During the differential expression analysis using the [GEO2R](https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE55662), the following comparison were made:
+    -   Non-treated wild-type control samples (2 biological replicates) *vs.*
+    -   Wild-type samples treated with *ciprofloxacin* (2 biological replicates)
+
+Reading the table containing the results of the differential expression analysis:
+
+```{r read_geo}
+#| warning: false
+  
+library(MulEA)
+library(tidyverse)
+
+Geo2R_result_tab <- read_tsv("GSE55662.table_wt_non_vs_cipro.tsv")
+```
+
+Let's see the first 3 rows of the `Geo2R_result_tab` data.frame:
+
+```{r print_geo}
+#| echo: false
+Geo2R_result_tab %>%  
+  head(3) %>% 
+  knitr::kable()
+```
+
+We need to format the data.frame before using it for enrichment analysis. This step is specific to the type of microarray has been used. Comment: **positive** *logFC*-s mean **overexpression** under *ciprofloxacin* treatment.
+
+```{r format_geo}
+Geo2R_result_tab %<>% 
+  # extracting the first gene symbol from the Gene.symbol column
+  mutate(Gene.symbol = str_remove(string = Gene.symbol,
+                                  pattern = "\\/.*")) %>% 
+  # removing rows where Gene.symbol is NA
+  filter(!is.na(Gene.symbol)) %>% 
+  # ordering by logFC
+  arrange(desc(logFC))
+```
+
+Let's see what did change in the first 3 rows of the `Geo2R_result_tab` data.frame:
+
+```{r print_geo2}
+#| echo: false
+Geo2R_result_tab %>%  
+  head(3) %>% 
+  knitr::kable()
+```
+
+### The database for the enrichment analysis
+
+-   We were curious about which **transcription factors** regulated the expression of the significantly overexpressed genes.
+-   Therefore, we used the *MulEA* package to perform multi-enrichment analysis on the ![Regulon](images/Regulon.png) [database](https://regulondb.ccg.unam.mx/).
+-   The *GMT* file containing genes symbols that are regulated by transcription factors was downloaded from the [Github page of MulEA](https://github.com/ELTEbioinformatics/mulea/blob/main/GMT/83333_Escherichia_coli/RegulonDB_Escherichia_coli_genesymbol_Leila.gmt).
+
+Reading the *GMT* file containing the lists of gene symbols each transcription factor (indicated with gene symbols as well) regulates:
+
+```{r read_regulon}
+Regulon_GMT <- read_gmt("RegulonDB_Escherichia_coli_genesymbol.gmt")
+```
+
+How many transcription factors are in the *Regulon GMT* file?
+
+```{r print_nr_of_tf}
+#| eval: false
+
+nrow(Regulon_GMT)
+```
+
+```{r print_nr_of_tf2}
+#| echo: false
+#| output: asis
+
+nrow(Regulon_GMT) %>% 
+  cat(">", ., sep = " ")
+```
+
+Let's see the first 3 rows of the `Regulon_GMT` data.frame:
+
+```{r print_reulon}
+#| echo: false
+
+Regulon_GMT %>%  
+  head(3) %>% 
+  knitr::kable()
+```
+
+We have to mention that the in the *Regulon GMT* files both the `ontologyId` ans the `ontologyName` columns contain the gene symbols of the transcription factors. In the case of some other *GMT* files, *i.e.* the *GO GMT* files, the `ontologyId` column contains the GO IDs and the `ontologyName` column contains the GO terms.
+
+The `listOfValues` lists of the gene symbols that are regulated by the transcription factor indicated in the `ontologyId` column. To see all such genes for example in the case of the transcription factor *AcrR*, we can use the following code:
+
+```{r print_acrr}
+#| eval: false
+
+Regulon_GMT$listOfValues[[which(Regulon_GMT$ontologyId == "AcrR")]]
+```
+
+```{r print_acrr2}
+#| echo: false
+#| output: asis
+
+Regulon_GMT$listOfValues[[which(Regulon_GMT$ontologyId == "AcrR")]] %>% 
+  cat(">", ., sep = " ")
+```
+
+#### Filtering the ontology entries
+
+When interpreting the results of enrichment analyses, one may encounter the problem of the results being dominated by either overly specific or overly broad ontology entries being enriched. In *MulEA*, users can tailor the size of the ontology entries to their specific requirements, ensuring that the results match the expected scope.
+
+Let's see the distribution of number of elements (gene symbols) in the `listOfValues` column to decide if we need to exclude too specific or too broad ontology entries:
+
+```{r plot_listOfValues}
+Nr_of_elements_in_ontology <- Regulon_GMT$listOfValues %>% 
+  map_dbl(length)
+
+ggplot(mapping = aes(Nr_of_elements_in_ontology)) + 
+  geom_bar() +
+  theme_minimal()
+```
+We now see that there are some ontology entries containing more than 200 gene symbols. These transcription factors regulate a lot of genes, therefore not specific enough. We will exclude these from the enrichment analysis.
+
+We also see that there are some ontology entries with only a small number of elements. Let's zoom in to this part of the distribution:
+
+```{r plot_listOfValues_zoom}
+#| warning: false
+
+ggplot(mapping = aes(Nr_of_elements_in_ontology)) + 
+  geom_bar() +
+  xlim(0, 15) +
+  theme_minimal()
+```
+
+Let's exclude the ontology entries containing less than 3 or more than 400 gene symbols and check the remaining number of transcription factors:
+
+```{r exclude_ontology}
+#| output: asis
+
+Regulon_GMT_filtered <- filter_ontology(gmt = Regulon_GMT,
+                                        min_nr_of_elements = 3,
+                                        max_nr_of_elements = 400)
+
+```
+
+How many transcription factors are in the filtered *GMT* object?
+
+```{r print_nr_of_tf_filtered}
+#| eval: false
+
+nrow(Regulon_GMT_filtered)
+```
+
+```{r print_nr_of_tf_filtered2}
+#| echo: false
+#| output: asis
+
+nrow(Regulon_GMT_filtered) %>% 
+  cat(">", ., sep = " ")
+```
+
+We even can save the filtered *GMT* object to a file:
+
+```{r save_gmt}
+write_gmt(gmt = Regulon_GMT_filtered, 
+          file = "RegulonDB_Escherichia_coli_genesymbol_filtered.gmt")
+```
+
+### Overrepresentation analysis (ORA)
+
+#### Preparing input data for the ORA
+
+##### Creating the "*test*" gene set
+
+A vector containing the gene symbols of significantly overexpressed ($adjusted\ p-value < 0.05$) genes with greater than 2 fold-change ($logFC > 1$).
+
+```{r significant_genes}
+E.coli_sign_genes <- Geo2R_result_tab %>% 
+  # filtering for adjusted p-value < 0.05 and logFC > 1
+  filter(adj.P.Val < 0.05
+         & logFC > 1) %>% 
+  # selecting the Gene.symbol column
+  select(Gene.symbol) %>% 
+  # convert tibble to vector
+  pull() %>% 
+  # removing duplicates
+  unique() %>% 
+  # sorting
+  sort()
+```
+
+Let's see the first 10 elements of the `E.coli_sign_genes` vector:
+
+```{r significant_genes_head}
+#| eval: false
+
+E.coli_sign_genes %>% 
+  head(10)
+```
+
+
+```{r significant_genes_head2}
+#| echo: false
+#| output: asis
+
+E.coli_sign_genes %>% 
+  head(10) %>% 
+  cat(">", ., sep = " ")
+```
+
+Let's see the number of genes in the `E.coli_sign_genes` vector:
+
+```{r significant_genes_nr}
+#| eval: false
+
+E.coli_sign_genes %>% 
+  length()
+```
+
+```{r significant_genes_nr2}
+#| echo: false
+#| output: asis
+
+E.coli_sign_genes %>% 
+  length() %>% 
+  cat(">", ., sep = " ")
+```
+
+##### Creating the "*background*" gene set
+
+A vector containing the gene symbols of all genes were included in the differential expression analysis.
+
+```{r bacground_genes}
+E.coli_background_genes <- Geo2R_result_tab %>% 
+  # selecting the Gene.symbol column
+  select(Gene.symbol) %>% 
+  # convert tibble to vector
+  pull() %>% 
+  # removing duplicates
+  unique() %>% 
+  # sorting
+  sort()
+```
+
+Let's see the number of genes in the `E.coli_background_genes` vector:
+
+```{r bacground_genes_length}
+#| eval: false
+
+E.coli_background_genes %>% 
+  length()
+```
+
+```{r bacground_genes_length2}
+#| echo: false
+#| output: asis
+
+E.coli_background_genes %>% 
+  length() %>% 
+  cat(">", ., sep = " ")
+```
+
+### Performing the ORA
+
+Let's correct for multiple testing using the *empirical FDR* method with 10,000 permutations:
+
+```{r ora}
+# creating the ORA model using the GMT variable
+ora_model <- ora(gmt = Regulon_GMT_filtered, 
+                 # the test gene set variable
+                 element_names = E.coli_sign_genes, 
+                 # the background gene set variable
+                 background_element_names = E.coli_background_genes, 
+                 # the p-value adjustment method
+                 p_value_adjustment_method = "eFDR", 
+                 # the number of permutations
+                 number_of_permutations = 10000,
+                 # the number of processor threads to use
+                 number_of_cpu_threads = 4) 
+
+# running the ORA
+ora_results <- run_test(ora_model)
+```
+
+#### The results of the ORA
+
+The `ora_results` is a data.frame containing the enriched transcription factors and the corresponding $p$ and $empirical\ FDR$ values.
+
+Let's see the number of "enriched" transcription factors:
+
+```{r ora_size}
+#| eval: false
+
+ora_results %>%
+  filter(eFDR < 0.05) %>% 
+  nrow()
+```
+
+```{r ora_size2}
+#| echo: false
+#| output: asis
+
+ora_results %>%
+  filter(eFDR < 0.05) %>% 
+  nrow() %>% 
+  cat(">", ., sep = " ")
+```
+
+Let's see the significant part of the `ora_results` data.frame:
+
+```{r print_ora}
+#| echo: false
+
+n <- ora_results %>%
+  filter(eFDR < 0.05) %>% 
+  nrow()
+
+ora_results %>% 
+  arrange(eFDR) %>% 
+  head(n) %>% 
+  knitr::kable()
+```
+
+### Visualizing the ORA results
+
+Initializing the visualization:
+
+```{r init_plot}
+ora_reshaped_results <- reshape_results(model = ora_model, 
+                                        model_results = ora_results, 
+                                        # choosing which column to use for the indication of significance
+                                        p_value_type_colname = "eFDR")
+```
+
+#### Barplot -> Lollipop plot
+
+The bars and their colouring show the significance levels of the enriched ontologies (transcription factors).
+
+```{r barplot}
+plot_barplot(reshaped_results = ora_reshaped_results,
+             # the column containing the names we wish to plot
+             ontology_id_colname = "ontology_id",
+             # upper threshold for the value indicating the significance
+             p_value_max_threshold = 0.05,
+             # column that indicates the significance values
+             p_value_type_colname = "eFDR")
+```
+
+#### Network plot
+
+The function creates a network plot of the enriched ontologies (transcription factors). The nodes are the ontology IDs (*Regulon IDs*) coloured according to their significance level. Two nodes are connected if they have at least one shared element (gene which expression level was influenced by both of the transcription factor). The edges are weighted by the number of common elements between the nodes.
+
+```{r network_plot}
+plot_graph(reshaped_results = ora_reshaped_results,
+           # the column containing the names we wish to plot
+           ontology_id_colname = "ontology_id",
+           # upper threshold for the value indicating the significance
+           p_value_max_threshold = 0.05,
+           # column that indicates the significance values
+           p_value_type_colname = "eFDR")
+```
+
+#### Heatmap
+
+The actual elements (genes) of the enriched ontologies (transcription factors) connected with. The rows are the ontology IDs (*Regulon IDs*) coloured according to their significance level. The columns are the elements (genes) of the ontologies.
+
+```{r heatmap}
+plot_heatmap(reshaped_results = ora_reshaped_results,
+             # the column containing the names we wish to plot
+             ontology_id_colname = "ontology_id",
+             # column that indicates the significance values
+             p_value_type_colname = "eFDR")
+```
+
+### Gene set enrichment analysis (GSEA)
+
+#### Preparing input data for the GSEA
+
+A data.frame containing all the genes which expression were measured in the differential expression analysis and their log fold change values ($logFC$). 
+(Or two vectors containing the gene symbols and the corresponding $logFC$ values.)
+
+```{r gsea_input}
+# if there are duplicated Gene.symbols keep the first one only
+Geo2R_result_tab_filtered <- Geo2R_result_tab %>% 
+  # grouping by Gene.symbol to be able to filter
+  group_by(Gene.symbol) %>%
+  # keeping the first row for each Gene.symbol from rows with the same Gene.symbol
+  filter(row_number()==1) %>% 
+  ungroup() %>% 
+  # arranging by logFC in descending order
+  arrange(desc(logFC)) %>%
+  select(Gene.symbol, logFC)
+```
+
+Let's check the number of gene symbols in the `E.coli_ordered_genes` vector:
+
+```{r ordered_genes_length}
+#| eval: false
+
+Geo2R_result_tab_filtered %>% 
+  nrow()
+```
+
+```{r ordered_genes_length2}
+#| echo: false
+#| output: asis
+
+Geo2R_result_tab_filtered %>% 
+  nrow() %>% 
+  cat(">", ., sep = " ")
+```
+
+#### Performing the GSEA
+
+Let's correct for multiple testing using the *empirical FDR* method with 10,000 permutations:
+
+```{r gsea}
+#| warning: false
+
+gsea_model <- gsea(gmt = Regulon_GMT_filtered,
+                   element_names = Geo2R_result_tab_filtered$Gene.symbol,
+                   element_scores = Geo2R_result_tab_filtered$logFC,
+                   # consider elements having positive logFC values only
+                   element_score_type = "pos",
+                   number_of_permutations = 10000)
+
+gsea_results <- run_test(gsea_model)
+```
+
+### Visualizing the GSEA results
+
+Initializing the visualization:
+
+```{r init_plot_gsea}
+gsea_reshaped_results <- reshape_results(model = gsea_model, 
+                                         model_results = gsea_results, 
+                                         model_ontology_col_name = "ontologyId",
+                                         ontology_id_colname = "ontologyId",
+                                         # choosing which column to use for the indication of significance
+                                         p_value_type_colname = "adjustedPValue")
+```
+
+#### Barplot -> Lollipop plot
+
+The bars and their colouring show the significance levels of the enriched ontologies (transcription factors).
+
+```{r barplot_gsea}
+plot_barplot(reshaped_results = gsea_reshaped_results,
+             # the column containing the names we wish to plot
+             ontology_id_colname = "ontology_id",
+             # upper threshold for the value indicating the significance
+             p_value_max_threshold = 0.05,
+             # column that indicates the significance values
+             p_value_type_colname = "adjustedPValue")
+```
+
+#### Network plot
+
+The function creates a network plot of the enriched ontologies (transcription factors). The nodes are the ontology IDs (*Regulon IDs*) coloured according to their significance level. Two nodes are connected if they have at least one shared element (gene which expression level was influenced by both of the transcription factor). The edges are weighted by the number of common elements between the nodes.
+
+```{r network_plot_gsea}
+plot_graph(reshaped_results = gsea_reshaped_results,
+           # the column containing the names we wish to plot
+           ontology_id_colname = "ontology_id",
+           # upper threshold for the value indicating the significance
+           p_value_max_threshold = 0.05,
+           # column that indicates the significance values
+           p_value_type_colname = "adjustedPValue")
+```
+
+#### Heatmap
+
+The actual elements (genes) of the enriched ontologies (transcription factors) connected with. The rows are the ontology IDs (*Regulon IDs*) coloured according to their significance level. The columns are the elements (genes) of the ontologies.
+
+```{r heatmap_gsea}
+plot_heatmap(reshaped_results = gsea_reshaped_results,
+             # the column containing the names we wish to plot
+             ontology_id_colname = "ontology_id",
+             # column that indicates the significance values
+             p_value_type_colname = "adjustedPValue")
+```
+
+
+## Session info
+
+```{r session_info}
+sessionInfo()
+```
