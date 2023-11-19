@@ -251,9 +251,9 @@ plot_graph <- function(reshaped_results,
                             show.legend = FALSE) +
     scale_size_area(max_size = 10) +
     scale_color_gradient2(
-      mid = '#004687',
-      high = '#ffa600',
-      limits = c(0.0, 1.0),
+      mid =  '#ff6361',
+      high = 'grey90',
+      limits = c(0.0,p_value_max_threshold),
       name = p_value_type_colname
     ) + 
     ggraph::geom_node_text(aes(label = .data$label), repel = TRUE) +
@@ -345,7 +345,101 @@ plot_barplot <-
       geom_bar(stat = "identity") +
       scale_fill_gradient2(mid = '#004687',
                           high = '#ffa600',
-                           limits = c(0.0, 1.0)) +
+                         limits = c(0.0, p_value_max_threshold)) +
+      coord_flip() +
+      theme_light()
+    mulea_gg_plot
+  }
+
+#' Plot Lollipop
+#' 
+#' @description 
+#' Plots lollipop plot of p-values.
+#'
+#' @details 
+#' Create a customized  lollipop plot of p-values, facilitating visual exploration and analysis of statistical significance within ontology categories.
+#' 
+#' @param reshaped_results  data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.
+#' @param selected_rows_to_plot A numeric vector specifying which rows of the reshaped results data frame should be included in the plot. Default is NULL.
+#' frame should be included in the plot?
+#' @param ontology_id_colname Character, specifies the column name that contains ontology IDs in the input data.
+#' @param p_value_type_colname Character, specifies the column name for p-values in the input data. Default is 'eFDR'.
+#' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
+#' @importFrom magrittr %>%
+#' @import ggplot2
+#' @seealso \code{\link{reshape_results}}
+#' @export
+#'
+#' @return Returns a lollipop plot
+#' 
+#' @examples 
+#' # import example gene set
+#' # import other gene sets from a GMT file using read_gmt()
+#' data(geneSet) 
+#' Run model on geneset
+#' ora_model <- ora(
+#'  gmt = geneSet,
+#'  element_names = selectDf$select, 
+#'  background_element_names = poolDf$background_element_names,
+#'  p_value_adjustment_method = "eFDR",
+#'  number_of_permutations = 1000
+#' )
+#' ora_results <- run_test(ora_model)
+#' Reshape results
+#' ora_reshaped_results <- reshape_results(
+#'  model = ora_model, 
+#'  model_results = ora_results, 
+#'  p_value_type_colname='eFDR'
+#' )
+#' plot_lollipop(
+#' reshaped_results = ora_reshaped_results,
+#' p_value_max_threshold=0.05,
+#' p_value_type_colname = "eFDR"
+#' )
+#' 
+
+plot_lollipop <-
+  function(reshaped_results,
+           ontology_id_colname = 'ontology_id',
+           selected_rows_to_plot = NULL,
+           p_value_type_colname = 'eFDR',
+           p_value_max_threshold = 0.05) {
+    validate_column_names_and_function_args(data = reshaped_results,
+                                            p_value_type_colname, ontology_id_colname)
+    reshaped_results <- filterRelaxedResultsForPlotting(
+      reshaped_results = reshaped_results,
+      p_value_type_colname = p_value_type_colname,
+      p_value_max_threshold = p_value_max_threshold
+    )
+    
+    if (is.null(selected_rows_to_plot)) {
+      selected_rows_to_plot <- 1:nrow(reshaped_results)
+    }
+    unique_reshaped_results <-
+      unique(reshaped_results[selected_rows_to_plot, c(ontology_id_colname, p_value_type_colname), with = FALSE])
+    unique_reshaped_results <- unique_reshaped_results %>%
+      dplyr::arrange(dplyr::desc((!!as.name(
+        p_value_type_colname
+      ))))
+    
+    unique_reshaped_results_df <-
+      as.data.frame(unique_reshaped_results)
+    unique_reshaped_results_df[, 1] <-
+      factor(unique_reshaped_results_df[[1]],
+             levels = unique_reshaped_results_df[[1]])
+    mulea_gg_plot <- ggplot(unique_reshaped_results_df,
+      aes(x = ontology_id, 
+          y = eFDR)
+    ) +
+      geom_segment( aes(x=ontology_id, 
+                        xend = ontology_id,
+                        y = 0, 
+                        yend = as.numeric(eFDR)),
+                    color = 'black')+
+      geom_point(aes(size=5, color = eFDR))+guides(size='none')+
+      scale_color_gradient2(mid = '#ff6361',
+                           high = 'grey90',
+                           limits = c(0.0, p_value_max_threshold)) +
       coord_flip() +
       theme_light()
     mulea_gg_plot
@@ -433,8 +527,9 @@ plot_heatmap <- function(reshaped_results,
   ) +
     scale_fill_gradient2(mid = '#004687',
                           high = '#ffa600',
-                         limits = c(0.0, 1.0)) +
+                         limits = c(0.0,p_value_max_threshold)) +
     geom_tile() +
+    coord_fixed()+
     theme_light() +
     theme(axis.text.x = element_text(angle = 90))
 }

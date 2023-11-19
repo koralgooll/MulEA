@@ -1,0 +1,2658 @@
+PF04794	YdjC	chbG
+PF00873	ACR_tran	acrB	cusA	mdtB	acrF	mdtC	mdtF	acrD
+PF08173	YbgT_YccB	cydX	appX
+PF02321	OEP	cusC	mdtP	mdtQ	tolC
+PF01817	CM_2	pheA	tyrA
+PF00800	PDT	pheA
+PF07813	LTXXQ	spy	cpxP
+PF00529	HlyD	cusB	mdtE	emrK	acrE	yibH	ydhJ	acrA	emrA	yiaV
+PF16576	HlyD_D23	cusB	mdtE	emrK	acrE	macA	yibH	ydhJ	ybhG	acrA	emrA	yiaV
+PF01791	DeoC	yihT	lsrF	deoC	fbaB
+PF00027	cNMP_binding	yeiL	fnr	crp
+PF13545	HTH_Crp_2	fnr	crp
+PF01654	Cyt_bd_oxida_I	cydA	appC
+PF00144	Beta-lactamase	yfeW	ampC	ampH
+PF05199	GMC_oxred_C	betA
+PF00732	GMC_oxred_N	betA
+PF00275	EPSP_synthase	murA	aroA
+PF00072	Response_reg	creB	baeR	arcA	dpiA	uvrY	hprR	rcsB	fimZ	rstA	zraR	cheB	rssB	glrR	btsR	barA	narP	qseB	dcuR	evgS	atoC	arcA2	cpxR	cheY	ompR	uhpA	phoB	torR	kdpE	basR	rcsC	arcB	torS	evgA	cusR	phoP	ypdB	glnG	narL
+PF01339	CheB_methylest	cheB
+PF13411	MerR_1	bluR	mlrA	zntR	cueR
+PF07943	PBP5_C	dacA	dacD	dacC
+PF00768	Peptidase_S11	dacA	pbpG	dacD	dacC
+PF00561	Abhydrolase_1	yuaR	bioH	yheT
+PF04127	DFP	coaBC
+PF02441	Flavoprotein	coaBC	ubiX
+PF02785	Biotin_carb_C	accC
+PF00289	Biotin_carb_N	accC
+PF02786	CPSase_L_D2	accC	carB
+PF00171	Aldedh	gabD	astD	adhE	puuC	sad	feaB	proA	aldA	paaZ	patD	aldB	betB	eutE	putA
+PF00463	ICL	aceA
+PF06029	AlkA_N	alkA
+PF00730	HhH-GPD	nth	mutY	alkA
+PF00293	NUDIX	nudB	mutT	nudC	nudL	nudF	idi	nudI	gmm	nudJ	yfcD	nudE	nudG	rppH	nudK
+PF00842	Ala_racemase_C	dadX	alr
+PF01168	Ala_racemase_N	alr	yggS	yhfX	dadX
+PF03400	DDE_Tnp_IS1	insB5	JW2285	insB1	insB2	insB9	insB4	insB3	insB6
+PF00215	OMPdecase	ulaD	pyrF	sgbH
+PF11106	YjbE	yjbE
+PF03717	PBP_dimer	mrdA	ftsI
+PF00905	Transpeptidase	mrdA	ftsI	pbpC	mrcB	mrcA
+PF07759	DUF1615	yaiW
+PF00381	PTS-HPr	fryA	ptsH	fruB	ptsA	dhaM	ptsO
+PF04879	Molybdop_Fe4S4	fdhF	napA	fdoG	fdnG	ynfE	dmsA	nuoG	ynfF
+PF00384	Molybdopterin	fdhF	narG	fdnG	ydeP	napA	bisC	torZ	torA	fdoG	ynfE	dmsA	nuoG	narZ	ynfF
+PF01568	Molydop_binding	fdhF	narG	fdnG	napA	bisC	torZ	torA	fdoG	ynfE	dmsA	nuoG	narZ	ynfF
+PF00672	HAMP	tsr	cusS	narQ	narX	pdeK	barA	baeS	cpxA	trg	creC	rstB	torS	tar	tap	envZ
+PF00015	MCPsignal	tsr	trg	aer	tar	tap
+PF08447	PAS_3	aer	dgcE
+PF00006	ATP-synt_ab	fliI	atpD	rho	atpA
+PF07498	Rho_N	rho
+PF07497	Rho_RNA_bind	rho
+PF06445	GyrI-like	rob	sbmC	ygiV
+PF12833	HTH_18	ykgA	rhaR	marA	chbR	yidL	rhaS	envY	ypdC	appY	feaR	gadX	rob	ydiP	ydeO	chbR	chbR	chbR	chbR	chbR	chbR	chbR	araC	chbR	gadW	ybcM	yqhC	nimR	melR	rclR	ada	soxS	eutR	chbR	yijO	chbR	adiY	xylR
+PF01812	5-FTHF_cyc-lig	ygfA
+PF06945	DUF1289	ydhL
+PF02302	PTS_IIB	cmtA	fryB	chbB	fruA	frvB	mtlA	frwD	gatB	sgcB	frwB	ulaB	mngA
+PF00270	DEAD	hrpB	recG	priA	dbpA	mfd	deaD	rhlE	hrpA	srmB	lhr	ygcB	rhlB	recQ	dinG
+PF00271	Helicase_C	hrpB	hsdR	abpB	recG	priA	dbpA	mfd	uvrB	deaD	rhlE	hrpA	srmB	lhr	ygcB	rhlB	recQ	rapA	radD
+PF01546	Peptidase_M20	abgB	argE	abgA	pepD	ygeY	dapE	allC	pepT
+PF00860	Xan_ur_permease	adeP	ybbY	xanP	ghxQ	uacT	rutG	uraA	adeQ	xanQ	ghxP
+PF13956	Ibs_toxin	ibsB	ibsA	ibsD	ibsE	ibsC
+PF01380	SIS	hexR	yfhH	rpiR	glmS	murQ	gutQ	agaS	murR	frlB	kdsD
+PF00126	HTH_1	yfiE	allS	modE	yahB	lrhA	tdcA	yhaJ	ycaN	ttdR	yfeR	yneJ	abgR	ybeF	cbl	aaeR	perR	argP	gcvA	ybhD	yiaU	yjiE	dmlR	yeeY	leuO	ynfL	oxyR	yhjC	ybdO	yeiE	xapR	cysB	ydcI	hcaR	metR	ydhB	pgrR	cynR	nhaR	yafC	hdfR	yidZ	ilvY	lysR	ygfI	dsdC	nac
+PF03466	LysR_substrate	yfiE	allS	yahB	lrhA	tdcA	yhaJ	ycaN	ttdR	yfeR	yneJ	abgR	ybeF	cbl	aaeR	perR	argP	gcvA	ybhD	yiaU	yjiE	dmlR	yqfE	yeeY	leuO	ynfL	oxyR	yhjC	ybdO	yeiE	xapR	cysB	ydcI	hcaR	metR	yagP	ydhB	pgrR	cynR	nhaR	yafC	hdfR	yidZ	ilvY	lysR	ygfI	dsdC	nac
+PF00795	CN_hydrolase	yobB	ybeM	yafV	lnt
+PF00528	BPD_transp_1	yejE	ydcU	ssuC	nikB	proW	ddpC	potI	gsiC	yejB	dppB	oppC	ugpA	potB	gsiD	gltK	tcyL	ydcV	tauC	modB	oppB	hisQ	yhdX	gltJ	artM	hisM	metI	nikC	sapC	cysU	yehW	ynjC	artQ	phnE	pstC	glnP	pstA	ycjO	yehY	ugpE	afuB	cysW	potC	thiP	sapB	malF	yhdY	malG	ddpB	dppC	ycjP	potH
+PF12911	OppC_N	yejE	dppC	oppC	gsiD	sapC	ddpC
+PF06167	Peptidase_M90	mtfA
+PF00333	Ribosomal_S5	rpsE
+PF03719	Ribosomal_S5_C	rpsE
+PF02613	Nitrate_red_del	narJ	torD	ycdY	narW	dmsD
+PF11658	CBP_BcsG	bcsG
+PF13247	Fer4_11	hydN	dmsB	fdoH	aegA	ydhY	narY	uacF	ygfS	ynfG	hycB	nrfC	ydhX	hybA	narH	ysaA	fdnH
+PF14711	Nitr_red_bet_C	narY	narH
+PF13649	Methyltransf_25	tam	cmoA
+PF00132	Hexapep	lpxA	yaiX	wcaB	paaY	glmU	wcaF	dapD	lacA	yrdA	wbbJ	lpxD	cysE	caiE
+PF14602	Hexapep_2	maa	lacA	lpxD	dapD
+PF14805	THDPS_N_2	dapD
+PF14864	Alkyl_sulf_C	yjcS
+PF14863	Alkyl_sulf_dimr	yjcS
+PF00753	Lactamase_B	gloC	yjcS	ycaI	gloB	norV
+PF06303	MatP	matP
+PF17414	MatP_C	matP
+PF01367	5_3_exonuc	ygdG	polA
+PF02739	5_3_exonuc_N	ygdG	polA
+PF00476	DNA_pol_A	polA
+PF01612	DNA_pol_A_exo1	rnd	polA
+PF02782	FGGY_C	araB	lsrK	ygcE	rhaB	lyx	xylB	fucK	glpK
+PF13464	DUF4115	rodZ
+PF00005	ABC_tran	oppF	oppD	pstB	ddpD	fecE	thiQ	potG	lsrA	ydcT	fetA	tcyN	yadG	yojI	potA	ccmA	araG	livF	rbbA	phnK	mglA	rbsA	fepC	mdlA	yddA	tauB	ytfR	alsA	fhuC	msbA	gltL	uup	xylG	btuD	fbpC	metN	modC	dppF	ybbA	nikD	malK	yphE	yhdZ	cydC	yejF	ssuB	livG	ugpC	hisP	lptB	macB	sapF	ybiT	artP	nikE	cydD	phnC	uvrA	ddpF	sapD	ycjV	cysA	lolD	yehX	sufC	yheS	ftsE	ettA	ynjD	dppD	znuC	glnQ	modF	proV	ybhF	gsiA	phnL	mdlB	mlaF
+PF08352	oligo_HPY	oppF	ddpD	sapD	dppF	dppD	gsiA	oppD	ddpF	yejF
+PF16168	AIDA	ypjA	yejO	flu	ydhQ
+PF03797	Autotransporter	yejO	yaiT	ypjA	flu	ydeU	yuaQ	ycgV	yhjY	ycgI	yfaL
+PF03212	Pertactin	yaiT	ypjA	yuaQ	yejO	ydhQ	ycgV	ydeU
+PF00700	Flagellin_C	fliC
+PF00669	Flagellin_N	flgL	fliC
+PF13953	PapC_C	elfC	htrE	ydeT	yehB	yqiG	yfcU	sfmD	fimD	ybgQ	yhcD	yraJ
+PF13954	PapC_N	elfC	htrE	yehB	yqiG	yfcU	sfmD	fimD	ybgQ	yhcD	yraJ
+PF00577	Usher	elfC	htrE	ydeT	yehB	yqiG	yfcU	sfmD	fimD	ybgQ	yhcD	yraJ
+PF01053	Cys_Met_Meta_PP	metC	metB
+PF10417	1-cysPrx_C	ahpC
+PF00578	AhpC-TSA	bcp	ahpC
+PF13677	MotB_plug	motB
+PF00691	OmpA	yiaD	ompA	yfiB	lafU	pal	motB
+PF07927	HicA_toxin	hicA
+PF01258	zf-dskA_traR	ybiI	dksA	traR
+PF08003	Methyltransf_9	cmoB
+PF04354	ZipA_C	zipA
+PF03892	NapB	napB
+PF04143	Sulf_transp	yeeE	yedE
+PF00248	Aldo_ket_red	ydhF	yeaE	dkgB	dkgA	yajO	tas	pdxI	gpr	ydjG
+PF06004	DUF903	ygdI	ygdR
+PF01293	PEPCK_ATP	pckA
+PF04002	RadC	yfjY	ykfG	yicR	yeeS
+PF09829	DUF2057	yccT
+PF00692	dUTPase	dcd	dut
+PF01042	Ribonuc_L-PSP	ridA	rutC	yjgH	yoaB	tdcF
+PF01209	Ubie_methyltran	ubiE
+PF00128	Alpha-amylase	ygaQ	amyA	treC	glgB	glgX	malS	ycjM	malZ
+PF11941	DUF3459	treC
+PF03205	MobB	mobB
+PF08534	Redoxin	tpx	dsbE
+PF01867	Cas_Cas1	ygbT
+PF06500	DUF1100	frsA
+PF02800	Gp_dh_C	gapA	epd
+PF00044	Gp_dh_N	gapA	epd
+PF00268	Ribonuc_red_sm	nrdB	nrdF
+PF13458	Peripla_BP_6	livK	livJ
+PF00196	GerE	dctR	bglJ	uvrY	yqeH	rcsB	rcsA	pdeL	yhjB	fimZ	narP	malT	ecpR	uhpA	csgD	sdiA	yjjQ	ygeK	evgA	gadE	narL	yuaB
+PF08544	GHMP_kinases_C	galK	ispE	thrB
+PF00288	GHMP_kinases_N	galK	ispE	thrB
+PF06733	DEAD_2	dinG
+PF13307	Helicase_C_2	dinG	yoaA
+PF00480	ROK	alsK	nagC	nagK	mlc	yphH	mak	nanK
+PF00583	Acetyltransf_1	fabY	argA	patZ	aaaT	yjhQ	phnO	yjgM	ypeA	rimI	yedL
+PF13380	CoA_binding_2	patZ	yccU
+PF13607	Succ_CoA_lig	patZ
+PF07274	DUF1440	yagU
+PF11742	DUF3302	yibI	yiaW
+PF00486	Trans_reg_C	creB	baeR	arcA	hprR	rstA	qseB	cpxR	ompR	yqeI	phoB	torR	kdpE	basR	arcA2	ygeH	ybfI	phoP	cusR	cadC
+PF04612	T2SSM	gspM	yghD
+PF00419	Fimbrial	yadL	yadM	sfmF	sfmH	yehA	yfcP	fimA	yehD	ycbV	sfmA	fimF	yfcV	fimI	yadC	ybgD	ygiL	ydeS	ycbU	elfA	ydeR	fimH	yfcR	yadK	ybgO	yraK	elfG	yfcQ	yadN	yraH
+PF00254	FKBP_C	tig	fkpB	fklB	fkpA	slyD
+PF01346	FKBP_N	fkpA	fklB
+PF07072	ZapD	zapD
+PF13640	2OG-FeII_Oxy_3	ybiX
+PF18331	PKHD_C	ybiX
+PF03626	COX4_pro	cyoD
+PF08335	GlnD_UR_UTase	glnE	glnD
+PF03710	GlnE	glnE
+PF00990	GGDEF	dgcZ	dgcQ	pdeK	dgcP	dgcF	cdgI	dosP	dgcI	dgcE	dgcJ	dgcC	csrD	dgcN	dgcM	dosC	dgcT	pdeR
+PF17158	MASE4	dgcT	cdgI
+PF04234	CopC	yobA
+PF00764	Arginosuc_synth	argG
+PF13419	HAD_2	hxpB	yieH	hxpA	yihX	gph	yqaB	ycjU	yjjG	yrfG	yigB
+PF14714	KH_dom-like	der
+PF01926	MMR_HSR1	engB	yfjP	obgE	ykfA	era	der	hflX	mnmE	ychF
+PF16449	MatB	ecpA
+PF10749	DUF2534	ynaJ
+PF00106	adh_short	ydfG	srlD	yciK	ybbO	idnO	hcaB
+PF13091	PLDc_2	clsA	pssA	yjhR	clsB	clsC
+PF07358	DUF1482	ydfD	yebW
+PF17358	DUF5384	yfgI
+PF02622	DUF179	yqgE
+PF08240	ADH_N	adhP	ydjJ	yggP	ydjL	ahr	idnD	gatD	yahK	frmA	acuI	ybdR	yphC	lgoD	tdh	qorA	rspB
+PF00107	ADH_zinc_N	ycjQ	adhP	curA	ydjJ	yggP	ydjL	ahr	idnD	gatD	yahK	frmA	acuI	ybdR	yphC	lgoD	tdh	qorA	rspB
+PF00291	PALP	ilvA	dcyD	trpB	cysK	ygeX	tdcB	dsdA	thrC	cysM
+PF04452	Methyltrans_RNA	rsmE
+PF17284	Spermine_synt_N	speE
+PF06725	3D	mltA
+PF03562	MltA	mltA
+PF01266	DAO	mnmC	lhgD	puuB	glpA	solA	glpD	dadA
+PF16901	DAO_C	glpD
+PF11046	HycA_repressor	hycA
+PF00216	Bac_DNA_binding	ihfA	hupA	ihfB	hupB
+PF01063	Aminotran_4	ilvE	pabC
+PF07670	Gate	nupC	yjiG	feoB	yjiH
+PF03100	CcmE	ccmE
+PF06426	SATase_N	cysE
+PF01722	BolA	bolA	ibaG
+PF00733	Asn_synthase	asnB
+PF13537	GATase_7	asnB
+PF00043	GST_C	gstB	sspA	gstA	yfcG	yibF
+PF02798	GST_N	yfcF	sspA	yghU	yfcG
+PF00892	EamA	eamA	rhtA	yhbE	yedA	yddG	arnE	yicL	rarD	yijE	bioP	ytfF
+PF05971	Methyltransf_10	rlmF
+PF07012	Curlin_rpt	csgB	csgA
+PF00356	LacI	gntR	ascG	cra	rbsR	ebgR	purR	malI	lacI	ycjW	cytR	galR	galS	idnR	treR
+PF02810	SEC-C	ychJ	yecA	secA
+PF07517	SecA_DEAD	secA
+PF01043	SecA_PP_bind	secA
+PF07516	SecA_SW	secA
+PF00154	RecA	recA
+PF00496	SBP_bac_5	nikA	gsiB	ygiS	sgrR	sapA	yejA	gsiB	dppA	oppA	ybaE	ddpA	mppA
+PF07690	MFS_1	rhmT	uhpC	ygaY	yebQ	glpT	emrY	exuT	mdtM	uhpT	yihN	ydhP	yfcJ	narU	tsgA	ydeE	sotB	narK	yjhB	ynfM	bcr	setA	setC	hsrA	emrD	fucP	mdtL	gudP	nanT	garP	yhjE	emrB	mdtG	mdtH	dgoT	setB	lplT	mdfA	mhpT	nimT	yhhS	nepI	ycaD	araJ	fsr	mdtD	ydhC	ydiM	ybjJ	ampG	ydiN	yhjX	yqcE	lgoT	ydfJ	yajR	shiA	cynX
+PF01975	SurE	surE
+PF00155	Aminotran_1_2	aspC	malY	ybdL	yjiR	bioF	kbl	alaC	avtA	yhfS	ydcR	tyrB	alaA	hisC
+PF01136	Peptidase_U32	trhP	ubiV	ubiU	rlhA
+PF16325	Peptidase_U32_C	trhP
+PF16360	GTP-bdg_M	hflX
+PF13167	GTP-bdg_N	hflX
+PF03738	GSP_synth	ygiC	gss	yjfC
+PF03170	BcsB	bcsB
+PF00501	AMP-binding	prpE	caiC	fadK	menE	paaK	entE	acs	aas	fadD	entF
+PF13193	AMP-binding_C	acs	menE	prpE	entE	fadD	caiC	entF	fadK
+PF04995	CcmD	ccmD
+PF05016	ParE_toxin	relE
+PF00959	Phage_lysozyme	rrrD	rrrQ
+PF00467	KOW	nusG	rplX
+PF17136	ribosomal_L24	rplX
+PF03352	Adenine_glyco	tag
+PF00367	PTS_EIIB	bglF	ascF	ptsG	treB	malX	nagE	glvB	murP
+PF02378	PTS_EIIC	bglF	cmtA	treB	fruA	frvB	mtlA	chbC	ptsG	glvC	malX	murP	ascF	fryC	nagE	mngA
+PF03616	Glt_symporter	gltS
+PF13580	SIS_2	gmhA	diaA
+PF02021	UPF0102	yraN
+PF06969	HemN_C	hemW	hemN
+PF04055	Radical_SAM	yhcC	ygiQ	thiH	pflC	miaB	bioB	hemW	hemN	aslB	epmB	moaA	lipA	ydeM	pflA	rimO	ybiY	yjjW	queE	rlmN
+PF00582	Usp	uspC	uspE	uspG	uspD	uspF	uspA
+PF00725	3HCDH	paaH	fadB	fadJ
+PF02737	3HCDH_N	paaH	fadB	fadJ
+PF00378	ECH_1	scpB	paaF	caiD	paaG	fadB	menB	fadJ
+PF13258	DUF4049	yhiJ	yhiL
+PF06146	PsiE	psiE
+PF00146	NADHdh	hyfC	nuoH	hycD
+PF00460	Flg_bb_rod	flgE	flgG	flgC	flgB	flgK	flgF
+PF06429	Flg_bbr_C	flgE	flgG	flgK	flgC	flgF
+PF13439	Glyco_transf_4	wcaC	rfaB	wcaL	rfaG
+PF00534	Glycos_transf_1	wbbK	wcaC	rfaB	wcaI	glgA	wcaL	rfaG
+PF01848	HOK_GEF	hokE	hokA	mokC	hokC	srnB	hokD	hokB	flmA
+PF13698	DUF4156	yjeI
+PF00679	EFG_C	bipA	lepA	fusA
+PF00009	GTP_EFTU	bipA	prfC	infB	lepA	tufB	selB	tufA	fusA	cysN
+PF03144	GTP_EFTU_D2	bipA	prfC	lepA	tufB	selB	tufA	fusA
+PF06667	PspB	pspB
+PF00929	RNase_T	sbcB	rnt	sbcB	sbcB	orn	dnaQ	sbcB	exoX	sbcB
+PF04715	Anth_synt_I_N	pabB	trpE
+PF00425	Chorismate_bind	trpE	menF	entC	pabB
+PF02133	Transp_cyt_pur	ybbW	codB
+PF13417	GST_N_3	gstB	yncG	grxB	yibF
+PF13407	Peripla_BP_4	lsrB	mglB	ytfQ	rbsB	yphF	alsB	xylF
+PF12832	MFS_1_like	hcaT
+PF00355	Rieske	hcaC	hcaE	yeaW
+PF00848	Ring_hydroxyl_A	hcaE	yeaW
+PF03544	TonB_C	tonB
+PF00701	DHDPS	nanA	yjhH	yagE	dapA
+PF02446	Glyco_hydro_77	malQ
+PF02733	Dak1	dhaK
+PF02386	TrkH	trkH	trkG
+PF04261	Dyp_perox	yfeX	efeB
+PF00296	Bac_luciferase	yhbW	rutA	ssuD
+PF03471	CorC_HlyC	yoaE	corC	cvrA	yfjD	paeA	yegH
+PF00999	Na_H_Exchanger	kefB	yjcE	kefC	ybaL	cvrA
+PF02080	TrkA_C	yfbS	yidE	ybjL	cvrA	trkA
+PF10945	CBP_BcsR	yhjR
+PF00809	Pterin_bind	folP	metH
+PF02601	Exonuc_VII_L	xseA
+PF13742	tRNA_anti_2	xseA
+PF05746	DALR_1	glyS	argS
+PF02092	tRNA_synt_2f	glyS
+PF01027	Bax1-I	ybhM	yccA	ybhL
+PF09335	SNARE_assoc	yqaA	yohD	ydjZ	dedA	yghB	ydjX	yabI	yqjA
+PF03631	Virul_fac_BrkB	yihY	yhjD
+PF16123	HAGH_C	gloB
+PF05845	PhnH	phnH
+PF00854	PTR2	dtpC	dtpA	dtpD	dtpB
+PF08349	DUF1722	ybgA
+PF18693	TRAM_2	rimO
+PF00919	UPF0004	rimO	miaB
+PF03552	Cellulose_synt	bcsA
+PF00535	Glycos_transf_2	wcaA	mdoH	yaiP	wcaE	yfdH	arnC	yibD	bcsA	pgaC
+PF07238	PilZ	ycgR	bcsA
+PF06572	DUF1131	yfeY
+PF06786	UPF0253	yaeP
+PF00359	PTS_EIIA_2	gatA	ptsN	cmtB	frvA	fryA	fruB	ptsA	mtlA	ulaC	frvR	sgcA	mngA
+PF12693	GspL_C	gspL	yghE
+PF05134	T2SSL	gspL
+PF10415	FumaraseC_C	fumC	aspA
+PF00206	Lyase_1	argH	purB	fumC	aspA
+PF00324	AA_permease	yifK	aroP	pheP	proY	cycA	mmuP	ansP	lysP	gabP	puuP	puuP
+PF01471	PG_binding_1	gspA	ycbB
+PF03734	YkuD	ynhG	ycbB	erfK	ycfS	ybiS	yafK
+PF01012	ETF	ygcR	ydiR	ydiQ	fixB	fixA	ygcQ
+PF00766	ETF_alpha	ydiR	fixB	ygcQ
+PF02592	Vut_1	yhhQ
+PF02678	Pirin	yhaK	yhhW
+PF17954	Pirin_C_2	yhaK	yhhW
+PF00455	DeoRC	glpR	sgcR	ulaR	agaR	ydjF	ygbI	yciT	csqR	srlR	deoR	fucR
+PF08220	HTH_DeoR	glpR	sgcR	ulaR	agaR	gatR	ydjF	ygbI	yciT	csqR	yfjR	srlR	deoR	fucR
+PF00267	Porin_1	ompC	phoE	ompN	nmpC	ompF	yedS	yddL	ompC
+PF13721	SecD-TM1	secD	mzrA
+PF00497	SBP_bac_3	artI	artJ	evgS	hisJ	tcyJ	yhdW	glnH	gltI	argT	mltF
+PF02929	Bgal_small_N	lacZ	ebgA	lacZ
+PF16353	DUF4981	lacZ	ebgA	lacZ
+PF00703	Glyco_hydro_2	uidA	lacZ	ebgA	lacZ
+PF02836	Glyco_hydro_2_C	uidA	lacZ	ebgA	lacZ
+PF02837	Glyco_hydro_2_N	uidA	lacZ	ebgA	lacZ
+PF02518	HATPase_c	cusS	htpG	parE	narQ	narX	dpiB	phoQ	qseC	gyrB	zraS	glrK	barA	phoR	evgS	ypdA	baeS	rcsD	cpxA	kdpD	uhpB	creC	basS	dcuS	rcsC	rstB	arcB	cheA	glnL	hprS	atoS	torS	envZ
+PF00512	HisKA	cusS	qseC	zraS	glrK	barA	phoR	evgS	baeS	cpxA	kdpD	creC	basS	rcsC	rstB	glnL	arcB	hprS	atoS	torS	envZ
+PF01183	Glyco_hydro_25	yegX
+PF00717	Peptidase_S24	cohE	lexA	lepB	umuD
+PF08272	Topo_Zn_Ribbon	topA
+PF01131	Topoisom_bac	topA	topB
+PF01751	Toprim	parE	topA	gyrB	topB
+PF01396	zf-C4_Topoisom	yrdD	topA
+PF02664	LuxS	luxS
+PF04977	DivIC	ftsB
+PF01451	LMWPc	wzb	etp
+PF13344	Hydrolase_6	nagD
+PF02698	DUF218	ydcF	sanA	elyC	ygjQ
+PF01039	Carboxyl_trans	accD
+PF17848	zf-ACC	accD
+PF06154	CbeA_antitoxin	yafW	yfjZ	yagB	cbeA
+PF01312	Bac_export_2	flhB
+PF01557	FAA_hydrolase	mhpD	ycgM
+PF13687	DUF4153	yhgE
+PF02075	RuvC	ruvC
+PF00474	SSF	panF	actP	putP	yidK
+PF00533	BRCT	ligA
+PF01653	DNA_ligase_aden	ligA	ligB
+PF03120	DNA_ligase_OB	ligA	ligB
+PF03119	DNA_ligase_ZBD	ligA
+PF01924	HypD	hypD
+PF18500	CadC_C1	cadC
+PF02254	TrkA_N	kefB	kefC	kch	ybaL	trkA
+PF01729	QRPTase_C	nadC
+PF02749	QRPTase_N	nadC
+PF00309	Sigma54_AID	rpoN
+PF04963	Sigma54_CBD	rpoN
+PF04552	Sigma54_DBD	rpoN
+PF00198	2-oxoacid_dh	aceF	sucB
+PF00364	Biotin_lipoyl	accB	aceF	sucB
+PF02817	E3_binding	aceF	sucB
+PF00472	RF-1	prfB	prfH	prfA	arfB
+PF04976	DmsC	dmsC	ynfH
+PF12800	Fer4_4	ydhY	napG	hydN	dmsB	ynfG	fdnH	napF
+PF06719	AraC_N	yqhC
+PF01427	Peptidase_M15	ddpX
+PF01842	ACT	serA	purU	gcvR	thrA	ilvN	glnD	lysC
+PF01734	Patatin	yjjU	rssA
+PF06173	DUF986	yobD
+PF01226	Form_Nir_trans	focB	yfdC	nirC	focA
+PF10837	DUF2575	yaaY
+PF02753	PapD_C	fimC	yfcS	elfD	yadV	yraI	yehC	ybgP	ycbF	sfmC	yqiH
+PF00345	PapD_N	fimC	yfcS	elfD	yadV	yhcA	yraI	yehC	ycbF	ybgP	yqiH	sfmC
+PF09526	DUF2387	yheV
+PF07969	Amidohydro_3	codA	phnM	yahJ
+PF07417	Crl	crl
+PF02569	Pantoate_ligase	panC
+PF00330	Aconitase	ybhJ	acnA	acnB	leuC
+PF06434	Aconitase_2_N	acnB
+PF11791	Aconitase_B_N	acnB
+PF00483	NTP_transferase	rffH	glgC	manC	rfbA	galF	galU
+PF03974	Ecotin	eco
+PF13942	Lipoprotein_20	yfhG
+PF01566	Nramp	mntH
+PF13283	NfrA_C	nfrA
+PF00390	malic	maeB	maeA
+PF03949	Malic_M	maeB	maeA
+PF11892	DUF3412	ppnN
+PF14793	DUF4478	ppnN
+PF03641	Lysine_decarbox	ppnN
+PF02464	CinA	pncC	ydeJ
+PF06808	DctM	yiaN
+PF01432	Peptidase_M3	dcp	prlC
+PF00004	AAA	rarA	ftsH	hslU	clpA	lon	clpB
+PF07724	AAA_2	clpX	hslU	clpA	clpB
+PF17871	AAA_lid_9	clpA	clpB
+PF02861	Clp_N	clpA	clpB
+PF10431	ClpB_D2-small	clpX	hslU	clpA	clpB
+PF01370	Epimerase	yfcH	ybjS	hldD	fcl	arnA	yeeZ
+PF02911	Formyl_trans_C	arnA	fmt
+PF00551	Formyl_trans_N	purN	purU	arnA	fmt
+PF00083	Sugar_tr	xylE	proP	kgtP	galP	ydjK	yhjE	ygcS	araE	ydjE	ydfJ	shiA	yaaU
+PF07126	ZapC	zapC
+PF01165	Ribosomal_S21	rpsU
+PF03960	ArsC	arsC	yffB	yfgD
+PF00370	FGGY_N	rhaB	lsrK	ygcE	lyx	xylB	fucK	glpK
+PF06983	3-dmu-9_3-mt	yjdN
+PF08323	Glyco_transf_5	glgA
+PF00696	AA_kinase	arcC	argA	yqeA	lysC	pyrH	argB	thrA	metL	yahI	proB
+PF00742	Homoserine_dh	thrA	metL
+PF03447	NAD_binding_3	thrA	metL
+PF08362	TetR_C_3	rutR
+PF00440	TetR_N	cecR	fabR	nemR	uidR	betI	rcdA	envR	acrR	bdcR	rutR	slmA	comR
+PF00708	Acylphosphatase	hypF	yccX
+PF13801	Metal_resist	zraP
+PF02082	Rrf2	iscR	nsrR
+PF00202	Aminotran_3	astC	bioA	puuE	argD	puuE	hemL	patA	gabT
+PF00576	Transthyretin	hiuH
+PF00389	2-Hacid_dh	serA	pdxB	ldhA	ghrB
+PF02826	2-Hacid_dh_C	serA	pdxB	ghrA	ldhA	ghrB
+PF02447	GntP_permease	yjhF	dsdX	gntP	gntT	gntU	idnT	ygbN
+PF01467	CTP_transf_like	hldE	nadD	coaD
+PF01228	Gly_radical	pflD	grcA	ybiW	pflB	tdcE
+PF10509	GalKase_gal_bdg	galK
+PF14834	GST_C_4	yfcF
+PF03527	RHS	ylbH	ybfO	rhsC	yibJ	rhsE	rhsB	rhsD	rhsA
+PF05593	RHS_repeat	ybfO	rhsC	rhsB	rhsD	rhsA
+PF12804	NTP_transf_3	mobA	mocA	glmU
+PF03937	Sdh5	sdhE
+PF02611	CDH	cdh
+PF07237	DUF1428	ybaA
+PF05957	DUF883	yqjD	ygaM	elaB
+PF03966	Trm112p	ycaR
+PF01668	SmpB	smpB	smpB
+PF14691	Fer4_20	preT	gltD	ygfK	uacF	aegA
+PF07992	Pyr_redox_2	preT	gltD	aegA	nirB	ahpF	trxB	hcaD	ygfK	gor	fadH	uacF	norW	lpdA	sthA	rclA	ndh
+PF00313	CSD	cspD	cspB	cspI	cspE	cspH	cspF	cspA	cspG	cspC
+PF01048	PNP_UDP_1	amn	xapA	udp	mtnN	deoD
+PF16658	RF3_C	prfC
+PF00793	DAHP_synth_1	kdsA	aroF	aroH	aroG
+PF05762	VWA_CoxE	yehP	viaA
+PF01554	MatE	yeeO	dinF	mdtK
+PF08340	DUF1732	yicC
+PF03755	YicC_N	yicC
+PF17862	AAA_lid_3	ftsH
+PF06480	FtsH_ext	ftsH
+PF01434	Peptidase_M41	ftsH
+PF00571	CBS	gutQ	corC	yfjD	paeA	guaB	kdsD	yegH	proV
+PF08328	ASL_C	purB
+PF01292	Ni_hydr_CYTB	hyaC	yodB	fdnI	yceJ	fdoI	cybB	ydhU
+PF00877	NLPC_P60	yafL	nlpC	mepS	mepH
+PF10707	YrbL-PhoP_reg	yrbL
+PF00459	Inositol_P	suhB	cysQ
+PF00694	Aconitase_C	ybhJ	leuD	acnA
+PF00485	PRK	coaA	udk	prkB
+PF13533	Biotin_lipoyl_2	mdtA	mdtN	yhiI	aaeA
+PF00152	tRNA-synt_2	epmA	lysS	asnS	lysU	aspS
+PF01336	tRNA_anti-codon	lysS	asnS	lysU	aspS	dnaE
+PF02796	HTH_7	pinR	pinQ	tnpR	pinE
+PF00239	Resolvase	pinR	pinQ	tnpR	pinE	ybcK
+PF05430	Methyltransf_30	mnmC
+PF01276	OKR_DC_1	cadA	speF	speC	ldcC	adiA
+PF03711	OKR_DC_1_C	cadA	speF	speC	ldcC	adiA
+PF03709	OKR_DC_1_N	cadA	speF	speC	ldcC	adiA
+PF00542	Ribosomal_L12	rplL
+PF16320	Ribosomal_L12_N	rplL
+PF00111	Fer2	hcr	xdhC	paoA	ycbX	fdx	yfaE	yeaX	paaE
+PF04379	DUF525	apaG
+PF04851	ResIII	yoaA	hsdR	radD	uvrB
+PF02525	Flavodoxin_2	mdaB	kefF	kefG	ycaK	azoR
+PF03649	UPF0014	fetB
+PF01116	F_bP_aldolase	ydjI	gatY	kbaY	fbaA
+PF05195	AMP_N	pepP
+PF00557	Peptidase_M24	map	pepP	ypdF	pepQ
+PF00478	IMPDH	guaB	guaC
+PF02626	CT_A_B	pxpC
+PF01906	YbjQ_1	ybjQ
+PF01510	Amidase_2	ampD	amiD
+PF15567	Imm35	yrhB
+PF14310	Fn3-like	bglX
+PF00933	Glyco_hydro_3	bglX	nagZ
+PF01915	Glyco_hydro_3_C	bglX
+PF01058	Oxidored_q6	nuoB	hycG	hyfI	hybO	hyaA
+PF02261	Asp_decarbox	panD
+PF12399	BCA_ABC_TP_C	livG	lptB
+PF01261	AP_endonuc_2	D-tagatose 3-epimerase	ycjR	yihM	nfo	frlC	ulaE	sgbU	hyi	otnI
+PF13416	SBP_bac_8	ugpB	potD	ydcS	ynjB	malE	potF
+PF13978	DUF4223	yhfL
+PF02325	YGGT	yggT
+PF01225	Mur_ligase	murC	murE	murF	mpl
+PF02875	Mur_ligase_C	murC	folC	murE	murD	murF	mpl
+PF08245	Mur_ligase_M	murC	folC	murE	murD	murF	mpl
+PF01925	TauE	yfcA
+PF00908	dTDP_sugar_isom	rfbC
+PF01948	PyrI	pyrI
+PF02748	PyrI_C	pyrI
+PF05532	CsbD	yjbJ
+PF03916	NrfD	hybB	nrfD
+PF01103	Omp85	bamA	tamA
+PF07244	POTRA	bamA	tamA
+PF06526	DUF1107	ytfK
+PF00226	DnaJ	djlA	cbpA	dnaJ
+PF01556	DnaJ_C	dnaJ	cbpA
+PF00684	DnaJ_CXXCXGXG	dnaJ
+PF03938	OmpH	skp
+PF01218	Coprogen_oxidas	hemF
+PF00585	Thr_dehydrat_C	ilvA
+PF04403	PqiA	pqiA	yebS
+PF00950	ABC-3	znuB
+PF08443	RimK	rimK
+PF18030	Rimk_N	rimK
+PF03358	FMN_red	wrbA	chrR	ssuE	wrbA
+PF01081	Aldolase	eda	dgoA
+PF00881	Nitroreductase	nfsB	rutE	nfsA	ydjA	NTR
+PF07130	YebG	yebG
+PF11893	DUF3413	yejM
+PF00884	Sulfatase	aslA	eptB	yidJ	eptC	opgE	ydeN	mdoB	yejM	yhbX	eptA
+PF08267	Meth_synt_1	metE
+PF01717	Meth_synt_2	metE
+PF01155	HypA	hypA	hybF
+PF03611	EIIC-GAT	sgcC	ulaA	gatC
+PF00411	Ribosomal_S11	rpsK
+PF02690	Na_Pi_cotrans	yjbB
+PF01047	MarR	nagC	marR	slyA	mprA
+PF01197	Ribosomal_L31	ykgM	rpmE
+PF01613	Flavin_Reduct	yddH	rutF
+PF02583	Trns_repr_metal	frmR	rcnR
+PF01541	GIY-YIG	uvrC	yhbQ
+PF02151	UVR	uvrC	uvrB
+PF08459	UvrC_HhH_N	uvrC
+PF07715	Plug	fhuA	yoeA	cirA	yncD	btuB	yddB	fiu	fepA	fhuE	fecA
+PF00593	TonB_dep_Rec	fhuA	cirA	yncD	btuB	fecA	fiu	fepA	fhuE
+PF12105	SpoU_methylas_C	trmH
+PF00588	SpoU_methylase	trmL	lasT	rlmB	trmJ	trmH	yfiF
+PF02666	PS_Dcarbxylase	psd
+PF00668	Condensation	entF
+PF08242	Methyltransf_12	ybcY	ymfD
+PF00550	PP-binding	acpP	entB	entF
+PF06519	TolA	tolA
+PF03255	ACCA	accA
+PF06689	zf-C4_ClpX	clpX
+PF01418	HTH_6	hexR	rpiR	yfhH	murR
+PF00465	Fe-ADH	yiaY	gldA	yqhD	hcxA	fucO	eutG	adhE
+PF04952	AstE_AspA	astE
+PF05681	Fumerase	fumB	ttdA	fumA
+PF05683	Fumerase_C	fumB	ttdB	fumA
+PF00037	Fer4	nrfC	hyfA	yfhL	napF
+PF07729	FCD	mcbR	yieP	glaR	pdhR	uxuR	dgoR	rspR	glcC	exuR	lgoR	lldR	nanR
+PF00392	GntR	mcbR	yieP	glaR	nanR	fadR	yidP	yegW	pdhR	uxuR	dgoR	rspR	glcC	frlR	yjiR	exuR	phnF	ydcR	lgoR	yihL	lldR	mngR
+PF01933	UPF0052	ybhK
+PF11842	DUF3362	ygiQ
+PF08497	Radical_SAM_N	ygiQ
+PF12167	Arm-DNA-bind_2	intQ	intR
+PF00589	Phage_integrase	intZ	fimB	intQ	intB	intE	intS	intF	intM	fimE	intA	resD	xerD	intR	xerC	intD
+PF07295	DUF1451	ybeL
+PF03609	EII-Sor	agaW	agaC	manY
+PF04316	FlgM	flgM
+PF00464	SHMT	glyA
+PF03621	MbtH	ybdZ
+PF02452	PemK_toxin	chpB	yifN	mazF
+PF09456	RcsC	rcsC
+PF04445	SAM_MT	rsmJ
+PF01128	IspD	ispD
+PF02629	CoA_binding	sucD	yahF	fdrA
+PF00549	Ligase_CoA	sucC	yahF	fdrA	sucD
+PF03437	BtpA	sgcQ
+PF01041	DegT_DnrJ_EryC1	wecE	arnB
+PF00298	Ribosomal_L11	rplK
+PF03946	Ribosomal_L11_N	rplK
+PF01202	SKI	aroK	idnK	gntK	aroL
+PF13144	ChapFlgA	flgA
+PF03658	Ub-RnfH	ratB
+PF00297	Ribosomal_L3	rplC
+PF02669	KdpC	kdpC
+PF13593	SBF_like	yfeH
+PF08049	IlvB_leader	ivbL
+PF00828	Ribosomal_L27A	rplO
+PF00664	ABC_membrane	msbA	cydC	mdlB	cydD	mdlA
+PF10938	YfdX	yfdX
+PF01943	Polysacc_synt	rfbX	yghQ	wzxE
+PF01029	NusB	rsmB	nusB
+PF01494	FAD_binding_3	cbrA	ubiF	fixC	ydiS	mhpA	ubiH	ubiI
+PF06750	DiS_P_DiS	pppA
+PF01478	Peptidase_A24	gspO	pppA
+PF02416	TatA_B_E	tatA	tatE
+PF02107	FlgH	flgH
+PF03739	LptF_LptG	lptG	lptF
+PF01235	Na_Ala_symp	yaaJ
+PF13991	BssS	bssS
+PF06672	DUF1175	yfaT
+PF02561	FliS	fliS
+PF02803	Thiolase_C	atoB	paaJ	fadA	fadI	yqeF
+PF00108	Thiolase_N	atoB	paaJ	fadA	fadI	yqeF
+PF01337	Barstar	yhcO
+PF04337	DUF480	yceH
+PF00311	PEPcase	ppc
+PF00312	Ribosomal_S15	rpsO
+PF01487	DHquinase_I	aroD
+PF04198	Sugar-bind	yjhU	lsrR
+PF06085	Rz1	rzoD	rzoR
+PF01379	Porphobil_deam	hemC
+PF03900	Porphobil_deamC	hemC
+PF04632	FUSC	aaeB	ydhK	yeeA	mdtO
+PF08448	PAS_4	dgcM	dgcE
+PF01985	CRS1_YhbY	yhbY
+PF00572	Ribosomal_L13	rplM
+PF11924	IAT_beta	ychO	yeeJ	eaeH
+PF04225	OapA	ytfB
+PF08525	OapA_N	mepM	ytfB
+PF02367	TsaE	tsaE
+PF03934	T2SSK	gspK
+PF00899	ThiF	tcdA	moeB	thiF
+PF00258	Flavodoxin_1	yqcA	cysJ	fldA	fldB	mioC	norV
+PF02954	HTH_8	zraR	dhaR	uacR	prpR	atoC	glnG	pspF	fis	fhlA
+PF00158	Sigma54_activat	hyfR	zraR	prpR	glrR	atoC	dhaR	uacR	norR	rtcR	tyrR	glnG	pspF	fhlA
+PF01695	IstB_IS21	ydaV	dnaC
+PF00749	tRNA-synt_1c	gluQ	glnS	gltX
+PF03551	PadR	yqjI
+PF09997	DUF2238	yjdF
+PF00563	EAL	pdeA	pdeF	pdeK	pdeC	pdeL	dosP	pdeB	pdeN	dgcE	pdeH	ydiV	csrD	pdeG	pdeD	pdeI	bluF	pdeR	yuaB
+PF05231	MASE1	pdeA	pdeF	uhpB	dgcE
+PF13426	PAS_9	dosP	dgcE	pdeR
+PF02775	TPP_enzyme_C	ilvI	ilvB	poxB	oxc	gcl	menD	ydbK	ilvG
+PF00205	TPP_enzyme_M	ilvI	ilvB	poxB	oxc	gcl	ilvG	ilvG
+PF02776	TPP_enzyme_N	ilvI	ilvB	poxB	oxc	gcl	ilvG	menD	ilvG
+PF10625	UspB	uspB
+PF03852	Vsr	vsr
+PF01476	LysM	nlpD	mltD	ygeR	ynhG	mepM	ycfS	kbp
+PF01464	SLT	mltD	mltC	slt	yubQ	pbl	emtA	mltF
+PF00109	ketoacyl-synt	fabB	fabF
+PF02801	Ketoacyl-synt_C	fabB	fabF
+PF10754	DUF2569	ydgK
+PF06109	HlyE	hlyE
+PF02878	PGM_PMM_I	manB	glmM	pgm
+PF02879	PGM_PMM_II	manB	glmM	pgm
+PF02880	PGM_PMM_III	manB	glmM	pgm
+PF00408	PGM_PMM_IV	manB	glmM	pgm
+PF00586	AIRS	selD	purM	thiL	hypE
+PF02769	AIRS_C	purL	selD	purM	thiL	hypE
+PF00665	rve	JW5918	insF7	insF6	insD4	JW5903	insD3	insK	insD8	JW5933	insF1	insF4	insD6	JW5899	insD7	insI1	insF5	insI4	insF3	insF2	insD2	insI3	yagA	insD5	insO2	insD1
+PF01256	Carb_kinase	nnr
+PF03853	YjeF_N	nnr
+PF02547	Queuosine_synth	queA
+PF01739	CheR	cheR
+PF03705	CheR_N	cheR
+PF02126	PTE	php
+PF13995	YebF	yebF
+PF13939	TisB_toxin	tisB
+PF12462	Helicase_IV_N	helD
+PF00580	UvrD-helicase	uvrD	helD	recB	rep
+PF13361	UvrD_C	uvrD	helD	recB	rep
+PF07256	DUF1435	yjjZ
+PF09691	T2SS_PulS_OutS	yacC
+PF07963	N_methyl	gspH	ppdA	ppdC	gspG	ppdB	ppdD	gspI	gspJ
+PF08334	T2SSG	gspG
+PF03806	ABG_transport	abgT
+PF06183	DinI	dinI
+PF03502	Channel_Tsx	yfeN	tsx
+PF01679	Pmp3	yqaE
+PF03788	LrgA	yohJ
+PF10956	DUF2756	yhhA
+PF03888	MucB_RseB	rseB
+PF17188	MucB_RseB_C	rseB
+PF01408	GFO_IDH_MocA	ydgJ	ygjR	yceM	yjhC	ycjS	yhhX
+PF02894	GFO_IDH_MocA_C	ydgJ	yjhC	ycjS	yhhX
+PF04266	ASCH	yqfB
+PF09334	tRNA-synt_1g	metG
+PF01588	tRNA_bind	ygjH	pheT	metG
+PF00890	FAD_binding_2	sdhA	glpB	nadB	frdA
+PF02910	Succ_DH_flav_C	sdhA	nadB	frdA
+PF01144	CoA_trans	atoD	ydiF	atoA
+PF13237	Fer4_10	napH
+PF12801	Fer4_5	yccM	napH
+PF04073	tRNA_edit	ybaK	proXp-y	proS
+PF02777	Sod_Fe_C	sodA	sodB
+PF00081	Sod_Fe_N	sodA	sodB
+PF05425	CopD	yebZ
+PF00281	Ribosomal_L5	rplE
+PF00673	Ribosomal_L5_C	rplE
+PF00329	Complex1_30kDa	hyfG	hycE	nuoC
+PF00346	Complex1_49kDa	hyfG	hycE	nuoC
+PF00374	NiFeSe_Hases	hyfG	hyaB	hybC	hycE
+PF04325	DUF465	ydcH
+PF00595	PDZ	prc	degP	degQ
+PF01026	TatD_DNase	tatD	ycfH	yjjV
+PF13356	Arm-DNA-bind_3	intZ	intB	intS	int	intA	intF
+PF14659	Phage_int_SAM_3	intS
+PF13657	Couple_hipA	hipA
+PF01636	APH	srkA	thiK	ycbJ
+PF16363	GDP_Man_Dehyd	gmd	galE	rffG	rfbB
+PF00584	SecE	secE
+PF02348	CTP_transf_3	kdsB
+PF13936	HTH_38	insI1	insI3	insI4
+PF00140	Sigma70_r1_2	rpoS	rpoD
+PF04542	Sigma70_r2	rpoE	fecI	rpoS	rpoD	rpoH	fliA
+PF04539	Sigma70_r3	rpoS	rpoD	fliA
+PF04545	Sigma70_r4	rpoS	rpoD	rpoH	fliA
+PF02754	CCG	glcF	ykgE	glpC
+PF13183	Fer4_8	glcF	frdB	ykgF	ydiJ	glpC
+PF03605	DcuA_DcuB	dcuA	dcuB
+PF02203	TarH	tsr	trg	tar	tap
+PF02566	OsmC	osmC	yhfA
+PF01145	Band_7	hflK	qmcA	hflC	yqiK
+PF16200	Band_7_C	qmcA
+PF01066	CDP-OH_P_transf	ynbA	ynjF	pgsA
+PF05524	PEP-utilisers_N	ptsI	fryA	ptsA	dhaM	ptsP
+PF00391	PEP-utilizers	ptsI	fryA	ptsA	ppsA	dhaM	ptsP
+PF02896	PEP-utilizers_C	ptsI	fryA	ptsA	ppsA	ptsP
+PF01869	BcrAD_BadFG	yjiL
+PF07338	DUF1471	ybiJ	rclB	yjfY	yahO	bhsA	yhcN	bsmA	mcbA	ydgH	yjfN
+PF17874	TPR_MalT	malT
+PF00936	BMC	eutS	eutK	eutM	eutL
+PF16365	EutK_C	eutK
+PF00282	Pyridoxal_deC	gadA	gadB
+PF03819	MazG	mazG
+PF02401	LYTB	ispH
+PF01965	DJ-1_PfpI	yajL	yhbO
+PF02656	DUF202	yidH	yidG
+PF03925	SeqA	seqA
+PF17206	SeqA_N	seqA
+PF12464	Mac	maa	lacA
+PF01979	Amidohydro_1	ade	nagA	agaA	hyuA	pyrC	iadA	ssnA	allB	guaD
+PF02885	Glycos_trans_3N	ybiB	deoA	trpGD
+PF00591	Glycos_transf_3	deoA	trpGD
+PF07831	PYNP_C	deoA
+PF11873	Mltc_N	mltC
+PF03264	Cytochrom_NNT	napC	torC	torY
+PF01475	FUR	fur	zur
+PF14883	GHL13	pgaB
+PF01522	Polysacc_deac_1	pgaB	yadE	arnD
+PF00814	TsaD	tsaD	tsaB
+PF02653	BPD_transp_2	xylH	ytfT	yphD	livM	araH	mglC	rbsC	lsrC	livH	lsrD	alsC	yjfF
+PF17810	Arg_decarb_HB	speA
+PF17944	Arg_decarbox_C	speA
+PF02784	Orn_Arg_deC_N	lysA	speA
+PF12697	Abhydrolase_6	ybfF	mhpC	menH	rutD
+PF04220	YihI	yihI
+PF02515	CoA_transf_3	yfdE	caiB	frc
+PF00482	T2SSF	hofC	gspF
+PF00731	AIRC	purE
+PF01565	FAD_binding_4	murB	dld	ygcU	ydiJ	glcE	glcD
+PF09330	Lact-deh-memb	dld
+PF00326	Peptidase_S9	ptrB	yjfP
+PF02897	Peptidase_S9_N	ptrB
+PF00849	PseudoU_synth_2	rsuA	truC	rluE	rluA	rluF	rluC	rluD	rluB
+PF05666	Fels1	ycgJ
+PF14489	QueF	queF
+PF14819	QueF_N	queF
+PF03972	MmgE_PrpD	prpD
+PF01343	Peptidase_S49	sohB	sppA
+PF08496	Peptidase_S49_N	sohB
+PF00484	Pro_CA	cynT	can
+PF08019	EptA_B_N	eptA	eptC	eptB
+PF03222	Trp_Tyr_perm	mtr	yhjV	yqeG	tyrP	tnaB	tdcC
+PF02308	MgtC	yhiD
+PF12084	DUF3561	ygbE
+PF00675	Peptidase_M16	ptrA	yhjJ	pqqL
+PF05193	Peptidase_M16_C	ptrA	yhjJ	pqqL
+PF16177	ACAS_N	prpE	acs
+PF01306	LacY_symp	lacY
+PF02554	CstA	btsT	cstA
+PF13722	CstA_5TM	btsT	cstA
+PF00116	COX2	cyoA
+PF06481	COX_ARM	cyoA
+PF06826	Asp-Al_Ex	ybjL	yidE
+PF02657	SufE	csdE	sufE
+PF04958	AstA	astA
+PF00857	Isochorismatase	ycaC	pncA	entB	yecD	rutB
+PF03825	Nuc_H_symport	yegT	nupG	xapB
+PF01381	HTH_3	higA	ybaQ	hipB	dicA	hicB	yddM	yiaG	puuR	nadR	sutR	puuR
+PF05661	DUF808	yedI
+PF04754	Transposase_31	yjiQ	rpnC	rpnA	yjiP	yfaD	rpnB
+PF02976	MutH	mutH
+PF13378	MR_MLE_C	menC	ycjG	gudD	dgoD	rhmD	gudX	rspA
+PF02746	MR_MLE_N	ycjG	dgoD	rhmD	gudX	rspA
+PF10576	EndIII_4Fe-2S	nth	mutY
+PF00633	HHH	nth	mutY
+PF14815	NUDIX_4	mutY
+PF09400	DUF2002	ygaC
+PF00687	Ribosomal_L1	rplA
+PF07308	DUF1456	yehS
+PF00781	DAGK_cat	yegS
+PF02668	TauD	tauD
+PF00303	Thymidylat_synt	thyA
+PF07063	DUF1338	ydcJ
+PF06853	DUF1249	yqiB
+PF08264	Anticodon_1	ileS	leuS	valS
+PF00133	tRNA-synt_1	ileS	leuS	valS
+PF10458	Val_tRNA-synt_C	valS
+PF07702	UTRA	yihL	yidP	phnF	yegW	frlR	mngR
+PF00984	UDPG_MGDP_dh	wecC	ugd
+PF03720	UDPG_MGDP_dh_C	ugd	wecC
+PF03721	UDPG_MGDP_dh_N	wecC	ugd
+PF01184	Gpr1_Fun34_YaaH	satP
+PF06506	PrpR_N	prpR
+PF12221	HflK_N	hflK
+PF11622	DUF3251	yajI
+PF17788	HypF_C	hypF
+PF01300	Sua5_yciO_yrdC	hypF	yciO	tsaC
+PF07503	zf-HYPF	hypF
+PF10836	DUF2574	yehE
+PF04606	Ogr_Delta	ogrK
+PF07883	Cupin_2	chbR	chbR	chbR	chbR	chbR	chbR	chbR	chbR	chbR	allE	puuR	chbR	chbR	sutR	puuR
+PF01706	FliG_C	fliG
+PF14841	FliG_M	fliG
+PF14842	FliG_N	fliG
+PF10736	DUF2527	yobF
+PF00970	FAD_binding_6	hcr	fre	fpr	hmp	yeaX	paaE
+PF00042	Globin	hmp
+PF00175	NAD_binding_1	hcr	fre	cysJ	fpr	hmp	yeaX	paaE
+PF04361	DUF494	smg
+PF00185	OTCace	argI	ygeW	pyrB	argF
+PF02729	OTCace_N	argI	ygeW	pyrB	argF
+PF01297	ZnuA	znuA
+PF16456	YmgD	ymgD
+PF01384	PHO4	pitB	pitA
+PF05170	AsmA	yhjG	yicH	asmA
+PF11612	T2SSJ	gspJ
+PF00361	Proton_antipo_M	hyfF	nuoL	nuoM	hycC	hyfD	nuoN	hyfB
+PF13292	DXP_synthase_N	dxs
+PF02779	Transket_pyr	sucA	tktB	dxs	tktA
+PF02780	Transketolase_C	tktB	dxs	tktA
+PF03629	SASA	nanS
+PF02504	FA_synthesis	plsX
+PF00348	polyprenyl_synt	ispA	ispB
+PF01545	Cation_efflux	zitB	fieF
+PF00573	Ribosomal_L4	rplD
+PF18415	HKR_ArcB_TM	arcB
+PF01627	Hpt	cheA	arcB	barA	rcsD	torS	evgS
+PF00989	PAS	dhaR	glnL	arcB	atoS	phoR	dcuS	dpiB
+PF16187	Peptidase_M16_M	ptrA
+PF07660	STN	fecA
+PF00466	Ribosomal_L10	rplJ
+PF02310	B12-binding	scpA	metH
+PF01642	MM_CoA_mutase	scpA
+PF01728	FtsJ	rlmM	rlmE
+PF06415	iPGM_N	gpmI
+PF01676	Metalloenzyme	deoB	yhfW	gpmI
+PF14718	SLT_L	slt
+PF07273	DUF1439	yceB
+PF06440	DNA_pol3_theta	holE
+PF00334	NDK	ndk
+PF02568	ThiI	thiI
+PF02926	THUMP	rlmL	thiI
+PF01455	HupF_HypC	hypC	hybG
+PF00923	TAL_FSA	talB	fsaB	talA	fsaA
+PF09339	HTH_IclR	iclR	yiaJ	rhmR	kdgR	allR	mhpR	xynR
+PF01614	IclR	iclR	yiaJ	rhmR	kdgR	allR	mhpR	yjhI	xynR
+PF02153	PDH	tyrA
+PF01757	Acyl_transf_3	wecH	mdoC	ycfT
+PF04402	SIMPL	yggE
+PF00263	Secretin	gspD	hofQ
+PF03958	Secretin_N	gspD	hofQ
+PF04219	DUF413	yifE
+PF09106	SelB-wing_2	selB
+PF09107	SelB-wing_3	selB
+PF00490	ALAD	hemB
+PF11076	YbhQ	ybhQ
+PF12327	FtsZ_C	ftsZ
+PF00091	Tubulin	ftsZ
+PF10753	Toxin_GhoT_OrtT	ortT	ghoT
+PF01435	Peptidase_M48	loiP	bepA	htpX	ycaL
+PF06315	AceK	aceK
+PF00343	Phosphorylase	malP	glgP
+PF01161	PBP	ybhB	ybcL
+PF15723	MqsR_toxin	mqsR
+PF03989	DNA_gyraseA_C	parC	gyrA
+PF00521	DNA_topoisoIV	parC	gyrA
+PF00861	Ribosomal_L18p	rplR
+PF01177	Asp_Glu_race	murI	ygeA
+PF00347	Ribosomal_L6	rplF
+PF13520	AA_permease_2	ygjI	potE	yjeH	cadB	gadC	adiC	plaP	ycaM	ydgI	frlA	ybaT	yjeM
+PF10411	DsbC_N	dsbC
+PF13098	Thioredoxin_2	dsbC	dsbG
+PF08085	Entericidin	ecnA	ecnB
+PF03116	NQR2_RnfD_RnfE	rsxD
+PF02195	ParBc	sopB	yubM	ynaK	ybdM
+PF07728	AAA_5	mcrB	yehL	ravA
+PF17868	AAA_lid_8	ravA
+PF12592	DUF3763	ravA
+PF10282	Lactonase	pgl
+PF02501	T2SSI	gspI
+PF01138	RNase_PH	pnp	rph
+PF03725	RNase_PH_C	pnp	rph
+PF04960	Glutaminase	glsA1	glsA2
+PF01263	Aldose_epim	yeaD	yihR	yphB	galM
+PF05343	Peptidase_M42	sgcX	ypdE	frvX
+PF13940	Ldr_toxin	ldrB	ldrA	ldrD	ldrC
+PF11737	DUF3300	yacH
+PF00532	Peripla_BP_1	gntR	torT	araF	ycjW	cra	malI
+PF04170	NlpE	nlpE
+PF17185	NlpE_C	nlpE
+PF00278	Orn_DAP_Arg_deC	lysA
+PF06738	ThrE	yjjP
+PF04295	GD_AH_C	garD	uxaA
+PF08666	SAF	garD	uxaA
+PF00113	Enolase_C	eno
+PF03952	Enolase_N	eno
+PF12821	ThrE_2	yjjB
+PF01075	Glyco_transf_9	rfaQ	waaU	rfaF	rfaC
+PF17876	CSD2	rnr	rnb
+PF08461	HTH_12	rnr
+PF08206	OB_RNB	rnr	rnb
+PF00773	RNB	rnr	rnb
+PF00575	S1	yhgF	rnr	rne	rpsA	rnb	rng	pnp	nusA
+PF06965	Na_H_antiport_1	nhaA
+PF06062	UPF0231	yacL
+PF03814	KdpA	kdpA
+PF02903	Alpha-amylase_N	malZ
+PF12169	DNA_pol3_gamma3	dnaX
+PF12168	DNA_pol3_tau_4	dnaX
+PF12170	DNA_pol3_tau_5	dnaX
+PF01584	CheW	cheW	cheA
+PF09078	CheY-binding	cheA
+PF02895	H-kinase_dim	cheA
+PF13720	Acetyltransf_11	lpxA
+PF11045	YbjM	ybjM
+PF04247	SirB	ychQ
+PF00772	DnaB	dnaB
+PF03796	DnaB_C	dnaB
+PF18125	RlmM_FDX	rlmM
+PF03737	RraA-like	rraA
+PF06196	DUF997	yhdT
+PF05656	DUF805	yhaH	yiiR	yhaI
+PF00596	Aldolase_II	araD	ulaF	otnC	rhaD	sgbE	fucA
+PF04102	SlyX	slyX
+PF00456	Transketolase_N	tktB	tktA	aceE
+PF08845	SymE_toxin	symE
+PF01632	Ribosomal_L35p	rpmI
+PF10777	YlaC	ylaC
+PF07152	YaeQ	yaeQ
+PF01638	HxlR	ytfH
+PF12792	CSS-motif	pdeG	pdeB	pdeN	pdeD	pdeC
+PF00662	Proton_antipo_N	hyfF	hyfD	nuoL
+PF00448	SRP54	ffh	ftsY
+PF02881	SRP54_N	ffh	ftsY
+PF12848	ABC_tran_Xtn	yheS	ettA	ybiT	uup
+PF08803	ydhR	ydhR
+PF04181	RPAP2_Rtr1	ydaE
+PF01515	PTA_PTB	pta	eutD	maeB
+PF00137	ATP-synt_C	atpE
+PF01619	Pro_dh	putA
+PF14850	Pro_dh-DNA_bdg	putA
+PF18327	PRODH	putA
+PF02040	ArsB	arsB	yfjV	ypjL
+PF10144	SMP_2	ytjB
+PF14833	NAD_binding_11	garR	glxR	ltnD	yihU
+PF03446	NAD_binding_2	garR	glxR	ltnD	gnd	yihU
+PF05166	YcgL	ycgL
+PF04349	MdoG	mdoD	mdoG
+PF00230	MIP	glpF	aqpZ
+PF05280	FlhC	flhC
+PF01351	RNase_HII	rnhB
+PF02311	AraC_binding	araC	rhaR	ydiP	yidL	rhaS	nimR
+PF01232	Mannitol_dh	uxaB	yeiQ	uxuB	ydfI	mtlD
+PF08125	Mannitol_dh_C	uxaB	yeiQ	uxuB	ydfI	mtlD
+PF03279	Lip_A_acyltrans	lpxM	lpxP	lpxL
+PF01420	Methylase_S	hsdS
+PF01738	DLH	ysgA	yghX
+PF05987	DUF898	yjgN
+PF03372	Exo_endo_phos	ybhP	yafD	xthA
+PF11987	IF-2	infB
+PF08364	IF2_assoc	infB
+PF04760	IF2_N	infB
+PF13999	MarB	marB
+PF10798	YmgB	ariR	ycgZ
+PF02142	MGS	purH	mgsA	carB
+PF13614	AAA_31	etk	wzc	sopA
+PF02445	NadA	nadA
+PF13186	SPASM	aslB	ydeM
+PF01095	Pectinesterase	ybhC
+PF14720	NiFe_hyd_SSU_C	hybO	hyaA
+PF00436	SSB	ssb	priB	ssbF
+PF02913	FAD-oxidase_C	ygcU	ydiJ	glcD
+PF17864	AAA_lid_4	ruvB
+PF05491	RuvB_C	ruvB
+PF05496	RuvB_N	ruvB
+PF00383	dCMP_cyt_deam_1	ribD	cdd
+PF08211	dCMP_cyt_deam_2	cdd
+PF14542	Acetyltransf_CG	yjdJ
+PF01618	MotA_ExbB	exbB	motA	tolQ
+PF01207	Dus	dusA	dusB	dusC
+PF02130	UPF0054	ybeY
+PF04338	DUF481	ydiY
+PF00136	DNA_pol_B	polB
+PF03104	DNA_pol_B_exo1	polB
+PF02867	Ribonuc_red_lgC	nrdA	nrdE
+PF00317	Ribonuc_red_lgN	nrdA	nrdE
+PF08343	RNR_N	nrdE
+PF07085	DRTGG	pta
+PF09313	DUF1971	yeaR
+PF02635	DrsE	ychN	tusC	tusD
+PF08402	TOBE_2	fbpC	potG	potA	ydcT
+PF00156	Pribosyltran	gpt	pyrE	apt	purF	gntX	hpt
+PF16527	CpxA_peri	cpxA
+PF00939	Na_sulph_symp	citT	ttdT	ybhI
+PF08971	GlgS	glgS
+PF00625	Guanylate_kin	gmk
+PF08241	Methyltransf_11	yafS	bioC	yafE
+PF01914	MarC	ychE	yhgN	marC
+PF11080	GhoS	ghoS	ydiZ
+PF04352	ProQ	proQ	finO
+PF17516	ProQ_C	proQ
+PF00982	Glyco_transf_20	otsA
+PF13847	Methyltransf_31	yjhP	prmC	cmoM	rlmA
+PF17827	PrmC_N	prmC
+PF08281	Sigma70_r4_2	fecI	rpoE
+PF07676	PD40	tolB	yidR
+PF04052	TolB_N	tolB
+PF00180	Iso_dh	icd	icd	dmlA	leuB
+PF00468	Ribosomal_L34	rpmH
+PF02390	Methyltransf_4	trmB
+PF00210	Ferritin	bfr	ftnB	ftnA	dps
+PF03411	Peptidase_M74	mepA
+PF00871	Acetate_kinase	ackA	tdcD
+PF01315	Ald_Xan_dh_C	paoC	xdhA	xdhD
+PF02738	Ald_Xan_dh_C2	paoC	xdhA	xdhD
+PF01799	Fer2_2	xdhC	paoA	xdhD
+PF16220	DUF4880	fecR
+PF04773	FecR	fecR
+PF01032	FecCD	fhuB	fepG	btuC	fepD	fecC	fecD
+PF00294	PfkB	hldE	gsk-3	gsk-4	frlD	kdgK	gsk	gsk-10	frlD	pfkB	psuK	gsk-1	gsk	yihV	yeiI	gsk	ydjH	rbsK	yegV	fruK
+PF08436	DXP_redisom_C	dxr
+PF02670	DXP_reductoisom	dxr
+PF13288	DXPR_C	dxr
+PF02922	CBM_48	glgX	glgB	yieL
+PF18390	GlgX_C	glgX
+PF03450	CO_deh_flav_C	xdhB	ygfM	paoB
+PF00941	FAD_binding_5	xdhB	ygfM	paoB
+PF03830	PTSIIB_sorb	manX	agaV	agaB
+PF04175	DUF406	yfcZ	yiiS
+PF08136	Ribosomal_S22	sra
+PF02673	BacA	uppP
+PF10748	HofP	hofP
+PF08178	GnsAB_toxin	gnsB	gnsA
+PF13438	DUF4113	umuC
+PF00817	IMS	dinB	umuC
+PF11799	IMS_C	dinB	umuC
+PF11798	IMS_HHH	dinB	umuC
+PF01594	AI-2E_transport	ydiK	perM	tqsA	yhhT
+PF00712	DNA_pol3_beta	dnaN
+PF02767	DNA_pol3_beta_2	dnaN
+PF02768	DNA_pol3_beta_3	dnaN
+PF02322	Cyt_bd_oxida_II	appB	cydB
+PF04865	Baseplate_J	jayE
+PF00441	Acyl-CoA_dh_1	fadE	caiA	aidB	ydiO
+PF02770	Acyl-CoA_dh_M	fadE	caiA	aidB	ydiO
+PF02771	Acyl-CoA_dh_N	fadE	caiA	ydiO
+PF09317	DUF1974	fadE
+PF07663	EIIBC-GUT_C	srlE
+PF03612	EIIBC-GUT_N	srlE
+PF01321	Creatinase_N	ypdF
+PF01361	Tautomerase	pptA
+PF02652	Lactate_perm	lldP	glcA
+PF00574	CLP_protease	clpP
+PF10995	CBP_GIL	bcsE
+PF01555	N6_N4_Mtase	yubD	yhdJ
+PF04217	DUF412	yfbV
+PF00445	Ribonuclease_T2	rna
+PF05977	MFS_3	entS
+PF13996	YobH	yobH
+PF06968	BATS	thiH	bioB
+PF00491	Arginase	speB
+PF08046	IlvGEDA_leader	ilvL
+PF18317	SDH_C	aroE	ydiB
+PF01488	Shikimate_DH	aroE	hemA
+PF08501	Shikimate_dh_N	aroE	ydiB
+PF01016	Ribosomal_L27	rpmA
+PF01206	TusA	yeeD	yedF	tusA
+PF13382	Adenine_deam_C	ade
+PF01000	RNA_pol_A_bac	rpoA
+PF03118	RNA_pol_A_CTD	rpoA
+PF01193	RNA_pol_L	rpoA
+PF04344	CheZ	cheZ
+PF06472	ABC_membrane_2	yddA
+PF06276	FhuF	fhuF
+PF00227	Proteasome	hslV
+PF01204	Trehalase	treF	treA	ygjK
+PF13291	ACT_4	spoT	relA
+PF04607	RelA_SpoT	spoT	relA
+PF02824	TGS	thrS	relA	spoT
+PF07095	IgaA	yrfF
+PF02665	Nitrate_red_gam	narV	narI
+PF01149	Fapy_DNA_glyco	nei	mutM
+PF06831	H2TH	nei	mutM
+PF06827	zf-FPG_IleRS	nei	ileS	mutM
+PF05175	MTS	prmB	rlmG	yfiC	rsmC
+PF18024	HTH_50	tyrR
+PF13188	PAS_8	tyrR	uacR
+PF09157	TruB-C_2	truB
+PF16198	TruB_C_2	truB
+PF01509	TruB_N	truB
+PF05025	RbsD_FucU	fucU	rbsD
+PF00893	Multi_Drug_Res	mdtI	mdtJ	gdx	emrE
+PF07650	KH_2	era	rpsC
+PF00189	Ribosomal_S3_C	rpsC
+PF04996	AstB	astB
+PF04324	Fer2_BFD	bfd	glpA	nirB
+PF01077	NIR_SIR	cysI	nirB
+PF03460	NIR_SIR_ferr	cysI	nirB
+PF18267	Rubredoxin_C	nirB
+PF00204	DNA_gyraseB	parE	gyrB
+PF00986	DNA_gyraseB_C	parE	gyrB
+PF18053	GyrB_insert	gyrB
+PF10964	DUF2766	yecJ
+PF01624	MutS_I	mutS
+PF05188	MutS_II	mutS
+PF05192	MutS_III	mutS
+PF05190	MutS_IV	mutS
+PF00488	MutS_V	mutS
+PF01052	FliMN_C	fliN	fliM
+PF16973	FliN_N	fliN
+PF04932	Wzy_C	rfaL
+PF05958	tRNA_U5-meth_tr	trmA	rlmD	rlmC
+PF08032	SpoU_sub_bind	rlmB	yfiF
+PF01118	Semialdhyde_dh	mhpF	asd	usg	argC
+PF02774	Semialdhyde_dhC	asd	usg	argC
+PF03702	AnmK	anmK
+PF16331	TolA_bind_tri	cpoB
+PF01037	AsnC_trans_reg	asnC	decR	lrp
+PF00255	GSHPx	btuE
+PF05899	Cupin_3	allE
+PF01699	Na_Ca_ex	yrbG	chaA
+PF07869	DUF1656	aaeX	ydhI
+PF06291	Lambda_Bor	borD
+PF02028	BCCT	yeaV	betT	caiT
+PF10799	YliH	bssR
+PF09707	Cas_Cas2CT1978	ygbF
+PF10729	CedA	cedA
+PF02056	Glyco_hydro_4	melA	glvG	chbF
+PF11975	Glyco_hydro_4C	melA	chbF
+PF00654	Voltage_CLC	clcA	yfeO	clcB
+PF12158	DUF3592	ymfA
+PF08918	PhoQ_Sensor	phoQ
+PF02614	UxaC	uxaC
+PF02607	B12-binding_2	metH
+PF02965	Met_synt_B12	metH
+PF02574	S-methyl_trans	mmuM	metH
+PF06150	ChaB	chaB
+PF02674	Colicin_V	cvpA
+PF13087	AAA_12	yjhR
+PF08543	Phos_pyr_kin	thiD	pdxK	pdxY
+PF03167	UDG	ung	mug
+PF01814	Hemerythrin	ytfE
+PF04405	ScdA_N	ytfE
+PF06835	LptC	lptC
+PF01783	Ribosomal_L32p	rpmF
+PF00581	Rhodanese	ygaP	sseA	glpE	pspE	ynjE	trhO	yibN
+PF02403	Seryl_tRNA_N	serS
+PF00587	tRNA-synt_2b	serS	proS	thrS
+PF08052	PyrBI_leader	pyrL
+PF01127	Sdh_cyt	sdhD	sdhC
+PF06421	LepA_C	lepA
+PF01765	RRF	frr
+PF01142	TruD	truD
+PF02562	PhoH	ybeZ	phoH
+PF12146	Hydrolase_4	yfhR	pldB	ynbC	ycjY
+PF03741	TerC	yoaE	ygdQ	yegH	alx
+PF03880	DbpA	dbpA	deaD
+PF00977	His_biosynth	hisF	hisA
+PF17203	sCache_3_2	dcuS	dpiB
+PF14689	SPOB_a	dcuS	dpiB
+PF16199	Radical_SAM_C	yhcC
+PF00366	Ribosomal_S17	rpsQ
+PF06496	DUF1097	yahC	ycdZ
+PF04375	HemX	hemX
+PF00689	Cation_ATPase_C	mgtA
+PF00690	Cation_ATPase_N	mgtA
+PF04336	ACP_PD	acpH
+PF07282	OrfB_Zn_ribbon	insQ
+PF13460	NAD_binding_10	yraR	ybjT
+PF00164	Ribosom_S12_S23	rpsL
+PF00232	Glyco_hydro_1	bglA	ascB	bglB
+PF07836	DmpG_comm	mhpE
+PF00682	HMGL-like	mhpE	leuA
+PF04965	GPW_gp25	iraD
+PF00290	Trp_syntA	trpA
+PF04226	Transgly_assoc	yeaQ	ymgE
+PF03891	DUF333	ydbJ	yoaF
+PF07027	DUF1318	ydbL
+PF02113	Peptidase_S13	dacB
+PF04345	Chor_lyase	ubiC
+PF03701	UPF0181	yoaH
+PF03099	BPL_LplA_LipB	lplA	birA	lipB
+PF03695	UPF0149	yecA	ygfB
+PF13689	DUF4154	yfiR
+PF07179	SseB	sseB
+PF14581	SseB_C	sseB
+PF00207	A2M	yfhM	yfaS
+PF07703	A2M_BRD	yfhM	yfaS
+PF17973	bMG10	yfhM
+PF01835	MG2	yfhM	yfaS
+PF02146	SIR2	cobB
+PF02050	FliJ	fliJ
+PF07471	Phage_Nu1	nohA	nohD
+PF01553	Acyltransferase	aas	plsC	yihG	plsB
+PF00883	Peptidase_M17	pepB	pepA
+PF02789	Peptidase_M17_N	pepA
+PF07351	DUF1480	yebV
+PF03843	Slp	yeaY	slp
+PF13505	OMP_b-brl	ompX
+PF03483	B3_4	pheT
+PF03484	B5	pheT
+PF03147	FDX-ACB	pheT
+PF17759	tRNA_synthFbeta	pheT
+PF10725	DUF2517	ybfA
+PF17128	DUF5107	yphG
+PF02033	RBFA	rbfA
+PF01386	Ribosomal_L25p	rplY
+PF02597	ThiS	thiS	moaD
+PF02899	Phage_int_SAM_1	xerC	xerD	fliZ
+PF07687	M20_dimer	argE	pepD	abgA	ygeY	dapE	pepT
+PF02872	5_nucleotid_C	ushA	cpdB
+PF00149	Metallophos	yaeI	ushA	cpdA	sbcD	pphA	apaH	pphB	cpdB
+PF01592	NifU_N	iscU
+PF03180	Lipoprotein_9	metQ	nlpA
+PF00285	Citrate_synt	gltA	prpC
+PF00394	Cu-oxidase	ftsP	cueO
+PF07731	Cu-oxidase_2	ftsP	cueO
+PF07732	Cu-oxidase_3	ftsP	cueO
+PF00265	TK	tdk
+PF02634	FdhD-NarQ	fdhD
+PF04453	LptD	lptD
+PF03968	LptD_N	lptA	lptD
+PF13627	LPAM_2	yifL
+PF04172	LrgB	yohK
+PF03477	ATP-cone	nrdD	nrdA	nrdR
+PF05992	SbmA_BacA	sbmA
+PF01061	ABC2_membrane	yadH
+PF02978	SRP_SPB	ffh
+PF00462	Glutaredoxin	grxA	nrdH	grxC	grxD
+PF03595	SLAC1	tehA
+PF08351	DUF1726	tmcA
+PF13718	GNAT_acetyltr_2	tmcA
+PF05127	Helicase_RecD	tmcA
+PF17176	tRNA_bind_3	tmcA
+PF01595	DUF21	yfjD	paeA
+PF04563	RNA_pol_Rpb2_1	rpoB
+PF04561	RNA_pol_Rpb2_2	rpoB
+PF04565	RNA_pol_Rpb2_3	rpoB
+PF10385	RNA_pol_Rpb2_45	rpoB
+PF00562	RNA_pol_Rpb2_6	rpoB
+PF04560	RNA_pol_Rpb2_7	rpoB
+PF02415	Chlam_PMP	yfaL
+PF12951	PATR	yfaL
+PF01895	PhoU	phoU
+PF10077	DUF2314	yegJ
+PF02036	SCP2	ubiJ	ubiT
+PF07662	Nucleos_tra2_C	psuT	nupC	nupX
+PF01773	Nucleos_tra2_N	psuT	nupC	nupX
+PF06305	LapA_dom	lapA
+PF00834	Ribul_P_3_epim	rpe	alsE	sgcE
+PF04241	DUF423	ygdD
+PF03550	LolB	lolB
+PF00902	TatC	tatC
+PF02108	FliH	fliH
+PF00875	DNA_photolyase	phrB
+PF03441	FAD_binding_7	phrB
+PF09909	DUF2138	yfaA
+PF00117	GATase	pyrG	pabA	hisH	carA	trpGD	guaA
+PF00958	GMP_synt_C	guaA
+PF02540	NAD_synthase	nadE	guaA
+PF01208	URO-D	hemE
+PF03740	PdxJ	pdxJ
+PF04237	YjbR	yjbR	ybdF
+PF01569	PAP2	ybjG	lpxT	pgpB
+PF03692	CxxCxxCC	ykgJ	ycgN	yeiW
+PF03652	RuvX	yqgF
+PF05230	MASE2	dgcC
+PF03313	SDH_alpha	sdaA	sdaB	tdcG	yhaM
+PF10840	DUF2645	ygiZ	yjeO
+PF01098	FTSW_RODA_SPOVE	mrdB	ftsW
+PF12838	Fer4_7	hyfH	napG	hycF	rsxC	nuoI
+PF10672	Methyltrans_SAM	rlmL	rlmI
+PF17785	PUA_3	rlmI
+PF17969	Ldt_C	ynhG	erfK	ycfS	ybiS
+PF02358	Trehalose_PPase	otsB
+PF04957	RMF	rmf
+PF02901	PFL-like	pflD	ybiW	pflB	tdcE
+PF04397	LytTR	btsR	ypdB
+PF01928	CYTH	ygiF
+PF04493	Endonuclease_5	nfi
+PF07549	Sec_GG	secD	secF
+PF02355	SecD_SecF	secD	secF
+PF03472	Autoind_bind	sdiA
+PF00816	Histone_HNS	hns	stpA
+PF04093	MreD	mreD
+PF04321	RmlD_sub_bind	rfbD
+PF03969	AFG1_ATPase	zapE
+PF00316	FBPase	fbp
+PF00543	P-II	glnK	glnB
+PF00815	Histidinol_dh	hisD
+PF06094	GGACT	ytfP
+PF02492	cobW	yjiA	hypB	yeiR
+PF01649	Ribosomal_S20p	rpsT
+PF04358	DsrC	tusE
+PF11356	T2SSC	gspC	yghF
+PF07840	FadR_C	fadR
+PF01977	UbiD	ubiD
+PF02595	Gly_kinase	garK	glxK
+PF02545	Maf	yceF	yhdE
+PF00677	Lum_binding	ribC
+PF01139	RtcB	rtcB
+PF10414	CysG_dimeriser	cysG
+PF14824	Sirohm_synth_M	cysG
+PF00590	TP_methylase	rsmI	cysG
+PF00453	Ribosomal_L20	rplT
+PF04014	MazE_antitoxin	chpS	mazE
+PF01512	Complex1_51K	nuoF	rsxC
+PF13375	RnfC_N	rsxC
+PF10531	SLBB	nuoF	gfcE	wza	rsxC
+PF01527	HTH_Tnp_1	insE4	JW5902	insC3	insC1	ykgN	insE6	insC5	JW5934	insN1	JW5900	JW5919	insC7	insC6	insE3	insC4	insN2	insC2	insE5	insE2	insE1	insE7
+PF17912	OB_MalK	ycjV	malK	ugpC
+PF13982	YbfN	chiQ
+PF03320	FBPase_glpX	glpX	yggF
+PF14163	SieB	sieB
+PF12724	Flavodoxin_5	hemG
+PF06779	MFS_4	yjiJ
+PF05698	Trigger_C	tig
+PF05697	Trigger_N	tig
+PF02222	ATP-grasp	purK	purT
+PF17769	PurK_C	purK
+PF04384	Fe-S_assembly	iscX
+PF05866	RusA	rusA
+PF04748	Polysacc_deac_2	yibQ
+PF01966	HD	yedJ	cca	glnD	dgt
+PF01402	RHH_1	ybfE	yiiE	nikR
+PF09857	YjhX_toxin	yjhX
+PF01551	Peptidase_M23	nlpD	ygeR	mepM	envC
+PF02687	FtsX	macB	lolC	ftsX	lolE
+PF18075	FtsX_ECD	ftsX
+PF00953	Glycos_transf_4	wecA	mraY
+PF18269	T3SS_ATPase_C	fliI
+PF13980	UPF0370	ypfN
+PF02384	N6_Mtase	hsdM
+PF01832	Glucosaminidase	bax	flgJ
+PF10135	Rod-binding	flgJ
+PF01071	GARS_A	purD
+PF02843	GARS_C	purD
+PF02844	GARS_N	purD
+PF16358	RcsF	rcsF
+PF13806	Rieske_2	nirD
+PF11870	DUF3390	ykgF
+PF02589	LUD_dom	ykgG	ykgF
+PF02781	G6PD_C	zwf
+PF00479	G6PD_N	zwf
+PF10555	MraY_sig1	mraY
+PF02016	Peptidase_S66	ldcA
+PF17676	Peptidase_S66C	ldcA
+PF13478	XdhC_C	yqeB	paoD
+PF02625	XdhC_CoxI	yqeB	paoD
+PF02503	PP_kinase	ppk
+PF13090	PP_kinase_C	ppk
+PF17941	PP_kinase_C_1	ppk
+PF13089	PP_kinase_N	ppk
+PF01264	Chorismate_synt	aroC
+PF02811	PHP	ycdX	rnm	dnaE
+PF00199	Catalase	katE
+PF06628	Catalase-rel	katE
+PF18011	Catalase_C	katE
+PF00667	FAD_binding_1	cysJ
+PF09223	ZinT	zinT
+PF00011	HSP20	ibpA	ibpB
+PF04285	DUF444	yeaH
+PF00831	Ribosomal_L29	rpmC
+PF08007	Cupin_4	roxA
+PF00639	Rotamase	surA
+PF03613	EIID-AGA	manZ	agaD
+PF06254	YdaT_toxin	ydaT
+PF13569	DUF4132	yehI
+PF05406	WGR	yehF	yfeS
+PF06611	DUF1145	yhhL
+PF02609	Exonuc_VII_S	xseB
+PF03459	TOBE	modC	ycjV	modE
+PF13360	PQQ_2	bamB
+PF16359	RcsD_ABL	rcsD
+PF04166	PdxA	pdxA
+PF03606	DcuC	dcuC	yfcC	dcuD
+PF07694	5TM-5TMR_LYT	ypdA	btsS
+PF06580	His_kinase	ypdA	btsS
+PF11939	NiFe-hyd_HybE	hybE
+PF02773	S-AdoMet_synt_C	metK
+PF02772	S-AdoMet_synt_M	metK
+PF00438	S-AdoMet_synt_N	metK
+PF13693	HTH_35	sfsB
+PF03772	Competence	ycaI
+PF03837	RecT	recT
+PF03948	Ribosomal_L9_C	rplI
+PF01281	Ribosomal_L9_N	rplI
+PF05036	SPOR	dedD	damX	ftsN	rlpA
+PF00771	FHIPEP	flhA	lfhA
+PF00308	Bac_DnaA	dnaA	hda
+PF00994	MoCF_biosynth	moeA	mog	yfaY	moaB
+PF04069	OpuAC	tauA	proX	yehZ
+PF02424	ApbE	apbE
+PF10968	DUF2770	yceO
+PF02508	Rnf-Nqr	rsxE	rsxA
+PF13989	YejG	yejG
+PF01262	AlaDh_PNT_C	pntA
+PF05222	AlaDh_PNT_N	pntA
+PF12769	PNTB_4TM	pntA
+PF01521	Fe-S_biosyn	sufA	iscA	nfuA	erpA
+PF00375	SDF	gltP	sstT	dctA	tcyP
+PF00924	MS_channel	ybiO	mscM	ybdG	mscK	mscS	ynaI
+PF01219	DAGK_prokar	dgkA
+PF04186	FxsA	fxsA
+PF07683	CobW_C	yjiA	yeiR
+PF03846	SulA	sulA
+PF03575	Peptidase_S51	pepE
+PF06006	DUF905	yubL	ypjI	ykfF
+PF05128	DUF697	ycjF
+PF08442	ATP-grasp_2	sucC
+PF13993	YccJ	yccJ
+PF01578	Cytochrom_C_asm	ypjD	ccmF	nrfE	ccmC
+PF00437	T2SSE	gspE	hofB	yggR
+PF02369	Big_1	yeeJ
+PF17209	Hfq	hfq
+PF03462	PCRF	prfA	prfB
+PF00903	Glyoxalase	yaeR	gloA
+PF02618	YceG	mltG
+PF07450	HycH	hyfJ	hycH
+PF05638	T6SS_HCP	yhhZ
+PF01313	Bac_export_3	fliQ
+PF12705	PDDEXK_1	recB
+PF01340	MetJ	metJ
+PF08463	EcoEI_R_C	hsdR
+PF04313	HSDR_N	hsdR
+PF08239	SH3_3	ygiM
+PF00218	IGPS	trpC
+PF00697	PRAI	trpC
+PF08753	NikR_C	nikR
+PF06865	Ppnp	ppnP
+PF03061	4HBT	menI	yciA	ybgC	yigI	entH	paaI
+PF02233	PNTB	pntB
+PF01368	DHH	recJ
+PF02272	DHHA1	recJ	alaS
+PF17768	RecJ_OB	recJ
+PF05400	FliT	fliT
+PF13099	DUF3944	yaaW
+PF03981	Ubiq_cyt_C_chap	yaaW
+PF02604	PhdYeFM_antitox	yefM
+PF10685	KGG	yciG	ymdF
+PF02581	TMP-TENI	thiE
+PF00300	His_Phos_1	gpmB	sixA	gpmA	cobC	ais
+PF04060	FeS	rsxB
+PF09297	zf-NADH-PPase	nudC
+PF00975	Thioesterase	entF
+PF02874	ATP-synt_ab_N	atpD	atpA
+PF12706	Lactamase_B_2	rbn	phnP
+PF05321	HHA	cnu	hha
+PF04074	DUF386	nanQ	ebgC	tabA	yiaL
+PF00380	Ribosomal_S9	rpsI
+PF02706	Wzz	etk	wzc	fepE	fepE	wzzB	wzzE
+PF00724	Oxidored_FMN	fadH	nemA
+PF10150	RNase_E_G	rng	rne
+PF02482	Ribosomal_S30AE	raiA	hpf
+PF02602	HEM4	hemD
+PF01507	PAPS_reduct	cysD	ybdN	cysH
+PF01590	GAF	hyfR	norR	ptsP	fhlA
+PF04972	BON	dolP	osmY	kbp
+PF02472	ExbD	tolR	exbD
+PF01957	NfeD	ybbJ
+PF01709	Transcrip_reg	yebC	yeeN
+PF04380	BMFP	ubiK
+PF06769	YoeB_toxin	yoeB
+PF02638	GHL10	digH
+PF13018	ESPR	flu	ydeK
+PF06794	UPF0270	yheU
+PF13369	Transglut_core2	ychA
+PF06629	MipA	yiaT	mipA
+PF03873	RseA_C	rseA
+PF03872	RseA_N	rseA
+PF02696	UPF0061	selO
+PF15919	HicB_lk_antitox	hicB
+PF11890	DUF3410	pdxB
+PF03129	HGTP_anticodon	hisS	proS	thrS
+PF07995	GSDH	yliI
+PF05872	DUF853	yjgR
+PF12852	Cupin_6	rclR
+PF03956	Lys_export	lysO
+PF13185	GAF_2	msrC	dgcP
+PF00121	TIM	tpiA
+PF18073	Rubredoxin_2	radA	lapB
+PF03848	TehB	tehB
+PF05728	UPF0227	yqiA	ycfP
+PF01250	Ribosomal_S6	rpsF
+PF00698	Acyl_transf_1	fabD
+PF01726	LexA_DNA_bind	lexA
+PF00166	Cpn10	groES
+PF11776	RcnB	rcnB
+PF18072	FGAR-AT_linker	purL
+PF18076	FGAR-AT_N	purL
+PF13977	TetR_C_6	betI
+PF17520	DUF5445	yncH
+PF05358	DicB	dicB
+PF06123	CreD	creD
+PF13309	HTH_22	yheO
+PF08348	PAS_6	yheO
+PF09976	TPR_21	yfgM
+PF10941	DUF2620	yhfU
+PF00579	tRNA-synt_1b	trpS	tyrS
+PF02594	DUF167	yggU
+PF09186	DUF1949	yigZ
+PF01205	UPF0029	yigZ
+PF13983	YsaB	ysaB
+PF00012	HSP70	dnaK	hscC	yegD	hscA
+PF02559	CarD_CdnL_TRCF	mfd
+PF03461	TRCF	mfd
+PF17757	UvrB_inter	uvrB	mfd
+PF06508	QueC	queC
+PF06956	RtcR	rtcR
+PF01809	YidD	yidD
+PF05360	YiaAB	yiaA	yiaB
+PF09350	DUF1992	yhdN
+PF10609	ParA	mrp
+PF17946	RecC_C	recC
+PF02391	MoaE	moaE
+PF03601	Cons_hypoth698	yeiH
+PF00301	Rubredoxin	norV
+PF00119	ATP-synt_A	atpB
+PF00886	Ribosomal_S16	rpsP
+PF01702	TGT	tgt
+PF08338	DUF1731	yfcH
+PF07226	DUF1422	yijD
+PF08361	TetR_C_2	acrR	envR
+PF02463	SMC_N	recN	recF
+PF07317	YcgR	ycgR
+PF02742	Fe_dep_repr_C	mntR
+PF01325	Fe_dep_repress	mntR
+PF07151	DUF1391	ydaF	ydfA
+PF13187	Fer4_9	napF
+PF03364	Polyketide_cyc	ratA
+PF01245	Ribosomal_L19	rplS
+PF04346	EutH	eutH
+PF13036	LpoB	lpoB
+PF10588	NADH-G_4Fe-4S_3	nuoG
+PF04101	Glyco_tran_28_C	murG
+PF03033	Glyco_transf_28	murG
+PF12793	SgrR_N	sgrR	ybaE
+PF04343	DUF488	yeaO
+PF00344	SecY	secY
+PF01501	Glyco_transf_8	rfaI	rfaJ
+PF08437	Glyco_transf_8C	rfaI	rfaJ
+PF01656	CbiA	minD
+PF13974	YebO	yebO
+PF13802	Gal_mutarotas_2	yicI
+PF01055	Glyco_hydro_31	yihQ	yicI
+PF03610	EIIA-man	yadI	manX	dhaM
+PF00174	Oxidored_molyb	msrP
+PF01743	PolyA_pol	cca	pcnB
+PF12626	PolyA_pol_arg_C	pcnB
+PF12627	PolyA_pol_RNAbd	cca	pcnB
+PF07119	DUF1375	yceK	yidQ
+PF03932	CutC	cutC
+PF01597	GCV_H	gcvH
+PF00118	Cpn60_TCP1	groEL
+PF12111	PNPase_C	rne
+PF03591	AzlC	ygaZ
+PF01430	HSP33	hslO
+PF05981	CreA	creA
+PF10371	EKR	ydbK
+PF17147	PFOR_II	ydbK
+PF01558	POR	ydbK
+PF01855	POR_N	ydbK
+PF04971	Phage_holin_2_1	essQ	essD
+PF04751	DUF615	yjgA
+PF10662	PduV-EutP	yoeF	eutP
+PF03729	DUF308	hdeD
+PF11898	DUF3418	hrpA
+PF04408	HA2	hrpA	hrpB
+PF07717	OB_NTP_bind	hrpA
+PF02565	RecO_C	recO
+PF11967	RecO_N	recO
+PF01678	DAP_epimerase	dapF
+PF06857	ACP	citD
+PF01472	PUA	proB
+PF02590	SPOUT_MTase	rlmH
+PF17837	4PPT_N	entD
+PF01648	ACPS	acpT	acpS	entD
+PF17674	HHH_9	yhgF
+PF09371	Tex_N	yhgF
+PF16921	Tex_YqgF	yhgF
+PF03475	3-alpha	yiiM
+PF03473	MOSC	ycbX	yiiM
+PF13409	GST_N_2	yqjG	gstA
+PF09115	DNApol3-delta_C	holB
+PF03918	CcmH	nrfF	ccmH
+PF02580	Tyr_Deacylase	dtd
+PF10709	DUF2511	yebY
+PF02661	Fic	fic
+PF10437	Lip_prot_lig_C	lplA
+PF04997	RNA_pol_Rpb1_1	rpoC
+PF00623	RNA_pol_Rpb1_2	rpoC
+PF04983	RNA_pol_Rpb1_3	rpoC
+PF05000	RNA_pol_Rpb1_4	rpoC
+PF04998	RNA_pol_Rpb1_5	rpoC
+PF13473	Cupredoxin_1	efeO
+PF09375	Peptidase_M75	efeO
+PF04994	TfoX_C	sxy
+PF04993	TfoX_N	sxy
+PF05433	Rick_17kDa_Anti	slyB	osmB	yfgH	ycfJ
+PF07305	DUF1454	yiiQ
+PF07369	DUF1488	yrdB
+PF02096	60KD_IMP	yidC
+PF14849	YidC_periplas	yidC
+PF02470	MlaD	mlaD	pqiB	yebT
+PF03328	HpcH_HpaI	rhmA	garL	citE
+PF04307	YdjM	ydjM	ybcI
+PF01230	HIT	hinT
+PF02366	PMT	arnT
+PF00420	Oxidored_q2	nuoK	hyfE
+PF13508	Acetyltransf_7	yhbS
+PF13435	Cytochrome_C554	nrfB
+PF09699	Paired_CXXCH_1	nrfB
+PF00231	ATP-synt	atpG
+PF11127	DUF2892	ygaP
+PF07499	RuvA_C	ruvA
+PF01330	RuvA_N	ruvA
+PF07479	NAD_Gly3P_dh_C	gpsA
+PF01210	NAD_Gly3P_dh_N	gpsA
+PF04262	Glu_cys_ligase	gshA
+PF01137	RTC	rtcA
+PF05189	RTC_insert	rtcA
+PF01571	GCV_T	gcvT	ygfZ
+PF08669	GCV_T_C	gcvT
+PF16327	CcmF_C	ccmF	nrfE
+PF16582	TPP_enzyme_M_2	menD
+PF13276	HTH_21	JW5918	insF7	insF6	insD4	JW5903	insD3	insK	JW5933	insF1	insF4	insD6	JW5899	insD7	insF5	insF3	insF2	insD2	insD5	insD1
+PF04204	HTS	metAS
+PF17191	RecG_wedge	recG
+PF02397	Bac_transf	wcaJ
+PF01520	Amidase_3	amiA	amiB	amiA	amiC
+PF11741	AMIN	amiC
+PF01212	Beta_elim_lyase	tnaA	ltaE
+PF06717	DUF1202	yggM
+PF02264	LamB	lamB	bglH
+PF09972	DUF2207	yciQ
+PF16881	LIAS_N	lipA
+PF04077	DsrH	tusB
+PF04551	GcpE	ispG
+PF00365	PFK	pfkA
+PF17970	bMG1	yfhM
+PF11974	bMG3	yfhM
+PF17972	bMG5	yfhM
+PF17962	bMG6	yfhM
+PF07678	TED_complement	yfhM
+PF00988	CPSase_sm_chain	carA
+PF04228	Zn_peptidase	ypfJ
+PF08494	DEAD_assoc	lhr
+PF01514	YscJ_FliF	fliF
+PF08345	YscJ_FliF_C	fliF
+PF04536	TPM_phosphatase	ycfZ	ygcG
+PF17948	DnaT	dnaT
+PF10832	DUF2559	yhfG
+PF11818	DUF3340	prc
+PF03572	Peptidase_S41	prc
+PF17804	TSP_NTD	prc
+PF01272	GreA_GreB	greB	rnk	greA
+PF03449	GreA_GreB_N	greB	greA
+PF04085	MreC	mreC
+PF16326	ABC_tran_CTD	uup
+PF09838	DUF2065	yjeT
+PF04024	PspC	pspC
+PF01025	GrpE	grpE
+PF01121	CoaE	coaE
+PF01189	Methyltr_RsmB-F	rsmB	rsmF
+PF02548	Pantoate_transf	panB
+PF04231	Endonuclease_1	endA
+PF12704	MacB_PCD	macB	lolC	lolE
+PF07429	Glyco_transf_56	wecF
+PF05930	Phage_AlpA	alpA
+PF07102	DUF1364	ybcO
+PF07332	Phage_holin_3_6	yqjE
+PF00181	Ribosomal_L2	rplB
+PF03947	Ribosomal_L2_C	rplB
+PF02705	K_trans	kup
+PF12137	RapA_C	rapA
+PF00176	SNF2_N	rapA
+PF18339	Tudor_1_RapA	rapA
+PF18337	Tudor_RapA	rapA
+PF01252	Peptidase_A8	lspA
+PF05191	ADK_lid	adk	adk
+PF07302	AroM	aroM
+PF09482	OrgA_MxiK	ygeO
+PF07859	Abhydrolase_3	aes
+PF13932	GIDA_assoc	mnmG
+PF02091	tRNA-synt_2e	glyQ
+PF06071	YchF-GTPase_C	ychF
+PF00203	Ribosomal_S19	rpsS
+PF07720	TPR_3	ygeG
+PF00805	Pentapeptide	yjcF
+PF13599	Pentapeptide_4	yjbI
+PF00825	Ribonuclease_P	rnpA
+PF04546	Sigma70_ner	rpoD
+PF03979	Sigma70_r1_1	rpoD
+PF02659	Mntp	mntP
+PF04310	MukB	mukB
+PF16330	MukB_hinge	mukB
+PF10965	DUF2767	fumD
+PF15937	PrlF_antitoxin	prlF
+PF01497	Peripla_BP_2	fhuD	fecB	fepB	btuF
+PF02834	LigT_PEase	thpR
+PF03573	OprD	uidC	chiP
+PF13957	YafO_toxin	yafO
+PF11756	YgbA_NO	ygbA
+PF06067	DUF932	yubP	yfjQ	yafZ
+PF09012	FeoC	feoC
+PF04107	GCS2	ybdK
+PF13997	YqjK	yqjK
+PF02646	RmuC	rmuC
+PF03831	YjdM	yjdM
+PF08274	YjdM_Zn_Ribbon	yjdM
+PF13603	tRNA-synt_1_2	leuS
+PF04245	NA37	yejK
+PF10807	DUF2541	yaaI
+PF13148	DUF3987	yfjI	ykgS
+PF11806	DUF3327	fes
+PF00756	Esterase	yeiG	frmB	fes	yieL
+PF02639	DUF188	yaiI
+PF18649	EcpB_C	ecpB
+PF06450	NhaB	nhaB
+PF00252	Ribosomal_L16	rplP
+PF17755	UvrA_DNA-bind	uvrA
+PF17760	UvrA_inter	uvrA
+PF04239	DUF421	ycaP
+PF01316	Arg_repressor	argR
+PF02863	Arg_repressor_C	argR
+PF12843	QSregVF_b	ypeB
+PF01084	Ribosomal_S18	rpsR
+PF05974	DUF892	yciF	yciE
+PF01018	GTP1_OBG	obgE
+PF06147	DUF968	ydfU
+PF17156	GAPES2	dgcI
+PF15631	Imm-NTF2-2	yhhH	ybbC
+PF12883	DUF3828	ybjP	yqhG
+PF15922	YjeJ	yjeJ
+PF05861	PhnI	phnI
+PF04279	IspA	yciB
+PF01070	FMN_dh	lldD
+PF09619	YscW	ybaY
+PF03230	Antirestrict	yubI	yafX	yfjX
+PF09163	Form-deh_trans	fdoH	fdnH
+PF01750	HycI	hycI	hybD	hyaD
+PF04309	G3P_antiterm	ygcP
+PF01808	AICARFT_IMPCHas	purH
+PF02491	SHS2_FTSA	ftsA
+PF18284	DNA_meth_N	dcm
+PF00145	DNA_methylase	dcm
+PF16884	ADH_N_2	curA
+PF10829	DUF2554	yncJ
+PF07073	ROF	rof
+PF04230	PS_pyruv_trans	wcaK
+PF10721	DUF2514	rzpQ
+PF16925	TetR_C_13	nemR
+PF04290	DctQ	yiaM
+PF18429	DUF5609	serB
+PF11944	DUF3461	yaeH
+PF07043	DUF1328	ytjA
+PF10762	DUF2583	ychH
+PF10610	Tafi-CsgC	csgC
+PF01040	UbiA	ubiA	menA	cyoE
+PF10951	DUF2776	yhiM
+PF01323	DSBA	dsbA
+PF11245	DUF2544	yfcO
+PF00246	Peptidase_M14	mpaA
+PF06998	DUF1307	yehR
+PF02132	RecR	recR
+PF04287	DUF446	yqcC
+PF13466	STAS_2	mlaB
+PF07437	YfaZ	yfaZ
+PF06097	DUF945	ydgA	yihF
+PF04012	PspA_IM30	pspA	yjfJ
+PF04076	BOF	ydeI	ygiW
+PF06174	DUF987	yeeT	ypjJ	ykfH
+PF01458	SUFBD	sufB	sufD
+PF03950	tRNA-synt_1c_C	glnS
+PF05336	rhaM	rhaM
+PF10678	DUF2492	yecH
+PF09864	MliC	mliC
+PF11922	DUF3440	ybdN
+PF17157	GAPES4	csrD
+PF02120	Flg_hook	fliK
+PF08254	Leader_Thr	thrL
+PF00338	Ribosomal_S10	rpsJ
+PF00306	ATP-synt_ab_C	atpA
+PF04224	DUF417	rclC
+PF12431	CitT	dpiA
+PF04340	DUF484	yigA
+PF15975	Flot	yqiK
+PF00829	Ribosomal_L21p	rplU
+PF00782	DSPc	ynbD
+PF08521	2CSK_N	qseC
+PF11101	DUF2884	yggN
+PF11102	YjbF	yjbF	gfcB
+PF04973	NMN_transporter	pnuC
+PF00709	Adenylsucc_synt	purA
+PF03023	MurJ	murJ
+PF07411	DUF1508	yegP
+PF14812	PBP1_TM	mrcB
+PF00912	Transgly	mrcA	mtgA	pbpC	mrcB
+PF14814	UB2H	mrcB
+PF03600	CitMHS	ybiR	yfbS
+PF10689	DUF2496	ybaM
+PF04386	SspB	sspB
+PF04320	DUF469	yggL
+PF03992	ABM	ygiN	lsrG
+PF06418	CTP_synth_N	pyrG
+PF09695	YtfJ_HI0045	ytfJ
+PF03590	AsnA	asnA
+PF04235	DUF418	yeiB
+PF04461	DUF520	yajQ
+PF11392	DUF2877	ylbF	yahE
+PF17263	DUF5329	yfeK
+PF06026	Rib_5-P_isom_A	rpiA
+PF04303	PrpF	ybhH
+PF06476	DUF1090	yqjC
+PF02527	GidB	rsmG
+PF10781	DSRB	dsrB
+PF01255	Prenyltransf	ispU
+PF01795	Methyltransf_5	rsmH
+PF10369	ALS_ss_C	ilvH
+PF06379	RhaT	rhaT
+PF11066	DUF2867	ybjT
+PF12557	Co_AT_N	btuR
+PF02572	CobA_CobO_BtuR	btuR
+PF00160	Pro_isomerase	ppiA	ppiB
+PF10810	DUF2545	yfdY
+PF09134	Invasin_D3	yeeJ
+PF03786	UxuA	uxuA
+PF02575	YbaB_DNA_bd	ybaB
+PF14502	HTH_41	yhfZ
+PF14503	YhfZ_C	yhfZ
+PF02675	AdoMet_dc	speD
+PF18019	HD_6	ygcB
+PF11769	DUF3313	ydcL
+PF13617	Lipoprotein_19	ynbE
+PF04131	NanE	nanE
+PF03150	CCP_MauG	yhjA
+PF00034	Cytochrom_C	yhjA
+PF14376	Haem_bd	yhjA
+PF03239	FTR1	efeU
+PF03840	SecG	secG
+PF04362	Iron_traffic	yggX
+PF04355	SmpA_OmlA	bamE	osmE
+PF13502	AsmA_2	yhdP
+PF13116	DUF3971	yhdP
+PF00276	Ribosomal_L23	rplW
+PF10767	DUF2593	ybjO
+PF02654	CobS	cobS
+PF02615	Ldh_2	hcxB	allD	dlgD
+PF06545	DUF1116	ylbE	yahG
+PF03143	GTP_EFTU_D3	tufB	tufA
+PF01192	RNA_pol_Rpb6	rpoZ
+PF11862	DUF3382	livM
+PF01810	LysE	rhtC	leuE	eamB	rhtB	argO	yahN
+PF04221	RelB	relB	dinJ
+PF06877	RraB	rraB
+PF14001	YdfZ	ydfZ
+PF10697	DUF2502	ypeC	yaaX
+PF02357	NusG	nusG	rfaH
+PF01253	SUI1	yciH
+PF02955	GSH-S_ATP	gshB
+PF02951	GSH-S_N	gshB
+PF09190	DALR_2	cysS
+PF01406	tRNA-synt_1e	cysS
+PF04288	MukE	mukE
+PF07148	MalM	malM
+PF00909	Ammonium_transp	amtB
+PF06674	DUF1176	ypfG
+PF02567	PhzC-PhzF	yddE
+PF03547	Mem_trans	yfdV
+PF02481	DNA_processg_A	smf
+PF17782	DprA_WH	smf
+PF13667	ThiC-associated	thiC
+PF01964	ThiC_Rad_SAM	thiC
+PF00120	Gln-synt_C	puuA	puuA	glnA
+PF03951	Gln-synt_N	glnA
+PF00245	Alk_phosphatase	phoA
+PF12019	GspH	gspH
+PF07208	DUF1414	yejL
+PF06574	FAD_syn	ribF
+PF01687	Flavokinase	ribF
+PF04364	DNA_pol3_chi	holC
+PF04205	FMN_bind	rsxG
+PF02805	Ada_Zn_binding	ada
+PF01035	DNA_binding_1	ada	atl	ogt
+PF02870	Methyltransf_1N	ada	ogt
+PF14710	Nitr_red_alph_N	narZ	narG
+PF10614	CsgF	csgF
+PF00762	Ferrochelatase	hemH
+PF07825	Exc	xisE
+PF08545	ACP_syn_III	fabH
+PF08541	ACP_syn_III_C	fabH
+PF17059	MGTL	mgtL
+PF03795	YCII	yciI
+PF06178	KdgM	ompL	nanC
+PF09084	NMT1	ssuA
+PF11115	DUF2623	yghW
+PF02684	LpxB	lpxB
+PF00920	ILVD_EDD	yagF	yjhG	edd	ilvD
+PF01741	MscL	mscL
+PF03942	DTW	tapT
+PF09290	AcetDehyd-dimer	mhpF
+PF03618	Kinase-PPPase	ppsR
+PF01119	DNA_mis_repair	mutL
+PF08676	MutL_C	mutL
+PF14572	Pribosyl_synth	prs
+PF13793	Pribosyltran_N	prs
+PF06039	Mqo	mqo
+PF18364	Molybdopterin_N	torA	torZ	bisC
+PF17152	CHASE8	dgcN
+PF15976	CooC_C	ecpC
+PF16967	TcfC	ecpC
+PF06630	Exonuc_VIII	recE
+PF06902	Fer4_19	yjdI
+PF00813	FliP	fliP
+PF10928	DUF2810	yibL
+PF06754	PhnG	phnG
+PF06082	YjbH	yjbH	gfcD
+PF07195	FliD_C	fliD
+PF02465	FliD_N	fliD
+PF01411	tRNA-synt_2c	alaS
+PF07973	tRNA_SAD	thrS	alaS
+PF02542	YgbB	ispF
+PF01156	IU_nuc_hydro	rihB	rihC	rihA
+PF04353	Rsd_AlgQ	rsd
+PF10733	DUF2525	yodD
+PF14220	DUF4329	rhsD	rhsB
+PF06804	Lipoprotein_18	bamC
+PF00224	PK	pykF	pykA
+PF02887	PK_C	pykF	pykA
+PF02535	Zip	zupT
+PF00186	DHFR_1	folA
+PF01270	Glyco_hydro_8	bcsZ
+PF06832	BiPBP_C	pbpC
+PF00266	Aminotran_5	iscS	sufS	serC	csdA
+PF02606	LpxK	lpxK
+PF11762	Arabinose_Iso_C	araA
+PF02610	Arabinose_Isome	araA
+PF01713	Smr	yfcN	smrA
+PF01894	UPF0047	yjbQ
+PF03193	RsgA_GTPase	rsgA
+PF00403	HMA	zntA	copA
+PF02219	MTHFR	metF
+PF13132	DUF3950	ynfO	ylcI
+PF02563	Poly_export	gfcE	wza
+PF18412	Wza_C	gfcE	wza
+PF08891	YfcL	yfcL
+PF01171	ATP_bind_3	tilS	ttcA
+PF06693	DUF1190	yjfM	ygiB
+PF05552	TM_helix	mscS
+PF04264	YceI	yceI
+PF05099	TerB	djlA
+PF01106	NifU	nfuA
+PF07559	FlaE	flgE
+PF12684	DUF3799	recE
+PF02152	FolB	folB	folX
+PF01491	Frataxin_Cyay	cyaY
+PF06643	DUF1158	ybdJ
+PF01513	NAD_kinase	nadK
+PF06005	ZapB	zapB
+PF01274	Malate_synthase	aceB	glcB
+PF00358	PTS_EIIA_1	crr	bglF	nagE
+PF04341	DUF485	yjcH
+PF00830	Ribosomal_L28	rpmB
+PF07478	Dala_Dala_lig_C	ddlB	ddlA
+PF01820	Dala_Dala_lig_N	ddlB	ddlA
+PF03608	EII-GUT	srlA
+PF03808	Glyco_tran_WecB	wecG
+PF04333	MlaA	mlaA
+PF02537	CRCB	crcB
+PF02541	Ppx-GppA	gppA	ppx
+PF03109	ABC1	ubiB
+PF00866	Ring_hydroxyl_B	hcaF
+PF00393	6PGD	gnd
+PF07730	HisKA_3	narQ	narX	uhpB
+PF13675	PilJ	narQ	narX
+PF00342	PGI	pgi
+PF03783	CsgG	csgG
+PF15930	YdiH	ydiH
+PF01547	SBP_bac_1	ycjN
+PF05525	Branch_AA_trans	brnQ
+PF01182	Glucosamine_iso	agaI	yieK	nagB
+PF02685	Glucokinase	glk
+PF02900	LigB	ygiD	mhpB
+PF01011	PQQ	gcd
+PF00475	IGPD	hisB
+PF08645	PNK3P	hisB
+PF10589	NADH_4Fe-4S	nuoF
+PF01062	Bestrophin	yneE
+PF05420	BCSC_C	bcsC
+PF08411	Exonuc_X-T_C	sbcB	sbcB	sbcB	sbcB
+PF04222	DUF416	yjaG
+PF04728	LPP	yqhH	lpp
+PF00238	Ribosomal_L14	rplN
+PF12798	Fer4_3	hyfA	hydN
+PF08053	Tna_leader	tnaC
+PF05068	MtlR	mtlR	fumE
+PF02405	MlaE	mlaE
+PF03899	ATP-synt_I	atpI
+PF02806	Alpha-amylase_C	amyA	glgB
+PF12568	PanZ	panZ
+PF08943	CsiD	glaH
+PF17089	YjbT	yjbT
+PF10688	Imp-YgjV	ygjV
+PF01196	Ribosomal_L17	rplQ
+PF01694	Rhomboid	glpG
+PF12122	Rhomboid_N	glpG
+PF07510	DUF1524	yfjM
+PF01288	HPPK	folK
+PF03589	Antiterm	quuQ
+PF00471	Ribosomal_L33	rpmG
+PF10694	DUF2500	yhhM
+PF10831	DUF2556	yhdU
+PF03330	DPBB_1	rlpA
+PF00410	Ribosomal_S8	rpsH
+PF03749	SfsA	sfsA
+PF17746	SfsA_N	sfsA
+PF05951	Peptidase_M15_2	ycbK
+PF02617	ClpS	clpS
+PF16347	DUF4976	yidJ
+PF00570	HRDC	recQ	rnd
+PF16124	RecQ_Zn_bind	recQ
+PF09382	RQC	recQ
+PF05137	PilN	hofN
+PF01746	tRNA_m1G_MT	trmD
+PF00141	peroxidase	katG
+PF05130	FlgN	flgN
+PF07017	PagP	pagP
+PF17073	SafA	safA
+PF00183	HSP90	htpG
+PF03548	LolA	lolA
+PF03746	LamB_YcsF	pxpA
+PF13491	FtsK_4TM	ftsK
+PF17854	FtsK_alpha	ftsK
+PF09397	FtsK_gamma	ftsK
+PF01580	FtsK_SpoIIIE	ftsK
+PF03927	NapD	napD
+PF01784	NIF3	ybgI
+PF03668	ATP_bind_2	rapZ
+PF00085	Thioredoxin	trxC	cnoX	trxA
+PF01931	NTPase_I-T	yjjX
+PF02110	HK	thiM
+PF14840	DNA_pol3_delt_C	holA
+PF06144	DNA_pol3_delta	holA
+PF01909	NTP_transf_2	glnD
+PF05035	DGOK	dgoK
+PF03922	OmpW	ompW
+PF10696	DUF2501	yjjA
+PF01132	EFP	efp	yeiP
+PF08207	EFP_N	efp	yeiP
+PF09285	Elong-fact-P_C	efp	yeiP
+PF07350	DUF1479	ybiU
+PF12633	Adenyl_cycl_N	cyaA
+PF01295	Adenylate_cycl	cyaA
+PF01863	DUF45	ygjP
+PF10043	DUF2279	yfiM
+PF03009	GDPD	ugpQ	glpQ
+PF09938	DUF2170	yjfI
+PF06788	UPF0257	ynfC
+PF03123	CAT_RBD	bglG	bglG
+PF00874	PRD	csiE	bglG
+PF00510	COX3	cyoC
+PF08021	FAD_binding_9	yqjH
+PF04954	SIP	yqjH
+PF11254	DUF3053	yiaF
+PF09160	FimH_man-bind	ydeQ	fimH
+PF07722	Peptidase_C26	puuD	puuD
+PF11663	Toxin_YhaV	yhaV
+PF13990	YjcZ	yjcZ
+PF07906	Toxin_15	arpA
+PF02230	Abhydrolase_2	ypfH
+PF17612	DUF5507	ypjC
+PF17621	DUF5508	ypjB
+PF15939	YmcE_antitoxin	ymcE
+PF13992	YecR	yecR
+PF10062	DUF2300	yfaQ
+PF08486	SpoIID	yfaQ
+PF06316	Ail_Lom	lomR
+PF02413	Caudo_TAP	tfaS	yfdK	tfaE	tfaQ	tfaD	ymfS	tfaR	tfaX
+PF04378	RsmJ	rlmJ
+PF07233	DUF1425	ycfL
+PF11143	DUF2919	yfeZ
+PF06940	DUF1287	yijF
+PF07041	DUF1327	ydfR
+PF10973	DUF2799	yfiL
+PF14488	DUF4434	ybcH
+PF10971	DUF2773	ykiA	ydbD
+PF01609	DDE_Tnp_1	yncM	JW5936	tnp10	insG	ybfD	insL3	ydcC	insH8	insH9	insH4	JW5928	insH10	insH1	JW5914	insH5	insH3	insH2	JW5935	ybfL	JW5951	JW5895	insH11	insL2	JW1882	yhhI	insH7	insL1	insH6	yncI	insZ	insH21
+PF13006	Nterm_IS4	insZ	insG
+PF06791	TMP_2	ynaA
+PF12566	DUF3748	yidR
+PF03724	META	hslJ
+PF01794	Ferric_reduct	msrQ
+PF05651	Diacid_rec	cdaR
+PF17853	GGDEF_2	cdaR
+PF13556	HTH_30	cdaR
+PF07743	HSCB_C	hscB
+PF10679	DUF2491	yjfK
+PF08400	phage_tail_N	stfR
+PF04317	DUF463	ycjX
+PF09344	Cas_CT1975	casC
+PF06688	DUF1187	rcbA
+PF13985	YbgS	ybgS
+PF03245	Phage_lysis	rzpR	rzpD
+PF02624	YcaO	ycaO
+PF18381	YcaO_C	ycaO
+PF06007	PhnJ	phnJ
+PF06249	EutQ	eutQ
+PF11119	DUF2633	yfgG
+PF03603	DNA_III_psi	holD
+PF04608	PgpA	pgpA
+PF00092	VWA	yegL	yfbK
+PF00350	Dynamin_N	crfC
+PF13817	DDE_Tnp_IS66_C	yuaK	yjgZ
+PF06176	WaaY	rfaY
+PF05437	AzlD	ygaH
+PF10722	YbjN	ybjN
+PF10887	DUF2686	yjiC	yjfZ
+PF13322	DUF4092	yghJ
+PF17291	M60-like_N	yghJ
+PF13402	Peptidase_M60	yghJ
+PF06806	DUF1233	ydaQ
+PF07023	DUF1315	yeaC
+PF10897	DUF2713	yjbM
+PF09992	NAGPA	yigE
+PF13436	Gly-zipper_OmpA	ymgG
+PF04315	EpmC	epmC
+PF07769	PsiF_repeat	psiF
+PF06923	GutM	gutM
+PF08986	DUF1889	yoaC
+PF01385	OrfB_IS605	insQ
+PF06366	FlhE	flhE
+PF10423	AMNp_N	amn
+PF04434	SWIM	yehQ
+PF03811	Zn_Tnp_IS1	insA6	insA5	insA7	insA9	insA2	insA3	insA4	insA1	insA8
+PF17113	AmpE	ampE
+PF12528	T2SSppdC	ppdC
+PF10820	DUF2543	ymjA
+PF06224	HTH_42	ycaQ
+PF11230	DUF3029	yjjI
+PF06069	PerC	yfdN
+PF02585	PIG-L	yaiS
+PF16549	T2SSS_2	yghG
+PF07166	DUF1398	ydfO	ybcV	ycgX
+PF09481	CRISPR_Cse1	casA
+PF07789	DUF1627	ydaW
+PF01904	DUF72	yecE
+PF06078	DUF937	yidB
+PF06755	CbtA_toxin	ypjF	cbtA	ykfI
+PF06992	Phage_lambda_P	peaD
+PF05708	Peptidase_C92	yebB	yiiX	yaeF
+PF04393	DUF535	ybjX
+PF14759	Reductase_C	hcaD
+PF13230	GATase_4	yafJ
+PF09381	Porin_OmpG	ompG
+PF01963	TraB	ybaP
+PF04471	Mrr_cat	mrr
+PF14338	Mrr_N	mrr
+PF07445	PriC	priC
+PF11739	DctA-YdbH	ydbH
+PF08798	CRISPR_assoc	casE
+PF04389	Peptidase_M28	iap	yfbL
+PF01022	HTH_5	ygaV	arsR
+PF05869	Dam	yfdM
+PF02627	CMD	ynjA
+PF12392	DUF3656	rlhA
+PF16747	Adhesin_E	yjhD
+PF18836	B_solenoid_ydck	ydcK
+PF13654	AAA_32	ycbZ
+PF05362	Lon_C	ycbZ	lon
+PF05962	HutD	ves
+PF00444	Ribosomal_L36	ykgO	rpmJ
+PF11575	FhuF_C	fhuF
+PF09906	DUF2135	yfaP
+PF10735	DUF2526	ydcY
+PF07484	Collar	stfE	stfQ	stfR
+PF03335	Phage_fiber	stfQ	stfR
+PF10797	YhfT	yhfT
+PF07037	DUF1323	yfeD	yfeC
+PF13981	SopA	yjbI
+PF13454	NAD_binding_9	ydhS
+PF07191	zinc-ribbons_6	yfgJ
+PF17761	DUF1016_N	yhcG
+PF06250	YhcG_C	yhcG
+PF04474	DUF554	yqgA
+PF09485	CRISPR_Cse2	casB
+PF03747	ADP_ribosyl_GH	yegU
+PF10713	DUF2509	ygdB
+PF13811	DUF4186	yneG
+PF13085	Fer2_3	frdB	sdhB
+PF03458	UPF0126	yadS	yicG
+PF17151	CHASE7	dgcQ
+PF08755	YccV-like	hspQ
+PF01311	Bac_export_1	fliR
+PF04304	DUF454	ybaN
+PF09831	DUF2058	yaiL
+PF01634	HisG	hisG
+PF08029	HisG_C	hisG
+PF05173	DapB_C	dapB
+PF01113	DapB_N	dapB
+PF02660	G3P_acyltransf	plsY
+PF02599	CsrA	csrA
+PF10410	DnaB_bind	dnaG
+PF08278	DnaG_DnaB_bind	dnaG
+PF08275	Toprim_N	dnaG
+PF01807	zf-CHC2	dnaG
+PF06277	EutA	eutA
+PF01326	PPDK_N	ppsA
+PF01967	MoaC	moaC
+PF01180	DHO_dh	preA	pyrD
+PF01715	IPPT	miaA
+PF15977	HTH_46	iprA
+PF01938	TRAM	rlmD	miaB
+PF03349	Toluene_X	fadL
+PF01479	S4	rsuA	hslR	tyrS	rpsD	rluF	rluC	rluD	rluB
+PF03480	DctP	yiaO
+PF09583	Phageshock_PspG	pspG
+PF01725	Ham1p_like	rdgB
+PF10796	Anti-adapt_IraP	iraP
+PF05985	EutC	eutC
+PF00075	RNase_H	rnhA
+PF01790	LGT	lgt
+PF05164	ZapA	zapA
+PF04347	FliO	fliO
+PF13145	Rotamase_2	ppiD
+PF09926	DUF2158	yodC
+PF03748	FliL	fliL
+PF17155	GAPES1	dgcJ
+PF03588	Leu_Phe_trans	aat
+PF09209	CecR_C	cecR
+PF04284	DUF441	yeaL
+PF04413	Glycos_transf_N	waaA
+PF13184	KH_5	nusA
+PF08529	NusA_N	nusA
+PF00401	ATP-synt_DE	atpC
+PF02823	ATP-synt_DE_N	atpC
+PF02852	Pyr_redox_dim	lpdA	sthA	gor	rclA
+PF17154	GAPES3	pdeK
+PF01259	SAICAR_synt	purC
+PF06411	HdeA	hdeB	hdeA
+PF07885	Ion_trans_2	kch
+PF00926	DHBP_synthase	ribB
+PF02952	Fucose_iso_C	fucI
+PF07881	Fucose_iso_N1	fucI
+PF07882	Fucose_iso_N2	fucI
+PF03315	SDH_beta	sdaA	sdaB	tdcG
+PF08279	HTH_11	birA	frvR
+PF02163	Peptidase_M50	rseP
+PF03928	Haem_degrading	glcG
+PF01502	PRA-CH	hisI
+PF01503	PRA-PH	hisI
+PF03319	EutN_CcmL	eutN
+PF10766	AcrZ	acrZ
+PF10954	DUF2755	yaiY
+PF07383	DUF1496	ynjH
+PF02154	FliM	fliM
+PF00327	Ribosomal_L30	rpmD
+PF02086	MethyltransfD12	dam
+PF00080	Sod_Cu	sodC
+PF03091	CutA1	cutA
+PF03829	PTSIIA_gutA	srlB
+PF05145	AbrB	abrB
+PF08482	HrpB_C	hrpB
+PF00013	KH_1	pnp
+PF03726	PNPase	pnp
+PF06558	SecM	secM
+PF07254	Cpta_toxin	ygfX
+PF14282	FlxA	flxA
+PF02586	SRAP	yedK
+PF02049	FliE	fliE
+PF11823	DUF3343	ytiA
+PF07219	HemY_N	hemY
+PF07719	TPR_2	nlpI	hemY
+PF11471	Sugarporin_N	bglH
+PF03633	Glyco_hydro_65C	ycjT
+PF03632	Glyco_hydro_65m	ycjT
+PF03636	Glyco_hydro_65N	ycjT
+PF03773	ArsP_1	yraQ
+PF03706	LPG_synthase_TM	ybhN
+PF06295	DUF1043	yhcB
+PF07947	YhhN	yhhN
+PF00719	Pyrophosphatase	ppa
+PF02744	GalP_UDP_tr_C	galT
+PF01087	GalP_UDP_transf	galT
+PF03883	H2O2_YaaD	yaaA
+PF02300	Fumarate_red_C	frdC
+PF09604	Potass_KdpF	kdpF
+PF00213	OSCP	atpH
+PF00507	Oxidored_q4	nuoA
+PF03485	Arg_tRNA_synt_N	argS
+PF00750	tRNA-synt_1d	argS
+PF03824	NicO	rcnA
+PF00797	Acetyltransf_2	nhoA
+PF16078	2-oxogl_dehyd_N	sucA
+PF00676	E1_dh	sucA
+PF16870	OxoGdeHyase_C	sucA
+PF16193	AAA_assoc_2	rarA
+PF12002	MgsA_C	rarA
+PF08047	His_leader	hisL
+PF04399	Glutaredoxin2_C	grxB
+PF13987	YedD	yedD
+PF02223	Thymidylate_kin	tmk
+PF02902	Peptidase_C48	elaD
+PF07733	DNA_pol3_alpha	dnaE
+PF17657	DNA_pol3_finger	dnaE
+PF14579	HHH_6	dnaE
+PF05239	PRC	rimM
+PF01782	RimM	rimM
+PF03886	ABC_trans_aux	pqiC
+PF13998	MgrB	mgrB
+PF00115	COX1	cyoB
+PF06932	DUF1283	ynfB
+PF00376	MerR	soxR
+PF09278	MerR-DNA-bind	soxR
+PF03889	ArfA	arfA
+PF17243	POTRA_TamA_1	tamA
+PF10684	BDM	bdm
+PF02335	Cytochrom_C552	nrfA
+PF03884	YacG	yacG
+PF17042	NBD_C	otnK
+PF07005	SBD_N	otnK
+PF06942	GlpM	ydgC
+PF06050	HGD-D	yjiM
+PF10757	YbaJ	tomB
+PF12147	Methyltransf_20	ynbC
+PF15731	MqsA_antitoxin	mqsA
+PF13521	AAA_28	nadR
+PF11656	DUF3811	yjbD
+PF03350	UPF0114	yqhA
+PF13994	PgaD	pgaD
+PF02667	SCFA_trans	atoE
+PF00237	Ribosomal_L22	rplV
+PF03379	CcmB	ccmB
+PF02866	Ldh_1_C	mdh	mdh
+PF00056	Ldh_1_N	mdh	mdh
+PF03994	DUF350	yjfL
+PF03454	MoeA_C	moeA
+PF03453	MoeA_N	moeA
+PF07664	FeoB_C	feoB
+PF17910	FeoB_Cyto	feoB
+PF02421	FeoB_N	feoB
+PF06711	DUF1198	yicN
+PF07681	DoxX	yqjF	yphA
+PF04151	PPC	pliG
+PF12805	FUSC-like	yhfK	yccS
+PF00208	ELFV_dehydrog	gdhA
+PF02812	ELFV_dehydrog_N	gdhA
+PF02734	Dak2	dhaL
+PF02277	DBI_PRT	cobT
+PF10808	DUF2542	yeiS
+PF02502	LacAB_rpiB	rpiB
+PF02620	YceD	yceD
+PF18113	Rbx_binding	norW
+PF02283	CobU	cobU
+PF00710	Asparaginase	ansB	ansA
+PF17763	Asparaginase_C	ansB	ansA
+PF11398	DUF2813	ybjD
+PF02190	LON_substr_bdg	lon
+PF08502	LeuA_dimer	leuA
+PF01050	MannoseP_isomer	manC
+PF16916	ZT_dimer	fieF
+PF09312	SurA_N	surA
+PF08255	Leader_Trp	trpL
+PF13493	DUF4118	kdpD
+PF13492	GAF_3	kdpD
+PF02702	KdpD	kdpD
+PF12320	SbcD_C	sbcD
+PF02560	Cyanate_lyase	cynS
+PF07214	DUF1418	ybjC
+PF12323	HTH_OrfB_IS605	insQ
+PF08468	MTS_N	rsmC
+PF00162	PGK	pgk
+PF11604	CusF_Ec	cusF
+PF16362	YaiA	yaiA
+PF14698	ASL_C2	argH
+PF01450	IlvC	ilvC
+PF07991	IlvN	ilvC
+PF05472	Ter	tus
+PF00310	GATase_2	gltB
+PF04898	Glu_syn_central	gltB
+PF01645	Glu_synthase	gltB
+PF01493	GXGXG	gltB
+PF04613	LpxD	lpxD
+PF07180	CaiF_GrlA	caiF
+PF00430	ATP-synt_B	atpF
+PF01740	STAS	dauA
+PF00916	Sulfate_transp	dauA
+PF08331	DUF1730	queG
+PF01523	PmbA_TldD	tldD	pmbA
+PF10627	CsgE	csgE
+PF01176	eIF-1a	infA
+PF01238	PMI_typeI	manA
+PF04328	Sel_put	yjiX	ybdD
+PF02381	MraZ	mraZ
+PF02313	Fumarate_red_D	frdD
+PF12390	Se-cys_synth_N	selA
+PF03841	SelA	selA
+PF01844	HNH	mcrA	yajD
+PF01124	MAPEG	yecN
+PF13538	UvrD_C_2	recD
+PF06977	SdiA-regulated	yjiK
+PF10953	DUF2754	yaiZ
+PF04962	KduI	kduI
+PF17153	CHASE9	pdeI
+PF02694	UPF0060	ynfA
+PF09600	Cyd_oper_YbgE	ybgE
+PF13808	DDE_Tnp_1_assoc	ybfD	yhhI	ydcC	ybfQ	ybfL	yncI
+PF09179	TilS	tilS
+PF11734	TilS_C	tilS
+PF03887	YfbU	yfbU
+PF06751	EutB	eutB
+PF13336	AcetylCoA_hyd_C	scpC
+PF02550	AcetylCoA_hydro	scpC
+PF17090	Ytca	ytcA
+PF01872	RibD_C	ribD
+PF01389	OmpA_membrane	ompA
+PF02938	GAD	aspS
+PF01242	PTPS	queD
+PF02873	MurB_C	murB
+PF13406	SLT_2	mltB
+PF04293	SpoVR	ycgB
+PF05257	CHAP	gss
+PF13579	Glyco_trans_4_4	wcaI
+PF07972	Flavodoxin_NdrI	nrdI
+PF06463	Mob_synth_C	moaA
+PF02682	CT_C_D	pxpB
+PF04752	ChaC	chaC
+PF04115	Ureidogly_lyase	allA
+PF01327	Pep_deformylase	def
+PF00328	His_Phos_2	agp	appA
+PF01170	UPF0020	rlmL
+PF09984	sCache_4	barA
+PF13807	GNVR	wzc	etk
+PF08218	Citrate_ly_lig	citC
+PF03881	Fructosamin_kin	yniA
+PF12795	MscS_porin	mscK	mscM
+PF12794	MscS_TM	mscK	mscM
+PF14785	MalF_P2	malF
+PF03807	F420_oxidored	proC
+PF14748	P5CR_dimer	proC
+PF00318	Ribosomal_S2	rpsB
+PF08946	Osmo_CC	proP
+PF09907	HigB_toxin	higB
+PF01980	TrmO	trmO
+PF18389	TrmO_C	trmO
+PF03923	Lipoprotein_16	yajG
+PF08139	LPAM_1	yajG
+PF06288	DUF1040	yihD
+PF17125	Methyltr_RsmF_N	rsmF
+PF13636	Methyltranf_PUA	rsmF
+PF02253	PLA1	pldA
+PF03802	CitX	citX
+PF08298	AAA_PrkA	yeaG
+PF06798	PrkA	yeaG
+PF01195	Pept_tRNA_hydro	pth
+PF13181	TPR_8	yphG	nlpI
+PF04348	LppC	lpoA
+PF01923	Cob_adeno_trans	eutT
+PF02576	DUF150	rimP
+PF17384	DUF150_C	rimP
+PF06610	AlaE	alaE
+PF03882	KicB	mukF
+PF17193	MukF_C	mukF
+PF17192	MukF_M	mukF
+PF04216	FdhE	fdhE
+PF12631	MnmE_helical	mnmE
+PF10396	TrmE_N	mnmE
+PF14002	YniB	yniB
+PF02224	Cytidylate_kin	cmk
+PF06185	YecM	yecM
+PF15940	YjcB	yjcB
+PF03063	Prismane	hcp
+PF17831	PDH_E1_M	aceE
+PF12343	DEADboxA	deaD
+PF13192	Thioredoxin_3	ahpF
+PF12368	Rhodanese_C	trhO
+PF17773	UPF0176_N	trhO
+PF02699	YajC	yajC
+PF04223	CitF	citF
+PF01416	PseudoU_synth_1	truA
+PF09584	Phageshock_PspD	pspD
+PF07977	FabA	fabA	fabZ
+PF01078	Mg_chelatase	yifB
+PF13335	Mg_chelatase_C	yifB
+PF03775	MinC_C	minC
+PF05209	MinC_N	minC
+PF01641	SelR	msrB
+PF17092	PCB_OB	mrcA
+PF03812	KdgT	kdgT
+PF10692	DUF2498	yciN
+PF05368	NmrA	qorB
+PF04227	Indigoidine_A	psuG
+PF03776	MinE	minE
+PF06251	Caps_synth_GfcC	gfcC	yjbG
+PF03733	YccF	yccF
+PF09500	YiiD_C	fabY
+PF05157	T2SSE_N	nfrB	hofB
+PF00177	Ribosomal_S7	rpsG
+PF08013	GatZ_KbaZ-like	kbaZ	gatZ
+PF08299	Bac_DnaA_C	dnaA
+PF11638	DnaA_N	dnaA
+PF00885	DMRL_synthase	ribE
+PF17764	PriA_3primeBD	priA
+PF18074	PriA_C	priA
+PF18319	PriA_CRR	priA
+PF00962	A_deaminase	add
+PF01314	AFOR_C	ydhV
+PF02730	AFOR_N	ydhV
+PF10590	PNP_phzG_C	pdxH
+PF01243	Putative_PNPOx	pdxH
+PF13396	PLDc_N	clsA
+PF01874	CitG	citG
+PF08974	DUF1877	yfbM
+PF04809	HupH_C	hyaF
+PF09383	NIL	metN
+PF04363	DUF496	yeeX
+PF00745	GlutR_dimer	hemA
+PF05201	GlutR_N	hemA
+PF01661	Macro	ymdB
+PF03767	Acid_phosphat_B	aphA
+PF02578	Cu-oxidase_4	yfiH
+PF02237	BPL_C	birA
+PF03006	HlyIII	yqfA
+PF00416	Ribosomal_S13	rpsM
+PF07356	DUF1481	yjaH
+PF02912	Phe_tRNA-synt_N	pheS
+PF01409	tRNA-synt_2d	pheS
+PF01227	GTP_cyclohydroI	folE
+PF07449	HyaE	hyaE
+PF11120	CBP_BcsF	bcsF
+PF03476	MOSC_N	ycbX
+PF04940	BLUF	bluF
+PF00398	RrnaAD	rsmA
+PF14492	EFG_III	fusA
+PF03764	EFG_IV	fusA
+PF04999	FtsL	ftsL
+PF14821	Thr_synth_N	thrC
+PF00035	dsrm	rnc
+PF14622	Ribonucleas_3_3	rnc
+PF13984	MsyB	msyB
+PF14760	Rnk_N	rnk
+PF04023	FeoA	feoA
+PF08212	Lipocalin_2	blc
+PF08238	Sel1	ybeT	ybeQ	yjcO
+PF04860	Phage_portal	beeE
+PF08956	DUF1869	yoaG
+PF08054	Leu_leader	leuL
+PF08965	DUF1870	ydiL
+PF12404	DUF3663	pepB
+PF04381	RdgC	rdgC
+PF02119	FlgI	flgI
+PF10502	Peptidase_S26	lepB
+PF00707	IF3_C	infC
+PF05198	IF3_N	infC
+PF11940	DUF3458	pepN
+PF17432	DUF3458_C	pepN
+PF01433	Peptidase_M1	pepN
+PF02255	PTS_IIA	chbA
+PF01761	DHQ_synthase	aroB
+PF09261	Alpha-mann_mid	mngB
+PF07748	Glyco_hydro_38C	mngB
+PF01074	Glyco_hydro_38N	mngB
+PF11808	PhoR	phoR
+PF02600	DsbB	dsbB
+PF00499	Oxidored_q3	nuoJ
+PF02556	SecB	secB
+PF00089	Trypsin	ydgD
+PF11036	YqgB	yqgB
+PF04269	DUF440	yciU
+PF02558	ApbA	panE
+PF08546	ApbA_C	panE
+PF06134	RhaA	rhaA
+PF01371	Trp_repressor	trpR
+PF07290	DUF1449	yqiJ
+PF05494	MlaC	mlaC
+PF02631	RecX	recX
+PF03331	LpxC	lpxC
+PF01112	Asparaginase_2	iaaA
+PF04359	DUF493	ybeD
+PF11412	DsbC	dsbD
+PF02683	DsbD	dsbD
+PF04657	DMT_YdcZ	ydcZ
+PF01625	PMSR	msrA
+PF05690	ThiG	thiG
+PF07348	Syd	syd
+PF02787	CPSase_L_D3	carB
+PF10636	hemP	ydiE
+PF09003	Arm-DNA-bind_1	intE
+PF03594	BenE	ydcO
+PF00163	Ribosomal_S4	rpsD
+PF03963	FlgD	flgD
+PF13860	FlgD_ig	flgD
+PF13861	FLgD_tudor	flgD
+PF04390	LptE	lptE
+PF00253	Ribosomal_S14	rpsN
+PF00763	THF_DHG_CYH	folD
+PF02882	THF_DHG_CYH_C	folD
+PF02350	Epimerase_2	wecB
+PF04391	DUF533	yebE
+PF00889	EF_TS	tsf
+PF09704	Cas_Cas5d	casD
+PF04356	DUF489	hflD
+PF18158	AidB_N	aidB
+PF00925	GTP_cyclohydro2	ribA
+PF06649	DUF1161	ynfD
+PF13525	YfiO	bamD
+PF05247	FlhD	flhD
+PF04095	NAPRTase	pncB
+PF17767	NAPRTase_N	pncB
+PF04357	TamB	tamB
+PF04286	DUF445	yjiN
+PF02347	GDC-P	gcvP
+PF03799	FtsQ	ftsQ
+PF08478	POTRA_1	ftsQ
+PF06899	WzyE	wzyE
+PF12344	UvrB	uvrB
+PF15933	RnlB_antitoxin	rnlB
+PF06889	DUF1266	ybeU	ybeR	ynjI
+PF10076	DUF2313	ymfQ
+PF17430	YqgC	yqgC
+PF04480	DUF559	ycjD
+PF15738	YafQ_toxin	yafQ
+PF06551	DUF1120	yhcF	gltF
+PF07804	HipA_C	yjjJ	hipA
+PF07007	LprI	yecT
+PF10947	DUF2628	yigF
+PF17938	TetR_C_29	ytfA
+PF07120	DUF1376	ydaU
+PF13823	ADH_N_assoc	ybdR
+PF11700	ATG22	yjhE
+PF15606	Ntox34	rhsA
+PF07508	Recombinase	ybcK
+PF13408	Zn_ribbon_recom	ybcK
+PF17607	DUF5503	yedM
+PF06568	DUF1127	yjiS
+PF12889	DUF3829	yiiG
+PF08878	DUF1837	abpA
+PF14130	DUF4297	abpA
+PF03354	Terminase_1	ymfN
+PF17851	GH43_C2	yagH
+PF04616	Glyco_hydro_43	yagH
+PF07638	Sigma70_ECF	yagL
+PF15596	Imm57	yibV
+PF12034	DUF3520	yfbK
+PF12450	vWF_A	yfbK
+PF01179	Cu_amine_oxid	tynA
+PF07833	Cu_amine_oxidN1	tynA
+PF02727	Cu_amine_oxidN2	tynA
+PF02728	Cu_amine_oxidN3	tynA
+PF02839	CBM_5_12	chiA
+PF06564	CBP_BcsQ	bcsQ	bcsQ
+PF15943	YdaS_antitoxin	ydaS	croE
+PF10065	DUF2303	yfdQ
+PF10263	SprT-like	sprT
+PF17283	Zn_ribbon_SprT	sprT
+PF13280	WYL	yfjR
+PF10946	DUF2625	ybfG
+PF00078	RVT_1	ykfC
+PF01278	Omptin	ompP	ompT
+PF18321	3HCDH_RFF	paaH
+PF08719	NADAR	ybiA
+PF01883	FeS_assembly_P	paaD
+PF01885	PTS_2-RNA	kptA
+PF05138	PaaA_PaaC	paaC	paaA
+PF05598	DUF772	JW5936	insH8	insH9	insH4	JW5928	insH10	insH1	JW5914	insH5	insH3	insH2	JW5935	JW5951	JW5895	insH11	JW1882	insH7	insH6	insH21
+PF12759	HTH_Tnp_IS1	insA6	insA5	insA7	insA9	insA2	insA3	insA4	insA1	insA8
+PF12102	MrcB_N	mcrB
+PF14535	AMP-binding_C_2	paaK
+PF07848	PaaX	paaX
+PF08223	PaaX_C	paaX
+PF06243	PaaB	paaB
+PF06530	Phage_antitermQ	quuD
+PF01575	MaoC_dehydratas	paaZ
+PF10117	McrBC	mcrC
+PF13632	Glyco_trans_2_3	nfrB
+PF10463	Peptidase_U49	lit
+PF13401	AAA_22	gspA
+PF04138	GtrA	yfdG
+PF08884	Flagellin_D3	fliC
+PF15935	RnlA_toxin	rnlA
+PF13476	AAA_23	sbcC
+PF09612	HtrL_YibB	htrL
+PF03275	GLF	glf
+PF03691	UPF0167	cbrC
+PF14525	AraC_binding_2	feaR

@@ -283,9 +283,6 @@ generateInputSamples <-
     return(samples)
   }
 
-# IMPORTANT : URL to graph gallery.
-# https://www.r-graph-gallery.com/index.html
-
 # PUBLIC API
 #' @description
 #' \code{getMultipleTestsSummary}
