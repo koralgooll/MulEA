@@ -69,7 +69,7 @@ test_that("Utils : write_gmt", {
   
   testthat::expect_equal(modelDfFromFile$ontologyId, "GO:0000001")
   testthat::expect_equal(modelDfFromFile$ontologyName, 
-                         "\"Imagin gen ontology to tests.\"")
+                         "Imagin gen ontology to tests.")
   testthat::expect_equal(modelDfFromFile$listOfValues[[1]], 
                          c("a", "b", "c", "d"))
 })
@@ -99,12 +99,12 @@ test_that("Utils : filter_ontology default", {
   gmt_filtered_model <- filter_ontology(gmt = gmtMock)
   
   testthat::expect_equal(nrow(gmt_filtered_model), 1)
-  testthat::expect_equal(gmt_filtered_model$ontologyId, "GO:0000002")
+  testthat::expect_equal(gmt_filtered_model$ontologyId, "GO:0000003")
   testthat::expect_equal(gmt_filtered_model$listOfValues[[1]], 
-                         c("e", "f", "c", "d"))
+                         c("a", "b", "c", "d", "e", "f", "g", "h", "i"))
 })
 
-test_that("Utils : filter_ontology min and max", {
+test_that("Utils : filter_ontology between min and max", {
   gmtMock1 <- data.frame(
     ontologyId = "GO:0000001",
     ontologyName = "Imagin gen ontology to tests.",
@@ -135,7 +135,7 @@ test_that("Utils : filter_ontology min and max", {
                          c("e", "f", "c", "d"))
 })
 
-test_that("Utils : filter_ontology min and max", {
+test_that("Utils : filter_ontology above min", {
   gmtMock1 <- data.frame(
     ontologyId = "GO:0000001",
     ontologyName = "Imagin gen ontology to tests.",
@@ -159,10 +159,8 @@ test_that("Utils : filter_ontology min and max", {
   gmt_filtered_model <- filter_ontology(gmt = gmtMock, 
                                         min_nr_of_elements = 3)
   
-  testthat::expect_equal(nrow(gmt_filtered_model), 1)
-  testthat::expect_equal(gmt_filtered_model$ontologyId, "GO:0000002")
-  testthat::expect_equal(gmt_filtered_model$listOfValues[[1]], 
-                         c("e", "f", "c", "d"))
+  testthat::expect_equal(nrow(gmt_filtered_model), 2)
+  testthat::expect_equal(gmt_filtered_model$ontologyId, c("GO:0000002", "GO:0000003"))
 })
 
 

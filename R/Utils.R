@@ -27,12 +27,7 @@ read_gmt <- function(file) {
       .fun = function(line) {
         fields <- strsplit(line, split = "\t")[[1]]
         category <- fields[1]
-        if (startsWith(fields[2], "\"") &&
-            endsWith(fields[2], "\"")) {
-          description <- fields[2]
-        } else {
-          description <- paste("\"", fields[2], "\"", sep = "")
-        }
+        description <- fields[2]
         listOfValues <- fields[3:length(fields)]
         data.frame(
           'ontologyId' = category,
