@@ -6,31 +6,63 @@
 \usage{
 plot_graph(
   reshaped_results,
+  ontology_id_colname = "ontology_id",
+  ontology_element_colname = "element_id_in_ontology",
   shared_elements_min_threshold = 0,
-  p_value_type_colname = "adjustedPValue",
-  ontology_id_colname = "ontologyId",
-  ontology_element_colname = "genIdInOntology",
+  p_value_type_colname = "eFDR",
   p_value_max_threshold = 0.05
 )
 }
 \arguments{
-\item{reshaped_results}{data.table in relaxed form.}
+\item{reshaped_results}{The input data frame containing reshaped results, typically representing some form of genomic or biological data.}
 
-\item{shared_elements_min_threshold}{numeric}
+\item{ontology_id_colname}{Character, the name of the column in reshaped_results that contains ontology IDs. Default value is 'ontology_id'.}
 
-\item{p_value_type_colname}{character}
+\item{ontology_element_colname}{Character, the name of the column in reshaped_results that contains element IDs within the ontology. Default value is 'element_id_in_ontology'.}
 
-\item{ontology_id_colname}{character}
+\item{shared_elements_min_threshold}{Numeric, threshold specifying the minimum number of shared elements required between two ontologies to consider them connected by an edge in the graph. Default value is 0.}
 
-\item{ontology_element_colname}{numeric}
+\item{p_value_type_colname}{Character, the name of the column in reshaped_results that contains p-values associated with the ontology elements. Default value is 'eFDR'.}
 
-\item{p_value_max_threshold}{numeric}
+\item{p_value_max_threshold}{Numeric, a threshold value for filtering rows in reshaped_results based on the p-values. Rows with p-values greater than this threshold will be filtered out. Default value is 0.05.}
 }
 \value{
-Return a graph.
+Returns a graph plot.
 }
 \description{
 Plots graph representation of enrichment results.
+}
+\details{
+This function takes reshaped data, filters it based on p-values, 
+calculates shared gene elements between ontology IDs, and creates a graph visualizing 
+the relationships between ontologies and their associated genes based on shared elements 
+and p-values.
+}
+\examples{
+# import example gene set
+# import other gene sets from a GMT file using read_gmt()
+data(geneSet) 
+Run model on geneset
+ora_model <- ora(
+ gmt = geneSet,
+ element_names = selectDf$select, 
+ background_element_names = poolDf$background_element_names,
+ p_value_adjustment_method = "eFDR",
+ number_of_permutations = 1000
+)
+ora_results <- run_test(ora_model)
+Reshape results
+ora_reshaped_results <- reshape_results(
+ model = ora_model, 
+ model_results = ora_results, 
+ p_value_type_colname='adjustedPValueEmpirical'
+)
+Plot graph
+plot_graph(
+ reshaped_results=ora_reshaped_results,
+ p_value_max_threshold = 1.00,
+ p_value_type_colname = "adjustedPValueEmpirical"
+)
 }
 \seealso{
 \code{\link{reshape_results}}

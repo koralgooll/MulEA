@@ -8,8 +8,8 @@ reshape_results(
   model = NULL,
   model_results = NULL,
   model_ontology_col_name = "ontologyId",
-  ontology_id_colname = "ontologyId",
-  p_value_type_colname = "adjustedPValue",
+  ontology_id_colname = "ontology_id",
+  p_value_type_colname = "eFDR",
   p_value_max_threshold = TRUE
 )
 }
@@ -18,20 +18,43 @@ reshape_results(
 
 \item{model_results}{Results from model, returned by run_test().}
 
-\item{model_ontology_col_name}{character}
+\item{model_ontology_col_name}{Character, specifies the column name in the model that contains ontology IDs. It defines which column in the model should be used for matching ontology IDs.}
 
-\item{ontology_id_colname}{character}
+\item{ontology_id_colname}{Character, specifies the column name for ontology IDs in the model results. It indicates which column in the model results contains ontology IDs for merging.}
 
-\item{p_value_type_colname}{character}
+\item{p_value_type_colname}{Character, specifies the column name for p-value types in the model results. It identifies the column containing p-values associated with ontology categories.}
 
-\item{p_value_max_threshold}{logical}
+\item{p_value_max_threshold}{Logical, indicating whether to apply a p-value threshold when filtering the resulting data. If TRUE, the function filters the data based on a p-value threshold.}
 }
 \value{
 Return detailed and relaxed datatable where model and results are
 merged for plotting purposes.
+
+#' @examples 
+# import example gene set
+# import other gene sets from a GMT file using read_gmt()
+data(geneSet) 
+Run model on geneset
+ora_model <- ora(
+ gmt = geneSet,
+ element_names = selectDf$select, 
+ background_element_names = poolDf$background_element_names,
+ p_value_adjustment_method = "eFDR",
+ number_of_permutations = 1000
+)
+ora_results <- run_test(ora_model)
+Reshape results
+ora_reshaped_results <- reshape_results(
+ model = ora_model, 
+ model_results = ora_results, 
+ p_value_type_colname='adjustedPValueEmpirical'
+)
 }
 \description{
-This function merges model and model results into a single data frame.
+This function takes model and model_results data, 
+reshapes them into a suitable format for plotting, 
+and returns the resulting data frame, which can be used 
+for further analysis or visualization.
 }
 \seealso{
 \code{\link{plot_graph}}, \code{\link{plot_barplot}},

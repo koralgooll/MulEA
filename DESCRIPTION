@@ -51,6 +51,6 @@ LinkingTo:
 VignetteBuilder: knitr
 URL: https://github.com/koralgooll/MulEA
 BugReports: https://github.com/koralgooll/MulEA/issues
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 SystemRequirements: C++11
 Config/testthat/edition: 3

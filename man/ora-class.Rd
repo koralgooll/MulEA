@@ -13,7 +13,7 @@
 \item{model}{Object of s4 class represents Mulea Test.}
 }
 \value{
-ora object. This object represents set based tests.
+ora object. This object represents set based tests in Mulea.
 
 run_test method for ora object. Returns results of counting using
 methods from set based area.
@@ -44,7 +44,7 @@ Possible values: "eFDR" and all from p.adjust {stats} documentation.}
 \item{\code{number_of_permutations}}{A number of permutations used in set based
 enrichment test. Default value is 10000.}
 
-\item{\code{number_of_cpu_threads}}{Number of processor threads used in calculations.}
+\item{\code{number_of_cpu_threads}}{Number of processor's threads used in calculations.}
 }}
 
 \examples{

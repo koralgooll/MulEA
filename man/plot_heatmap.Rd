@@ -6,25 +6,54 @@
 \usage{
 plot_heatmap(
   reshaped_results,
-  p_value_type_colname = "adjustedPValue",
-  ontology_element_colname = "genIdInOntology",
+  ontology_id_colname = "ontology_id",
+  ontology_element_colname = "element_id_in_ontology",
+  p_value_type_colname = "eFDR",
   p_value_max_threshold = 0.05
 )
 }
 \arguments{
-\item{reshaped_results}{data.table in relaxed form.}
+\item{reshaped_results}{data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.}
 
-\item{p_value_type_colname}{character}
+\item{ontology_element_colname}{Character, specifying the column name that contains ontology elements or terms in the input data. Default: 'element_id_in_ontology'.}
 
-\item{ontology_element_colname}{character}
+\item{p_value_type_colname}{Character, specifies the column name for p-values in the input data. Default is 'eFDR'.}
 
-\item{p_value_max_threshold}{numeric}
+\item{p_value_max_threshold}{Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.}
 }
 \value{
-Return a heatmap.
+Returns a ggplot2 heatmap.
 }
 \description{
 Plots heatmap of enriched terms and obtained p-values.
+}
+\details{
+The `plot_heatmap` function provides a convenient way to create a ggplot2 heatmap illustrating the significance of enriched terms within ontology categories based on their associated p-values.
+}
+\examples{
+# import example gene set
+# import other gene sets from a GMT file using read_gmt()
+data(geneSet) 
+Run model on geneset
+ora_model <- ora(
+ gmt = geneSet,
+ element_names = selectDf$select, 
+ background_element_names = poolDf$background_element_names,
+ p_value_adjustment_method = "eFDR",
+ number_of_permutations = 1000
+)
+ora_results <- run_test(ora_model)
+Reshape results
+ora_reshaped_results <- reshape_results(
+ model = ora_model, 
+ model_results = ora_results, 
+ p_value_type_colname='adjustedPValueEmpirical'
+)
+plot_heatmap(
+ reshaped_results=ora_reshaped_results,
+ p_value_max_threshold=1.00,
+ p_value_type_colname = 'adjustedPValueEmpirical'
+)
 }
 \seealso{
 \code{\link{reshape_results}}
