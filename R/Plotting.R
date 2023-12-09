@@ -251,8 +251,8 @@ plot_graph <- function(reshaped_results,
                             show.legend = FALSE) +
     scale_size_area(max_size = 10) +
     scale_color_gradient2(
-      mid =  '#ff6361',
-      high = 'grey90',
+      mid =  '#004687',
+      high = '#ffa600',
       limits = c(0.0,p_value_max_threshold),
       name = p_value_type_colname
     ) + 
