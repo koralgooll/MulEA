@@ -437,9 +437,9 @@ plot_lollipop <-
                         yend = as.numeric(eFDR)),
                     color = 'black')+
       geom_point(aes(size=5, color = eFDR))+guides(size='none')+
-      scale_color_gradient2(mid = '#ff6361',
-                           high = 'grey90',
-                           limits = c(0.0, p_value_max_threshold)) +
+      scale_color_gradient2(mid =  '#004687',
+                            high = '#ffa600',
+                            limits = c(0.0, p_value_max_threshold)) +
       coord_flip() +
       theme_light()
     mulea_gg_plot
