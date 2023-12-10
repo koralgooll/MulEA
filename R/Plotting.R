@@ -237,14 +237,23 @@ plot_graph <- function(reshaped_results,
   graph_plot <-
     ggraph::ggraph(routes_tidy, layout = "linear", circular = TRUE)
   
-  
   if (0 != nrow(tibble::as_tibble(tidygraph::activate(routes_tidy, edges)))) {
     graph_plot <-
       graph_plot + ggraph::geom_edge_arc(aes(width = .data$weight), alpha = 0.5)
+    
+    count_brakes <-  routes_tidy %>%
+      tidygraph::activate(edges) %>% 
+      as_tibble() %>%
+      pull(weight)
+    
+    graph_plot <- graph_plot + 
+      ggraph::scale_edge_width(
+        range = c(0, 3),
+        name="Nr. of shared elements", 
+        breaks = hist(count_brakes, breaks = 5, plot = FALSE)$breaks)
   }
   
-  graph_plot <- graph_plot + 
-    ggraph::scale_edge_width(range = c(0, 3), name="Nr. of shared elements") +
+  graph_plot <- graph_plot +
     ggraph::geom_node_point(aes(color = .data$p_stat)) +
     ggraph::geom_node_point(aes(color = .data$p_stat, 
                                 size = (1 - .data$p_stat)), 
@@ -263,7 +272,7 @@ plot_graph <- function(reshaped_results,
       legend.title=element_text(size=10, family = "TT Courier New"))
   graph_plot
 }
-#rel(0.5)
+
 
 #' Plot Barplot
 #' 
