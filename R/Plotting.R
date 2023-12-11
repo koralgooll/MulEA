@@ -268,8 +268,8 @@ plot_graph <- function(reshaped_results,
     ggraph::geom_node_text(aes(label = .data$label), repel = TRUE) +
     ggraph::theme_graph() +
     theme(
-      legend.text=element_text(size=10, family = "TT Courier New"),
-      legend.title=element_text(size=10, family = "TT Courier New"))
+      legend.text=element_text(size=10, family = "ArialMT"),
+      legend.title=element_text(size=10, family = "ArialMT"))
   graph_plot
 }
 
@@ -361,8 +361,8 @@ plot_barplot <-
       coord_flip() +
       theme_light() +
       theme(
-        legend.text=element_text(size=10, family = "TT Courier New"),
-        legend.title=element_text(size=10, family = "TT Courier New"))
+        legend.text=element_text(size=10, family = "ArialMT"),
+        legend.title=element_text(size=10, family = "ArialMT"))
     mulea_gg_plot
   }
 
@@ -458,8 +458,8 @@ plot_lollipop <-
       coord_flip() +
       theme_light() +
       theme(
-        legend.text=element_text(size=10, family = "TT Courier New"),
-        legend.title=element_text(size=10, family = "TT Courier New"))
+        legend.text=element_text(size=10, family = "ArialMT"),
+        legend.title=element_text(size=10, family = "ArialMT"))
     mulea_gg_plot
   }
 
@@ -551,6 +551,6 @@ plot_heatmap <- function(reshaped_results,
     theme_light() +
     theme(
       axis.text.x = element_text(angle = 90),
-      legend.text=element_text(size=10, family = "TT Courier New"),
-      legend.title=element_text(size=10, family = "TT Courier New"))
+      legend.text=element_text(size=10, family = "ArialMT"),
+      legend.title=element_text(size=10, family = "ArialMT"))
 }
