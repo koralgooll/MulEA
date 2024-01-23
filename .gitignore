@@ -11,3 +11,4 @@ README_cache/*
 multipleTesting.pdf
 src-i386/*
 src-x64/*
+.DS_Store
