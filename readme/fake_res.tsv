@@ -1,0 +1,11 @@
+ontology_id	ontology_name	nr_common_with_tested_elements	nr_common_with_backgound_elements	p_value	eFDR
+FNR	"FNR"	26	259	0.0000003	0.0000000
+LexA	"LexA"	14	53	0.0000000	0.0000000
+SoxS	"SoxS"	7	37	0.0001615	0.0028000
+DnaA	"DnaA"	4	13	0.0006281	0.0051333
+Rob	"Rob"	5	21	0.0004717	0.0052400
+FadR	"FadR"	5	20	0.0003692	0.0054500
+NsrR	"NsrR"	8	64	0.0010478	0.0073286
+ArcA	"ArcA"	12	148	0.0032001	0.0204250
+IHF	"IHF"	14	205	0.0070758	0.0454700
+MarA	"MarA"	5	37	0.0066068	0.0480333

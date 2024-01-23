@@ -29,11 +29,11 @@ PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 \section{Slots}{
 
 \describe{
-\item{\code{gmt}}{A data.frame representing GMT's reprezentation of model.}
+\item{\code{gmt}}{A data.frame representing the GMT model.}
 
-\item{\code{element_names}}{A data from expeciment to analize accross model.}
+\item{\code{element_names}}{Data to be analysed across the model.}
 
-\item{\code{background_element_names}}{A background data to count test.}
+\item{\code{background_element_names}}{Background data used for the test.}
 }}
 
 \examples{

@@ -5,9 +5,9 @@
 #'
 #' @format A data frame with 7 rows and 3 variables:
 #' \describe{
-#'   \item{ontologyId}{Ontology ID of the gene set}
-#'   \item{ontologyName}{Description of the gene set}
-#'   \item{listOfValues}{Genes in the gene set}
+#'   \item{ontology_id}{Ontology ID of the gene set}
+#'   \item{ontology_name}{Description of the gene set}
+#'   \item{list_of_values}{Genes in the gene set}
 #' }
 #' @source \url{http://geneontology.org/}
 "geneSet"

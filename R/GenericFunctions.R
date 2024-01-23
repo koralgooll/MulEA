@@ -2,17 +2,17 @@
 #' 
 #' This is a generic function that chooses an enrichment analysis procedure
 #' based on the model class and runs the analysis.
-#' @param model An S4 object which represents one of Mulea's Tests. See details
+#' @param model An S4 object which represents one of mulea's Tests. See details
 #' for more information.
 #' @details The function requires the definition of a model. Models currently
-#' implemented in MulEA include Gene Set Enrichment Analysis (GSEA) and
+#' implemented in mulea include Gene Set Enrichment Analysis (GSEA) and
 #' Over-Representation Analysis (ORA). These models must be defined through
 #' their specific functions which are provided in this package. 
 #' @seealso \code{\link{gsea}}, \code{\link{ora}}
 #' @export
 #' @examples
 #' modelDfFromFile <- read_gmt(
-#'   file = system.file(package="MulEA", "extdata", "model.gmt"))
+#'   file = system.file(package="mulea", "extdata", "model.gmt"))
 #' dataFromExperiment <- c(
 #'   "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
 #'   "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
@@ -47,7 +47,7 @@
 #'   gmt = modelDfFromFile,
 #'   element_names = dataFromExperiment,
 #'   element_scores = dataFromExperimentScores)
-#' GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
+#' GSEASubramanianRes <- mulea::run_test(GSEASubramanian)
 #' @return Results in form of data frame. Structure of data frame depends on
 #' object processed by this generic method.
 #' @importFrom methods new

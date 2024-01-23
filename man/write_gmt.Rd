@@ -7,15 +7,16 @@
 write_gmt(gmt, file)
 }
 \arguments{
-\item{gmt}{A data frame which contains the data, imported from a GMT file.}
+\item{gmt}{A data frame containing the data to be written, imported from a GMT file.}
 
-\item{file}{character; a path naming a file.}
+\item{file}{character; a path naming the output file.}
 }
 \value{
 Returns the model as a .gmt file at a specific location.
 }
 \description{
-Write the model data to a Gene Matrix Transposed (GMT) file.
+Write GMT takes a data frame with specific formatting (columns representing ontology IDs, descriptions, and associated lists of values) 
+and writes it to a file in a standardized GMT format.
 }
 \examples{
 modelDfFromFile <- read_gmt(

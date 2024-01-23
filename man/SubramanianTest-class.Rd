@@ -13,7 +13,7 @@
 \item{model}{Object of s4 class represents Mulea Test.}
 }
 \value{
-dataframe with presented columns 'ontologyId', 'ontologyName',
+dataframe with presented columns 'ontology_id', 'ontology_name',
 'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
 'pValue', 'adjustedPValue'
 

@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 enrichment_test_simulation <- function(DB_of_categories, list_of_all_genes, pool, selectSize, steps, randomSeed) {
-    .Call(`_MulEA_enrichment_test_simulation`, DB_of_categories, list_of_all_genes, pool, selectSize, steps, randomSeed)
+    .Call(`_mulea_enrichment_test_simulation`, DB_of_categories, list_of_all_genes, pool, selectSize, steps, randomSeed)
 }
 

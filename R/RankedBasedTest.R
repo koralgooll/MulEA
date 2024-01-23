@@ -1,6 +1,6 @@
 #' Gene Set Enrichment Analysis (GSEA)
 #' 
-#' An S4 class to represent a ranked based tests in Mulea.
+#' An S4 class to represent a ranked based tests in mulea.
 #'
 #' @slot gmt A data frame which contains the data, imported from a GMT file.
 #' @slot element_names A vector of elements names to include in the analysis,
@@ -16,8 +16,8 @@
 #' @return GSEA object. This object represents ranked based tests.
 #' @export
 #' @examples
-#' modelDfFromFile <- MulEA::read_gmt(
-#'   file = system.file(package="MulEA", "extdata", "model.gmt"))
+#' modelDfFromFile <- mulea::read_gmt(
+#'   file = system.file(package="mulea", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742",
 #'                         "FBgn0029709", "FBgn0030341", "FBgn0037044",
 #'                         "FBgn0002887", "FBgn0028434", "FBgn0030170",
@@ -78,11 +78,11 @@ setMethod("initialize", "gsea",
           })
 
 #' @describeIn gsea runs test calculations.
-#' @param model Object of s4 class represents Mulea Test.
+#' @param model Object of s4 class represents mulea Test.
 #' @return run_test method for GSEA object. Returns results of
 #' counting using methods from ranking based area.
 #' @examples
-#' GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
+#' GSEASubramanianRes <- mulea::run_test(GSEASubramanian)
 setMethod("run_test",
           signature(model = "gsea"),
           function(model) {

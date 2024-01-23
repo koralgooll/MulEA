@@ -7,7 +7,7 @@
 list_to_gmt(gmt_list)
 }
 \arguments{
-\item{gmt_list}{List with element names as ontologyId and genes in each
+\item{gmt_list}{List with element names as ontology_id and genes in each
 element.}
 }
 \value{

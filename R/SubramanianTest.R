@@ -1,11 +1,11 @@
-#' PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
+#' PRIVATE class : An S4 class to represent a ranked based tests in mulea.
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot element_names A data from expeciment to analize accross model.
 #' @slot element_scores A vectore of element_scores per element_names.
 #' @slot p A power of weight.
 #' @slot element_score_type Defines the GSEA score type. Only positive element_scores - "pos", only negative element_scores - "neg" and mixed (standard) - "std".
-#' @return dataframe with presented columns 'ontologyId', 'ontologyName',
+#' @return dataframe with presented columns 'ontology_id', 'ontology_name',
 #' 'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
 #' 'pValue', 'adjustedPValue'
 #' @examples
@@ -41,9 +41,9 @@ setMethod("initialize", "SubramanianTest",
             .Object@element_score_type <- element_score_type
             
             .Object@test <- function(model) {
-              listmodelDfFromFile <- model@gmt$listOfValues
+              listmodelDfFromFile <- model@gmt$list_of_values
               names(listmodelDfFromFile) <-
-                model@gmt$ontologyId
+                model@gmt$ontology_id
               
               samplesToAnalisys <- model@element_scores
               names(samplesToAnalisys) <- model@element_names
@@ -60,30 +60,30 @@ setMethod("initialize", "SubramanianTest",
                 merge(
                   model@gmt,
                   fgseaRes,
-                  by.x = "ontologyId",
+                  by.x = "ontology_id",
                   by.y = "pathway",
                   all = TRUE
                 )
               resultDf <-
                 plyr::ddply(
                   .data = resultDf,
-                  .variables = c('ontologyId'),
+                  .variables = c('ontology_id'),
                   .fun = function(df_row) {
                     nrCommonGenesOntologyBackground <-
-                      length(df_row[, 'listOfValues'][[1]])
+                      length(df_row[, 'list_of_values'][[1]])
                     cbind(df_row, nrCommonGenesOntologyBackground)
                   }
                 )[c(
-                  "ontologyId",
-                  "ontologyName",
+                  "ontology_id",
+                  "ontology_name",
                   'size',
                   'nrCommonGenesOntologyBackground',
                   "pval",
                   "padj"
                 )]
               colnames(resultDf) <- c(
-                "ontologyId",
-                "ontologyName",
+                "ontology_id",
+                "ontology_name",
                 'nrCommonGenesOntologySet',
                 'nrCommonGenesOntologyBackground',
                 "pValue",
@@ -97,7 +97,7 @@ setMethod("initialize", "SubramanianTest",
           })
 
 #' @describeIn SubramanianTest runs test calculations.
-#' @param model Object of s4 class represents Mulea Test.
+#' @param model Object of s4 class represents mulea Test.
 #' @return run_test method for SubramanianTest object. Used as private function.
 #' @examples
 #' \dontrun{

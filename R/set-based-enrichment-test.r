@@ -119,11 +119,11 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
     clusterExport(cl,"seeds_per_thread", envir = current_env)
     clusterExport(cl,"steps_per_thread", envir = current_env)
     
-    clusterEvalQ(cl, library(MulEA))
+    clusterEvalQ(cl, library(mulea))
     
     # Sys.sleep(10)
     
-    # muleaPkgDir <- find.package("MulEA")
+    # muleaPkgDir <- find.package("mulea")
     # cppSourceFile <- paste(muleaPkgDir,"/srcCpp/set-based-enrichment-test.cpp", sep = "")
     # clusterExport(cl,"cppSourceFile", envir = current_env)
     

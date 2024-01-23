@@ -1,7 +1,7 @@
-Package: MulEA
+Package: mulea
 Type: Package
 Encoding: UTF-8
-Title: MulEA - A Tool for Multi Enrichment Analysis
+Title: mulea - A Tool for Multi Enrichment Analysis
 Version: 0.99.10
 Date: 2016-04-08
 Authors@R: c(
@@ -13,12 +13,12 @@ Authors@R: c(
     person("Marton", "Oelbei", role =  "ctb"),
     person("Tamas", "Stirling", role = "ctb"))
 Maintainer: Cezary Turek <Cezary.Turek@gmail.com>
-Description: MulEA (Multi Enrichment Analysis) is a package/tool for functional
+Description: mulea (Multi Enrichment Analysis) is a package/tool for functional
     analysis of multi-omics data sets. Among many packages that can be used for
     this task, only few could be applied either to multiple species, ontology
-    types or providing an access to multiple statistics. MulEA is addressing
+    types or providing an access to multiple statistics. mulea is addressing
     this gap providing support for 25 species and any kind of data defining the
-    knolwedge base. In addition, MulEA provides a unique permutation based,
+    knolwedge base. In addition, mulea provides a unique permutation based,
     empirical false discovery rate correction of the p-values.
 License: MIT + file LICENSE
 LazyData: TRUE
@@ -49,8 +49,8 @@ Suggests:
 LinkingTo:
     Rcpp
 VignetteBuilder: knitr
-URL: https://github.com/koralgooll/MulEA
-BugReports: https://github.com/koralgooll/MulEA/issues
+URL: https://github.com/koralgooll/mulea
+BugReports: https://github.com/koralgooll/mulea/issues
 RoxygenNote: 7.2.3
 SystemRequirements: C++11
 Config/testthat/edition: 3

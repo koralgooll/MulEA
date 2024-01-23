@@ -10,7 +10,10 @@ read_gmt(file)
 \item{file}{character; a path which points to a GMT file.}
 }
 \value{
-Returns data frame with the model from a specific location.
+Returns a data frame with three columns: 
+ontology_id: The identifier for each entry.
+ontology_name: The name or description corresponding to the ontology_id.
+list_of_values: A list of values associated with each ontology_id.
 }
 \description{
 Read model data from a Gene Matrix Transposed (GMT) file and parse into a

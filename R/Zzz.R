@@ -1,4 +1,4 @@
-#' @useDynLib MulEA, .registration = TRUE
+#' @useDynLib mulea, .registration = TRUE
 #' @importFrom Rcpp evalCpp
 #'
 helper_set_up_namespace_params <- function() {
