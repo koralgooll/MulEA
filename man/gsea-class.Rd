@@ -10,7 +10,7 @@
 \S4method{run_test}{gsea}(model)
 }
 \arguments{
-\item{model}{Object of s4 class represents Mulea Test.}
+\item{model}{Object of s4 class represents mulea Test.}
 }
 \value{
 GSEA object. This object represents ranked based tests.
@@ -19,7 +19,7 @@ run_test method for GSEA object. Returns results of
 counting using methods from ranking based area.
 }
 \description{
-An S4 class to represent a ranked based tests in Mulea.
+An S4 class to represent a ranked based tests in mulea.
 }
 \section{Methods (by generic)}{
 \itemize{
@@ -49,8 +49,8 @@ Default value is 1000.}
 }}
 
 \examples{
-modelDfFromFile <- MulEA::read_gmt(
-  file = system.file(package="MulEA", "extdata", "model.gmt"))
+modelDfFromFile <- mulea::read_gmt(
+  file = system.file(package="mulea", "extdata", "model.gmt"))
 dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742",
                         "FBgn0029709", "FBgn0030341", "FBgn0037044",
                         "FBgn0002887", "FBgn0028434", "FBgn0030170",
@@ -60,5 +60,5 @@ dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
 GSEASubramanian <- gsea(gmt = modelDfFromFile,
                         element_names = dataFromExperiment,
                         element_scores = dataFromExperimentScores)
-GSEASubramanianRes <- MulEA::run_test(GSEASubramanian)
+GSEASubramanianRes <- mulea::run_test(GSEASubramanian)
 }

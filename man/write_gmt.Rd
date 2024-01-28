@@ -20,8 +20,8 @@ and writes it to a file in a standardized GMT format.
 }
 \examples{
 modelDfFromFile <- read_gmt(
-  file = system.file(package="MulEA", "extdata", "model.gmt"))
+  file = system.file(package="mulea", "extdata", "model.gmt"))
 write_gmt(gmt = modelDfFromFile,
-          file = paste(system.file(package="MulEA", "extdata"),
+          file = paste(system.file(package="mulea", "extdata"),
           "fromDb.gmt", sep = "/"))
 }

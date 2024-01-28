@@ -5,21 +5,21 @@
 \alias{ora-class}
 \alias{ora}
 \alias{run_test,ora-method}
-\title{An S4 class to represent a set based tests in Mulea.}
+\title{An S4 class to represent a set based tests in mulea.}
 \usage{
 \S4method{run_test}{ora}(model)
 }
 \arguments{
-\item{model}{Object of s4 class represents Mulea Test.}
+\item{model}{Object of s4 class represents mulea Test.}
 }
 \value{
-ora object. This object represents set based tests in Mulea.
+ora object. This object represents set based tests in mulea.
 
 run_test method for ora object. Returns results of counting using
 methods from set based area.
 }
 \description{
-An S4 class to represent a set based tests in Mulea.
+An S4 class to represent a set based tests in mulea.
 }
 \section{Methods (by generic)}{
 \itemize{
@@ -49,7 +49,7 @@ enrichment test. Default value is 10000.}
 
 \examples{
 modelDfFromFile <- read_gmt(
-  file = system.file(package="MulEA", "extdata", "model.gmt"))
+  file = system.file(package="mulea", "extdata", "model.gmt"))
 dataFromExperiment <- c(
   "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
   "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
@@ -83,7 +83,7 @@ setBaseTestWithPermutationTestAdjustment <- ora(
   number_of_cpu_threads = 2
  )
 modelDfFromFile <- read_gmt(
-  file = system.file(package="MulEA", "extdata", "model.gmt"))
+  file = system.file(package="mulea", "extdata", "model.gmt"))
 dataFromExperiment <- c(
   "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
   "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")

@@ -12,7 +12,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // enrichment_test_simulation
 DataFrame enrichment_test_simulation(Rcpp::List DB_of_categories, std::vector<std::string> list_of_all_genes, std::vector<std::string> pool, int selectSize, int steps, unsigned int randomSeed);
-RcppExport SEXP _MulEA_enrichment_test_simulation(SEXP DB_of_categoriesSEXP, SEXP list_of_all_genesSEXP, SEXP poolSEXP, SEXP selectSizeSEXP, SEXP stepsSEXP, SEXP randomSeedSEXP) {
+RcppExport SEXP _mulea_enrichment_test_simulation(SEXP DB_of_categoriesSEXP, SEXP list_of_all_genesSEXP, SEXP poolSEXP, SEXP selectSizeSEXP, SEXP stepsSEXP, SEXP randomSeedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -28,11 +28,11 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_MulEA_enrichment_test_simulation", (DL_FUNC) &_MulEA_enrichment_test_simulation, 6},
+    {"_mulea_enrichment_test_simulation", (DL_FUNC) &_mulea_enrichment_test_simulation, 6},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_MulEA(DllInfo *dll) {
+RcppExport void R_init_mulea(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

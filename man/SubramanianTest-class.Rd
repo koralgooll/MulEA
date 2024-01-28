@@ -5,12 +5,12 @@
 \alias{SubramanianTest-class}
 \alias{SubramanianTest}
 \alias{run_test,SubramanianTest-method}
-\title{PRIVATE class : An S4 class to represent a ranked based tests in Mulea.}
+\title{PRIVATE class : An S4 class to represent a ranked based tests in mulea.}
 \usage{
 \S4method{run_test}{SubramanianTest}(model)
 }
 \arguments{
-\item{model}{Object of s4 class represents Mulea Test.}
+\item{model}{Object of s4 class represents mulea Test.}
 }
 \value{
 dataframe with presented columns 'ontology_id', 'ontology_name',
@@ -20,7 +20,7 @@ dataframe with presented columns 'ontology_id', 'ontology_name',
 run_test method for SubramanianTest object. Used as private function.
 }
 \description{
-PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
+PRIVATE class : An S4 class to represent a ranked based tests in mulea.
 }
 \section{Methods (by generic)}{
 \itemize{

@@ -14,7 +14,7 @@ reshape_results(
 )
 }
 \arguments{
-\item{model}{a MulEA model, created e.g. by ora().}
+\item{model}{a mulea model, created e.g. by ora().}
 
 \item{model_results}{Results from model, returned by run_test().}
 
