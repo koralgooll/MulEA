@@ -1,5 +1,5 @@
 library(tidyverse)
-library(MulEA)
+library(mulea)
 
 
 # If calculation of summaries and roc data is necessary.
@@ -16,13 +16,13 @@ set_name <- "big_85"
 sim_mult_tests_res <- readr::read_rds("dev\\new_tests_res\\sim_mult_tests_res_big_095_30.rds")
 set_name <- "big_95"
 
-sim_mult_tests_res_sum <- MulEA:::getMultipleTestsSummaryAcrossCutOff(tests_res=sim_mult_tests_res)
-sim_mult_tests_res_to_roc <- MulEA:::getSummaryToRoc(tests_res = sim_mult_tests_res)
+sim_mult_tests_res_sum <- mulea:::getMultipleTestsSummaryAcrossCutOff(tests_res=sim_mult_tests_res)
+sim_mult_tests_res_to_roc <- mulea:::getSummaryToRoc(tests_res = sim_mult_tests_res)
 
 
 # If start from serialized data.
 # Load saved data.
-mulea_path <- "/home/cezary/science/MulEA/MulEA"
+mulea_path <- "/home/cezary/science/mulea/mulea"
 
 # Small data set (~100 ontologies).
 sim_mult_tests_res_sum <- readr::read_rds(paste(mulea_path, "/dev/sim_res_small_wiki_085_1000_sum.rds", sep = ""))

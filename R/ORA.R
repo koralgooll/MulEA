@@ -130,14 +130,14 @@ setMethod("initialize", "ora",
                                                c('Genes_in_DB', 'P_adj_Bonf',
                                                  'R_obs', 'R_exp', 'adjustedPValue')]
               } else {
-                muleaHypergeometricTest <-
-                  muleaHypergeometricTest(
+                MuleaHypergeometricTest <-
+                  MuleaHypergeometricTest(
                     gmt = setBasemodel@gmt,
                     element_names = setBasemodel@element_names,
                     pool = setBasemodel@background_element_names,
                     number_of_cpu_threads = setBasemodel@number_of_cpu_threads
                   )
-                setBasedTestRes <- run_test(muleaHypergeometricTest)
+                setBasedTestRes <- run_test(MuleaHypergeometricTest)
                 
                 muleaSetBaseEnrichmentTest <- merge(
                   setBasemodel@gmt[c('ontology_id', 'ontology_name')],
