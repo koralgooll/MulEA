@@ -282,7 +282,7 @@ test_that("ora : private : matrix 2,2,2,2.", {
   testDataMock <- c("a", "b", "e", "f")
   poolMock <- c("a", "b", "c", "d", "e", "f", "g", "h")
   
-  mulea_hyper_test <- mulea:::muleaHypergeometricTest(
+  mulea_hyper_test <- mulea:::MuleaHypergeometricTest(
     gmt = gmtMock,
     element_names = testDataMock,
     pool = poolMock, 
@@ -303,7 +303,7 @@ test_that("ora : private : DBi not include pool, matrix 2,0,2,2.", {
   testDataMock <- c("a", "b", "e", "f")
   poolMock <- c("a", "b", "e", "f", "g", "h")
   
-  mulea_hyper_test <- mulea:::muleaHypergeometricTest(
+  mulea_hyper_test <- mulea:::MuleaHypergeometricTest(
     gmt = gmtMock,
     element_names = testDataMock,
     pool = poolMock, 

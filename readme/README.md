@@ -6,7 +6,7 @@
 
 ``` r
 library(devtools)
-install_github("https://github.com/koralgooll/mulea.git")
+install_github("https://github.com/koralgooll/MulEA.git")
 ```
 
 ## An example of how to use the *mulea* package
