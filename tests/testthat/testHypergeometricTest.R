@@ -1,8 +1,8 @@
 test_that("ora : object creation test.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "c")
@@ -23,9 +23,9 @@ test_that("ora : object creation test.", {
 
 test_that("ora : object creation test : adjustment type.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "c")
@@ -43,9 +43,9 @@ test_that("ora : object creation test : adjustment type.", {
 
 test_that("ora : element_names out of DB model.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "d")
@@ -63,9 +63,9 @@ test_that("ora : element_names out of DB model.", {
 
 test_that("ora : element_names out of pool.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "c")
@@ -84,9 +84,9 @@ test_that("ora : element_names out of pool.", {
 
 test_that("ora : matrix 2,2,2,2.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "e", "f")
@@ -105,9 +105,9 @@ test_that("ora : matrix 2,2,2,2.", {
 
 test_that("ora : pool >> var + DBi, matrix 2,2,2,18.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "e", "f")
@@ -152,9 +152,9 @@ test_that("ora : pool >> var + DBi, matrix 2,2,2,18.", {
 
 test_that("ora : DBi not include pool, matrix 2,0,2,2.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "e", "f")
@@ -173,15 +173,15 @@ test_that("ora : DBi not include pool, matrix 2,0,2,2.", {
 
 test_that("ora : DB1 + DB2 => pool, matrix 1,3,2,2 and 2,2,1,3.", {
   gmtMock1 <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   gmtMock2 <- data.frame(
-    ontologyId = "GO:0000002",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("e", "f", "g", "h"))),
+    ontology_id = "GO:0000002",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("e", "f", "g", "h"))),
     stringsAsFactors = FALSE
   )
   gmtMock <- rbind(gmtMock1, gmtMock2)
@@ -200,15 +200,15 @@ test_that("ora : DB1 + DB2 => pool, matrix 1,3,2,2 and 2,2,1,3.", {
 
 test_that("ora : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
   gmtMock1 <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   gmtMock2 <- data.frame(
-    ontologyId = "GO:0000002",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("e", "f", "c", "d"))),
+    ontology_id = "GO:0000002",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("e", "f", "c", "d"))),
     stringsAsFactors = FALSE
   )
   gmtMock <- rbind(gmtMock1, gmtMock2)
@@ -274,9 +274,9 @@ test_that("ora : DB1 + DB2 => pool, matrix 2,2,2,0 and 2,2,1,3.", {
 
 test_that("ora : private : matrix 2,2,2,2.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "e", "f")
@@ -295,9 +295,9 @@ test_that("ora : private : matrix 2,2,2,2.", {
 
 test_that("ora : private : DBi not include pool, matrix 2,0,2,2.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "e", "f")

@@ -101,25 +101,25 @@ nrow(Regulon_GMT)
 
 Let’s see the first 3 rows of the `Regulon_GMT` data.frame:
 
-| ontologyId | ontologyName | listOfValues |
+| ontology_id | ontology_name | list_of_values |
 |:-----------|:-------------|:-------------|
 | AccB       | “AccB”       | accC, accB   |
 | AcrR       | “AcrR”       | marB, ma….   |
 | Ada        | “Ada”        | alkB, ad….   |
 
 We have to mention that the in the *Regulon GMT* files both the
-`ontologyId` ans the `ontologyName` columns contain the gene symbols of
+`ontology_id` ans the `ontology_name` columns contain the gene symbols of
 the transcription factors. In the case of some other *GMT* files, *i.e.*
-the *GO GMT* files, the `ontologyId` column contains the GO IDs and the
-`ontologyName` column contains the GO terms.
+the *GO GMT* files, the `ontology_id` column contains the GO IDs and the
+`ontology_name` column contains the GO terms.
 
-The `listOfValues` lists of the gene symbols that are regulated by the
-transcription factor indicated in the `ontologyId` column. To see all
+The `list_of_values` lists of the gene symbols that are regulated by the
+transcription factor indicated in the `ontology_id` column. To see all
 such genes for example in the case of the transcription factor *AcrR*,
 we can use the following code:
 
 ``` r
-Regulon_GMT$listOfValues[[which(Regulon_GMT$ontologyId == "AcrR")]]
+Regulon_GMT$list_of_values[[which(Regulon_GMT$ontology_id == "AcrR")]]
 ```
 
 > marB marR marA acrB micF flhD acrR flhC acrA soxS soxR
@@ -133,11 +133,11 @@ tailor the size of the ontology entries to their specific requirements,
 ensuring that the results match the expected scope.
 
 Let’s see the distribution of number of elements (gene symbols) in the
-`listOfValues` column to decide if we need to exclude too specific or
+`list_of_values` column to decide if we need to exclude too specific or
 too broad ontology entries:
 
 ``` r
-Nr_of_elements_in_ontology <- Regulon_GMT$listOfValues %>% 
+Nr_of_elements_in_ontology <- Regulon_GMT$list_of_values %>% 
   map_dbl(length)
 
 ggplot(mapping = aes(Nr_of_elements_in_ontology)) + 
@@ -145,7 +145,7 @@ ggplot(mapping = aes(Nr_of_elements_in_ontology)) +
   theme_minimal()
 ```
 
-![](README_files/figure-commonmark/plot_listOfValues-1.png)
+![](README_files/figure-commonmark/plot_list_of_values-1.png)
 
 We now see that there are some ontology entries containing more than 200
 gene symbols. These transcription factors regulate a lot of genes,
@@ -162,7 +162,7 @@ ggplot(mapping = aes(Nr_of_elements_in_ontology)) +
   theme_minimal()
 ```
 
-![](README_files/figure-commonmark/plot_listOfValues_zoom-1.png)
+![](README_files/figure-commonmark/plot_list_of_values_zoom-1.png)
 
 Let’s exclude the ontology entries containing less than 3 or more than
 400 gene symbols and check the remaining number of transcription
@@ -432,8 +432,8 @@ Initializing the visualization:
 ``` r
 gsea_reshaped_results <- reshape_results(model = gsea_model, 
                                          model_results = gsea_results, 
-                                         model_ontology_col_name = "ontologyId",
-                                         ontology_id_colname = "ontologyId",
+                                         model_ontology_col_name = "ontology_id",
+                                         ontology_id_colname = "ontology_id",
                                          # choosing which column to use for the indication of significance
                                          p_value_type_colname = "adjustedPValue")
 ```

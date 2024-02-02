@@ -1,8 +1,8 @@
 test_that("GSEA : object creation test.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "c")
@@ -19,9 +19,9 @@ test_that("GSEA : object creation test.", {
 
 test_that("GSEA : no element_scores vector.", {
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "d")
@@ -34,9 +34,9 @@ test_that("GSEA : no element_scores vector.", {
 test_that("GSEA : out of ontology elements.", {
   set.seed(1)
   gmtMock <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   testDataMock <- c("a", "b", "e", "f")
@@ -54,15 +54,15 @@ test_that("GSEA : out of ontology elements.", {
 test_that("GSEA : DB1 + DB2.", {
   set.seed(1)
   gmtMock1 <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   gmtMock2 <- data.frame(
-    ontologyId = "GO:0000002",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("e", "f", "g", "h"))),
+    ontology_id = "GO:0000002",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("e", "f", "g", "h"))),
     stringsAsFactors = FALSE
   )
   gmtMock <- rbind(gmtMock1, gmtMock2)
@@ -80,15 +80,15 @@ test_that("GSEA : DB1 + DB2.", {
 test_that("GSEA : DB1 + DB2 out of background_element_names.", {
   set.seed(1)
   gmtMock1 <- data.frame(
-    ontologyId = "GO:0000001",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("a", "b", "c", "d"))),
+    ontology_id = "GO:0000001",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("a", "b", "c", "d"))),
     stringsAsFactors = FALSE
   )
   gmtMock2 <- data.frame(
-    ontologyId = "GO:0000002",
-    ontologyName = "Imagin gen ontology to tests.",
-    listOfValues = I(list(c("e", "f", "c", "d"))),
+    ontology_id = "GO:0000002",
+    ontology_name = "Imagin gen ontology to tests.",
+    list_of_values = I(list(c("e", "f", "c", "d"))),
     stringsAsFactors = FALSE
   )
   gmtMock <- rbind(gmtMock1, gmtMock2)
