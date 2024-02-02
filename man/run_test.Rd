@@ -61,7 +61,7 @@ GSEASubramanian <- gsea(
   gmt = modelDfFromFile,
   element_names = dataFromExperiment,
   element_scores = dataFromExperimentScores)
-GSEASubramanianRes <- mulea::run_test(GSEASubramanian)
+GSEASubramanianRes <- run_test(GSEASubramanian)
 }
 \seealso{
 \code{\link{gsea}}, \code{\link{ora}}

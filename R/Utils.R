@@ -594,7 +594,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
     
     input_select <- unlist(samples)
     
-    mulea_ora_model <- mulea::ora(
+    mulea_ora_model <- ora(
       gmt = input_gmt_filtered,
       element_names = input_select,
       p_value_adjustment_method = "eFDR",
@@ -602,7 +602,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
       number_of_cpu_threads = nthreads
     )
     
-    mulea_ora_results <- mulea::run_test(mulea_ora_model)
+    mulea_ora_results <- run_test(mulea_ora_model)
     tests_res[[i]]$mulea_res <- mulea_ora_results
     tests_res[[i]]$test_data <- input_gmt_decorated
     tests_res[[i]]$metadata <- list(

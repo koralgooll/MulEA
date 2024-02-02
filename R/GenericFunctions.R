@@ -47,7 +47,7 @@
 #'   gmt = modelDfFromFile,
 #'   element_names = dataFromExperiment,
 #'   element_scores = dataFromExperimentScores)
-#' GSEASubramanianRes <- mulea::run_test(GSEASubramanian)
+#' GSEASubramanianRes <- run_test(GSEASubramanian)
 #' @return Results in form of data frame. Structure of data frame depends on
 #' object processed by this generic method.
 #' @importFrom methods new
