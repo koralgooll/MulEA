@@ -378,28 +378,27 @@ plot_barplot <-
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
 #' data(geneSet) 
-#' Run model on geneset
+#' # Run model on geneset
 #' ora_model <- ora(
-#'  gmt = geneSet,
-#'  element_names = selectDf$select, 
-#'  background_element_names = poolDf$background_element_names,
-#'  p_value_adjustment_method = "eFDR",
-#'  number_of_permutations = 1000
+#'   gmt = geneSet,
+#'   element_names = selectDf$select, 
+#'   background_element_names = poolDf$background_element_names,
+#'   p_value_adjustment_method = "eFDR",
+#'   number_of_permutations = 1000
 #' )
 #' ora_results <- run_test(ora_model)
-#' Reshape results
+#' # Reshape results
 #' ora_reshaped_results <- reshape_results(
-#'  model = ora_model, 
-#'  model_results = ora_results, 
-#'  p_value_type_colname='eFDR'
+#'   model = ora_model, 
+#'   model_results = ora_results, 
+#'   p_value_type_colname = "eFDR"
 #' )
 #' plot_lollipop(
-#' reshaped_results = ora_reshaped_results,
-#' p_value_max_threshold=0.05,
-#' p_value_type_colname = "eFDR"
+#'   reshaped_results = ora_reshaped_results,
+#'   p_value_max_threshold = 1,
+#'   p_value_type_colname = "eFDR"
 #' )
 #' 
-
 plot_lollipop <-
   function(reshaped_results,
            ontology_id_colname = 'ontology_id',
@@ -423,15 +422,15 @@ plot_lollipop <-
       dplyr::arrange(dplyr::desc((!!as.name(
         p_value_type_colname
       ))))
-    
     unique_reshaped_results_df <-
       as.data.frame(unique_reshaped_results)
     unique_reshaped_results_df[, 1] <-
       factor(unique_reshaped_results_df[[1]],
              levels = unique_reshaped_results_df[[1]])
-    mulea_gg_plot <- ggplot(unique_reshaped_results_df,
-      aes(x = ontology_id, 
-          y = eFDR)
+    return(unique_reshaped_results_df)
+    mulea_gg_plot <- ggplot(
+      unique_reshaped_results_df,
+      aes(x = get(ontology_id_colname), y = get(p_value_type_colname))
     ) +
       geom_segment( aes(x=ontology_id, 
                         xend = ontology_id,
