@@ -5,3 +5,7 @@
 README.md
 README.Rmd
 README_cache
+
+# OTHER
+dev/*
+readme/*
