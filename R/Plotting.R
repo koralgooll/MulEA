@@ -43,20 +43,20 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
 #' data(geneSet) 
-#' Run model on geneset
+#' # Run model on geneset
 #' ora_model <- ora(
-#'  gmt = geneSet,
-#'  element_names = selectDf$select, 
-#'  background_element_names = poolDf$background_element_names,
-#'  p_value_adjustment_method = "eFDR",
-#'  number_of_permutations = 1000
+#'   gmt = geneSet,
+#'   element_names = selectDf$select, 
+#'   background_element_names = poolDf$background_element_names,
+#'   p_value_adjustment_method = "eFDR",
+#'   number_of_permutations = 1000
 #' )
 #' ora_results <- run_test(ora_model)
-#' Reshape results
+#' # Reshape results
 #' ora_reshaped_results <- reshape_results(
-#'  model = ora_model, 
-#'  model_results = ora_results, 
-#'  p_value_type_colname='adjustedPValueEmpirical'
+#'   model = ora_model, 
+#'   model_results = ora_results, 
+#'   p_value_type_colname='adjustedPValueEmpirical'
 #' )
 
 reshape_results <-
@@ -137,27 +137,27 @@ reshape_results <-
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
 #' data(geneSet) 
-#' Run model on geneset
+#' # Run model on geneset
 #' ora_model <- ora(
-#'  gmt = geneSet,
-#'  element_names = selectDf$select, 
-#'  background_element_names = poolDf$background_element_names,
-#'  p_value_adjustment_method = "eFDR",
-#'  number_of_permutations = 1000
+#'   gmt = geneSet,
+#'   element_names = selectDf$select, 
+#'   background_element_names = poolDf$background_element_names,
+#'   p_value_adjustment_method = "eFDR",
+#'   number_of_permutations = 1000
 #' )
 #' ora_results <- run_test(ora_model)
-#' Reshape results
+#' # Reshape results
 #' ora_reshaped_results <- reshape_results(
-#'  model = ora_model, 
-#'  model_results = ora_results, 
-#'  p_value_type_colname='adjustedPValueEmpirical'
+#'   model = ora_model, 
+#'   model_results = ora_results, 
+#'   p_value_type_colname='adjustedPValueEmpirical'
 #' )
-#' Plot graph
+#' # Plot graph
 #' plot_graph(
-#'  reshaped_results=ora_reshaped_results,
-#'  p_value_max_threshold = 1.00,
-#'  p_value_type_colname = "adjustedPValueEmpirical"
-#')
+#'   reshaped_results=ora_reshaped_results,
+#'   p_value_max_threshold = 1.00,
+#'   p_value_type_colname = "adjustedPValueEmpirical"
+#' )
 
 plot_graph <- function(reshaped_results,
                        ontology_id_colname = 'ontology_id',
@@ -288,25 +288,25 @@ plot_graph <- function(reshaped_results,
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
 #' data(geneSet) 
-#' Run model on geneset
+#' # Run model on geneset
 #' ora_model <- ora(
-#'  gmt = geneSet,
-#'  element_names = selectDf$select, 
-#'  background_element_names = poolDf$background_element_names,
-#'  p_value_adjustment_method = "eFDR",
-#'  number_of_permutations = 1000
+#'   gmt = geneSet,
+#'   element_names = selectDf$select, 
+#'   background_element_names = poolDf$background_element_names,
+#'   p_value_adjustment_method = "eFDR",
+#'   number_of_permutations = 1000
 #' )
 #' ora_results <- run_test(ora_model)
-#' Reshape results
+#' # Reshape results
 #' ora_reshaped_results <- reshape_results(
-#'  model = ora_model, 
-#'  model_results = ora_results, 
-#'  p_value_type_colname='adjustedPValueEmpirical'
+#'   model = ora_model, 
+#'   model_results = ora_results, 
+#'   p_value_type_colname='adjustedPValueEmpirical'
 #' )
 #' plot_barplot(
-#' reshaped_results = ora_reshaped_results,
-#' p_value_max_threshold=1.00,
-#' p_value_type_colname = "adjustedPValueEmpirical"
+#'   reshaped_results = ora_reshaped_results,
+#'   p_value_max_threshold=1.00,
+#'   p_value_type_colname = "adjustedPValueEmpirical"
 #' )
 #' 
 plot_barplot <-
@@ -432,12 +432,13 @@ plot_lollipop <-
       unique_reshaped_results_df,
       aes(x = get(ontology_id_colname), y = get(p_value_type_colname))
     ) +
-      geom_segment( aes(x=ontology_id, 
-                        xend = ontology_id,
+      geom_segment(aes(x= get(ontology_id_colname), 
+                        xend = get(ontology_id_colname),
                         y = 0, 
-                        yend = as.numeric(eFDR)),
+                        yend = as.numeric(get(p_value_type_colname))),
                     color = 'black')+
-      geom_point(aes(size=5, color = eFDR))+guides(size='none')+
+      geom_point(aes(size=5, color = get(p_value_type_colname)))+
+      guides(size='none')+
       scale_color_gradient2(mid = '#ff6361',
                            high = 'grey90',
                            limits = c(0.0, p_value_max_threshold)) +
@@ -456,6 +457,7 @@ plot_lollipop <-
 #' @details 
 #'  The `plot_heatmap` function provides a convenient way to create a ggplot2 heatmap illustrating the significance of enriched terms within ontology categories based on their associated p-values.
 #' @param reshaped_results  data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.
+#' @param ontology_id_colname Character, specifies the column name that contains ontology IDs in the input data.
 #' @param p_value_type_colname Character, specifies the column name for p-values in the input data. Default is 'eFDR'.
 #' @param ontology_element_colname Character, specifying the column name that contains ontology elements or terms in the input data. Default: 'element_id_in_ontology'.
 #' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
@@ -470,25 +472,25 @@ plot_lollipop <-
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
 #' data(geneSet) 
-#' Run model on geneset
+#' # Run model on geneset
 #' ora_model <- ora(
-#'  gmt = geneSet,
-#'  element_names = selectDf$select, 
-#'  background_element_names = poolDf$background_element_names,
-#'  p_value_adjustment_method = "eFDR",
-#'  number_of_permutations = 1000
+#'   gmt = geneSet,
+#'   element_names = selectDf$select, 
+#'   background_element_names = poolDf$background_element_names,
+#'   p_value_adjustment_method = "eFDR",
+#'   number_of_permutations = 1000
 #' )
 #' ora_results <- run_test(ora_model)
-#' Reshape results
+#' # Reshape results
 #' ora_reshaped_results <- reshape_results(
-#'  model = ora_model, 
-#'  model_results = ora_results, 
-#'  p_value_type_colname='adjustedPValueEmpirical'
+#'   model = ora_model, 
+#'   model_results = ora_results, 
+#'   p_value_type_colname='adjustedPValueEmpirical'
 #' )
 #' plot_heatmap(
-#'  reshaped_results=ora_reshaped_results,
-#'  p_value_max_threshold=1.00,
-#'  p_value_type_colname = 'adjustedPValueEmpirical'
+#'   reshaped_results=ora_reshaped_results,
+#'   p_value_max_threshold=1.00,
+#'   p_value_type_colname = 'adjustedPValueEmpirical'
 #' )
 plot_heatmap <- function(reshaped_results,
                          ontology_id_colname = 'ontology_id',
