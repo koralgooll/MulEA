@@ -96,7 +96,11 @@ test_that("Utils : filter_ontology default", {
   )
   gmtMock <- rbind(gmtMock1, gmtMock2, gmtMock3)
   
-  gmt_filtered_model <- filter_ontology(gmt = gmtMock)
+  gmt_filtered_model <- filter_ontology(
+    gmt = gmtMock,
+    min_nr_of_elements = 5,
+    max_nr_of_elements = 350
+  )
   
   testthat::expect_equal(nrow(gmt_filtered_model), 1)
   testthat::expect_equal(gmt_filtered_model$ontology_id, "GO:0000003")
@@ -156,8 +160,11 @@ test_that("Utils : filter_ontology above min", {
   )
   gmtMock <- rbind(gmtMock1, gmtMock2, gmtMock3)
   
-  gmt_filtered_model <- filter_ontology(gmt = gmtMock, 
-                                        min_nr_of_elements = 3)
+  gmt_filtered_model <- filter_ontology(
+    gmt = gmtMock,
+    min_nr_of_elements = 3,
+    max_nr_of_elements = 350
+  )
   
   testthat::expect_equal(nrow(gmt_filtered_model), 2)
   testthat::expect_equal(gmt_filtered_model$ontology_id, c("GO:0000002", "GO:0000003"))
