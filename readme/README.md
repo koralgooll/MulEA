@@ -1,15 +1,15 @@
-# *MulEA*: an *R* package for Multi-Enrichment Analysis
+# *mulea*: an *R* package for Multi-Enrichment Analysis
 
-<img src="images/MulEA_logo.png" data-fig-align="right" alt="MulEA" />
+<img src="images/mulea_logo.png" data-fig-align="right" alt="mulea" />
 
-## Installing the *MulEA* package using *devtools*
+## Installing the *mulea* package using *devtools*
 
 ``` r
 library(devtools)
-install_github("https://github.com/koralgooll/MulEA.git")
+install_github("https://github.com/koralgooll/mulea.git")
 ```
 
-## An example of how to use the *MulEA* package
+## An example of how to use the *mulea* package
 
 ### The data set to analyse
 
@@ -34,7 +34,7 @@ Reading the table containing the results of the differential expression
 analysis:
 
 ``` r
-library(MulEA)
+library(mulea)
 library(tidyverse)
 
 Geo2R_result_tab <- read_tsv("GSE55662.table_wt_non_vs_cipro.tsv")
@@ -77,12 +77,12 @@ data.frame:
 
 - We were curious about which **transcription factors** regulated the
   expression of the significantly overexpressed genes.
-- Therefore, we used the *MulEA* package to perform multi-enrichment
+- Therefore, we used the *mulea* package to perform multi-enrichment
   analysis on the ![Regulon](images/Regulon.png)
   [database](https://regulondb.ccg.unam.mx/).
 - The *GMT* file containing genes symbols that are regulated by
   transcription factors was downloaded from the [Github page of
-  MulEA](https://github.com/ELTEbioinformatics/mulea/blob/main/GMT/83333_Escherichia_coli/RegulonDB_Escherichia_coli_genesymbol_Leila.gmt).
+  mulea](https://github.com/ELTEbioinformatics/mulea/blob/main/GMT/83333_Escherichia_coli/RegulonDB_Escherichia_coli_genesymbol_Leila.gmt).
 
 Reading the *GMT* file containing the lists of gene symbols each
 transcription factor (indicated with gene symbols as well) regulates:
@@ -128,7 +128,7 @@ Regulon_GMT$listOfValues[[which(Regulon_GMT$ontologyId == "AcrR")]]
 
 When interpreting the results of enrichment analyses, one may encounter
 the problem of the results being dominated by either overly specific or
-overly broad ontology entries being enriched. In *MulEA*, users can
+overly broad ontology entries being enriched. In *mulea*, users can
 tailor the size of the ontology entries to their specific requirements,
 ensuring that the results match the expected scope.
 
@@ -524,7 +524,7 @@ sessionInfo()
     other attached packages:
      [1] lubridate_1.9.2 forcats_1.0.0   stringr_1.5.0   dplyr_1.1.2    
      [5] purrr_1.0.1     readr_2.1.4     tidyr_1.3.0     tibble_3.2.1   
-     [9] ggplot2_3.4.2   tidyverse_2.0.0 MulEA_0.99.10  
+     [9] ggplot2_3.4.2   tidyverse_2.0.0 mulea_0.99.10  
 
     loaded via a namespace (and not attached):
      [1] fastmatch_1.1-3     gtable_0.3.3        xfun_0.39          

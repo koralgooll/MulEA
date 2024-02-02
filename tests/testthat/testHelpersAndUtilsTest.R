@@ -45,7 +45,7 @@ test_that("Utils : read_gmt", {
   fileConn <- file(filePath)
   writeLines(c('ID:0000001	"mitochondrion inheritance"	FBgn0033690	FBgn0261618'), fileConn)
   close(fileConn)
-  modelDfFromFile <- MulEA::read_gmt(file = filePath)
+  modelDfFromFile <- mulea::read_gmt(file = filePath)
   
   testthat::expect_equal(modelDfFromFile$ontologyId, "ID:0000001")
   testthat::expect_equal(modelDfFromFile$ontologyName, 
@@ -65,7 +65,7 @@ test_that("Utils : write_gmt", {
   )
   
   write_gmt(gmt = gmtMock, file = filePath)
-  modelDfFromFile <- MulEA::read_gmt(file = filePath)
+  modelDfFromFile <- mulea::read_gmt(file = filePath)
   
   testthat::expect_equal(modelDfFromFile$ontologyId, "GO:0000001")
   testthat::expect_equal(modelDfFromFile$ontologyName, 
@@ -166,7 +166,7 @@ test_that("Utils : filter_ontology above min", {
 
 test_that("Utils : helper_set_up_namespace_params dll loader helper", {
   sink(tempfile())
-  callRes <- MulEA:::helper_set_up_namespace_params()
+  callRes <- mulea:::helper_set_up_namespace_params()
   sink()
   testthat::expect_equal(callRes, "Not implemented helper func.")
 })
