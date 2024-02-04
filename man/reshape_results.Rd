@@ -29,11 +29,19 @@ reshape_results(
 \value{
 Return detailed and relaxed datatable where model and results are
 merged for plotting purposes.
-
-#' @examples 
+}
+\description{
+This function takes model and model_results data, 
+reshapes them into a suitable format for plotting, 
+and returns the resulting data frame, which can be used 
+for further analysis or visualization.
+}
+\examples{
 # import example gene set
 # import other gene sets from a GMT file using read_gmt()
-data(geneSet) 
+data(geneSet)
+data(selectDf)
+data(poolDf)
 # Run model on geneset
 ora_model <- ora(
   gmt = geneSet,
@@ -49,12 +57,6 @@ ora_reshaped_results <- reshape_results(
   model_results = ora_results, 
   p_value_type_colname='adjustedPValueEmpirical'
 )
-}
-\description{
-This function takes model and model_results data, 
-reshapes them into a suitable format for plotting, 
-and returns the resulting data frame, which can be used 
-for further analysis or visualization.
 }
 \seealso{
 \code{\link{plot_graph}}, \code{\link{plot_barplot}},

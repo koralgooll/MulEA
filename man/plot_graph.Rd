@@ -41,7 +41,9 @@ and p-values.
 \examples{
 # import example gene set
 # import other gene sets from a GMT file using read_gmt()
-data(geneSet) 
+data(geneSet)
+data(selectDf)
+data(poolDf)
 # Run model on geneset
 ora_model <- ora(
   gmt = geneSet,

@@ -39,10 +39,12 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #' @return Return detailed and relaxed datatable where model and results are
 #' merged for plotting purposes.
 #' 
-#' #' @examples 
+#' @examples 
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
-#' data(geneSet) 
+#' data(geneSet)
+#' data(selectDf)
+#' data(poolDf)
 #' # Run model on geneset
 #' ora_model <- ora(
 #'   gmt = geneSet,
@@ -136,7 +138,9 @@ reshape_results <-
 #' @examples 
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
-#' data(geneSet) 
+#' data(geneSet)
+#' data(selectDf)
+#' data(poolDf)
 #' # Run model on geneset
 #' ora_model <- ora(
 #'   gmt = geneSet,
@@ -287,7 +291,9 @@ plot_graph <- function(reshaped_results,
 #' @examples 
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
-#' data(geneSet) 
+#' data(geneSet)
+#' data(selectDf)
+#' data(poolDf)
 #' # Run model on geneset
 #' ora_model <- ora(
 #'   gmt = geneSet,
@@ -377,7 +383,9 @@ plot_barplot <-
 #' @examples 
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
-#' data(geneSet) 
+#' data(geneSet)
+#' data(selectDf)
+#' data(poolDf)
 #' # Run model on geneset
 #' ora_model <- ora(
 #'   gmt = geneSet,
@@ -471,7 +479,9 @@ plot_lollipop <-
 #' @examples 
 #' # import example gene set
 #' # import other gene sets from a GMT file using read_gmt()
-#' data(geneSet) 
+#' data(geneSet)
+#' data(selectDf)
+#' data(poolDf)
 #' # Run model on geneset
 #' ora_model <- ora(
 #'   gmt = geneSet,
