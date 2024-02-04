@@ -594,7 +594,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
       element_names = input_select,
       p_value_adjustment_method = "eFDR",
       number_of_permutations = number_of_steps,
-      number_of_cpu_threads = nthreads
+      nthreads = nthreads
     )
     
     mulea_ora_results <- run_test(mulea_ora_model)

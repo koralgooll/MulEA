@@ -44,7 +44,7 @@ Possible values: "eFDR" and all from p.adjust {stats} documentation.}
 \item{\code{number_of_permutations}}{A number of permutations used in set based
 enrichment test. Default value is 10000.}
 
-\item{\code{number_of_cpu_threads}}{Number of processor's threads used in calculations.}
+\item{\code{nthreads}}{Number of processor's threads used in calculations.}
 }}
 
 \examples{
@@ -64,23 +64,23 @@ dataFromExperimentPool <- unique(c(
     "FBgn0030341")))
 setBasedTest <- ora(gmt = modelDfFromFile,
                     element_names = dataFromExperiment, 
-                    number_of_cpu_threads = 2)
+                    nthreads = 2)
 setBasedTestWithPool <- ora(gmt = modelDfFromFile,
                             element_names = dataFromExperiment,
                            background_element_names = dataFromExperimentPool,
-                           number_of_cpu_threads = 2)
+                           nthreads = 2)
 setBasedTestWithPoolAndAdjust <- ora(
   gmt = modelDfFromFile,
   element_names = dataFromExperiment,
   background_element_names = dataFromExperimentPool,
   p_value_adjustment_method = "BH",
-  number_of_cpu_threads = 2
+  nthreads = 2
  )
 setBaseTestWithPermutationTestAdjustment <- ora(
   gmt = modelDfFromFile,
   element_names = dataFromExperiment,
   p_value_adjustment_method = "eFDR",
-  number_of_cpu_threads = 2
+  nthreads = 2
  )
 modelDfFromFile <- read_gmt(
   file = system.file(package="mulea", "extdata", "model.gmt"))
@@ -99,25 +99,25 @@ dataFromExperimentPool <- unique(c(
 setBasedTest <- ora(
   gmt = modelDfFromFile,
   element_names = dataFromExperiment,
-  number_of_cpu_threads = 2
+  nthreads = 2
  )
 setBasedTestWithPool <- ora(
   gmt = modelDfFromFile,
   element_names = dataFromExperiment, 
   background_element_names = dataFromExperimentPool,
-  number_of_cpu_threads = 2
+  nthreads = 2
 )
 setBasedTestWithPoolAndAdjust <- ora(
   gmt = modelDfFromFile,
   element_names = dataFromExperiment,
   background_element_names = dataFromExperimentPool,
-  p_value_adjustment_method = "BH", number_of_cpu_threads = 2
+  p_value_adjustment_method = "BH", nthreads = 2
 )
 setBaseTestWithPermutationTestAdjustment <- ora(
   gmt = modelDfFromFile,
   element_names = dataFromExperiment,
   p_value_adjustment_method = "eFDR",
-  number_of_cpu_threads = 2
+  nthreads = 2
 )
 setBasedTestRes <- run_test(setBasedTest)
 setBasedTestWithPoolRes <- run_test(setBasedTestWithPool)

@@ -113,7 +113,7 @@ dataFromExperimentPool <- unique(c(c("FBgn0033690", "FBgn0261618", "FBgn0004407"
 mulea implements hypergeometric test as highly configurable `ora` class.
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTest <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, number_of_cpu_threads = 2)
+setBasedTest <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, nthreads = 2)
 setBasedTestRes <- mulea::run_test(setBasedTest)
 ```
 
@@ -126,7 +126,7 @@ knitr::kable(setBasedTestRes, caption = "Set Based Test Result Data Frame")
 Usage with definition of background_element_names data, which can be different that in presented model is presented below:
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPool <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, number_of_cpu_threads = 2)
+setBasedTestWithPool <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, nthreads = 2)
 setBasedTestWithPoolRes <- mulea::run_test(setBasedTestWithPool)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -140,7 +140,7 @@ knitr::kable(setBasedTestWithPoolRes, caption = "Set Based Test Result Data Fram
 Other available arguments for `adjustMethod` are: `"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`. References to these methods can be found here: [link](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html).
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, p_value_adjustment_method = "eFDR", number_of_cpu_threads = 2)
+setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, p_value_adjustment_method = "eFDR", nthreads = 2)
 setBasedTestWithPoolAndAdjustRes <- mulea::run_test(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 
@@ -148,7 +148,7 @@ knitr::kable(setBasedTestWithPoolAndAdjustRes, caption = "Set Based Test Result 
 ```
 
 ```{r, results = 'asis', echo = TRUE} 
-setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, p_value_adjustment_method = "BH", number_of_cpu_threads = 2)
+setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment, background_element_names = dataFromExperimentPool, p_value_adjustment_method = "BH", nthreads = 2)
 setBasedTestWithPoolAndAdjustRes <- mulea::run_test(setBasedTestWithPoolAndAdjust)
 ```
 ```{r, results = 'asis', echo = FALSE} 

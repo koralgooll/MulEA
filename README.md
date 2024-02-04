@@ -233,7 +233,7 @@ ora_model <- ora(gmt = Regulon_GMT_filtered,
                  # the number of permutations
                  number_of_permutations = 10000,
                  # the number of processor threads to use
-                 number_of_cpu_threads = 4) 
+                 nthreads = 4) 
 
 # running the ORA
 ora_results <- run_test(ora_model)
