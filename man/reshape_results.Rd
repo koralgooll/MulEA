@@ -48,7 +48,8 @@ ora_model <- ora(
   element_names = selectDf$select, 
   background_element_names = poolDf$background_element_names,
   p_value_adjustment_method = "eFDR",
-  number_of_permutations = 1000
+  number_of_permutations = 1000,
+  nthreads = 1
 )
 ora_results <- run_test(ora_model)
 # Reshape results

@@ -51,7 +51,8 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #'   element_names = selectDf$select, 
 #'   background_element_names = poolDf$background_element_names,
 #'   p_value_adjustment_method = "eFDR",
-#'   number_of_permutations = 1000
+#'   number_of_permutations = 1000,
+#'   nthreads = 1
 #' )
 #' ora_results <- run_test(ora_model)
 #' # Reshape results
@@ -88,7 +89,6 @@ reshape_results <-
       genIdInOntology = rep('a', length.out = model_with_res_dt_size),
       ontologyStatValue = rep(1.0, length.out = model_with_res_dt_size)
     )
-    
     model_with_res_dt_relaxed_counter = 1
     for (i in 1:nrow(model_with_res_dt)) {
       category_name <- model_with_res_dt[[i, 'ontology_id']]
@@ -147,7 +147,8 @@ reshape_results <-
 #'   element_names = selectDf$select, 
 #'   background_element_names = poolDf$background_element_names,
 #'   p_value_adjustment_method = "eFDR",
-#'   number_of_permutations = 1000
+#'   number_of_permutations = 1000,
+#'   nthreads = 1
 #' )
 #' ora_results <- run_test(ora_model)
 #' # Reshape results
@@ -300,7 +301,8 @@ plot_graph <- function(reshaped_results,
 #'   element_names = selectDf$select, 
 #'   background_element_names = poolDf$background_element_names,
 #'   p_value_adjustment_method = "eFDR",
-#'   number_of_permutations = 1000
+#'   number_of_permutations = 1000,
+#'   nthreads = 1
 #' )
 #' ora_results <- run_test(ora_model)
 #' # Reshape results
@@ -392,7 +394,8 @@ plot_barplot <-
 #'   element_names = selectDf$select, 
 #'   background_element_names = poolDf$background_element_names,
 #'   p_value_adjustment_method = "eFDR",
-#'   number_of_permutations = 1000
+#'   number_of_permutations = 1000,
+#'   nthreads = 1
 #' )
 #' ora_results <- run_test(ora_model)
 #' # Reshape results
@@ -488,7 +491,8 @@ plot_lollipop <-
 #'   element_names = selectDf$select, 
 #'   background_element_names = poolDf$background_element_names,
 #'   p_value_adjustment_method = "eFDR",
-#'   number_of_permutations = 1000
+#'   number_of_permutations = 1000,
+#'   nthreads = 1
 #' )
 #' ora_results <- run_test(ora_model)
 #' # Reshape results
