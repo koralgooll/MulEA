@@ -59,7 +59,7 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #' ora_reshaped_results <- reshape_results(
 #'   model = ora_model, 
 #'   model_results = ora_results, 
-#'   p_value_type_colname='adjustedPValueEmpirical'
+#'   p_value_type_colname='eFDR'
 #' )
 
 reshape_results <-
@@ -88,6 +88,10 @@ reshape_results <-
       ontology_id = rep('a', length.out = model_with_res_dt_size),
       genIdInOntology = rep('a', length.out = model_with_res_dt_size),
       ontologyStatValue = rep(1.0, length.out = model_with_res_dt_size)
+    )
+    p_value_type_colname <- match.arg(
+      p_value_type_colname,
+      choices = names(model_with_res_dt)
     )
     model_with_res_dt_relaxed_counter = 1
     for (i in 1:nrow(model_with_res_dt)) {
@@ -155,13 +159,13 @@ reshape_results <-
 #' ora_reshaped_results <- reshape_results(
 #'   model = ora_model, 
 #'   model_results = ora_results, 
-#'   p_value_type_colname='adjustedPValueEmpirical'
+#'   p_value_type_colname='eFDR'
 #' )
 #' # Plot graph
 #' plot_graph(
 #'   reshaped_results=ora_reshaped_results,
 #'   p_value_max_threshold = 1.00,
-#'   p_value_type_colname = "adjustedPValueEmpirical"
+#'   p_value_type_colname = "eFDR"
 #' )
 
 plot_graph <- function(reshaped_results,
@@ -309,12 +313,12 @@ plot_graph <- function(reshaped_results,
 #' ora_reshaped_results <- reshape_results(
 #'   model = ora_model, 
 #'   model_results = ora_results, 
-#'   p_value_type_colname='adjustedPValueEmpirical'
+#'   p_value_type_colname='eFDR'
 #' )
 #' plot_barplot(
 #'   reshaped_results = ora_reshaped_results,
 #'   p_value_max_threshold=1.00,
-#'   p_value_type_colname = "adjustedPValueEmpirical"
+#'   p_value_type_colname = "eFDR"
 #' )
 #' 
 plot_barplot <-
@@ -499,12 +503,12 @@ plot_lollipop <-
 #' ora_reshaped_results <- reshape_results(
 #'   model = ora_model, 
 #'   model_results = ora_results, 
-#'   p_value_type_colname='adjustedPValueEmpirical'
+#'   p_value_type_colname='eFDR'
 #' )
 #' plot_heatmap(
 #'   reshaped_results=ora_reshaped_results,
 #'   p_value_max_threshold=1.00,
-#'   p_value_type_colname = 'adjustedPValueEmpirical'
+#'   p_value_type_colname = 'eFDR'
 #' )
 plot_heatmap <- function(reshaped_results,
                          ontology_id_colname = 'ontology_id',

@@ -52,12 +52,12 @@ ora_results <- run_test(ora_model)
 ora_reshaped_results <- reshape_results(
   model = ora_model, 
   model_results = ora_results, 
-  p_value_type_colname='adjustedPValueEmpirical'
+  p_value_type_colname='eFDR'
 )
 plot_heatmap(
   reshaped_results=ora_reshaped_results,
   p_value_max_threshold=1.00,
-  p_value_type_colname = 'adjustedPValueEmpirical'
+  p_value_type_colname = 'eFDR'
 )
 }
 \seealso{
