@@ -104,21 +104,21 @@ Regulon_GMT %>%
   knitr::kable()
 ```
 
-We have to mention that the in the *Regulon GMT* files both the `ontologyId` ans the `ontologyName` columns contain the gene symbols of the transcription factors. In the case of some other *GMT* files, *i.e.* the *GO GMT* files, the `ontologyId` column contains the GO IDs and the `ontologyName` column contains the GO terms.
+We have to mention that the in the *Regulon GMT* files both the `ontology_id` ans the `ontology_name` columns contain the gene symbols of the transcription factors. In the case of some other *GMT* files, *i.e.* the *GO GMT* files, the `ontology_id` column contains the GO IDs and the `ontology_name` column contains the GO terms.
 
-The `listOfValues` lists of the gene symbols that are regulated by the transcription factor indicated in the `ontologyId` column. To see all such genes for example in the case of the transcription factor *AcrR*, we can use the following code:
+The `list_of_values` lists of the gene symbols that are regulated by the transcription factor indicated in the `ontology_id` column. To see all such genes for example in the case of the transcription factor *AcrR*, we can use the following code:
 
 ```{r print_acrr}
 #| eval: false
 
-Regulon_GMT$listOfValues[[which(Regulon_GMT$ontologyId == "AcrR")]]
+Regulon_GMT$list_of_values[[which(Regulon_GMT$ontology_id == "AcrR")]]
 ```
 
 ```{r print_acrr2}
 #| echo: false
 #| output: asis
 
-Regulon_GMT$listOfValues[[which(Regulon_GMT$ontologyId == "AcrR")]] %>% 
+Regulon_GMT$list_of_values[[which(Regulon_GMT$ontology_id == "AcrR")]] %>% 
   cat(">", ., sep = " ")
 ```
 
@@ -126,10 +126,10 @@ Regulon_GMT$listOfValues[[which(Regulon_GMT$ontologyId == "AcrR")]] %>%
 
 When interpreting the results of enrichment analyses, one may encounter the problem of the results being dominated by either overly specific or overly broad ontology entries being enriched. In *mulea*, users can tailor the size of the ontology entries to their specific requirements, ensuring that the results match the expected scope.
 
-Let's see the distribution of number of elements (gene symbols) in the `listOfValues` column to decide if we need to exclude too specific or too broad ontology entries:
+Let's see the distribution of number of elements (gene symbols) in the `list_of_values` column to decide if we need to exclude too specific or too broad ontology entries:
 
-```{r plot_listOfValues}
-Nr_of_elements_in_ontology <- Regulon_GMT$listOfValues %>% 
+```{r plot_list_of_values}
+Nr_of_elements_in_ontology <- Regulon_GMT$list_of_values %>% 
   map_dbl(length)
 
 ggplot(mapping = aes(Nr_of_elements_in_ontology)) + 
@@ -140,7 +140,7 @@ We now see that there are some ontology entries containing more than 200 gene sy
 
 We also see that there are some ontology entries with only a small number of elements. Let's zoom in to this part of the distribution:
 
-```{r plot_listOfValues_zoom}
+```{r plot_list_of_values_zoom}
 #| warning: false
 
 ggplot(mapping = aes(Nr_of_elements_in_ontology)) + 
@@ -293,7 +293,7 @@ ora_model <- ora(gmt = Regulon_GMT_filtered,
                  # the number of permutations
                  number_of_permutations = 10000,
                  # the number of processor threads to use
-                 number_of_cpu_threads = 4) 
+                 nthreads = 4) 
 
 # running the ORA
 ora_results <- run_test(ora_model)
@@ -451,8 +451,8 @@ Initializing the visualization:
 ```{r init_plot_gsea}
 gsea_reshaped_results <- reshape_results(model = gsea_model, 
                                          model_results = gsea_results, 
-                                         model_ontology_col_name = "ontologyId",
-                                         ontology_id_colname = "ontologyId",
+                                         model_ontology_col_name = "ontology_id",
+                                         ontology_id_colname = "ontology_id",
                                          # choosing which column to use for the indication of significance
                                          p_value_type_colname = "adjustedPValue")
 ```

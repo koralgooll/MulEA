@@ -30,12 +30,7 @@ read_gmt <- function(file) {
       .fun = function(line) {
         fields <- strsplit(line, split = "\t")[[1]]
         category <- fields[1]
-        if (startsWith(fields[2], "\"") &&
-            endsWith(fields[2], "\"")) {
-          description <- fields[2]
-        } else {
-          description <- paste("\"", fields[2], "\"", sep = "")
-        }
+        description <- fields[2]
         list_of_values <- fields[3:length(fields)]
         data.frame(
           'ontology_id' = category,
@@ -594,15 +589,15 @@ simulateMultipleTests <- function(input_gmt_filtered,
     
     input_select <- unlist(samples)
     
-    mulea_ora_model <- mulea::ora(
+    mulea_ora_model <- ora(
       gmt = input_gmt_filtered,
       element_names = input_select,
       p_value_adjustment_method = "eFDR",
       number_of_permutations = number_of_steps,
-      number_of_cpu_threads = nthreads
+      nthreads = nthreads
     )
     
-    mulea_ora_results <- mulea::run_test(mulea_ora_model)
+    mulea_ora_results <- run_test(mulea_ora_model)
     tests_res[[i]]$mulea_res <- mulea_ora_results
     tests_res[[i]]$test_data <- input_gmt_decorated
     tests_res[[i]]$metadata <- list(

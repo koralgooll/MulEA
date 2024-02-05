@@ -15,6 +15,8 @@ plot_heatmap(
 \arguments{
 \item{reshaped_results}{data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.}
 
+\item{ontology_id_colname}{Character, specifies the column name that contains ontology IDs in the input data.}
+
 \item{ontology_element_colname}{Character, specifying the column name that contains ontology elements or terms in the input data. Default: 'element_id_in_ontology'.}
 
 \item{p_value_type_colname}{Character, specifies the column name for p-values in the input data. Default is 'eFDR'.}
@@ -33,26 +35,29 @@ The `plot_heatmap` function provides a convenient way to create a ggplot2 heatma
 \examples{
 # import example gene set
 # import other gene sets from a GMT file using read_gmt()
-data(geneSet) 
-Run model on geneset
+data(geneSet)
+data(selectDf)
+data(poolDf)
+# Run model on geneset
 ora_model <- ora(
- gmt = geneSet,
- element_names = selectDf$select, 
- background_element_names = poolDf$background_element_names,
- p_value_adjustment_method = "eFDR",
- number_of_permutations = 1000
+  gmt = geneSet,
+  element_names = selectDf$select, 
+  background_element_names = poolDf$background_element_names,
+  p_value_adjustment_method = "eFDR",
+  number_of_permutations = 1000,
+  nthreads = 1
 )
 ora_results <- run_test(ora_model)
-Reshape results
+# Reshape results
 ora_reshaped_results <- reshape_results(
- model = ora_model, 
- model_results = ora_results, 
- p_value_type_colname='adjustedPValueEmpirical'
+  model = ora_model, 
+  model_results = ora_results, 
+  p_value_type_colname='eFDR'
 )
 plot_heatmap(
- reshaped_results=ora_reshaped_results,
- p_value_max_threshold=1.00,
- p_value_type_colname = 'adjustedPValueEmpirical'
+  reshaped_results=ora_reshaped_results,
+  p_value_max_threshold=1.00,
+  p_value_type_colname = 'eFDR'
 )
 }
 \seealso{

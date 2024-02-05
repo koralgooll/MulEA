@@ -36,26 +36,29 @@ Create a customized barplot of p-values, facilitating visual exploration and ana
 \examples{
 # import example gene set
 # import other gene sets from a GMT file using read_gmt()
-data(geneSet) 
-Run model on geneset
+data(geneSet)
+data(selectDf)
+data(poolDf)
+# Run model on geneset
 ora_model <- ora(
- gmt = geneSet,
- element_names = selectDf$select, 
- background_element_names = poolDf$background_element_names,
- p_value_adjustment_method = "eFDR",
- number_of_permutations = 1000
+  gmt = geneSet,
+  element_names = selectDf$select, 
+  background_element_names = poolDf$background_element_names,
+  p_value_adjustment_method = "eFDR",
+  number_of_permutations = 1000,
+  nthreads = 1
 )
 ora_results <- run_test(ora_model)
-Reshape results
+# Reshape results
 ora_reshaped_results <- reshape_results(
- model = ora_model, 
- model_results = ora_results, 
- p_value_type_colname='adjustedPValueEmpirical'
+  model = ora_model, 
+  model_results = ora_results, 
+  p_value_type_colname='eFDR'
 )
 plot_barplot(
-reshaped_results = ora_reshaped_results,
-p_value_max_threshold=1.00,
-p_value_type_colname = "adjustedPValueEmpirical"
+  reshaped_results = ora_reshaped_results,
+  p_value_max_threshold=1.00,
+  p_value_type_colname = "eFDR"
 )
 
 }

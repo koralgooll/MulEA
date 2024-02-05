@@ -49,7 +49,7 @@ Default value is 1000.}
 }}
 
 \examples{
-modelDfFromFile <- mulea::read_gmt(
+modelDfFromFile <- read_gmt(
   file = system.file(package="mulea", "extdata", "model.gmt"))
 dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742",
                         "FBgn0029709", "FBgn0030341", "FBgn0037044",
@@ -60,5 +60,5 @@ dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28, 0.30,
 GSEASubramanian <- gsea(gmt = modelDfFromFile,
                         element_names = dataFromExperiment,
                         element_scores = dataFromExperimentScores)
-GSEASubramanianRes <- mulea::run_test(GSEASubramanian)
+GSEASubramanianRes <- run_test(GSEASubramanian)
 }

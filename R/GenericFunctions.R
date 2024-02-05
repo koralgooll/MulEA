@@ -27,16 +27,16 @@
 #'      "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742",
 #'      "FBgn0029709", "FBgn0030341")))
 #' setBasedTest <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment,
-#'                    number_of_cpu_threads = 2)
+#'                    nthreads = 2)
 #' setBasedTestWithPool <- ora(gmt = modelDfFromFile,
 #'                             element_names = dataFromExperiment,
 #'                             background_element_names = dataFromExperimentPool,
-#'                             number_of_cpu_threads = 2)
+#'                             nthreads = 2)
 #' setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile,
 #'                                      element_names = dataFromExperiment,
 #'                                      background_element_names = dataFromExperimentPool,
 #'                                      p_value_adjustment_method = "BH",
-#'                                      number_of_cpu_threads = 2)
+#'                                      nthreads = 2)
 #' setBasedTestRes <- run_test(setBasedTest)
 #' setBasedTestWithPoolRes <- run_test(setBasedTestWithPool)
 #' setBasedTestWithPoolAndAdjustRes <- run_test(setBasedTestWithPoolAndAdjust)
@@ -47,7 +47,7 @@
 #'   gmt = modelDfFromFile,
 #'   element_names = dataFromExperiment,
 #'   element_scores = dataFromExperimentScores)
-#' GSEASubramanianRes <- mulea::run_test(GSEASubramanian)
+#' GSEASubramanianRes <- run_test(GSEASubramanian)
 #' @return Results in form of data frame. Structure of data frame depends on
 #' object processed by this generic method.
 #' @importFrom methods new

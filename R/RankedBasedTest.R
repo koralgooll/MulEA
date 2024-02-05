@@ -16,7 +16,7 @@
 #' @return GSEA object. This object represents ranked based tests.
 #' @export
 #' @examples
-#' modelDfFromFile <- mulea::read_gmt(
+#' modelDfFromFile <- read_gmt(
 #'   file = system.file(package="mulea", "extdata", "model.gmt"))
 #' dataFromExperiment <- c("FBgn0004407", "FBgn0010438", "FBgn0003742",
 #'                         "FBgn0029709", "FBgn0030341", "FBgn0037044",
@@ -82,7 +82,7 @@ setMethod("initialize", "gsea",
 #' @return run_test method for GSEA object. Returns results of
 #' counting using methods from ranking based area.
 #' @examples
-#' GSEASubramanianRes <- mulea::run_test(GSEASubramanian)
+#' GSEASubramanianRes <- run_test(GSEASubramanian)
 setMethod("run_test",
           signature(model = "gsea"),
           function(model) {

@@ -29,32 +29,35 @@ reshape_results(
 \value{
 Return detailed and relaxed datatable where model and results are
 merged for plotting purposes.
-
-#' @examples 
-# import example gene set
-# import other gene sets from a GMT file using read_gmt()
-data(geneSet) 
-Run model on geneset
-ora_model <- ora(
- gmt = geneSet,
- element_names = selectDf$select, 
- background_element_names = poolDf$background_element_names,
- p_value_adjustment_method = "eFDR",
- number_of_permutations = 1000
-)
-ora_results <- run_test(ora_model)
-Reshape results
-ora_reshaped_results <- reshape_results(
- model = ora_model, 
- model_results = ora_results, 
- p_value_type_colname='adjustedPValueEmpirical'
-)
 }
 \description{
 This function takes model and model_results data, 
 reshapes them into a suitable format for plotting, 
 and returns the resulting data frame, which can be used 
 for further analysis or visualization.
+}
+\examples{
+# import example gene set
+# import other gene sets from a GMT file using read_gmt()
+data(geneSet)
+data(selectDf)
+data(poolDf)
+# Run model on geneset
+ora_model <- ora(
+  gmt = geneSet,
+  element_names = selectDf$select, 
+  background_element_names = poolDf$background_element_names,
+  p_value_adjustment_method = "eFDR",
+  number_of_permutations = 1000,
+  nthreads = 1
+)
+ora_results <- run_test(ora_model)
+# Reshape results
+ora_reshaped_results <- reshape_results(
+  model = ora_model, 
+  model_results = ora_results, 
+  p_value_type_colname='eFDR'
+)
 }
 \seealso{
 \code{\link{plot_graph}}, \code{\link{plot_barplot}},
