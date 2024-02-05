@@ -442,7 +442,6 @@ plot_lollipop <-
     unique_reshaped_results_df[, 1] <-
       factor(unique_reshaped_results_df[[1]],
              levels = unique_reshaped_results_df[[1]])
-    return(unique_reshaped_results_df)
     mulea_gg_plot <- ggplot(
       unique_reshaped_results_df,
       aes(x = get(ontology_id_colname), y = get(p_value_type_colname))
