@@ -27,16 +27,16 @@
 #'      "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742",
 #'      "FBgn0029709", "FBgn0030341")))
 #' setBasedTest <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment,
-#'                    nthreads = 2)
+#'                    nthreads = 1)
 #' setBasedTestWithPool <- ora(gmt = modelDfFromFile,
 #'                             element_names = dataFromExperiment,
 #'                             background_element_names = dataFromExperimentPool,
-#'                             nthreads = 2)
+#'                             nthreads = 1)
 #' setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile,
 #'                                      element_names = dataFromExperiment,
 #'                                      background_element_names = dataFromExperimentPool,
 #'                                      p_value_adjustment_method = "BH",
-#'                                      nthreads = 2)
+#'                                      nthreads = 1)
 #' setBasedTestRes <- run_test(setBasedTest)
 #' setBasedTestWithPoolRes <- run_test(setBasedTestWithPool)
 #' setBasedTestWithPoolAndAdjustRes <- run_test(setBasedTestWithPoolAndAdjust)
