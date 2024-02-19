@@ -5,13 +5,25 @@ Title: mulea - A Tool for Multi Enrichment Analysis
 Version: 0.99.10
 Date: 2016-04-08
 Authors@R: c(
-    person("Wiktor", "Jurkowski", role = "aut"),
-    person("Eszter", "Ari", role = c("aut", "cph")),
-    person("Cezary", "Turek", email = "Cezary.Turek@gmail.com", role =  c("aut", "cre")),
-    person("Peter", "Forgacs", role =  "ctb"),
-    person("Leila", "Gul", role =  "ctb"),
-    person("Marton", "Oelbei", role =  "ctb"),
-    person("Tamas", "Stirling", role = "ctb"))
+    person("Cezary", "Turek", email = "Cezary.Turek@gmail.com", 
+           role =  c("aut", "cre")),
+    person("Márton", "Ölbei", role = c("aut", "ctb"),
+           comment = c(ORCID = "0000-0002-4903-6237")),
+    person("Tamás", "Stirling", role = c("aut", "ctb"),
+           comment = c(ORCID = "0000-0002-8964-6443")),
+    person("Gergely", "Fekete", role = c("aut"),
+           comment = c(ORCID = "0000-0001-9939-4860")),
+    person("Ervin", "Tasnádi", role = c("aut"),
+           comment = c(ORCID = "0000-0002-4713-5397")),
+    person("Leila", "Gul", role = c("aut")),
+    person("Balázs", "Bohár", role = c("aut"),
+           comment = c(ORCID = "0000-0002-3033-5448")),
+    person("Balázs", "Papp", role = c("aut"),
+           comment = c(ORCID = "0000-0003-3093-8852")),
+    person("Wiktor", "Jurkowski", role = c("aut"),
+           comment = c(ORCID = "0000-0002-7820-1991")),
+    person("Eszter", "Ari", role = c("aut", "ctb"), 
+           comment = c(ORCID = "0000-0001-7774-1067")))
 Maintainer: Cezary Turek <Cezary.Turek@gmail.com>
 Description: mulea (Multi Enrichment Analysis) is a package/tool for functional
     analysis of multi-omics data sets. Among many packages that can be used for
@@ -49,7 +61,7 @@ Suggests:
 LinkingTo:
     Rcpp
 VignetteBuilder: knitr
-URL: https://github.com/koralgooll/mulea
-BugReports: https://github.com/koralgooll/mulea/issues
+URL: https://github.com/ELTEbioinformatics/mulea
+BugReports: https://github.com/ELTEbioinformatics/mulea/issues
 RoxygenNote: 7.2.3
 Config/testthat/edition: 3
