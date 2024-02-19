@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ![](readme/images/MulEA_logo.png){width="59"} `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
+# ![](man/figures/MulEA_logo.png){width="59"} `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
 
 <!-- badges: start -->
 
@@ -40,7 +40,7 @@ This section demonstrates how to use `mulea` with a sample dataset. If you have 
 
 #### **1. Downloading and Exploring the Dataset:**
 
-This example analyzes a differential expression (DE) dataset from a microarray experiment deposited in the NCBI Gene Expression Omnibus ![GEO](readme/images/geo_main.gif){alt="GEO" width="87"} under accession number [GSE55662](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55662). The original study by [Méhi *et al.* (2014)](https://doi.org/10.1093/molbev/msu223), investigated the evolution of antibiotic resistance in *Escherichia coli* bacteria. The authors compared gene expression changes in *ciprofloxacin*-treated bacteria to non-treated controls.
+This example analyzes a differential expression (DE) dataset from a microarray experiment deposited in the NCBI Gene Expression Omnibus ![GEO](man/figures/geo_main.gif){alt="GEO" width="87"} under accession number [GSE55662](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55662). The original study by [Méhi *et al.* (2014)](https://doi.org/10.1093/molbev/msu223), investigated the evolution of antibiotic resistance in *Escherichia coli* bacteria. The authors compared gene expression changes in *ciprofloxacin*-treated bacteria to non-treated controls.
 
 The [GEO2R](https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE55662) tool was used for differential expression analysis, comparing:
 
@@ -58,7 +58,7 @@ geo2r_result_tab <- read_tsv("GSE55662.table_wt_non_vs_cipro.tsv")
 
 ```{r 'DE1_eval', eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 library(tidyverse)
-geo2r_result_tab <- read_tsv("readme/GSE55662.table_wt_non_vs_cipro.tsv")
+geo2r_result_tab <- read_tsv("inst/extdata/GSE55662.table_wt_non_vs_cipro.tsv")
 ```
 
 #### **3. Examining the Data:**
@@ -102,7 +102,7 @@ After applying these formatting steps, the data frame is ready for further analy
 
 ### The Gene Set for Identifying Regulatory Transcription Factors
 
-This section explores the transcription factors influencing the significantly overexpressed genes. We employed the `mulea` package to conduct multiple enrichment analyses using the ![Regulon](readme/images/Regulon.png){alt="Regulon" width="114" height="25"} [database](https://regulondb.ccg.unam.mx/).
+This section explores the transcription factors influencing the significantly overexpressed genes. We employed the `mulea` package to conduct multiple enrichment analyses using the ![Regulon](man/figures/Regulon.png){alt="Regulon" width="114" height="25"} [database](https://regulondb.ccg.unam.mx/).
 
 The analysis utilized a GMT file downloaded from the dedicated [GMT_files_for_mulea](https://github.com/ELTEbioinformatics/GMT_files_for_mulea) GitHub repository. This file associates gene symbols with the transcription factors that regulate them.
 

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# <img src="readme/images/MulEA_logo.png" width="59" /> `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
+# <img src="man/figures/MulEA_logo.png" width="59" /> `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
 
 <!-- badges: start -->
 
@@ -61,7 +61,7 @@ Analysis (GSEA)](#gene-set-enrichment-analysis-gsea) sections.
 
 This example analyzes a differential expression (DE) dataset from a
 microarray experiment deposited in the NCBI Gene Expression Omnibus
-<img src="readme/images/geo_main.gif" alt="GEO" width="87" /> under
+<img src="man/figures/geo_main.gif" alt="GEO" width="87" /> under
 accession number
 [GSE55662](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55662).
 The original study by [Méhi *et al.*
@@ -142,7 +142,7 @@ further analysis.
 This section explores the transcription factors influencing the
 significantly overexpressed genes. We employed the `mulea` package to
 conduct multiple enrichment analyses using the
-<img src="readme/images/Regulon.png" alt="Regulon" width="114"
+<img src="man/figures/Regulon.png" alt="Regulon" width="114"
 height="25" /> [database](https://regulondb.ccg.unam.mx/).
 
 The analysis utilized a GMT file downloaded from the dedicated
@@ -422,14 +422,14 @@ ora_results %>%
 |:------------|:--------------|-------------------------------:|----------------------------------:|----------:|----------:|
 | FNR         | “FNR”         |                             26 |                               259 | 0.0000003 | 0.0000000 |
 | LexA        | “LexA”        |                             14 |                                53 | 0.0000000 | 0.0000000 |
-| SoxS        | “SoxS”        |                              7 |                                37 | 0.0001615 | 0.0028667 |
-| DnaA        | “DnaA”        |                              4 |                                13 | 0.0006281 | 0.0049500 |
-| Rob         | “Rob”         |                              5 |                                21 | 0.0004717 | 0.0051600 |
-| FadR        | “FadR”        |                              5 |                                20 | 0.0003692 | 0.0054250 |
-| NsrR        | “NsrR”        |                              8 |                                64 | 0.0010478 | 0.0066857 |
-| ArcA        | “ArcA”        |                             12 |                               148 | 0.0032001 | 0.0186125 |
-| IHF         | “IHF”         |                             14 |                               205 | 0.0070758 | 0.0434900 |
-| MarA        | “MarA”        |                              5 |                                37 | 0.0066068 | 0.0457333 |
+| SoxS        | “SoxS”        |                              7 |                                37 | 0.0001615 | 0.0021667 |
+| DnaA        | “DnaA”        |                              4 |                                13 | 0.0006281 | 0.0042500 |
+| Rob         | “Rob”         |                              5 |                                21 | 0.0004717 | 0.0044000 |
+| FadR        | “FadR”        |                              5 |                                20 | 0.0003692 | 0.0046250 |
+| NsrR        | “NsrR”        |                              8 |                                64 | 0.0010478 | 0.0066429 |
+| ArcA        | “ArcA”        |                             12 |                               148 | 0.0032001 | 0.0200500 |
+| IHF         | “IHF”         |                             14 |                               205 | 0.0070758 | 0.0450800 |
+| MarA        | “MarA”        |                              5 |                                37 | 0.0066068 | 0.0475222 |
 
 #### Visualizing the ORA Result
 
@@ -604,7 +604,7 @@ gsea_results %>%
   filter(adjustedPValue < 0.05) %>% 
   # the number of such rows
   nrow()
-#> [1] 11
+#> [1] 8
 ```
 
 And inspect the significant results:
@@ -619,17 +619,14 @@ gsea_results %>%
 
 | ontology_id | ontology_name | nrCommonGenesOntologySet | nrCommonGenesOntologyBackground |    pValue | adjustedPValue |
 |:------------|:--------------|-------------------------:|--------------------------------:|----------:|---------------:|
-| LexA        | “LexA”        |                       53 |                              61 | 0.0000000 |      0.0000030 |
-| FNR         | “FNR”         |                      259 |                             302 | 0.0000474 |      0.0036281 |
-| GlaR        | “GlaR”        |                        3 |                               5 | 0.0001893 |      0.0072414 |
-| ModE        | “ModE”        |                       45 |                              46 | 0.0001870 |      0.0072414 |
-| ArcA        | “ArcA”        |                      148 |                             180 | 0.0004900 |      0.0124951 |
-| SoxS        | “SoxS”        |                       37 |                              44 | 0.0004352 |      0.0124951 |
-| DnaA        | “DnaA”        |                       13 |                              14 | 0.0006274 |      0.0137128 |
-| PspF        | “PspF”        |                        7 |                               7 | 0.0015555 |      0.0297488 |
-| PaaX        | “PaaX”        |                       14 |                              14 | 0.0020904 |      0.0355370 |
-| FadR        | “FadR”        |                       20 |                              23 | 0.0033113 |      0.0460576 |
-| Rob         | “Rob”         |                       21 |                              26 | 0.0031263 |      0.0460576 |
+| LexA        | “LexA”        |                       53 |                              61 | 0.0000001 |      0.0000089 |
+| FNR         | “FNR”         |                      259 |                             302 | 0.0000570 |      0.0043580 |
+| GlaR        | “GlaR”        |                        3 |                               5 | 0.0003486 |      0.0157744 |
+| ModE        | “ModE”        |                       45 |                              46 | 0.0004124 |      0.0157744 |
+| ArcA        | “ArcA”        |                      148 |                             180 | 0.0005358 |      0.0163954 |
+| DnaA        | “DnaA”        |                       13 |                              14 | 0.0007007 |      0.0171159 |
+| SoxS        | “SoxS”        |                       37 |                              44 | 0.0007831 |      0.0171159 |
+| PspF        | “PspF”        |                        7 |                               7 | 0.0023124 |      0.0442246 |
 
 #### Visualizing the GSEA Results
 
