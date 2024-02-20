@@ -549,10 +549,10 @@ plot_heatmap <- function(reshaped_results,
       fill = !!rlang::sym(p_value_type_colname)
     )
   ) +
+    geom_tile() +
     scale_fill_gradient2(mid = '#ff6361',
                          high = 'grey90',
                          limits = c(0.0,p_value_max_threshold)) +
-    geom_tile() +
     coord_fixed()+
     theme_light() +
     theme(axis.text.x = element_text(angle = 90), text = element_text(family = "Helvetica"))
