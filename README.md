@@ -219,7 +219,7 @@ tf_gmt %>%
 #> [11] "soxR"
 ```
 
-#### **3. Focusing on Relevant Entries for the Enrichment Analysis**
+#### 3. Focusing on Relevant Entries for the Enrichment Analysis
 
 Enrichment analysis results can sometimes be skewed by overly specific
 or broad entries. `mulea` allows you to customize the size of ontology
@@ -311,8 +311,8 @@ sets.
 #### Preparing the Target set
 
 A vector containing the gene symbols of significantly overexpressed
-($adjusted\ p-value < 0.05$) genes with greater than 2 fold-change
-($logFC > 1$).
+(adjusted *p*-value \< 0.05) genes with greater than 2 fold-change
+(logFC \> 1).
 
 ``` r
 sign_genes <- geo2r_result_tab %>% 
@@ -399,7 +399,7 @@ The `ora_results` data frame summarizes the enrichment analysis, listing
 enriched ontology entries – in our case transcription factors –
 alongside their associated *p*-values and *empirical FDR* values. We can
 now determine the number of transcription factors classified as
-“enriched” based on these statistical measures ($eFDR<0.05$).
+“enriched” based on these statistical measures (*eFDR* \< 0.05).
 
 ``` r
 ora_results %>%
@@ -424,14 +424,14 @@ ora_results %>%
 |:------------|:--------------|-------------------------------:|----------------------------------:|----------:|----------:|
 | FNR         | FNR           |                             26 |                               259 | 0.0000003 | 0.0000000 |
 | LexA        | LexA          |                             14 |                                53 | 0.0000000 | 0.0000000 |
-| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0026333 |
-| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0052333 |
-| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0053200 |
-| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0054750 |
-| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0072714 |
-| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0201625 |
-| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0452800 |
-| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0478111 |
+| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0026000 |
+| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0050833 |
+| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0052600 |
+| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0054000 |
+| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0069857 |
+| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0200625 |
+| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0445600 |
+| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0469778 |
 
 #### Visualizing the ORA Result
 
@@ -499,10 +499,10 @@ plot_barplot(reshaped_results = ora_reshaped_results,
 This function generates a network visualization of the enriched
 transcription factors. Each node represents a transcription factor and
 is coloured based on its significance level. A connection (edge) is
-drawn between two nodes if they share at least one common gene, meaning
-that both transcription factors regulate the expression of the same
-target gene. The thickness of the edge reflects the number of shared
-genes.
+drawn between two nodes if they share at least one common gene belonging
+to the **target set**, meaning that both transcription factors regulate
+the expression of the same target gene. The thickness of the edge
+reflects the number of shared genes belonging to the **target set**.
 
 ``` r
 plot_graph(reshaped_results = ora_reshaped_results,
@@ -521,8 +521,8 @@ plot_graph(reshaped_results = ora_reshaped_results,
 The heatmap displays the genes associated with the enriched
 transcription factors. Each row represents a transcription factor and is
 coloured based on its significance level. Each column represents a
-target gene that is potentially regulated by one or more of the enriched
-transcription factors.
+target gene belonging to the **target set** that is potentially
+regulated by one or more of the enriched transcription factors.
 
 ``` r
 plot_heatmap(reshaped_results = ora_reshaped_results,
@@ -620,8 +620,8 @@ The `gsea_results` data frame summarizes the enrichment analysis,
 listing enriched ontology entries – in our case transcription factors –
 alongside their associated *p*-values and adjusted *p*-value values. We
 can now determine the number of transcription factors classified as
-“enriched” based on these statistical measures
-($adjusted_p_value<0.05$).
+“enriched” based on these statistical measures (adjusted *p*-value \<
+0.05).
 
 ``` r
 gsea_results %>%
@@ -629,7 +629,7 @@ gsea_results %>%
   filter(adjusted_p_value < 0.05) %>% 
   # the number of such rows
   nrow()
-#> [1] 11
+#> [1] 9
 ```
 
 And inspect the significant results:
@@ -644,17 +644,15 @@ gsea_results %>%
 
 | ontology_id | ontology_name | nr_common_genes_ontology_set | nr_common_genes_ontology_background |   p_value | adjusted_p_value |
 |:------------|:--------------|-----------------------------:|------------------------------------:|----------:|-----------------:|
-| LexA        | LexA          |                           53 |                                  61 | 0.0000000 |        0.0000072 |
-| FNR         | FNR           |                          259 |                                 302 | 0.0000728 |        0.0055662 |
-| ArcA        | ArcA          |                          148 |                                 180 | 0.0002939 |        0.0080760 |
-| DnaA        | DnaA          |                           13 |                                  14 | 0.0003167 |        0.0080760 |
-| GlaR        | GlaR          |                            3 |                                   5 | 0.0002803 |        0.0080760 |
-| ModE        | ModE          |                           45 |                                  46 | 0.0002666 |        0.0080760 |
-| SoxS        | SoxS          |                           37 |                                  44 | 0.0006823 |        0.0149139 |
-| PaaX        | PaaX          |                           14 |                                  14 | 0.0016659 |        0.0318611 |
-| CytR        | CytR          |                           13 |                                  13 | 0.0026824 |        0.0409116 |
-| FadR        | FadR          |                           20 |                                  23 | 0.0029414 |        0.0409116 |
-| PspF        | PspF          |                            7 |                                   7 | 0.0028674 |        0.0409116 |
+| LexA        | LexA          |                           53 |                                  61 | 0.0000000 |        0.0000023 |
+| FNR         | FNR           |                          259 |                                 302 | 0.0000807 |        0.0061702 |
+| ModE        | ModE          |                           45 |                                  46 | 0.0002211 |        0.0112740 |
+| ArcA        | ArcA          |                          148 |                                 180 | 0.0004717 |        0.0120280 |
+| DnaA        | DnaA          |                           13 |                                  14 | 0.0004306 |        0.0120280 |
+| GlaR        | GlaR          |                            3 |                                   5 | 0.0003349 |        0.0120280 |
+| SoxS        | SoxS          |                           37 |                                  44 | 0.0008014 |        0.0175163 |
+| PaaX        | PaaX          |                           14 |                                  14 | 0.0025714 |        0.0437134 |
+| PspF        | PspF          |                            7 |                                   7 | 0.0024604 |        0.0437134 |
 
 #### Visualizing the GSEA Results
 
@@ -670,6 +668,14 @@ gsea_reshaped_results <- reshape_results(model = gsea_model,
 
 **Visualizing the spread of adjusted *p*-values: Lollipop plot**
 
+Lollipop charts offer a graphical representation of the distribution of
+enriched transcription factors. The *y*-axis displays the transcription
+factors, while the *x*-axis represents their corresponding adjusted
+*p*-values. The dots are is coloured based on their significance level.
+This visualization helps us examine the spread of adjusted *p*-values
+and identify factors exceeding the commonly used significance threshold
+of 0.05.
+
 ``` r
 plot_lollipop(reshaped_results = gsea_reshaped_results,
               # the column containing the names we wish to plot
@@ -683,6 +689,14 @@ plot_lollipop(reshaped_results = gsea_reshaped_results,
 <img src="man/figures/README-lollipop_plot_gsea-1.png" width="100%" />
 
 **Visualizing the spread of adjusted *p*-values: Bar plot**
+
+Bar charts offer very similar graphical representation of the
+distribution of enriched transcription factors as the lollipop plot. The
+*y*-axis displays the transcription factors, while the *x*-axis
+represents their corresponding adjusted *p*-values. The bars are is
+coloured based on their significance level. This visualization helps us
+examine the spread of adjusted *p*-values and identify factors exceeding
+the commonly used significance threshold of 0.05.
 
 ``` r
 plot_barplot(reshaped_results = gsea_reshaped_results,
@@ -698,6 +712,14 @@ plot_barplot(reshaped_results = gsea_reshaped_results,
 
 **Visualizing Relationships: Network Plot**
 
+This function generates a network visualization of the enriched
+transcription factors. Each node represents a transcription factor and
+is coloured based on its significance level. A connection (edge) is
+drawn between two nodes if they share at least one common gene belonging
+to the **ranked list**, meaning that both transcription factors regulate
+the expression of the same target gene. The thickness of the edge
+reflects the number of shared genes belonging to the **ranked list**.
+
 ``` r
 plot_graph(reshaped_results = gsea_reshaped_results,
            # the column containing the names we wish to plot
@@ -711,6 +733,14 @@ plot_graph(reshaped_results = gsea_reshaped_results,
 <img src="man/figures/README-network_plot_gsea-1.png" width="100%" />
 
 **Heatmap**
+
+The heatmap displays the genes associated with the enriched
+transcription factors. Each row represents a transcription factor and is
+coloured based on its significance level. Each column represents a
+target gene belonging to the **ranked list** that is potentially
+regulated by one or more of the enriched transcription factors. There
+are too many genes belonging to each transcription factor, therefore
+heatmap visualization is less optimal in this case.
 
 ``` r
 plot_heatmap(reshaped_results = gsea_reshaped_results,
