@@ -6,11 +6,11 @@
 #' @slot p A power of weight.
 #' @slot element_score_type Defines the GSEA score type. Only positive element_scores - "pos", only negative element_scores - "neg" and mixed (standard) - "std".
 #' @return dataframe with presented columns 'ontology_id', 'ontology_name',
-#' 'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
-#' 'pValue', 'adjustedPValue'
+#' 'nr_common_genes_ontology_set', 'nr_common_genes_ontology_background',
+#' 'p_value', 'adjusted_p_value'
 #' @examples
 #' \dontrun{
-#' #It is a private s4 object. Look at GSAE's examples.
+#' #It is a private s4 object. Look at GSEA's examples.
 #' }
 SubramanianTest <- setClass(
   "SubramanianTest",
@@ -69,25 +69,25 @@ setMethod("initialize", "SubramanianTest",
                   .data = resultDf,
                   .variables = c('ontology_id'),
                   .fun = function(df_row) {
-                    nrCommonGenesOntologyBackground <-
+                    nr_common_genes_ontology_background <-
                       length(df_row[, 'list_of_values'][[1]])
-                    cbind(df_row, nrCommonGenesOntologyBackground)
+                    cbind(df_row, nr_common_genes_ontology_background)
                   }
                 )[c(
                   "ontology_id",
                   "ontology_name",
                   'size',
-                  'nrCommonGenesOntologyBackground',
+                  'nr_common_genes_ontology_background',
                   "pval",
                   "padj"
                 )]
               colnames(resultDf) <- c(
                 "ontology_id",
                 "ontology_name",
-                'nrCommonGenesOntologySet',
-                'nrCommonGenesOntologyBackground',
-                "pValue",
-                "adjustedPValue"
+                'nr_common_genes_ontology_set',
+                'nr_common_genes_ontology_background',
+                "p_value",
+                "adjusted_p_value"
               )
               resultDf
             }
