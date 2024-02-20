@@ -1,12 +1,7 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# <img src="man/figures/MulEA_logo.png" width="59"/> `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
+# <img src="man/figures/MulEA_logo.png" width="59" /> `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
 
 <!-- badges: start -->
 
@@ -21,20 +16,22 @@ Traditional gene set enrichment analyses are typically limited to a few
 ontologies and do not account for the interdependence of gene sets or
 terms, resulting in overcorrected *p*-values. To address these
 chellenges, we introduce `mulea`, an R package offering comprehensive
-overrepresentation and functional enrichment analysis. `mulea` employs
-an innovative empirical *false discovery rate* (*eFDR*) correction
-method, specifically designed for interconnected biological data, to
-accurately identify significant terms within diverse ontologies. Beyond
-conventional tools, `mulea` incorporates a wide range of ontologies
-encompassing Gene Ontology, pathways, regulatory elements, genomic
-locations, and protein domains. This flexibility empowers researchers to
-tailor enrichment analysis to their specific questions, such as
-identifying enriched transcriptional regulators in gene expression data
-or overrepresented protein domains in protein sets. To facilitate
-seamless analysis, `mulea` provides gene sets (in standardized GMT
-format) for 27 model organisms, covering 16 databases and various
-identifiers. The GMT files and the scripts we applied to create them are
-available at the
+overrepresentation and functional enrichment analysis.
+
+`mulea` employs an innovative empirical *false discovery rate* (*eFDR*)
+correction method, specifically designed for interconnected biological
+data, to accurately identify significant terms within diverse
+ontologies. Beyond conventional tools, `mulea` incorporates a wide range
+of ontologies encompassing Gene Ontology, pathways, regulatory elements,
+genomic locations, and protein domains. This flexibility empowers
+researchers to tailor enrichment analysis to their specific questions,
+such as identifying enriched transcriptional regulators in gene
+expression data or overrepresented protein domains in protein sets.
+
+To facilitate seamless analysis, `mulea` provides gene sets (in
+standardized GMT format) for 27 model organisms, covering 16 databases
+and various identifiers. The GMT files and the scripts we applied to
+create them are available at the
 [GMT_files_for_mulea](https://github.com/ELTEbioinformatics/GMT_files_for_mulea)
 repository. Additionally, the
 [`muleaData`](https://github.com/ELTEbioinformatics/muleaData)
@@ -66,7 +63,7 @@ Analysis (GSEA)](#gene-set-enrichment-analysis-gsea) sections.
 
 This example analyzes a differential expression (DE) dataset from a
 microarray experiment deposited in the NCBI Gene Expression Omnibus
-<img src="man/figures/geo_main.gif" alt="GEO" width="87"/> under
+<img src="man/figures/geo_main.gif" alt="GEO" width="87" /> under
 accession number
 [GSE55662](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55662).
 The original study by [Méhi *et al.*
@@ -78,8 +75,8 @@ bacteria to non-treated controls.
 The [GEO2R](https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE55662) tool
 was used for differential expression analysis, comparing:
 
--   Non-treated control samples (2 replicates)
--   Samples treated with *ciprofloxacin* (2 replicates)
+- Non-treated control samples (2 replicates)
+- Samples treated with *ciprofloxacin* (2 replicates)
 
 #### **2. Reading the DE Results Table:**
 
@@ -98,7 +95,7 @@ We take a closer look at the first few rows of the `geo2r_result_tab`
 data frame:
 
 | ID           | adj.P.Val | P.Value |    t |       B | logFC | Gene.symbol                  | Gene.title                                                                                                            |
-|:------|------:|------:|------:|------:|------:|:------|:---------------------------|
+|:-------------|----------:|--------:|-----:|--------:|------:|:-----------------------------|:----------------------------------------------------------------------------------------------------------------------|
 | 1765336_s_at |    0.0186 | 2.4e-06 | 21.5 | 4.95769 |  3.70 | gnsB                         | Qin prophage; multicopy suppressor of secG(Cs) and fabA6(Ts)                                                          |
 | 1760422_s_at |    0.0186 | 3.8e-06 | 19.6 | 4.68510 |  3.14 | NA                           | NA                                                                                                                    |
 | 1764904_s_at |    0.0186 | 5.7e-06 | 18.2 | 4.43751 |  2.54 | sulA///sulA///sulA///ECs1042 | SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor |
@@ -110,14 +107,14 @@ analysis. This process often involves steps specific to the type of
 microarray experiment conducted. In this case, we perform the following
 transformations:
 
--   **Extract Gene Symbol:** We extract the main gene symbol from the
-    `Gene.symbol` column, removing any additional information that might
-    be present.
--   **Remove Missing Values:** We remove rows where the gene symbol is
-    missing (`NA`).
--   **Order by Fold Change:** We sort the data frame by the log-fold
-    change (`logFC`) in descending order, prioritizing genes with the
-    most significant expression changes.
+- **Extract Gene Symbol:** We extract the main gene symbol from the
+  `Gene.symbol` column, removing any additional information that might
+  be present.
+- **Remove Missing Values:** We remove rows where the gene symbol is
+  missing (`NA`).
+- **Order by Fold Change:** We sort the data frame by the log-fold
+  change (`logFC`) in descending order, prioritizing genes with the most
+  significant expression changes.
 
 ``` r
 geo2r_result_tab %<>% 
@@ -134,7 +131,7 @@ Before proceeding with enrichment analysis, we take a closer look at the
 first few rows of the formatted `geo2r_result_tab` data frame:
 
 | ID           | adj.P.Val |  P.Value |    t |       B | logFC | Gene.symbol | Gene.title                                                                                                                                |
-|:-----|-----:|-----:|-----:|-----:|-----:|:-----|:-------------------------------|
+|:-------------|----------:|---------:|-----:|--------:|------:|:------------|:------------------------------------------------------------------------------------------------------------------------------------------|
 | 1765336_s_at |    0.0186 | 2.40e-06 | 21.5 | 4.95769 |  3.70 | gnsB        | Qin prophage; multicopy suppressor of secG(Cs) and fabA6(Ts)                                                                              |
 | 1764904_s_at |    0.0186 | 5.70e-06 | 18.2 | 4.43751 |  2.54 | sulA        | SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor                     |
 | 1761763_s_at |    0.0186 | 1.54e-05 | 15.0 | 3.73568 |  2.16 | recN        | recombination and repair protein///recombination and repair protein///recombination and repair protein///recombination and repair protein |
@@ -147,8 +144,8 @@ further analysis.
 This section explores the transcription factors influencing the
 significantly overexpressed genes. We employed the `mulea` package to
 conduct multiple enrichment analyses using the
-<img src="man/figures/Regulon.png" alt="Regulon" width="114" height="25"/>
-[database](https://regulondb.ccg.unam.mx/).
+<img src="man/figures/Regulon.png" alt="Regulon" width="114"
+height="25" /> [database](https://regulondb.ccg.unam.mx/).
 
 The analysis utilized a GMT file downloaded from the dedicated
 [GMT_files_for_mulea](https://github.com/ELTEbioinformatics/GMT_files_for_mulea)
@@ -191,9 +188,9 @@ The first 3 rows of the `tf_gmt`:
 
 | ontology_id | ontology_name | list_of_values |
 |:------------|:--------------|:---------------|
-| AccB        | “AccB”        | accC, accB     |
-| AcrR        | “AcrR”        | marB, ma….     |
-| Ada         | “Ada”         | alkB, ad….     |
+| AccB        | AccB          | accC, accB     |
+| AcrR        | AcrR          | marB, ma….     |
+| Ada         | Ada           | alkB, ad….     |
 
 **Important Note:** The format of this GMT differs slightly from
 standard GMT files. In the `tf_gmt`, both the `ontology_id` and
@@ -241,7 +238,7 @@ ggplot(mapping = aes(Nr_of_elements_in_ontology)) +
   theme_minimal()
 ```
 
-<img src="man/figures/README-plot_list_of_values-1.png" width="100%"/>
+<img src="man/figures/README-plot_list_of_values-1.png" width="100%" />
 
 This plot reveals entries containing over 200 gene symbols, indicating
 these transcription factors regulate too many genes, making them overly
@@ -257,7 +254,7 @@ ggplot(mapping = aes(Nr_of_elements_in_ontology)) +
   theme_minimal()
 ```
 
-<img src="man/figures/README-plot_list_of_values_zoom-1.png" width="100%"/>
+<img src="man/figures/README-plot_list_of_values_zoom-1.png" width="100%" />
 
 **Filtering Entries:**
 
@@ -288,7 +285,7 @@ write_gmt(gmt = tf_gmt_filtered,
           file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
 ```
 
-### OverRepresentation Analysis (ORA) {#overrepresentation-analysis-ora}
+### OverRepresentation Analysis (ORA)
 
 This approach analyses groups of genes (sets) to identify if they are
 enriched in specific categories – transcription factors – within a
@@ -424,17 +421,17 @@ ora_results %>%
 ```
 
 | ontology_id | ontology_name | nr_common_with_tested_elements | nr_common_with_backgound_elements |   p_value |      eFDR |
-|:----------|:----------|------------:|--------------:|----------:|----------:|
-| FNR         | “FNR”         |                             26 |                               259 | 0.0000003 | 0.0000000 |
-| LexA        | “LexA”        |                             14 |                                53 | 0.0000000 | 0.0000000 |
-| SoxS        | “SoxS”        |                              7 |                                37 | 0.0001615 | 0.0021667 |
-| DnaA        | “DnaA”        |                              4 |                                13 | 0.0006281 | 0.0042500 |
-| Rob         | “Rob”         |                              5 |                                21 | 0.0004717 | 0.0044000 |
-| FadR        | “FadR”        |                              5 |                                20 | 0.0003692 | 0.0046250 |
-| NsrR        | “NsrR”        |                              8 |                                64 | 0.0010478 | 0.0066429 |
-| ArcA        | “ArcA”        |                             12 |                               148 | 0.0032001 | 0.0200500 |
-| IHF         | “IHF”         |                             14 |                               205 | 0.0070758 | 0.0450800 |
-| MarA        | “MarA”        |                              5 |                                37 | 0.0066068 | 0.0475222 |
+|:------------|:--------------|-------------------------------:|----------------------------------:|----------:|----------:|
+| FNR         | FNR           |                             26 |                               259 | 0.0000003 | 0.0000000 |
+| LexA        | LexA          |                             14 |                                53 | 0.0000000 | 0.0000000 |
+| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0026333 |
+| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0052333 |
+| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0053200 |
+| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0054750 |
+| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0072714 |
+| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0201625 |
+| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0452800 |
+| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0478111 |
 
 #### Visualizing the ORA Result
 
@@ -473,7 +470,29 @@ plot_lollipop(reshaped_results = ora_reshaped_results,
               p_value_type_colname = "eFDR")
 ```
 
-<img src="man/figures/README-lollipop_plot_ora-1.png" width="100%"/>
+<img src="man/figures/README-lollipop_plot_ora-1.png" width="100%" />
+
+**Visualizing the spread of *eFDR* values: Bar plot**
+
+Bar charts offer very similar graphical representation of the
+distribution of enriched transcription factors as the lollipop plot. The
+*y*-axis displays the transcription factors, while the *x*-axis
+represents their corresponding *eFDR* values. The bars are is coloured
+based on their significance level. This visualization helps us examine
+the spread of *eFDR*s and identify factors exceeding the commonly used
+significance threshold of 0.05.
+
+``` r
+plot_barplot(reshaped_results = ora_reshaped_results,
+              # the column containing the names we wish to plot
+              ontology_id_colname = "ontology_id",
+              # upper threshold for the value indicating the significance
+              p_value_max_threshold = 0.05,
+              # column that indicates the significance values
+              p_value_type_colname = "eFDR")
+```
+
+<img src="man/figures/README-bar_plot_ora-1.png" width="100%" />
 
 **Visualizing Relationships: Network Plot**
 
@@ -495,7 +514,7 @@ plot_graph(reshaped_results = ora_reshaped_results,
            p_value_type_colname = "eFDR")
 ```
 
-<img src="man/figures/README-network_plot_ora-1.png" width="100%"/>
+<img src="man/figures/README-network_plot_ora-1.png" width="100%" />
 
 **Heatmap**
 
@@ -513,9 +532,9 @@ plot_heatmap(reshaped_results = ora_reshaped_results,
              p_value_type_colname = "eFDR")
 ```
 
-<img src="man/figures/README-heatmap_ora-1.png" width="100%"/>
+<img src="man/figures/README-heatmap_ora-1.png" width="100%" />
 
-### Gene Set Enrichment Analysis (GSEA) {#gene-set-enrichment-analysis-gsea}
+### Gene Set Enrichment Analysis (GSEA)
 
 To perform enrichment analysis using ranked lists, you need to provide
 an ordered list of elements, such as genes, transcripts, or proteins.
@@ -601,37 +620,41 @@ The `gsea_results` data frame summarizes the enrichment analysis,
 listing enriched ontology entries – in our case transcription factors –
 alongside their associated *p*-values and adjusted *p*-value values. We
 can now determine the number of transcription factors classified as
-“enriched” based on these statistical measures ($adjustedPValue<0.05$).
+“enriched” based on these statistical measures
+($adjusted_p_value<0.05$).
 
 ``` r
 gsea_results %>%
-  # rows where the adjustedPValue < 0.05
-  filter(adjustedPValue < 0.05) %>% 
+  # rows where the adjusted_p_value < 0.05
+  filter(adjusted_p_value < 0.05) %>% 
   # the number of such rows
   nrow()
-#> [1] 8
+#> [1] 11
 ```
 
 And inspect the significant results:
 
 ``` r
 gsea_results %>%
-  # arrange the rows by the adjustedPValue values
-  arrange(adjustedPValue) %>% 
-  # rows where the adjustedPValue < 0.05
-  filter(adjustedPValue < 0.05)
+  # arrange the rows by the adjusted_p_value values
+  arrange(adjusted_p_value) %>% 
+  # rows where the adjusted_p_value < 0.05
+  filter(adjusted_p_value < 0.05)
 ```
 
-| ontology_id | ontology_name | nrCommonGenesOntologySet | nrCommonGenesOntologyBackground |    pValue | adjustedPValue |
-|:-----------|:-----------|-----------:|-------------:|-----------:|-----------:|
-| LexA        | “LexA”        |                       53 |                              61 | 0.0000001 |      0.0000089 |
-| FNR         | “FNR”         |                      259 |                             302 | 0.0000570 |      0.0043580 |
-| GlaR        | “GlaR”        |                        3 |                               5 | 0.0003486 |      0.0157744 |
-| ModE        | “ModE”        |                       45 |                              46 | 0.0004124 |      0.0157744 |
-| ArcA        | “ArcA”        |                      148 |                             180 | 0.0005358 |      0.0163954 |
-| DnaA        | “DnaA”        |                       13 |                              14 | 0.0007007 |      0.0171159 |
-| SoxS        | “SoxS”        |                       37 |                              44 | 0.0007831 |      0.0171159 |
-| PspF        | “PspF”        |                        7 |                               7 | 0.0023124 |      0.0442246 |
+| ontology_id | ontology_name | nr_common_genes_ontology_set | nr_common_genes_ontology_background |   p_value | adjusted_p_value |
+|:------------|:--------------|-----------------------------:|------------------------------------:|----------:|-----------------:|
+| LexA        | LexA          |                           53 |                                  61 | 0.0000000 |        0.0000072 |
+| FNR         | FNR           |                          259 |                                 302 | 0.0000728 |        0.0055662 |
+| ArcA        | ArcA          |                          148 |                                 180 | 0.0002939 |        0.0080760 |
+| DnaA        | DnaA          |                           13 |                                  14 | 0.0003167 |        0.0080760 |
+| GlaR        | GlaR          |                            3 |                                   5 | 0.0002803 |        0.0080760 |
+| ModE        | ModE          |                           45 |                                  46 | 0.0002666 |        0.0080760 |
+| SoxS        | SoxS          |                           37 |                                  44 | 0.0006823 |        0.0149139 |
+| PaaX        | PaaX          |                           14 |                                  14 | 0.0016659 |        0.0318611 |
+| CytR        | CytR          |                           13 |                                  13 | 0.0026824 |        0.0409116 |
+| FadR        | FadR          |                           20 |                                  23 | 0.0029414 |        0.0409116 |
+| PspF        | PspF          |                            7 |                                   7 | 0.0028674 |        0.0409116 |
 
 #### Visualizing the GSEA Results
 
@@ -642,10 +665,10 @@ gsea_reshaped_results <- reshape_results(model = gsea_model,
                                          model_results = gsea_results, 
                                          # choosing which column to use for the
                                          # indication of significance
-                                         p_value_type_colname = "adjustedPValue")
+                                         p_value_type_colname = "adjusted_p_value")
 ```
 
-**Visualizing the spread of** **adjusted *p*-values: Lollipop plot**
+**Visualizing the spread of adjusted *p*-values: Lollipop plot**
 
 ``` r
 plot_lollipop(reshaped_results = gsea_reshaped_results,
@@ -654,8 +677,24 @@ plot_lollipop(reshaped_results = gsea_reshaped_results,
               # upper threshold for the value indicating the significance
               p_value_max_threshold = 0.05,
               # column that indicates the significance values
-              p_value_type_colname = "adjustedPValue")
+              p_value_type_colname = "adjusted_p_value")
 ```
+
+<img src="man/figures/README-lollipop_plot_gsea-1.png" width="100%" />
+
+**Visualizing the spread of adjusted *p*-values: Bar plot**
+
+``` r
+plot_barplot(reshaped_results = gsea_reshaped_results,
+              # the column containing the names we wish to plot
+              ontology_id_colname = "ontology_id",
+              # upper threshold for the value indicating the significance
+              p_value_max_threshold = 0.05,
+              # column that indicates the significance values
+              p_value_type_colname = "adjusted_p_value")
+```
+
+<img src="man/figures/README-bar_plot_gsea-1.png" width="100%" />
 
 **Visualizing Relationships: Network Plot**
 
@@ -666,10 +705,10 @@ plot_graph(reshaped_results = gsea_reshaped_results,
            # upper threshold for the value indicating the significance
            p_value_max_threshold = 0.05,
            # column that indicates the significance values
-           p_value_type_colname = "adjustedPValue")
+           p_value_type_colname = "adjusted_p_value")
 ```
 
-<img src="man/figures/README-network_plot_gsea-1.png" width="100%"/>
+<img src="man/figures/README-network_plot_gsea-1.png" width="100%" />
 
 **Heatmap**
 
@@ -678,10 +717,10 @@ plot_heatmap(reshaped_results = gsea_reshaped_results,
              # the column containing the names we wish to plot
              ontology_id_colname = "ontology_id",
              # column that indicates the significance values
-             p_value_type_colname = "adjustedPValue")
+             p_value_type_colname = "adjusted_p_value")
 ```
 
-<img src="man/figures/README-heatmap_gsea-1.png" width="100%"/>
+<img src="man/figures/README-heatmap_gsea-1.png" width="100%" />
 
 ## How to Cite the `mulea` Package?
 
@@ -700,43 +739,49 @@ contributing to this project, you agree to abide by its terms.
 
 ## Development Tools
 
--   Continuous code testing is possible thanks to [GitHub
-    actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
-    through [*usethis*](https://CRAN.R-project.org/package=usethis),
-    [*remotes*](https://CRAN.R-project.org/package=remotes), and
-    [*rcmdcheck*](https://CRAN.R-project.org/package=rcmdcheck)
-    customized to use [Bioconductor’s docker
-    containers](https://www.bioconductor.org/help/docker/) and
-    [*BiocCheck*](https://bioconductor.org/packages/3.18/BiocCheck).
--   Code coverage assessment is possible thanks to
-    [codecov](https://codecov.io/gh) and
-    [*covr*](https://CRAN.R-project.org/package=covr).
--   The code is styled automatically thanks to
-    [*styler*](https://CRAN.R-project.org/package=styler).
--   The documentation is formatted thanks to
-    [*devtools*](https://CRAN.R-project.org/package=devtools) and
-    [*roxygen2*](https://CRAN.R-project.org/package=roxygen2).
+- Continuous code testing is possible thanks to [GitHub
+  actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
+  through *[usethis](https://CRAN.R-project.org/package=usethis)*,
+  *[remotes](https://CRAN.R-project.org/package=remotes)*, and
+  *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)* customized
+  to use [Bioconductor’s docker
+  containers](https://www.bioconductor.org/help/docker/) and
+  *[BiocCheck](https://bioconductor.org/packages/3.18/BiocCheck)*.
+- Code coverage assessment is possible thanks to
+  [codecov](https://codecov.io/gh) and
+  *[covr](https://CRAN.R-project.org/package=covr)*.
+- The code is styled automatically thanks to
+  *[styler](https://CRAN.R-project.org/package=styler)*.
+- The documentation is formatted thanks to
+  *[devtools](https://CRAN.R-project.org/package=devtools)* and
+  *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
 
 For more details, check the `dev` directory.
 
 This package was developed using
-[*biocthis*](https://bioconductor.org/packages/3.18/biocthis).
+*[biocthis](https://bioconductor.org/packages/3.18/biocthis)*.
 
 ## References
 
-::: {#refs .references .csl-bib-body .hanging-indent}
-::: {#ref-korotkevich .csl-entry}
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-korotkevich" class="csl-entry">
+
 Korotkevich, Gennady, Vladimir Sukhov, Nikolay Budin, Boris Shpak, Maxim
 N. Artyomov, and Alexey Sergushichev. 2021. “Fast Gene Set Enrichment
 Analysis,” February. <https://doi.org/10.1101/060012>.
-:::
 
-::: {#ref-subramanian2005 .csl-entry}
+</div>
+
+<div id="ref-subramanian2005" class="csl-entry">
+
 Subramanian, Aravind, Pablo Tamayo, Vamsi K. Mootha, Sayan Mukherjee,
 Benjamin L. Ebert, Michael A. Gillette, Amanda Paulovich, et al. 2005.
 “Gene Set Enrichment Analysis: A Knowledge-Based Approach for
 Interpreting Genome-Wide Expression Profiles.” *Proceedings of the
 National Academy of Sciences* 102 (43): 15545–50.
 <https://doi.org/10.1073/pnas.0506580102>.
-:::
-:::
+
+</div>
+
+</div>
