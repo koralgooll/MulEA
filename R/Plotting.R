@@ -456,7 +456,7 @@ plot_lollipop <-
                     color = 'black')+
       geom_point(aes(size=5, color = get(p_value_type_colname)))+
       guides(size='none')+
-      scale_color_gradient2(mid = '#ff6361',
+      scale_fill_gradient2(mid = '#ff6361',
                            high = 'grey90',
                            limits = c(0.0, p_value_max_threshold)) +
       coord_flip() +
@@ -550,8 +550,8 @@ plot_heatmap <- function(reshaped_results,
     )
   ) +
     scale_fill_gradient2(mid = '#ff6361',
-                           high = 'grey90',
-                           limits = c(0.0, p_value_max_threshold)) +
+                         high = 'grey90',
+                         limits = c(0.0,p_value_max_threshold)) +
     geom_tile() +
     coord_fixed()+
     theme_light() +
