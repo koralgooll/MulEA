@@ -1,7 +1,12 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# <img src="man/figures/MulEA_logo.png" width="59" /> `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
+# <img src="man/figures/MulEA_logo.png" width="59"/> `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
 
 <!-- badges: start -->
 
@@ -61,7 +66,7 @@ Analysis (GSEA)](#gene-set-enrichment-analysis-gsea) sections.
 
 This example analyzes a differential expression (DE) dataset from a
 microarray experiment deposited in the NCBI Gene Expression Omnibus
-<img src="man/figures/geo_main.gif" alt="GEO" width="87" /> under
+<img src="man/figures/geo_main.gif" alt="GEO" width="87"/> under
 accession number
 [GSE55662](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55662).
 The original study by [Méhi *et al.*
@@ -73,8 +78,8 @@ bacteria to non-treated controls.
 The [GEO2R](https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE55662) tool
 was used for differential expression analysis, comparing:
 
-- Non-treated control samples (2 replicates)
-- Samples treated with *ciprofloxacin* (2 replicates)
+-   Non-treated control samples (2 replicates)
+-   Samples treated with *ciprofloxacin* (2 replicates)
 
 #### **2. Reading the DE Results Table:**
 
@@ -93,7 +98,7 @@ We take a closer look at the first few rows of the `geo2r_result_tab`
 data frame:
 
 | ID           | adj.P.Val | P.Value |    t |       B | logFC | Gene.symbol                  | Gene.title                                                                                                            |
-|:-------------|----------:|--------:|-----:|--------:|------:|:-----------------------------|:----------------------------------------------------------------------------------------------------------------------|
+|:------|------:|------:|------:|------:|------:|:------|:---------------------------|
 | 1765336_s_at |    0.0186 | 2.4e-06 | 21.5 | 4.95769 |  3.70 | gnsB                         | Qin prophage; multicopy suppressor of secG(Cs) and fabA6(Ts)                                                          |
 | 1760422_s_at |    0.0186 | 3.8e-06 | 19.6 | 4.68510 |  3.14 | NA                           | NA                                                                                                                    |
 | 1764904_s_at |    0.0186 | 5.7e-06 | 18.2 | 4.43751 |  2.54 | sulA///sulA///sulA///ECs1042 | SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor |
@@ -105,14 +110,14 @@ analysis. This process often involves steps specific to the type of
 microarray experiment conducted. In this case, we perform the following
 transformations:
 
-- **Extract Gene Symbol:** We extract the main gene symbol from the
-  `Gene.symbol` column, removing any additional information that might
-  be present.
-- **Remove Missing Values:** We remove rows where the gene symbol is
-  missing (`NA`).
-- **Order by Fold Change:** We sort the data frame by the log-fold
-  change (`logFC`) in descending order, prioritizing genes with the most
-  significant expression changes.
+-   **Extract Gene Symbol:** We extract the main gene symbol from the
+    `Gene.symbol` column, removing any additional information that might
+    be present.
+-   **Remove Missing Values:** We remove rows where the gene symbol is
+    missing (`NA`).
+-   **Order by Fold Change:** We sort the data frame by the log-fold
+    change (`logFC`) in descending order, prioritizing genes with the
+    most significant expression changes.
 
 ``` r
 geo2r_result_tab %<>% 
@@ -129,7 +134,7 @@ Before proceeding with enrichment analysis, we take a closer look at the
 first few rows of the formatted `geo2r_result_tab` data frame:
 
 | ID           | adj.P.Val |  P.Value |    t |       B | logFC | Gene.symbol | Gene.title                                                                                                                                |
-|:-------------|----------:|---------:|-----:|--------:|------:|:------------|:------------------------------------------------------------------------------------------------------------------------------------------|
+|:-----|-----:|-----:|-----:|-----:|-----:|:-----|:-------------------------------|
 | 1765336_s_at |    0.0186 | 2.40e-06 | 21.5 | 4.95769 |  3.70 | gnsB        | Qin prophage; multicopy suppressor of secG(Cs) and fabA6(Ts)                                                                              |
 | 1764904_s_at |    0.0186 | 5.70e-06 | 18.2 | 4.43751 |  2.54 | sulA        | SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor                     |
 | 1761763_s_at |    0.0186 | 1.54e-05 | 15.0 | 3.73568 |  2.16 | recN        | recombination and repair protein///recombination and repair protein///recombination and repair protein///recombination and repair protein |
@@ -142,8 +147,8 @@ further analysis.
 This section explores the transcription factors influencing the
 significantly overexpressed genes. We employed the `mulea` package to
 conduct multiple enrichment analyses using the
-<img src="man/figures/Regulon.png" alt="Regulon" width="114"
-height="25" /> [database](https://regulondb.ccg.unam.mx/).
+<img src="man/figures/Regulon.png" alt="Regulon" width="114" height="25"/>
+[database](https://regulondb.ccg.unam.mx/).
 
 The analysis utilized a GMT file downloaded from the dedicated
 [GMT_files_for_mulea](https://github.com/ELTEbioinformatics/GMT_files_for_mulea)
@@ -236,7 +241,7 @@ ggplot(mapping = aes(Nr_of_elements_in_ontology)) +
   theme_minimal()
 ```
 
-<img src="man/figures/README-plot_list_of_values-1.png" width="100%" />
+<img src="man/figures/README-plot_list_of_values-1.png" width="100%"/>
 
 This plot reveals entries containing over 200 gene symbols, indicating
 these transcription factors regulate too many genes, making them overly
@@ -252,7 +257,7 @@ ggplot(mapping = aes(Nr_of_elements_in_ontology)) +
   theme_minimal()
 ```
 
-<img src="man/figures/README-plot_list_of_values_zoom-1.png" width="100%" />
+<img src="man/figures/README-plot_list_of_values_zoom-1.png" width="100%"/>
 
 **Filtering Entries:**
 
@@ -283,7 +288,7 @@ write_gmt(gmt = tf_gmt_filtered,
           file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
 ```
 
-### OverRepresentation Analysis (ORA)
+### OverRepresentation Analysis (ORA) {#overrepresentation-analysis-ora}
 
 This approach analyses groups of genes (sets) to identify if they are
 enriched in specific categories – transcription factors – within a
@@ -419,7 +424,7 @@ ora_results %>%
 ```
 
 | ontology_id | ontology_name | nr_common_with_tested_elements | nr_common_with_backgound_elements |   p_value |      eFDR |
-|:------------|:--------------|-------------------------------:|----------------------------------:|----------:|----------:|
+|:----------|:----------|------------:|--------------:|----------:|----------:|
 | FNR         | “FNR”         |                             26 |                               259 | 0.0000003 | 0.0000000 |
 | LexA        | “LexA”        |                             14 |                                53 | 0.0000000 | 0.0000000 |
 | SoxS        | “SoxS”        |                              7 |                                37 | 0.0001615 | 0.0021667 |
@@ -468,7 +473,7 @@ plot_lollipop(reshaped_results = ora_reshaped_results,
               p_value_type_colname = "eFDR")
 ```
 
-<img src="man/figures/README-lollipop_plot_ora-1.png" width="100%" />
+<img src="man/figures/README-lollipop_plot_ora-1.png" width="100%"/>
 
 **Visualizing Relationships: Network Plot**
 
@@ -490,7 +495,7 @@ plot_graph(reshaped_results = ora_reshaped_results,
            p_value_type_colname = "eFDR")
 ```
 
-<img src="man/figures/README-network_plot_ora-1.png" width="100%" />
+<img src="man/figures/README-network_plot_ora-1.png" width="100%"/>
 
 **Heatmap**
 
@@ -508,9 +513,9 @@ plot_heatmap(reshaped_results = ora_reshaped_results,
              p_value_type_colname = "eFDR")
 ```
 
-<img src="man/figures/README-heatmap_ora-1.png" width="100%" />
+<img src="man/figures/README-heatmap_ora-1.png" width="100%"/>
 
-### Gene Set Enrichment Analysis (GSEA)
+### Gene Set Enrichment Analysis (GSEA) {#gene-set-enrichment-analysis-gsea}
 
 To perform enrichment analysis using ranked lists, you need to provide
 an ordered list of elements, such as genes, transcripts, or proteins.
@@ -618,7 +623,7 @@ gsea_results %>%
 ```
 
 | ontology_id | ontology_name | nrCommonGenesOntologySet | nrCommonGenesOntologyBackground |    pValue | adjustedPValue |
-|:------------|:--------------|-------------------------:|--------------------------------:|----------:|---------------:|
+|:-----------|:-----------|-----------:|-------------:|-----------:|-----------:|
 | LexA        | “LexA”        |                       53 |                              61 | 0.0000001 |      0.0000089 |
 | FNR         | “FNR”         |                      259 |                             302 | 0.0000570 |      0.0043580 |
 | GlaR        | “GlaR”        |                        3 |                               5 | 0.0003486 |      0.0157744 |
@@ -664,7 +669,7 @@ plot_graph(reshaped_results = gsea_reshaped_results,
            p_value_type_colname = "adjustedPValue")
 ```
 
-<img src="man/figures/README-network_plot_gsea-1.png" width="100%" />
+<img src="man/figures/README-network_plot_gsea-1.png" width="100%"/>
 
 **Heatmap**
 
@@ -676,7 +681,7 @@ plot_heatmap(reshaped_results = gsea_reshaped_results,
              p_value_type_colname = "adjustedPValue")
 ```
 
-<img src="man/figures/README-heatmap_gsea-1.png" width="100%" />
+<img src="man/figures/README-heatmap_gsea-1.png" width="100%"/>
 
 ## How to Cite the `mulea` Package?
 
@@ -695,49 +700,43 @@ contributing to this project, you agree to abide by its terms.
 
 ## Development Tools
 
-- Continuous code testing is possible thanks to [GitHub
-  actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
-  through *[usethis](https://CRAN.R-project.org/package=usethis)*,
-  *[remotes](https://CRAN.R-project.org/package=remotes)*, and
-  *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)* customized
-  to use [Bioconductor’s docker
-  containers](https://www.bioconductor.org/help/docker/) and
-  *[BiocCheck](https://bioconductor.org/packages/3.18/BiocCheck)*.
-- Code coverage assessment is possible thanks to
-  [codecov](https://codecov.io/gh) and
-  *[covr](https://CRAN.R-project.org/package=covr)*.
-- The code is styled automatically thanks to
-  *[styler](https://CRAN.R-project.org/package=styler)*.
-- The documentation is formatted thanks to
-  *[devtools](https://CRAN.R-project.org/package=devtools)* and
-  *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
+-   Continuous code testing is possible thanks to [GitHub
+    actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
+    through [*usethis*](https://CRAN.R-project.org/package=usethis),
+    [*remotes*](https://CRAN.R-project.org/package=remotes), and
+    [*rcmdcheck*](https://CRAN.R-project.org/package=rcmdcheck)
+    customized to use [Bioconductor’s docker
+    containers](https://www.bioconductor.org/help/docker/) and
+    [*BiocCheck*](https://bioconductor.org/packages/3.18/BiocCheck).
+-   Code coverage assessment is possible thanks to
+    [codecov](https://codecov.io/gh) and
+    [*covr*](https://CRAN.R-project.org/package=covr).
+-   The code is styled automatically thanks to
+    [*styler*](https://CRAN.R-project.org/package=styler).
+-   The documentation is formatted thanks to
+    [*devtools*](https://CRAN.R-project.org/package=devtools) and
+    [*roxygen2*](https://CRAN.R-project.org/package=roxygen2).
 
 For more details, check the `dev` directory.
 
 This package was developed using
-*[biocthis](https://bioconductor.org/packages/3.18/biocthis)*.
+[*biocthis*](https://bioconductor.org/packages/3.18/biocthis).
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-
-<div id="ref-korotkevich" class="csl-entry">
-
+::: {#refs .references .csl-bib-body .hanging-indent}
+::: {#ref-korotkevich .csl-entry}
 Korotkevich, Gennady, Vladimir Sukhov, Nikolay Budin, Boris Shpak, Maxim
 N. Artyomov, and Alexey Sergushichev. 2021. “Fast Gene Set Enrichment
 Analysis,” February. <https://doi.org/10.1101/060012>.
+:::
 
-</div>
-
-<div id="ref-subramanian2005" class="csl-entry">
-
+::: {#ref-subramanian2005 .csl-entry}
 Subramanian, Aravind, Pablo Tamayo, Vamsi K. Mootha, Sayan Mukherjee,
 Benjamin L. Ebert, Michael A. Gillette, Amanda Paulovich, et al. 2005.
 “Gene Set Enrichment Analysis: A Knowledge-Based Approach for
 Interpreting Genome-Wide Expression Profiles.” *Proceedings of the
 National Academy of Sciences* 102 (43): 15545–50.
 <https://doi.org/10.1073/pnas.0506580102>.
-
-</div>
-
-</div>
+:::
+:::
