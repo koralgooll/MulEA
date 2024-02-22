@@ -15,7 +15,7 @@
 #' @examples
 #' library(mulea)
 #' library(tidyverse)
-#' geo2r_result_tab <- read_tsv("GSE55662.table_wt_non_vs_cipro.tsv")
+#' geo2r_result_tab <- read_tsv(file = system.file(package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
 #' geo2r_result_tab %<>% 
 #' # extracting the first gene symbol from the Gene.symbol column
 #' mutate(Gene.symbol = str_remove(string = Gene.symbol,
@@ -43,7 +43,9 @@
 #'  # removing duplicates
 #'  unique()
 #'  
-#' tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+#'tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", 
+#' "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")) 
+#' 
 #' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
 #'                           min_nr_of_elements = 3,
 #'                           max_nr_of_elements = 400)
@@ -194,7 +196,7 @@ setMethod("initialize", "ora",
 #' @examples
 #' library(mulea)
 #' library(tidyverse)
-#' geo2r_result_tab <- read_tsv("GSE55662.table_wt_non_vs_cipro.tsv")
+#' geo2r_result_tab <- read_tsv(file = system.file(package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
 #' geo2r_result_tab %<>% 
 #' # extracting the first gene symbol from the Gene.symbol column
 #' mutate(Gene.symbol = str_remove(string = Gene.symbol,
@@ -222,7 +224,7 @@ setMethod("initialize", "ora",
 #'  # removing duplicates
 #'  unique()
 #'  
-#' tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+#' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 #' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
 #'                           min_nr_of_elements = 3,
 #'                           max_nr_of_elements = 400)
