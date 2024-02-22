@@ -19,3 +19,8 @@ list_of_values: A list of values associated with each ontology_id.
 Read model data from a Gene Matrix Transposed (GMT) file and parse into a
 data frame.
 }
+\examples{
+# import example gene set
+library(mulea)
+tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+}

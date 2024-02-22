@@ -14,8 +14,8 @@
 }
 \value{
 dataframe with presented columns 'ontology_id', 'ontology_name',
-'nrCommonGenesOntologySet', 'nrCommonGenesOntologyBackground',
-'pValue', 'adjustedPValue'
+'nr_common_genes_ontology_set', 'nr_common_genes_ontology_background',
+'p_value', 'adjusted_p_value'
 
 run_test method for SubramanianTest object. Used as private function.
 }
@@ -43,7 +43,7 @@ PRIVATE class : An S4 class to represent a ranked based tests in mulea.
 
 \examples{
 \dontrun{
-#It is a private s4 object. Look at GSAE's examples.
+#It is a private s4 object. Look at GSEA's examples.
 }
 \dontrun{
 #It is a private method. Look at run_test of GSEA's examples.

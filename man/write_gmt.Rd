@@ -19,9 +19,10 @@ Write GMT takes a data frame with specific formatting (columns representing onto
 and writes it to a file in a standardized GMT format.
 }
 \examples{
-modelDfFromFile <- read_gmt(
-  file = system.file(package="mulea", "extdata", "model.gmt"))
-write_gmt(gmt = modelDfFromFile,
-          file = paste(system.file(package="mulea", "extdata"),
-          "fromDb.gmt", sep = "/"))
+#' library(mulea)
+tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
+                          min_nr_of_elements = 3,
+                          max_nr_of_elements = 400)
+write_gmt(gmt = tf_gmt_filtered, file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
 }

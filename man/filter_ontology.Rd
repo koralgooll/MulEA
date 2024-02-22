@@ -21,3 +21,10 @@ Return data frame with model from specific location.
 \description{
 Filter ontology to only contain terms between given min. and max. sizes.
 }
+\examples{
+library(mulea)
+tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
+                          min_nr_of_elements = 3,
+                          max_nr_of_elements = 400)
+}

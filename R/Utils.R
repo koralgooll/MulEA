@@ -1,5 +1,5 @@
 #' Read GMT File
-#' 
+#' @description
 #' Read model data from a Gene Matrix Transposed (GMT) file and parse into a
 #' data frame.
 #'
@@ -10,6 +10,10 @@
 #' list_of_values: A list of values associated with each ontology_id.
 #' @export
 #'
+#' @examples 
+#' # import example gene set
+#' library(mulea)
+#' tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
 
 read_gmt <- function(file) {
   fileConnection <- file(file)
@@ -45,7 +49,7 @@ read_gmt <- function(file) {
 
 
 #' Write GMT file
-#' 
+#' @description
 #' Write GMT takes a data frame with specific formatting (columns representing ontology IDs, descriptions, and associated lists of values) 
 #' and writes it to a file in a standardized GMT format.
 #'
@@ -54,11 +58,13 @@ read_gmt <- function(file) {
 #' @return Returns the model as a .gmt file at a specific location.
 #' @export
 #' @examples
-#' modelDfFromFile <- read_gmt(
-#'   file = system.file(package="mulea", "extdata", "model.gmt"))
-#' write_gmt(gmt = modelDfFromFile,
-#'           file = paste(system.file(package="mulea", "extdata"),
-#'           "fromDb.gmt", sep = "/"))
+#' #' library(mulea)
+#' tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
+#'                           min_nr_of_elements = 3,
+#'                           max_nr_of_elements = 400)
+#' write_gmt(gmt = tf_gmt_filtered, file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
+
 write_gmt <- function(gmt, file) {
   vectorOfModel <-
     plyr::daply(
@@ -79,7 +85,7 @@ write_gmt <- function(gmt, file) {
 }
 
 #' Filter Ontology
-#' 
+#' @description
 #' Filter ontology to only contain terms between given min. and max. sizes.
 #'
 #' @param gmt A data frame which contains the data, imported from a GMT file.
@@ -89,6 +95,13 @@ write_gmt <- function(gmt, file) {
 #' quantile on term size distribution.
 #' @return Return data frame with model from specific location.
 #' @export
+#' @examples
+#' library(mulea)
+#' tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
+#'                           min_nr_of_elements = 3,
+#'                           max_nr_of_elements = 400)
+
 filter_ontology <- function(gmt,
                            min_nr_of_elements = NULL,
                            max_nr_of_elements = NULL) {
@@ -205,7 +218,8 @@ decorateGmtByUnderOvenAndNoise <- function(input_gmt,
 
 
 #' Convert list to GMT data frame
-#'
+#' @description
+#' 
 #' Convert ontology representation from list to gmt data frame.
 #'
 #' @param gmt_list List with element names as ontology_id and genes in each
