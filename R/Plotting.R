@@ -356,7 +356,7 @@ plot_barplot <-
                  fill = p_value_type_colname)
     ) +
       geom_bar(stat = "identity") +
-      scale_color_gradient2(
+      scale_fill_gradient2(
         mid =  '#ff6361',
         high = 'grey90',
         limits = c(0.0,p_value_max_threshold),
