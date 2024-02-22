@@ -7,7 +7,7 @@
 run_test(model)
 }
 \arguments{
-\item{model}{An S4 object which represents one of mulea's Tests. See details
+\item{model}{An S4 object which represents one of mulea's tests (ORA or GSEA). See details
 for more information.}
 }
 \value{
@@ -25,43 +25,56 @@ Over-Representation Analysis (ORA). These models must be defined through
 their specific functions which are provided in this package.
 }
 \examples{
-modelDfFromFile <- read_gmt(
-  file = system.file(package="mulea", "extdata", "model.gmt"))
-dataFromExperiment <- c(
-  "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
-  "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
-dataFromExperimentPool <- unique(
-  c(c("FBgn0033690", "FBgn0261618", "FBgn0004407", "FBgn0010438",
-      "FBgn0032154", "FBgn0039930", "FBgn0040268", "FBgn0013674",
-      "FBgn0037008", "FBgn0003116", "FBgn0037743", "FBgn0035401",
-      "FBgn0037044", "FBgn0051005", "FBgn0026737", "FBgn0026751",
-      "FBgn0038704", "FBgn0002887", "FBgn0028434", "FBgn0030170",
-      "FBgn0263831", "FBgn0000579"),
-   c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111",
-     "FBgn0022222", "FBgn0777777", "FBgn0333333", "FBgn0003742",
-     "FBgn0029709", "FBgn0030341")))
-setBasedTest <- ora(gmt = modelDfFromFile, element_names = dataFromExperiment,
-                   nthreads = 1)
-setBasedTestWithPool <- ora(gmt = modelDfFromFile,
-                            element_names = dataFromExperiment,
-                            background_element_names = dataFromExperimentPool,
-                            nthreads = 1)
-setBasedTestWithPoolAndAdjust <- ora(gmt = modelDfFromFile,
-                                     element_names = dataFromExperiment,
-                                     background_element_names = dataFromExperimentPool,
-                                     p_value_adjustment_method = "BH",
-                                     nthreads = 1)
-setBasedTestRes <- run_test(setBasedTest)
-setBasedTestWithPoolRes <- run_test(setBasedTestWithPool)
-setBasedTestWithPoolAndAdjustRes <- run_test(setBasedTestWithPoolAndAdjust)
-dataFromExperimentScores <- c(0.09, 0.11, 0.15, 0.20, 0.21, 0.24, 0.28,
-                              0.30, 0.45, 0.50)
-GSEASubramanian <- gsea(
-  method = "Subramanian",
-  gmt = modelDfFromFile,
-  element_names = dataFromExperiment,
-  element_scores = dataFromExperimentScores)
-GSEASubramanianRes <- run_test(GSEASubramanian)
+library(mulea)
+library(tidyverse)
+geo2r_result_tab <- read_tsv("GSE55662.table_wt_non_vs_cipro.tsv")
+geo2r_result_tab \%<>\% 
+# extracting the first gene symbol from the Gene.symbol column
+mutate(Gene.symbol = str_remove(string = Gene.symbol,
+                                pattern = "\\\\/.*")) \%>\% 
+ # removing rows where Gene.symbol is NA
+ filter(!is.na(Gene.symbol)) \%>\% 
+ # ordering by logFC
+ arrange(desc(logFC))
+ 
+ sign_genes <- geo2r_result_tab \%>\% 
+# filtering for adjusted p-value < 0.05 and logFC > 1
+filter(adj.P.Val < 0.05 & logFC > 1) \%>\% 
+ # selecting the Gene.symbol column
+ select(Gene.symbol) \%>\% 
+ # converting the tibble to a vector
+ pull() \%>\% 
+ # removing duplicates
+ unique()
+ 
+ background_genes <- geo2r_result_tab \%>\% 
+# selecting the Gene.symbol column
+select(Gene.symbol) \%>\% 
+ # convertin the tibble to a vector
+ pull() \%>\% 
+ # removing duplicates
+ unique()
+ 
+tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
+                          min_nr_of_elements = 3,
+                          max_nr_of_elements = 400)
+
+# creating the ORA model using the GMT variable
+ora_model <- ora(gmt = tf_gmt_filtered, 
+                # the test set variable
+                element_names = sign_genes, 
+                # the background set variable
+                background_element_names = background_genes, 
+                # the p-value adjustment method
+                p_value_adjustment_method = "eFDR", 
+                # the number of permutations
+                number_of_permutations = 10000,
+                # the number of processor threads to use
+                
+# running the ORA
+ora_results <- run_test(ora_model)
+
 }
 \seealso{
 \code{\link{gsea}}, \code{\link{ora}}
