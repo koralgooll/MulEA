@@ -86,7 +86,7 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #'                 # the number of permutations
 #'                 number_of_permutations = 10000,
 #'                 # the number of processor threads to use
-#'                 
+#'                 nthreads = 4) 
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 #' # reshape results for visualisation
@@ -220,7 +220,7 @@ reshape_results <-
 #'                 # the number of permutations
 #'                 number_of_permutations = 10000,
 #'                 # the number of processor threads to use
-#'                 
+#'                 nthreads = 4) 
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 #' # reshape results for visualisation
@@ -411,7 +411,7 @@ plot_graph <- function(reshaped_results,
 #'                 # the number of permutations
 #'                 number_of_permutations = 10000,
 #'                 # the number of processor threads to use
-#'                 
+#'                 nthreads = 4) 
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 #' # reshape results for visualisation
@@ -545,7 +545,7 @@ plot_barplot <-
 #'                 # the number of permutations
 #'                 number_of_permutations = 10000,
 #'                 # the number of processor threads to use
-#'                 
+#'                 nthreads = 4)
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 #' # reshape results for visualisation
@@ -678,7 +678,7 @@ plot_lollipop <-
 #'                 # the number of permutations
 #'                 number_of_permutations = 10000,
 #'                 # the number of processor threads to use
-#'                 
+#'                 nthreads = 4)
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 #' # reshape results for visualisation
