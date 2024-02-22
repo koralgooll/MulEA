@@ -20,7 +20,7 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 
 #' Reshape Results
 #' @description
-#' This function takes model and model_results data, 
+#' This function takes a model and model_results data, 
 #' reshapes them into a suitable format for plotting, 
 #' and returns the resulting data frame, which can be used 
 #' for further analysis or visualization.
@@ -40,27 +40,61 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #' merged for plotting purposes.
 #' 
 #' @examples 
-#' # import example gene set
-#' # import other gene sets from a GMT file using read_gmt()
-#' data(geneSet)
-#' data(selectDf)
-#' data(poolDf)
-#' # Run model on geneset
-#' ora_model <- ora(
-#'   gmt = geneSet,
-#'   element_names = selectDf$select, 
-#'   background_element_names = poolDf$background_element_names,
-#'   p_value_adjustment_method = "eFDR",
-#'   number_of_permutations = 1000,
-#'   nthreads = 1
-#' )
+#' library(mulea)
+#' library(tidyverse)
+#' geo2r_result_tab <- read_tsv("GSE55662.table_wt_non_vs_cipro.tsv")
+#' geo2r_result_tab %<>% 
+#' # extracting the first gene symbol from the Gene.symbol column
+#' mutate(Gene.symbol = str_remove(string = Gene.symbol,
+#'                                 pattern = "\\/.*")) %>% 
+#'  # removing rows where Gene.symbol is NA
+#'  filter(!is.na(Gene.symbol)) %>% 
+#'  # ordering by logFC
+#'  arrange(desc(logFC))
+#'  
+#'  sign_genes <- geo2r_result_tab %>% 
+#' # filtering for adjusted p-value < 0.05 and logFC > 1
+#' filter(adj.P.Val < 0.05 & logFC > 1) %>% 
+#'  # selecting the Gene.symbol column
+#'  select(Gene.symbol) %>% 
+#'  # converting the tibble to a vector
+#'  pull() %>% 
+#'  # removing duplicates
+#'  unique()
+#'  
+#'  background_genes <- geo2r_result_tab %>% 
+#' # selecting the Gene.symbol column
+#' select(Gene.symbol) %>% 
+#'  # convertin the tibble to a vector
+#'  pull() %>% 
+#'  # removing duplicates
+#'  unique()
+#'  
+#' tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
+#'                           min_nr_of_elements = 3,
+#'                           max_nr_of_elements = 400)
+#'
+#' # creating the ORA model using the GMT variable
+#' ora_model <- ora(gmt = tf_gmt_filtered, 
+#'                 # the test set variable
+#'                 element_names = sign_genes, 
+#'                 # the background set variable
+#'                 background_element_names = background_genes, 
+#'                 # the p-value adjustment method
+#'                 p_value_adjustment_method = "eFDR", 
+#'                 # the number of permutations
+#'                 number_of_permutations = 10000,
+#'                 # the number of processor threads to use
+#'                 
+#' # running the ORA
 #' ora_results <- run_test(ora_model)
-#' # Reshape results
-#' ora_reshaped_results <- reshape_results(
-#'   model = ora_model, 
-#'   model_results = ora_results, 
-#'   p_value_type_colname='eFDR'
-#' )
+#' # reshape results for visualisation
+#' ora_reshaped_results <- reshape_results(model = ora_model, 
+#'                                         model_results = ora_results, 
+#'                                         # choosing which column to use for the
+#'                                         # indication of significance
+#'                                         p_value_type_colname = "eFDR")
 
 reshape_results <-
   function(model = NULL,
