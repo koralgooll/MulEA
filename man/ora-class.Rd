@@ -4,42 +4,27 @@
 \name{ora-class}
 \alias{ora-class}
 \alias{ora}
-\alias{run_test,ora-method}
 \title{An S4 class to represent a set based tests in mulea.}
-\usage{
-\S4method{run_test}{ora}(model)
-}
-\arguments{
-\item{model}{Object of s4 class represents mulea Test.}
-}
 \value{
 ora object. This object represents set based tests in mulea.
-
-run_test method for ora object. Returns results of counting using
-methods from set based area.
 }
 \description{
 An S4 class to represent a set based tests in mulea.
 }
-\section{Methods (by generic)}{
-\itemize{
-\item \code{run_test(ora)}: runs test calculations.
-
-}}
 \section{Slots}{
 
 \describe{
 \item{\code{method}}{A method from set based methods to count results. Possible
 values: "Hypergeometric", "SetBasedEnrichment".}
 
-\item{\code{gmt}}{A data.frame representing GMT's reprezentation of model.}
+\item{\code{gmt}}{A data.frame representing the GMT representation of a model.}
 
-\item{\code{element_names}}{A data from experiment to analize accross model.}
+\item{\code{element_names}}{Data from an experiment to analyse across model, e.g. differentially expressed genes.}
 
-\item{\code{background_element_names}}{A background data to count test.}
+\item{\code{background_element_names}}{Background set for the test, e.g. all genes in the experiment.}
 
 \item{\code{p_value_adjustment_method}}{A type of algorithm used to adjust values.
-Possible values: "eFDR" and all from p.adjust {stats} documentation.}
+Possible values: "eFDR", and all options from p.adjust {stats} documentation.}
 
 \item{\code{number_of_permutations}}{A number of permutations used in set based
 enrichment test. Default value is 10000.}
@@ -48,79 +33,51 @@ enrichment test. Default value is 10000.}
 }}
 
 \examples{
-modelDfFromFile <- read_gmt(
-  file = system.file(package="mulea", "extdata", "model.gmt"))
-dataFromExperiment <- c(
-  "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
-  "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
-dataFromExperimentPool <- unique(c(
-  c("FBgn0033690", "FBgn0261618", "FBgn0004407", "FBgn0010438", "FBgn0032154",
-    "FBgn0039930", "FBgn0040268", "FBgn0013674", "FBgn0037008", "FBgn0003116",
-    "FBgn0037743", "FBgn0035401", "FBgn0037044", "FBgn0051005", "FBgn0026737",
-    "FBgn0026751", "FBgn0038704", "FBgn0002887", "FBgn0028434", "FBgn0030170",
-    "FBgn0263831", "FBgn0000579"),
-  c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111", "FBgn0022222",
-    "FBgn0777777", "FBgn0333333", "FBgn0003742", "FBgn0029709",
-    "FBgn0030341")))
-setBasedTest <- ora(gmt = modelDfFromFile,
-                    element_names = dataFromExperiment, 
-                    nthreads = 1)
-setBasedTestWithPool <- ora(gmt = modelDfFromFile,
-                            element_names = dataFromExperiment,
-                           background_element_names = dataFromExperimentPool,
-                           nthreads = 1)
-setBasedTestWithPoolAndAdjust <- ora(
-  gmt = modelDfFromFile,
-  element_names = dataFromExperiment,
-  background_element_names = dataFromExperimentPool,
-  p_value_adjustment_method = "BH",
-  nthreads = 1
- )
-setBaseTestWithPermutationTestAdjustment <- ora(
-  gmt = modelDfFromFile,
-  element_names = dataFromExperiment,
-  p_value_adjustment_method = "eFDR",
-  nthreads = 1
- )
-modelDfFromFile <- read_gmt(
-  file = system.file(package="mulea", "extdata", "model.gmt"))
-dataFromExperiment <- c(
-  "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
-  "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
-dataFromExperimentPool <- unique(c(
-  c("FBgn0033690", "FBgn0261618", "FBgn0004407", "FBgn0010438", "FBgn0032154",
-    "FBgn0039930", "FBgn0040268", "FBgn0013674", "FBgn0037008", "FBgn0003116",
-    "FBgn0037743", "FBgn0035401", "FBgn0037044", "FBgn0051005", "FBgn0026737",
-    "FBgn0026751", "FBgn0038704", "FBgn0002887", "FBgn0028434", "FBgn0030170",
-    "FBgn0263831", "FBgn0000579"),
-  c("FBgn0066666", "FBgn0000000", "FBgn0099999", "FBgn0011111", "FBgn0022222",
-    "FBgn0777777", "FBgn0333333", "FBgn0003742", "FBgn0029709",
-    "FBgn0030341")))
-setBasedTest <- ora(
-  gmt = modelDfFromFile,
-  element_names = dataFromExperiment,
-  nthreads = 1
- )
-setBasedTestWithPool <- ora(
-  gmt = modelDfFromFile,
-  element_names = dataFromExperiment, 
-  background_element_names = dataFromExperimentPool,
-  nthreads = 1
-)
-setBasedTestWithPoolAndAdjust <- ora(
-  gmt = modelDfFromFile,
-  element_names = dataFromExperiment,
-  background_element_names = dataFromExperimentPool,
-  p_value_adjustment_method = "BH", nthreads = 1
-)
-setBaseTestWithPermutationTestAdjustment <- ora(
-  gmt = modelDfFromFile,
-  element_names = dataFromExperiment,
-  p_value_adjustment_method = "eFDR",
-  nthreads = 1
-)
-setBasedTestRes <- run_test(setBasedTest)
-setBasedTestWithPoolRes <- run_test(setBasedTestWithPool)
-setBasedTestWithPoolAndAdjustRes <- run_test(setBasedTestWithPoolAndAdjust)
-setBaseTestWithPermutationTestAdjustmentRes <- run_test(setBaseTestWithPermutationTestAdjustment)
+library(mulea)
+library(tidyverse)
+geo2r_result_tab <- read_tsv("GSE55662.table_wt_non_vs_cipro.tsv")
+geo2r_result_tab \%<>\% 
+# extracting the first gene symbol from the Gene.symbol column
+mutate(Gene.symbol = str_remove(string = Gene.symbol,
+                                pattern = "\\\\/.*")) \%>\% 
+ # removing rows where Gene.symbol is NA
+ filter(!is.na(Gene.symbol)) \%>\% 
+ # ordering by logFC
+ arrange(desc(logFC))
+ 
+ sign_genes <- geo2r_result_tab \%>\% 
+# filtering for adjusted p-value < 0.05 and logFC > 1
+filter(adj.P.Val < 0.05 & logFC > 1) \%>\% 
+ # selecting the Gene.symbol column
+ select(Gene.symbol) \%>\% 
+ # converting the tibble to a vector
+ pull() \%>\% 
+ # removing duplicates
+ unique()
+ 
+ background_genes <- geo2r_result_tab \%>\% 
+# selecting the Gene.symbol column
+select(Gene.symbol) \%>\% 
+ # convertin the tibble to a vector
+ pull() \%>\% 
+ # removing duplicates
+ unique()
+ 
+tf_gmt <- read_gmt("Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
+                          min_nr_of_elements = 3,
+                          max_nr_of_elements = 400)
+
+# creating the ORA model using the GMT variable
+ora_model <- ora(gmt = tf_gmt_filtered, 
+                # the test set variable
+                element_names = sign_genes, 
+                # the background set variable
+                background_element_names = background_genes, 
+                # the p-value adjustment method
+                p_value_adjustment_method = "eFDR", 
+                # the number of permutations
+                number_of_permutations = 10000,
+                # the number of processor threads to use
+                nthreads = 4) 
 }
