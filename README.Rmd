@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-Traditional gene set enrichment analyses are typically limited to a few ontologies and do not account for the interdependence of gene sets or terms, resulting in overcorrected *p*-values. To address these chellenges, we introduce `mulea`, an R package offering comprehensive overrepresentation and functional enrichment analysis.
+Traditional gene set enrichment analyses are typically limited to a few ontologies and do not account for the interdependence of gene sets or terms, resulting in overcorrected *p*-values. To address these challenges, we introduce `mulea`, an R package offering comprehensive overrepresentation and functional enrichment analysis.
 
 `mulea` employs an innovative empirical *false discovery rate* (*eFDR*) correction method, specifically designed for interconnected biological data, to accurately identify significant terms within diverse ontologies. Beyond conventional tools, `mulea` incorporates a wide range of ontologies encompassing Gene Ontology, pathways, regulatory elements, genomic locations, and protein domains. This flexibility empowers researchers to tailor enrichment analysis to their specific questions, such as identifying enriched transcriptional regulators in gene expression data or overrepresented protein domains in protein sets.
 
@@ -30,9 +30,15 @@ To facilitate seamless analysis, `mulea` provides gene sets (in standardized GMT
 
 ## Installation
 
-Installation from this github repo using the `install_github` function of the `devtools` package:
+After installing the `BiocManager` package, you can install [`fgsea`](https://bioconductor.org/packages/release/bioc/html/fgsea.html), a dependency for `mulea` from Bioconductor. Then, you can install `mulea` from this github repo using the `install_github` function of the `devtools` package:
 
 ```{r 'install', eval=FALSE, message=FALSE, warning=FALSE}
+# installing the BiocManager package if needed
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+# installing the fgsea package from Bioconductor
+BiocManager::install("fgsea")
+# installing the mulea package from GitHub
 devtools::install_github("https://github.com/ELTEbioinformatics/mulea")
 ```
 
@@ -44,7 +50,7 @@ This section demonstrates how to use `mulea` with a sample dataset. If you have 
 
 #### **1. Downloading and Exploring the Dataset:**
 
-This example analyzes a differential expression (DE) dataset from a microarray experiment deposited in the NCBI Gene Expression Omnibus ![GEO](man/figures/geo_main.gif){alt="GEO" width="87"} under accession number [GSE55662](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55662). The original study by [Méhi *et al.* (2014)](https://doi.org/10.1093/molbev/msu223), investigated the evolution of antibiotic resistance in *Escherichia coli* bacteria. The authors compared gene expression changes in *ciprofloxacin*-treated bacteria to non-treated controls.
+This example analyses a differential expression (DE) dataset from a microarray experiment deposited in the NCBI Gene Expression Omnibus ![GEO](man/figures/geo_main.gif){alt="GEO" width="87"} under accession number [GSE55662](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55662). The original study by [Méhi *et al.* (2014)](https://doi.org/10.1093/molbev/msu223), investigated the evolution of antibiotic resistance in *Escherichia coli* bacteria. The authors compared gene expression changes in *ciprofloxacin*-treated bacteria to non-treated controls.
 
 The [GEO2R](https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE55662) tool was used for differential expression analysis, comparing:
 
@@ -195,6 +201,13 @@ Based on our observations, we'll exclude entries with less than 3 or more than 4
 tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
                                    min_nr_of_elements = 3,
                                    max_nr_of_elements = 400)
+```
+
+It is possible to write the filtered ontology as a GMT file using the `write_gmt` function.
+
+```{r 'write_gmt', eval=FALSE}
+write_gmt(gmt = tf_gmt_filtered, 
+          file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
 ```
 
 **Results:**

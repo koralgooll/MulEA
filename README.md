@@ -15,7 +15,7 @@ pulls](https://img.shields.io/github/issues-pr/ELTEbioinformatics/mulea)](https:
 Traditional gene set enrichment analyses are typically limited to a few
 ontologies and do not account for the interdependence of gene sets or
 terms, resulting in overcorrected *p*-values. To address these
-chellenges, we introduce `mulea`, an R package offering comprehensive
+challenges, we introduce `mulea`, an R package offering comprehensive
 overrepresentation and functional enrichment analysis.
 
 `mulea` employs an innovative empirical *false discovery rate* (*eFDR*)
@@ -42,10 +42,19 @@ across diverse research areas.
 
 ## Installation
 
-Installation from this github repo using the `install_github` function
-of the `devtools` package:
+After installing the `BiocManager` package, you can install
+[`fgsea`](https://bioconductor.org/packages/release/bioc/html/fgsea.html),
+a dependency for `mulea` from Bioconductor. Then, you can install
+`mulea` from this github repo using the `install_github` function of the
+`devtools` package:
 
 ``` r
+# installing the BiocManager package if needed
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+# installing the fgsea package from Bioconductor
+BiocManager::install("fgsea")
+# installing the mulea package from GitHub
 devtools::install_github("https://github.com/ELTEbioinformatics/mulea")
 ```
 
@@ -61,7 +70,7 @@ Analysis (GSEA)](#gene-set-enrichment-analysis-gsea) sections.
 
 #### **1. Downloading and Exploring the Dataset:**
 
-This example analyzes a differential expression (DE) dataset from a
+This example analyses a differential expression (DE) dataset from a
 microarray experiment deposited in the NCBI Gene Expression Omnibus
 <img src="man/figures/geo_main.gif" alt="GEO" width="87" /> under
 accession number
@@ -424,14 +433,14 @@ ora_results %>%
 |:------------|:--------------|-------------------------------:|----------------------------------:|----------:|----------:|
 | FNR         | FNR           |                             26 |                               259 | 0.0000003 | 0.0000000 |
 | LexA        | LexA          |                             14 |                                53 | 0.0000000 | 0.0000000 |
-| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0026000 |
-| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0050833 |
-| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0052600 |
-| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0054000 |
-| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0069857 |
-| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0200625 |
-| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0445600 |
-| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0469778 |
+| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0028667 |
+| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0048333 |
+| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0048800 |
+| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0053250 |
+| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0068714 |
+| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0202250 |
+| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0452500 |
+| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0474111 |
 
 #### Visualizing the ORA Result
 
@@ -629,7 +638,7 @@ gsea_results %>%
   filter(adjusted_p_value < 0.05) %>% 
   # the number of such rows
   nrow()
-#> [1] 9
+#> [1] 8
 ```
 
 And inspect the significant results:
@@ -644,15 +653,14 @@ gsea_results %>%
 
 | ontology_id | ontology_name | nr_common_genes_ontology_set | nr_common_genes_ontology_background |   p_value | adjusted_p_value |
 |:------------|:--------------|-----------------------------:|------------------------------------:|----------:|-----------------:|
-| LexA        | LexA          |                           53 |                                  61 | 0.0000000 |        0.0000023 |
-| FNR         | FNR           |                          259 |                                 302 | 0.0000807 |        0.0061702 |
-| ModE        | ModE          |                           45 |                                  46 | 0.0002211 |        0.0112740 |
-| ArcA        | ArcA          |                          148 |                                 180 | 0.0004717 |        0.0120280 |
-| DnaA        | DnaA          |                           13 |                                  14 | 0.0004306 |        0.0120280 |
-| GlaR        | GlaR          |                            3 |                                   5 | 0.0003349 |        0.0120280 |
-| SoxS        | SoxS          |                           37 |                                  44 | 0.0008014 |        0.0175163 |
-| PaaX        | PaaX          |                           14 |                                  14 | 0.0025714 |        0.0437134 |
-| PspF        | PspF          |                            7 |                                   7 | 0.0024604 |        0.0437134 |
+| LexA        | LexA          |                           53 |                                  61 | 0.0000000 |        0.0000032 |
+| FNR         | FNR           |                          259 |                                 302 | 0.0000401 |        0.0030700 |
+| ArcA        | ArcA          |                          148 |                                 180 | 0.0004215 |        0.0120280 |
+| DnaA        | DnaA          |                           13 |                                  14 | 0.0004717 |        0.0120280 |
+| GlaR        | GlaR          |                            3 |                                   5 | 0.0003668 |        0.0120280 |
+| ModE        | ModE          |                           45 |                                  46 | 0.0004489 |        0.0120280 |
+| SoxS        | SoxS          |                           37 |                                  44 | 0.0008564 |        0.0187174 |
+| PaaX        | PaaX          |                           14 |                                  14 | 0.0017580 |        0.0336213 |
 
 #### Visualizing the GSEA Results
 
