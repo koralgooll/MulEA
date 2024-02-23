@@ -593,18 +593,19 @@ plot_lollipop <-
              levels = unique_reshaped_results_df[[1]])
     mulea_gg_plot <- ggplot(
       unique_reshaped_results_df,
-      aes(x = get(ontology_id_colname), y = get(p_value_type_colname))
+      aes_string(x = ontology_id_colname, y = p_value_type_colname)
     ) +
-      geom_segment(aes(x= get(ontology_id_colname), 
-                        xend = get(ontology_id_colname),
-                        y = 0, 
-                        yend = as.numeric(get(p_value_type_colname))),
+      geom_segment(aes(x = get(ontology_id_colname),
+                       xend = get(ontology_id_colname),
+                       y = 0, 
+                       yend = as.numeric(get(p_value_type_colname))),
                     color = 'black')+
       geom_point(aes(size=5, color = get(p_value_type_colname)))+
       guides(size='none')+
       scale_color_gradient2(mid = '#ff6361',
                            high = 'grey90',
-                           limits = c(0.0, p_value_max_threshold)) +
+                           limits = c(0.0, p_value_max_threshold),
+                           name = p_value_type_colname) +
       coord_flip() +
       theme_light()+ 
       theme(text=element_text(family="Helvetica"))

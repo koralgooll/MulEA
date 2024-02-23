@@ -277,6 +277,14 @@ tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
                                    max_nr_of_elements = 400)
 ```
 
+It is possible to write the filtered ontology as a GMT file using the
+`write_gmt` function.
+
+``` r
+write_gmt(gmt = tf_gmt_filtered, 
+          file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
+```
+
 **Results:**
 
 We can now determine the number of transcription factors remaining in
@@ -433,14 +441,14 @@ ora_results %>%
 |:------------|:--------------|-------------------------------:|----------------------------------:|----------:|----------:|
 | FNR         | FNR           |                             26 |                               259 | 0.0000003 | 0.0000000 |
 | LexA        | LexA          |                             14 |                                53 | 0.0000000 | 0.0000000 |
-| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0028667 |
-| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0048333 |
-| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0048800 |
-| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0053250 |
-| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0068714 |
-| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0202250 |
-| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0452500 |
-| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0474111 |
+| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0027000 |
+| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0050000 |
+| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0053200 |
+| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0058750 |
+| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0071571 |
+| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0202625 |
+| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0450800 |
+| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0477444 |
 
 #### Visualizing the ORA Result
 
@@ -638,7 +646,7 @@ gsea_results %>%
   filter(adjusted_p_value < 0.05) %>% 
   # the number of such rows
   nrow()
-#> [1] 8
+#> [1] 9
 ```
 
 And inspect the significant results:
@@ -653,14 +661,15 @@ gsea_results %>%
 
 | ontology_id | ontology_name | nr_common_genes_ontology_set | nr_common_genes_ontology_background |   p_value | adjusted_p_value |
 |:------------|:--------------|-----------------------------:|------------------------------------:|----------:|-----------------:|
-| LexA        | LexA          |                           53 |                                  61 | 0.0000000 |        0.0000032 |
-| FNR         | FNR           |                          259 |                                 302 | 0.0000401 |        0.0030700 |
-| ArcA        | ArcA          |                          148 |                                 180 | 0.0004215 |        0.0120280 |
-| DnaA        | DnaA          |                           13 |                                  14 | 0.0004717 |        0.0120280 |
-| GlaR        | GlaR          |                            3 |                                   5 | 0.0003668 |        0.0120280 |
-| ModE        | ModE          |                           45 |                                  46 | 0.0004489 |        0.0120280 |
-| SoxS        | SoxS          |                           37 |                                  44 | 0.0008564 |        0.0187174 |
-| PaaX        | PaaX          |                           14 |                                  14 | 0.0017580 |        0.0336213 |
+| LexA        | LexA          |                           53 |                                  61 | 0.0000000 |        0.0000041 |
+| FNR         | FNR           |                          259 |                                 302 | 0.0000441 |        0.0033705 |
+| GlaR        | GlaR          |                            3 |                                   5 | 0.0002757 |        0.0114169 |
+| ModE        | ModE          |                           45 |                                  46 | 0.0002985 |        0.0114169 |
+| ArcA        | ArcA          |                          148 |                                 180 | 0.0003896 |        0.0115620 |
+| SoxS        | SoxS          |                           37 |                                  44 | 0.0004534 |        0.0115620 |
+| DnaA        | DnaA          |                           13 |                                  14 | 0.0005816 |        0.0127119 |
+| PaaX        | PaaX          |                           14 |                                  14 | 0.0017028 |        0.0289468 |
+| PspF        | PspF          |                            7 |                                   7 | 0.0016291 |        0.0289468 |
 
 #### Visualizing the GSEA Results
 
