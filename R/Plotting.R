@@ -324,7 +324,7 @@ plot_graph <- function(reshaped_results,
   }
   
   graph_plot <- graph_plot + 
-    ggraph::scale_edge_width(range = c(0, 3), name="Nr. of shared elements") +
+    ggraph::scale_edge_width(breaks = scales::pretty_breaks(n = 5), range = c(0, 3), name="Nr. of shared elements") +
     ggraph::geom_node_point(aes(color = .data$p_stat)) +
     ggraph::geom_node_point(aes(color = .data$p_stat, 
                                 size = (1 - .data$p_stat)), 
