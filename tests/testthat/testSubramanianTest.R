@@ -48,7 +48,7 @@ test_that("GSEA : out of ontology elements.", {
   
   testthat::expect_warning(muleaTestRes <-
                              run_test(mulea_ranked_based_test_model))
-  testthat::expect_equal(muleaTestRes$pValue, 151/495)
+  testthat::expect_equal(muleaTestRes$p_value, 151/495)
 })
 
 test_that("GSEA : DB1 + DB2.", {
@@ -74,7 +74,7 @@ test_that("GSEA : DB1 + DB2.", {
                                                element_scores = scoreDataMock)
   
   muleaTestRes <- run_test(mulea_ranked_based_test_model)
-  testthat::expect_equal(muleaTestRes$pValue, c(169 / 330, 107 / 219))
+  testthat::expect_equal(muleaTestRes$p_value, c(169 / 330, 107 / 219))
 })
 
 test_that("GSEA : DB1 + DB2 out of background_element_names.", {
@@ -100,5 +100,5 @@ test_that("GSEA : DB1 + DB2 out of background_element_names.", {
                                                element_scores = scoreDataMock)
   
   muleaTestRes <- run_test(mulea_ranked_based_test_model)
-  testthat::expect_equal(muleaTestRes$pValue, c(156 / 653, 251 / 492))
+  testthat::expect_equal(muleaTestRes$p_value, c(156 / 653, 251 / 492))
 })
