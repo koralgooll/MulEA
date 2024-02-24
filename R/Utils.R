@@ -5,7 +5,7 @@
 #'
 #' @param file Character, a path to a file.
 #' @return 
-#' Returns a data.frame() with three columns:
+#' Returns a `data.frame` with three columns:
 #' 
 #' * ontology_id: Ontology identifier that uniquely identifies the element within the referenced ontology.
 #' * ontology_name: Ontology name or description that provides a user-friendly label or textual description for the ontology_id.
