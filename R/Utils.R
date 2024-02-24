@@ -1,13 +1,16 @@
 #' Read GMT File
 #' @description
-#' Read model data from a Gene Matrix Transposed (GMT) file and parse into a
-#' data frame.
+#' Read gene set or ontology data from a Gene Matrix Transposed (GMT) file and
+#' parse into a data frame.
 #'
-#' @param file character; a path which points to a GMT file.
-#' @return Returns a data frame with three columns: 
-#' ontology_id: The identifier for each entry.
-#' ontology_name: The name or description corresponding to the ontology_id.
-#' list_of_values: A list of values associated with each ontology_id.
+#' @param file Character, a path to a file.
+#' @return 
+#' Returns a data.frame() with three columns:
+#' 
+#' * ontology_id: Ontology identifier that uniquely identifies the element within the referenced ontology.
+#' * ontology_name: Ontology name or description that provides a user-friendly label or textual description for the ontology_id.
+#' * list_of_values: Associated genes or proteins that is a vector of identifiers of genes or proteins belonging to the ontology_id.
+#' 
 #' @export
 #'
 #' @examples 
