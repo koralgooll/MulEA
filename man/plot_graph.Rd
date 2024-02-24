@@ -33,9 +33,9 @@ Returns a graph plot.
 Plots graph representation of enrichment results.
 }
 \details{
-This function takes reshaped data, filters it based on p-values, 
-calculates shared gene elements between ontology IDs, and creates a graph visualizing 
-the relationships between ontologies and their associated genes based on shared elements 
+This function takes reshaped data, filters it based on p-values,
+calculates shared gene elements between ontology IDs, and creates a graph visualizing
+the relationships between ontologies and their associated genes based on shared elements
 and p-values.
 }
 \examples{

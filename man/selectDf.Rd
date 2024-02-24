@@ -3,22 +3,23 @@
 \docType{data}
 \name{selectDf}
 \alias{selectDf}
-\title{TITLE}
+\title{Genes and scores for ora and gsea analyses}
 \format{
 A data frame with 13 rows and 3 variables:
 \describe{
-  \item{X}{Row names}
-  \item{select}{DEFINITION}
-  \item{score}{DEFINITION}
+\item{X}{Row names}
+\item{select}{Flybase gene IDs of 13 genes from Drosophyla melanogaster}
+\item{score}{Log fold change scores for each gene}
 }
 }
 \source{
-SOURCE
+\url{https://flybase.org/}
 }
 \usage{
 selectDf
 }
 \description{
-DESCRIPTION
+Data frame containing 13 genes in the "select" column and their scores in the
+"score" column.
 }
 \keyword{datasets}

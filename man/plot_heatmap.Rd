@@ -13,7 +13,7 @@ plot_heatmap(
 )
 }
 \arguments{
-\item{reshaped_results}{data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.}
+\item{reshaped_results}{data.table in relaxed form, obtained as the output of the \code{reshape_results} function. The data source for generating the barplot.}
 
 \item{ontology_id_colname}{Character, specifies the column name that contains ontology IDs in the input data.}
 
@@ -30,7 +30,7 @@ Returns a ggplot2 heatmap.
 Plots heatmap of enriched terms and obtained p-values.
 }
 \details{
-The `plot_heatmap` function provides a convenient way to create a ggplot2 heatmap illustrating the significance of enriched terms within ontology categories based on their associated p-values.
+The \code{plot_heatmap} function provides a convenient way to create a ggplot2 heatmap illustrating the significance of enriched terms within ontology categories based on their associated p-values.
 }
 \examples{
 library(mulea)

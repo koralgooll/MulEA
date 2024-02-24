@@ -3,21 +3,21 @@
 \docType{data}
 \name{poolDf}
 \alias{poolDf}
-\title{TITLE}
+\title{Background genes for ora analyses}
 \format{
 A data frame with 33 rows and 2 variables:
 \describe{
-  \item{X}{Row names}
-  \item{background_element_names}{DEFINITION}
+\item{X}{Row names}
+\item{background_element_names}{Flybase gene IDs of 33 genes from Drosophyla melanogaster}
 }
 }
 \source{
-SOURCE
+\url{https://flybase.org/}
 }
 \usage{
 poolDf
 }
 \description{
-DESCRIPTION
+Data frame containing 13 genes in the "background_element_names" column.
 }
 \keyword{datasets}

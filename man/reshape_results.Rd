@@ -31,9 +31,9 @@ Return detailed and relaxed datatable where model and results are
 merged for plotting purposes.
 }
 \description{
-This function takes a model and model_results data, 
-reshapes them into a suitable format for plotting, 
-and returns the resulting data frame, which can be used 
+This function takes a model and model_results data,
+reshapes them into a suitable format for plotting,
+and returns the resulting data frame, which can be used
 for further analysis or visualization.
 }
 \examples{

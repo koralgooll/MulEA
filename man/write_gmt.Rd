@@ -15,7 +15,7 @@ write_gmt(gmt, file)
 Returns the model as a .gmt file at a specific location.
 }
 \description{
-Write GMT takes a data frame with specific formatting (columns representing ontology IDs, descriptions, and associated lists of values) 
+Write GMT takes a data frame with specific formatting (columns representing ontology IDs, descriptions, and associated lists of values)
 and writes it to a file in a standardized GMT format.
 }
 \examples{

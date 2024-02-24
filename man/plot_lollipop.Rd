@@ -13,7 +13,7 @@ plot_lollipop(
 )
 }
 \arguments{
-\item{reshaped_results}{data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.}
+\item{reshaped_results}{data.table in relaxed form, obtained as the output of the \code{reshape_results} function. The data source for generating the barplot.}
 
 \item{ontology_id_colname}{Character, specifies the column name that contains ontology IDs in the input data.}
 

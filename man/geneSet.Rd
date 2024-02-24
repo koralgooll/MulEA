@@ -3,13 +3,13 @@
 \docType{data}
 \name{geneSet}
 \alias{geneSet}
-\title{Gene Set Example}
+\title{Ontology Example}
 \format{
 A data frame with 7 rows and 3 variables:
 \describe{
-  \item{ontology_id}{Ontology ID of the gene set}
-  \item{ontology_name}{Description of the gene set}
-  \item{list_of_values}{Genes in the gene set}
+\item{ontology_id}{Ontology ID of the gene set}
+\item{ontology_name}{Description of the gene set}
+\item{list_of_values}{Genes in the gene set}
 }
 }
 \source{
