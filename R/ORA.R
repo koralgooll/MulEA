@@ -190,7 +190,7 @@ setMethod("initialize", "ora",
             
           })
 
-#' @describeIn Runs ORA test.
+#' @describeIn run_test ora test.
 #' @param model Object of S4 class representing the mulea test.
 #' @return run_test method for ora object. Returns the results of the overrepresentation analysis.
 #' @examples
