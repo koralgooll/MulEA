@@ -2,17 +2,20 @@
 % Please edit documentation in R/Utils.R
 \name{list_to_gmt}
 \alias{list_to_gmt}
-\title{Convert list to GMT data frame}
+\title{Convert a list to ontology (GMT) \code{data.frame}.}
 \usage{
 list_to_gmt(gmt_list)
 }
 \arguments{
-\item{gmt_list}{List with element names as ontology_id and genes in each
-element.}
+\item{gmt_list}{A list with named character vectors. The name will become the
+'ontology_id', and the elements in the vector will become the
+'list_of_values' in the ontology (GMT) \code{data.frame}.}
 }
 \value{
-Return data frame with model.
+Returns ontology (GMT) \code{data.frame} where the 'ontology_name'
+contains random unique strings.
 }
 \description{
-Convert ontology representation from list to gmt data frame.
+Converts a list of ontology elements (gene sets) to an ontology
+(GMT) \code{data.frame} object.
 }

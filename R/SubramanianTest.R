@@ -1,11 +1,18 @@
 #' PRIVATE class : An S4 class to represent a ranked based tests in mulea.
 #'
-#' @slot gmt A data.frame representing GMT's reprezentation of model.
-#' @slot element_names A data from expeciment to analize accross model.
-#' @slot element_scores A vectore of element_scores per element_names.
+#' @slot gmt A `data.frame` representing the ontology GMT.
+#' @slot element_names A vector of elements names (gene or protein names or
+#'   identifiers) to include in the analysis.
+#' @slot element_scores A vector of numeric values representing a score (*e.g.*
+#'   *p*-value, *z*-score, log fold change) for each element_name, in the same 
+#'   number and order as element_name.
 #' @slot p A power of weight.
-#' @slot element_score_type Defines the GSEA score type. Only positive element_scores - "pos", only negative element_scores - "neg" and mixed (standard) - "std".
-#' @return dataframe with presented columns 'ontology_id', 'ontology_name',
+#' @slot element_score_type Defines the GSEA score type.
+#' * "pos": Only positive element_scores
+#' * "neg": only negative element_scores - "neg" and mixed
+#' * "std": standard -- containing both positive and negative scores
+#'   Default value is "std".
+#' @return `data.frame` with presented columns 'ontology_id', 'ontology_name',
 #' 'nr_common_genes_ontology_set', 'nr_common_genes_ontology_background',
 #' 'p_value', 'adjusted_p_value'
 #' @examples

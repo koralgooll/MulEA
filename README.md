@@ -302,6 +302,21 @@ write_gmt(gmt = tf_gmt_filtered,
           file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
 ```
 
+#### Converting a List to an Ontology Object
+
+The `mulea` package provides a function to convert a list of gene sets
+to an ontology (GMT) object. This function is called `list_to_gmt`. The
+following example demonstrates how to use this function:
+
+``` r
+# creating a list of gene sets
+ontology_list <- list(gene_set1 = c("gene1", "gene2", "gene3"),
+                      gene_set2 = c("gene4", "gene5", "gene6"))
+
+# converting the list to a ontology (GMT) object
+new_ontology_object <- list_to_gmt(ontology_list)
+```
+
 ### OverRepresentation Analysis (ORA)
 
 This approach analyses groups of genes (sets) to identify if they are
@@ -441,14 +456,14 @@ ora_results %>%
 |:------------|:--------------|-------------------------------:|----------------------------------:|----------:|----------:|
 | FNR         | FNR           |                             26 |                               259 | 0.0000003 | 0.0000000 |
 | LexA        | LexA          |                             14 |                                53 | 0.0000000 | 0.0000000 |
-| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0031333 |
-| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0048500 |
-| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0051800 |
-| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0057000 |
-| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0066571 |
-| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0192750 |
-| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0438700 |
-| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0462333 |
+| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0029333 |
+| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0048000 |
+| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0049167 |
+| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0051000 |
+| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0068429 |
+| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0202250 |
+| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0452500 |
+| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0477444 |
 
 #### Visualizing the ORA Result
 
@@ -661,16 +676,16 @@ gsea_results %>%
 
 | ontology_id | ontology_name | nr_common_genes_ontology_set | nr_common_genes_ontology_background |   p_value | adjusted_p_value |
 |:------------|:--------------|-----------------------------:|------------------------------------:|----------:|-----------------:|
-| LexA        | LexA          |                           53 |                                  61 | 0.0000000 |        0.0000023 |
-| FNR         | FNR           |                          259 |                                 302 | 0.0000384 |        0.0029412 |
-| GlaR        | GlaR          |                            3 |                                   5 | 0.0001848 |        0.0071546 |
-| ModE        | ModE          |                           45 |                                  46 | 0.0001870 |        0.0071546 |
-| ArcA        | ArcA          |                          148 |                                 180 | 0.0002848 |        0.0087152 |
-| DnaA        | DnaA          |                           13 |                                  14 | 0.0005633 |        0.0143635 |
-| SoxS        | SoxS          |                           37 |                                  44 | 0.0006732 |        0.0147137 |
-| FadR        | FadR          |                           20 |                                  23 | 0.0026824 |        0.0456003 |
-| PaaX        | PaaX          |                           14 |                                  14 | 0.0026824 |        0.0456003 |
-| PspF        | PspF          |                            7 |                                   7 | 0.0030523 |        0.0467009 |
+| LexA        | LexA          |                           53 |                                  61 | 0.0000000 |        0.0000055 |
+| FNR         | FNR           |                          259 |                                 302 | 0.0000570 |        0.0043580 |
+| ArcA        | ArcA          |                          148 |                                 180 | 0.0003714 |        0.0113645 |
+| GlaR        | GlaR          |                            3 |                                   5 | 0.0002803 |        0.0113645 |
+| ModE        | ModE          |                           45 |                                  46 | 0.0003213 |        0.0113645 |
+| SoxS        | SoxS          |                           37 |                                  44 | 0.0006915 |        0.0176331 |
+| DnaA        | DnaA          |                           13 |                                  14 | 0.0008655 |        0.0189176 |
+| PaaX        | PaaX          |                           14 |                                  14 | 0.0021644 |        0.0413943 |
+| PspF        | PspF          |                            7 |                                   7 | 0.0030893 |        0.0472670 |
+| Rob         | Rob           |                           21 |                                  26 | 0.0028304 |        0.0472670 |
 
 #### Visualizing the GSEA Results
 

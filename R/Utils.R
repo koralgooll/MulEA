@@ -1,19 +1,17 @@
 #' Read GMT File
-#' @description
-#' Read gene set or ontology data from a Gene Matrix Transposed (GMT) file and
-#' parse into a data frame.
+#' @description Reads gene set or ontology data from a Gene Matrix Transposed
+#' (GMT) file and parse into a `data.frame`.
 #'
 #' @param file Character, a path to a file.
-#' @return 
-#' Returns a `data.frame` with three columns:
-#' 
-#' * ontology_id: Ontology identifier that uniquely identifies the element within the referenced ontology.
-#' * ontology_name: Ontology name or description that provides a user-friendly label or textual description for the ontology_id.
-#' * list_of_values: Associated genes or proteins that is a vector of identifiers of genes or proteins belonging to the ontology_id.
-#' 
+#' @return Returns a `data.frame` with three columns:
+#'
+#' * 'ontology_id': Ontology identifier that uniquely identifies the element within the referenced ontology.
+#' * 'ontology_name': Ontology name or description that provides a user-friendly label or textual description for the 'ontology_id'.
+#' * 'list_of_values': Associated genes or proteins that is a vector of identifiers of genes or proteins belonging to the 'ontology_id'.
+#'
 #' @export
 #'
-#' @examples 
+#' @examples
 #' # import example gene set
 #' library(mulea)
 #' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
@@ -52,21 +50,24 @@ read_gmt <- function(file) {
 
 
 #' Write GMT file
-#' @description
-#' Write GMT takes a data frame with specific formatting (columns representing ontology IDs, descriptions, and associated lists of values) 
-#' and writes it to a file in a standardized GMT format.
+#' @description Writes gene set or ontology `data.frame` with specific
+#' formatting (columns representing ontology identifiers, descriptions, and
+#' associated lists of values) and writes it to a file in a standardized Gene 
+#' Matrix Transposed (GMT) file format.
 #'
-#' @param gmt A data frame containing the data to be written, imported from a GMT file.
-#' @param file character; a path naming the output file.
-#' @return Returns the model as a .gmt file at a specific location.
+#' @param gmt A `data.frame` containing the data to be written, imported from a
+#'   GMT file with the `read_gmt` function.
+#' @param file Character, a path to a file.
+#' @return Returns the input as a GMT file at a specific location.
 #' @export
 #' @examples
 #' #' library(mulea)
+#'
+#' # loading and filtering the example ontology from a GMT file
 #' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
-#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
-#'                           min_nr_of_elements = 3,
-#'                           max_nr_of_elements = 400)
-#' write_gmt(gmt = tf_gmt_filtered, file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
+#'
+#' # writing the filtered ontology to a GMT file
+#' write_gmt(gmt = tf_gmt, file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
 
 write_gmt <- function(gmt, file) {
   vectorOfModel <-
@@ -93,7 +94,6 @@ write_gmt <- function(gmt, file) {
 #'   enrichment analysis results can sometimes be skewed by overly specific or
 #'   broad entries. Filtering ontologies allows you to customize the size of
 #'   ontology entries, ensuring your analysis aligns with your desired scope.
-#'
 #' @param gmt A `data.frame` which contains the entries (gene or protein sets),
 #'   imported from a GMT file with the `read_gmt` function.
 #' @param min_nr_of_elements Minimum number of elements. Ontology entries
@@ -105,6 +105,8 @@ write_gmt <- function(gmt, file) {
 #' @export
 #' @examples
 #' library(mulea)
+#' 
+#' # loading and filtering the example ontology from a GMT file
 #' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 #' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
 #'                                    min_nr_of_elements = 3,
@@ -225,14 +227,14 @@ decorateGmtByUnderOvenAndNoise <- function(input_gmt,
 }
 
 
-#' Convert list to GMT data frame
-#' @description
-#' 
-#' Convert ontology representation from list to gmt data frame.
-#'
-#' @param gmt_list List with element names as ontology_id and genes in each
-#' element.
-#' @return Return data frame with model.
+#' Convert a list to ontology (GMT) `data.frame`.
+#' @description Converts a list of ontology elements (gene sets) to an ontology
+#' (GMT) `data.frame` object.
+#' @param gmt_list A list with named character vectors. The name will become the
+#'   'ontology_id', and the elements in the vector will become the
+#'   'list_of_values' in the ontology (GMT) `data.frame`.
+#' @return Returns ontology (GMT) `data.frame` where the 'ontology_name'
+#'   contains random unique strings.
 #' @export
 list_to_gmt <- function(gmt_list) {
   listAsGmtDataFrame <-

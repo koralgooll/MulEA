@@ -6,7 +6,8 @@
 \alias{ora}
 \title{An S4 class to represent a set based tests in mulea.}
 \value{
-ora object. This object represents set based tests in mulea.
+ora object. This object represents the result of the
+overrepresentation test in mulea.
 }
 \description{
 An S4 class to represent a set based tests in mulea.
@@ -14,72 +15,57 @@ An S4 class to represent a set based tests in mulea.
 \section{Slots}{
 
 \describe{
-\item{\code{method}}{A method from set based methods to count results. Possible
-values: "Hypergeometric", "SetBasedEnrichment".}
+\item{\code{method}}{The overrepresentation (ora) method. Possible values:
+"Hypergeometric", "SetBasedEnrichment".}
 
-\item{\code{gmt}}{A data.frame representing the GMT representation of a model.}
+\item{\code{gmt}}{A \code{data.frame} representing the ontology GMT.}
 
-\item{\code{element_names}}{Data from an experiment to analyse across model, e.g. differentially expressed genes.}
+\item{\code{element_names}}{A vector of elements names (gene or protein names or
+identifiers) representing the target set to analyse. For example
+differentially expressed genes.}
 
-\item{\code{background_element_names}}{Background set for the test, e.g. all genes in the experiment.}
+\item{\code{background_element_names}}{A vector of elements names (gene or protein
+names or identifiers) representing all the elements involved in the previous
+analyses For example all genes that were measured in differential expression
+analysis.}
 
-\item{\code{p_value_adjustment_method}}{A type of algorithm used to adjust values.
-Possible values: "eFDR", and all options from p.adjust {stats} documentation.}
+\item{\code{p_value_adjustment_method}}{A character string representing the type of
+the \emph{p}-value adjustment method. Possible values:
+\itemize{
+\item 'eFDR': empirical false discovery rate correction method
+\item and all \code{method} options from \code{p.adjust} {stats} documentation.
+}}
 
-\item{\code{number_of_permutations}}{A number of permutations used in set based
-enrichment test. Default value is 10000.}
+\item{\code{number_of_permutations}}{A numeric value representing the number of
+permutations used to calculate the eFDR values. Default value is 10000.}
 
-\item{\code{nthreads}}{Number of processor's threads used in calculations.}
+\item{\code{nthreads}}{Number of processor's threads to use in calculations.}
 }}
 
 \examples{
 library(mulea)
-library(tidyverse)
-geo2r_result_tab <- read_tsv(file = system.file(package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
-geo2r_result_tab \%<>\% 
-# extracting the first gene symbol from the Gene.symbol column
-mutate(Gene.symbol = str_remove(string = Gene.symbol,
-                                pattern = "\\\\/.*")) \%>\% 
- # removing rows where Gene.symbol is NA
- filter(!is.na(Gene.symbol)) \%>\% 
- # ordering by logFC
- arrange(desc(logFC))
- 
- sign_genes <- geo2r_result_tab \%>\% 
-# filtering for adjusted p-value < 0.05 and logFC > 1
-filter(adj.P.Val < 0.05 & logFC > 1) \%>\% 
- # selecting the Gene.symbol column
- select(Gene.symbol) \%>\% 
- # converting the tibble to a vector
- pull() \%>\% 
- # removing duplicates
- unique()
- 
- background_genes <- geo2r_result_tab \%>\% 
-# selecting the Gene.symbol column
-select(Gene.symbol) \%>\% 
- # convertin the tibble to a vector
- pull() \%>\% 
- # removing duplicates
- unique()
- 
+
+# loading and filtering the example ontology from a GMT file
 tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", 
-"Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")) 
+                                      "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
+tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, max_nr_of_elements = 400)
 
-tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
-                          min_nr_of_elements = 3,
-                          max_nr_of_elements = 400)
+# loading the example data
+sign_genes <- readLines(system.file(package = "mulea", "extdata", "sign_genes.csv"))
+background_genes <- readLines(system.file(package="mulea", "extdata", "background_genes.csv"))
 
-# creating the ORA model using the GMT variable
+# creating the ORA model
 ora_model <- ora(gmt = tf_gmt_filtered, 
-                # the test set variable
-                element_names = sign_genes, 
-                # the background set variable
-                background_element_names = background_genes, 
-                # the p-value adjustment method
-                p_value_adjustment_method = "eFDR", 
-                # the number of permutations
-                number_of_permutations = 10000,
-                # the number of processor threads to use
-                nthreads = 4) 
+                 # the test set variable
+                 element_names = sign_genes, 
+                 # the background set variable
+                 background_element_names = background_genes, 
+                 # the p-value adjustment method
+                 p_value_adjustment_method = "eFDR", 
+                 # the number of permutations
+                 number_of_permutations = 10000,
+                 # the number of processor threads to use
+                 nthreads = 4)
+# running the ORA
+ora_results <- run_test(ora_model)
 }

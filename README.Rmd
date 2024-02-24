@@ -225,6 +225,20 @@ write_gmt(gmt = tf_gmt_filtered,
           file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
 ```
 
+#### Converting a List to an Ontology Object
+
+The `mulea` package provides a function to convert a list of gene sets to an ontology (GMT) object. This function is called `list_to_gmt`. The following example demonstrates how to use this function:
+
+```{r 'list_to_gmt_example', eval=FALSE}
+# creating a list of gene sets
+ontology_list <- list(gene_set1 = c("gene1", "gene2", "gene3"),
+                      gene_set2 = c("gene4", "gene5", "gene6"))
+
+# converting the list to a ontology (GMT) object
+new_ontology_object <- list_to_gmt(ontology_list)
+```
+
+
 ### OverRepresentation Analysis (ORA) {#overrepresentation-analysis-ora}
 
 This approach analyses groups of genes (sets) to identify if they are enriched in specific categories – transcription factors – within a reference set. It requires two key elements:

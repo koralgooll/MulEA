@@ -13,7 +13,7 @@
 \item{model}{Object of s4 class represents mulea Test.}
 }
 \value{
-dataframe with presented columns 'ontology_id', 'ontology_name',
+\code{data.frame} with presented columns 'ontology_id', 'ontology_name',
 'nr_common_genes_ontology_set', 'nr_common_genes_ontology_background',
 'p_value', 'adjusted_p_value'
 
@@ -30,15 +30,24 @@ PRIVATE class : An S4 class to represent a ranked based tests in mulea.
 \section{Slots}{
 
 \describe{
-\item{\code{gmt}}{A data.frame representing GMT's reprezentation of model.}
+\item{\code{gmt}}{A \code{data.frame} representing the ontology GMT.}
 
-\item{\code{element_names}}{A data from expeciment to analize accross model.}
+\item{\code{element_names}}{A vector of elements names (gene or protein names or
+identifiers) to include in the analysis.}
 
-\item{\code{element_scores}}{A vectore of element_scores per element_names.}
+\item{\code{element_scores}}{A vector of numeric values representing a score (\emph{e.g.}
+\emph{p}-value, \emph{z}-score, log fold change) for each element_name, in the same
+number and order as element_name.}
 
 \item{\code{p}}{A power of weight.}
 
-\item{\code{element_score_type}}{Defines the GSEA score type. Only positive element_scores - "pos", only negative element_scores - "neg" and mixed (standard) - "std".}
+\item{\code{element_score_type}}{Defines the GSEA score type.
+\itemize{
+\item "pos": Only positive element_scores
+\item "neg": only negative element_scores - "neg" and mixed
+\item "std": standard -- containing both positive and negative scores
+Default value is "std".
+}}
 }}
 
 \examples{

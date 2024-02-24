@@ -12,14 +12,14 @@ read_gmt(file)
 \value{
 Returns a \code{data.frame} with three columns:
 \itemize{
-\item ontology_id: Ontology identifier that uniquely identifies the element within the referenced ontology.
-\item ontology_name: Ontology name or description that provides a user-friendly label or textual description for the ontology_id.
-\item list_of_values: Associated genes or proteins that is a vector of identifiers of genes or proteins belonging to the ontology_id.
+\item 'ontology_id': Ontology identifier that uniquely identifies the element within the referenced ontology.
+\item 'ontology_name': Ontology name or description that provides a user-friendly label or textual description for the 'ontology_id'.
+\item 'list_of_values': Associated genes or proteins that is a vector of identifiers of genes or proteins belonging to the 'ontology_id'.
 }
 }
 \description{
-Read gene set or ontology data from a Gene Matrix Transposed (GMT) file and
-parse into a data frame.
+Reads gene set or ontology data from a Gene Matrix Transposed
+(GMT) file and parse into a \code{data.frame}.
 }
 \examples{
 # import example gene set

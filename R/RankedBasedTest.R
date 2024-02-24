@@ -1,61 +1,41 @@
 #' Gene Set Enrichment Analysis (GSEA)
-#' 
-#' An S4 class to represent a ranked based tests in mulea.
 #'
-#' @slot gmt  A data.frame representing the GMT representation of a model.
-#' @slot element_names A vector of elements names to include in the analysis,
-#' ordered by their scores.
-#' @slot element_scores A vector of element_scores per element_names.
+#' An S4 class to represent the gsea tests in mulea.
+#'
+#' @slot gmt  A `data.frame` representing the ontology GMT.
+#' @slot element_names A vector of elements names (gene or protein names or
+#'   identifiers) to include in the analysis.
+#' @slot element_scores A vector of numeric values representing a score (*e.g.*
+#'   *p*-value, *z*-score, log fold change) for each element_name, in the same 
+#'   number and order as element_name.
 #' @slot gsea_power A power of weight. Default value is 1.
-#' @slot element_score_type Defines the GSEA score type. Only positive
-#' element_scores - "pos", only negative element_scores - "neg" and mixed
-#' (standard) - "std".
-#' @slot number_of_permutations The number of permutations used in KS test.
-#' Default value is 1000.
+#' @slot element_score_type Defines the GSEA score type.
+#' * 'pos': Only positive element_scores
+#' * 'neg': Only negative element_scores
+#' * 'std': standard, containing both positive and negative scores
+#'   Default value is 'std'.
+#' @slot number_of_permutations The number of permutations used in `gsea` test.
+#'   Default value is 1000.
 #' @slot test character
-#' @return GSEA object. This object represents ranked based tests.
+#' @return GSEA object. This object represents the result of the `gsea` tests.
 #' @export
 #' @examples
 #' library(mulea)
-#' library(tidyverse)
-#' geo2r_result_tab <- read_tsv(file = system.file(package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
-#' geo2r_result_tab %<>% 
-#' # extracting the first gene symbol from the Gene.symbol column
-#' mutate(Gene.symbol = str_remove(string = Gene.symbol,
-#'                                 pattern = "\\/.*")) %>% 
-#'  # removing rows where Gene.symbol is NA
-#'  filter(!is.na(Gene.symbol)) %>% 
-#'  # ordering by logFC
-#'  arrange(desc(logFC))
-#'  
-#'  sign_genes <- geo2r_result_tab %>% 
-#' # filtering for adjusted p-value < 0.05 and logFC > 1
-#' filter(adj.P.Val < 0.05 & logFC > 1) %>% 
-#'  # selecting the Gene.symbol column
-#'  select(Gene.symbol) %>% 
-#'  # converting the tibble to a vector
-#'  pull() %>% 
-#'  # removing duplicates
-#'  unique()
-#'  
-#'  background_genes <- geo2r_result_tab %>% 
-#' # selecting the Gene.symbol column
-#' select(Gene.symbol) %>% 
-#'  # convertin the tibble to a vector
-#'  pull() %>% 
-#'  # removing duplicates
-#'  unique()
-#'  
-#' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
-#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
-#'                           min_nr_of_elements = 3,
-#'                           max_nr_of_elements = 400)
-#' # creating the GSEA model using the GMT variable
+#'
+#' # loading and filtering the example ontology from a GMT file
+#' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata",
+#'                                       "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
+#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, max_nr_of_elements = 400)
+#'
+#' # loading the example `data.frame`
+#' scored_gene_tab <- read.csv(file = system.file(package = "mulea", "extdata", "scored_genes.csv"))
+#'
+#' # creating the GSEA model
 #' gsea_model <- gsea(gmt = tf_gmt_filtered,
 #'                    # the names of elements to test
-#'                    element_names = geo2r_result_tab_filtered$Gene.symbol,
+#'                    element_names = scored_gene_tab$Gene.symbol,
 #'                    # the logFC-s of elements to test
-#'                    element_scores = geo2r_result_tab_filtered$logFC,
+#'                    element_scores = scored_gene_tab$logFC,
 #'                    # consider elements having positive logFC values only
 #'                    element_score_type = "pos",
 #'                    # the number of permutations
@@ -116,54 +96,29 @@ setMethod("initialize", "gsea",
 #' @return run_test method for GSEA object. Returns results of
 #' the enrichment analysis.
 #' @examples
-#' #' library(mulea)
-#' library(tidyverse)
-#' geo2r_result_tab <- read_tsv(file = system.file(package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
-#' geo2r_result_tab %<>% 
-#' # extracting the first gene symbol from the Gene.symbol column
-#' mutate(Gene.symbol = str_remove(string = Gene.symbol,
-#'                                 pattern = "\\/.*")) %>% 
-#'  # removing rows where Gene.symbol is NA
-#'  filter(!is.na(Gene.symbol)) %>% 
-#'  # ordering by logFC
-#'  arrange(desc(logFC))
-#'  
-#'  sign_genes <- geo2r_result_tab %>% 
-#' # filtering for adjusted p-value < 0.05 and logFC > 1
-#' filter(adj.P.Val < 0.05 & logFC > 1) %>% 
-#'  # selecting the Gene.symbol column
-#'  select(Gene.symbol) %>% 
-#'  # converting the tibble to a vector
-#'  pull() %>% 
-#'  # removing duplicates
-#'  unique()
-#'  
-#'  background_genes <- geo2r_result_tab %>% 
-#' # selecting the Gene.symbol column
-#' select(Gene.symbol) %>% 
-#'  # convertin the tibble to a vector
-#'  pull() %>% 
-#'  # removing duplicates
-#'  unique()
-#'  
-#' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
-#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
-#'                           min_nr_of_elements = 3,
-#'                           max_nr_of_elements = 400)
-#' # creating the GSEA model using the GMT variable
+#' library(mulea)
+#' 
+#' # loading and filtering the example ontology from a GMT file
+#' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", 
+#'                                       "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
+#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, max_nr_of_elements = 400)
+#' 
+#' # loading the example `data.frame`
+#' scored_gene_tab <- read.csv(file = system.file(package = "mulea", "extdata", "scored_genes.csv"))
+#'
+#' # creating the GSEA model
 #' gsea_model <- gsea(gmt = tf_gmt_filtered,
 #'                    # the names of elements to test
-#'                    element_names = geo2r_result_tab_filtered$Gene.symbol,
+#'                    element_names = scored_gene_tab$Gene.symbol,
 #'                    # the logFC-s of elements to test
-#'                    element_scores = geo2r_result_tab_filtered$logFC,
+#'                    element_scores = scored_gene_tab$logFC,
 #'                    # consider elements having positive logFC values only
 #'                    element_score_type = "pos",
 #'                    # the number of permutations
 #'                    number_of_permutations = 10000)
-#'                    
-#'                    # running the GSEA
+#'
+#' # running the test
 #' gsea_results <- run_test(gsea_model)
-
 
 setMethod("run_test",
           signature(model = "gsea"),
