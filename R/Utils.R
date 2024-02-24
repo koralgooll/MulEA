@@ -88,26 +88,31 @@ write_gmt <- function(gmt, file) {
 }
 
 #' Filter Ontology
-#' @description
-#' Filter ontology to only contain terms between given min. and max. sizes.
+#' @description Filtering ontology to contain entries having number of elements
+#'   (genes or proteins) between a given range. The reason for this is
+#'   enrichment analysis results can sometimes be skewed by overly specific or
+#'   broad entries. Filtering ontologies allows you to customize the size of
+#'   ontology entries, ensuring your analysis aligns with your desired scope.
 #'
-#' @param gmt A data frame which contains the data, imported from a GMT file.
-#' @param min_nr_of_elements minimum size of term. Default 20 percent from
-#' quantile on term size distribution.
-#' @param max_nr_of_elements maximum size of term. Default 80 percent from
-#' quantile on term size distribution.
-#' @return Return data frame with model from specific location.
+#' @param gmt A `data.frame` which contains the entries (gene or protein sets),
+#'   imported from a GMT file with the `read_gmt` function.
+#' @param min_nr_of_elements Minimum number of elements. Ontology entries
+#'   containing as many or fewer elements (genes or proteins) will be excluded.
+#' @param max_nr_of_elements Maximum number of elements. Ontology entries
+#'   containing as many or more elements (genes or proteins) will be excluded.
+#' @return Return a `data.frame`which contains the entries (gene or protein
+#'   sets) in a similar format that produced by the `read_gmt` function.
 #' @export
 #' @examples
 #' library(mulea)
 #' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 #' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
-#'                           min_nr_of_elements = 3,
-#'                           max_nr_of_elements = 400)
+#'                                    min_nr_of_elements = 3,
+#'                                    max_nr_of_elements = 400)
 
 filter_ontology <- function(gmt,
-                           min_nr_of_elements = NULL,
-                           max_nr_of_elements = NULL) {
+                            min_nr_of_elements = NULL,
+                            max_nr_of_elements = NULL) {
   if (is.null(min_nr_of_elements)) {
     terms_sizes <-
       plyr::laply(
@@ -116,15 +121,15 @@ filter_ontology <- function(gmt,
           length(term)
         }
       )
-    term_size_dist_q <-
-      stats::quantile(
-        terms_sizes,
-        probs = seq(0, 1, 0.1),
-        type = 2,
-        na.rm = FALSE
-      )
+    # term_size_dist_q <-
+    #   stats::quantile(
+    #     terms_sizes,
+    #     probs = seq(0, 1, 0.1),
+    #     type = 2,
+    #     na.rm = FALSE
+    #   )
     
-    min_nr_of_elements = term_size_dist_q['20%']
+    min_nr_of_elements = 3
   }
   
   if (is.null(max_nr_of_elements)) {
@@ -135,14 +140,14 @@ filter_ontology <- function(gmt,
           length(term)
         }
       )
-    term_size_dist_q <-
-      stats::quantile(
-        terms_sizes,
-        probs = seq(0, 1, 0.1),
-        type = 2,
-        na.rm = FALSE
-      )
-    max_nr_of_elements = term_size_dist_q['80%']
+    # term_size_dist_q <-
+    #   stats::quantile(
+    #     terms_sizes,
+    #     probs = seq(0, 1, 0.1),
+    #     type = 2,
+    #     na.rm = FALSE
+    #   )
+    max_nr_of_elements = 400
   }
   
   filtered_input_gmt <-

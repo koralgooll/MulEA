@@ -7,24 +7,30 @@
 filter_ontology(gmt, min_nr_of_elements = NULL, max_nr_of_elements = NULL)
 }
 \arguments{
-\item{gmt}{A data frame which contains the data, imported from a GMT file.}
+\item{gmt}{A \code{data.frame} which contains the entries (gene or protein sets),
+imported from a GMT file with the \code{read_gmt} function.}
 
-\item{min_nr_of_elements}{minimum size of term. Default 20 percent from
-quantile on term size distribution.}
+\item{min_nr_of_elements}{Minimum number of elements. Ontology entries
+containing as many or fewer elements (genes or proteins) will be excluded.}
 
-\item{max_nr_of_elements}{maximum size of term. Default 80 percent from
-quantile on term size distribution.}
+\item{max_nr_of_elements}{Maximum number of elements. Ontology entries
+containing as many or more elements (genes or proteins) will be excluded.}
 }
 \value{
-Return data frame with model from specific location.
+Return a \code{data.frame}which contains the entries (gene or protein
+sets) in a similar format that produced by the \code{read_gmt} function.
 }
 \description{
-Filter ontology to only contain terms between given min. and max. sizes.
+Filtering ontology to contain entries having number of elements
+(genes or proteins) between a given range. The reason for this is
+enrichment analysis results can sometimes be skewed by overly specific or
+broad entries. Filtering ontologies allows you to customize the size of
+ontology entries, ensuring your analysis aligns with your desired scope.
 }
 \examples{
 library(mulea)
 tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
-                          min_nr_of_elements = 3,
-                          max_nr_of_elements = 400)
+                                   min_nr_of_elements = 3,
+                                   max_nr_of_elements = 400)
 }
