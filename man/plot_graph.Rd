@@ -14,17 +14,28 @@ plot_graph(
 )
 }
 \arguments{
-\item{reshaped_results}{The input data frame containing reshaped results, typically representing some form of genomic or biological data.}
+\item{reshaped_results}{Character, the input \code{data.table} containing the
+reshaped results.}
 
-\item{ontology_id_colname}{Character, the name of the column in reshaped_results that contains ontology IDs. Default value is 'ontology_id'.}
+\item{ontology_id_colname}{Character, the name of the column in the reshaped
+results that contains ontology identifiers or names. Default value is
+'ontology_id'.}
 
-\item{ontology_element_colname}{Character, the name of the column in reshaped_results that contains element IDs within the ontology. Default value is 'element_id_in_ontology'.}
+\item{ontology_element_colname}{Character, the name of the column in the
+reshaped results that contains element identifiers within the ontology.
+Default value is 'element_id_in_ontology'.}
 
-\item{shared_elements_min_threshold}{Numeric, threshold specifying the minimum number of shared elements required between two ontologies to consider them connected by an edge in the graph. Default value is 0.}
+\item{shared_elements_min_threshold}{Numeric, threshold specifying the
+minimum number of shared elements required between two ontologies to
+consider them connected by an edge on the graph. Default value is 0.}
 
-\item{p_value_type_colname}{Character, the name of the column in reshaped_results that contains p-values associated with the ontology elements. Default value is 'eFDR'.}
+\item{p_value_type_colname}{Character, the name of the column in the reshaped
+results that contains the type of \emph{p}-values associated with the ontology
+elements. Default value is 'eFDR'.}
 
-\item{p_value_max_threshold}{Numeric, a threshold value for filtering rows in reshaped_results based on the p-values. Rows with p-values greater than this threshold will be filtered out. Default value is 0.05.}
+\item{p_value_max_threshold}{Numeric, a threshold value for filtering rows in
+the reshaped results based on the \emph{p}-values. Rows with \emph{p}-values greater
+than this threshold will be filtered out. Default value is 0.05.}
 }
 \value{
 Returns a graph plot.
@@ -33,64 +44,44 @@ Returns a graph plot.
 Plots graph representation of enrichment results.
 }
 \details{
-This function takes reshaped data, filters it based on p-values,
-calculates shared gene elements between ontology IDs, and creates a graph visualizing
-the relationships between ontologies and their associated genes based on shared elements
-and p-values.
+This function generates a graph (network) visualization of the
+enriched ontology entries. On the plot each node represents an ontology
+entry below a given \emph{p}-value threshold, and is coloured based on its
+significance level. A connection (edge) is drawn between two nodes if they
+share at least one common element (gene) belonging to the target set -- in
+the case of ORA results -- or all analysed elements -- in the case of GSEA
+results.
 }
 \examples{
 library(mulea)
-library(tidyverse)
-geo2r_result_tab <- read_tsv(file = system.file(package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
-geo2r_result_tab \%<>\% 
-# extracting the first gene symbol from the Gene.symbol column
-mutate(Gene.symbol = str_remove(string = Gene.symbol,
-                                pattern = "\\\\/.*")) \%>\% 
- # removing rows where Gene.symbol is NA
- filter(!is.na(Gene.symbol)) \%>\% 
- # ordering by logFC
- arrange(desc(logFC))
- 
- sign_genes <- geo2r_result_tab \%>\% 
-# filtering for adjusted p-value < 0.05 and logFC > 1
-filter(adj.P.Val < 0.05 & logFC > 1) \%>\% 
- # selecting the Gene.symbol column
- select(Gene.symbol) \%>\% 
- # converting the tibble to a vector
- pull() \%>\% 
- # removing duplicates
- unique()
- 
- background_genes <- geo2r_result_tab \%>\% 
-# selecting the Gene.symbol column
-select(Gene.symbol) \%>\% 
- # convertin the tibble to a vector
- pull() \%>\% 
- # removing duplicates
- unique()
- 
-tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
-tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
-                          min_nr_of_elements = 3,
-                          max_nr_of_elements = 400)
 
-# creating the ORA model using the GMT variable
+# loading and filtering the example ontology from a GMT file
+tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", 
+                                      "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
+tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, max_nr_of_elements = 400)
+
+# loading the example data
+sign_genes <- readLines(system.file(package = "mulea", "extdata", "sign_genes.csv"))
+background_genes <- readLines(system.file(package="mulea", "extdata", "background_genes.csv"))
+
+# creating the ORA model
 ora_model <- ora(gmt = tf_gmt_filtered, 
-                # the test set variable
-                element_names = sign_genes, 
-                # the background set variable
-                background_element_names = background_genes, 
-                # the p-value adjustment method
-                p_value_adjustment_method = "eFDR", 
-                # the number of permutations
-                number_of_permutations = 10000,
-                # the number of processor threads to use
-                nthreads = 4) 
+                 # the test set variable
+                 element_names = sign_genes, 
+                 # the background set variable
+                 background_element_names = background_genes, 
+                 # the p-value adjustment method
+                 p_value_adjustment_method = "eFDR", 
+                 # the number of permutations
+                 number_of_permutations = 10000,
+                 # the number of processor threads to use
+                 nthreads = 4)
 # running the ORA
 ora_results <- run_test(ora_model)
-# reshape results for visualisation
-ora_reshaped_results <- reshape_results(model = ora_model, 
-                                        model_results = ora_results, 
+
+# reshaping results for visualisation
+ora_reshaped_results <- reshape_results(model = ora_model,
+                                        model_results = ora_results,
                                         # choosing which column to use for the
                                         # indication of significance
                                         p_value_type_colname = "eFDR")
