@@ -23,7 +23,7 @@ function the returned \code{data.frame} contains the following columns:
 \item 'nr_common_with_tested_elements': Number of common elements between the
 ontology element and the vector defined by the element_names parameter
 of the \code{ora} function.
-\item 'nr_common_with_backgound_elements': Number of common elements between
+\item 'nr_common_with_background_elements': Number of common elements between
 the ontology element and the vector defined by the
 background_element_names parameter of the \code{ora} function.
 \item 'p_value': The raw \emph{p}-value of the overrepresentation analysis.
@@ -36,7 +36,7 @@ function the returned \code{data.frame} contains the following columns:
 \enumerate{
 \item 'ontology_id': Identifiers of the ontology elements.
 \item 'ontology_name': Names of the ontology elements.
-\item 'nr_common_genes_ontology_tested': Number of common elements between the
+\item 'nr_common_with_tested_elements': Number of common elements between the
 ontology element and the vector defined by the element_names parameter
 of the \code{gsea} function.
 \item 'p_value': The raw \emph{p}-value of the gene set enrichment analysis.

@@ -47,7 +47,7 @@
 #'   3. 'nr_common_with_tested_elements': Number of common elements between the 
 #'       ontology element and the vector defined by the element_names parameter 
 #'       of the `ora` function.
-#'   4. 'nr_common_with_backgound_elements': Number of common elements between 
+#'   4. 'nr_common_with_background_elements': Number of common elements between 
 #'       the ontology element and the vector defined by the 
 #'       background_element_names parameter of the `ora` function.
 #'   5. 'p_value': The raw *p*-value of the overrepresentation analysis.
@@ -59,7 +59,7 @@
 #'   
 #'   1. 'ontology_id': Identifiers of the ontology elements.
 #'   2. 'ontology_name': Names of the ontology elements.
-#'   3. 'nr_common_genes_ontology_tested': Number of common elements between the 
+#'   3. 'nr_common_with_tested_elements': Number of common elements between the 
 #'       ontology element and the vector defined by the element_names parameter 
 #'       of the `gsea` function.
 #'   4. 'p_value': The raw *p*-value of the gene set enrichment analysis.
