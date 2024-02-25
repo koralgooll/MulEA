@@ -24,5 +24,7 @@ Reads gene set or ontology data from a Gene Matrix Transposed
 \examples{
 # import example gene set
 library(mulea)
-tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
+tf_gmt <- read_gmt(file = system.file(
+    package="mulea", "extdata", 
+    "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 }

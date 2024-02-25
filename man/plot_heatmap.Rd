@@ -35,7 +35,8 @@ The \code{plot_heatmap} function provides a convenient way to create a ggplot2 h
 \examples{
 library(mulea)
 library(tidyverse)
-geo2r_result_tab <- read_tsv(file = system.file(package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
+geo2r_result_tab <- read_tsv(file = system.file(
+    package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
 geo2r_result_tab \%<>\% 
 # extracting the first gene symbol from the Gene.symbol column
 mutate(Gene.symbol = str_remove(string = Gene.symbol,
