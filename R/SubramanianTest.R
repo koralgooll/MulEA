@@ -13,7 +13,7 @@
 #' * "std": standard -- containing both positive and negative scores
 #'   Default value is "std".
 #' @return `data.frame` with presented columns 'ontology_id', 'ontology_name',
-#' 'nr_common_elements_ontology_tested',
+#' 'nr_common_with_tested_elements',
 #' 'p_value', 'adjusted_p_value'
 #' @examples
 #' \dontrun{
@@ -90,7 +90,7 @@ setMethod("initialize", "SubramanianTest",
               colnames(resultDf) <- c(
                 "ontology_id",
                 "ontology_name",
-                'nr_common_elements_ontology_tested',
+                'nr_common_with_tested_elements',
                 "p_value",
                 "adjusted_p_value"
               )

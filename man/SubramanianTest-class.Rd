@@ -14,7 +14,7 @@
 }
 \value{
 \code{data.frame} with presented columns 'ontology_id', 'ontology_name',
-'nr_common_elements_ontology_tested',
+'nr_common_with_tested_elements',
 'p_value', 'adjusted_p_value'
 
 run_test method for SubramanianTest object. Used as private function.
