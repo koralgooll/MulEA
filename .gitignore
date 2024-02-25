@@ -7,10 +7,11 @@ development/
 workdir/
 *.o
 *.so
-README_cache/*
+src/mulea.dll
 multipleTesting.pdf
 src-i386/*
 src-x64/*
 .DS_Store
 references.bib
+README_cache/*
 README.html
