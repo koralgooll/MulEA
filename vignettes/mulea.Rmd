@@ -649,7 +649,8 @@ gsea_reshaped_results <- reshape_results(model = gsea_model,
                                          model_results = gsea_results, 
                                          # choosing which column to use for the
                                          # indication of significance
-                                         p_value_type_colname = "adjusted_p_value")
+                                         p_value_type_colname = 
+                                           "adjusted_p_value")
 ```
 
 **Visualizing the spread of adjusted *p*-values: Lollipop plot**
