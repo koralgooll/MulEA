@@ -43,7 +43,7 @@
 #'                  # the number of permutations
 #'                  number_of_permutations = 10000,
 #'                  # the number of processor threads to use
-#'                  nthreads = 4)
+#'                  nthreads = 2)
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 
@@ -115,7 +115,7 @@ setMethod("initialize", "ora",
                     'ontology_id',
                     'ontology_name',
                     'nr_common_with_tested_elements',
-                    'nr_common_with_backgound_elements',
+                    'nr_common_with_background_elements',
                     'Genes_in_DB',
                     'p_value',
                     'P_adj_Bonf',
@@ -200,7 +200,7 @@ setMethod("initialize", "ora",
 #'                  # the number of permutations
 #'                  number_of_permutations = 10000,
 #'                  # the number of processor threads to use
-#'                  nthreads = 4)
+#'                  nthreads = 2)
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 

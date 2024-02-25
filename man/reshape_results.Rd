@@ -58,17 +58,17 @@ sign_genes <- readLines(system.file(package = "mulea", "extdata", "sign_genes.cs
 background_genes <- readLines(system.file(package="mulea", "extdata", "background_genes.csv"))
 
 # creating the ORA model
-ora_model <- ora(gmt = tf_gmt_filtered, 
-                 # the test set variable
-                 element_names = sign_genes, 
-                 # the background set variable
-                 background_element_names = background_genes, 
-                 # the p-value adjustment method
-                 p_value_adjustment_method = "eFDR", 
-                 # the number of permutations
-                 number_of_permutations = 10000,
-                 # the number of processor threads to use
-                 nthreads = 4)
+ora_model <- ora(gmt = tf_gmt_filtered,
+                # the test set variable
+                element_names = sign_genes, 
+                # the background set variable
+                background_element_names = background_genes, 
+                # the p-value adjustment method
+                p_value_adjustment_method = "eFDR", 
+                # the number of permutations
+                number_of_permutations = 10000,
+                # the number of processor threads to use
+                nthreads = 2)
 # running the ORA
 ora_results <- run_test(ora_model)
 

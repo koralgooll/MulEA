@@ -33,7 +33,7 @@
 #'                  # the number of permutations
 #'                  number_of_permutations = 10000,
 #'                  # the number of processor threads to use
-#'                  nthreads = 4)
+#'                  nthreads = 2)
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 #' 
