@@ -1,3 +1,16 @@
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# <img src="man/figures/MulEA_logo.png" width="59" /> `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
+
+<!-- badges: start -->
+
+[![GitHub
+issues](https://img.shields.io/github/issues/ELTEbioinformatics/mulea)](https://github.com/ELTEbioinformatics/mulea/issues)
+[![GitHub
+pulls](https://img.shields.io/github/issues-pr/ELTEbioinformatics/mulea)](https://github.com/ELTEbioinformatics/mulea/pulls)
+
+<!-- badges: end -->
+
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Example Usage](#example-usage)
@@ -12,19 +25,6 @@
 - [How to Cite the `mulea` Package?](#how-to-cite-the-mulea-package)
 - [Code of Conduct](#code-of-conduct)
 - [References](#references)
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# <img src="man/figures/MulEA_logo.png" width="59" /> `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
-
-<!-- badges: start -->
-
-[![GitHub
-issues](https://img.shields.io/github/issues/ELTEbioinformatics/mulea)](https://github.com/ELTEbioinformatics/mulea/issues)
-[![GitHub
-pulls](https://img.shields.io/github/issues-pr/ELTEbioinformatics/mulea)](https://github.com/ELTEbioinformatics/mulea/pulls)
-
-<!-- badges: end -->
 
 # Introduction
 
