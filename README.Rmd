@@ -1,5 +1,9 @@
 ---
-output: github_document
+output:
+  md_document:
+    variant: markdown_github
+    toc: true
+    toc_depth: 2
 bibliography: references.bib
 ---
 
@@ -21,6 +25,8 @@ knitr::opts_chunk$set(
 [![GitHub issues](https://img.shields.io/github/issues/ELTEbioinformatics/mulea)](https://github.com/ELTEbioinformatics/mulea/issues) [![GitHub pulls](https://img.shields.io/github/issues-pr/ELTEbioinformatics/mulea)](https://github.com/ELTEbioinformatics/mulea/pulls)
 
 <!-- badges: end -->
+
+## Introduction
 
 Traditional gene set enrichment analyses are typically limited to a few ontologies and do not account for the interdependence of gene sets or terms, resulting in overcorrected *p*-values. To address these challenges, we introduce `mulea`, an R package offering comprehensive overrepresentation and functional enrichment analysis.
 

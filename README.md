@@ -1,3 +1,15 @@
+-   [<img src="man/figures/MulEA_logo.png" width="59" /> `mulea` - an R
+    Package for Enrichment Analysis Using Multiple Ontologies and
+    Empirical FDR
+    Correction](#mulea---an-r-package-for-enrichment-analysis-using-multiple-ontologies-and-empirical-fdr-correction)
+    -   [Introduction](#introduction)
+    -   [Installation](#installation)
+    -   [Example Usage](#example-usage)
+    -   [How to Cite the `mulea`
+        Package?](#how-to-cite-the-mulea-package)
+    -   [Code of Conduct](#code-of-conduct)
+    -   [Development Tools](#development-tools)
+    -   [References](#references)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -11,6 +23,8 @@ issues](https://img.shields.io/github/issues/ELTEbioinformatics/mulea)](https://
 pulls](https://img.shields.io/github/issues-pr/ELTEbioinformatics/mulea)](https://github.com/ELTEbioinformatics/mulea/pulls)
 
 <!-- badges: end -->
+
+## Introduction
 
 Traditional gene set enrichment analyses are typically limited to a few
 ontologies and do not account for the interdependence of gene sets or
@@ -84,8 +98,8 @@ bacteria to non-treated controls.
 The [GEO2R](https://www.ncbi.nlm.nih.gov/geo/geo2r/?acc=GSE55662) tool
 was used for differential expression analysis, comparing:
 
-- Non-treated control samples (2 replicates)
-- Samples treated with *ciprofloxacin* (2 replicates)
+-   Non-treated control samples (2 replicates)
+-   Samples treated with *ciprofloxacin* (2 replicates)
 
 #### **2. Reading the DE Results Table:**
 
@@ -104,7 +118,7 @@ We take a closer look at the first few rows of the `geo2r_result_tab`
 data frame:
 
 | ID           | adj.P.Val | P.Value |    t |       B | logFC | Gene.symbol                  | Gene.title                                                                                                            |
-|:-------------|----------:|--------:|-----:|--------:|------:|:-----------------------------|:----------------------------------------------------------------------------------------------------------------------|
+|:-----|----:|---:|--:|---:|--:|:----------|:--------------------------------------|
 | 1765336_s_at |    0.0186 | 2.4e-06 | 21.5 | 4.95769 |  3.70 | gnsB                         | Qin prophage; multicopy suppressor of secG(Cs) and fabA6(Ts)                                                          |
 | 1760422_s_at |    0.0186 | 3.8e-06 | 19.6 | 4.68510 |  3.14 | NA                           | NA                                                                                                                    |
 | 1764904_s_at |    0.0186 | 5.7e-06 | 18.2 | 4.43751 |  2.54 | sulA///sulA///sulA///ECs1042 | SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor |
@@ -116,14 +130,14 @@ analysis. This process often involves steps specific to the type of
 microarray experiment conducted. In this case, we perform the following
 transformations:
 
-- **Extract Gene Symbol:** We extract the main gene symbol from the
-  `Gene.symbol` column, removing any additional information that might
-  be present.
-- **Remove Missing Values:** We remove rows where the gene symbol is
-  missing (`NA`).
-- **Order by Fold Change:** We sort the data frame by the log-fold
-  change (`logFC`) in descending order, prioritizing genes with the most
-  significant expression changes.
+-   **Extract Gene Symbol:** We extract the main gene symbol from the
+    `Gene.symbol` column, removing any additional information that might
+    be present.
+-   **Remove Missing Values:** We remove rows where the gene symbol is
+    missing (`NA`).
+-   **Order by Fold Change:** We sort the data frame by the log-fold
+    change (`logFC`) in descending order, prioritizing genes with the
+    most significant expression changes.
 
 ``` r
 geo2r_result_tab %<>% 
@@ -140,7 +154,7 @@ Before proceeding with enrichment analysis, we take a closer look at the
 first few rows of the formatted `geo2r_result_tab` data frame:
 
 | ID           | adj.P.Val |  P.Value |    t |       B | logFC | Gene.symbol | Gene.title                                                                                                                                |
-|:-------------|----------:|---------:|-----:|--------:|------:|:------------|:------------------------------------------------------------------------------------------------------------------------------------------|
+|:-----|----:|---:|--:|---:|--:|:----|:--------------------------------------------|
 | 1765336_s_at |    0.0186 | 2.40e-06 | 21.5 | 4.95769 |  3.70 | gnsB        | Qin prophage; multicopy suppressor of secG(Cs) and fabA6(Ts)                                                                              |
 | 1764904_s_at |    0.0186 | 5.70e-06 | 18.2 | 4.43751 |  2.54 | sulA        | SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor///SOS cell division inhibitor                     |
 | 1761763_s_at |    0.0186 | 1.54e-05 | 15.0 | 3.73568 |  2.16 | recN        | recombination and repair protein///recombination and repair protein///recombination and repair protein///recombination and repair protein |
@@ -453,17 +467,17 @@ ora_results %>%
 ```
 
 | ontology_id | ontology_name | nr_common_with_tested_elements | nr_common_with_backgound_elements |   p_value |      eFDR |
-|:------------|:--------------|-------------------------------:|----------------------------------:|----------:|----------:|
+|:--------|:---------|-------------------:|--------------------:|------:|------:|
 | FNR         | FNR           |                             26 |                               259 | 0.0000003 | 0.0000000 |
 | LexA        | LexA          |                             14 |                                53 | 0.0000000 | 0.0000000 |
-| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0025667 |
-| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0048167 |
-| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0049400 |
-| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0052000 |
-| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0068857 |
-| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0203875 |
-| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0449400 |
-| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0473000 |
+| SoxS        | SoxS          |                              7 |                                37 | 0.0001615 | 0.0027333 |
+| DnaA        | DnaA          |                              4 |                                13 | 0.0006281 | 0.0051167 |
+| Rob         | Rob           |                              5 |                                21 | 0.0004717 | 0.0052000 |
+| FadR        | FadR          |                              5 |                                20 | 0.0003692 | 0.0052750 |
+| NsrR        | NsrR          |                              8 |                                64 | 0.0010478 | 0.0073429 |
+| ArcA        | ArcA          |                             12 |                               148 | 0.0032001 | 0.0196500 |
+| IHF         | IHF           |                             14 |                               205 | 0.0070758 | 0.0456300 |
+| MarA        | MarA          |                              5 |                                37 | 0.0066068 | 0.0479889 |
 
 #### Visualizing the ORA Result
 
@@ -661,7 +675,7 @@ gsea_results %>%
   filter(adjusted_p_value < 0.05) %>% 
   # the number of such rows
   nrow()
-#> [1] 9
+#> [1] 8
 ```
 
 And inspect the significant results:
@@ -675,16 +689,15 @@ gsea_results %>%
 ```
 
 | ontology_id | ontology_name | nr_common_elements_ontology_tested |   p_value | adjusted_p_value |
-|:------------|:--------------|-----------------------------------:|----------:|-----------------:|
-| LexA        | LexA          |                                 53 | 0.0000000 |        0.0000033 |
-| FNR         | FNR           |                                259 | 0.0000396 |        0.0030270 |
-| GlaR        | GlaR          |                                  3 | 0.0001825 |        0.0093083 |
-| ArcA        | ArcA          |                                148 | 0.0003714 |        0.0113645 |
-| ModE        | ModE          |                                 45 | 0.0003349 |        0.0113645 |
-| DnaA        | DnaA          |                                 13 | 0.0004808 |        0.0122615 |
-| SoxS        | SoxS          |                                 37 | 0.0005633 |        0.0123115 |
-| PaaX        | PaaX          |                                 14 | 0.0021274 |        0.0406867 |
-| Rob         | Rob           |                                 21 | 0.0028674 |        0.0487451 |
+|:----------|:-----------|---------------------------:|--------:|-------------:|
+| LexA        | LexA          |                                 53 | 0.0000000 |        0.0000021 |
+| FNR         | FNR           |                                259 | 0.0000547 |        0.0041863 |
+| GlaR        | GlaR          |                                  3 | 0.0002529 |        0.0103711 |
+| ModE        | ModE          |                                 45 | 0.0002711 |        0.0103711 |
+| ArcA        | ArcA          |                                148 | 0.0004489 |        0.0114458 |
+| SoxS        | SoxS          |                                 37 | 0.0004261 |        0.0114458 |
+| DnaA        | DnaA          |                                 13 | 0.0007648 |        0.0167156 |
+| PaaX        | PaaX          |                                 14 | 0.0018684 |        0.0357337 |
 
 #### Visualizing the GSEA Results
 
@@ -801,22 +814,22 @@ contributing to this project, you agree to abide by its terms.
 
 ## Development Tools
 
-- Continuous code testing is possible thanks to [GitHub
-  actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
-  through *[usethis](https://CRAN.R-project.org/package=usethis)*,
-  *[remotes](https://CRAN.R-project.org/package=remotes)*, and
-  *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)* customized
-  to use [Bioconductor’s docker
-  containers](https://www.bioconductor.org/help/docker/) and
-  *[BiocCheck](https://bioconductor.org/packages/3.18/BiocCheck)*.
-- Code coverage assessment is possible thanks to
-  [codecov](https://codecov.io/gh) and
-  *[covr](https://CRAN.R-project.org/package=covr)*.
-- The code is styled automatically thanks to
-  *[styler](https://CRAN.R-project.org/package=styler)*.
-- The documentation is formatted thanks to
-  *[devtools](https://CRAN.R-project.org/package=devtools)* and
-  *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
+-   Continuous code testing is possible thanks to [GitHub
+    actions](https://www.tidyverse.org/blog/2020/04/usethis-1-6-0/)
+    through *[usethis](https://CRAN.R-project.org/package=usethis)*,
+    *[remotes](https://CRAN.R-project.org/package=remotes)*, and
+    *[rcmdcheck](https://CRAN.R-project.org/package=rcmdcheck)*
+    customized to use [Bioconductor’s docker
+    containers](https://www.bioconductor.org/help/docker/) and
+    *[BiocCheck](https://bioconductor.org/packages/3.18/BiocCheck)*.
+-   Code coverage assessment is possible thanks to
+    [codecov](https://codecov.io/gh) and
+    *[covr](https://CRAN.R-project.org/package=covr)*.
+-   The code is styled automatically thanks to
+    *[styler](https://CRAN.R-project.org/package=styler)*.
+-   The documentation is formatted thanks to
+    *[devtools](https://CRAN.R-project.org/package=devtools)* and
+    *[roxygen2](https://CRAN.R-project.org/package=roxygen2)*.
 
 For more details, check the `dev` directory.
 
@@ -825,17 +838,9 @@ This package was developed using
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-
-<div id="ref-korotkevich" class="csl-entry">
-
 Korotkevich, Gennady, Vladimir Sukhov, Nikolay Budin, Boris Shpak, Maxim
 N. Artyomov, and Alexey Sergushichev. 2021. “Fast Gene Set Enrichment
 Analysis,” February. <https://doi.org/10.1101/060012>.
-
-</div>
-
-<div id="ref-subramanian2005" class="csl-entry">
 
 Subramanian, Aravind, Pablo Tamayo, Vamsi K. Mootha, Sayan Mukherjee,
 Benjamin L. Ebert, Michael A. Gillette, Amanda Paulovich, et al. 2005.
@@ -843,7 +848,3 @@ Benjamin L. Ebert, Michael A. Gillette, Amanda Paulovich, et al. 2005.
 Interpreting Genome-Wide Expression Profiles.” *Proceedings of the
 National Academy of Sciences* 102 (43): 15545–50.
 <https://doi.org/10.1073/pnas.0506580102>.
-
-</div>
-
-</div>
