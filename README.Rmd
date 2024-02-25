@@ -579,6 +579,12 @@ plot_heatmap(reshaped_results = gsea_reshaped_results,
              p_value_type_colname = "adjusted_p_value")
 ```
 
+# Session Info
+
+```{r 'session_info'}
+sessionInfo()
+```
+
 # How to Cite the `mulea` Package?
 
 To cite package `mulea` in publications use:

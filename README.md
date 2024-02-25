@@ -1,3 +1,4 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # <img src="man/figures/MulEA_logo.png" width="59" /> `mulea` - an R Package for Enrichment Analysis Using Multiple Ontologies and Empirical FDR Correction
@@ -22,6 +23,7 @@ pulls](https://img.shields.io/github/issues-pr/ELTEbioinformatics/mulea)](https:
     (ORA)](#overrepresentation-analysis-ora)
   - [Gene Set Enrichment Analysis
     (GSEA)](#gene-set-enrichment-analysis-gsea)
+- [Session Info](#session-info)
 - [How to Cite the `mulea` Package?](#how-to-cite-the-mulea-package)
 - [Code of Conduct](#code-of-conduct)
 - [References](#references)
@@ -472,14 +474,14 @@ ora_results %>%
 |:------------|:--------------|-------------------------------:|-----------------------------------:|----------:|----------:|
 | FNR         | FNR           |                             26 |                                259 | 0.0000003 | 0.0000000 |
 | LexA        | LexA          |                             14 |                                 53 | 0.0000000 | 0.0000000 |
-| SoxS        | SoxS          |                              7 |                                 37 | 0.0001615 | 0.0026333 |
-| DnaA        | DnaA          |                              4 |                                 13 | 0.0006281 | 0.0047833 |
-| Rob         | Rob           |                              5 |                                 21 | 0.0004717 | 0.0050000 |
-| FadR        | FadR          |                              5 |                                 20 | 0.0003692 | 0.0053000 |
-| NsrR        | NsrR          |                              8 |                                 64 | 0.0010478 | 0.0068429 |
-| ArcA        | ArcA          |                             12 |                                148 | 0.0032001 | 0.0205500 |
-| IHF         | IHF           |                             14 |                                205 | 0.0070758 | 0.0455700 |
-| MarA        | MarA          |                              5 |                                 37 | 0.0066068 | 0.0480667 |
+| SoxS        | SoxS          |                              7 |                                 37 | 0.0001615 | 0.0030000 |
+| DnaA        | DnaA          |                              4 |                                 13 | 0.0006281 | 0.0046833 |
+| Rob         | Rob           |                              5 |                                 21 | 0.0004717 | 0.0047400 |
+| FadR        | FadR          |                              5 |                                 20 | 0.0003692 | 0.0051000 |
+| NsrR        | NsrR          |                              8 |                                 64 | 0.0010478 | 0.0069143 |
+| ArcA        | ArcA          |                             12 |                                148 | 0.0032001 | 0.0202000 |
+| IHF         | IHF           |                             14 |                                205 | 0.0070758 | 0.0466000 |
+| MarA        | MarA          |                              5 |                                 37 | 0.0066068 | 0.0492778 |
 
 ### Visualizing the ORA Result
 
@@ -675,7 +677,7 @@ gsea_results %>%
   filter(adjusted_p_value < 0.05) %>% 
   # the number of such rows
   nrow()
-#> [1] 8
+#> [1] 9
 ```
 
 And inspect the significant results:
@@ -690,14 +692,15 @@ gsea_results %>%
 
 | ontology_id | ontology_name | nr_common_with_tested_elements |   p_value | adjusted_p_value |
 |:------------|:--------------|-------------------------------:|----------:|-----------------:|
-| LexA        | LexA          |                             53 | 0.0000000 |        0.0000036 |
-| FNR         | FNR           |                            259 | 0.0000530 |        0.0040575 |
-| GlaR        | GlaR          |                              3 | 0.0002575 |        0.0098482 |
-| ModE        | ModE          |                             45 | 0.0002529 |        0.0098482 |
-| ArcA        | ArcA          |                            148 | 0.0004534 |        0.0115620 |
-| SoxS        | SoxS          |                             37 | 0.0004306 |        0.0115620 |
-| DnaA        | DnaA          |                             13 | 0.0005907 |        0.0129121 |
-| PaaX        | PaaX          |                             14 | 0.0022014 |        0.0421018 |
+| LexA        | LexA          |                             53 | 0.0000000 |        0.0000026 |
+| FNR         | FNR           |                            259 | 0.0000818 |        0.0062565 |
+| ArcA        | ArcA          |                            148 | 0.0005358 |        0.0136628 |
+| GlaR        | GlaR          |                              3 | 0.0004306 |        0.0136628 |
+| ModE        | ModE          |                             45 | 0.0002757 |        0.0136628 |
+| SoxS        | SoxS          |                             37 | 0.0004717 |        0.0136628 |
+| DnaA        | DnaA          |                             13 | 0.0006732 |        0.0147137 |
+| PaaX        | PaaX          |                             14 | 0.0025344 |        0.0481162 |
+| PspF        | PspF          |                              7 | 0.0028304 |        0.0481162 |
 
 ### Visualizing the GSEA Results
 
@@ -797,21 +800,61 @@ plot_heatmap(reshaped_results = gsea_reshaped_results,
 
 <img src="man/figures/README-heatmap_gsea-1.png" width="100%" />
 
-# How to Cite the `mulea` Package?
+# Session Info
 
-To cite package `mulea` in publications use:
-
-Turek C, Ölbei M, Stirling T, Fekete G, Tasnádi E, Gul L, Bohár B, Papp
-B, Jurkowski W, Ari E (2024) mulea - an R package for enrichment
-analysis using various ontologies and empirical FDR correction. R
-package version 0.99.0, <https://github.com/ELTEbioinformatics/mulea>.
-
-# Code of Conduct
-
-Please note that the `mulea` project is released with a [Contributor
-Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By
-contributing to this project, you agree to abide by its terms.
-
+``` r
+sessionInfo()
+#> R version 4.3.2 (2023-10-31)
+#> Platform: x86_64-pc-linux-gnu (64-bit)
+#> Running under: Ubuntu 22.04.4 LTS
+#> 
+#> Matrix products: default
+#> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+#> LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
+#> 
+#> locale:
+#>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#>  [3] LC_TIME=hu_HU.UTF-8        LC_COLLATE=en_US.UTF-8    
+#>  [5] LC_MONETARY=hu_HU.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#>  [7] LC_PAPER=hu_HU.UTF-8       LC_NAME=C                 
+#>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#> [11] LC_MEASUREMENT=hu_HU.UTF-8 LC_IDENTIFICATION=C       
+#> 
+#> time zone: Europe/Budapest
+#> tzcode source: system (glibc)
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices utils     datasets  methods   base     
+#> 
+#> other attached packages:
+#>  [1] mulea_0.99.10   lubridate_1.9.3 forcats_1.0.0   stringr_1.5.1  
+#>  [5] dplyr_1.1.4     purrr_1.0.2     readr_2.1.5     tidyr_1.3.1    
+#>  [9] tibble_3.2.1    ggplot2_3.5.0   tidyverse_2.0.0
+#> 
+#> loaded via a namespace (and not attached):
+#>  [1] fastmatch_1.1-4     gtable_0.3.4        xfun_0.41          
+#>  [4] ggrepel_0.9.5       lattice_0.22-5      tzdb_0.4.0         
+#>  [7] vctrs_0.6.5         tools_4.3.2         generics_0.1.3     
+#> [10] parallel_4.3.2      fansi_1.0.6         highr_0.10         
+#> [13] pkgconfig_2.0.3     Matrix_1.6-5        data.table_1.15.0  
+#> [16] lifecycle_1.0.4     compiler_4.3.2      farver_2.1.1       
+#> [19] munsell_0.5.0       ggforce_0.4.2       fgsea_1.28.0       
+#> [22] graphlayouts_1.1.0  codetools_0.2-19    htmltools_0.5.7    
+#> [25] yaml_2.3.8          pillar_1.9.0        crayon_1.5.2       
+#> [28] MASS_7.3-60.0.1     BiocParallel_1.36.0 viridis_0.6.5      
+#> [31] tidyselect_1.2.0    digest_0.6.34       stringi_1.8.3      
+#> [34] labeling_0.4.3      cowplot_1.1.3       polyclip_1.10-6    
+#> [37] fastmap_1.1.1       grid_4.3.2          colorspace_2.1-0   
+#> [40] cli_3.6.2           magrittr_2.0.3      ggraph_2.1.0       
+#> [43] tidygraph_1.3.1     utf8_1.2.4          withr_3.0.0        
+#> [46] scales_1.3.0        bit64_4.0.5         timechange_0.3.0   
+#> [49] rmarkdown_2.25      igraph_2.0.2        bit_4.0.5          
+#> [52] gridExtra_2.3       hms_1.1.3           evaluate_0.23      
+#> [55] knitr_1.45          viridisLite_0.4.2   rlang_1.1.3        
+#> [58] Rcpp_1.0.12         glue_1.7.0          tweenr_2.0.2       
+#> [61] rstudioapi_0.15.0   vroom_1.6.5         R6_2.5.1           
+#> [64] plyr_1.8.9
+```
 # References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
@@ -836,3 +879,19 @@ National Academy of Sciences* 102 (43): 15545–50.
 </div>
 
 </div>
+
+# How to Cite the `mulea` Package?
+
+To cite package `mulea` in publications use:
+
+Turek C, Ölbei M, Stirling T, Fekete G, Tasnádi E, Gul L, Bohár B, Papp
+B, Jurkowski W, Ari E (2024) mulea - an R package for enrichment
+analysis using various ontologies and empirical FDR correction. R
+package version 0.99.0, <https://github.com/ELTEbioinformatics/mulea>.
+
+# Code of Conduct
+
+Please note that the `mulea` project is released with a [Contributor
+Code of Conduct](http://bioconductor.org/about/code-of-conduct/). By
+contributing to this project, you agree to abide by its terms.
+
