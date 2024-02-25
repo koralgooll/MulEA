@@ -233,6 +233,15 @@ decorateGmtByUnderOvenAndNoise <- function(input_gmt,
 #' @param gmt_list A list with named character vectors. The name will become the
 #'   'ontology_id', and the elements in the vector will become the
 #'   'list_of_values' in the ontology (GMT) `data.frame`.
+#' @examples
+#' library(mulea)
+#' 
+#' # creating a list of gene sets
+#' ontology_list <- list(gene_set1 = c("gene1", "gene2", "gene3"),
+#'                       gene_set2 = c("gene4", "gene5", "gene6"))
+#'
+#' converting the list to a ontology (GMT) object
+#' new_ontology_object <- list_to_gmt(ontology_list)
 #' @return Returns ontology (GMT) `data.frame` where the 'ontology_name'
 #'   contains random unique strings.
 #' @export
