@@ -42,6 +42,7 @@ Imports:
     plyr (>= 1.8.4),
     Rcpp,
     rlang,
+    scales,
     stats,
     stringi,
     tibble,

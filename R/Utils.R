@@ -66,10 +66,13 @@ read_gmt <- function(file) {
 #' #' library(mulea)
 #'
 #' # loading and filtering the example ontology from a GMT file
-#' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
+#' tf_gmt <- read_gmt(file = system.file(
+#'     package="mulea", "extdata", 
+#'     "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 #'
 #' # writing the filtered ontology to a GMT file
-#' write_gmt(gmt = tf_gmt, file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+#' write_gmt(gmt = tf_gmt, 
+#'           file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
 
 write_gmt <- function(gmt, file) {
   vectorOfModel <-

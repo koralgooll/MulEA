@@ -23,8 +23,9 @@
 #' library(mulea)
 #'
 #' # loading and filtering the example ontology from a GMT file
-#' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata",
-#'                                       "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
+#' tf_gmt <- read_gmt(file = system.file(
+#'     package="mulea", "extdata",
+#'     "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 #' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, max_nr_of_elements = 400)
 #'
 #' # loading the example `data.frame`
@@ -99,8 +100,9 @@ setMethod("initialize", "gsea",
 #' library(mulea)
 #' 
 #' # loading and filtering the example ontology from a GMT file
-#' tf_gmt <- read_gmt(file = system.file(package="mulea", "extdata", 
-#'                                       "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
+#' tf_gmt <- read_gmt(file = system.file(
+#'     package="mulea", "extdata", 
+#'     "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 #' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, max_nr_of_elements = 400)
 #' 
 #' # loading the example `data.frame`
