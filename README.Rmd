@@ -233,14 +233,6 @@ tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
                                    max_nr_of_elements = 400)
 ```
 
-It is possible to write the filtered ontology as a GMT file using the 
-`write_gmt` function.
-
-```{r 'write_gmt', eval=FALSE}
-write_gmt(gmt = tf_gmt_filtered, 
-          file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
-```
-
 **Results:**
 
 We can now determine the number of transcription factors remaining in the 
@@ -250,11 +242,12 @@ filtered dataset:
 nrow(tf_gmt_filtered)
 ```
 
-We can save the filtered *GMT* object to a file:
+It is possible to write the filtered ontology as a GMT file using the 
+`write_gmt` function.
 
 ```{r 'save_gmt', eval=FALSE}
 write_gmt(gmt = tf_gmt_filtered, 
-          file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
+          file = "Filtered.gmt")
 ```
 
 ### Converting a List to an Ontology Object
