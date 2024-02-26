@@ -46,54 +46,45 @@
 #'                    number_of_permutations = 10000)
 
 gsea <- setClass(
-  "gsea",
-  slots = list(
-    gmt = "data.frame",
-    element_names = "character",
-    element_scores = "numeric",
-    gsea_power = "numeric",
-    element_score_type = "character",
-    number_of_permutations = "numeric",
-    test = "function"
-  )
-)
+    "gsea",
+    slots = list(
+        gmt = "data.frame",
+        element_names = "character",
+        element_scores = "numeric",
+        gsea_power = "numeric",
+        element_score_type = "character",
+        number_of_permutations = "numeric",
+        test = "function"))
 
 setMethod("initialize", "gsea",
-          function(.Object,
-                   gmt = data.frame(),
-                   element_names = character(),
-                   element_scores = numeric(),
-                   gsea_power = 1,
-                   element_score_type = "std",
-                   number_of_permutations = 1000,
-                   test = NULL,
-                   ...) {
+    function(.Object,
+        gmt = data.frame(),
+        element_names = character(),
+        element_scores = numeric(),
+        gsea_power = 1,
+        element_score_type = "std",
+        number_of_permutations = 1000,
+        test = NULL,
+        ...) {
             .Object@gmt <- gmt
             .Object@element_names <- element_names
             .Object@element_scores <- element_scores
             .Object@gsea_power <- gsea_power
             .Object@element_score_type <- element_score_type
-            
             .Object@number_of_permutations <- number_of_permutations
-            
             .Object@test <- function(rankedBasemodel) {
-              rankedTestRes <- NULL
-              
-              subramanianTest <- SubramanianTest(
-                gmt = rankedBasemodel@gmt,
-                element_names = rankedBasemodel@element_names,
-                element_scores = rankedBasemodel@element_scores,
-                gsea_power = rankedBasemodel@gsea_power,
-                element_score_type = rankedBasemodel@element_score_type
-              )
-              rankedTestRes <- run_test(subramanianTest)
-              
-              rankedTestRes
+                rankedTestRes <- NULL
+                subramanianTest <- SubramanianTest(
+                    gmt = rankedBasemodel@gmt,
+                    element_names = rankedBasemodel@element_names,
+                    element_scores = rankedBasemodel@element_scores,
+                    gsea_power = rankedBasemodel@gsea_power,
+                    element_score_type = rankedBasemodel@element_score_type)
+                rankedTestRes <- run_test(subramanianTest)
+            rankedTestRes
             }
-            
             .Object
-            
-          })
+})
 
 #' @describeIn gsea runs test calculations.
 #' @param model Object of S4 class representing the mulea test.
@@ -128,7 +119,6 @@ setMethod("initialize", "gsea",
 #' gsea_results <- run_test(gsea_model)
 
 setMethod("run_test",
-          signature(model = "gsea"),
-          function(model) {
-            model@test(model)
-          })
+    signature(model = "gsea"),
+    function(model) {
+        model@test(model)})
