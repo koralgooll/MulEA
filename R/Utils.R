@@ -213,7 +213,7 @@ decorateGmtByUnderOvenAndNoise <- function(input_gmt,
   size_of_over_under_repr <-
     number_of_over_representation_groups + number_of_under_representation_groups
   go_change_repr <-
-    sample(1:go_size, size_of_over_under_repr, replace = FALSE)
+    sample(seq_len(go_size), size_of_over_under_repr, replace = FALSE)
   
   over_under_label <-
     c(
@@ -224,7 +224,7 @@ decorateGmtByUnderOvenAndNoise <- function(input_gmt,
   terms_to_manipulation <- data.frame('term_id' = go_change_repr,
                                       'over_under_label' = over_under_label)
   
-  for (i in 1:length(terms_to_manipulation$term_id)) {
+  for (i in seq_along(terms_to_manipulation$term_id)) {
     term_row <- terms_to_manipulation[i, ]
     gmt_for_generator[term_row$term_id, ]$sample_label <-
       term_row$over_under_label
@@ -307,10 +307,10 @@ generateInputSamples <-
       ceiling(length(all_genes_in_enrichment) * over_repr_ratio)
     
     samples <- vector("list", number_of_samples)
-    for (i in 1:length(samples)) {
-      sample_noise <- all_genes_in_ontology[sample(1:length(all_genes_in_ontology), size_of_noise, replace =
+    for (i in seq_along(samples)) {
+      sample_noise <- all_genes_in_ontology[sample(seq_along(all_genes_in_ontology), size_of_noise, replace =
                                                      FALSE)]
-      sample_enrichment <- all_genes_in_enrichment[sample(1:length(all_genes_in_enrichment),
+      sample_enrichment <- all_genes_in_enrichment[sample(seq_along(all_genes_in_enrichment),
                                                           size_of_enrichment,
                                                           replace = FALSE)]
       samples[[i]] <- unique(c(sample_noise, sample_enrichment))
@@ -361,7 +361,7 @@ getMultipleTestsSummary <- function(tests_res,
     names(tests_res[[1]]$metadata)
   )
   number_of_tests <- length(tests_res)
-  for (i in 1:number_of_tests) {
+  for (i in seq_len(number_of_tests)) {
     # Actual condition
     # Total population = P + N
     total_population <- tests_res[[i]]$test_data$ontology_id
@@ -476,7 +476,7 @@ getSummaryToRoc <- function(tests_res,
     "adjustedPValue" = c(),
     "adjustedPValueEmpirical" = c()
   )
-  for (i in 1:number_of_tests) {
+  for (i in seq_len(number_of_tests)) {
     tests_res[[i]]$mulea_res[, c("pValue", "adjustedPValue",
                                  "adjustedPValueEmpirical")]
     data_to_roc <-
@@ -607,7 +607,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
   tictoc::tic()
   number_of_samples <- 1
   tests_res <- vector("list", number_of_tests)
-  for (i in 1:number_of_tests) {
+  for (i in seq_len(number_of_tests)) {
     print(i)
     
     input_gmt_decorated <-

@@ -105,7 +105,7 @@ reshape_results <-
       )
     model_with_res_dt <- data.table::setDT(model_with_res)
     model_with_res_dt_size = 0
-    for (i in 1:nrow(model_with_res_dt)) {
+    for (i in seq_len(nrow(model_with_res_dt))) {
       model_with_res_dt_size <-
         model_with_res_dt_size + length(model_with_res_dt[[i, 'list_of_values']])
     }
@@ -119,7 +119,7 @@ reshape_results <-
       choices = names(model_with_res_dt)
     )
     model_with_res_dt_relaxed_counter = 1
-    for (i in 1:nrow(model_with_res_dt)) {
+    for (i in seq_len(nrow(model_with_res_dt))) {
       category_name <- model_with_res_dt[[i, 'ontology_id']]
       category_p_stat <-
         model_with_res_dt[[i, p_value_type_colname]]
@@ -245,7 +245,7 @@ plot_graph <- function(reshaped_results,
   
   ontologies <-
     unique(model_with_res_dt_relaxed[, ontology_id_colname, with = FALSE])
-  ontologies_graph_edges_num <- sum(1:(nrow(ontologies) - 1))
+  ontologies_graph_edges_num <- sum(seq_len(nrow(ontologies) - 1))
   ontologies_graph_edges <- data.table::data.table(
     from = rep('a', length.out = ontologies_graph_edges_num),
     to = rep('a', length.out = ontologies_graph_edges_num),
@@ -258,7 +258,7 @@ plot_graph <- function(reshaped_results,
   
   ontologies_graph_edges_counter <- 1
   
-  for (i in 1:(nrow(ontologies) - 1)) {
+  for (i in seq_len(nrow(ontologies) - 1)) {
     ontology_name_i <- ontologies[[i, ontology_id]]
     filter_model_row_select <- model_with_res_dt_relaxed[[ontology_id]] == ontology_name_i
     genes_in_ontology_i <- model_with_res_dt_relaxed[filter_model_row_select][[ontology_element_colname]]
@@ -430,7 +430,7 @@ plot_barplot <-
     )
     
     if (is.null(selected_rows_to_plot)) {
-      selected_rows_to_plot <- 1:nrow(reshaped_results)
+      selected_rows_to_plot <- seq_len(nrow(reshaped_results))
     }
     unique_reshaped_results <-
       unique(reshaped_results[selected_rows_to_plot, c(ontology_id_colname, p_value_type_colname), with = FALSE])
@@ -568,7 +568,7 @@ plot_lollipop <-
     )
     
     if (is.null(selected_rows_to_plot)) {
-      selected_rows_to_plot <- 1:nrow(reshaped_results)
+      selected_rows_to_plot <- seq_len(nrow(reshaped_results))
     }
     unique_reshaped_results <-
       unique(reshaped_results[selected_rows_to_plot, c(ontology_id_colname, p_value_type_colname), with = FALSE])

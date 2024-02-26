@@ -30,7 +30,7 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
   
   
   # for every DB entity in the DB list
-  for (i in 1:number_of_DB_categories)
+  for (i in seq_len(number_of_DB_categories))
   {
     # create a vector of genes connected to the i-th DB category
     current_DB_category=DB[[i]]
@@ -144,7 +144,7 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
     # clusterEvalQ(cl, sourceCpp(cppSourceFile))
     # clusterEvalQ(cl, Rcpp::sourceCpp(cppSourceFile))
     
-    result_of_paralel <- clusterApplyLB(cl=cl,1:nthread, function(idx){
+    result_of_paralel <- clusterApplyLB(cl=cl, seq_len(nthread), function(idx){
       simulation_result_tbl <-  tryCatch(
         enrichment_test_simulation(
           DB, 
@@ -225,7 +225,7 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
   R_exp=integer(number_of_DB_categories) # init an empty vector. I  will store here the result
   
   NN<-simulation_result_tbl$cum_sum_multiplicity[nrow(simulation_result_tbl)] # this id the greatest/last in cumsum.multiplicity
-  for (i in 1:number_of_DB_categories) {
+  for (i in seq_len(number_of_DB_categories)) {
     if(P_val_round[i]>=1)
     {
       R_exp[i]= NN  # it makes things much faster 

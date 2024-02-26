@@ -105,7 +105,7 @@ setMethod("initialize", "ora",
                   all = TRUE
                 )
                 
-                for (i in 1:length(muleaSetBaseEnrichmentTest$FDR)) {
+                for (i in seq_along(muleaSetBaseEnrichmentTest$FDR)) {
                   if (!is.nan(muleaSetBaseEnrichmentTest$FDR[i])
                       && muleaSetBaseEnrichmentTest$FDR[i] > 1.0) {
                     muleaSetBaseEnrichmentTest$FDR[i] <- 1.0e+00
