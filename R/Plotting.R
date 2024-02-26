@@ -42,6 +42,8 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #' @seealso \code{\link{plot_graph}}, \code{\link{plot_barplot}},
 #'   \code{\link{plot_heatmap}}
 #' @importFrom data.table :=
+#' @import tidyverse
+#' @import magrittr
 #' @export
 #'
 #' @return Return detailed and relaxed `data.table` where model and results are
@@ -337,8 +339,8 @@ plot_graph <- function(reshaped_results,
 #' @param ontology_id_colname Character, specifies the column name that contains ontology IDs in the input data.
 #' @param p_value_type_colname Character, specifies the column name for p-values in the input data. Default is 'eFDR'.
 #' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
-#' @importFrom magrittr %>%
 #' @import ggplot2
+#' @importFrom dplyr arrange
 #' @seealso \code{\link{reshape_results}}
 #' @export
 #'
@@ -347,16 +349,16 @@ plot_graph <- function(reshaped_results,
 #' @examples 
 #' library(mulea)
 #' library(tidyverse)
-#' geo2r_result_tab <- read_tsv(file = system.file(
+#' geo2r_result_tab <- readr::read_tsv(file = system.file(
 #'     package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
 #' geo2r_result_tab %<>% 
 #' # extracting the first gene symbol from the Gene.symbol column
-#' mutate(Gene.symbol = str_remove(string = Gene.symbol,
+#' dplyr::mutate(Gene.symbol = str_remove(string = Gene.symbol,
 #'                                 pattern = "\\/.*")) %>% 
 #'  # removing rows where Gene.symbol is NA
 #'  filter(!is.na(Gene.symbol)) %>% 
 #'  # ordering by logFC
-#'  arrange(desc(logFC))
+#'  dplyr::arrange(desc(logFC))
 #'  
 #'  sign_genes <- geo2r_result_tab %>% 
 #' # filtering for adjusted p-value < 0.05 and logFC > 1
@@ -475,6 +477,8 @@ plot_barplot <-
 #' @param p_value_type_colname Character, specifies the column name for p-values in the input data. Default is 'eFDR'.
 #' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
 #' @importFrom magrittr %>%
+#' @importFrom magrittr %<>%
+#' @importFrom readr read_tsv
 #' @import ggplot2
 #' @seealso \code{\link{reshape_results}}
 #' @export
@@ -484,7 +488,7 @@ plot_barplot <-
 #' @examples 
 #' library(mulea)
 #' library(tidyverse)
-#' geo2r_result_tab <- read_tsv(file = system.file(
+#' geo2r_result_tab <- readr::read_tsv(file = system.file(
 #'     package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
 #' geo2r_result_tab %<>% 
 #' # extracting the first gene symbol from the Gene.symbol column
@@ -612,6 +616,8 @@ plot_lollipop <-
 #' @param ontology_element_colname Character, specifying the column name that contains ontology elements or terms in the input data. Default: 'element_id_in_ontology'.
 #' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
 #' @importFrom magrittr %>%
+#' @importFrom magrittr %<>%
+#' @importFrom readr read_tsv
 #' @import ggplot2
 #' @seealso \code{\link{reshape_results}}
 #' @export
@@ -621,7 +627,7 @@ plot_lollipop <-
 #' @examples 
 #' library(mulea)
 #' library(tidyverse)
-#' geo2r_result_tab <- read_tsv(file = system.file(
+#' geo2r_result_tab <- readr::read_tsv(file = system.file(
 #'     package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
 #' geo2r_result_tab %<>% 
 #' # extracting the first gene symbol from the Gene.symbol column

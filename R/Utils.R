@@ -333,6 +333,7 @@ generateInputSamples <-
 #' @noRd
 #' @importFrom magrittr %>%
 #' @importFrom data.table :=
+#' @import tictoc
 getMultipleTestsSummary <- function(tests_res,
                                     comparison_col_name,
                                     labels = list(),

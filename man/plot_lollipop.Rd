@@ -36,7 +36,7 @@ Create a customized  lollipop plot of p-values, facilitating visual exploration 
 \examples{
 library(mulea)
 library(tidyverse)
-geo2r_result_tab <- read_tsv(file = system.file(
+geo2r_result_tab <- readr::read_tsv(file = system.file(
     package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
 geo2r_result_tab \%<>\% 
 # extracting the first gene symbol from the Gene.symbol column

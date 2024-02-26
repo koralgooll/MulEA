@@ -36,16 +36,16 @@ Create a customized barplot of p-values, facilitating visual exploration and ana
 \examples{
 library(mulea)
 library(tidyverse)
-geo2r_result_tab <- read_tsv(file = system.file(
+geo2r_result_tab <- readr::read_tsv(file = system.file(
     package="mulea", "extdata", "GSE55662.table_wt_non_vs_cipro.tsv"))
 geo2r_result_tab \%<>\% 
 # extracting the first gene symbol from the Gene.symbol column
-mutate(Gene.symbol = str_remove(string = Gene.symbol,
+dplyr::mutate(Gene.symbol = str_remove(string = Gene.symbol,
                                 pattern = "\\\\/.*")) \%>\% 
  # removing rows where Gene.symbol is NA
  filter(!is.na(Gene.symbol)) \%>\% 
  # ordering by logFC
- arrange(desc(logFC))
+ dplyr::arrange(desc(logFC))
  
  sign_genes <- geo2r_result_tab \%>\% 
 # filtering for adjusted p-value < 0.05 and logFC > 1

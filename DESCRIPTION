@@ -29,30 +29,32 @@ Description: Traditional gene set enrichment analyses are typically limited to a
 License: MIT + file LICENSE
 LazyData: TRUE
 Depends:
-    R (>= 3.5.0)
+    R (>= 4.3.0)
 Imports:
     data.table (>= 1.13.0),
     dplyr,
     fgsea (>= 1.0.2),
     ggplot2,
     ggraph (>= 2.0.3),
-    magrittr (>= 1.5),
+    magrittr (>= 2.0.3),
     methods,
     parallel (>= 4.0.2),
     plyr (>= 1.8.4),
     Rcpp,
+    readr,
     rlang,
     scales,
     stats,
     stringi,
     tibble,
-    tidygraph
+    tictoc,
+    tidygraph,
+    tidyverse
 Suggests:
     devtools,
     knitr,
     rmarkdown,
-    testthat (>= 3.1.4),
-    tictoc
+    testthat (>= 3.1.4)
 LinkingTo:
     Rcpp
 VignetteBuilder: knitr
