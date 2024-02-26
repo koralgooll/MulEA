@@ -3,21 +3,22 @@
 #' An S4 class to represent the gsea tests in mulea.
 #'
 #' @slot gmt  A `data.frame` representing the ontology GMT.
-#' @slot element_names A vector of elements names (gene or protein names or
-#'   identifiers) to include in the analysis.
-#' @slot element_scores A vector of numeric values representing a score (*e.g.*
-#'   *p*-value, *z*-score, log fold change) for each element_name, in the same 
-#'   number and order as element_name.
+#' @slot element_names A vector of elements names 
+#'   (gene or protein names or identifiers) to include in the analysis.
+#' @slot element_scores A vector of numeric values representing a 
+#'   score (*e.g.* *p*-value, *z*-score, log fold change) for each 
+#'  'element_name', in the same number and order as element_name.
 #' @slot gsea_power A power of weight. Default value is 1.
 #' @slot element_score_type Defines the GSEA score type.
 #' * 'pos': Only positive element_scores
 #' * 'neg': Only negative element_scores
 #' * 'std': standard, containing both positive and negative scores
 #'   Default value is 'std'.
-#' @slot number_of_permutations The number of permutations used in `gsea` test.
-#'   Default value is 1000.
+#' @slot number_of_permutations The number of permutations used in 
+#'   `gsea` test. Default value is 1000.
 #' @slot test character
-#' @return GSEA object. This object represents the result of the `gsea` tests.
+#' @return GSEA object. This object represents the result of the 
+#'   `gsea` tests.
 #' @export
 #' @examples
 #' library(mulea)
@@ -26,10 +27,12 @@
 #' tf_gmt <- read_gmt(file = system.file(
 #'     package="mulea", "extdata",
 #'     "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
-#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, max_nr_of_elements = 400)
+#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, 
+#'     max_nr_of_elements = 400)
 #'
 #' # loading the example `data.frame`
-#' scored_gene_tab <- read.csv(file = system.file(package = "mulea", "extdata", "scored_genes.csv"))
+#' scored_gene_tab <- read.csv(file = system.file(package = "mulea", "extdata", 
+#'     "scored_genes.csv"))
 #'
 #' # creating the GSEA model
 #' gsea_model <- gsea(gmt = tf_gmt_filtered,
@@ -103,10 +106,12 @@ setMethod("initialize", "gsea",
 #' tf_gmt <- read_gmt(file = system.file(
 #'     package="mulea", "extdata", 
 #'     "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
-#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, max_nr_of_elements = 400)
+#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, 
+#'     max_nr_of_elements = 400)
 #' 
 #' # loading the example `data.frame`
-#' scored_gene_tab <- read.csv(file = system.file(package = "mulea", "extdata", "scored_genes.csv"))
+#' scored_gene_tab <- read.csv(file = system.file(package = "mulea", "extdata", 
+#'     "scored_genes.csv"))
 #'
 #' # creating the GSEA model
 #' gsea_model <- gsea(gmt = tf_gmt_filtered,

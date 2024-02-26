@@ -7,8 +7,8 @@
 write_gmt(gmt, file)
 }
 \arguments{
-\item{gmt}{A \code{data.frame} containing the data to be written, imported from a
-GMT file with the \code{read_gmt} function.}
+\item{gmt}{A \code{data.frame} containing the data to be written,
+imported from a GMT file with the \code{read_gmt} function.}
 
 \item{file}{Character, a path to a file.}
 }
@@ -30,6 +30,7 @@ tf_gmt <- read_gmt(file = system.file(
     "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 
 # writing the filtered ontology to a GMT file
-write_gmt(gmt = tf_gmt, 
-          file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+write_gmt(
+    gmt = tf_gmt, 
+    file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
 }

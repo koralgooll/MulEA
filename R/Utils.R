@@ -5,9 +5,12 @@
 #' @param file Character, a path to a file.
 #' @return Returns a `data.frame` with three columns:
 #'
-#' * 'ontology_id': Ontology identifier that uniquely identifies the element within the referenced ontology.
-#' * 'ontology_name': Ontology name or description that provides a user-friendly label or textual description for the 'ontology_id'.
-#' * 'list_of_values': Associated genes or proteins that is a vector of identifiers of genes or proteins belonging to the 'ontology_id'.
+#' * 'ontology_id': Ontology identifier that uniquely identifies the element 
+#'     within the referenced ontology.
+#' * 'ontology_name': Ontology name or description that provides a
+#'     user-friendly label or textual description for the 'ontology_id'.
+#' * 'list_of_values': Associated genes or proteins that is a vector of
+#'     identifiers of genes or proteins belonging to the 'ontology_id'.
 #'
 #' @export
 #'
@@ -57,8 +60,8 @@ read_gmt <- function(file) {
 #' associated lists of values) and writes it to a file in a standardized Gene 
 #' Matrix Transposed (GMT) file format.
 #'
-#' @param gmt A `data.frame` containing the data to be written, imported from a
-#'   GMT file with the `read_gmt` function.
+#' @param gmt A `data.frame` containing the data to be written, 
+#'   imported from a GMT file with the `read_gmt` function.
 #' @param file Character, a path to a file.
 #' @return Returns the input as a GMT file at a specific location.
 #' @export
@@ -71,8 +74,9 @@ read_gmt <- function(file) {
 #'     "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
 #'
 #' # writing the filtered ontology to a GMT file
-#' write_gmt(gmt = tf_gmt, 
-#'           file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
+#' write_gmt(
+#'     gmt = tf_gmt, 
+#'     file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt")
 
 write_gmt <- function(gmt, file) {
   vectorOfModel <-
@@ -82,7 +86,8 @@ write_gmt <- function(gmt, file) {
       .fun = function(dataFrameRow) {
         collapsedlist_of_values <-
           paste(dataFrameRow[, 3][[1]], collapse = "\t")
-        paste(dataFrameRow[1], dataFrameRow[2], collapsedlist_of_values, sep = "\t")
+        paste(dataFrameRow[1], dataFrameRow[2], collapsedlist_of_values, 
+              sep = "\t")
       }
     )
   fileConnection <- file(file)
@@ -99,8 +104,9 @@ write_gmt <- function(gmt, file) {
 #'   enrichment analysis results can sometimes be skewed by overly specific or
 #'   broad entries. Filtering ontologies allows you to customize the size of
 #'   ontology entries, ensuring your analysis aligns with your desired scope.
-#' @param gmt A `data.frame` which contains the entries (gene or protein sets),
-#'   imported from a GMT file with the `read_gmt` function.
+#' @param gmt A `data.frame` which contains the entries 
+#'   (gene or protein sets), imported from a GMT file with the 
+#'   `read_gmt` function.
 #' @param min_nr_of_elements Minimum number of elements. Ontology entries
 #'   containing as many or fewer elements (genes or proteins) will be excluded.
 #' @param max_nr_of_elements Maximum number of elements. Ontology entries
@@ -138,7 +144,7 @@ filter_ontology <- function(gmt,
     #     na.rm = FALSE
     #   )
     
-    min_nr_of_elements = 3
+    min_nr_of_elements  <- 3
   }
   
   if (is.null(max_nr_of_elements)) {
@@ -156,7 +162,7 @@ filter_ontology <- function(gmt,
     #     type = 2,
     #     na.rm = FALSE
     #   )
-    max_nr_of_elements = 400
+    max_nr_of_elements <- 400
   }
   
   filtered_input_gmt <-
@@ -191,7 +197,8 @@ filter_ontology <- function(gmt,
 #' @description
 #' \code{decorateGmtByUnderOvenAndNoise}
 #'
-#' \code{decorateGmtByUnderOvenAndNoise} decorates GO with labels (over, under, noise) per term.
+#' \code{decorateGmtByUnderOvenAndNoise} decorates GO with labels 
+#' (over, under, noise) per term.
 #'
 #' @param input_gmt input dataframe, read from gmt file.
 #' @param number_of_over_representation_groups set the number of groups
@@ -200,9 +207,9 @@ filter_ontology <- function(gmt,
 #' which will be chosen to under representation.
 #' @return Return data frame with model from specific location.
 #' @noRd
-decorateGmtByUnderOvenAndNoise <- function(input_gmt,
-                                           number_of_over_representation_groups = 1,
-                                           number_of_under_representation_groups = 0) {
+decorateGmtByUnderOvenAndNoise <- function(
+    input_gmt, number_of_over_representation_groups = 1,
+    number_of_under_representation_groups = 0) {
   # Initialize all by noise labels.
   sample_label <- rep('noise', length(input_gmt$ontology_id))
   gmt_for_generator <-
@@ -273,13 +280,16 @@ list_to_gmt <- function(gmt_list) {
 
 # PUBLIC API
 #' @description
-#' \code{generateInputSamples} Generates artificial GO with specific terms (under or over represented).
+#' \code{generateInputSamples} Generates artificial GO with specific terms 
+#' (under or over represented).
 #'
 #' @param input_gmt input dataframe, read from gmt file.
 #' @param noise_ratio level of noise in the sample, value from 0 to 1.
 #' @param group_under_over_representation_ratio ratio of over represented group.
-#' @param number_of_over_representation_groups number of groups chosen to over representation.
-#' @param number_of_under_representation_groups number of groups chosen to under representation.
+#' @param number_of_over_representation_groups number of groups chosen to over 
+#' representation.
+#' @param number_of_under_representation_groups number of groups chosen to under
+#' representation.
 #' @return Return data frame with model from specific location.
 #' @noRd
 generateInputSamples <-
@@ -294,10 +304,14 @@ generateInputSamples <-
     if (rand_from_unique) {
       all_genes_in_ontology <-
         unique(unlist(input_gmt_decorated$list_of_values))
-      all_genes_in_enrichment <- unique(unlist(input_gmt_decorated[input_gmt_decorated$sample_label == 'over', ]$list_of_values))
+      all_genes_in_enrichment <- unique(
+          unlist(input_gmt_decorated[
+              input_gmt_decorated$sample_label == 'over', ]$list_of_values))
     } else {
       all_genes_in_ontology <- unlist(input_gmt_decorated$list_of_values)
-      all_genes_in_enrichment <- unlist(input_gmt_decorated[input_gmt_decorated$sample_label == 'over', ]$list_of_values)
+      all_genes_in_enrichment <- unlist(
+          input_gmt_decorated[
+              input_gmt_decorated$sample_label == 'over', ]$list_of_values)
     }
     
     size_of_ontology <- length(all_genes_in_ontology)
@@ -308,11 +322,11 @@ generateInputSamples <-
     
     samples <- vector("list", number_of_samples)
     for (i in seq_along(samples)) {
-      sample_noise <- all_genes_in_ontology[sample(seq_along(all_genes_in_ontology), size_of_noise, replace =
-                                                     FALSE)]
-      sample_enrichment <- all_genes_in_enrichment[sample(seq_along(all_genes_in_enrichment),
-                                                          size_of_enrichment,
-                                                          replace = FALSE)]
+      sample_noise <- all_genes_in_ontology[sample(seq_along(
+          all_genes_in_ontology), size_of_noise, replace = FALSE)]
+      sample_enrichment <- all_genes_in_enrichment[
+          sample(seq_along(all_genes_in_enrichment), size_of_enrichment,
+                           replace = FALSE)]
       samples[[i]] <- unique(c(sample_noise, sample_enrichment))
     }
     
@@ -323,7 +337,8 @@ generateInputSamples <-
 #' @description
 #' \code{getMultipleTestsSummary}
 #'
-#' \code{getMultipleTestsSummary} generate artificial GO with specific terms under or over represented.
+#' \code{getMultipleTestsSummary} generate artificial GO with specific terms 
+#' under or over represented.
 #'
 #' @param tests_res list of multiple tests results.
 #' @param comparison_col_name column name which indicated data to compare on.
@@ -367,10 +382,12 @@ getMultipleTestsSummary <- function(tests_res,
     total_population <- tests_res[[i]]$test_data$ontology_id
     total_population_size <- length(total_population)
     # Positive (P)
-    P <- tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label == 'over', ]$ontology_id
+    P <- tests_res[[i]]$test_data[
+        tests_res[[i]]$test_data$sample_label == 'over', ]$ontology_id
     P_size <- length(P)
     # Negative (N)
-    N <- tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label != 'over', ]$ontology_id
+    N <- tests_res[[i]]$test_data[
+        tests_res[[i]]$test_data$sample_label != 'over', ]$ontology_id
     N_size <- length(N)
     if (P_size + N_size != total_population_size) {
       warning("Not OK size of Actual in contingency table")
@@ -378,10 +395,12 @@ getMultipleTestsSummary <- function(tests_res,
     
     # Predicted condition
     # Predicted Positive (PP)
-    PP <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] <= cut_off,]$ontology_id
+    PP <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[
+        , comparison_col_name] <= cut_off,]$ontology_id
     PP_size <- length(PP)
     # Predicted Negative (PN)
-    PN <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[, comparison_col_name] > cut_off,]$ontology_id
+    PN <- tests_res[[i]]$mulea_res[tests_res[[i]]$mulea_res[
+        , comparison_col_name] > cut_off,]$ontology_id
     PN_size <- length(PN)
     if (PP_size + PN_size != total_population_size) {
       warning("Not OK size of Predicted in contingency table")
@@ -404,7 +423,8 @@ getMultipleTestsSummary <- function(tests_res,
       warning("Not OK size of total  contingency table")
     }
     
-    over_repr_terms <- tests_res[[i]]$test_data[tests_res[[i]]$test_data$sample_label == 'over', ]$ontology_id
+    over_repr_terms <- tests_res[[i]]$test_data[
+        tests_res[[i]]$test_data$sample_label == 'over', ]$ontology_id
     
     sumary_res_tmp <- data.frame(
       'test_no' = i,
@@ -421,11 +441,14 @@ getMultipleTestsSummary <- function(tests_res,
     
     for (metadata_entry in names(tests_res[[i]]$metadata)) {
       if ('input_select' == metadata_entry) {
-        sumary_res_tmp <- cbind(sumary_res_tmp,
-                                'input_select' = I(tests_res[[i]]$metadata[metadata_entry]))
+        sumary_res_tmp <- cbind(
+            sumary_res_tmp,
+            'input_select' = I(tests_res[[i]]$metadata[metadata_entry]))
       } else {
-        sumary_res_tmp <- cbind(sumary_res_tmp,
-                                metadata_entry = as.character(tests_res[[i]]$metadata[metadata_entry]))
+        sumary_res_tmp <- cbind(
+            sumary_res_tmp,
+            metadata_entry = as.character(tests_res[[i]]$metadata[
+                metadata_entry]))
       }
     }
     
@@ -455,7 +478,8 @@ getMultipleTestsSummary <- function(tests_res,
 #' @description
 #' \code{getSummaryToRoc}
 #'
-#' \code{getSummaryToRoc} generate artificial GO with specific terms under or over represented.
+#' \code{getSummaryToRoc} generate artificial GO with specific terms under or 
+#' over represented.
 #'
 #' @param tests_res list of multiple tests results.
 #' @return Return data frame which is the base to count ROC.
@@ -465,7 +489,8 @@ getMultipleTestsSummary <- function(tests_res,
 #' @importFrom rlang .data
 getSummaryToRoc <- function(tests_res,
                             cut_off_resolution = 0.01,
-                            methods_names = c('pValue', 'adjustedPValue', 'adjustedPValueEmpirical')) {
+                            methods_names = c('pValue', 'adjustedPValue', 
+                                              'adjustedPValueEmpirical')) {
   print("mulea ROC data calculation time:")
   tictoc::tic()
   
@@ -547,7 +572,8 @@ getSummaryToRoc <- function(tests_res,
 #' @return Return data frame with FDR. TPRs per test.
 #' @noRd
 getMultipleTestsSummaryAcrossCutOff <- function(tests_res,
-                                                cut_off_range = seq(0, 1, 0.1)) {
+                                                cut_off_range = seq(0, 1, 0.1)) 
+  {
   tests_res_sum <- NULL
   for (cut_off in cut_off_range) {
     print(cut_off)
@@ -585,24 +611,28 @@ getMultipleTestsSummaryAcrossCutOff <- function(tests_res,
 #' @description
 #' \code{simulateMultipleTests}
 #'
-#' \code{simulateMultipleTests} generate artificial GO with specific terms under or over represented.
+#' \code{simulateMultipleTests} generate artificial GO with specific terms under
+#' or over represented.
 #'
 #' @param input_gmt_filtered gmt data frame with ontology for tests.
 #' @param number_of_tests number of tests to perform.
 #' @param noise_ratio ratio of noise in data from [0,1] interval.
-#' @param number_of_over_representation_groups number of terms to over represent.
-#' @param number_of_under_representation_groups number of terms to under represent.
+#' @param number_of_over_representation_groups number of terms to over 
+#' represent.
+#' @param number_of_under_representation_groups number of terms to under 
+#' represent.
 #' @return Return data frame with FDR. TPRs per test.
 #' @noRd
-simulateMultipleTests <- function(input_gmt_filtered,
-                                  number_of_tests = 10,
-                                  noise_ratio = 0.35,
-                                  over_repr_ratio  = 0.5,
-                                  number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered) *
-                                                                                   0.1),
-                                  number_of_under_representation_groups = 0,
-                                  number_of_steps = 5000,
-                                  nthreads = 16) {
+simulateMultipleTests <- function(
+    input_gmt_filtered, 
+    number_of_tests = 10,
+    noise_ratio = 0.35,
+    over_repr_ratio  = 0.5,
+    number_of_over_representation_groups = ceiling(nrow(
+      input_gmt_filtered) * 0.1),
+    number_of_under_representation_groups = 0,
+    number_of_steps = 5000,
+    nthreads = 16) {
   print("mulea calculation time:")
   tictoc::tic()
   number_of_samples <- 1
@@ -613,8 +643,10 @@ simulateMultipleTests <- function(input_gmt_filtered,
     input_gmt_decorated <-
       decorateGmtByUnderOvenAndNoise(
         input_gmt = input_gmt_filtered,
-        number_of_over_representation_groups = number_of_over_representation_groups,
-        number_of_under_representation_groups = number_of_under_representation_groups
+        number_of_over_representation_groups = 
+            number_of_over_representation_groups,
+        number_of_under_representation_groups = 
+            number_of_under_representation_groups
       )
     
     samples <- generateInputSamples(
@@ -645,7 +677,8 @@ simulateMultipleTests <- function(input_gmt_filtered,
       'noise_ratio' = noise_ratio,
       'number_of_tests' = number_of_tests,
       'over_repr_ratio' = over_repr_ratio,
-      'number_of_over_representation_groups' = number_of_over_representation_groups,
+      'number_of_over_representation_groups' =
+          number_of_over_representation_groups,
       'input_select' = input_select
     )
   }
@@ -658,23 +691,27 @@ simulateMultipleTests <- function(input_gmt_filtered,
 #' @description
 #' \code{simulateMultipleTestsWithRatioParam}
 #'
-#' \code{simulateMultipleTestsWithRatioParam} generate artificial GO with specific terms under or over represented.
+#' \code{simulateMultipleTestsWithRatioParam} generate artificial GO with 
+#' specific terms under or over represented.
 #'
 #' @param input_gmt_filtered gmt data frame with ontology for tests.
 #' @param number_of_tests number of tests to perform.
-#' @param noise_ratio_range range of ratios of noise in data from [0,1] interval.
-#' @param number_of_over_representation_groups number of terms to over represent.
+#' @param noise_ratio_range range of ratios of noise in data from [0,1] 
+#' interval.
+#' @param number_of_over_representation_groups number of terms to over 
+#' represent.
 #' @param number_of_steps number of steps.
 #' @return Return data frame with FDR. TPRs per test.
 #' @noRd
-simulateMultipleTestsWithRatioParam <- function(input_gmt_filtered,
-                                                noise_ratio_range = seq(0.1, 0.5, 0.1),
-                                                number_of_tests = 100,
-                                                over_repr_ratio = 0.5,
-                                                number_of_over_representation_groups = ceiling(nrow(input_gmt_filtered) *
-                                                                                                 0.2),
-                                                number_of_steps = 5000,
-                                                nthreads = 16) {
+simulateMultipleTestsWithRatioParam <- function(
+    input_gmt_filtered,
+    noise_ratio_range = seq(0.1, 0.5, 0.1),
+    number_of_tests = 100,
+    over_repr_ratio = 0.5,
+    number_of_over_representation_groups = ceiling(nrow(
+      input_gmt_filtered) * 0.2),
+    number_of_steps = 5000,
+    nthreads = 16) {
   tictoc::tic()
   sim_mult_tests <- list()
   for (noise_ratio in noise_ratio_range) {
@@ -687,7 +724,8 @@ simulateMultipleTestsWithRatioParam <- function(input_gmt_filtered,
         number_of_tests = number_of_tests,
         noise_ratio = noise_ratio,
         over_repr_ratio = over_repr_ratio,
-        number_of_over_representation_groups = number_of_over_representation_groups,
+        number_of_over_representation_groups = 
+          number_of_over_representation_groups,
         number_of_under_representation_groups = 0,
         number_of_steps = number_of_steps,
         nthreads = nthreads

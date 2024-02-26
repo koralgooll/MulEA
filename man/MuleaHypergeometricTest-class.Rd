@@ -5,7 +5,8 @@
 \alias{MuleaHypergeometricTest-class}
 \alias{MuleaHypergeometricTest}
 \alias{run_test,MuleaHypergeometricTest-method}
-\title{PRIVATE class : An S4 class to represent a Hypergeometric tests in mulea.}
+\title{PRIVATE class : An S4 class to represent a Hypergeometric tests in
+mulea.}
 \usage{
 \S4method{run_test}{MuleaHypergeometricTest}(model)
 }
@@ -19,7 +20,8 @@ run_test method for MuleaHypergeometricTest object. Used as private
 function.
 }
 \description{
-PRIVATE class : An S4 class to represent a Hypergeometric tests in mulea.
+PRIVATE class : An S4 class to represent a Hypergeometric tests in
+mulea.
 }
 \section{Methods (by generic)}{
 \itemize{

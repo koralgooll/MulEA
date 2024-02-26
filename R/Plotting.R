@@ -1,21 +1,20 @@
 validate_column_names_and_function_args <- function(data, ...) {
-  arguments <- list(...)
-  if (!all(unlist(arguments) %in% names(data))) {
-    stop('Wrongly set data column names.')
-  }
+    arguments <- list(...)
+    if (!all(unlist(arguments) %in% names(data))) {
+        stop('Wrongly set data column names.')
+    }
 }
 
-filterRelaxedResultsForPlotting <- function(reshaped_results,
-                                            p_value_type_colname = 'ontologyStatValue',
-                                            p_value_max_threshold = 0.05) {
-  include <- !is.na(reshaped_results[[p_value_type_colname]])
-  reshaped_results_filtered_na <-
-    reshaped_results[include,]
-  include <-
-    reshaped_results_filtered_na[[p_value_type_colname]] <= p_value_max_threshold
-  reshaped_results_filtered_cutoff <-
-    reshaped_results_filtered_na[include, ]
-  reshaped_results_filtered_cutoff
+filterRelaxedResultsForPlotting <- function(
+    reshaped_results,
+    p_value_type_colname = 'ontologyStatValue',
+    p_value_max_threshold = 0.05) {
+        include <- !is.na(reshaped_results[[p_value_type_colname]])
+    reshaped_results_filtered_na <- reshaped_results[include,]
+    include <- reshaped_results_filtered_na[[
+        p_value_type_colname]] <= p_value_max_threshold
+    reshaped_results_filtered_cutoff <- reshaped_results_filtered_na[include, ]
+    reshaped_results_filtered_cutoff
 }
 
 #' Reshape Results
@@ -23,8 +22,10 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #'   them into a suitable format for plotting, and returns the resulting data
 #'   frame, which can be used for further analysis or visualization.
 #'
-#' @param model a mulea model, created by the `ora` or the `gsea` functions.
-#' @param model_results Result `data.frame` returned by the `run_test` function.
+#' @param model a mulea model, created by the 
+#'   `ora` or the `gsea` functions.
+#' @param model_results Result `data.frame` 
+#'   returned by the `run_test` function.
 #' @param model_ontology_col_name Character, specifies the column name in the
 #'   model that contains ontology IDs. It defines which column in the model
 #'   should be used for matching ontology IDs. Possible values are 'ontology_id'
@@ -33,12 +34,13 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #'   IDs in the model results. It indicates which column in the model results
 #'   contains ontology IDs for merging. Possible values are 'ontology_id' and
 #'   'ontology_name'. The default value is 'ontology_id'.
-#' @param p_value_type_colname Character, specifies the column name for the type
-#'   or raw or adjusted *p*-value in the result `data.frame` returned by the
-#'   `run_test` function. The default value is 'eFDR'.
-#' @param p_value_max_threshold Logical, indicating whether to apply a *p*-value
-#'   threshold when filtering the resulting data. If TRUE, the function filters
-#'   the data based on a *p*-value threshold.
+#' @param p_value_type_colname Character, specifies the column name 
+#'   for the type or raw or adjusted *p*-value in the result 
+#'   `data.frame` returned by the `run_test` function. 
+#'   The default value is 'eFDR'.
+#' @param p_value_max_threshold Logical, indicating whether to apply a 
+#'   *p*-value threshold when filtering the resulting data. If TRUE, 
+#'   the function filters the data based on a *p*-value threshold.
 #' @seealso \code{\link{plot_graph}}, \code{\link{plot_barplot}},
 #'   \code{\link{plot_heatmap}}
 #' @importFrom data.table :=
@@ -81,11 +83,11 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #' ora_results <- run_test(ora_model)
 #' 
 #' # reshaping results for visualisation
-#' ora_reshaped_results <- reshape_results(model = ora_model,
-#'                                         model_results = ora_results,
-#'                                         # choosing which column to use for the
-#'                                         # indication of significance
-#'                                         p_value_type_colname = "eFDR")
+#' ora_reshaped_results <- reshape_results(
+#'     model = ora_model,
+#'     model_results = ora_results,
+#'     # choosing which column to use for the indication of significance
+#'     p_value_type_colname = "eFDR")
 
 reshape_results <-
   function(model = NULL,
@@ -104,10 +106,11 @@ reshape_results <-
         all = TRUE
       )
     model_with_res_dt <- data.table::setDT(model_with_res)
-    model_with_res_dt_size = 0
+    model_with_res_dt_size <- 0
     for (i in seq_len(nrow(model_with_res_dt))) {
       model_with_res_dt_size <-
-        model_with_res_dt_size + length(model_with_res_dt[[i, 'list_of_values']])
+        model_with_res_dt_size + length(model_with_res_dt[[
+              i, 'list_of_values']])
     }
     model_with_res_dt_relaxed <- data.table::data.table(
       ontology_id = rep('a', length.out = model_with_res_dt_size),
@@ -118,7 +121,7 @@ reshape_results <-
       p_value_type_colname,
       choices = names(model_with_res_dt)
     )
-    model_with_res_dt_relaxed_counter = 1
+    model_with_res_dt_relaxed_counter <- 1
     for (i in seq_len(nrow(model_with_res_dt))) {
       category_name <- model_with_res_dt[[i, 'ontology_id']]
       category_p_stat <-
@@ -126,9 +129,12 @@ reshape_results <-
       for (item_name in model_with_res_dt[[i, 'list_of_values']]) {
         # TODO: THE LINE BELOW DOES NOT UPDATE THE OBJECT IS THIS INTENTIONAL?
         model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter,
-                                  c("ontology_id", "genIdInOntology", "ontologyStatValue") :=
-                                    list(category_name, item_name, category_p_stat)]
-        model_with_res_dt_relaxed_counter = model_with_res_dt_relaxed_counter + 1
+                                  c("ontology_id", "genIdInOntology", 
+                                    "ontologyStatValue") :=
+                                    list(category_name, item_name, 
+                                         category_p_stat)]
+        model_with_res_dt_relaxed_counter  <- 
+          model_with_res_dt_relaxed_counter + 1
       }
     }
     if (p_value_max_threshold) {
@@ -166,9 +172,11 @@ reshape_results <-
 #' @param ontology_element_colname Character, the name of the column in the
 #'   reshaped results that contains element identifiers within the ontology.
 #'   Default value is 'element_id_in_ontology'.
-#' @param p_value_max_threshold Numeric, a threshold value for filtering rows in
-#'   the reshaped results based on the *p*-values. Rows with *p*-values greater
-#'   than this threshold will be filtered out. Default value is 0.05.
+#' @param p_value_max_threshold Numeric, a threshold value for filtering 
+#'   rows in the reshaped results based on the 
+#'   *p*-values. Rows with *p*-values greater
+#'   than this threshold will be filtered out. 
+#'   Default value is 0.05.
 #' @return Returns a graph plot.
 #' @importFrom data.table :=
 #' @importFrom rlang .data
@@ -186,7 +194,8 @@ reshape_results <-
 #'                                    max_nr_of_elements = 400)
 #' 
 #' # loading the example data
-#' sign_genes <- readLines(system.file(package = "mulea", "extdata", "sign_genes.csv"))
+#' sign_genes <- readLines(system.file(package = "mulea", "extdata", 
+#'     "sign_genes.csv"))
 #' background_genes <- readLines(system.file(
 #'     package="mulea", "extdata", "background_genes.csv"))
 #'
@@ -206,11 +215,11 @@ reshape_results <-
 #' ora_results <- run_test(ora_model)
 #' 
 #' # reshaping results for visualisation
-#' ora_reshaped_results <- reshape_results(model = ora_model,
-#'                                         model_results = ora_results,
-#'                                         # choosing which column to use for the
-#'                                         # indication of significance
-#'                                         p_value_type_colname = "eFDR")
+#' ora_reshaped_results <- reshape_results(
+#'     model = ora_model,
+#'     model_results = ora_results,
+#'     # choosing which column to use for the indication of significance
+#'     p_value_type_colname = "eFDR")
 #'
 #' # Plot graph
 #' plot_graph(reshaped_results = ora_reshaped_results,
@@ -253,29 +262,36 @@ plot_graph <- function(reshaped_results,
   )
   
   if (0 == ontologies_graph_edges_num) {
-    stop('No edges at all. Wrong data.table or manipulate p_value_max_threshold please.')
+    stop('No edges at all. Wrong data.table or manipulate 
+         p_value_max_threshold please.')
   }
   
   ontologies_graph_edges_counter <- 1
   
   for (i in seq_len(nrow(ontologies) - 1)) {
     ontology_name_i <- ontologies[[i, ontology_id]]
-    filter_model_row_select <- model_with_res_dt_relaxed[[ontology_id]] == ontology_name_i
-    genes_in_ontology_i <- model_with_res_dt_relaxed[filter_model_row_select][[ontology_element_colname]]
+    filter_model_row_select <- model_with_res_dt_relaxed[[
+        ontology_id]] == ontology_name_i
+    genes_in_ontology_i <- model_with_res_dt_relaxed[filter_model_row_select][[
+        ontology_element_colname]]
     
     for (j in (i + 1):nrow(ontologies)) {
       ontology_name_j <- ontologies[[j, ontology_id]]
       
-      filter_model_row_select_j <- model_with_res_dt_relaxed[[ontology_id]] == ontology_name_j
-      genes_in_ontology_j <- model_with_res_dt_relaxed[filter_model_row_select_j][[ontology_element_colname]]
+      filter_model_row_select_j <- model_with_res_dt_relaxed[[
+          ontology_id]] == ontology_name_j
+      genes_in_ontology_j <- model_with_res_dt_relaxed[
+          filter_model_row_select_j][[ontology_element_colname]]
       genes_in_ontology_i_j_intersection_num <-
         length(intersect(genes_in_ontology_i, genes_in_ontology_j))
-      if (shared_elements_min_threshold < genes_in_ontology_i_j_intersection_num) {
-        ontologies_graph_edges[ontologies_graph_edges_counter,
-                               c('from', 'to', 'weight') := list(ontology_name_i,
-                                                                 ontology_name_j,
-                                                                 genes_in_ontology_i_j_intersection_num)]
-        ontologies_graph_edges_counter = ontologies_graph_edges_counter + 1
+      if (shared_elements_min_threshold<genes_in_ontology_i_j_intersection_num) 
+        {
+        ontologies_graph_edges[
+            ontologies_graph_edges_counter,
+            c('from', 'to', 'weight') := list(
+                ontology_name_i, ontology_name_j,
+                genes_in_ontology_i_j_intersection_num)]
+        ontologies_graph_edges_counter <- ontologies_graph_edges_counter + 1
       }
     }
   }
@@ -306,7 +322,8 @@ plot_graph <- function(reshaped_results,
   }
   
   graph_plot <- graph_plot + 
-    ggraph::scale_edge_width(breaks = scales::pretty_breaks(n = 5), range = c(0, 3), name="Nr. of shared elements") +
+    ggraph::scale_edge_width(breaks = scales::pretty_breaks(n = 5), 
+                             range = c(0, 3), name="Nr. of shared elements") +
     ggraph::geom_node_point(aes(color = .data$p_stat)) +
     ggraph::geom_node_point(aes(color = .data$p_stat, 
                                 size = (1 - .data$p_stat)), 
@@ -331,14 +348,21 @@ plot_graph <- function(reshaped_results,
 #' Plots barplot of p-values.
 #'
 #' @details 
-#' Create a customized barplot of p-values, facilitating visual exploration and analysis of statistical significance within ontology categories.
+#' Create a customized barplot of p-values, facilitating visual exploration and 
+#' analysis of statistical significance within ontology categories.
 #' 
-#' @param reshaped_results  data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.
-#' @param selected_rows_to_plot A numeric vector specifying which rows of the reshaped results data frame should be included in the plot. Default is NULL.
+#' @param reshaped_results  data.table in relaxed form, obtained as the output 
+#' of the `reshape_results` function. The data source for generating the 
+#' barplot.
+#' @param selected_rows_to_plot A numeric vector specifying which rows of the 
+#' reshaped results data frame should be included in the plot. Default is NULL.
 #' frame should be included in the plot?
-#' @param ontology_id_colname Character, specifies the column name that contains ontology IDs in the input data.
-#' @param p_value_type_colname Character, specifies the column name for p-values in the input data. Default is 'eFDR'.
-#' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
+#' @param ontology_id_colname Character, specifies the column name that contains
+#' ontology IDs in the input data.
+#' @param p_value_type_colname Character, specifies the column name for p-values
+#' in the input data. Default is 'eFDR'.
+#' @param p_value_max_threshold Numeric, representing the maximum p-value
+#' threshold for filtering data. Default is 0.05.
 #' @import ggplot2
 #' @importFrom dplyr arrange
 #' @seealso \code{\link{reshape_results}}
@@ -400,11 +424,11 @@ plot_graph <- function(reshaped_results,
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 #' # reshape results for visualisation
-#' ora_reshaped_results <- reshape_results(model = ora_model, 
-#'                                         model_results = ora_results, 
-#'                                         # choosing which column to use for the
-#'                                         # indication of significance
-#'                                         p_value_type_colname = "eFDR")
+#' ora_reshaped_results <- reshape_results(
+#'     model = ora_model,
+#'     model_results = ora_results,
+#'     # choosing which column to use for the indication of significance
+#'     p_value_type_colname = "eFDR")
 #' 
 #' # Plot barplot
 #' plot_barplot(reshaped_results = ora_reshaped_results,
@@ -422,7 +446,8 @@ plot_barplot <-
            p_value_type_colname = 'eFDR',
            p_value_max_threshold = 0.05) {
     validate_column_names_and_function_args(data = reshaped_results,
-                                                    p_value_type_colname, ontology_id_colname)
+                                            p_value_type_colname, 
+                                            ontology_id_colname)
     reshaped_results <- filterRelaxedResultsForPlotting(
       reshaped_results = reshaped_results,
       p_value_type_colname = p_value_type_colname,
@@ -433,7 +458,9 @@ plot_barplot <-
       selected_rows_to_plot <- seq_len(nrow(reshaped_results))
     }
     unique_reshaped_results <-
-      unique(reshaped_results[selected_rows_to_plot, c(ontology_id_colname, p_value_type_colname), with = FALSE])
+      unique(reshaped_results[selected_rows_to_plot, c(ontology_id_colname, 
+                                                       p_value_type_colname), 
+                              with = FALSE])
     unique_reshaped_results <- unique_reshaped_results %>%
       dplyr::arrange(dplyr::desc((!!as.name(
         p_value_type_colname
@@ -468,14 +495,22 @@ plot_barplot <-
 #' Plots lollipop plot of p-values.
 #'
 #' @details 
-#' Create a customized  lollipop plot of p-values, facilitating visual exploration and analysis of statistical significance within ontology categories.
+#' Create a customized  lollipop plot of p-values, facilitating visual 
+#' exploration and analysis of statistical significance within ontology 
+#' categories.
 #' 
-#' @param reshaped_results  data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.
-#' @param selected_rows_to_plot A numeric vector specifying which rows of the reshaped results data frame should be included in the plot. Default is NULL.
+#' @param reshaped_results  data.table in relaxed form, obtained as the output 
+#' of the `reshape_results` function. The data source for generating the 
+#' barplot.
+#' @param selected_rows_to_plot A numeric vector specifying which rows of the 
+#' reshaped results data frame should be included in the plot. Default is NULL.
 #' frame should be included in the plot?
-#' @param ontology_id_colname Character, specifies the column name that contains ontology IDs in the input data.
-#' @param p_value_type_colname Character, specifies the column name for p-values in the input data. Default is 'eFDR'.
-#' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
+#' @param ontology_id_colname Character, specifies the column name that contains
+#' ontology IDs in the input data.
+#' @param p_value_type_colname Character, specifies the column name for p-values
+#' in the input data. Default is 'eFDR'.
+#' @param p_value_max_threshold Numeric, representing the maximum p-value 
+#' threshold for filtering data. Default is 0.05.
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%
 #' @importFrom readr read_tsv
@@ -539,11 +574,11 @@ plot_barplot <-
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 #' # reshape results for visualisation
-#' ora_reshaped_results <- reshape_results(model = ora_model, 
-#'                                         model_results = ora_results, 
-#'                                         # choosing which column to use for the
-#'                                         # indication of significance
-#'                                         p_value_type_colname = "eFDR")
+#' ora_reshaped_results <- reshape_results(
+#'     model = ora_model,
+#'     model_results = ora_results,
+#'     # choosing which column to use for the indication of significance
+#'     p_value_type_colname = "eFDR")
 #' # Plot lollipop
 #' plot_lollipop(reshaped_results = ora_reshaped_results,
 #'               # the column containing the names we wish to plot
@@ -560,7 +595,8 @@ plot_lollipop <-
            p_value_type_colname = 'eFDR',
            p_value_max_threshold = 0.05) {
     validate_column_names_and_function_args(data = reshaped_results,
-                                            p_value_type_colname, ontology_id_colname)
+                                            p_value_type_colname, 
+                                            ontology_id_colname)
     reshaped_results <- filterRelaxedResultsForPlotting(
       reshaped_results = reshaped_results,
       p_value_type_colname = p_value_type_colname,
@@ -571,7 +607,9 @@ plot_lollipop <-
       selected_rows_to_plot <- seq_len(nrow(reshaped_results))
     }
     unique_reshaped_results <-
-      unique(reshaped_results[selected_rows_to_plot, c(ontology_id_colname, p_value_type_colname), with = FALSE])
+      unique(reshaped_results[selected_rows_to_plot, c(ontology_id_colname, 
+                                                       p_value_type_colname), 
+                              with = FALSE])
     unique_reshaped_results <- unique_reshaped_results %>%
       dplyr::arrange(dplyr::desc((!!as.name(
         p_value_type_colname
@@ -609,12 +647,21 @@ plot_lollipop <-
 #' Plots heatmap of enriched terms and obtained p-values.
 #' 
 #' @details 
-#'  The `plot_heatmap` function provides a convenient way to create a ggplot2 heatmap illustrating the significance of enriched terms within ontology categories based on their associated p-values.
-#' @param reshaped_results  data.table in relaxed form, obtained as the output of the `reshape_results` function. The data source for generating the barplot.
-#' @param ontology_id_colname Character, specifies the column name that contains ontology IDs in the input data.
-#' @param p_value_type_colname Character, specifies the column name for p-values in the input data. Default is 'eFDR'.
-#' @param ontology_element_colname Character, specifying the column name that contains ontology elements or terms in the input data. Default: 'element_id_in_ontology'.
-#' @param p_value_max_threshold Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.
+#'  The `plot_heatmap` function provides a convenient way to create a ggplot2 
+#'  heatmap illustrating the significance of enriched terms within ontology 
+#'  categories based on their associated p-values.
+#' @param reshaped_results  data.table in relaxed form, obtained as the output 
+#' of the `reshape_results` function. The data source for generating the 
+#' barplot.
+#' @param ontology_id_colname Character, specifies the column name that contains
+#' ontology IDs in the input data.
+#' @param p_value_type_colname Character, specifies the column name for p-values
+#' in the input data. Default is 'eFDR'.
+#' @param ontology_element_colname Character, specifying the column name that
+#' contains ontology elements or terms in the input data. Default: 
+#' 'element_id_in_ontology'.
+#' @param p_value_max_threshold Numeric, representing the maximum p-value 
+#' threshold for filtering data. Default is 0.05.
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%
 #' @importFrom readr read_tsv
@@ -678,11 +725,11 @@ plot_lollipop <-
 #' # running the ORA
 #' ora_results <- run_test(ora_model)
 #' # reshape results for visualisation
-#' ora_reshaped_results <- reshape_results(model = ora_model, 
-#'                                         model_results = ora_results, 
-#'                                         # choosing which column to use for the
-#'                                         # indication of significance
-#'                                         p_value_type_colname = "eFDR")
+#' ora_reshaped_results <- reshape_results(
+#'     model = ora_model,
+#'     model_results = ora_results,
+#'     # choosing which column to use for the indication of significance
+#'     p_value_type_colname = "eFDR")
 #'                                         
 #' plot_heatmap(reshaped_results = ora_reshaped_results,
 #'              # the column containing the names we wish to plot
@@ -733,5 +780,6 @@ plot_heatmap <- function(reshaped_results,
                          limits = c(0.0,p_value_max_threshold)) +
     coord_fixed()+
     theme_light() +
-    theme(axis.text.x = element_text(angle = 90), text = element_text(family = "Helvetica"))
+    theme(axis.text.x = element_text(angle = 90), text = 
+            element_text(family = "Helvetica"))
 }

@@ -14,9 +14,11 @@ reshape_results(
 )
 }
 \arguments{
-\item{model}{a mulea model, created by the \code{ora} or the \code{gsea} functions.}
+\item{model}{a mulea model, created by the
+\code{ora} or the \code{gsea} functions.}
 
-\item{model_results}{Result \code{data.frame} returned by the \code{run_test} function.}
+\item{model_results}{Result \code{data.frame}
+returned by the \code{run_test} function.}
 
 \item{model_ontology_col_name}{Character, specifies the column name in the
 model that contains ontology IDs. It defines which column in the model
@@ -28,13 +30,14 @@ IDs in the model results. It indicates which column in the model results
 contains ontology IDs for merging. Possible values are 'ontology_id' and
 'ontology_name'. The default value is 'ontology_id'.}
 
-\item{p_value_type_colname}{Character, specifies the column name for the type
-or raw or adjusted \emph{p}-value in the result \code{data.frame} returned by the
-\code{run_test} function. The default value is 'eFDR'.}
+\item{p_value_type_colname}{Character, specifies the column name
+for the type or raw or adjusted \emph{p}-value in the result
+\code{data.frame} returned by the \code{run_test} function.
+The default value is 'eFDR'.}
 
-\item{p_value_max_threshold}{Logical, indicating whether to apply a \emph{p}-value
-threshold when filtering the resulting data. If TRUE, the function filters
-the data based on a \emph{p}-value threshold.}
+\item{p_value_max_threshold}{Logical, indicating whether to apply a
+\emph{p}-value threshold when filtering the resulting data. If TRUE,
+the function filters the data based on a \emph{p}-value threshold.}
 }
 \value{
 Return detailed and relaxed \code{data.table} where model and results are
@@ -77,11 +80,11 @@ ora_model <- ora(gmt = tf_gmt_filtered,
 ora_results <- run_test(ora_model)
 
 # reshaping results for visualisation
-ora_reshaped_results <- reshape_results(model = ora_model,
-                                        model_results = ora_results,
-                                        # choosing which column to use for the
-                                        # indication of significance
-                                        p_value_type_colname = "eFDR")
+ora_reshaped_results <- reshape_results(
+    model = ora_model,
+    model_results = ora_results,
+    # choosing which column to use for the indication of significance
+    p_value_type_colname = "eFDR")
 }
 \seealso{
 \code{\link{plot_graph}}, \code{\link{plot_barplot}},

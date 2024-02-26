@@ -5,7 +5,8 @@
 \alias{SetBasedEnrichmentTest-class}
 \alias{SetBasedEnrichmentTest}
 \alias{run_test,SetBasedEnrichmentTest-method}
-\title{PRIVATE class : An S4 class to represent a Hypergeometric tests in mulea.}
+\title{PRIVATE class : An S4 class to represent a Hypergeometric tests in
+mulea.}
 \usage{
 \S4method{run_test}{SetBasedEnrichmentTest}(model)
 }
@@ -15,10 +16,12 @@
 \value{
 SetBasedEnrichmentTest object. Used as private function.
 
-run_test method for SetBasedEnrichmentTest object. Used as private function.
+run_test method for SetBasedEnrichmentTest object. Used as private
+function.
 }
 \description{
-PRIVATE class : An S4 class to represent a Hypergeometric tests in mulea.
+PRIVATE class : An S4 class to represent a Hypergeometric tests in
+mulea.
 }
 \section{Methods (by generic)}{
 \itemize{

@@ -17,7 +17,8 @@
 'nr_common_with_tested_elements',
 'p_value', 'adjusted_p_value'
 
-run_test method for SubramanianTest object. Used as private function.
+run_test method for SubramanianTest object. Used as private
+function.
 }
 \description{
 PRIVATE class : An S4 class to represent a ranked based tests in mulea.
@@ -35,9 +36,9 @@ PRIVATE class : An S4 class to represent a ranked based tests in mulea.
 \item{\code{element_names}}{A vector of elements names (gene or protein names or
 identifiers) to include in the analysis.}
 
-\item{\code{element_scores}}{A vector of numeric values representing a score (\emph{e.g.}
-\emph{p}-value, \emph{z}-score, log fold change) for each element_name, in the same
-number and order as element_name.}
+\item{\code{element_scores}}{A vector of numeric values representing a
+score (\emph{e.g.} \emph{p}-value, \emph{z}-score, log fold change) for each
+'element_name', in the same number and order as element_name.}
 
 \item{\code{p}}{A power of weight.}
 

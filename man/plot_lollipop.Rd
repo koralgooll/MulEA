@@ -13,16 +13,22 @@ plot_lollipop(
 )
 }
 \arguments{
-\item{reshaped_results}{data.table in relaxed form, obtained as the output of the \code{reshape_results} function. The data source for generating the barplot.}
+\item{reshaped_results}{data.table in relaxed form, obtained as the output
+of the \code{reshape_results} function. The data source for generating the
+barplot.}
 
-\item{ontology_id_colname}{Character, specifies the column name that contains ontology IDs in the input data.}
+\item{ontology_id_colname}{Character, specifies the column name that contains
+ontology IDs in the input data.}
 
-\item{selected_rows_to_plot}{A numeric vector specifying which rows of the reshaped results data frame should be included in the plot. Default is NULL.
+\item{selected_rows_to_plot}{A numeric vector specifying which rows of the
+reshaped results data frame should be included in the plot. Default is NULL.
 frame should be included in the plot?}
 
-\item{p_value_type_colname}{Character, specifies the column name for p-values in the input data. Default is 'eFDR'.}
+\item{p_value_type_colname}{Character, specifies the column name for p-values
+in the input data. Default is 'eFDR'.}
 
-\item{p_value_max_threshold}{Numeric, representing the maximum p-value threshold for filtering data. Default is 0.05.}
+\item{p_value_max_threshold}{Numeric, representing the maximum p-value
+threshold for filtering data. Default is 0.05.}
 }
 \value{
 Returns a lollipop plot
@@ -31,7 +37,9 @@ Returns a lollipop plot
 Plots lollipop plot of p-values.
 }
 \details{
-Create a customized  lollipop plot of p-values, facilitating visual exploration and analysis of statistical significance within ontology categories.
+Create a customized  lollipop plot of p-values, facilitating visual
+exploration and analysis of statistical significance within ontology
+categories.
 }
 \examples{
 library(mulea)
@@ -87,11 +95,11 @@ ora_model <- ora(gmt = tf_gmt_filtered,
 # running the ORA
 ora_results <- run_test(ora_model)
 # reshape results for visualisation
-ora_reshaped_results <- reshape_results(model = ora_model, 
-                                        model_results = ora_results, 
-                                        # choosing which column to use for the
-                                        # indication of significance
-                                        p_value_type_colname = "eFDR")
+ora_reshaped_results <- reshape_results(
+    model = ora_model,
+    model_results = ora_results,
+    # choosing which column to use for the indication of significance
+    p_value_type_colname = "eFDR")
 # Plot lollipop
 plot_lollipop(reshaped_results = ora_reshaped_results,
               # the column containing the names we wish to plot

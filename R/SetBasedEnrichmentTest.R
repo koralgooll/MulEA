@@ -1,16 +1,16 @@
-#####################################################################################################
+###############################################################################
 # Function for FDR corrected hypergeometric enrichment test
-#####################################################################################################
+###############################################################################
 
 # snow and rlecuyer packages should be installed
 
 
 ## Arguments of HyperGeomFDR function:
-#	steps:		the rounds of simulations (a single number)
-#	pool:		background genes (character vector)
-#	select:		genes to investigate (character vector)
-#	DB: 		the genes set used for enrichment analysis (character list)
-#	nthreads:	number of threads to use (a single number)
+# steps: the rounds of simulations (a single number)
+# pool: background genes (character vector)
+# select: genes to investigate (character vector)
+# DB: the genes set used for enrichment analysis (character list)
+# nthreads: number of threads to use (a single number)
 
 ## Description of the hypergeometric test
 # phyper(q, m, n, k, lower.tail = TRUE, log.p = FALSE)
@@ -22,11 +22,13 @@
 #        n: the number of black balls in the urn.
 #        k: the number of balls drawn from the urn.
 #
-# x=length(intersect(select,DB_i))    	#Number of common genes between DB and select
-# m=length(intersect(pool,DB_i))        #Number of common genes between DB and pool
-# n=length(pool)-length(intersect(pool,DB_i))     #Number of non-pool genes among DB (setdiff)
-# k=length(select)                    	#Number of genes in select
-# P_val=dhyper(length(intersect(select,DB_i)), length(intersect(pool,DB_i)), length(pool)-length(intersect(pool,DB_i)), length(select))
+# x=length(intersect(select,DB_i)) #Number of common genes between DB and select
+# m=length(intersect(pool,DB_i))  #Number of common genes between DB and pool
+# n=length(pool)-length(intersect(pool,DB_i))  #Number of non-pool genes among 
+#                         DB (setdiff)
+# k=length(select) #Number of genes in select
+# P_val=dhyper(length(intersect(select,DB_i)), length(intersect(pool,DB_i)), 
+#      length(pool)-length(intersect(pool,DB_i)), length(select))
 #
 # wikipedia
 # N = length(pool)
@@ -35,7 +37,8 @@
 # k = length(intersect(select,DB_i))
 #
 # (choose(length(intersect(pool,DB_i)),length(intersect(select,DB_i)))*
-#      choose(length(pool)-length(intersect(pool,DB_i)),length(select)-length(intersect(select,DB_i))))/
+#      choose(length(pool)-length(intersect(pool,DB_i)),
+#       length(select)-length(intersect(select,DB_i))))/
 #      choose(length(pool),length(select))
 
 # m= intersect(select,DB_i)
@@ -43,9 +46,12 @@
 # k=length (DB_i)
 
 
-# P_val=(choose(length(intersect(BG,DB_i)),length(intersect(IG,DB_i)))*choose(length(BG)-length(intersect(BG,DB_i)),length(IG)-length(intersect(IG,DB_i))))/choose(length(BG),length(IG))
+# P_val=(choose(length(intersect(BG,DB_i)),
+# length(intersect(IG,DB_i)))*choose(length(BG)-length(intersect(BG,DB_i)),
+# length(IG)-length(intersect(IG,DB_i))))/choose(length(BG),length(IG))
 
-#' PRIVATE class : An S4 class to represent a Hypergeometric tests in mulea.
+#' PRIVATE class : An S4 class to represent a Hypergeometric tests in 
+#'   mulea.
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot element_names A data from expeciment to analize accross model.
@@ -125,7 +131,8 @@ setMethod("initialize", "SetBasedEnrichmentTest",
 
 #' @describeIn SetBasedEnrichmentTest runs test calculations.
 #' @param model Object of s4 class represents mulea Test.
-#' @return run_test method for SetBasedEnrichmentTest object. Used as private function.
+#' @return run_test method for SetBasedEnrichmentTest object. Used as private 
+#' function.
 #' @examples
 #' \dontrun{
 #' #It is a private method. Look at run_test of ora's examples.
@@ -137,12 +144,8 @@ setMethod("run_test",
           })
 
 
-set.based.enrichment.test.wrapper = function(steps,
-                                             pool,
-                                             select,
-                                             DB,
-                                             nthreads = 4,
-                                             only_hyper_geometric_test = FALSE) {
+set.based.enrichment.test.wrapper <- function(
+    steps, pool, select, DB, nthreads = 2, only_hyper_geometric_test = FALSE) {
   # print("nthreads")
   # print(nthreads)
   # print("steps")

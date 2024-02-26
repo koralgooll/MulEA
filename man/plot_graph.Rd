@@ -33,9 +33,11 @@ consider them connected by an edge on the graph. Default value is 0.}
 results that contains the type of \emph{p}-values associated with the ontology
 elements. Default value is 'eFDR'.}
 
-\item{p_value_max_threshold}{Numeric, a threshold value for filtering rows in
-the reshaped results based on the \emph{p}-values. Rows with \emph{p}-values greater
-than this threshold will be filtered out. Default value is 0.05.}
+\item{p_value_max_threshold}{Numeric, a threshold value for filtering
+rows in the reshaped results based on the
+\emph{p}-values. Rows with \emph{p}-values greater
+than this threshold will be filtered out.
+Default value is 0.05.}
 }
 \value{
 Returns a graph plot.
@@ -63,7 +65,8 @@ tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3,
                                    max_nr_of_elements = 400)
 
 # loading the example data
-sign_genes <- readLines(system.file(package = "mulea", "extdata", "sign_genes.csv"))
+sign_genes <- readLines(system.file(package = "mulea", "extdata", 
+    "sign_genes.csv"))
 background_genes <- readLines(system.file(
     package="mulea", "extdata", "background_genes.csv"))
 
@@ -83,11 +86,11 @@ ora_model <- ora(gmt = tf_gmt_filtered,
 ora_results <- run_test(ora_model)
 
 # reshaping results for visualisation
-ora_reshaped_results <- reshape_results(model = ora_model,
-                                        model_results = ora_results,
-                                        # choosing which column to use for the
-                                        # indication of significance
-                                        p_value_type_colname = "eFDR")
+ora_reshaped_results <- reshape_results(
+    model = ora_model,
+    model_results = ora_results,
+    # choosing which column to use for the indication of significance
+    p_value_type_colname = "eFDR")
 
 # Plot graph
 plot_graph(reshaped_results = ora_reshaped_results,

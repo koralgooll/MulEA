@@ -7,8 +7,9 @@
 filter_ontology(gmt, min_nr_of_elements = NULL, max_nr_of_elements = NULL)
 }
 \arguments{
-\item{gmt}{A \code{data.frame} which contains the entries (gene or protein sets),
-imported from a GMT file with the \code{read_gmt} function.}
+\item{gmt}{A \code{data.frame} which contains the entries
+(gene or protein sets), imported from a GMT file with the
+\code{read_gmt} function.}
 
 \item{min_nr_of_elements}{Minimum number of elements. Ontology entries
 containing as many or fewer elements (genes or proteins) will be excluded.}

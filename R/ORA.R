@@ -3,15 +3,16 @@
 #'@slot method The overrepresentation (ora) method. Possible values:
 #'  "Hypergeometric", "SetBasedEnrichment".
 #'@slot gmt A `data.frame` representing the ontology GMT.
-#'@slot element_names A vector of elements names (gene or protein names or
-#'  identifiers) representing the target set to analyse. For example
+#'@slot element_names A vector of elements names 
+#'  (gene or protein names or identifiers) representing the target set to 
+#'  analyse. For example
 #'  differentially expressed genes.
-#'@slot background_element_names A vector of elements names (gene or protein
-#'  names or identifiers) representing all the elements involved in the previous
-#'  analyses For example all genes that were measured in differential expression
-#'  analysis.
-#'@slot p_value_adjustment_method A character string representing the type of
-#'  the *p*-value adjustment method. Possible values:
+#'@slot background_element_names A vector of elements names 
+#'  (gene or protein names or identifiers) representing all the 
+#'  elements involved in the previous analyses For example all 
+#'  genes that were measured in differential expression analysis.
+#'@slot p_value_adjustment_method A character string representing the 
+#'  type of the *p*-value adjustment method. Possible values:
 #' * 'eFDR': empirical false discovery rate correction method
 #' * and all `method` options from `p.adjust` {stats} documentation.
 #'@slot number_of_permutations A numeric value representing the number of
@@ -31,8 +32,10 @@
 #'                                    max_nr_of_elements = 400)
 #' 
 #' # loading the example data
-#' sign_genes <- readLines(system.file(package = "mulea", "extdata", "sign_genes.csv"))
-#' background_genes <- readLines(system.file(package="mulea", "extdata", "background_genes.csv"))
+#' sign_genes <- readLines(system.file(package = "mulea", "extdata", 
+#'     "sign_genes.csv"))
+#' background_genes <- readLines(system.file(package="mulea", "extdata", 
+#'     "background_genes.csv"))
 #'
 #' # creating the ORA model
 #' ora_model <- ora(gmt = tf_gmt_filtered, 
@@ -50,28 +53,28 @@
 #' ora_results <- run_test(ora_model)
 
 ora <- setClass(
-  "ora",
-  slots = list(
-    gmt = "data.frame",
-    element_names = "character",
-    background_element_names = "character",
-    p_value_adjustment_method = "character",
-    number_of_permutations = "numeric",
-    nthreads = "numeric",
-    test = "function"
-  )
+    "ora",
+    slots = list(
+        gmt = "data.frame",
+        element_names = "character",
+        background_element_names = "character",
+        p_value_adjustment_method = "character",
+        number_of_permutations = "numeric",
+        nthreads = "numeric",
+        test = "function"
+    )
 )
 
 setMethod("initialize", "ora",
-          function(.Object,
-                   gmt = data.frame(),
-                   element_names = character(),
-                   background_element_names = character(),
-                   p_value_adjustment_method = "eFDR",
-                   number_of_permutations = 10000,
-                   test = NULL,
-                   nthreads = 4,
-                   ...) {
+    function(.Object,
+        gmt = data.frame(),
+        element_names = character(),
+        background_element_names = character(),
+        p_value_adjustment_method = "eFDR",
+        number_of_permutations = 10000,
+        test = NULL,
+        nthreads = 4,
+        ...) {
             adjustMethod <- NULL
             .Object@gmt <- gmt
             .Object@element_names <- element_names
@@ -81,104 +84,112 @@ setMethod("initialize", "ora",
             .Object@nthreads <- nthreads
             
             .Object@test <- function(setBasemodel) {
-              setBasedTestRes <- NULL
-              
-              if (!identical(setBasemodel@p_value_adjustment_method, character(0)) &&
-                  setBasemodel@p_value_adjustment_method == "eFDR") {
+                setBasedTestRes <- NULL
+
+                if (!identical(setBasemodel@p_value_adjustment_method, 
+                    character(0)) &&
+                    setBasemodel@p_value_adjustment_method == "eFDR") {
                 muleaSetBaseEnrichmentTest <-
-                  SetBasedEnrichmentTest(
-                    gmt = setBasemodel@gmt,
-                    element_names = setBasemodel@element_names,
-                    pool = setBasemodel@background_element_names,
-                    number_of_permutations = setBasemodel@number_of_permutations,
-                    nthreads = setBasemodel@nthreads
-                  )
+                    SetBasedEnrichmentTest(
+                        gmt = setBasemodel@gmt,
+                        element_names = setBasemodel@element_names,
+                        pool = setBasemodel@background_element_names,
+                        number_of_permutations = 
+                            setBasemodel@number_of_permutations,
+                        nthreads = setBasemodel@nthreads
+                    )
                 
                 muleaSetBaseEnrichmentTest <-
-                  run_test(muleaSetBaseEnrichmentTest)
+                    run_test(muleaSetBaseEnrichmentTest)
                 
                 muleaSetBaseEnrichmentTest <- merge(
-                  setBasemodel@gmt[c('ontology_id', 'ontology_name')],
-                  muleaSetBaseEnrichmentTest,
-                  by.x = "ontology_id",
-                  by.y = "DB_names",
-                  all = TRUE
-                )
+                    setBasemodel@gmt[c('ontology_id', 'ontology_name')],
+                    muleaSetBaseEnrichmentTest,
+                    by.x = "ontology_id",
+                    by.y = "DB_names",
+                    all = TRUE
+                    )
                 
                 for (i in seq_along(muleaSetBaseEnrichmentTest$FDR)) {
-                  if (!is.nan(muleaSetBaseEnrichmentTest$FDR[i])
-                      && muleaSetBaseEnrichmentTest$FDR[i] > 1.0) {
-                    muleaSetBaseEnrichmentTest$FDR[i] <- 1.0e+00
-                  }
+                    if (!is.nan(muleaSetBaseEnrichmentTest$FDR[i])
+                        && muleaSetBaseEnrichmentTest$FDR[i] > 1.0) {
+                            muleaSetBaseEnrichmentTest$FDR[i] <- 1.0e+00
+                    }
                 }
                 
                 names(muleaSetBaseEnrichmentTest) <-
-                  c(
-                    'ontology_id',
-                    'ontology_name',
-                    'nr_common_with_tested_elements',
-                    'nr_common_with_background_elements',
-                    'Genes_in_DB',
-                    'p_value',
-                    'P_adj_Bonf',
-                    'adjustedPValue',
-                    'R_obs',
-                    'R_exp',
-                    'eFDR'
-                  )
+                    c(
+                        'ontology_id',
+                        'ontology_name',
+                        'nr_common_with_tested_elements',
+                        'nr_common_with_background_elements',
+                        'Genes_in_DB',
+                        'p_value',
+                        'P_adj_Bonf',
+                        'adjustedPValue',
+                        'R_obs',
+                        'R_exp',
+                        'eFDR'
+                    )
                 
                 setBasedTestRes <-
-                  muleaSetBaseEnrichmentTest[, !names(muleaSetBaseEnrichmentTest) %in%
-                                               c('Genes_in_DB', 'P_adj_Bonf',
-                                                 'R_obs', 'R_exp', 'adjustedPValue')]
-              } else {
-                MuleaHypergeometricTest <-
-                  MuleaHypergeometricTest(
-                    gmt = setBasemodel@gmt,
-                    element_names = setBasemodel@element_names,
-                    pool = setBasemodel@background_element_names,
-                    nthreads = setBasemodel@nthreads
-                  )
+                    muleaSetBaseEnrichmentTest[
+                        , !names(muleaSetBaseEnrichmentTest) %in%
+                            c('Genes_in_DB', 'P_adj_Bonf',
+                                'R_obs', 'R_exp', 'adjustedPValue')]
+                } else {
+                    MuleaHypergeometricTest <-
+                        MuleaHypergeometricTest(
+                            gmt = setBasemodel@gmt,
+                            element_names = setBasemodel@element_names,
+                            pool = setBasemodel@background_element_names,
+                            nthreads = setBasemodel@nthreads
+                    )
                 setBasedTestRes <- run_test(MuleaHypergeometricTest)
                 
                 muleaSetBaseEnrichmentTest <- merge(
-                  setBasemodel@gmt[c('ontology_id', 'ontology_name')],
-                  setBasedTestRes,
-                  by.x = "ontology_id",
-                  by.y = "ontology_name",
-                  all = TRUE
+                    setBasemodel@gmt[c('ontology_id', 'ontology_name')],
+                    setBasedTestRes,
+                    by.x = "ontology_id",
+                    by.y = "ontology_name",
+                    all = TRUE
                 )
                 
                 names(muleaSetBaseEnrichmentTest) <-
-                  c(
-                    'ontology_id',
-                    'ontology_name',
-                    'list_of_values',
-                    'p_value'
-                  )
-                if (!identical(setBasemodel@p_value_adjustment_method, character(0)) &&
-                    setBasemodel@p_value_adjustment_method != "eFDR") {
-                  muleaSetBaseEnrichmentTest <-
-                    data.frame(
-                      muleaSetBaseEnrichmentTest,
-                      "adjusted_p_value" = stats::p.adjust(muleaSetBaseEnrichmentTest$p_value, method = setBasemodel@p_value_adjustment_method)
+                    c(
+                        'ontology_id',
+                        'ontology_name',
+                        'list_of_values',
+                        'p_value'
                     )
-                  setBasedTestRes <-
-                    muleaSetBaseEnrichmentTest[, !names(muleaSetBaseEnrichmentTest) %in%
-                                                 c('list_of_values')]
+                if (!identical(setBasemodel@p_value_adjustment_method, 
+                    character(0)) &&
+                        setBasemodel@p_value_adjustment_method != "eFDR") {
+                    muleaSetBaseEnrichmentTest <-
+                        data.frame(
+                            muleaSetBaseEnrichmentTest,
+                            "adjusted_p_value" = stats::p.adjust(
+                            muleaSetBaseEnrichmentTest$p_value,
+                            method = setBasemodel@p_value_adjustment_method)
+                    )
+                    setBasedTestRes <-
+                        muleaSetBaseEnrichmentTest[
+                            , !names(muleaSetBaseEnrichmentTest) %in%
+                                c('list_of_values')]
+                    }
                 }
-              }
-              
-              setBasedTestRes
+
+                setBasedTestRes
             }
             
             .Object
             
-          })
+        })
 
 #' @describeIn run_test ora test.
 #' @param model Object of S4 class representing the mulea test.
-#' @return run_test method for ora object. Returns the results of the overrepresentation analysis.
+#' @return run_test method for ora object. Returns the results of the 
+#' overrepresentation analysis.
 #' @examples
 #' library(mulea)
 #' 
@@ -186,11 +197,14 @@ setMethod("initialize", "ora",
 #' tf_gmt <- read_gmt(file = system.file(
 #'     package="mulea", "extdata", 
 #'     "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol.gmt"))
-#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, max_nr_of_elements = 400)
+#' tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3, 
+#'     max_nr_of_elements = 400)
 #' 
 #' # loading the example data
-#' sign_genes <- readLines(system.file(package = "mulea", "extdata", "sign_genes.csv"))
-#' background_genes <- readLines(system.file(package="mulea", "extdata", "background_genes.csv"))
+#' sign_genes <- readLines(system.file(package = "mulea", "extdata", 
+#'     "sign_genes.csv"))
+#' background_genes <- readLines(system.file(package="mulea", "extdata", 
+#'     "background_genes.csv"))
 #'
 #' # creating the ORA model
 #' ora_model <- ora(gmt = tf_gmt_filtered, 
@@ -208,7 +222,7 @@ setMethod("initialize", "ora",
 #' ora_results <- run_test(ora_model)
 
 setMethod("run_test",
-          signature(model = "ora"),
-          function(model) {
+        signature(model = "ora"),
+        function(model) {
             model@test(model)
-          })
+        })

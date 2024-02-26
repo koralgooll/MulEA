@@ -20,17 +20,18 @@ An S4 class to represent a set based tests in mulea.
 
 \item{\code{gmt}}{A \code{data.frame} representing the ontology GMT.}
 
-\item{\code{element_names}}{A vector of elements names (gene or protein names or
-identifiers) representing the target set to analyse. For example
+\item{\code{element_names}}{A vector of elements names
+(gene or protein names or identifiers) representing the target set to
+analyse. For example
 differentially expressed genes.}
 
-\item{\code{background_element_names}}{A vector of elements names (gene or protein
-names or identifiers) representing all the elements involved in the previous
-analyses For example all genes that were measured in differential expression
-analysis.}
+\item{\code{background_element_names}}{A vector of elements names
+(gene or protein names or identifiers) representing all the
+elements involved in the previous analyses For example all
+genes that were measured in differential expression analysis.}
 
-\item{\code{p_value_adjustment_method}}{A character string representing the type of
-the \emph{p}-value adjustment method. Possible values:
+\item{\code{p_value_adjustment_method}}{A character string representing the
+type of the \emph{p}-value adjustment method. Possible values:
 \itemize{
 \item 'eFDR': empirical false discovery rate correction method
 \item and all \code{method} options from \code{p.adjust} {stats} documentation.
@@ -53,8 +54,10 @@ tf_gmt_filtered <- filter_ontology(gmt = tf_gmt, min_nr_of_elements = 3,
                                    max_nr_of_elements = 400)
 
 # loading the example data
-sign_genes <- readLines(system.file(package = "mulea", "extdata", "sign_genes.csv"))
-background_genes <- readLines(system.file(package="mulea", "extdata", "background_genes.csv"))
+sign_genes <- readLines(system.file(package = "mulea", "extdata", 
+    "sign_genes.csv"))
+background_genes <- readLines(system.file(package="mulea", "extdata", 
+    "background_genes.csv"))
 
 # creating the ORA model
 ora_model <- ora(gmt = tf_gmt_filtered, 

@@ -8,7 +8,8 @@
 A data frame with 33 rows and 2 variables:
 \describe{
 \item{X}{Row names}
-\item{background_element_names}{Flybase gene IDs of 33 genes from Drosophyla melanogaster}
+\item{background_element_names}{Flybase gene IDs of 33 genes from
+Drosophyla melanogaster}
 }
 }
 \source{

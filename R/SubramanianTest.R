@@ -3,9 +3,9 @@
 #' @slot gmt A `data.frame` representing the ontology GMT.
 #' @slot element_names A vector of elements names (gene or protein names or
 #'   identifiers) to include in the analysis.
-#' @slot element_scores A vector of numeric values representing a score (*e.g.*
-#'   *p*-value, *z*-score, log fold change) for each element_name, in the same 
-#'   number and order as element_name.
+#' @slot element_scores A vector of numeric values representing a 
+#'   score (*e.g.* *p*-value, *z*-score, log fold change) for each 
+#'   'element_name', in the same number and order as element_name.
 #' @slot p A power of weight.
 #' @slot element_score_type Defines the GSEA score type.
 #' * "pos": Only positive element_scores
@@ -103,7 +103,8 @@ setMethod("initialize", "SubramanianTest",
 
 #' @describeIn SubramanianTest runs test calculations.
 #' @param model Object of s4 class represents mulea Test.
-#' @return run_test method for SubramanianTest object. Used as private function.
+#' @return run_test method for SubramanianTest object. Used as private 
+#'   function.
 #' @examples
 #' \dontrun{
 #' #It is a private method. Look at run_test of GSEA's examples.
