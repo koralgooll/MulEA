@@ -42,8 +42,14 @@ After installing the `BiocManager` package, you can install [`fgsea`](https://bi
 # installing the BiocManager package if needed
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
+
 # installing the fgsea package from Bioconductor
 BiocManager::install("fgsea")
+
+# installing the devtools package if needed
+if (!require("devtools", quietly = TRUE))
+    install.packages("devtools")
+
 # installing the mulea package from GitHub
 devtools::install_github("https://github.com/ELTEbioinformatics/mulea")
 ```

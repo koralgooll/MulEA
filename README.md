@@ -24,9 +24,10 @@ pulls](https://img.shields.io/github/issues-pr/ELTEbioinformatics/mulea)](https:
   - [Gene Set Enrichment Analysis
     (GSEA)](#gene-set-enrichment-analysis-gsea)
 - [Session Info](#session-info)
+- [References](#references)
 - [How to Cite the `mulea` Package?](#how-to-cite-the-mulea-package)
 - [Code of Conduct](#code-of-conduct)
-- [References](#references)
+
 
 # Introduction
 
@@ -70,8 +71,14 @@ a dependency for `mulea` from Bioconductor. Then, you can install
 # installing the BiocManager package if needed
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
+
 # installing the fgsea package from Bioconductor
 BiocManager::install("fgsea")
+
+# installing the devtools package if needed
+if (!require("devtools", quietly = TRUE))
+    install.packages("devtools")
+
 # installing the mulea package from GitHub
 devtools::install_github("https://github.com/ELTEbioinformatics/mulea")
 ```
@@ -295,14 +302,6 @@ tf_gmt_filtered <- filter_ontology(gmt = tf_gmt,
                                    max_nr_of_elements = 400)
 ```
 
-It is possible to write the filtered ontology as a GMT file using the
-`write_gmt` function.
-
-``` r
-write_gmt(gmt = tf_gmt_filtered, 
-          file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
-```
-
 **Results:**
 
 We can now determine the number of transcription factors remaining in
@@ -313,11 +312,12 @@ nrow(tf_gmt_filtered)
 #> [1] 154
 ```
 
-We can save the filtered *GMT* object to a file:
+It is possible to write the filtered ontology as a GMT file using the
+`write_gmt` function.
 
 ``` r
 write_gmt(gmt = tf_gmt_filtered, 
-          file = "Transcription_factor_RegulonDB_Escherichia_coli_GeneSymbol_filtered.gmt")
+          file = "Filtered.gmt")
 ```
 
 ### Converting a List to an Ontology Object
@@ -474,14 +474,14 @@ ora_results %>%
 |:------------|:--------------|-------------------------------:|-----------------------------------:|----------:|----------:|
 | FNR         | FNR           |                             26 |                                259 | 0.0000003 | 0.0000000 |
 | LexA        | LexA          |                             14 |                                 53 | 0.0000000 | 0.0000000 |
-| SoxS        | SoxS          |                              7 |                                 37 | 0.0001615 | 0.0030000 |
-| DnaA        | DnaA          |                              4 |                                 13 | 0.0006281 | 0.0046833 |
-| Rob         | Rob           |                              5 |                                 21 | 0.0004717 | 0.0047400 |
+| SoxS        | SoxS          |                              7 |                                 37 | 0.0001615 | 0.0028667 |
+| DnaA        | DnaA          |                              4 |                                 13 | 0.0006281 | 0.0048167 |
+| Rob         | Rob           |                              5 |                                 21 | 0.0004717 | 0.0050200 |
 | FadR        | FadR          |                              5 |                                 20 | 0.0003692 | 0.0051000 |
-| NsrR        | NsrR          |                              8 |                                 64 | 0.0010478 | 0.0069143 |
-| ArcA        | ArcA          |                             12 |                                148 | 0.0032001 | 0.0202000 |
-| IHF         | IHF           |                             14 |                                205 | 0.0070758 | 0.0466000 |
-| MarA        | MarA          |                              5 |                                 37 | 0.0066068 | 0.0492778 |
+| NsrR        | NsrR          |                              8 |                                 64 | 0.0010478 | 0.0067000 |
+| ArcA        | ArcA          |                             12 |                                148 | 0.0032001 | 0.0196375 |
+| IHF         | IHF           |                             14 |                                205 | 0.0070758 | 0.0443800 |
+| MarA        | MarA          |                              5 |                                 37 | 0.0066068 | 0.0468111 |
 
 ### Visualizing the ORA Result
 
@@ -621,7 +621,8 @@ This data can be formatted in two ways:
 geo2r_result_tab_filtered <- geo2r_result_tab %>% 
   # grouping by Gene.symbol to be able to filter
   group_by(Gene.symbol) %>%
-  # keeping the first row for each Gene.symbol from rows with the same Gene.symbol
+  # keeping the first row for each Gene.symbol from rows with the same 
+  # Gene.symbol
   filter(row_number()==1) %>% 
   # ungrouping
   ungroup() %>% 
@@ -692,15 +693,15 @@ gsea_results %>%
 
 | ontology_id | ontology_name | nr_common_with_tested_elements |   p_value | adjusted_p_value |
 |:------------|:--------------|-------------------------------:|----------:|-----------------:|
-| LexA        | LexA          |                             53 | 0.0000000 |        0.0000026 |
-| FNR         | FNR           |                            259 | 0.0000818 |        0.0062565 |
-| ArcA        | ArcA          |                            148 | 0.0005358 |        0.0136628 |
-| GlaR        | GlaR          |                              3 | 0.0004306 |        0.0136628 |
-| ModE        | ModE          |                             45 | 0.0002757 |        0.0136628 |
-| SoxS        | SoxS          |                             37 | 0.0004717 |        0.0136628 |
-| DnaA        | DnaA          |                             13 | 0.0006732 |        0.0147137 |
-| PaaX        | PaaX          |                             14 | 0.0025344 |        0.0481162 |
-| PspF        | PspF          |                              7 | 0.0028304 |        0.0481162 |
+| LexA        | LexA          |                             53 | 0.0000000 |        0.0000018 |
+| FNR         | FNR           |                            259 | 0.0000373 |        0.0028553 |
+| ModE        | ModE          |                             45 | 0.0001848 |        0.0094239 |
+| ArcA        | ArcA          |                            148 | 0.0003577 |        0.0109462 |
+| GlaR        | GlaR          |                              3 | 0.0003577 |        0.0109462 |
+| DnaA        | DnaA          |                             13 | 0.0005907 |        0.0129121 |
+| SoxS        | SoxS          |                             37 | 0.0005450 |        0.0129121 |
+| PaaX        | PaaX          |                             14 | 0.0017396 |        0.0332693 |
+| PspF        | PspF          |                              7 | 0.0023494 |        0.0399397 |
 
 ### Visualizing the GSEA Results
 
@@ -832,29 +833,30 @@ sessionInfo()
 #>  [9] tibble_3.2.1    ggplot2_3.5.0   tidyverse_2.0.0
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] fastmatch_1.1-4     gtable_0.3.4        xfun_0.41          
+#>  [1] fastmatch_1.1-4     gtable_0.3.4        xfun_0.42          
 #>  [4] ggrepel_0.9.5       lattice_0.22-5      tzdb_0.4.0         
 #>  [7] vctrs_0.6.5         tools_4.3.2         generics_0.1.3     
 #> [10] parallel_4.3.2      fansi_1.0.6         highr_0.10         
 #> [13] pkgconfig_2.0.3     Matrix_1.6-5        data.table_1.15.0  
 #> [16] lifecycle_1.0.4     compiler_4.3.2      farver_2.1.1       
-#> [19] munsell_0.5.0       ggforce_0.4.2       fgsea_1.28.0       
-#> [22] graphlayouts_1.1.0  codetools_0.2-19    htmltools_0.5.7    
-#> [25] yaml_2.3.8          pillar_1.9.0        crayon_1.5.2       
-#> [28] MASS_7.3-60.0.1     BiocParallel_1.36.0 viridis_0.6.5      
-#> [31] tidyselect_1.2.0    digest_0.6.34       stringi_1.8.3      
-#> [34] labeling_0.4.3      cowplot_1.1.3       polyclip_1.10-6    
-#> [37] fastmap_1.1.1       grid_4.3.2          colorspace_2.1-0   
-#> [40] cli_3.6.2           magrittr_2.0.3      ggraph_2.1.0       
-#> [43] tidygraph_1.3.1     utf8_1.2.4          withr_3.0.0        
-#> [46] scales_1.3.0        bit64_4.0.5         timechange_0.3.0   
-#> [49] rmarkdown_2.25      igraph_2.0.2        bit_4.0.5          
-#> [52] gridExtra_2.3       hms_1.1.3           evaluate_0.23      
-#> [55] knitr_1.45          viridisLite_0.4.2   rlang_1.1.3        
-#> [58] Rcpp_1.0.12         glue_1.7.0          tweenr_2.0.2       
-#> [61] rstudioapi_0.15.0   vroom_1.6.5         R6_2.5.1           
-#> [64] plyr_1.8.9
+#> [19] tictoc_1.2          munsell_0.5.0       ggforce_0.4.2      
+#> [22] fgsea_1.28.0        graphlayouts_1.1.0  codetools_0.2-19   
+#> [25] htmltools_0.5.7     yaml_2.3.8          pillar_1.9.0       
+#> [28] crayon_1.5.2        MASS_7.3-60.0.1     BiocParallel_1.36.0
+#> [31] viridis_0.6.5       tidyselect_1.2.0    digest_0.6.34      
+#> [34] stringi_1.8.3       labeling_0.4.3      cowplot_1.1.3      
+#> [37] polyclip_1.10-6     fastmap_1.1.1       grid_4.3.2         
+#> [40] colorspace_2.1-0    cli_3.6.2           magrittr_2.0.3     
+#> [43] ggraph_2.1.0        tidygraph_1.3.1     utf8_1.2.4         
+#> [46] withr_3.0.0         scales_1.3.0        bit64_4.0.5        
+#> [49] timechange_0.3.0    rmarkdown_2.25      igraph_2.0.2       
+#> [52] bit_4.0.5           gridExtra_2.3       hms_1.1.3          
+#> [55] evaluate_0.23       knitr_1.45          viridisLite_0.4.2  
+#> [58] rlang_1.1.3         Rcpp_1.0.12         glue_1.7.0         
+#> [61] tweenr_2.0.2        rstudioapi_0.15.0   vroom_1.6.5        
+#> [64] R6_2.5.1            plyr_1.8.9
 ```
+
 # References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
