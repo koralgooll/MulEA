@@ -10,6 +10,7 @@ test_that("ora : object creation test.", {
   
   mulea_ora_model <- ora(
     gmt = gmtMock,
+    element_names = testDataMock,
     background_element_names = poolMock,
     p_value_adjustment_method = "eFDR", 
     nthreads = 2)
